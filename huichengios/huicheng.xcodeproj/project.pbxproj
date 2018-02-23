@@ -16,6 +16,7 @@
 		21376689203FBAF4000CBCE6 /* SVPMessageShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21376688203FBAF4000CBCE6 /* SVPMessageShow.swift */; };
 		2137668B203FBAFD000CBCE6 /* String+fun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2137668A203FBAFD000CBCE6 /* String+fun.swift */; };
 		2137668D203FBCD3000CBCE6 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2137668C203FBCD3000CBCE6 /* Api.swift */; };
+		2137668F203FBF27000CBCE6 /* HCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2137668E203FBF27000CBCE6 /* HCViewController.swift */; };
 		215C65CB203EC6B6001C7A92 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215C65CA203EC6B6001C7A92 /* AppDelegate.swift */; };
 		215C65CD203EC6B6001C7A92 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215C65CC203EC6B6001C7A92 /* ViewController.swift */; };
 		215C65D0203EC6B6001C7A92 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 215C65CE203EC6B6001C7A92 /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 		21376688203FBAF4000CBCE6 /* SVPMessageShow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVPMessageShow.swift; sourceTree = "<group>"; };
 		2137668A203FBAFD000CBCE6 /* String+fun.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+fun.swift"; sourceTree = "<group>"; };
 		2137668C203FBCD3000CBCE6 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
+		2137668E203FBF27000CBCE6 /* HCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCViewController.swift; sourceTree = "<group>"; };
 		215C65C7203EC6B6001C7A92 /* huicheng.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = huicheng.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		215C65CA203EC6B6001C7A92 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		215C65CC203EC6B6001C7A92 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				21376686203FBAEB000CBCE6 /* View+Clipping.swift */,
 				21376688203FBAF4000CBCE6 /* SVPMessageShow.swift */,
 				2137668A203FBAFD000CBCE6 /* String+fun.swift */,
+				2137668E203FBF27000CBCE6 /* HCViewController.swift */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 				21376684203FBAB2000CBCE6 /* UILabel+Init.swift in Sources */,
 				2137668D203FBCD3000CBCE6 /* Api.swift in Sources */,
 				21376685203FBAB2000CBCE6 /* UIButton+Init.swift in Sources */,
+				2137668F203FBF27000CBCE6 /* HCViewController.swift in Sources */,
 				2137668B203FBAFD000CBCE6 /* String+fun.swift in Sources */,
 				2137667F203FBA61000CBCE6 /* Color+fun.swift in Sources */,
 				215C65CB203EC6B6001C7A92 /* AppDelegate.swift in Sources */,
