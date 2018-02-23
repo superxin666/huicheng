@@ -8,5 +8,8 @@ target 'huicheng' do
   # Pods for huicheng
 	pod 'SwiftyJSON'
 	pod 'Kingfisher'
-	pod 'MJRefresh'
+        pod 'MJRefresh'
+	pod 'Alamofire', '~> 4.5'
+	pod 'ObjectMapper', '~> 3.1'
+	pod 'SVProgressHUD' 
 end
