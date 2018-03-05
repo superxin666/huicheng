@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HCViewController: UINavigationController {
+class HCNavigationController: UINavigationController {
     override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
     }

@@ -9,38 +9,55 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegate {
 
     var window: UIWindow?
-
+    var tab : UITabBarController!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        self.showMain()
         return true
     }
-
-    func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+    
+    
+    /// tab
+    func showMain()  {
+        //消息
+        let mesVc :MessageViewController = MessageViewController()
+        let mesNv :UINavigationController = UINavigationController(rootViewController: mesVc)
+        let item1:UITabBarItem = UITabBarItem(title:"消息", image:UIImage.init(named: "")?.withRenderingMode(UIImageRenderingMode.alwaysOriginal), selectedImage: UIImage.init(named: "")?.withRenderingMode(UIImageRenderingMode.alwaysOriginal))
+        mesNv.tabBarItem = item1
+        
+        //工作
+        let workVc :WorkViewController = WorkViewController()
+        let workNv :UINavigationController = UINavigationController(rootViewController: workVc)
+        let item2:UITabBarItem = UITabBarItem(title:"工作", image:UIImage.init(named: "")?.withRenderingMode(UIImageRenderingMode.alwaysOriginal), selectedImage: UIImage.init(named: "")?.withRenderingMode(UIImageRenderingMode.alwaysOriginal))
+        workNv.tabBarItem = item2
+        
+        //便捷
+        let convenVc :ConvenViewController = ConvenViewController()
+        let convenNv :UINavigationController = UINavigationController(rootViewController: convenVc)
+        let item3:UITabBarItem = UITabBarItem(title:"便捷", image:UIImage.init(named: "")?.withRenderingMode(UIImageRenderingMode.alwaysOriginal), selectedImage: UIImage.init(named: "")?.withRenderingMode(UIImageRenderingMode.alwaysOriginal))
+        convenNv.tabBarItem = item3
+        
+        //我的
+        let minVc :MineViewController = MineViewController()
+        let minNv :UINavigationController = UINavigationController(rootViewController: minVc)
+        let item4:UITabBarItem = UITabBarItem(title:"我的", image:UIImage.init(named: "")?.withRenderingMode(UIImageRenderingMode.alwaysOriginal), selectedImage: UIImage.init(named: "")?.withRenderingMode(UIImageRenderingMode.alwaysOriginal))
+        minNv.tabBarItem = item4
+        
+        
+        
+        let vcArr = [mesNv,workNv,convenNv,minNv]
+        tab = UITabBarController()
+//        tab.tabBar.barTintColor = blue_COLOUR
+        tab.delegate = self
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor:UIColor.white], for: .normal)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor:UIColor.white], for: .selected)
+        tab.viewControllers = vcArr
+        self.window?.rootViewController = tab
     }
-
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    }
-
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-    }
-
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    }
-
-    func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
-
 
 }
 
