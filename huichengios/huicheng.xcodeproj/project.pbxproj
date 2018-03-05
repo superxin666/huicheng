@@ -27,6 +27,7 @@
 		216A6C52204CDE6F00528FD8 /* MineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A6C51204CDE6F00528FD8 /* MineViewController.swift */; };
 		216A6C54204CDE7900528FD8 /* WorkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A6C53204CDE7900528FD8 /* WorkViewController.swift */; };
 		216A6C57204CDE9D00528FD8 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A6C56204CDE9D00528FD8 /* BaseViewController.swift */; };
+		216A6C59204CE7D800528FD8 /* BaseNetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A6C58204CE7D800528FD8 /* BaseNetViewController.swift */; };
 		88EEB2BAA16F8A6E3AED0F0A /* Pods_huicheng.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B3B926EC39335E65CFE2DE /* Pods_huicheng.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,7 @@
 		216A6C51204CDE6F00528FD8 /* MineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineViewController.swift; sourceTree = "<group>"; };
 		216A6C53204CDE7900528FD8 /* WorkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkViewController.swift; sourceTree = "<group>"; };
 		216A6C56204CDE9D00528FD8 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		216A6C58204CE7D800528FD8 /* BaseNetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNetViewController.swift; sourceTree = "<group>"; };
 		97B8B5BC41ED2EA904010B3A /* Pods-huicheng.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-huicheng.release.xcconfig"; path = "Pods/Target Support Files/Pods-huicheng/Pods-huicheng.release.xcconfig"; sourceTree = "<group>"; };
 		98FDFB3873660C12BD78F6BE /* Pods-huicheng.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-huicheng.debug.xcconfig"; path = "Pods/Target Support Files/Pods-huicheng/Pods-huicheng.debug.xcconfig"; sourceTree = "<group>"; };
 		A6B3B926EC39335E65CFE2DE /* Pods_huicheng.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_huicheng.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,6 +113,7 @@
 		2137667A203FB7CE000CBCE6 /* Net */ = {
 			isa = PBXGroup;
 			children = (
+				216A6C58204CE7D800528FD8 /* BaseNetViewController.swift */,
 			);
 			path = Net;
 			sourceTree = "<group>";
@@ -353,6 +356,7 @@
 				21376684203FBAB2000CBCE6 /* UILabel+Init.swift in Sources */,
 				216A6C54204CDE7900528FD8 /* WorkViewController.swift in Sources */,
 				2137668D203FBCD3000CBCE6 /* Api.swift in Sources */,
+				216A6C59204CE7D800528FD8 /* BaseNetViewController.swift in Sources */,
 				216A6C57204CDE9D00528FD8 /* BaseViewController.swift in Sources */,
 				216A6C50204CDE6700528FD8 /* MessageViewController.swift in Sources */,
 				21376685203FBAB2000CBCE6 /* UIButton+Init.swift in Sources */,
