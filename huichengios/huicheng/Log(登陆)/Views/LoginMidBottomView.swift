@@ -9,14 +9,11 @@
 
 import UIKit
 
-class LoginMidBottomView: UIView, NibLoadable {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+class LoginMidBottomView: UIView,NibLoadable {
+        
+    
+    @IBAction func logInClick(_ sender: Any) {
+        HCLog(message: "登陆")
     }
-    */
-
+    
 }

@@ -9,6 +9,7 @@
 import UIKit
 
 class LoginTopView: UIView,NibLoadable {
+
     
     @IBAction func phoneclick(_ sender: Any) {
         print("手机快速登陆")

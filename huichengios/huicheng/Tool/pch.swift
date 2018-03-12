@@ -32,7 +32,7 @@ var hc_fzFontMedium = { (num : CGFloat) ->  UIFont in
 //MARK:色值
 
 //自定义调试信息打印
-func XJLog<T>(message : T, file : String = #file, lineNumber : Int = #line) {
+func HCLog<T>(message : T, file : String = #file, lineNumber : Int = #line) {
     //#if DEBUG
     let fileName = (file as NSString).lastPathComponent
     print("[\(fileName):line:\(lineNumber)]- \(message)")
