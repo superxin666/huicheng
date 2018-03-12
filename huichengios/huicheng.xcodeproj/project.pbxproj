@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		21082E9B20561BC800EF6AB6 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21082E9A20561BC800EF6AB6 /* NibLoadable.swift */; };
+		21082E9E20561ED600EF6AB6 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21082E9D20561ED600EF6AB6 /* LogInViewController.swift */; };
+		21082EA2205620CB00EF6AB6 /* LoginTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21082EA1205620CB00EF6AB6 /* LoginTopView.swift */; };
+		21082EA4205620D500EF6AB6 /* LoginTopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21082EA3205620D500EF6AB6 /* LoginTopView.xib */; };
 		2137667D203FBA20000CBCE6 /* pch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2137667C203FBA20000CBCE6 /* pch.swift */; };
 		2137667F203FBA61000CBCE6 /* Color+fun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2137667E203FBA61000CBCE6 /* Color+fun.swift */; };
 		21376681203FBA9D000CBCE6 /* ImageView+loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21376680203FBA9D000CBCE6 /* ImageView+loading.swift */; };
@@ -32,6 +36,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		21082E9A20561BC800EF6AB6 /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
+		21082E9D20561ED600EF6AB6 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		21082EA1205620CB00EF6AB6 /* LoginTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTopView.swift; sourceTree = "<group>"; };
+		21082EA3205620D500EF6AB6 /* LoginTopView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginTopView.xib; sourceTree = "<group>"; };
 		2137667B203FB863000CBCE6 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		2137667C203FBA20000CBCE6 /* pch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pch.swift; sourceTree = "<group>"; };
 		2137667E203FBA61000CBCE6 /* Color+fun.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+fun.swift"; sourceTree = "<group>"; };
@@ -73,6 +81,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		21082E9C20561EBC00EF6AB6 /* Log(登陆) */ = {
+			isa = PBXGroup;
+			children = (
+				21082EA020561F4900EF6AB6 /* Models */,
+				21082E9F20561F4800EF6AB6 /* Views */,
+				21082E9D20561ED600EF6AB6 /* LogInViewController.swift */,
+			);
+			path = "Log(登陆)";
+			sourceTree = "<group>";
+		};
+		21082E9F20561F4800EF6AB6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				21082EA1205620CB00EF6AB6 /* LoginTopView.swift */,
+				21082EA3205620D500EF6AB6 /* LoginTopView.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		21082EA020561F4900EF6AB6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		21376677203FB75F000CBCE6 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +140,7 @@
 		21376679203FB7B1000CBCE6 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				21082E9A20561BC800EF6AB6 /* NibLoadable.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -142,6 +177,7 @@
 				2137667A203FB7CE000CBCE6 /* Net */,
 				21376679203FB7B1000CBCE6 /* Base */,
 				21376678203FB77B000CBCE6 /* Class */,
+				21082E9C20561EBC00EF6AB6 /* Log(登陆) */,
 				21376677203FB75F000CBCE6 /* Tool */,
 				215C65CA203EC6B6001C7A92 /* AppDelegate.swift */,
 				215C65CC203EC6B6001C7A92 /* ViewController.swift */,
@@ -272,6 +308,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21082EA4205620D500EF6AB6 /* LoginTopView.xib in Resources */,
 				215C65D5203EC6B6001C7A92 /* LaunchScreen.storyboard in Resources */,
 				215C65D2203EC6B6001C7A92 /* Assets.xcassets in Resources */,
 				215C65D0203EC6B6001C7A92 /* Main.storyboard in Resources */,
@@ -326,6 +363,7 @@
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -335,6 +373,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,6 +389,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				215C65CD203EC6B6001C7A92 /* ViewController.swift in Sources */,
+				21082EA2205620CB00EF6AB6 /* LoginTopView.swift in Sources */,
 				21376689203FBAF4000CBCE6 /* SVPMessageShow.swift in Sources */,
 				21376681203FBA9D000CBCE6 /* ImageView+loading.swift in Sources */,
 				21376687203FBAEB000CBCE6 /* View+Clipping.swift in Sources */,
@@ -357,6 +397,8 @@
 				216A6C54204CDE7900528FD8 /* WorkViewController.swift in Sources */,
 				2137668D203FBCD3000CBCE6 /* Api.swift in Sources */,
 				216A6C59204CE7D800528FD8 /* BaseNetViewController.swift in Sources */,
+				21082E9E20561ED600EF6AB6 /* LogInViewController.swift in Sources */,
+				21082E9B20561BC800EF6AB6 /* NibLoadable.swift in Sources */,
 				216A6C57204CDE9D00528FD8 /* BaseViewController.swift in Sources */,
 				216A6C50204CDE6700528FD8 /* MessageViewController.swift in Sources */,
 				21376685203FBAB2000CBCE6 /* UIButton+Init.swift in Sources */,
