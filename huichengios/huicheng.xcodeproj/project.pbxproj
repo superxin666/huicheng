@@ -11,6 +11,8 @@
 		21082E9E20561ED600EF6AB6 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21082E9D20561ED600EF6AB6 /* LogInViewController.swift */; };
 		21082EA2205620CB00EF6AB6 /* LoginTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21082EA1205620CB00EF6AB6 /* LoginTopView.swift */; };
 		21082EA4205620D500EF6AB6 /* LoginTopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21082EA3205620D500EF6AB6 /* LoginTopView.xib */; };
+		2117595C205685A0000415AF /* LoginMidBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2117595B205685A0000415AF /* LoginMidBottomView.swift */; };
+		2117595E205685AB000415AF /* LoginMidBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2117595D205685AB000415AF /* LoginMidBottomView.xib */; };
 		2137667D203FBA20000CBCE6 /* pch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2137667C203FBA20000CBCE6 /* pch.swift */; };
 		2137667F203FBA61000CBCE6 /* Color+fun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2137667E203FBA61000CBCE6 /* Color+fun.swift */; };
 		21376681203FBA9D000CBCE6 /* ImageView+loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21376680203FBA9D000CBCE6 /* ImageView+loading.swift */; };
@@ -40,6 +42,8 @@
 		21082E9D20561ED600EF6AB6 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		21082EA1205620CB00EF6AB6 /* LoginTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTopView.swift; sourceTree = "<group>"; };
 		21082EA3205620D500EF6AB6 /* LoginTopView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginTopView.xib; sourceTree = "<group>"; };
+		2117595B205685A0000415AF /* LoginMidBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginMidBottomView.swift; sourceTree = "<group>"; };
+		2117595D205685AB000415AF /* LoginMidBottomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginMidBottomView.xib; sourceTree = "<group>"; };
 		2137667B203FB863000CBCE6 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		2137667C203FBA20000CBCE6 /* pch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pch.swift; sourceTree = "<group>"; };
 		2137667E203FBA61000CBCE6 /* Color+fun.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+fun.swift"; sourceTree = "<group>"; };
@@ -96,6 +100,8 @@
 			children = (
 				21082EA1205620CB00EF6AB6 /* LoginTopView.swift */,
 				21082EA3205620D500EF6AB6 /* LoginTopView.xib */,
+				2117595B205685A0000415AF /* LoginMidBottomView.swift */,
+				2117595D205685AB000415AF /* LoginMidBottomView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -311,6 +317,7 @@
 				21082EA4205620D500EF6AB6 /* LoginTopView.xib in Resources */,
 				215C65D5203EC6B6001C7A92 /* LaunchScreen.storyboard in Resources */,
 				215C65D2203EC6B6001C7A92 /* Assets.xcassets in Resources */,
+				2117595E205685AB000415AF /* LoginMidBottomView.xib in Resources */,
 				215C65D0203EC6B6001C7A92 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -392,6 +399,7 @@
 				21082EA2205620CB00EF6AB6 /* LoginTopView.swift in Sources */,
 				21376689203FBAF4000CBCE6 /* SVPMessageShow.swift in Sources */,
 				21376681203FBA9D000CBCE6 /* ImageView+loading.swift in Sources */,
+				2117595C205685A0000415AF /* LoginMidBottomView.swift in Sources */,
 				21376687203FBAEB000CBCE6 /* View+Clipping.swift in Sources */,
 				21376684203FBAB2000CBCE6 /* UILabel+Init.swift in Sources */,
 				216A6C54204CDE7900528FD8 /* WorkViewController.swift in Sources */,

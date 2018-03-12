@@ -9,16 +9,12 @@
 import UIKit
 
 class LoginTopView: UIView,NibLoadable {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    
+    @IBAction func phoneclick(_ sender: Any) {
+        print("手机快速登陆")
     }
-    */
-//    func loadView() -> UIView {
-//        let view = LoginTopView.loadNib()
-//        return view
-//    }
+    
+    @IBAction func acountclick(_ sender: Any) {
+        print("账号密码登陆")
+    }
 }

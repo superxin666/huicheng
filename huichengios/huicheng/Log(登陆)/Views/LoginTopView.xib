@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -25,6 +25,9 @@
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="log_log" translatesAutoresizingMaskIntoConstraints="NO" id="4nX-SI-773">
                     <rect key="frame" x="155" y="60" width="66" height="66"/>
+                    <accessibility key="accessibilityConfiguration">
+                        <bool key="isElement" value="YES"/>
+                    </accessibility>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="4nX-SI-773" secondAttribute="height" multiplier="1:1" id="hZ8-CF-y3J"/>
                     </constraints>
@@ -40,9 +43,51 @@
                 </label>
                 <view tag="10" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RXn-Oo-Ihu">
                     <rect key="frame" x="50" y="229" width="275" height="40"/>
-                    <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n8p-8r-dEl" userLabel="PhoneBtn">
+                            <rect key="frame" x="0.0" y="0.0" width="137" height="40"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" title="手机快速登陆">
+                                <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <state key="selected">
+                                <color key="titleColor" red="1" green="0.41176470588235292" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="phoneclick:" destination="-1" eventType="touchUpInside" id="10q-Ah-ngY"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0AT-v8-hz9">
+                            <rect key="frame" x="138" y="0.0" width="137" height="40"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" title="账号密码登陆">
+                                <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <state key="selected">
+                                <color key="titleColor" red="1" green="0.41176470590000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="acountclick:" destination="-1" eventType="touchUpInside" id="wjE-Hf-cbR"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <accessibility key="accessibilityConfiguration">
+                        <accessibilityTraits key="traits" none="YES"/>
+                        <bool key="isElement" value="YES"/>
+                    </accessibility>
                     <constraints>
+                        <constraint firstAttribute="bottom" secondItem="n8p-8r-dEl" secondAttribute="bottom" id="4zH-qx-dGP"/>
+                        <constraint firstItem="0AT-v8-hz9" firstAttribute="leading" secondItem="n8p-8r-dEl" secondAttribute="trailing" constant="1" id="M4B-ND-Jul"/>
+                        <constraint firstItem="0AT-v8-hz9" firstAttribute="top" secondItem="RXn-Oo-Ihu" secondAttribute="top" id="TU1-CW-bdZ"/>
+                        <constraint firstAttribute="trailing" secondItem="n8p-8r-dEl" secondAttribute="trailing" constant="138" id="WmE-fG-jYL"/>
+                        <constraint firstItem="n8p-8r-dEl" firstAttribute="top" secondItem="RXn-Oo-Ihu" secondAttribute="top" id="Ywd-yg-7XC"/>
                         <constraint firstAttribute="width" secondItem="RXn-Oo-Ihu" secondAttribute="height" multiplier="55:8" id="kDh-PY-II6"/>
+                        <constraint firstItem="n8p-8r-dEl" firstAttribute="leading" secondItem="RXn-Oo-Ihu" secondAttribute="leading" id="p4x-1H-4Ba"/>
+                        <constraint firstAttribute="trailing" secondItem="0AT-v8-hz9" secondAttribute="trailing" id="tX7-dd-Sk6"/>
+                        <constraint firstAttribute="bottom" secondItem="0AT-v8-hz9" secondAttribute="bottom" id="x2w-wV-nwZ"/>
                     </constraints>
                 </view>
             </subviews>
@@ -63,7 +108,7 @@
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-60" y="-13"/>
+            <point key="canvasLocation" x="-651" y="-139"/>
         </view>
     </objects>
     <resources>

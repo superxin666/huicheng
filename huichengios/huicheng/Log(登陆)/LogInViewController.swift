@@ -11,6 +11,8 @@ import SnapKit
 
 class LogInViewController: UIViewController {
     let topView = LoginTopView.loadNib()
+    let bottomView = LoginMidBottomView.loadNib()
+    
 
     
     override func viewWillLayoutSubviews() {
@@ -20,8 +22,13 @@ class LogInViewController: UIViewController {
             make.width.equalTo(self.view).offset(0)
             make.height.equalTo(topView.snp.width).multipliedBy(18.0/25.0)
         }
-        topView.layoutIfNeeded()
-        self.view.layoutIfNeeded()
+        bottomView.snp.makeConstraints { (make) in
+            make.top.equalTo(topView.snp.bottom).offset(45)
+            make.left.equalTo(self.view).offset(0)
+            make.width.equalTo(self.view).offset(0)
+            make.height.equalTo(bottomView.snp.width).multipliedBy(220.0/375.0)
+        }
+  
     }
     
     override func viewDidLoad() {
@@ -30,6 +37,7 @@ class LogInViewController: UIViewController {
         // Do any additional setup after loading the view.
         self.view.backgroundColor = .white
         self.view.addSubview(topView)
+        self.view.addSubview(bottomView)
 
 
         
