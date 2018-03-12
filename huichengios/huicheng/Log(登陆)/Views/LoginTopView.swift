@@ -18,4 +18,5 @@ class LoginTopView: UIView,NibLoadable {
     @IBAction func acountclick(_ sender: Any) {
         print("账号密码登陆")
     }
+    
 }

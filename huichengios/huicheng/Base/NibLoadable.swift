@@ -12,9 +12,9 @@ protocol NibLoadable {
 
 extension NibLoadable where Self : UIView {
     
-    static func loadNib(_ nibName : String? = nil) -> UIView{
+    static func loadNib(_ nibName : String? = nil) -> Self{
         debugPrint("\(self)")
-        return Bundle.main.loadNibNamed(nibName ?? "\(self)", owner: nil, options: nil)?.first as! UIView
+        return Bundle.main.loadNibNamed(nibName ?? "\(self)", owner: nil, options: nil)?.first as! Self
 
     }
     

@@ -11,7 +11,9 @@ import UIKit
 
 class LoginMidBottomView: UIView,NibLoadable {
         
-    
+    deinit {
+        print("销毁")
+    }
     @IBAction func logInClick(_ sender: Any) {
         HCLog(message: "登陆")
     }

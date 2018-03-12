@@ -36,8 +36,8 @@ class LogInViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         self.view.backgroundColor = .white
-        self.view.addSubview(topView)
-        self.view.addSubview(bottomView)
+        self.view.addSubview(self.topView)
+        self.view.addSubview(self.bottomView)
 
 
         
