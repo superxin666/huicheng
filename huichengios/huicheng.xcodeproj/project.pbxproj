@@ -11,7 +11,6 @@
 		21082E9E20561ED600EF6AB6 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21082E9D20561ED600EF6AB6 /* LogInViewController.swift */; };
 		21082EA2205620CB00EF6AB6 /* LoginTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21082EA1205620CB00EF6AB6 /* LoginTopView.swift */; };
 		21082EA4205620D500EF6AB6 /* LoginTopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21082EA3205620D500EF6AB6 /* LoginTopView.xib */; };
-		2117595C205685A0000415AF /* LoginMidBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2117595B205685A0000415AF /* LoginMidBottomView.swift */; };
 		2117595E205685AB000415AF /* LoginMidBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2117595D205685AB000415AF /* LoginMidBottomView.xib */; };
 		2137667D203FBA20000CBCE6 /* pch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2137667C203FBA20000CBCE6 /* pch.swift */; };
 		2137667F203FBA61000CBCE6 /* Color+fun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2137667E203FBA61000CBCE6 /* Color+fun.swift */; };
@@ -23,6 +22,7 @@
 		2137668B203FBAFD000CBCE6 /* String+fun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2137668A203FBAFD000CBCE6 /* String+fun.swift */; };
 		2137668D203FBCD3000CBCE6 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2137668C203FBCD3000CBCE6 /* Api.swift */; };
 		2137668F203FBF27000CBCE6 /* HCNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2137668E203FBF27000CBCE6 /* HCNavigationController.swift */; };
+		213A08D220576632001EF5CB /* LoginMidBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213A08D120576632001EF5CB /* LoginMidBottomView.swift */; };
 		215C65CB203EC6B6001C7A92 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215C65CA203EC6B6001C7A92 /* AppDelegate.swift */; };
 		215C65CD203EC6B6001C7A92 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215C65CC203EC6B6001C7A92 /* ViewController.swift */; };
 		215C65D0203EC6B6001C7A92 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 215C65CE203EC6B6001C7A92 /* Main.storyboard */; };
@@ -42,7 +42,6 @@
 		21082E9D20561ED600EF6AB6 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		21082EA1205620CB00EF6AB6 /* LoginTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTopView.swift; sourceTree = "<group>"; };
 		21082EA3205620D500EF6AB6 /* LoginTopView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginTopView.xib; sourceTree = "<group>"; };
-		2117595B205685A0000415AF /* LoginMidBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginMidBottomView.swift; sourceTree = "<group>"; };
 		2117595D205685AB000415AF /* LoginMidBottomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginMidBottomView.xib; sourceTree = "<group>"; };
 		2137667B203FB863000CBCE6 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		2137667C203FBA20000CBCE6 /* pch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pch.swift; sourceTree = "<group>"; };
@@ -55,6 +54,7 @@
 		2137668A203FBAFD000CBCE6 /* String+fun.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+fun.swift"; sourceTree = "<group>"; };
 		2137668C203FBCD3000CBCE6 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		2137668E203FBF27000CBCE6 /* HCNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCNavigationController.swift; sourceTree = "<group>"; };
+		213A08D120576632001EF5CB /* LoginMidBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginMidBottomView.swift; sourceTree = "<group>"; };
 		215C65C7203EC6B6001C7A92 /* huicheng.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = huicheng.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		215C65CA203EC6B6001C7A92 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		215C65CC203EC6B6001C7A92 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -100,7 +100,7 @@
 			children = (
 				21082EA1205620CB00EF6AB6 /* LoginTopView.swift */,
 				21082EA3205620D500EF6AB6 /* LoginTopView.xib */,
-				2117595B205685A0000415AF /* LoginMidBottomView.swift */,
+				213A08D120576632001EF5CB /* LoginMidBottomView.swift */,
 				2117595D205685AB000415AF /* LoginMidBottomView.xib */,
 			);
 			path = Views;
@@ -399,7 +399,7 @@
 				21082EA2205620CB00EF6AB6 /* LoginTopView.swift in Sources */,
 				21376689203FBAF4000CBCE6 /* SVPMessageShow.swift in Sources */,
 				21376681203FBA9D000CBCE6 /* ImageView+loading.swift in Sources */,
-				2117595C205685A0000415AF /* LoginMidBottomView.swift in Sources */,
+				213A08D220576632001EF5CB /* LoginMidBottomView.swift in Sources */,
 				21376687203FBAEB000CBCE6 /* View+Clipping.swift in Sources */,
 				21376684203FBAB2000CBCE6 /* UILabel+Init.swift in Sources */,
 				216A6C54204CDE7900528FD8 /* WorkViewController.swift in Sources */,

@@ -10,12 +10,45 @@
 import UIKit
 
 class LoginMidBottomView: UIView,NibLoadable {
-        
-    deinit {
-        print("销毁")
+    @IBOutlet weak var logBtn: UIButton!
+    @IBOutlet weak var getCodeBtn: UIButton!
+    @IBOutlet weak var codeTextField: UITextField!
+    @IBOutlet weak var phoneTextField: UITextField!
+    
+    @IBOutlet weak var phoneImageView: UIImageView!
+    
+    @IBAction func forgetClick(_ sender: Any) {
+        HCLog(message: "忘记密码")
     }
+    
     @IBAction func logInClick(_ sender: Any) {
         HCLog(message: "登陆")
+    }
+    
+    @IBAction func getCodeClick(_ sender: Any) {
+        HCLog(message: "获取验证码")
+    }
+    
+
+    @IBAction func fieldEnd(_ sender: UITextField, forEvent event: UIEvent) {
+        if sender.tag == 100 {
+            HCLog(message: "手机号" + sender.text!)
+        } else if sender.tag == 101 {
+             HCLog(message: "验证码" + sender.text!)
+        } else if sender.tag == 102 {
+             HCLog(message: "账号" + sender.text!)
+        } else {
+             HCLog(message: "密码" + sender.text!)
+        }
+       
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.endEditing(true)
+    }
+    
+    override func awakeFromNib() {
+        logBtn.hc_makeRadius(radius: ip6(24))
     }
     
 }

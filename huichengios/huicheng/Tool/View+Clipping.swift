@@ -14,7 +14,7 @@ extension UIView {
     ///
     /// - parameter width: 宽度
     /// - parameter color: 颜色
-    func xj_makeBorderWithBorderWidth(width:CGFloat , color:UIColor ){
+    func hc_makeBorderWithBorderWidth(width:CGFloat , color:UIColor ){
         self.layer.borderWidth = width
         self.layer.borderColor = color.cgColor
     }
@@ -24,7 +24,7 @@ extension UIView {
     /// - parameter width:  宽度
     /// - parameter color:  颜色
     /// - parameter radius: 圆角角度
-    func xj_makeBorderAndRadius(width:CGFloat , color:UIColor ,radius:CGFloat){
+    func hc_makeBorderAndRadius(width:CGFloat , color:UIColor ,radius:CGFloat){
         self.layer.borderWidth = width
         self.layer.borderColor = color.cgColor
         self.layer.cornerRadius = radius
@@ -34,14 +34,14 @@ extension UIView {
     /// 添加圆角
     ///
     /// - parameter radius: 角度
-    func xj_makeRadius(radius:CGFloat){
+    func hc_makeRadius(radius:CGFloat){
         self.layer.cornerRadius = radius
         self.layer.masksToBounds = true
     }
     
     
     /// 圆
-    func xj_makeRound() {
+    func hc_makeRound() {
         self.layer.cornerRadius = self.frame.size.height / 2
         self.layer.masksToBounds = true
     }
