@@ -15,6 +15,80 @@ class BaseViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    // MARK: UI
+    func navigation_title_fontsize(name:String, fontsize:Int, textColour:UIColor = darkblueColor) {
+        self.title = name
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: ip6(fontsize))]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: textColour]
+    }
+    
+    /// 导航栏 左键 文字类型
+    ///
+    /// - Parameters:
+    ///   - name: 标题
+    ///   - textColour: 标题颜色
+    func navigationBar_leftBtn_title(name:String, textColour:UIColor = .black){
+        let btn:UIButton = UIButton(type: UIButtonType.custom)
+        btn.frame = CGRect(x: 0, y: 0, width: 60, height: 44)
+        btn.setTitle(name, for: .normal)
+        btn.setTitleColor(textColour, for: .normal)
+        btn.addTarget(self, action:#selector(BaseViewController.navigationLeftBtnClick), for: .touchUpInside)
+        btn.titleLabel?.adjustsFontSizeToFitWidth = true
+        let item:UIBarButtonItem = UIBarButtonItem(customView:btn)
+        self.navigationItem.leftBarButtonItem = item
+    }
+    
+    
+    /// 导航栏 左键 图片类型
+    ///
+    /// - Parameter image: 图片
+    func navigationBar_leftBtn_image(image:UIImage){
+        let btn:UIButton = UIButton(type: UIButtonType.custom)
+        btn.frame = CGRect(x: 0, y: 0, width: 60, height: 44)
+        btn.setImage(image, for:.normal)
+        btn.imageEdgeInsets = UIEdgeInsetsMake(0, 20, 0, 0)
+        btn.addTarget(self, action:#selector(BaseViewController.navigationLeftBtnClick), for: .touchUpInside)
+        let item:UIBarButtonItem = UIBarButtonItem(customView:btn)
+        self.navigationItem.leftBarButtonItem = item
+    }
+    
+    
+    /// 导航栏 右键 文字类型
+    ///
+    /// - Parameters:
+    ///   - name: 标题
+    ///   - textColour: 标题颜色
+    func navigationBar_rightBtn_title(name:String, textColour:UIColor = .black){
+        let btn:UIButton = UIButton(type: UIButtonType.custom)
+        btn.frame = CGRect(x: 0, y: 0, width: 60, height: 44)
+        btn.setTitle(name, for: .normal)
+        btn.setTitleColor(textColour, for: .normal)
+        btn.addTarget(self, action:#selector(BaseViewController.navigationRightBtnClick), for: .touchUpInside)
+        btn.titleLabel?.adjustsFontSizeToFitWidth = true
+        let item:UIBarButtonItem = UIBarButtonItem(customView:btn)
+        self.navigationItem.rightBarButtonItem = item
+    }
+    
+    /// 导航栏 右键 图片类型
+    ///
+    /// - Parameter image: 图片
+    func navigationBar_rightBtn_image(image:UIImage){
+        let btn:UIButton = UIButton(type: UIButtonType.custom)
+        btn.frame = CGRect(x: 0, y: 0, width: 60, height: 44)
+        btn.setImage(image, for:.normal)
+        btn.imageEdgeInsets = UIEdgeInsetsMake(0, 20, 0, 0)
+        btn.addTarget(self, action:#selector(BaseViewController.navigationRightBtnClick), for: .touchUpInside)
+        let item:UIBarButtonItem = UIBarButtonItem(customView:btn)
+        self.navigationItem.rightBarButtonItem = item
+    }
+    // MARK: response
+    @objc func navigationLeftBtnClick() {
+        
+    }
+    
+    @objc func navigationRightBtnClick() {
+        
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

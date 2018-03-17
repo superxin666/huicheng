@@ -7,11 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		21075548205D4C3200FF4396 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21075542205D4C3200FF4396 /* LogInViewController.swift */; };
+		21075549205D4C3200FF4396 /* LoginTopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21075544205D4C3200FF4396 /* LoginTopView.xib */; };
+		2107554A205D4C3200FF4396 /* LoginTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21075545205D4C3200FF4396 /* LoginTopView.swift */; };
+		2107554B205D4C3200FF4396 /* LoginMidBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21075546205D4C3200FF4396 /* LoginMidBottomView.swift */; };
+		2107554C205D4C3200FF4396 /* LoginMidBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21075547205D4C3200FF4396 /* LoginMidBottomView.xib */; };
+		21075551205D5AD000FF4396 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107554F205D5AD000FF4396 /* MessageTableViewCell.swift */; };
+		21075552205D5AD000FF4396 /* MessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21075550205D5AD000FF4396 /* MessageTableViewCell.xib */; };
+		21075554205D5BFE00FF4396 /* NibLoadableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21075553205D5BFE00FF4396 /* NibLoadableCell.swift */; };
 		21082E9B20561BC800EF6AB6 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21082E9A20561BC800EF6AB6 /* NibLoadable.swift */; };
-		21082E9E20561ED600EF6AB6 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21082E9D20561ED600EF6AB6 /* LogInViewController.swift */; };
-		21082EA2205620CB00EF6AB6 /* LoginTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21082EA1205620CB00EF6AB6 /* LoginTopView.swift */; };
-		21082EA4205620D500EF6AB6 /* LoginTopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21082EA3205620D500EF6AB6 /* LoginTopView.xib */; };
-		2117595E205685AB000415AF /* LoginMidBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2117595D205685AB000415AF /* LoginMidBottomView.xib */; };
 		2137667D203FBA20000CBCE6 /* pch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2137667C203FBA20000CBCE6 /* pch.swift */; };
 		2137667F203FBA61000CBCE6 /* Color+fun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2137667E203FBA61000CBCE6 /* Color+fun.swift */; };
 		21376681203FBA9D000CBCE6 /* ImageView+loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21376680203FBA9D000CBCE6 /* ImageView+loading.swift */; };
@@ -22,7 +26,6 @@
 		2137668B203FBAFD000CBCE6 /* String+fun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2137668A203FBAFD000CBCE6 /* String+fun.swift */; };
 		2137668D203FBCD3000CBCE6 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2137668C203FBCD3000CBCE6 /* Api.swift */; };
 		2137668F203FBF27000CBCE6 /* HCNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2137668E203FBF27000CBCE6 /* HCNavigationController.swift */; };
-		213A08D220576632001EF5CB /* LoginMidBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213A08D120576632001EF5CB /* LoginMidBottomView.swift */; };
 		215C65CB203EC6B6001C7A92 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215C65CA203EC6B6001C7A92 /* AppDelegate.swift */; };
 		215C65CD203EC6B6001C7A92 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215C65CC203EC6B6001C7A92 /* ViewController.swift */; };
 		215C65D0203EC6B6001C7A92 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 215C65CE203EC6B6001C7A92 /* Main.storyboard */; };
@@ -38,11 +41,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		21075542205D4C3200FF4396 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		21075544205D4C3200FF4396 /* LoginTopView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginTopView.xib; sourceTree = "<group>"; };
+		21075545205D4C3200FF4396 /* LoginTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTopView.swift; sourceTree = "<group>"; };
+		21075546205D4C3200FF4396 /* LoginMidBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginMidBottomView.swift; sourceTree = "<group>"; };
+		21075547205D4C3200FF4396 /* LoginMidBottomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginMidBottomView.xib; sourceTree = "<group>"; };
+		2107554F205D5AD000FF4396 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
+		21075550205D5AD000FF4396 /* MessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageTableViewCell.xib; sourceTree = "<group>"; };
+		21075553205D5BFE00FF4396 /* NibLoadableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadableCell.swift; sourceTree = "<group>"; };
 		21082E9A20561BC800EF6AB6 /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
-		21082E9D20561ED600EF6AB6 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
-		21082EA1205620CB00EF6AB6 /* LoginTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTopView.swift; sourceTree = "<group>"; };
-		21082EA3205620D500EF6AB6 /* LoginTopView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginTopView.xib; sourceTree = "<group>"; };
-		2117595D205685AB000415AF /* LoginMidBottomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginMidBottomView.xib; sourceTree = "<group>"; };
 		2137667B203FB863000CBCE6 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		2137667C203FBA20000CBCE6 /* pch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pch.swift; sourceTree = "<group>"; };
 		2137667E203FBA61000CBCE6 /* Color+fun.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+fun.swift"; sourceTree = "<group>"; };
@@ -54,7 +61,6 @@
 		2137668A203FBAFD000CBCE6 /* String+fun.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+fun.swift"; sourceTree = "<group>"; };
 		2137668C203FBCD3000CBCE6 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		2137668E203FBF27000CBCE6 /* HCNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCNavigationController.swift; sourceTree = "<group>"; };
-		213A08D120576632001EF5CB /* LoginMidBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginMidBottomView.swift; sourceTree = "<group>"; };
 		215C65C7203EC6B6001C7A92 /* huicheng.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = huicheng.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		215C65CA203EC6B6001C7A92 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		215C65CC203EC6B6001C7A92 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -85,28 +91,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		21082E9C20561EBC00EF6AB6 /* Log(登陆) */ = {
+		21075540205D4C3200FF4396 /* Log(登陆) */ = {
 			isa = PBXGroup;
 			children = (
-				21082EA020561F4900EF6AB6 /* Models */,
-				21082E9F20561F4800EF6AB6 /* Views */,
-				21082E9D20561ED600EF6AB6 /* LogInViewController.swift */,
+				21075543205D4C3200FF4396 /* Views */,
+				21075541205D4C3200FF4396 /* Models */,
+				21075542205D4C3200FF4396 /* LogInViewController.swift */,
 			);
 			path = "Log(登陆)";
 			sourceTree = "<group>";
 		};
-		21082E9F20561F4800EF6AB6 /* Views */ = {
+		21075541205D4C3200FF4396 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				21082EA1205620CB00EF6AB6 /* LoginTopView.swift */,
-				21082EA3205620D500EF6AB6 /* LoginTopView.xib */,
-				213A08D120576632001EF5CB /* LoginMidBottomView.swift */,
-				2117595D205685AB000415AF /* LoginMidBottomView.xib */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		21075543205D4C3200FF4396 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				21075544205D4C3200FF4396 /* LoginTopView.xib */,
+				21075545205D4C3200FF4396 /* LoginTopView.swift */,
+				21075546205D4C3200FF4396 /* LoginMidBottomView.swift */,
+				21075547205D4C3200FF4396 /* LoginMidBottomView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		21082EA020561F4900EF6AB6 /* Models */ = {
+		2107554D205D5AA200FF4396 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2107554F205D5AD000FF4396 /* MessageTableViewCell.swift */,
+				21075550205D5AD000FF4396 /* MessageTableViewCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2107554E205D5AB300FF4396 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -134,6 +156,7 @@
 		21376678203FB77B000CBCE6 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				21075540205D4C3200FF4396 /* Log(登陆) */,
 				216A6C55204CDE9500528FD8 /* Base */,
 				216A6C4B204CDDB100528FD8 /* Convenience(便捷) */,
 				216A6C4A204CDDB100528FD8 /* Message(消息) */,
@@ -147,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				21082E9A20561BC800EF6AB6 /* NibLoadable.swift */,
+				21075553205D5BFE00FF4396 /* NibLoadableCell.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -183,7 +207,6 @@
 				2137667A203FB7CE000CBCE6 /* Net */,
 				21376679203FB7B1000CBCE6 /* Base */,
 				21376678203FB77B000CBCE6 /* Class */,
-				21082E9C20561EBC00EF6AB6 /* Log(登陆) */,
 				21376677203FB75F000CBCE6 /* Tool */,
 				215C65CA203EC6B6001C7A92 /* AppDelegate.swift */,
 				215C65CC203EC6B6001C7A92 /* ViewController.swift */,
@@ -206,6 +229,8 @@
 		216A6C4A204CDDB100528FD8 /* Message(消息) */ = {
 			isa = PBXGroup;
 			children = (
+				2107554E205D5AB300FF4396 /* Models */,
+				2107554D205D5AA200FF4396 /* Views */,
 				216A6C4F204CDE6700528FD8 /* MessageViewController.swift */,
 			);
 			path = "Message(消息)";
@@ -314,10 +339,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21082EA4205620D500EF6AB6 /* LoginTopView.xib in Resources */,
+				21075549205D4C3200FF4396 /* LoginTopView.xib in Resources */,
+				21075552205D5AD000FF4396 /* MessageTableViewCell.xib in Resources */,
 				215C65D5203EC6B6001C7A92 /* LaunchScreen.storyboard in Resources */,
 				215C65D2203EC6B6001C7A92 /* Assets.xcassets in Resources */,
-				2117595E205685AB000415AF /* LoginMidBottomView.xib in Resources */,
+				2107554C205D4C3200FF4396 /* LoginMidBottomView.xib in Resources */,
 				215C65D0203EC6B6001C7A92 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -396,16 +422,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				215C65CD203EC6B6001C7A92 /* ViewController.swift in Sources */,
-				21082EA2205620CB00EF6AB6 /* LoginTopView.swift in Sources */,
+				2107554A205D4C3200FF4396 /* LoginTopView.swift in Sources */,
 				21376689203FBAF4000CBCE6 /* SVPMessageShow.swift in Sources */,
 				21376681203FBA9D000CBCE6 /* ImageView+loading.swift in Sources */,
-				213A08D220576632001EF5CB /* LoginMidBottomView.swift in Sources */,
+				2107554B205D4C3200FF4396 /* LoginMidBottomView.swift in Sources */,
 				21376687203FBAEB000CBCE6 /* View+Clipping.swift in Sources */,
 				21376684203FBAB2000CBCE6 /* UILabel+Init.swift in Sources */,
 				216A6C54204CDE7900528FD8 /* WorkViewController.swift in Sources */,
 				2137668D203FBCD3000CBCE6 /* Api.swift in Sources */,
 				216A6C59204CE7D800528FD8 /* BaseNetViewController.swift in Sources */,
-				21082E9E20561ED600EF6AB6 /* LogInViewController.swift in Sources */,
+				21075548205D4C3200FF4396 /* LogInViewController.swift in Sources */,
 				21082E9B20561BC800EF6AB6 /* NibLoadable.swift in Sources */,
 				216A6C57204CDE9D00528FD8 /* BaseViewController.swift in Sources */,
 				216A6C50204CDE6700528FD8 /* MessageViewController.swift in Sources */,
@@ -414,7 +440,9 @@
 				2137668B203FBAFD000CBCE6 /* String+fun.swift in Sources */,
 				2137667F203FBA61000CBCE6 /* Color+fun.swift in Sources */,
 				215C65CB203EC6B6001C7A92 /* AppDelegate.swift in Sources */,
+				21075551205D5AD000FF4396 /* MessageTableViewCell.swift in Sources */,
 				2137667D203FBA20000CBCE6 /* pch.swift in Sources */,
+				21075554205D5BFE00FF4396 /* NibLoadableCell.swift in Sources */,
 				216A6C4E204CDE5500528FD8 /* ConvenViewController.swift in Sources */,
 				216A6C52204CDE6F00528FD8 /* MineViewController.swift in Sources */,
 			);

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MESSAGE_ID" id="KGk-i7-Jjw" customClass="MessageTableViewCell" customModule="huicheng" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="2018-02-09 13:05:42 | 函件审核" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qy3-rX-Ern">
+                        <rect key="frame" x="15" y="20" width="345" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="超级管理员发起盖章申请,函件编号为：BJ20181303" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7IA-mP-3Xm">
+                        <rect key="frame" x="15" y="45" width="345" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.090196078431372548" green="0.22745098039215686" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zhh-4s-NRp">
+                        <rect key="frame" x="0.0" y="79" width="375" height="0.5"/>
+                        <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="GtZ-g3-czP"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="7IA-mP-3Xm" secondAttribute="trailing" constant="15" id="7bV-rN-IF9"/>
+                    <constraint firstItem="zhh-4s-NRp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="LJk-bY-T4u"/>
+                    <constraint firstAttribute="trailing" secondItem="Qy3-rX-Ern" secondAttribute="trailing" constant="15" id="R8X-ch-NXi"/>
+                    <constraint firstItem="Qy3-rX-Ern" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="Upr-vB-lT1"/>
+                    <constraint firstItem="Qy3-rX-Ern" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="YEN-cx-xdS"/>
+                    <constraint firstAttribute="bottom" secondItem="zhh-4s-NRp" secondAttribute="bottom" id="a9e-nt-jAd"/>
+                    <constraint firstItem="7IA-mP-3Xm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="dcJ-1f-deS"/>
+                    <constraint firstAttribute="trailing" secondItem="zhh-4s-NRp" secondAttribute="trailing" id="knP-zM-ImJ"/>
+                    <constraint firstItem="7IA-mP-3Xm" firstAttribute="top" secondItem="Qy3-rX-Ern" secondAttribute="bottom" constant="7" id="yvv-Sq-krL"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <point key="canvasLocation" x="-274" y="-256"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -9,6 +9,13 @@
 import UIKit
 import Kingfisher
 import SVProgressHUD
+//MARK:颜色
+let viewBackColor = UIColor.hc_colorFromRGB(rgbValue: 0xf5f5f5)
+let darkblueColor = UIColor.hc_colorFromRGB(rgbValue: 0x173A67)
+let orangeColor = UIColor.hc_colorFromRGB(rgbValue: 0xFF6900)
+let grayColor = UIColor.hc_colorFromRGB(rgbValue: 0x5B6679)
+
+
 //MARK:尺寸
 let KSCREEN_WIDTH = UIScreen.main.bounds.size.width
 let KSCREEN_HEIGHT = UIScreen.main.bounds.size.height
