@@ -15,6 +15,9 @@ class ConvenViewController: BaseViewController {
 
         // Do any additional setup after loading the view.
         self.view.backgroundColor = viewBackColor
+        self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "mes_logo"))
+        self.navigationBar_rightBtn_image(image: #imageLiteral(resourceName: "mes_ alarm"))
+        self.navigation_title_fontsize(name: "便捷", fontsize: 18)
     }
 
     override func didReceiveMemoryWarning() {

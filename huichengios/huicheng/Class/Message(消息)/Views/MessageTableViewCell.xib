@@ -51,7 +51,11 @@
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-            <point key="canvasLocation" x="-193" y="-258"/>
+            <connections>
+                <outlet property="timeLabel" destination="Qy3-rX-Ern" id="uvi-iP-JeH"/>
+                <outlet property="titleLabel" destination="7IA-mP-3Xm" id="aCw-rT-aZM"/>
+            </connections>
+            <point key="canvasLocation" x="-483" y="-359"/>
         </tableViewCell>
     </objects>
 </document>

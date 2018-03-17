@@ -18,6 +18,12 @@
 		21075558205D6D2000FF4396 /* PubMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21075557205D6D2000FF4396 /* PubMessageViewController.swift */; };
 		2107555B205D6EFD00FF4396 /* PubMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21075559205D6EFD00FF4396 /* PubMessageTableViewCell.swift */; };
 		2107555C205D6EFD00FF4396 /* PubMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2107555A205D6EFD00FF4396 /* PubMessageTableViewCell.xib */; };
+		2107555F205D792C00FF4396 /* MineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107555D205D792C00FF4396 /* MineTableViewCell.swift */; };
+		21075560205D792C00FF4396 /* MineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2107555E205D792C00FF4396 /* MineTableViewCell.xib */; };
+		21075562205D7A3700FF4396 /* MineHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21075561205D7A3700FF4396 /* MineHeadView.swift */; };
+		21075564205D7A4A00FF4396 /* MineHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21075563205D7A4A00FF4396 /* MineHeadView.xib */; };
+		21075566205D8FE700FF4396 /* MineFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21075565205D8FE700FF4396 /* MineFooterView.swift */; };
+		21075568205D8FF200FF4396 /* MineFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21075567205D8FF200FF4396 /* MineFooterView.xib */; };
 		21082E9B20561BC800EF6AB6 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21082E9A20561BC800EF6AB6 /* NibLoadable.swift */; };
 		2137667D203FBA20000CBCE6 /* pch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2137667C203FBA20000CBCE6 /* pch.swift */; };
 		2137667F203FBA61000CBCE6 /* Color+fun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2137667E203FBA61000CBCE6 /* Color+fun.swift */; };
@@ -55,6 +61,12 @@
 		21075557205D6D2000FF4396 /* PubMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PubMessageViewController.swift; sourceTree = "<group>"; };
 		21075559205D6EFD00FF4396 /* PubMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PubMessageTableViewCell.swift; sourceTree = "<group>"; };
 		2107555A205D6EFD00FF4396 /* PubMessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PubMessageTableViewCell.xib; sourceTree = "<group>"; };
+		2107555D205D792C00FF4396 /* MineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineTableViewCell.swift; sourceTree = "<group>"; };
+		2107555E205D792C00FF4396 /* MineTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MineTableViewCell.xib; sourceTree = "<group>"; };
+		21075561205D7A3700FF4396 /* MineHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineHeadView.swift; sourceTree = "<group>"; };
+		21075563205D7A4A00FF4396 /* MineHeadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MineHeadView.xib; sourceTree = "<group>"; };
+		21075565205D8FE700FF4396 /* MineFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineFooterView.swift; sourceTree = "<group>"; };
+		21075567205D8FF200FF4396 /* MineFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MineFooterView.xib; sourceTree = "<group>"; };
 		21082E9A20561BC800EF6AB6 /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
 		2137667B203FB863000CBCE6 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		2137667C203FBA20000CBCE6 /* pch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pch.swift; sourceTree = "<group>"; };
@@ -146,6 +158,12 @@
 		21075555205D6BBB00FF4396 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2107555D205D792C00FF4396 /* MineTableViewCell.swift */,
+				2107555E205D792C00FF4396 /* MineTableViewCell.xib */,
+				21075561205D7A3700FF4396 /* MineHeadView.swift */,
+				21075563205D7A4A00FF4396 /* MineHeadView.xib */,
+				21075565205D8FE700FF4396 /* MineFooterView.swift */,
+				21075567205D8FF200FF4396 /* MineFooterView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -366,10 +384,13 @@
 			files = (
 				21075549205D4C3200FF4396 /* LoginTopView.xib in Resources */,
 				21075552205D5AD000FF4396 /* MessageTableViewCell.xib in Resources */,
+				21075560205D792C00FF4396 /* MineTableViewCell.xib in Resources */,
+				21075564205D7A4A00FF4396 /* MineHeadView.xib in Resources */,
 				215C65D5203EC6B6001C7A92 /* LaunchScreen.storyboard in Resources */,
 				2107555C205D6EFD00FF4396 /* PubMessageTableViewCell.xib in Resources */,
 				215C65D2203EC6B6001C7A92 /* Assets.xcassets in Resources */,
 				2107554C205D4C3200FF4396 /* LoginMidBottomView.xib in Resources */,
+				21075568205D8FF200FF4396 /* MineFooterView.xib in Resources */,
 				215C65D0203EC6B6001C7A92 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -470,9 +491,12 @@
 				215C65CB203EC6B6001C7A92 /* AppDelegate.swift in Sources */,
 				21075551205D5AD000FF4396 /* MessageTableViewCell.swift in Sources */,
 				2137667D203FBA20000CBCE6 /* pch.swift in Sources */,
+				21075566205D8FE700FF4396 /* MineFooterView.swift in Sources */,
 				21075554205D5BFE00FF4396 /* NibLoadableCell.swift in Sources */,
+				2107555F205D792C00FF4396 /* MineTableViewCell.swift in Sources */,
 				216A6C4E204CDE5500528FD8 /* ConvenViewController.swift in Sources */,
 				216A6C52204CDE6F00528FD8 /* MineViewController.swift in Sources */,
+				21075562205D7A3700FF4396 /* MineHeadView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

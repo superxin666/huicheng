@@ -1,22 +1,24 @@
 //
-//  PubMessageTableViewCell.swift
+//  MineTableViewCell.swift
 //  huicheng
 //
-//  Created by lvxin on 2018/3/17.
+//  Created by lvxin on 2018/3/18.
 //  Copyright © 2018年 lvxin. All rights reserved.
-//  公告cell
+//  我的 cell
 
 import UIKit
 
-class PubMessageTableViewCell: UITableViewCell {
-    @IBOutlet weak var timebtn: UIButton!
+class MineTableViewCell: UITableViewCell {
+    let nameArr = ["备忘录","报销申请","发票申请","发票申请","发票申请",]
+    @IBOutlet weak var titleLabel: UILabel!
     
-    @IBOutlet weak var titleLabel: UIButton!
+    /// 标题
+    var titleStr : String!
     
-    @IBOutlet weak var subTitleLabel: UIButton!
-    @IBAction func redBtnClick(_ sender: UIButton) {
-        HCLog(message: "查看全文")
+    func setData(index : Int)  {
+        self.titleLabel.text = nameArr[index]
     }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
