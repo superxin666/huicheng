@@ -1,14 +1,14 @@
 //
-//  MessageTableViewCell.swift
+//  PubMessageTableViewCell.swift
 //  huicheng
 //
 //  Created by lvxin on 2018/3/17.
 //  Copyright © 2018年 lvxin. All rights reserved.
-//  消息cell
+//  公告cell
 
 import UIKit
 
-class MessageTableViewCell: UITableViewCell {
+class PubMessageTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()

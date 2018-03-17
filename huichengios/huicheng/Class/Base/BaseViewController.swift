@@ -46,7 +46,8 @@ class BaseViewController: UIViewController {
         let btn:UIButton = UIButton(type: UIButtonType.custom)
         btn.frame = CGRect(x: 0, y: 0, width: 60, height: 44)
         btn.setImage(image, for:.normal)
-        btn.imageEdgeInsets = UIEdgeInsetsMake(0, 20, 0, 0)
+//        btn.backgroundColor = .red
+        btn.imageEdgeInsets = UIEdgeInsetsMake(0, -20, 0, 0)
         btn.addTarget(self, action:#selector(BaseViewController.navigationLeftBtnClick), for: .touchUpInside)
         let item:UIBarButtonItem = UIBarButtonItem(customView:btn)
         self.navigationItem.leftBarButtonItem = item
@@ -76,6 +77,7 @@ class BaseViewController: UIViewController {
         let btn:UIButton = UIButton(type: UIButtonType.custom)
         btn.frame = CGRect(x: 0, y: 0, width: 60, height: 44)
         btn.setImage(image, for:.normal)
+//        btn.backgroundColor = .red
         btn.imageEdgeInsets = UIEdgeInsetsMake(0, 20, 0, 0)
         btn.addTarget(self, action:#selector(BaseViewController.navigationRightBtnClick), for: .touchUpInside)
         let item:UIBarButtonItem = UIBarButtonItem(customView:btn)

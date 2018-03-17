@@ -15,6 +15,9 @@
 		21075551205D5AD000FF4396 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107554F205D5AD000FF4396 /* MessageTableViewCell.swift */; };
 		21075552205D5AD000FF4396 /* MessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21075550205D5AD000FF4396 /* MessageTableViewCell.xib */; };
 		21075554205D5BFE00FF4396 /* NibLoadableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21075553205D5BFE00FF4396 /* NibLoadableCell.swift */; };
+		21075558205D6D2000FF4396 /* PubMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21075557205D6D2000FF4396 /* PubMessageViewController.swift */; };
+		2107555B205D6EFD00FF4396 /* PubMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21075559205D6EFD00FF4396 /* PubMessageTableViewCell.swift */; };
+		2107555C205D6EFD00FF4396 /* PubMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2107555A205D6EFD00FF4396 /* PubMessageTableViewCell.xib */; };
 		21082E9B20561BC800EF6AB6 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21082E9A20561BC800EF6AB6 /* NibLoadable.swift */; };
 		2137667D203FBA20000CBCE6 /* pch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2137667C203FBA20000CBCE6 /* pch.swift */; };
 		2137667F203FBA61000CBCE6 /* Color+fun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2137667E203FBA61000CBCE6 /* Color+fun.swift */; };
@@ -49,6 +52,9 @@
 		2107554F205D5AD000FF4396 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		21075550205D5AD000FF4396 /* MessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageTableViewCell.xib; sourceTree = "<group>"; };
 		21075553205D5BFE00FF4396 /* NibLoadableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadableCell.swift; sourceTree = "<group>"; };
+		21075557205D6D2000FF4396 /* PubMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PubMessageViewController.swift; sourceTree = "<group>"; };
+		21075559205D6EFD00FF4396 /* PubMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PubMessageTableViewCell.swift; sourceTree = "<group>"; };
+		2107555A205D6EFD00FF4396 /* PubMessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PubMessageTableViewCell.xib; sourceTree = "<group>"; };
 		21082E9A20561BC800EF6AB6 /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
 		2137667B203FB863000CBCE6 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		2137667C203FBA20000CBCE6 /* pch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pch.swift; sourceTree = "<group>"; };
@@ -124,11 +130,27 @@
 			children = (
 				2107554F205D5AD000FF4396 /* MessageTableViewCell.swift */,
 				21075550205D5AD000FF4396 /* MessageTableViewCell.xib */,
+				21075559205D6EFD00FF4396 /* PubMessageTableViewCell.swift */,
+				2107555A205D6EFD00FF4396 /* PubMessageTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
 		2107554E205D5AB300FF4396 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		21075555205D6BBB00FF4396 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		21075556205D6BC600FF4396 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -221,6 +243,8 @@
 		216A6C49204CDDB100528FD8 /* Mine(我的) */ = {
 			isa = PBXGroup;
 			children = (
+				21075556205D6BC600FF4396 /* Models */,
+				21075555205D6BBB00FF4396 /* Views */,
 				216A6C51204CDE6F00528FD8 /* MineViewController.swift */,
 			);
 			path = "Mine(我的)";
@@ -232,6 +256,7 @@
 				2107554E205D5AB300FF4396 /* Models */,
 				2107554D205D5AA200FF4396 /* Views */,
 				216A6C4F204CDE6700528FD8 /* MessageViewController.swift */,
+				21075557205D6D2000FF4396 /* PubMessageViewController.swift */,
 			);
 			path = "Message(消息)";
 			sourceTree = "<group>";
@@ -342,6 +367,7 @@
 				21075549205D4C3200FF4396 /* LoginTopView.xib in Resources */,
 				21075552205D5AD000FF4396 /* MessageTableViewCell.xib in Resources */,
 				215C65D5203EC6B6001C7A92 /* LaunchScreen.storyboard in Resources */,
+				2107555C205D6EFD00FF4396 /* PubMessageTableViewCell.xib in Resources */,
 				215C65D2203EC6B6001C7A92 /* Assets.xcassets in Resources */,
 				2107554C205D4C3200FF4396 /* LoginMidBottomView.xib in Resources */,
 				215C65D0203EC6B6001C7A92 /* Main.storyboard in Resources */,
@@ -424,6 +450,7 @@
 				215C65CD203EC6B6001C7A92 /* ViewController.swift in Sources */,
 				2107554A205D4C3200FF4396 /* LoginTopView.swift in Sources */,
 				21376689203FBAF4000CBCE6 /* SVPMessageShow.swift in Sources */,
+				21075558205D6D2000FF4396 /* PubMessageViewController.swift in Sources */,
 				21376681203FBA9D000CBCE6 /* ImageView+loading.swift in Sources */,
 				2107554B205D4C3200FF4396 /* LoginMidBottomView.swift in Sources */,
 				21376687203FBAEB000CBCE6 /* View+Clipping.swift in Sources */,
@@ -439,6 +466,7 @@
 				2137668F203FBF27000CBCE6 /* HCNavigationController.swift in Sources */,
 				2137668B203FBAFD000CBCE6 /* String+fun.swift in Sources */,
 				2137667F203FBA61000CBCE6 /* Color+fun.swift in Sources */,
+				2107555B205D6EFD00FF4396 /* PubMessageTableViewCell.swift in Sources */,
 				215C65CB203EC6B6001C7A92 /* AppDelegate.swift in Sources */,
 				21075551205D5AD000FF4396 /* MessageTableViewCell.swift in Sources */,
 				2137667D203FBA20000CBCE6 /* pch.swift in Sources */,

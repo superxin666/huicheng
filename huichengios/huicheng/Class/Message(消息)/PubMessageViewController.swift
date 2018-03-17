@@ -1,17 +1,16 @@
 //
-//  MessageViewController.swift
+//  PubMessageViewController.swift
 //  huicheng
 //
-//  Created by lvxin on 2018/3/5.
+//  Created by lvxin on 2018/3/17.
 //  Copyright © 2018年 lvxin. All rights reserved.
-//  消息
+//  公告
 
 import UIKit
-let MESSAGEID = "MESSAGE_ID"
-let message_cell_height = ip6(80)
+let PUBMESSAGEID = "PUBMESSAGE_ID"
+let pub_cell_height = ip6(129)
 
-class MessageViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource {
-    
+class PubMessageViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource {
     /// 列表
     let mainTabelView : UITableView = UITableView()
     // MARK: - life
@@ -22,17 +21,15 @@ class MessageViewController: BaseViewController,UITableViewDelegate,UITableViewD
             make.bottom.equalTo(self.view).offset(0)
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // Do any additional setup after loading th     e view.
         self.view.backgroundColor = viewBackColor
-        self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "mes_logo"))
-        self.navigationBar_rightBtn_image(image: #imageLiteral(resourceName: "mes_ alarm"))
-        self.navigation_title_fontsize(name: "消息", fontsize: 18)
+        self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
+        self.navigation_title_fontsize(name: "公告", fontsize: 18)
         self.creatUI()
-
     }
     // MARK: - UI
     func creatUI() {
@@ -44,16 +41,15 @@ class MessageViewController: BaseViewController,UITableViewDelegate,UITableViewD
         mainTabelView.showsVerticalScrollIndicator = false
         mainTabelView.showsHorizontalScrollIndicator = false
         mainTabelView.backgroundView?.backgroundColor = .clear
-        mainTabelView.register(UINib.init(nibName: "MessageTableViewCell", bundle: nil), forCellReuseIdentifier: MESSAGEID)
-//        footer.setRefreshingTarget(self, refreshingAction: #selector(HomeViewController.loadMoreData))
-//        header.setRefreshingTarget(self, refreshingAction: #selector(HomeViewController.freshData))
-//        mainTabelView.mj_footer = footer
-//        mainTabelView.mj_header = header
-//        mainTabelView.register(MessageTableViewCell.self, forCellReuseIdentifier: MESSAGEID)
-//        mainTabelView.register(TeachTableViewCell.self, forCellReuseIdentifier: TEACHCELLID)
+        mainTabelView.register(UINib.init(nibName: "PubMessageTableViewCell", bundle: nil), forCellReuseIdentifier: PUBMESSAGEID)
+        //        footer.setRefreshingTarget(self, refreshingAction: #selector(HomeViewController.loadMoreData))
+        //        header.setRefreshingTarget(self, refreshingAction: #selector(HomeViewController.freshData))
+        //        mainTabelView.mj_footer = footer
+        //        mainTabelView.mj_header = header
+        //        mainTabelView.register(MessageTableViewCell.self, forCellReuseIdentifier: MESSAGEID)
+        //        mainTabelView.register(TeachTableViewCell.self, forCellReuseIdentifier: TEACHCELLID)
         self.view.addSubview(mainTabelView)
     }
-    
     // MARK: - delegate
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -62,25 +58,22 @@ class MessageViewController: BaseViewController,UITableViewDelegate,UITableViewD
         return 3
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell : MessageTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: MESSAGEID, for: indexPath) as! MessageTableViewCell
-//        if (cell == nil)  {
-//            cell = MessageTableViewCell(style: .default, reuseIdentifier: MESSAGEID)
-//        }
+        let cell : PubMessageTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: PUBMESSAGEID, for: indexPath) as! PubMessageTableViewCell
+        //        if (cell == nil)  {
+        //            cell = MessageTableViewCell(style: .default, reuseIdentifier: MESSAGEID)
+        //        }
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return message_cell_height
+        return pub_cell_height
     }
     
-    // MARK: - event response
-    override func navigationRightBtnClick() {
-        let vc = PubMessageViewController()
-        vc.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(vc, animated: true)
-        
+    // MARK: - event reponse
+    override func navigationLeftBtnClick() {
+        self.navigationController?.popViewController(animated: true)
     }
 
     override func didReceiveMemoryWarning() {
