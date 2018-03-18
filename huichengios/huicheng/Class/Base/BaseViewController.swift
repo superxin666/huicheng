@@ -83,6 +83,23 @@ class BaseViewController: UIViewController {
         let item:UIBarButtonItem = UIBarButtonItem(customView:btn)
         self.navigationItem.rightBarButtonItem = item
     }
+    
+    /// 创建UIBarButtonItem
+    ///
+    /// - Parameter image: 图片
+    /// - Returns: item
+    func getUIBarButtonItem(image : UIImage, action : Selector, vc  :UIViewController)->UIBarButtonItem {
+        
+        let btn:UIButton = UIButton(type: UIButtonType.custom)
+        btn.frame = CGRect(x: 0, y: 0, width: 60, height: 44)
+        btn.setImage(image, for:.normal)
+        btn.addTarget(vc, action: action, for: .touchUpInside)
+//                btn.backgroundColor = .red
+        btn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -30)
+        let item:UIBarButtonItem = UIBarButtonItem(customView:btn)
+        return item
+    }
+    
     // MARK: response
     @objc func navigationLeftBtnClick() {
         

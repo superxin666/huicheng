@@ -53,6 +53,9 @@
 		219D7BBB205E0C89009F543B /* InfoFirstTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 219D7BB9205E0C89009F543B /* InfoFirstTableViewCell.xib */; };
 		219D7BC0205E1D8E009F543B /* WorkFirstTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7BBE205E1D8E009F543B /* WorkFirstTableViewCell.swift */; };
 		219D7BC1205E1D8E009F543B /* WorkFirstTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 219D7BBF205E1D8E009F543B /* WorkFirstTableViewCell.xib */; };
+		219D7BC3205E22EE009F543B /* SubmitPayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7BC2205E22EE009F543B /* SubmitPayViewController.swift */; };
+		219D7BC6205E2E29009F543B /* SubPayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7BC4205E2E29009F543B /* SubPayTableViewCell.swift */; };
+		219D7BC7205E2E29009F543B /* SubPayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 219D7BC5205E2E29009F543B /* SubPayTableViewCell.xib */; };
 		88EEB2BAA16F8A6E3AED0F0A /* Pods_huicheng.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B3B926EC39335E65CFE2DE /* Pods_huicheng.framework */; };
 /* End PBXBuildFile section */
 
@@ -106,6 +109,9 @@
 		219D7BB9205E0C89009F543B /* InfoFirstTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoFirstTableViewCell.xib; sourceTree = "<group>"; };
 		219D7BBE205E1D8E009F543B /* WorkFirstTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkFirstTableViewCell.swift; sourceTree = "<group>"; };
 		219D7BBF205E1D8E009F543B /* WorkFirstTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkFirstTableViewCell.xib; sourceTree = "<group>"; };
+		219D7BC2205E22EE009F543B /* SubmitPayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitPayViewController.swift; sourceTree = "<group>"; };
+		219D7BC4205E2E29009F543B /* SubPayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubPayTableViewCell.swift; sourceTree = "<group>"; };
+		219D7BC5205E2E29009F543B /* SubPayTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubPayTableViewCell.xib; sourceTree = "<group>"; };
 		97B8B5BC41ED2EA904010B3A /* Pods-huicheng.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-huicheng.release.xcconfig"; path = "Pods/Target Support Files/Pods-huicheng/Pods-huicheng.release.xcconfig"; sourceTree = "<group>"; };
 		98FDFB3873660C12BD78F6BE /* Pods-huicheng.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-huicheng.debug.xcconfig"; path = "Pods/Target Support Files/Pods-huicheng/Pods-huicheng.debug.xcconfig"; sourceTree = "<group>"; };
 		A6B3B926EC39335E65CFE2DE /* Pods_huicheng.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_huicheng.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -182,6 +188,8 @@
 				219D7BB5205E062F009F543B /* InfoTableViewCell.xib */,
 				219D7BB8205E0C89009F543B /* InfoFirstTableViewCell.swift */,
 				219D7BB9205E0C89009F543B /* InfoFirstTableViewCell.xib */,
+				219D7BC4205E2E29009F543B /* SubPayTableViewCell.swift */,
+				219D7BC5205E2E29009F543B /* SubPayTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -283,6 +291,7 @@
 				21075555205D6BBB00FF4396 /* Views */,
 				216A6C51204CDE6F00528FD8 /* MineViewController.swift */,
 				219D7BB2205E049A009F543B /* InfoViewController.swift */,
+				219D7BC2205E22EE009F543B /* SubmitPayViewController.swift */,
 			);
 			path = "Mine(我的)";
 			sourceTree = "<group>";
@@ -420,6 +429,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21075549205D4C3200FF4396 /* LoginTopView.xib in Resources */,
+				219D7BC7205E2E29009F543B /* SubPayTableViewCell.xib in Resources */,
 				219D7BB7205E062F009F543B /* InfoTableViewCell.xib in Resources */,
 				219D7BBB205E0C89009F543B /* InfoFirstTableViewCell.xib in Resources */,
 				21075552205D5AD000FF4396 /* MessageTableViewCell.xib in Resources */,
@@ -510,6 +520,7 @@
 			files = (
 				215C65CD203EC6B6001C7A92 /* ViewController.swift in Sources */,
 				2107554A205D4C3200FF4396 /* LoginTopView.swift in Sources */,
+				219D7BC6205E2E29009F543B /* SubPayTableViewCell.swift in Sources */,
 				21376689203FBAF4000CBCE6 /* SVPMessageShow.swift in Sources */,
 				219D7BB6205E062F009F543B /* InfoTableViewCell.swift in Sources */,
 				21075558205D6D2000FF4396 /* PubMessageViewController.swift in Sources */,
@@ -519,6 +530,7 @@
 				21376687203FBAEB000CBCE6 /* View+Clipping.swift in Sources */,
 				21376684203FBAB2000CBCE6 /* UILabel+Init.swift in Sources */,
 				216A6C54204CDE7900528FD8 /* WorkViewController.swift in Sources */,
+				219D7BC3205E22EE009F543B /* SubmitPayViewController.swift in Sources */,
 				2137668D203FBCD3000CBCE6 /* Api.swift in Sources */,
 				216A6C59204CE7D800528FD8 /* BaseNetViewController.swift in Sources */,
 				21075548205D4C3200FF4396 /* LogInViewController.swift in Sources */,
