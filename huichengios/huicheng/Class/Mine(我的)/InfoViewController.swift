@@ -1,24 +1,19 @@
 //
-//  MineViewController.swift
+//  InfoViewController.swift
 //  huicheng
 //
-//  Created by lvxin on 2018/3/5.
+//  Created by lvxin on 2018/3/18.
 //  Copyright © 2018年 lvxin. All rights reserved.
-//   我的
+//  个人信息
 
 import UIKit
-let MINEID = "MINE_ID"
-let mine_cell_height = CGFloat(60)
-class MineViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource,MineHeadViewDelegate {
-
+let INFOID = "INFO_ID"
+let INFOID_first = "INFO_first_ID"
+let info_cell_height = CGFloat(50)
+class InfoViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource {
     /// 列表
     let mainTabelView : UITableView = UITableView()
-    
-    /// 头部b
-    let headView : MineHeadView = MineHeadView.loadNib()
-    /// 底部
-    let footerView : MineFooterView = MineFooterView.loadNib()
-    
+    let nameArr = ["头像","姓名","账号","部门","职位","执业证号","执业证号","执业证号"]
     
     
     // MARK: - life
@@ -29,16 +24,15 @@ class MineViewController: BaseViewController,UITableViewDelegate,UITableViewData
             make.bottom.equalTo(self.view).offset(0)
         }
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // Do any additional setup after loading the view.
         self.view.backgroundColor = viewBackColor
-        self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "mes_logo"))
-        self.navigation_title_fontsize(name: "我的", fontsize: 18)
+        self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
+        self.navigationBar_rightBtn_title(name: "编辑")
+        self.navigation_title_fontsize(name: "个人信息", fontsize: 18)
         self.creatUI()
-        headView.delegate = self
-        
     }
     // MARK: - UI
     func creatUI() {
@@ -50,8 +44,9 @@ class MineViewController: BaseViewController,UITableViewDelegate,UITableViewData
         mainTabelView.showsVerticalScrollIndicator = false
         mainTabelView.showsHorizontalScrollIndicator = false
         mainTabelView.backgroundView?.backgroundColor = .clear
-        mainTabelView.register(UINib.init(nibName: "MineTableViewCell", bundle: nil), forCellReuseIdentifier: MINEID)
-  
+        mainTabelView.register(UINib.init(nibName: "InfoTableViewCell", bundle: nil), forCellReuseIdentifier: INFOID)
+        mainTabelView.register(UINib.init(nibName: "InfoFirstTableViewCell", bundle: nil), forCellReuseIdentifier: INFOID_first)
+        
         //        footer.setRefreshingTarget(self, refreshingAction: #selector(HomeViewController.loadMoreData))
         //        header.setRefreshingTarget(self, refreshingAction: #selector(HomeViewController.freshData))
         //        mainTabelView.mj_footer = footer
@@ -66,47 +61,49 @@ class MineViewController: BaseViewController,UITableViewDelegate,UITableViewData
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 8
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell : MineTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: MINEID, for: indexPath) as! MineTableViewCell
-        //        if (cell == nil)  {
-        //            cell = MessageTableViewCell(style: .default, reuseIdentifier: MESSAGEID)
-        //        }
-        cell.setData(index: indexPath.row)
-        return cell
-    }
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return footerView
-    }
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return headView
+        if indexPath.row == 0 {
+            let cell : InfoFirstTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: INFOID_first, for: indexPath) as! InfoFirstTableViewCell
+
+            return cell
+        } else {
+            let cell : InfoTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: INFOID, for: indexPath) as! InfoTableViewCell
+            //        if (cell == nil)  {
+            //            cell = MessageTableViewCell(style: .default, reuseIdentifier: MESSAGEID)
+            //        }
+            //        cell.setData(index: indexPath.row)
+            cell.setData(titleStr: nameArr[indexPath.row])
+            return cell
+        }
+
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        if indexPath.row == 0 {
+            HCLog(message: "选择头像")
+        } else {
+            HCLog(message: "其他")
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return mine_cell_height
-    }
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 105
-    }
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 80
-    }
-    
-    func iconClick() {
-        let vc = InfoViewController()
-        vc.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(vc, animated: true)
+        if indexPath.row == 0 {
+            return info_cell_height + 30.0
+        } else {
+            return info_cell_height
+        }
         
     }
     
     // MARK: - event response
-
-
+    override func navigationLeftBtnClick() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    override func navigationRightBtnClick() {
+        HCLog(message: "编辑")
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

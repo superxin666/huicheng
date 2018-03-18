@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="KGk-i7-Jjw" customClass="InfoFirstTableViewCell" customModule="huicheng" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="头像" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mur-ja-QuB">
+                        <rect key="frame" x="25" y="32" width="60" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="Vk0-eG-3Xt"/>
+                            <constraint firstAttribute="width" constant="60" id="b2y-H5-OqX"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.090196078430000007" green="0.2274509804" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="log_pass" translatesAutoresizingMaskIntoConstraints="NO" id="HuX-ZT-Oxi">
+                        <rect key="frame" x="290" y="10" width="60" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="60" id="9rI-PM-gPW"/>
+                            <constraint firstAttribute="width" constant="60" id="l1j-fx-m5i"/>
+                        </constraints>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o3j-uz-Wwp">
+                        <rect key="frame" x="25" y="78.5" width="350" height="1"/>
+                        <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="Z9O-zi-ihq"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="HuX-ZT-Oxi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="07K-8F-vhL"/>
+                    <constraint firstAttribute="bottom" secondItem="o3j-uz-Wwp" secondAttribute="bottom" id="9O8-fh-hHp"/>
+                    <constraint firstItem="Mur-ja-QuB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="32" id="FhA-BL-Da4"/>
+                    <constraint firstAttribute="trailing" secondItem="o3j-uz-Wwp" secondAttribute="trailing" id="VKa-0M-XAt"/>
+                    <constraint firstItem="o3j-uz-Wwp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="25" id="jtl-wF-YQZ"/>
+                    <constraint firstAttribute="trailing" secondItem="HuX-ZT-Oxi" secondAttribute="trailing" constant="25" id="pBe-zY-qK2"/>
+                    <constraint firstItem="Mur-ja-QuB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="25" id="rsS-vo-fyj"/>
+                </constraints>
+            </tableViewCellContentView>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="log_pass" width="24" height="29"/>
+    </resources>
+</document>

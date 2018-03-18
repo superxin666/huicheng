@@ -31,11 +31,15 @@
                     <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="log_persion" translatesAutoresizingMaskIntoConstraints="NO" id="DYz-DT-a1A">
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="log_persion" translatesAutoresizingMaskIntoConstraints="NO" id="DYz-DT-a1A">
                     <rect key="frame" x="290" y="20" width="60" height="60"/>
+                    <gestureRecognizers/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="DYz-DT-a1A" secondAttribute="height" multiplier="1:1" id="Bth-Hp-tvL"/>
                     </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="Lsb-os-V0V" appends="YES" id="XMe-Ea-F1z"/>
+                    </connections>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -57,8 +61,16 @@
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-683" y="8"/>
+            <connections>
+                <outlet property="iconImageView" destination="DYz-DT-a1A" id="q5G-A3-dI1"/>
+            </connections>
+            <point key="canvasLocation" x="-1003" y="-27"/>
         </view>
+        <tapGestureRecognizer id="Lsb-os-V0V">
+            <connections>
+                <action selector="iconImageTap:" destination="iN0-l3-epB" id="yoP-Gd-yeK"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="log_bag" width="375" height="271"/>

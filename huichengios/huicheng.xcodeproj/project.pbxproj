@@ -46,6 +46,11 @@
 		216A6C54204CDE7900528FD8 /* WorkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A6C53204CDE7900528FD8 /* WorkViewController.swift */; };
 		216A6C57204CDE9D00528FD8 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A6C56204CDE9D00528FD8 /* BaseViewController.swift */; };
 		216A6C59204CE7D800528FD8 /* BaseNetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A6C58204CE7D800528FD8 /* BaseNetViewController.swift */; };
+		219D7BB3205E049A009F543B /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7BB2205E049A009F543B /* InfoViewController.swift */; };
+		219D7BB6205E062F009F543B /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7BB4205E062F009F543B /* InfoTableViewCell.swift */; };
+		219D7BB7205E062F009F543B /* InfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 219D7BB5205E062F009F543B /* InfoTableViewCell.xib */; };
+		219D7BBA205E0C89009F543B /* InfoFirstTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7BB8205E0C89009F543B /* InfoFirstTableViewCell.swift */; };
+		219D7BBB205E0C89009F543B /* InfoFirstTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 219D7BB9205E0C89009F543B /* InfoFirstTableViewCell.xib */; };
 		88EEB2BAA16F8A6E3AED0F0A /* Pods_huicheng.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B3B926EC39335E65CFE2DE /* Pods_huicheng.framework */; };
 /* End PBXBuildFile section */
 
@@ -92,6 +97,11 @@
 		216A6C53204CDE7900528FD8 /* WorkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkViewController.swift; sourceTree = "<group>"; };
 		216A6C56204CDE9D00528FD8 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		216A6C58204CE7D800528FD8 /* BaseNetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNetViewController.swift; sourceTree = "<group>"; };
+		219D7BB2205E049A009F543B /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		219D7BB4205E062F009F543B /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
+		219D7BB5205E062F009F543B /* InfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoTableViewCell.xib; sourceTree = "<group>"; };
+		219D7BB8205E0C89009F543B /* InfoFirstTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoFirstTableViewCell.swift; sourceTree = "<group>"; };
+		219D7BB9205E0C89009F543B /* InfoFirstTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoFirstTableViewCell.xib; sourceTree = "<group>"; };
 		97B8B5BC41ED2EA904010B3A /* Pods-huicheng.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-huicheng.release.xcconfig"; path = "Pods/Target Support Files/Pods-huicheng/Pods-huicheng.release.xcconfig"; sourceTree = "<group>"; };
 		98FDFB3873660C12BD78F6BE /* Pods-huicheng.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-huicheng.debug.xcconfig"; path = "Pods/Target Support Files/Pods-huicheng/Pods-huicheng.debug.xcconfig"; sourceTree = "<group>"; };
 		A6B3B926EC39335E65CFE2DE /* Pods_huicheng.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_huicheng.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,6 +174,10 @@
 				21075563205D7A4A00FF4396 /* MineHeadView.xib */,
 				21075565205D8FE700FF4396 /* MineFooterView.swift */,
 				21075567205D8FF200FF4396 /* MineFooterView.xib */,
+				219D7BB4205E062F009F543B /* InfoTableViewCell.swift */,
+				219D7BB5205E062F009F543B /* InfoTableViewCell.xib */,
+				219D7BB8205E0C89009F543B /* InfoFirstTableViewCell.swift */,
+				219D7BB9205E0C89009F543B /* InfoFirstTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -264,6 +278,7 @@
 				21075556205D6BC600FF4396 /* Models */,
 				21075555205D6BBB00FF4396 /* Views */,
 				216A6C51204CDE6F00528FD8 /* MineViewController.swift */,
+				219D7BB2205E049A009F543B /* InfoViewController.swift */,
 			);
 			path = "Mine(我的)";
 			sourceTree = "<group>";
@@ -383,6 +398,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				21075549205D4C3200FF4396 /* LoginTopView.xib in Resources */,
+				219D7BB7205E062F009F543B /* InfoTableViewCell.xib in Resources */,
+				219D7BBB205E0C89009F543B /* InfoFirstTableViewCell.xib in Resources */,
 				21075552205D5AD000FF4396 /* MessageTableViewCell.xib in Resources */,
 				21075560205D792C00FF4396 /* MineTableViewCell.xib in Resources */,
 				21075564205D7A4A00FF4396 /* MineHeadView.xib in Resources */,
@@ -471,7 +488,9 @@
 				215C65CD203EC6B6001C7A92 /* ViewController.swift in Sources */,
 				2107554A205D4C3200FF4396 /* LoginTopView.swift in Sources */,
 				21376689203FBAF4000CBCE6 /* SVPMessageShow.swift in Sources */,
+				219D7BB6205E062F009F543B /* InfoTableViewCell.swift in Sources */,
 				21075558205D6D2000FF4396 /* PubMessageViewController.swift in Sources */,
+				219D7BB3205E049A009F543B /* InfoViewController.swift in Sources */,
 				21376681203FBA9D000CBCE6 /* ImageView+loading.swift in Sources */,
 				2107554B205D4C3200FF4396 /* LoginMidBottomView.swift in Sources */,
 				21376687203FBAEB000CBCE6 /* View+Clipping.swift in Sources */,
@@ -480,6 +499,7 @@
 				2137668D203FBCD3000CBCE6 /* Api.swift in Sources */,
 				216A6C59204CE7D800528FD8 /* BaseNetViewController.swift in Sources */,
 				21075548205D4C3200FF4396 /* LogInViewController.swift in Sources */,
+				219D7BBA205E0C89009F543B /* InfoFirstTableViewCell.swift in Sources */,
 				21082E9B20561BC800EF6AB6 /* NibLoadable.swift in Sources */,
 				216A6C57204CDE9D00528FD8 /* BaseViewController.swift in Sources */,
 				216A6C50204CDE6700528FD8 /* MessageViewController.swift in Sources */,
