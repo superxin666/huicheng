@@ -104,7 +104,7 @@
                 <outlet property="timebtn" destination="4TZ-wd-gPs" id="H4F-rd-okO"/>
                 <outlet property="titleLabel" destination="w7q-uC-frX" id="2X5-zS-2dx"/>
             </connections>
-            <point key="canvasLocation" x="-271" y="-117"/>
+            <point key="canvasLocation" x="-545" y="-121"/>
         </tableViewCell>
     </objects>
     <resources>

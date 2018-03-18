@@ -7,8 +7,13 @@
 //  公告cell
 
 import UIKit
+protocol PubMessageTableViewCellDelegate {
+    func redMessage()
+}
 
 class PubMessageTableViewCell: UITableViewCell {
+    var delegate : PubMessageTableViewCellDelegate!
+    
     @IBOutlet weak var timebtn: UIButton!
     
     @IBOutlet weak var titleLabel: UIButton!
@@ -16,6 +21,9 @@ class PubMessageTableViewCell: UITableViewCell {
     @IBOutlet weak var subTitleLabel: UIButton!
     @IBAction func redBtnClick(_ sender: UIButton) {
         HCLog(message: "查看全文")
+        if !(delegate == nil) {
+            self.delegate.redMessage()
+        }
     }
     override func awakeFromNib() {
         super.awakeFromNib()

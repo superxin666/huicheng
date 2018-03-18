@@ -10,7 +10,7 @@ import UIKit
 let PUBMESSAGEID = "PUBMESSAGE_ID"
 let pub_cell_height = ip6(129)
 
-class PubMessageViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource {
+class PubMessageViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource,PubMessageTableViewCellDelegate {
     /// 列表
     let mainTabelView : UITableView = UITableView()
     // MARK: - life
@@ -62,6 +62,7 @@ class PubMessageViewController: BaseViewController,UITableViewDelegate,UITableVi
         //        if (cell == nil)  {
         //            cell = MessageTableViewCell(style: .default, reuseIdentifier: MESSAGEID)
         //        }
+        cell.delegate = self
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -70,7 +71,12 @@ class PubMessageViewController: BaseViewController,UITableViewDelegate,UITableVi
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return pub_cell_height
     }
-    
+    func redMessage() {
+        let vc = PubMessageConViewController()
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+    }
     // MARK: - event reponse
     override func navigationLeftBtnClick() {
         self.navigationController?.popViewController(animated: true)

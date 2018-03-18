@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PubMesConView" customModule="huicheng" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="430"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mes_pubConBack" translatesAutoresizingMaskIntoConstraints="NO" id="aT4-Jr-rJm">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="430"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2018年XX节放假相关事项的通知" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W78-5w-bQZ">
+                    <rect key="frame" x="0.0" y="35" width="375" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="16" id="sw4-mK-h3L"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" red="0.090196078430000007" green="0.2274509804" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2018-3-1 09:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I7F-tc-TLP">
+                    <rect key="frame" x="265" y="10" width="100" height="11"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="11" id="b6u-Kb-p4d"/>
+                        <constraint firstAttribute="width" constant="100" id="gww-8R-FP9"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                    <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eFx-Gd-l8z">
+                    <rect key="frame" x="22" y="87" width="320" height="318"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <mutableString key="text">如果你无法简洁的表达你的想法，那只说明你还不够了 是韩国SBS电视台周末娱乐节目，是韩国著名主持人刘 在石接手的SBS新艺能节目，作为刘在石的SBS艺能节 目回归之作，《running man》致力于打造一个不同 于过去《real variety》的新型态娱乐节目态娱乐节态 韩国SBS电视台周末娱乐节目，是韩国著名主持人刘 在石接手的SBS新艺能节目，作为刘在石的SBS艺能节 目回归之作，《running man》致力于打造一个不同 于过去《real variety》的新型态娱乐节目态娱乐节态 韩国SBS电视台周末娱乐节目，是韩国著名主持人刘 在石接手的SBS新艺能节目，作为刘在石的SBS艺能节 目回归之作，《running man》致力于打造一个不同 于过去《real variety》的新型态娱乐节目态娱乐节态 韩国SBS电视台周末娱乐节目，是韩国著名主持人刘刘 在石接手的SBS新艺能节目，作为刘在石的SBS艺能节 目回归之作，《running man》致力于打造一个不刘 解它。 -- 阿尔伯特·爱因斯坦</mutableString>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="发布人：张三    接收对象：全体职员" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VI6-gZ-FRd">
+                    <rect key="frame" x="0.0" y="60" width="375" height="12"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="12" id="2Cw-cK-gkV"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="aT4-Jr-rJm" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="0P6-cr-OIK"/>
+                <constraint firstAttribute="trailing" secondItem="eFx-Gd-l8z" secondAttribute="trailing" constant="33" id="0WR-1h-w5U"/>
+                <constraint firstAttribute="bottom" secondItem="eFx-Gd-l8z" secondAttribute="bottom" constant="25" id="2TH-UY-nK0"/>
+                <constraint firstItem="aT4-Jr-rJm" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="4qV-Nh-FiB"/>
+                <constraint firstItem="I7F-tc-TLP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="Doq-PO-Uzc"/>
+                <constraint firstItem="eFx-Gd-l8z" firstAttribute="top" secondItem="VI6-gZ-FRd" secondAttribute="bottom" constant="15" id="Jfu-y3-Pe8"/>
+                <constraint firstAttribute="trailing" secondItem="I7F-tc-TLP" secondAttribute="trailing" constant="10" id="O1p-S5-6aw"/>
+                <constraint firstAttribute="trailing" secondItem="VI6-gZ-FRd" secondAttribute="trailing" id="PR0-nk-ctS"/>
+                <constraint firstItem="VI6-gZ-FRd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="TNf-Ld-Cj5"/>
+                <constraint firstItem="W78-5w-bQZ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Vag-4z-yDr"/>
+                <constraint firstAttribute="trailing" secondItem="W78-5w-bQZ" secondAttribute="trailing" id="css-NS-dwK"/>
+                <constraint firstItem="W78-5w-bQZ" firstAttribute="top" secondItem="I7F-tc-TLP" secondAttribute="bottom" constant="14" id="i1E-UC-mL2"/>
+                <constraint firstItem="eFx-Gd-l8z" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="22" id="lu8-o7-0wT"/>
+                <constraint firstItem="VI6-gZ-FRd" firstAttribute="top" secondItem="W78-5w-bQZ" secondAttribute="bottom" constant="9" id="q2n-aK-v4j"/>
+                <constraint firstAttribute="bottom" secondItem="aT4-Jr-rJm" secondAttribute="bottom" id="uJN-sc-PxB"/>
+                <constraint firstAttribute="trailing" secondItem="aT4-Jr-rJm" secondAttribute="trailing" id="x7k-hI-bN6"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-427" y="-84"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="mes_pubConBack" width="354" height="259"/>
+    </resources>
+</document>
