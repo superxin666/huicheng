@@ -51,6 +51,8 @@
 		219D7BB7205E062F009F543B /* InfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 219D7BB5205E062F009F543B /* InfoTableViewCell.xib */; };
 		219D7BBA205E0C89009F543B /* InfoFirstTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7BB8205E0C89009F543B /* InfoFirstTableViewCell.swift */; };
 		219D7BBB205E0C89009F543B /* InfoFirstTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 219D7BB9205E0C89009F543B /* InfoFirstTableViewCell.xib */; };
+		219D7BC0205E1D8E009F543B /* WorkFirstTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7BBE205E1D8E009F543B /* WorkFirstTableViewCell.swift */; };
+		219D7BC1205E1D8E009F543B /* WorkFirstTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 219D7BBF205E1D8E009F543B /* WorkFirstTableViewCell.xib */; };
 		88EEB2BAA16F8A6E3AED0F0A /* Pods_huicheng.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B3B926EC39335E65CFE2DE /* Pods_huicheng.framework */; };
 /* End PBXBuildFile section */
 
@@ -102,6 +104,8 @@
 		219D7BB5205E062F009F543B /* InfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoTableViewCell.xib; sourceTree = "<group>"; };
 		219D7BB8205E0C89009F543B /* InfoFirstTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoFirstTableViewCell.swift; sourceTree = "<group>"; };
 		219D7BB9205E0C89009F543B /* InfoFirstTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoFirstTableViewCell.xib; sourceTree = "<group>"; };
+		219D7BBE205E1D8E009F543B /* WorkFirstTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkFirstTableViewCell.swift; sourceTree = "<group>"; };
+		219D7BBF205E1D8E009F543B /* WorkFirstTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkFirstTableViewCell.xib; sourceTree = "<group>"; };
 		97B8B5BC41ED2EA904010B3A /* Pods-huicheng.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-huicheng.release.xcconfig"; path = "Pods/Target Support Files/Pods-huicheng/Pods-huicheng.release.xcconfig"; sourceTree = "<group>"; };
 		98FDFB3873660C12BD78F6BE /* Pods-huicheng.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-huicheng.debug.xcconfig"; path = "Pods/Target Support Files/Pods-huicheng/Pods-huicheng.debug.xcconfig"; sourceTree = "<group>"; };
 		A6B3B926EC39335E65CFE2DE /* Pods_huicheng.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_huicheng.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -305,6 +309,8 @@
 		216A6C4C204CDDB100528FD8 /* Work(工作) */ = {
 			isa = PBXGroup;
 			children = (
+				219D7BBC205E17B0009F543B /* Models */,
+				219D7BBD205E17B0009F543B /* Views */,
 				216A6C53204CDE7900528FD8 /* WorkViewController.swift */,
 			);
 			path = "Work(工作)";
@@ -316,6 +322,22 @@
 				216A6C56204CDE9D00528FD8 /* BaseViewController.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		219D7BBC205E17B0009F543B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		219D7BBD205E17B0009F543B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				219D7BBE205E1D8E009F543B /* WorkFirstTableViewCell.swift */,
+				219D7BBF205E1D8E009F543B /* WorkFirstTableViewCell.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		6F2EA6AFB613FEB8B4C18340 /* Frameworks */ = {
@@ -409,6 +431,7 @@
 				2107554C205D4C3200FF4396 /* LoginMidBottomView.xib in Resources */,
 				21075568205D8FF200FF4396 /* MineFooterView.xib in Resources */,
 				215C65D0203EC6B6001C7A92 /* Main.storyboard in Resources */,
+				219D7BC1205E1D8E009F543B /* WorkFirstTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,6 +538,7 @@
 				21075554205D5BFE00FF4396 /* NibLoadableCell.swift in Sources */,
 				2107555F205D792C00FF4396 /* MineTableViewCell.swift in Sources */,
 				216A6C4E204CDE5500528FD8 /* ConvenViewController.swift in Sources */,
+				219D7BC0205E1D8E009F543B /* WorkFirstTableViewCell.swift in Sources */,
 				216A6C52204CDE6F00528FD8 /* MineViewController.swift in Sources */,
 				21075562205D7A3700FF4396 /* MineHeadView.swift in Sources */,
 			);
