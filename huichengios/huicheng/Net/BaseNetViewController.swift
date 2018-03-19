@@ -10,18 +10,37 @@ import UIKit
 import Alamofire
 import ObjectMapper
 import SwiftyJSON
+protocol BaseNetViewControllerDelegate: NSObjectProtocol{
+    func requestSucceed(response :Any) -> Void
+    func requestFail(response :Any) -> Void
+}
 
 class BaseNetViewController: UIViewController {
+    weak var delegate :BaseNetViewControllerDelegate!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    func request_api(url : String){
+        let url = base_api + url
+        HCLog(message: url)
+        Alamofire.request(url, method: .get).responseJSON { (returnResult) in
+            print("secondMethod --> get 请求 --> returnResult = \(returnResult)")
+            if let json = returnResult.result.value {
+                let model = Mapper<CodeData>().map(JSON: json as! [String : Any])!
+                if model.code == 1 {
+                    if self.delegate != nil {
+                        self.delegate.requestSucceed(response: model.data)
+                    }
+                } else {
+                    SVPMessageShow .showErro(infoStr: model.msg)
+                    self.delegate.requestFail(response:json)
+                }
+                
+            } else {
+                if self.delegate != nil {
+                    SVPMessageShow .showErro(infoStr: "请求失败")
+                }
+            }
+        }
+        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 }

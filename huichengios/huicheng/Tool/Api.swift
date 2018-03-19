@@ -7,3 +7,21 @@
 //
 
 import Foundation
+let base_api = "http://47.94.108.111:18000/api/"
+
+
+//------------------------登陆
+let login_api = "base/login?"
+
+
+//------------------------消息
+
+/// 待办通知 列表获取
+let noticelist_api = "message/noticelist?"
+
+/// 公告列表 列表获取
+let newslist_api = "message/newslist?"
+
+
+
+

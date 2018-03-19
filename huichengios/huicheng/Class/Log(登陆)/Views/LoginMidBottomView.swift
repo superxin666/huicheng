@@ -8,8 +8,14 @@
 //
 
 import UIKit
+protocol LoginMidBottomViewDelegate {
+    func login()
+    
+}
 
 class LoginMidBottomView: UIView,NibLoadable {
+    var delegate : LoginMidBottomViewDelegate!
+    
     @IBOutlet weak var logBtn: UIButton!
     @IBOutlet weak var getCodeBtn: UIButton!
     @IBOutlet weak var codeTextField: UITextField!
@@ -23,6 +29,9 @@ class LoginMidBottomView: UIView,NibLoadable {
     
     @IBAction func logInClick(_ sender: Any) {
         HCLog(message: "登陆")
+        if !(self.delegate == nil) {
+            self.delegate.login()
+        }
     }
     
     @IBAction func getCodeClick(_ sender: Any) {

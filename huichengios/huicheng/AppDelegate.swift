@@ -16,8 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        self.showMain()
-//        self.showLogin()
+        if UserInfoLoaclManger.getKey().count > 0 {
+            self.showMain()
+        } else {
+            self.showLogin()
+        }
         return true
     }
     

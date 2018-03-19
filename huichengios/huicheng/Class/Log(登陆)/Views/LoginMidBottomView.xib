@@ -177,7 +177,7 @@
                 <outlet property="phoneImageView" destination="f2d-0y-Z9N" id="8br-wj-dA3"/>
                 <outlet property="phoneTextField" destination="mzO-zu-b4c" id="lN6-YJ-fmb"/>
             </connections>
-            <point key="canvasLocation" x="-981" y="-178"/>
+            <point key="canvasLocation" x="-1189" y="-227"/>
         </view>
     </objects>
     <resources>

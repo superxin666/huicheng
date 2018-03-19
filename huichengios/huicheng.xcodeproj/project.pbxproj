@@ -14,7 +14,6 @@
 		2107554C205D4C3200FF4396 /* LoginMidBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21075547205D4C3200FF4396 /* LoginMidBottomView.xib */; };
 		21075551205D5AD000FF4396 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107554F205D5AD000FF4396 /* MessageTableViewCell.swift */; };
 		21075552205D5AD000FF4396 /* MessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21075550205D5AD000FF4396 /* MessageTableViewCell.xib */; };
-		21075554205D5BFE00FF4396 /* NibLoadableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21075553205D5BFE00FF4396 /* NibLoadableCell.swift */; };
 		21075558205D6D2000FF4396 /* PubMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21075557205D6D2000FF4396 /* PubMessageViewController.swift */; };
 		2107555B205D6EFD00FF4396 /* PubMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21075559205D6EFD00FF4396 /* PubMessageTableViewCell.swift */; };
 		2107555C205D6EFD00FF4396 /* PubMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2107555A205D6EFD00FF4396 /* PubMessageTableViewCell.xib */; };
@@ -24,7 +23,6 @@
 		21075564205D7A4A00FF4396 /* MineHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21075563205D7A4A00FF4396 /* MineHeadView.xib */; };
 		21075566205D8FE700FF4396 /* MineFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21075565205D8FE700FF4396 /* MineFooterView.swift */; };
 		21075568205D8FF200FF4396 /* MineFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21075567205D8FF200FF4396 /* MineFooterView.xib */; };
-		21082E9B20561BC800EF6AB6 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21082E9A20561BC800EF6AB6 /* NibLoadable.swift */; };
 		2137667D203FBA20000CBCE6 /* pch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2137667C203FBA20000CBCE6 /* pch.swift */; };
 		2137667F203FBA61000CBCE6 /* Color+fun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2137667E203FBA61000CBCE6 /* Color+fun.swift */; };
 		21376681203FBA9D000CBCE6 /* ImageView+loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21376680203FBA9D000CBCE6 /* ImageView+loading.swift */; };
@@ -35,6 +33,13 @@
 		2137668B203FBAFD000CBCE6 /* String+fun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2137668A203FBAFD000CBCE6 /* String+fun.swift */; };
 		2137668D203FBCD3000CBCE6 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2137668C203FBCD3000CBCE6 /* Api.swift */; };
 		2137668F203FBF27000CBCE6 /* HCNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2137668E203FBF27000CBCE6 /* HCNavigationController.swift */; };
+		21387D29205F55120050DF1F /* CodeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21387D28205F55120050DF1F /* CodeData.swift */; };
+		21387D2B205F55500050DF1F /* MessageRequestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21387D2A205F55500050DF1F /* MessageRequestVC.swift */; };
+		21387D2D205F56590050DF1F /* LoginRequestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21387D2C205F56590050DF1F /* LoginRequestVC.swift */; };
+		21387D2F205F5A910050DF1F /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21387D2E205F5A910050DF1F /* LoginModel.swift */; };
+		21387D32205F5DA60050DF1F /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21387D30205F5DA50050DF1F /* NibLoadable.swift */; };
+		21387D33205F5DA60050DF1F /* NibLoadableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21387D31205F5DA50050DF1F /* NibLoadableCell.swift */; };
+		21387D35205F5E240050DF1F /* UserInfoLoaclManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21387D34205F5E240050DF1F /* UserInfoLoaclManger.swift */; };
 		215C65CB203EC6B6001C7A92 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215C65CA203EC6B6001C7A92 /* AppDelegate.swift */; };
 		215C65CD203EC6B6001C7A92 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215C65CC203EC6B6001C7A92 /* ViewController.swift */; };
 		215C65D0203EC6B6001C7A92 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 215C65CE203EC6B6001C7A92 /* Main.storyboard */; };
@@ -70,7 +75,6 @@
 		21075547205D4C3200FF4396 /* LoginMidBottomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginMidBottomView.xib; sourceTree = "<group>"; };
 		2107554F205D5AD000FF4396 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		21075550205D5AD000FF4396 /* MessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageTableViewCell.xib; sourceTree = "<group>"; };
-		21075553205D5BFE00FF4396 /* NibLoadableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadableCell.swift; sourceTree = "<group>"; };
 		21075557205D6D2000FF4396 /* PubMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PubMessageViewController.swift; sourceTree = "<group>"; };
 		21075559205D6EFD00FF4396 /* PubMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PubMessageTableViewCell.swift; sourceTree = "<group>"; };
 		2107555A205D6EFD00FF4396 /* PubMessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PubMessageTableViewCell.xib; sourceTree = "<group>"; };
@@ -80,7 +84,6 @@
 		21075563205D7A4A00FF4396 /* MineHeadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MineHeadView.xib; sourceTree = "<group>"; };
 		21075565205D8FE700FF4396 /* MineFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineFooterView.swift; sourceTree = "<group>"; };
 		21075567205D8FF200FF4396 /* MineFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MineFooterView.xib; sourceTree = "<group>"; };
-		21082E9A20561BC800EF6AB6 /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
 		2137667B203FB863000CBCE6 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		2137667C203FBA20000CBCE6 /* pch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pch.swift; sourceTree = "<group>"; };
 		2137667E203FBA61000CBCE6 /* Color+fun.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+fun.swift"; sourceTree = "<group>"; };
@@ -92,6 +95,13 @@
 		2137668A203FBAFD000CBCE6 /* String+fun.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+fun.swift"; sourceTree = "<group>"; };
 		2137668C203FBCD3000CBCE6 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		2137668E203FBF27000CBCE6 /* HCNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCNavigationController.swift; sourceTree = "<group>"; };
+		21387D28205F55120050DF1F /* CodeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeData.swift; sourceTree = "<group>"; };
+		21387D2A205F55500050DF1F /* MessageRequestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRequestVC.swift; sourceTree = "<group>"; };
+		21387D2C205F56590050DF1F /* LoginRequestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequestVC.swift; sourceTree = "<group>"; };
+		21387D2E205F5A910050DF1F /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
+		21387D30205F5DA50050DF1F /* NibLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
+		21387D31205F5DA50050DF1F /* NibLoadableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibLoadableCell.swift; sourceTree = "<group>"; };
+		21387D34205F5E240050DF1F /* UserInfoLoaclManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoLoaclManger.swift; sourceTree = "<group>"; };
 		215C65C7203EC6B6001C7A92 /* huicheng.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = huicheng.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		215C65CA203EC6B6001C7A92 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		215C65CC203EC6B6001C7A92 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +158,7 @@
 		21075541205D4C3200FF4396 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				21387D2E205F5A910050DF1F /* LoginModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -155,8 +166,8 @@
 		21075543205D4C3200FF4396 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				21075544205D4C3200FF4396 /* LoginTopView.xib */,
 				21075545205D4C3200FF4396 /* LoginTopView.swift */,
+				21075544205D4C3200FF4396 /* LoginTopView.xib */,
 				21075546205D4C3200FF4396 /* LoginMidBottomView.swift */,
 				21075547205D4C3200FF4396 /* LoginMidBottomView.xib */,
 			);
@@ -240,19 +251,14 @@
 			path = Class;
 			sourceTree = "<group>";
 		};
-		21376679203FB7B1000CBCE6 /* Base */ = {
-			isa = PBXGroup;
-			children = (
-				21082E9A20561BC800EF6AB6 /* NibLoadable.swift */,
-				21075553205D5BFE00FF4396 /* NibLoadableCell.swift */,
-			);
-			path = Base;
-			sourceTree = "<group>";
-		};
 		2137667A203FB7CE000CBCE6 /* Net */ = {
 			isa = PBXGroup;
 			children = (
 				216A6C58204CE7D800528FD8 /* BaseNetViewController.swift */,
+				21387D2A205F55500050DF1F /* MessageRequestVC.swift */,
+				21387D2C205F56590050DF1F /* LoginRequestVC.swift */,
+				21387D28205F55120050DF1F /* CodeData.swift */,
+				21387D34205F5E240050DF1F /* UserInfoLoaclManger.swift */,
 			);
 			path = Net;
 			sourceTree = "<group>";
@@ -279,7 +285,6 @@
 			isa = PBXGroup;
 			children = (
 				2137667A203FB7CE000CBCE6 /* Net */,
-				21376679203FB7B1000CBCE6 /* Base */,
 				21376678203FB77B000CBCE6 /* Class */,
 				21376677203FB75F000CBCE6 /* Tool */,
 				215C65CA203EC6B6001C7A92 /* AppDelegate.swift */,
@@ -337,6 +342,8 @@
 		216A6C55204CDE9500528FD8 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				21387D30205F5DA50050DF1F /* NibLoadable.swift */,
+				21387D31205F5DA50050DF1F /* NibLoadableCell.swift */,
 				216A6C56204CDE9D00528FD8 /* BaseViewController.swift */,
 			);
 			path = Base;
@@ -531,6 +538,7 @@
 				215C65CD203EC6B6001C7A92 /* ViewController.swift in Sources */,
 				2107554A205D4C3200FF4396 /* LoginTopView.swift in Sources */,
 				219D7BC6205E2E29009F543B /* SubPayTableViewCell.swift in Sources */,
+				21387D2F205F5A910050DF1F /* LoginModel.swift in Sources */,
 				21376689203FBAF4000CBCE6 /* SVPMessageShow.swift in Sources */,
 				219D7BB6205E062F009F543B /* InfoTableViewCell.swift in Sources */,
 				21075558205D6D2000FF4396 /* PubMessageViewController.swift in Sources */,
@@ -541,25 +549,29 @@
 				21376684203FBAB2000CBCE6 /* UILabel+Init.swift in Sources */,
 				216A6C54204CDE7900528FD8 /* WorkViewController.swift in Sources */,
 				219D7BC3205E22EE009F543B /* SubmitPayViewController.swift in Sources */,
+				21387D2B205F55500050DF1F /* MessageRequestVC.swift in Sources */,
 				219D7BC9205E4812009F543B /* PubMessageConViewController.swift in Sources */,
 				2137668D203FBCD3000CBCE6 /* Api.swift in Sources */,
+				21387D33205F5DA60050DF1F /* NibLoadableCell.swift in Sources */,
 				216A6C59204CE7D800528FD8 /* BaseNetViewController.swift in Sources */,
 				21075548205D4C3200FF4396 /* LogInViewController.swift in Sources */,
 				219D7BBA205E0C89009F543B /* InfoFirstTableViewCell.swift in Sources */,
-				21082E9B20561BC800EF6AB6 /* NibLoadable.swift in Sources */,
 				216A6C57204CDE9D00528FD8 /* BaseViewController.swift in Sources */,
 				216A6C50204CDE6700528FD8 /* MessageViewController.swift in Sources */,
 				21376685203FBAB2000CBCE6 /* UIButton+Init.swift in Sources */,
 				2137668F203FBF27000CBCE6 /* HCNavigationController.swift in Sources */,
 				2137668B203FBAFD000CBCE6 /* String+fun.swift in Sources */,
 				2137667F203FBA61000CBCE6 /* Color+fun.swift in Sources */,
+				21387D2D205F56590050DF1F /* LoginRequestVC.swift in Sources */,
 				2107555B205D6EFD00FF4396 /* PubMessageTableViewCell.swift in Sources */,
 				215C65CB203EC6B6001C7A92 /* AppDelegate.swift in Sources */,
 				21075551205D5AD000FF4396 /* MessageTableViewCell.swift in Sources */,
 				2137667D203FBA20000CBCE6 /* pch.swift in Sources */,
+				21387D35205F5E240050DF1F /* UserInfoLoaclManger.swift in Sources */,
 				21075566205D8FE700FF4396 /* MineFooterView.swift in Sources */,
-				21075554205D5BFE00FF4396 /* NibLoadableCell.swift in Sources */,
 				2107555F205D792C00FF4396 /* MineTableViewCell.swift in Sources */,
+				21387D32205F5DA60050DF1F /* NibLoadable.swift in Sources */,
+				21387D29205F55120050DF1F /* CodeData.swift in Sources */,
 				216A6C4E204CDE5500528FD8 /* ConvenViewController.swift in Sources */,
 				219D7BC0205E1D8E009F543B /* WorkFirstTableViewCell.swift in Sources */,
 				219D7BCB205E4830009F543B /* PubMesConView.swift in Sources */,
