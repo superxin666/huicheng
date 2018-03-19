@@ -8,11 +8,13 @@
 
 import UIKit
 protocol PubMessageTableViewCellDelegate {
-    func redMessage()
+    func redMessage(model:newslistModel)
 }
 
 class PubMessageTableViewCell: UITableViewCell {
     var delegate : PubMessageTableViewCellDelegate!
+    var dataModel :newslistModel!
+    
     
     @IBOutlet weak var timebtn: UIButton!
     
@@ -22,10 +24,11 @@ class PubMessageTableViewCell: UITableViewCell {
     @IBAction func redBtnClick(_ sender: UIButton) {
         HCLog(message: "查看全文")
         if !(delegate == nil) {
-            self.delegate.redMessage()
+            self.delegate.redMessage(model: dataModel)
         }
     }
     func setData(model:newslistModel) {
+        dataModel = model
         if let timeStr = model.createtime {
             self.timebtn .setTitle(timeStr, for: .normal)
         }

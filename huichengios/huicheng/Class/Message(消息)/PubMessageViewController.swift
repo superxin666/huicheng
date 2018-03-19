@@ -10,7 +10,7 @@ import UIKit
 let PUBMESSAGEID = "PUBMESSAGE_ID"
 let pub_cell_height = ip6(129)
 
-class PubMessageViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource,PubMessageTableViewCellDelegate,MessageRequestVCDelegate_newslist {
+class PubMessageViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource,PubMessageTableViewCellDelegate,MessageRequestVCDelegate {
     /// 列表
     let mainTabelView : UITableView = UITableView()
     let request = MessageRequestVC()
@@ -34,7 +34,7 @@ class PubMessageViewController: BaseViewController,UITableViewDelegate,UITableVi
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
         self.navigation_title_fontsize(name: "公告", fontsize: 18)
         self.creatUI()
-        request.delegate_newslist = self
+        request.delegate = self
         request.newslistRequest(p: 1)
     }
     // MARK: - UI
@@ -78,14 +78,14 @@ class PubMessageViewController: BaseViewController,UITableViewDelegate,UITableVi
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return pub_cell_height
     }
-    func redMessage() {
+    func redMessage(model: newslistModel) {
         let vc = PubMessageConViewController()
+        vc.newsID = model.id
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
-        
     }
-    func requestSucceed(arr: [newslistModel]) {
-        dataArr = arr
+    func requestSucceed(data: Any) {
+        dataArr = data as! [newslistModel]
         HCLog(message: dataArr.count)
         mainTabelView.reloadData()
     }

@@ -10,7 +10,7 @@ import UIKit
 import ObjectMapper
 
 class noticelistModel: Mappable {
-    var id: String!
+    var id: Int!
     var title: String!
     var type:String!
     var createtime:String!

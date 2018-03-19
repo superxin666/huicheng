@@ -1,5 +1,5 @@
 //
-//  newslistModel.swift
+//  newsdetialModel.swift
 //  huicheng
 //
 //  Created by lvxin on 2018/3/19.
@@ -9,13 +9,14 @@
 import UIKit
 import ObjectMapper
 
-class newslistModel: Mappable {
+class newsdetialModel: Mappable {
     var id: Int!
     var title: String!
+    var content:String!
     var object:String!
-    var createtime:String!
+    var state:String!
     var user:String!
-
+    var createtime:String!
     
     init() {}
     required init?(map: Map){
@@ -26,7 +27,10 @@ class newslistModel: Mappable {
         id <- map["id"]
         title <- map["title"]
         object <- map["object"]
+        content <- map["content"]
         createtime <- map["createtime"]
+        state <- map["state"]
+        user <- map["user"]
     }
     
 }

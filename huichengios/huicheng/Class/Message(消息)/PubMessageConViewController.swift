@@ -8,8 +8,12 @@
 
 import UIKit
 
-class PubMessageConViewController: BaseViewController {
+class PubMessageConViewController: BaseViewController,MessageRequestVCDelegate {
     var contentView : PubMesConView!
+    var newsID : Int!
+    
+    let request = MessageRequestVC()
+
     
     override func viewWillLayoutSubviews() {
         contentView.snp.makeConstraints { (make) in
@@ -30,6 +34,16 @@ class PubMessageConViewController: BaseViewController {
         self.navigation_title_fontsize(name: "公告", fontsize: 18)
         contentView = PubMesConView.loadNib()
         self.view.addSubview(contentView)
+        request.delegate = self
+        if let newsID = newsID {
+            request.newsdetialRequest(id: newsID)
+        }
+    }
+    func requestSucceed(data: Any) {
+        let model : newsdetialModel = data as! newsdetialModel
+        contentView.setData(model: model)
+    }
+    func requestFail() {
         
     }
     override func navigationLeftBtnClick() {

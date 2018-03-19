@@ -17,5 +17,9 @@ class PubMesConView: UIView,NibLoadable {
         // Drawing code
     }
     */
-
+    func setData(model:newsdetialModel) {
+        
+        
+    }
+    
 }

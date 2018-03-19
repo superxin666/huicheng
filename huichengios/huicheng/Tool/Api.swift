@@ -22,6 +22,10 @@ let noticelist_api = "message/noticelist?"
 /// 公告列表 列表获取
 let newslist_api = "message/newslist?"
 
+/// 详情
+let newsdetial_api = "message/newsdetial?"
 
+//------------------------消息
+let user_getinfo_api = "uc/user_getinfo?"
 
 

@@ -9,24 +9,18 @@
 import UIKit
 import ObjectMapper
 enum MessageRequestVC_enum {
-    case noticelist,newslist
+    case noticelist,newslist,newsdetial
 }
 protocol MessageRequestVCDelegate : NSObjectProtocol{
     //
-     func requestSucceed(arr : [noticelistModel]) -> Void
+    func requestSucceed(data:Any) -> Void
      func requestFail() -> Void
 
 }
-protocol MessageRequestVCDelegate_newslist : NSObjectProtocol{
-    //
-    func requestFail() -> Void
-    func requestSucceed(arr : [newslistModel]) -> Void
-}
-
 
 class MessageRequestVC: UIViewController,BaseNetViewControllerDelegate {
     var delegate :MessageRequestVCDelegate!
-    var delegate_newslist :MessageRequestVCDelegate_newslist!
+
     let request : BaseNetViewController = BaseNetViewController()
     var type : MessageRequestVC_enum!
     
@@ -57,19 +51,37 @@ class MessageRequestVC: UIViewController,BaseNetViewControllerDelegate {
         request.request_api(url: url)
     }
     
+    /// 公告详情
+    ///
+    /// - Parameter id: 公告id
+    func newsdetialRequest(id:Int) {
+        request.delegate = self
+        type = .newsdetial
+        let url =   newsdetial_api + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+
+    }
+    
     func requestSucceed(response: Any) {
         if type == .noticelist {
             let arr = Mapper<noticelistModel>().mapArray(JSONArray: response as! [[String : Any]])
             HCLog(message: arr.count)
             if !(self.delegate == nil) {
-                self.delegate.requestSucceed(arr: arr)
+                self.delegate.requestSucceed(data: arr)
             }
         } else if type == .newslist{
             let arr = Mapper<newslistModel>().mapArray(JSONArray: response as! [[String : Any]])
             HCLog(message: arr.count)
-            if !(self.delegate_newslist == nil) {
-                self.delegate_newslist.requestSucceed(arr: arr)
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed(data: arr)
             }
+        } else if type == .newsdetial{
+            let model = Mapper<newsdetialModel>().map(JSON: response as! [String : Any])!
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed(data: model)
+                
+            }
+
         }
     }
     

@@ -11,6 +11,7 @@ let MESSAGEID = "MESSAGE_ID"
 let message_cell_height = ip6(80)
 
 class MessageViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource,MessageRequestVCDelegate {
+    
     let request = MessageRequestVC()
     var dataArr : [noticelistModel] = []
     
@@ -83,11 +84,11 @@ class MessageViewController: BaseViewController,UITableViewDelegate,UITableViewD
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return message_cell_height
     }
-    
-    func requestSucceed(arr: [noticelistModel]) {
-        dataArr = arr
+    func requestSucceed(data: Any) {
+        dataArr = data as! [noticelistModel]
         HCLog(message: dataArr.count)
         mainTabelView.reloadData()
+
     }
     func requestFail() {
         
