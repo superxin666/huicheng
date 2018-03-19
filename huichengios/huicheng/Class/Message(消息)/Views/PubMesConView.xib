@@ -40,7 +40,7 @@
                 <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eFx-Gd-l8z">
                     <rect key="frame" x="22" y="87" width="320" height="318"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <mutableString key="text">如果你无法简洁的表达你的想法，那只说明你还不够了 是韩国SBS电视台周末娱乐节目，是韩国著名主持人刘 在石接手的SBS新艺能节目，作为刘在石的SBS艺能节 目回归之作，《running man》致力于打造一个不同 于过去《real variety》的新型态娱乐节目态娱乐节态 韩国SBS电视台周末娱乐节目，是韩国著名主持人刘 在石接手的SBS新艺能节目，作为刘在石的SBS艺能节 目回归之作，《running man》致力于打造一个不同 于过去《real variety》的新型态娱乐节目态娱乐节态 韩国SBS电视台周末娱乐节目，是韩国著名主持人刘 在石接手的SBS新艺能节目，作为刘在石的SBS艺能节 目回归之作，《running man》致力于打造一个不同 于过去《real variety》的新型态娱乐节目态娱乐节态 韩国SBS电视台周末娱乐节目，是韩国著名主持人刘刘 在石接手的SBS新艺能节目，作为刘在石的SBS艺能节 目回归之作，《running man》致力于打造一个不刘 解它。 -- 阿尔伯特·爱因斯坦</mutableString>
+                    <string key="text">如果你无法简洁的表达你的想法，那只说明你还不够了 是韩国SBS电视台周末娱乐节目，是韩国著名主持人刘 在石接手的SBS新艺能节目，作为刘在石的SBS艺能节 目回归之作，《running man》致力于打造一个不同 于过去《real variety》的新型态娱乐节目态娱乐节态 韩国SBS电视台周末娱乐节目，是韩国著名主持人刘 在石接手的SBS新艺能节目，作为刘在石的SBS艺能节 目回归之作，《running man》致力于打造一个不同 于过去《real variety》的新型态娱乐节目态娱乐节态 韩国SBS电视台周末娱乐节目，是韩国著名主持人刘 在石接手的SBS新艺能节目，作为刘在石的SBS艺能节 目回归之作，《running man》致力于打造一个不同 于过去《real variety》的新型态娱乐节目态娱乐节态 韩国SBS电视台周末娱乐节目，是韩国著名主持人刘刘 在石接手的SBS新艺能节目，作为刘在石的SBS艺能节 目回归之作，《running man》致力于打造一个不刘 解它。 -- 阿尔伯特·爱因斯坦</string>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
@@ -74,6 +74,12 @@
                 <constraint firstAttribute="trailing" secondItem="aT4-Jr-rJm" secondAttribute="trailing" id="x7k-hI-bN6"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="contentTextView" destination="eFx-Gd-l8z" id="Uel-B1-ldP"/>
+                <outlet property="subLabel" destination="VI6-gZ-FRd" id="Va1-jF-rYk"/>
+                <outlet property="timeLabel" destination="I7F-tc-TLP" id="cev-t3-lz3"/>
+                <outlet property="titleLabel" destination="W78-5w-bQZ" id="ZHc-1a-lkO"/>
+            </connections>
             <point key="canvasLocation" x="-427" y="-84"/>
         </view>
     </objects>
