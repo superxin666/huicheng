@@ -45,6 +45,7 @@
 		21387D3B205FA7860050DF1F /* MineRequestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21387D3A205FA7860050DF1F /* MineRequestVC.swift */; };
 		21387D3D205FA8F70050DF1F /* user_getinfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21387D3C205FA8F70050DF1F /* user_getinfoModel.swift */; };
 		21387D3F205FAB240050DF1F /* newsdetialModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21387D3E205FAB240050DF1F /* newsdetialModel.swift */; };
+		21387D41205FEB700050DF1F /* MoreInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21387D40205FEB700050DF1F /* MoreInfoViewController.swift */; };
 		215C65CB203EC6B6001C7A92 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215C65CA203EC6B6001C7A92 /* AppDelegate.swift */; };
 		215C65CD203EC6B6001C7A92 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215C65CC203EC6B6001C7A92 /* ViewController.swift */; };
 		215C65D0203EC6B6001C7A92 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 215C65CE203EC6B6001C7A92 /* Main.storyboard */; };
@@ -112,6 +113,7 @@
 		21387D3A205FA7860050DF1F /* MineRequestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineRequestVC.swift; sourceTree = "<group>"; };
 		21387D3C205FA8F70050DF1F /* user_getinfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = user_getinfoModel.swift; sourceTree = "<group>"; };
 		21387D3E205FAB240050DF1F /* newsdetialModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newsdetialModel.swift; sourceTree = "<group>"; };
+		21387D40205FEB700050DF1F /* MoreInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreInfoViewController.swift; sourceTree = "<group>"; };
 		215C65C7203EC6B6001C7A92 /* huicheng.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = huicheng.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		215C65CA203EC6B6001C7A92 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		215C65CC203EC6B6001C7A92 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 				21075555205D6BBB00FF4396 /* Views */,
 				216A6C51204CDE6F00528FD8 /* MineViewController.swift */,
 				219D7BB2205E049A009F543B /* InfoViewController.swift */,
+				21387D40205FEB700050DF1F /* MoreInfoViewController.swift */,
 				219D7BC2205E22EE009F543B /* SubmitPayViewController.swift */,
 			);
 			path = "Mine(我的)";
@@ -571,6 +574,7 @@
 				2137668D203FBCD3000CBCE6 /* Api.swift in Sources */,
 				21387D33205F5DA60050DF1F /* NibLoadableCell.swift in Sources */,
 				216A6C59204CE7D800528FD8 /* BaseNetViewController.swift in Sources */,
+				21387D41205FEB700050DF1F /* MoreInfoViewController.swift in Sources */,
 				21075548205D4C3200FF4396 /* LogInViewController.swift in Sources */,
 				219D7BBA205E0C89009F543B /* InfoFirstTableViewCell.swift in Sources */,
 				216A6C57204CDE9D00528FD8 /* BaseViewController.swift in Sources */,

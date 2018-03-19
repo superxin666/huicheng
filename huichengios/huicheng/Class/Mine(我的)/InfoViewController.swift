@@ -93,6 +93,9 @@ class InfoViewController: BaseViewController,UITableViewDelegate,UITableViewData
             HCLog(message: "选择头像")
         } else {
             HCLog(message: "其他")
+            let vc = MoreInfoViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+            
         }
     }
     
