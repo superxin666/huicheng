@@ -7,11 +7,36 @@
 //
 
 import UIKit
+import ObjectMapper
 
-class MessageRequestVC: UIViewController {
+protocol MessageRequestVCDelegate {
+    func requestSucceed(arr : [noticelistModel]) -> Void
+    func requestFail() -> Void
+    
+}
+
+class MessageRequestVC: UIViewController,BaseNetViewControllerDelegate {
+    var delegate :MessageRequestVCDelegate!
+    let request : BaseNetViewController = BaseNetViewController()
 
     
-    func newslistRequest() {
+    func newslistRequest(p:Int,c:Int = 8) {
+        request.delegate = self
+        let url =   noticelist_api + "c=\(c)&p=\(p)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+
+    }
+    func requestSucceed(response: Any) {
+        HCLog(message: response)
+//        let model = Mapper<noticelistModel>().map(JSON: response as! [String : Any])!
+        let arr = Mapper<noticelistModel>().mapArray(JSONArray: response as! [[String : Any]])
+        HCLog(message: arr.count)
+        if !(self.delegate == nil) {
+            self.delegate.requestSucceed(arr: arr)
+        }
+    }
+    
+    func requestFail(response: Any) {
         
     }
 

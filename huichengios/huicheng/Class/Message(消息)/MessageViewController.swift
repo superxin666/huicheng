@@ -10,7 +10,10 @@ import UIKit
 let MESSAGEID = "MESSAGE_ID"
 let message_cell_height = ip6(80)
 
-class MessageViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource {
+class MessageViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource,MessageRequestVCDelegate {
+    let request = MessageRequestVC()
+    var dataArr : [noticelistModel] = []
+    
     
     /// 列表
     let mainTabelView : UITableView = UITableView()
@@ -32,6 +35,9 @@ class MessageViewController: BaseViewController,UITableViewDelegate,UITableViewD
         self.navigationBar_rightBtn_image(image: #imageLiteral(resourceName: "mes_ alarm"))
         self.navigation_title_fontsize(name: "消息", fontsize: 18)
         self.creatUI()
+        request.delegate = self
+        request.newslistRequest(p: 1, c: 8)
+       
 
     }
     // MARK: - UI
@@ -59,13 +65,16 @@ class MessageViewController: BaseViewController,UITableViewDelegate,UITableViewD
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return dataArr.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : MessageTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: MESSAGEID, for: indexPath) as! MessageTableViewCell
 //        if (cell == nil)  {
 //            cell = MessageTableViewCell(style: .default, reuseIdentifier: MESSAGEID)
 //        }
+        if indexPath.row < dataArr.count {
+            cell.setData(model: dataArr[indexPath.row])
+        }
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -73,6 +82,15 @@ class MessageViewController: BaseViewController,UITableViewDelegate,UITableViewD
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return message_cell_height
+    }
+    
+    func requestSucceed(arr: [noticelistModel]) {
+        dataArr = arr
+        HCLog(message: dataArr.count)
+        mainTabelView.reloadData()
+    }
+    func requestFail() {
+        
     }
     
     // MARK: - event response

@@ -22,5 +22,13 @@ class MessageTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    func setData(model : noticelistModel) {
+        if let timeStr = model.createtime, let typeStr = model.type {
+            timeLabel.text = "\(timeStr)|\(typeStr)"
+        }
+        if let titleStr = model.title {
+            titleLabel.text = titleStr
+        }
+    }
     
 }
