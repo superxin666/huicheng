@@ -25,6 +25,20 @@ class PubMessageTableViewCell: UITableViewCell {
             self.delegate.redMessage()
         }
     }
+    func setData(model:newslistModel) {
+        if let timeStr = model.createtime {
+            self.timebtn .setTitle(timeStr, for: .normal)
+        }
+        if let title = model.title {
+            self.titleLabel.setTitle(title, for: .normal)
+        }
+        if let subTitle = model.object {
+            self.subTitleLabel.setTitle(subTitle, for: .normal)
+        }
+
+        
+        
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -10,9 +10,13 @@ import UIKit
 let PUBMESSAGEID = "PUBMESSAGE_ID"
 let pub_cell_height = ip6(129)
 
-class PubMessageViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource,PubMessageTableViewCellDelegate {
+class PubMessageViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource,PubMessageTableViewCellDelegate,MessageRequestVCDelegate_newslist {
     /// 列表
     let mainTabelView : UITableView = UITableView()
+    let request = MessageRequestVC()
+    var dataArr : [newslistModel] = []
+    
+    
     // MARK: - life
     override func viewWillLayoutSubviews() {
         mainTabelView.snp.makeConstraints { (make) in
@@ -30,6 +34,8 @@ class PubMessageViewController: BaseViewController,UITableViewDelegate,UITableVi
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
         self.navigation_title_fontsize(name: "公告", fontsize: 18)
         self.creatUI()
+        request.delegate_newslist = self
+        request.newslistRequest(p: 1)
     }
     // MARK: - UI
     func creatUI() {
@@ -59,10 +65,11 @@ class PubMessageViewController: BaseViewController,UITableViewDelegate,UITableVi
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : PubMessageTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: PUBMESSAGEID, for: indexPath) as! PubMessageTableViewCell
-        //        if (cell == nil)  {
-        //            cell = MessageTableViewCell(style: .default, reuseIdentifier: MESSAGEID)
-        //        }
         cell.delegate = self
+        if indexPath.row < dataArr.count {
+            cell.setData(model: dataArr[indexPath.row])
+            
+        }
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -75,6 +82,14 @@ class PubMessageViewController: BaseViewController,UITableViewDelegate,UITableVi
         let vc = PubMessageConViewController()
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
+        
+    }
+    func requestSucceed(arr: [newslistModel]) {
+        dataArr = arr
+        HCLog(message: dataArr.count)
+        mainTabelView.reloadData()
+    }
+    func requestFail() {
         
     }
     // MARK: - event reponse

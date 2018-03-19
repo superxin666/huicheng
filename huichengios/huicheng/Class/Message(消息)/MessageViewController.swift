@@ -36,7 +36,7 @@ class MessageViewController: BaseViewController,UITableViewDelegate,UITableViewD
         self.navigation_title_fontsize(name: "消息", fontsize: 18)
         self.creatUI()
         request.delegate = self
-        request.newslistRequest(p: 1, c: 8)
+        request.noticelistRequest(p: 1, c: 8)
        
 
     }
