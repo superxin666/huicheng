@@ -9,7 +9,7 @@
 import UIKit
 
 class MineTableViewCell: UITableViewCell {
-    let nameArr = ["备忘录","报销申请","发票申请","发票申请","发票申请",]
+    let nameArr = ["备忘录","报销申请","发票申请","我的收款","工作日志",]
     @IBOutlet weak var titleLabel: UILabel!
     
     /// 标题

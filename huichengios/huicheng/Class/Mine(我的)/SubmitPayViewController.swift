@@ -10,9 +10,13 @@ import UIKit
 let SUBMITPAYID = "SUBMITPAY_ID"
 let subPay_cell_height = CGFloat(80)
 
-class SubmitPayViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate {
+class SubmitPayViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate ,MineRequestVCDelegate{
     /// 列表
     let mainTabelView : UITableView = UITableView()
+    
+    
+    let request : MineRequestVC = MineRequestVC()
+    var dataArr :[expense_getlistModel] = []
     
     
     // MARK: - life
@@ -35,6 +39,9 @@ class SubmitPayViewController: BaseViewController,UITableViewDataSource,UITableV
         let iteam2 = self.getUIBarButtonItem(image:#imageLiteral(resourceName: "mine_add"), action: #selector(addClick), vc: self)
         self.navigationItem.rightBarButtonItems = [iteam1,iteam2]
         self.creatUI()
+        request.delegate = self
+        request.expense_getlistRequest(p: 1, c: 8)
+        
     }
     // MARK: - UI
     func creatUI() {
@@ -62,14 +69,13 @@ class SubmitPayViewController: BaseViewController,UITableViewDataSource,UITableV
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return dataArr.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : SubPayTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: SUBMITPAYID, for: indexPath) as! SubPayTableViewCell
-        //        if (cell == nil)  {
-        //            cell = MessageTableViewCell(style: .default, reuseIdentifier: MESSAGEID)
-        //        }
-//        cell.setData(index: indexPath.row)
+        if indexPath.row < dataArr.count {
+            cell.setData(model: dataArr[indexPath.row])
+        }
         return cell
     }
     
@@ -78,6 +84,14 @@ class SubmitPayViewController: BaseViewController,UITableViewDataSource,UITableV
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return subPay_cell_height
+    }
+    
+    func requestSucceed(data: Any) {
+        dataArr = data as! [expense_getlistModel]
+        mainTabelView.reloadData()
+    }
+    func requestFail() {
+        
     }
     
     // MARK: - event response

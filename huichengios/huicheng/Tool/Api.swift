@@ -25,7 +25,12 @@ let newslist_api = "message/newslist?"
 /// 详情
 let newsdetial_api = "message/newsdetial?"
 
-//------------------------消息
+//-----------------------个人信息
 let user_getinfo_api = "uc/user_getinfo?"
+//发票申请 获取列表
+let invoice_getlist = "uc/invoice_getlist?"
+//报销申请 获取列表
+let expense_getlist = "uc/expense_getlist?"
+
 
 
