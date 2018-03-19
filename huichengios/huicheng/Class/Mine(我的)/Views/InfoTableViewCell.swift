@@ -12,7 +12,8 @@ class InfoTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var contentLabel: UILabel!
-    func setData(titleStr : String) {
+    
+    func setData(titleStr : String,contentStr : String) {
         self.titleLabel.text = titleStr
     }
 

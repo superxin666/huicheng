@@ -9,7 +9,7 @@
 import UIKit
 let MINEID = "MINE_ID"
 let mine_cell_height = CGFloat(60)
-class MineViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource,MineHeadViewDelegate {
+class MineViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource,MineHeadViewDelegate,MineRequestVCDelegate {
 
     /// 列表
     let mainTabelView : UITableView = UITableView()
@@ -19,6 +19,9 @@ class MineViewController: BaseViewController,UITableViewDelegate,UITableViewData
     /// 底部
     let footerView : MineFooterView = MineFooterView.loadNib()
     
+    let request : MineRequestVC = MineRequestVC()
+    
+    var model : user_getinfoModel = user_getinfoModel()
     
     
     // MARK: - life
@@ -38,6 +41,8 @@ class MineViewController: BaseViewController,UITableViewDelegate,UITableViewData
         self.navigation_title_fontsize(name: "我的", fontsize: 18)
         self.creatUI()
         headView.delegate = self
+        request.delegate = self
+        request.user_getinfoRequest()
         
     }
     // MARK: - UI
@@ -107,7 +112,16 @@ class MineViewController: BaseViewController,UITableViewDelegate,UITableViewData
     func iconClick() {
         let vc = InfoViewController()
         vc.hidesBottomBarWhenPushed = true
+        vc.model = model
         self.navigationController?.pushViewController(vc, animated: true)
+        
+    }
+    
+    func requestSucceed(data: Any) {
+        model = data as! user_getinfoModel
+        headView.setData(model: model)
+    }
+    func requestFail() {
         
     }
     

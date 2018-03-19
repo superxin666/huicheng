@@ -63,6 +63,8 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="iconImageView" destination="DYz-DT-a1A" id="q5G-A3-dI1"/>
+                <outlet property="nameLabel" destination="K5K-KM-MZC" id="ZCC-ol-eS7"/>
+                <outlet property="roleLabel" destination="VUF-Cd-1fx" id="Ax5-Lp-ZBT"/>
             </connections>
             <point key="canvasLocation" x="-1003" y="-27"/>
         </view>

@@ -10,9 +10,19 @@ import UIKit
 import ObjectMapper
 
 class user_getinfoModel: Mappable {
-    var code: Int!
-    var msg: String = ""
-    var data:Any!
+    var face: String!
+    var name: String!
+    var username: String!
+    var department: String!
+    var role: String!
+    var mobile: String!
+    var sex: String!
+    var diploma: String!
+    var hometown: String!
+    var political: String!
+    var intime: String!
+    var idcard: String!
+    var addr: String!
     
     
     init() {}
@@ -21,8 +31,19 @@ class user_getinfoModel: Mappable {
     }
     // Mappable
     func mapping(map: Map) {
-        code <- map["code"]
-        msg <- map["msg"]
-        data <- map["data"]
+        face <- map["face"]
+        name <- map["name"]
+        username <- map["username"]
+        department <- map["department"]
+        role <- map["role"]
+        mobile <- map["mobile"]
+        sex <- map["sex"]
+        diploma <- map["diploma"]
+        hometown <- map["hometown"]
+        political <- map["political"]
+        intime <- map["intime"]
+        idcard <- map["idcard"]
+        addr <- map["addr"]
+
     }
 }

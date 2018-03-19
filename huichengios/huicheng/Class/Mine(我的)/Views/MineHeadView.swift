@@ -15,6 +15,8 @@ protocol MineHeadViewDelegate {
 class MineHeadView: UIView,NibLoadable {
     var delegate : MineHeadViewDelegate!
     
+    @IBOutlet weak var roleLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var iconImageView: UIImageView!
     
     @IBAction func iconImageTap(_ sender: UITapGestureRecognizer) {
@@ -23,6 +25,21 @@ class MineHeadView: UIView,NibLoadable {
             self.delegate.iconClick()
         }
     }
+    
+    func setData(model : user_getinfoModel) {
+        if let face = model.face {
+            self.iconImageView .setImage_kf(imageName: face, placeholderImage: UIImage(named: "")!)
+        }
+        if let name = model.name {
+            self.nameLabel.text = name
+        }
+        if let role = model.role {
+            self.roleLabel.text = role
+        }
+
+
+    }
+    
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

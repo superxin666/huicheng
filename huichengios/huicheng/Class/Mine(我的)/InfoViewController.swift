@@ -11,10 +11,13 @@ let INFOID = "INFO_ID"
 let INFOID_first = "INFO_first_ID"
 let info_cell_height = CGFloat(50)
 class InfoViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource {
+    var model : user_getinfoModel!
+    
     /// 列表
     let mainTabelView : UITableView = UITableView()
-    let nameArr = ["头像","姓名","账号","部门","职位","执业证号","执业证号","执业证号"]
-    
+    let nameArr = ["头像","姓名","账号","部门","职位","执业证号","手机号码","更多"]
+    var contentArr : [String] = []
+
     
     // MARK: - life
     override func viewWillLayoutSubviews() {
@@ -33,6 +36,15 @@ class InfoViewController: BaseViewController,UITableViewDelegate,UITableViewData
         self.navigationBar_rightBtn_title(name: "编辑")
         self.navigation_title_fontsize(name: "个人信息", fontsize: 18)
         self.creatUI()
+        contentArr.append(model.face)
+        contentArr.append(model.name)
+        contentArr.append(model.username)
+        contentArr.append(model.department)
+        contentArr.append(model.role)
+        contentArr.append("后台没有返回")
+        contentArr.append(model.mobile)
+        contentArr.append("更多")
+        
     }
     // MARK: - UI
     func creatUI() {
@@ -70,11 +82,7 @@ class InfoViewController: BaseViewController,UITableViewDelegate,UITableViewData
             return cell
         } else {
             let cell : InfoTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: INFOID, for: indexPath) as! InfoTableViewCell
-            //        if (cell == nil)  {
-            //            cell = MessageTableViewCell(style: .default, reuseIdentifier: MESSAGEID)
-            //        }
-            //        cell.setData(index: indexPath.row)
-            cell.setData(titleStr: nameArr[indexPath.row])
+                cell.setData(titleStr: nameArr[indexPath.row], contentStr: contentArr[indexPath.row])
             return cell
         }
 

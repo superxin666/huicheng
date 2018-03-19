@@ -7,8 +7,10 @@
 //  我的网络
 
 import UIKit
+import ObjectMapper
+
 protocol MineRequestVCDelegate {
-    func requestSucceed() -> Void
+    func requestSucceed(data : Any) -> Void
     func requestFail() -> Void
     
 }
@@ -25,12 +27,14 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
 
     }
     
-
-    
     func requestSucceed(response: Any) {
-        
+        let model = Mapper<user_getinfoModel>().map(JSON: response as! [String : Any])!
+        if !(self.delegate == nil) {
+            self.delegate.requestSucceed(data: model)
+        }
     }
     func requestFail(response: Any) {
+        
         
     }
 
