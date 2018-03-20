@@ -117,6 +117,22 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed(data: arr)
             }
+        } else if type == .memo_getlist {
+            let arr = Mapper<memo_getlistModel>().mapArray(JSONArray: response as! [[String : Any]])
+            HCLog(message: arr.count)
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed(data: arr)
+            }
+        }else if type == .memo_getinfo {
+            let model = Mapper<memo_getinfoModel>().map(JSON: response as! [String : Any])!
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed(data: model)
+            }
+        } else if (type == .memo_save) || (type == .memo_del) {
+            let model = Mapper<CodeData>().map(JSON: response as! [String : Any])!
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed(data: model)
+            }
         }
     }
     func requestFail(response: Any) {

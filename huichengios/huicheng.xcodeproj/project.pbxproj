@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2105D2DD2060ADFC0031B14C /* memo_getlistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2105D2DC2060ADFC0031B14C /* memo_getlistModel.swift */; };
+		2105D2DF2060AEC40031B14C /* memo_getinfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2105D2DE2060AEC40031B14C /* memo_getinfoModel.swift */; };
 		21075548205D4C3200FF4396 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21075542205D4C3200FF4396 /* LogInViewController.swift */; };
 		21075549205D4C3200FF4396 /* LoginTopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21075544205D4C3200FF4396 /* LoginTopView.xib */; };
 		2107554A205D4C3200FF4396 /* LoginTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21075545205D4C3200FF4396 /* LoginTopView.swift */; };
@@ -76,6 +78,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2105D2DC2060ADFC0031B14C /* memo_getlistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memo_getlistModel.swift; sourceTree = "<group>"; };
+		2105D2DE2060AEC40031B14C /* memo_getinfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memo_getinfoModel.swift; sourceTree = "<group>"; };
 		21075542205D4C3200FF4396 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		21075544205D4C3200FF4396 /* LoginTopView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginTopView.xib; sourceTree = "<group>"; };
 		21075545205D4C3200FF4396 /* LoginTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTopView.swift; sourceTree = "<group>"; };
@@ -238,6 +242,8 @@
 				21387D3C205FA8F70050DF1F /* user_getinfoModel.swift */,
 				21387D42205FF1DE0050DF1F /* invoice_getlistModel.swift */,
 				21387D44205FF7240050DF1F /* expense_getlistModel.swift */,
+				2105D2DC2060ADFC0031B14C /* memo_getlistModel.swift */,
+				2105D2DE2060AEC40031B14C /* memo_getinfoModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -567,6 +573,7 @@
 				21387D2F205F5A910050DF1F /* LoginModel.swift in Sources */,
 				21376689203FBAF4000CBCE6 /* SVPMessageShow.swift in Sources */,
 				219D7BB6205E062F009F543B /* InfoTableViewCell.swift in Sources */,
+				2105D2DF2060AEC40031B14C /* memo_getinfoModel.swift in Sources */,
 				21387D3F205FAB240050DF1F /* newsdetialModel.swift in Sources */,
 				21075558205D6D2000FF4396 /* PubMessageViewController.swift in Sources */,
 				219D7BB3205E049A009F543B /* InfoViewController.swift in Sources */,
@@ -605,6 +612,7 @@
 				21387D29205F55120050DF1F /* CodeData.swift in Sources */,
 				216A6C4E204CDE5500528FD8 /* ConvenViewController.swift in Sources */,
 				219D7BC0205E1D8E009F543B /* WorkFirstTableViewCell.swift in Sources */,
+				2105D2DD2060ADFC0031B14C /* memo_getlistModel.swift in Sources */,
 				219D7BCB205E4830009F543B /* PubMesConView.swift in Sources */,
 				216A6C52204CDE6F00528FD8 /* MineViewController.swift in Sources */,
 				21387D37205F8E4E0050DF1F /* noticelistModel.swift in Sources */,
