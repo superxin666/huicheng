@@ -15,16 +15,23 @@ class MoreInfoViewController: BaseViewController,UITableViewDelegate,UITableView
     let mainTabelView : UITableView = UITableView()
     let nameArr = ["性别","学历","籍贯","政治面貌","入职时间","身份证号","我的地址"]
     var contentArr : [String] = []
-    
+    // MARK: - life
+    override func viewWillLayoutSubviews() {
+        mainTabelView.snp.makeConstraints { (make) in
+            make.top.equalTo(self.view).offset(0)
+            make.left.right.equalTo(self.view).offset(0)
+            make.bottom.equalTo(self.view).offset(0)
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.view.backgroundColor = viewBackColor
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
-        self.navigationBar_rightBtn_title(name: "编辑")
         self.navigation_title_fontsize(name: "个人信息", fontsize: 18)
-        self.creatUI()
+        
         contentArr.append(model.sex)
         contentArr.append(model.diploma)
         contentArr.append(model.hometown)
@@ -32,6 +39,7 @@ class MoreInfoViewController: BaseViewController,UITableViewDelegate,UITableView
         contentArr.append(model.intime)
         contentArr.append(model.idcard)
         contentArr.append(model.addr)
+        self.creatUI()
     }
     // MARK: - UI
     func creatUI() {

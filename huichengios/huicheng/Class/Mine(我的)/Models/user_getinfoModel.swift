@@ -15,6 +15,7 @@ class user_getinfoModel: Mappable {
     var username: String!
     var department: String!
     var role: String!
+    var practicing: String!
     var mobile: String!
     var sex: String!
     var diploma: String!
@@ -44,6 +45,7 @@ class user_getinfoModel: Mappable {
         intime <- map["intime"]
         idcard <- map["idcard"]
         addr <- map["addr"]
+        practicing <- map["practicing"]
 
     }
 }

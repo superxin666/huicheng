@@ -41,7 +41,7 @@ class InfoViewController: BaseViewController,UITableViewDelegate,UITableViewData
         contentArr.append(model.username)
         contentArr.append(model.department)
         contentArr.append(model.role)
-        contentArr.append("后台没有返回")
+        contentArr.append(model.practicing)
         contentArr.append(model.mobile)
         contentArr.append("更多")
         
@@ -78,7 +78,7 @@ class InfoViewController: BaseViewController,UITableViewDelegate,UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell : InfoFirstTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: INFOID_first, for: indexPath) as! InfoFirstTableViewCell
-
+            
             return cell
         } else {
             let cell : InfoTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: INFOID, for: indexPath) as! InfoTableViewCell
@@ -94,6 +94,7 @@ class InfoViewController: BaseViewController,UITableViewDelegate,UITableViewData
         } else {
             HCLog(message: "其他")
             let vc = MoreInfoViewController()
+            vc.model = self.model
             self.navigationController?.pushViewController(vc, animated: true)
             
         }

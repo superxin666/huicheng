@@ -15,6 +15,7 @@ class InfoTableViewCell: UITableViewCell {
     
     func setData(titleStr : String,contentStr : String) {
         self.titleLabel.text = titleStr
+        self.contentLabel.text = contentStr
     }
 
     override func awakeFromNib() {

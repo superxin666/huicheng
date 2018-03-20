@@ -8,7 +8,7 @@
 
 import Foundation
 let base_api = "http://47.94.108.111:18000/api/"
-
+let base_imageOrFile_api = "http://47.94.108.111:18000"
 
 //------------------------登陆
 let login_api = "base/login?"

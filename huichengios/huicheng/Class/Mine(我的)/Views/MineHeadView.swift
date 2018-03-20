@@ -28,7 +28,7 @@ class MineHeadView: UIView,NibLoadable {
     
     func setData(model : user_getinfoModel) {
         if let face = model.face {
-            self.iconImageView .setImage_kf(imageName: face, placeholderImage: UIImage(named: "")!)
+            self.iconImageView .setImage_kf(imageName: face, placeholderImage: #imageLiteral(resourceName: "log_persion"))
         }
         if let name = model.name {
             self.nameLabel.text = name
