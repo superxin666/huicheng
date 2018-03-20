@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2105D2DD2060ADFC0031B14C /* memo_getlistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2105D2DC2060ADFC0031B14C /* memo_getlistModel.swift */; };
 		2105D2DF2060AEC40031B14C /* memo_getinfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2105D2DE2060AEC40031B14C /* memo_getinfoModel.swift */; };
+		2105D2E12061101C0031B14C /* expense_getinfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2105D2E02061101C0031B14C /* expense_getinfoModel.swift */; };
+		2105D2E3206111220031B14C /* invoice_getinfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2105D2E2206111220031B14C /* invoice_getinfoModel.swift */; };
 		21075548205D4C3200FF4396 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21075542205D4C3200FF4396 /* LogInViewController.swift */; };
 		21075549205D4C3200FF4396 /* LoginTopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21075544205D4C3200FF4396 /* LoginTopView.xib */; };
 		2107554A205D4C3200FF4396 /* LoginTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21075545205D4C3200FF4396 /* LoginTopView.swift */; };
@@ -80,6 +82,8 @@
 /* Begin PBXFileReference section */
 		2105D2DC2060ADFC0031B14C /* memo_getlistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memo_getlistModel.swift; sourceTree = "<group>"; };
 		2105D2DE2060AEC40031B14C /* memo_getinfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memo_getinfoModel.swift; sourceTree = "<group>"; };
+		2105D2E02061101C0031B14C /* expense_getinfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = expense_getinfoModel.swift; sourceTree = "<group>"; };
+		2105D2E2206111220031B14C /* invoice_getinfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = invoice_getinfoModel.swift; sourceTree = "<group>"; };
 		21075542205D4C3200FF4396 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		21075544205D4C3200FF4396 /* LoginTopView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginTopView.xib; sourceTree = "<group>"; };
 		21075545205D4C3200FF4396 /* LoginTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTopView.swift; sourceTree = "<group>"; };
@@ -241,7 +245,9 @@
 			children = (
 				21387D3C205FA8F70050DF1F /* user_getinfoModel.swift */,
 				21387D42205FF1DE0050DF1F /* invoice_getlistModel.swift */,
+				2105D2E2206111220031B14C /* invoice_getinfoModel.swift */,
 				21387D44205FF7240050DF1F /* expense_getlistModel.swift */,
+				2105D2E02061101C0031B14C /* expense_getinfoModel.swift */,
 				2105D2DC2060ADFC0031B14C /* memo_getlistModel.swift */,
 				2105D2DE2060AEC40031B14C /* memo_getinfoModel.swift */,
 			);
@@ -610,6 +616,8 @@
 				2107555F205D792C00FF4396 /* MineTableViewCell.swift in Sources */,
 				21387D32205F5DA60050DF1F /* NibLoadable.swift in Sources */,
 				21387D29205F55120050DF1F /* CodeData.swift in Sources */,
+				2105D2E12061101C0031B14C /* expense_getinfoModel.swift in Sources */,
+				2105D2E3206111220031B14C /* invoice_getinfoModel.swift in Sources */,
 				216A6C4E204CDE5500528FD8 /* ConvenViewController.swift in Sources */,
 				219D7BC0205E1D8E009F543B /* WorkFirstTableViewCell.swift in Sources */,
 				2105D2DD2060ADFC0031B14C /* memo_getlistModel.swift in Sources */,
