@@ -31,6 +31,13 @@ let user_getinfo_api = "uc/user_getinfo?"
 let invoice_getlist = "uc/invoice_getlist?"
 //报销申请 获取列表
 let expense_getlist = "uc/expense_getlist?"
+//申请报销
+let expense_save_api = "uc/expense_save?"
+//获取详情
+let expense_getinfo_api = "uc/expense_getinfo?"
+//获取报销类型列表
+let expense_gettype_api = "uc/expense_gettype?"
+
 
 /// 备忘录列表
 let memo_getlist_api = "uc/memo_getlist?"

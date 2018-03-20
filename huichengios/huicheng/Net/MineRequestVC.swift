@@ -9,7 +9,7 @@
 import UIKit
 import ObjectMapper
 enum MineRequestVC_enum {
-    case user_getinfo,invoice_getlist,newsdetial,memo_getlist,memo_getinfo,memo_save,memo_del
+    case user_getinfo,invoice_getlist,newsdetial,memo_getlist,memo_getinfo,memo_save,memo_del,expense_save,expense_getinfo,expense_gettype
 }
 
 protocol MineRequestVCDelegate {
@@ -22,7 +22,7 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
     var delegate :MineRequestVCDelegate!
     let request : BaseNetViewController = BaseNetViewController()
     var type : MineRequestVC_enum!
-    
+    // MARK: 个人信息
     /// 读取基本信息
     func user_getinfoRequest() {
         request.delegate = self
@@ -31,6 +31,7 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
         request.request_api(url: url)
 
     }
+    // MARK: 报销申请
     ///  报销申请 获取列表
     func expense_getlistRequest(p : Int, c: Int) {
         let url =   expense_getlist + "c=\(c)&p=\(p)&k=\(UserInfoLoaclManger.getKey())"
@@ -38,7 +39,42 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
         type = .invoice_getlist
         request.request_api(url: url)
     }
+    
+    /// 申请报销
+    ///
+    /// - Parameters:
+    ///   - t: 报销类型 int 型
+    ///   - n: 单据数量 int 型
+    ///   - m: 报销金额
+    func expense_saveRequest(t : Int, n: Int ,m:Int) {
+        let url =   expense_save_api + "t=\(t)&n=\(n)&m=\(m)&k=\(UserInfoLoaclManger.getKey())"
+        request.delegate = self
+        type = .expense_save
+        request.request_api(url: url)
+    }
 
+    
+    /// 获取详情
+    ///
+    /// - Parameter id: <#id description#>
+    func expense_getinfoRequest(id : Int) {
+        let url =   expense_getinfo_api + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
+        request.delegate = self
+        type = .expense_getinfo
+        request.request_api(url: url)
+    }
+    
+    /// 获取报销类型列表
+    func expense_gettypeRequest() {
+        let url =   expense_gettype_api + "k=\(UserInfoLoaclManger.getKey())"
+        request.delegate = self
+        type = .expense_gettype
+        request.request_api(url: url)
+    }
+
+
+    
+    // MARK: 发票申请
     ///  发票申请 获取列表
     func invoice_getlistRequest(p : Int, c: Int) {
         let url =   invoice_getlist + "c=\(c)&p=\(p)&k=\(UserInfoLoaclManger.getKey())"
@@ -46,6 +82,7 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
         type = .invoice_getlist
         request.request_api(url: url)
     }
+    // MARK: 备忘录
     
     /// 备忘录 调取列表
     ///
@@ -103,8 +140,7 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
     }
 
 
-
-    
+    // MARK: 网络数据代理
     func requestSucceed(response: Any) {
         if type == .user_getinfo {
             let model = Mapper<user_getinfoModel>().map(JSON: response as! [String : Any])!
@@ -128,11 +164,16 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed(data: model)
             }
-        } else if (type == .memo_save) || (type == .memo_del) {
+        } else if (type == .memo_save) || (type == .memo_del) || (type == .expense_save){
             let model = Mapper<CodeData>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed(data: model)
             }
+        } else if type == .expense_getinfo{
+            //报销详情
+        } else if type == .expense_gettype{
+            //获取报销类型列表
+            
         }
     }
     func requestFail(response: Any) {
