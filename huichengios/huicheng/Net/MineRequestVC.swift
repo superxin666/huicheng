@@ -173,7 +173,6 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
             //报销详情
         } else if type == .expense_gettype{
             //获取报销类型列表
-            
         }
     }
     func requestFail(response: Any) {

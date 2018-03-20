@@ -37,6 +37,12 @@ let expense_save_api = "uc/expense_save?"
 let expense_getinfo_api = "uc/expense_getinfo?"
 //获取报销类型列表
 let expense_gettype_api = "uc/expense_gettype?"
+//我的收款 获取列表
+let finance_getlist_api = "uc/finance_getlist?"
+//查看详情
+let finance_getinfo_api = "uc/finance_getinfo?"
+
+
 
 
 /// 备忘录列表
