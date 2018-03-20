@@ -32,5 +32,11 @@ let invoice_getlist = "uc/invoice_getlist?"
 //报销申请 获取列表
 let expense_getlist = "uc/expense_getlist?"
 
+/// 备忘录列表
+let memo_getlist_api = "uc/memo_getlist?"
+let memo_getinfo_api = "uc/memo_getinfo?"
+let memo_save_api = "uc/memo_save?"
+let memo_del_api = "uc/memo_del?"
+
 
 

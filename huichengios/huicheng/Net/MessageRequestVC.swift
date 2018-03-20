@@ -61,7 +61,7 @@ class MessageRequestVC: UIViewController,BaseNetViewControllerDelegate {
         request.request_api(url: url)
 
     }
-    
+        
     func requestSucceed(response: Any) {
         if type == .noticelist {
             let arr = Mapper<noticelistModel>().mapArray(JSONArray: response as! [[String : Any]])
