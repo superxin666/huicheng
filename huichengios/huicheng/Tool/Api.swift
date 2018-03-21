@@ -28,8 +28,9 @@ let newsdetial_api = "message/newsdetial?"
 //-----------------------个人信息
 let user_getinfo_api = "uc/user_getinfo?"
 //-----------------------发票申请 获取列表
-let invoice_getlist = "uc/invoice_getlist?"
-
+let invoice_getlist_api = "uc/invoice_getlist?"
+let invoice_getinfo_api = "uc/invoice_getinfo?"
+let invoice_gettype_api = "uc/invoice_gettype?"
 
 //-----------------------报销申请 获取列表
 let expense_getlist = "uc/expense_getlist?"
@@ -45,6 +46,10 @@ let finance_getlist_api = "uc/finance_getlist?"
 //查看详情
 let finance_getinfo_api = "uc/finance_getinfo?"
 
+//------------------------工作日志  获取列表
+let work_getlist_api = "uc/work_getlist?"
+let work_getinfo_api = "uc/work_getinfo?"
+let work_save_api = "uc/work_save?"
 
 
 
