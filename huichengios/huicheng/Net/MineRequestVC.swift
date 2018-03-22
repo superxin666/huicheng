@@ -194,7 +194,7 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
     func work_getinfoRequest(id:Int) {
         request.delegate = self
         type = .work_getinfo
-        let url =   work_getinfo_api + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
+        let url =   work_getinfo_api + "id=\(id)&k=\(UserInfoLoaclManger.getKey)"
         request.request_api(url: url)
     }
     
@@ -251,6 +251,14 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
             //发票详情
             
             
+        } else if type == .work_getlist{
+            //工作日志 列表
+            let arr = Mapper<work_getlistModel>().mapArray(JSONArray: response as! [[String : Any]])
+            HCLog(message: arr.count)
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed(data: arr)
+            }
+
         }
     }
     func requestFail(response: Any) {
