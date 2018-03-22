@@ -228,12 +228,14 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
                 self.delegate.requestSucceed(data: arr)
             }
         } else if type == .memo_getlist {
+            //备忘录 列表
             let arr = Mapper<memo_getlistModel>().mapArray(JSONArray: response as! [[String : Any]])
             HCLog(message: arr.count)
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed(data: arr)
             }
         }else if type == .memo_getinfo {
+            //备忘录 详情
             let model = Mapper<memo_getinfoModel>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed(data: model)
@@ -254,6 +256,14 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
         } else if type == .work_getlist{
             //工作日志 列表
             let arr = Mapper<work_getlistModel>().mapArray(JSONArray: response as! [[String : Any]])
+            HCLog(message: arr.count)
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed(data: arr)
+            }
+
+        } else if type == .finance_getlist{
+            //我的收入
+            let arr = Mapper<finance_getlistModel>().mapArray(JSONArray: response as! [[String : Any]])
             HCLog(message: arr.count)
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed(data: arr)

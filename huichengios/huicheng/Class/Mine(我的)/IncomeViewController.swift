@@ -1,27 +1,19 @@
 //
-//  MineViewController.swift
+//  IncomeViewController.swift
 //  huicheng
 //
-//  Created by lvxin on 2018/3/5.
+//  Created by lvxin on 2018/3/22.
 //  Copyright © 2018年 lvxin. All rights reserved.
-//   我的
+//  我的收款
 
 import UIKit
-let MINEID = "MINE_ID"
-let mine_cell_height = CGFloat(60)
-class MineViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource,MineHeadViewDelegate,MineRequestVCDelegate {
-
-    /// 列表
+let IncomeTableViewCellid = "IncomeTableViewCell_id"
+let IncomeTableViewCellH = CGFloat(80)
+class IncomeViewController:  BaseViewController,UITableViewDataSource,UITableViewDelegate ,MineRequestVCDelegate {
     let mainTabelView : UITableView = UITableView()
     
-    /// 头部b
-    let headView : MineHeadView = MineHeadView.loadNib()
-    /// 底部
-    let footerView : MineFooterView = MineFooterView.loadNib()
-    
     let request : MineRequestVC = MineRequestVC()
-    
-    var model : user_getinfoModel = user_getinfoModel()
+    var dataArr :[finance_getlistModel] = []
     
     
     // MARK: - life
@@ -32,17 +24,20 @@ class MineViewController: BaseViewController,UITableViewDelegate,UITableViewData
             make.bottom.equalTo(self.view).offset(0)
         }
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view.
         self.view.backgroundColor = viewBackColor
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "mes_logo"))
-        self.navigation_title_fontsize(name: "我的", fontsize: 18)
+        self.navigation_title_fontsize(name: "工作日志", fontsize: 18)
+        self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
+        let iteam1 = self.getUIBarButtonItem(image: #imageLiteral(resourceName: "mine_search"), action: #selector(searchClick), vc: self)
+        let iteam2 = self.getUIBarButtonItem(image:#imageLiteral(resourceName: "mine_add"), action: #selector(addClick), vc: self)
+        self.navigationItem.rightBarButtonItems = [iteam1,iteam2]
         self.creatUI()
-        headView.delegate = self
         request.delegate = self
-        request.user_getinfoRequest()
+        request.finance_getlistRequest()
         
     }
     // MARK: - UI
@@ -55,8 +50,8 @@ class MineViewController: BaseViewController,UITableViewDelegate,UITableViewData
         mainTabelView.showsVerticalScrollIndicator = false
         mainTabelView.showsHorizontalScrollIndicator = false
         mainTabelView.backgroundView?.backgroundColor = .clear
-        mainTabelView.register(UINib.init(nibName: "MineTableViewCell", bundle: nil), forCellReuseIdentifier: MINEID)
-  
+        mainTabelView.register(UINib.init(nibName: "IncomeTableViewCell", bundle: nil), forCellReuseIdentifier: IncomeTableViewCellid)
+        
         //        footer.setRefreshingTarget(self, refreshingAction: #selector(HomeViewController.loadMoreData))
         //        header.setRefreshingTarget(self, refreshingAction: #selector(HomeViewController.freshData))
         //        mainTabelView.mj_footer = footer
@@ -71,77 +66,41 @@ class MineViewController: BaseViewController,UITableViewDelegate,UITableViewData
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return dataArr.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell : MineTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: MINEID, for: indexPath) as! MineTableViewCell
-        cell.setData(index: indexPath.row)
+        let cell : IncomeTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: IncomeTableViewCellid, for: indexPath) as! IncomeTableViewCell
+        if indexPath.row < dataArr.count {
+            cell.setData(model: dataArr[indexPath.row])
+        }
         return cell
-    }
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return footerView
-    }
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return headView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch indexPath.row {
-        case 0:
-            //备忘录
-            let vc = MemoViewController()
-            vc.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(vc, animated: true)
-        case 1:
-            //报销申请
-            let vc = SubmitPayViewController()
-            vc.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(vc, animated: true)
-        case 3:
-            //我的收款
-            let vc = IncomeViewController()
-            vc.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(vc, animated: true)
-        case 4:
-            //工作日志
-            let vc = WorkBookViewController()
-            vc.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(vc, animated: true)
-
-        default:
-            HCLog(message: "咩有")
-        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return mine_cell_height
-    }
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 105
-    }
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 80
-    }
-    
-    func iconClick() {
-        let vc = InfoViewController()
-        vc.hidesBottomBarWhenPushed = true
-        vc.model = model
-        self.navigationController?.pushViewController(vc, animated: true)
-        
+        return IncomeTableViewCellH
     }
     
     func requestSucceed(data: Any) {
-        model = data as! user_getinfoModel
-        headView.setData(model: model)
+        dataArr = data as! [finance_getlistModel]
+        mainTabelView.reloadData()
     }
     func requestFail() {
         
     }
     
     // MARK: - event response
-
-
+    override func navigationLeftBtnClick() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    @objc func searchClick() {
+        HCLog(message: "搜索")
+    }
+    @objc func addClick() {
+        HCLog(message: "添加")
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

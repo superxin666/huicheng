@@ -70,6 +70,12 @@
 		216B7C5A20637AE400BBACDA /* WorkBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216B7C5920637AE400BBACDA /* WorkBookViewController.swift */; };
 		216B7C5D20637D7000BBACDA /* WorkBookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216B7C5B20637D7000BBACDA /* WorkBookTableViewCell.swift */; };
 		216B7C5E20637D7000BBACDA /* WorkBookTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 216B7C5C20637D7000BBACDA /* WorkBookTableViewCell.xib */; };
+		216B7C6020638E9F00BBACDA /* IncomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216B7C5F20638E9F00BBACDA /* IncomeViewController.swift */; };
+		216B7C6320638EE100BBACDA /* IncomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216B7C6120638EE100BBACDA /* IncomeTableViewCell.swift */; };
+		216B7C6420638EE100BBACDA /* IncomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 216B7C6220638EE100BBACDA /* IncomeTableViewCell.xib */; };
+		216B7C67206394DE00BBACDA /* MemoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216B7C65206394DE00BBACDA /* MemoTableViewCell.swift */; };
+		216B7C68206394DE00BBACDA /* MemoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 216B7C66206394DE00BBACDA /* MemoTableViewCell.xib */; };
+		216B7C6C2063953300BBACDA /* MemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216B7C6B2063953300BBACDA /* MemoViewController.swift */; };
 		219D7BB3205E049A009F543B /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7BB2205E049A009F543B /* InfoViewController.swift */; };
 		219D7BB6205E062F009F543B /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7BB4205E062F009F543B /* InfoTableViewCell.swift */; };
 		219D7BB7205E062F009F543B /* InfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 219D7BB5205E062F009F543B /* InfoTableViewCell.xib */; };
@@ -153,6 +159,12 @@
 		216B7C5920637AE400BBACDA /* WorkBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkBookViewController.swift; sourceTree = "<group>"; };
 		216B7C5B20637D7000BBACDA /* WorkBookTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkBookTableViewCell.swift; sourceTree = "<group>"; };
 		216B7C5C20637D7000BBACDA /* WorkBookTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkBookTableViewCell.xib; sourceTree = "<group>"; };
+		216B7C5F20638E9F00BBACDA /* IncomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeViewController.swift; sourceTree = "<group>"; };
+		216B7C6120638EE100BBACDA /* IncomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeTableViewCell.swift; sourceTree = "<group>"; };
+		216B7C6220638EE100BBACDA /* IncomeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IncomeTableViewCell.xib; sourceTree = "<group>"; };
+		216B7C65206394DE00BBACDA /* MemoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoTableViewCell.swift; sourceTree = "<group>"; };
+		216B7C66206394DE00BBACDA /* MemoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemoTableViewCell.xib; sourceTree = "<group>"; };
+		216B7C6B2063953300BBACDA /* MemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoViewController.swift; sourceTree = "<group>"; };
 		219D7BB2205E049A009F543B /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		219D7BB4205E062F009F543B /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
 		219D7BB5205E062F009F543B /* InfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoTableViewCell.xib; sourceTree = "<group>"; };
@@ -252,6 +264,10 @@
 				219D7BC5205E2E29009F543B /* SubPayTableViewCell.xib */,
 				216B7C5B20637D7000BBACDA /* WorkBookTableViewCell.swift */,
 				216B7C5C20637D7000BBACDA /* WorkBookTableViewCell.xib */,
+				216B7C6120638EE100BBACDA /* IncomeTableViewCell.swift */,
+				216B7C6220638EE100BBACDA /* IncomeTableViewCell.xib */,
+				216B7C65206394DE00BBACDA /* MemoTableViewCell.swift */,
+				216B7C66206394DE00BBACDA /* MemoTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -362,6 +378,8 @@
 				21387D40205FEB700050DF1F /* MoreInfoViewController.swift */,
 				219D7BC2205E22EE009F543B /* SubmitPayViewController.swift */,
 				216B7C5920637AE400BBACDA /* WorkBookViewController.swift */,
+				216B7C5F20638E9F00BBACDA /* IncomeViewController.swift */,
+				216B7C6B2063953300BBACDA /* MemoViewController.swift */,
 			);
 			path = "Mine(我的)";
 			sourceTree = "<group>";
@@ -501,6 +519,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				216B7C6420638EE100BBACDA /* IncomeTableViewCell.xib in Resources */,
 				21075549205D4C3200FF4396 /* LoginTopView.xib in Resources */,
 				219D7BC7205E2E29009F543B /* SubPayTableViewCell.xib in Resources */,
 				219D7BB7205E062F009F543B /* InfoTableViewCell.xib in Resources */,
@@ -515,6 +534,7 @@
 				216B7C5E20637D7000BBACDA /* WorkBookTableViewCell.xib in Resources */,
 				21075568205D8FF200FF4396 /* MineFooterView.xib in Resources */,
 				219D7BCD205E483E009F543B /* PubMesConView.xib in Resources */,
+				216B7C68206394DE00BBACDA /* MemoTableViewCell.xib in Resources */,
 				215C65D0203EC6B6001C7A92 /* Main.storyboard in Resources */,
 				219D7BC1205E1D8E009F543B /* WorkFirstTableViewCell.xib in Resources */,
 			);
@@ -593,6 +613,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				216B7C6C2063953300BBACDA /* MemoViewController.swift in Sources */,
+				216B7C6020638E9F00BBACDA /* IncomeViewController.swift in Sources */,
 				215C65CD203EC6B6001C7A92 /* ViewController.swift in Sources */,
 				2107554A205D4C3200FF4396 /* LoginTopView.swift in Sources */,
 				219D7BC6205E2E29009F543B /* SubPayTableViewCell.swift in Sources */,
@@ -644,8 +666,10 @@
 				2105D2E12061101C0031B14C /* expense_getinfoModel.swift in Sources */,
 				216B7C5A20637AE400BBACDA /* WorkBookViewController.swift in Sources */,
 				2105D2E3206111220031B14C /* invoice_getinfoModel.swift in Sources */,
+				216B7C67206394DE00BBACDA /* MemoTableViewCell.swift in Sources */,
 				216A6C4E204CDE5500528FD8 /* ConvenViewController.swift in Sources */,
 				219D7BC0205E1D8E009F543B /* WorkFirstTableViewCell.swift in Sources */,
+				216B7C6320638EE100BBACDA /* IncomeTableViewCell.swift in Sources */,
 				2105D2DD2060ADFC0031B14C /* memo_getlistModel.swift in Sources */,
 				219D7BCB205E4830009F543B /* PubMesConView.swift in Sources */,
 				216A6C52204CDE6F00528FD8 /* MineViewController.swift in Sources */,
