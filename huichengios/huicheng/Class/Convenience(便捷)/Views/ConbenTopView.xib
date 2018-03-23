@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ConbenTopView" customModule="huicheng" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tpm-tf-MsI">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="0.5"/>
+                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="aWY-o4-mRC"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5WA-7I-JZv">
+                    <rect key="frame" x="0.0" y="0.0" width="75" height="40"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="w3Q-LB-foG"/>
+                    </constraints>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="法院">
+                        <color key="titleColor" red="0.090196078430000007" green="0.2274509804" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="selected">
+                        <color key="titleColor" red="1" green="0.41176470590000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="btnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="KF4-9m-2K4"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6AK-MN-bUx">
+                    <rect key="frame" x="75" y="0.0" width="75" height="40"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="gBl-Vb-ivg"/>
+                    </constraints>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="检察院">
+                        <color key="titleColor" red="0.090196078430000007" green="0.2274509804" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="selected">
+                        <color key="titleColor" red="1" green="0.41176470590000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="btnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="Vom-S8-7MV"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ae9-kk-xoa">
+                    <rect key="frame" x="150" y="0.0" width="75" height="40"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="45O-ou-D9L"/>
+                    </constraints>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="公安机关">
+                        <color key="titleColor" red="0.090196078430000007" green="0.2274509804" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="selected">
+                        <color key="titleColor" red="1" green="0.41176470590000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="btnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="Zd6-wo-vPd"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nuz-nM-gxc">
+                    <rect key="frame" x="225" y="0.0" width="75" height="40"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="kLo-3W-Ijk"/>
+                    </constraints>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="仲裁委">
+                        <color key="titleColor" red="0.090196078430000007" green="0.2274509804" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="selected">
+                        <color key="titleColor" red="1" green="0.41176470590000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="btnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="UIE-fp-2Lk"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mSl-Xa-E4H">
+                    <rect key="frame" x="300" y="0.0" width="75" height="40"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <accessibility key="accessibilityConfiguration">
+                        <accessibilityTraits key="traits" button="YES" adjustable="YES"/>
+                    </accessibility>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="JcO-ci-lMu"/>
+                    </constraints>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="看守所">
+                        <color key="titleColor" red="0.090196078430000007" green="0.2274509804" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="selected">
+                        <color key="titleColor" red="1" green="0.41176470590000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="btnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="sBw-1M-d6a"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LYC-sN-Hat">
+                    <rect key="frame" x="0.0" y="39.5" width="375" height="0.5"/>
+                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="uoL-p6-Kmg"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="nuz-nM-gxc" firstAttribute="leading" secondItem="ae9-kk-xoa" secondAttribute="trailing" id="73v-48-89z"/>
+                <constraint firstItem="mSl-Xa-E4H" firstAttribute="leading" secondItem="nuz-nM-gxc" secondAttribute="trailing" id="CjI-Co-Ziw"/>
+                <constraint firstAttribute="bottom" secondItem="LYC-sN-Hat" secondAttribute="bottom" id="Czz-jA-75L"/>
+                <constraint firstItem="Tpm-tf-MsI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="F97-kI-udH"/>
+                <constraint firstAttribute="trailing" secondItem="mSl-Xa-E4H" secondAttribute="trailing" id="Vmd-zM-LrG"/>
+                <constraint firstAttribute="trailing" secondItem="Tpm-tf-MsI" secondAttribute="trailing" id="XkE-CD-ccN"/>
+                <constraint firstItem="ae9-kk-xoa" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="aBE-U6-AM9"/>
+                <constraint firstItem="mSl-Xa-E4H" firstAttribute="leading" secondItem="nuz-nM-gxc" secondAttribute="trailing" id="b7w-ow-feY"/>
+                <constraint firstAttribute="trailing" secondItem="LYC-sN-Hat" secondAttribute="trailing" id="bWb-1j-lwq"/>
+                <constraint firstItem="LYC-sN-Hat" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="dom-on-yci"/>
+                <constraint firstItem="nuz-nM-gxc" firstAttribute="width" secondItem="mSl-Xa-E4H" secondAttribute="width" id="elm-kQ-HFV"/>
+                <constraint firstItem="nuz-nM-gxc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ffz-Jl-RvC"/>
+                <constraint firstItem="mSl-Xa-E4H" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="m2P-mI-kCd"/>
+                <constraint firstItem="5WA-7I-JZv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="nCz-gL-UoU"/>
+                <constraint firstItem="ae9-kk-xoa" firstAttribute="leading" secondItem="6AK-MN-bUx" secondAttribute="trailing" id="nDn-KE-yKW"/>
+                <constraint firstItem="5WA-7I-JZv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="nEl-xh-dXX"/>
+                <constraint firstItem="nuz-nM-gxc" firstAttribute="leading" secondItem="ae9-kk-xoa" secondAttribute="trailing" id="nUW-85-RQc"/>
+                <constraint firstItem="5WA-7I-JZv" firstAttribute="width" secondItem="6AK-MN-bUx" secondAttribute="width" id="q8E-nk-ipx"/>
+                <constraint firstItem="6AK-MN-bUx" firstAttribute="leading" secondItem="5WA-7I-JZv" secondAttribute="trailing" id="sHd-DZ-Epy"/>
+                <constraint firstItem="ae9-kk-xoa" firstAttribute="leading" secondItem="6AK-MN-bUx" secondAttribute="trailing" id="tD5-zE-JPg"/>
+                <constraint firstItem="6AK-MN-bUx" firstAttribute="width" secondItem="ae9-kk-xoa" secondAttribute="width" id="u4s-x2-GRz"/>
+                <constraint firstItem="ae9-kk-xoa" firstAttribute="width" secondItem="nuz-nM-gxc" secondAttribute="width" id="vdb-I2-T60"/>
+                <constraint firstItem="6AK-MN-bUx" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="wIO-05-z0r"/>
+                <constraint firstItem="Tpm-tf-MsI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="xdb-Pt-MHF"/>
+                <constraint firstItem="6AK-MN-bUx" firstAttribute="leading" secondItem="5WA-7I-JZv" secondAttribute="trailing" id="zsX-4w-Yuz"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="fayuanBtn" destination="5WA-7I-JZv" id="7t6-ar-QT8"/>
+                <outlet property="gonganjiguanBtn" destination="ae9-kk-xoa" id="fQ9-RR-Ihc"/>
+                <outlet property="jianchayuanBtn" destination="6AK-MN-bUx" id="AQ3-Wh-xAi"/>
+                <outlet property="kanshousuoBtn" destination="mSl-Xa-E4H" id="9gp-ag-Dbj"/>
+                <outlet property="zhongcaiweiBtn" destination="nuz-nM-gxc" id="AQg-g4-Es7"/>
+            </connections>
+            <point key="canvasLocation" x="81" y="-15"/>
+        </view>
+    </objects>
+</document>

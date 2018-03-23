@@ -107,7 +107,7 @@
                     <constraint firstItem="jmf-Ff-flY" firstAttribute="leading" secondItem="6vS-yF-D1X" secondAttribute="trailing" id="sNA-zq-D8H"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="-263" y="5"/>
+            <point key="canvasLocation" x="-288" y="9"/>
         </tableViewCell>
     </objects>
 </document>
