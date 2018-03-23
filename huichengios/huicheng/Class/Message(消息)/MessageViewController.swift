@@ -15,6 +15,8 @@ class MessageViewController: BaseViewController,UITableViewDelegate,UITableViewD
     let request = MessageRequestVC()
     var dataArr : [noticelistModel] = []
     
+    var pageNum : Int = 1
+    
     
     /// 列表
     let mainTabelView : UITableView = UITableView()
@@ -36,10 +38,8 @@ class MessageViewController: BaseViewController,UITableViewDelegate,UITableViewD
         self.navigationBar_rightBtn_image(image: #imageLiteral(resourceName: "mes_ alarm"))
         self.navigation_title_fontsize(name: "消息", fontsize: 18)
         self.creatUI()
-        request.delegate = self
-        request.noticelistRequest(p: 1, c: 8)
+        self.requestApi()
        
-
     }
     // MARK: - UI
     func creatUI() {
@@ -52,12 +52,10 @@ class MessageViewController: BaseViewController,UITableViewDelegate,UITableViewD
         mainTabelView.showsHorizontalScrollIndicator = false
         mainTabelView.backgroundView?.backgroundColor = .clear
         mainTabelView.register(UINib.init(nibName: "MessageTableViewCell", bundle: nil), forCellReuseIdentifier: MESSAGEID)
-//        footer.setRefreshingTarget(self, refreshingAction: #selector(HomeViewController.loadMoreData))
-//        header.setRefreshingTarget(self, refreshingAction: #selector(HomeViewController.freshData))
-//        mainTabelView.mj_footer = footer
-//        mainTabelView.mj_header = header
-//        mainTabelView.register(MessageTableViewCell.self, forCellReuseIdentifier: MESSAGEID)
-//        mainTabelView.register(TeachTableViewCell.self, forCellReuseIdentifier: TEACHCELLID)
+        mainTabelView.mj_footer = self.creactFoot()
+        mainTabelView.mj_footer.setRefreshingTarget(self, refreshingAction: #selector(loadMoreData))
+        mainTabelView.mj_header = header
+        header.setRefreshingTarget(self, refreshingAction: #selector(reflishData))
         self.view.addSubview(mainTabelView)
     }
     
@@ -70,9 +68,6 @@ class MessageViewController: BaseViewController,UITableViewDelegate,UITableViewD
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : MessageTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: MESSAGEID, for: indexPath) as! MessageTableViewCell
-//        if (cell == nil)  {
-//            cell = MessageTableViewCell(style: .default, reuseIdentifier: MESSAGEID)
-//        }
         if indexPath.row < dataArr.count {
             cell.setData(model: dataArr[indexPath.row])
         }
@@ -85,13 +80,43 @@ class MessageViewController: BaseViewController,UITableViewDelegate,UITableViewD
         return message_cell_height
     }
     func requestSucceed(data: Any) {
-        dataArr = data as! [noticelistModel]
-        HCLog(message: dataArr.count)
-        mainTabelView.reloadData()
+        let arr = data as! [noticelistModel]
+        if arr.count > 0 {
+            dataArr = dataArr + arr
+            HCLog(message: dataArr.count)
+            mainTabelView.reloadData()
+        } else {
+            SVPMessageShow.showErro(infoStr: "已经加载全部内容")
+        }
+        
+        if mainTabelView.mj_footer.isRefreshing {
+            mainTabelView.mj_footer.endRefreshing()
+        }
+        if mainTabelView.mj_header.isRefreshing {
+            mainTabelView.mj_header.endRefreshing()
 
+        }
     }
     func requestFail() {
         
+    }
+    // MARK: - data
+    @objc func loadMoreData() {
+        HCLog(message: "加载更多")
+        pageNum = pageNum + 1
+        self.requestApi()
+    }
+    @objc func reflishData() {
+        HCLog(message: "刷新")
+        self.dataArr.removeAll()
+        pageNum = 1
+        self.requestApi()
+    }
+    
+    
+    func requestApi() {
+        request.delegate = self
+        request.noticelistRequest(p: pageNum, c: 8)
     }
     
     // MARK: - event response

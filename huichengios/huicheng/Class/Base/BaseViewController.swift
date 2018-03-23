@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import MJRefresh
 
 class BaseViewController: UIViewController {
 
+    let header = MJRefreshNormalHeader() //头部刷新
+    let footer = MJRefreshAutoNormalFooter() // 底部刷新
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -99,6 +103,13 @@ class BaseViewController: UIViewController {
         let item:UIBarButtonItem = UIBarButtonItem(customView:btn)
         return item
     }
+    
+    func creactFoot()->MJRefreshAutoNormalFooter {
+        let footer = MJRefreshAutoNormalFooter() // 底部刷新
+        footer.setTitle("", for: .idle)
+        return footer
+    }
+
     
     // MARK: response
     @objc func navigationLeftBtnClick() {
