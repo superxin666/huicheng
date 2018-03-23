@@ -94,6 +94,8 @@
 		219D7BC9205E4812009F543B /* PubMessageConViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7BC8205E4812009F543B /* PubMessageConViewController.swift */; };
 		219D7BCB205E4830009F543B /* PubMesConView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7BCA205E4830009F543B /* PubMesConView.swift */; };
 		219D7BCD205E483E009F543B /* PubMesConView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 219D7BCC205E483E009F543B /* PubMesConView.xib */; };
+		21FB9F402064E36800A186C2 /* WorkSecondTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FB9F3E2064E36800A186C2 /* WorkSecondTableViewCell.swift */; };
+		21FB9F412064E36800A186C2 /* WorkSecondTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21FB9F3F2064E36800A186C2 /* WorkSecondTableViewCell.xib */; };
 		88EEB2BAA16F8A6E3AED0F0A /* Pods_huicheng.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B3B926EC39335E65CFE2DE /* Pods_huicheng.framework */; };
 /* End PBXBuildFile section */
 
@@ -188,6 +190,8 @@
 		219D7BC8205E4812009F543B /* PubMessageConViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PubMessageConViewController.swift; sourceTree = "<group>"; };
 		219D7BCA205E4830009F543B /* PubMesConView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PubMesConView.swift; sourceTree = "<group>"; };
 		219D7BCC205E483E009F543B /* PubMesConView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PubMesConView.xib; sourceTree = "<group>"; };
+		21FB9F3E2064E36800A186C2 /* WorkSecondTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSecondTableViewCell.swift; sourceTree = "<group>"; };
+		21FB9F3F2064E36800A186C2 /* WorkSecondTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkSecondTableViewCell.xib; sourceTree = "<group>"; };
 		97B8B5BC41ED2EA904010B3A /* Pods-huicheng.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-huicheng.release.xcconfig"; path = "Pods/Target Support Files/Pods-huicheng/Pods-huicheng.release.xcconfig"; sourceTree = "<group>"; };
 		98FDFB3873660C12BD78F6BE /* Pods-huicheng.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-huicheng.debug.xcconfig"; path = "Pods/Target Support Files/Pods-huicheng/Pods-huicheng.debug.xcconfig"; sourceTree = "<group>"; };
 		A6B3B926EC39335E65CFE2DE /* Pods_huicheng.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_huicheng.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -467,6 +471,8 @@
 			children = (
 				219D7BBE205E1D8E009F543B /* WorkFirstTableViewCell.swift */,
 				219D7BBF205E1D8E009F543B /* WorkFirstTableViewCell.xib */,
+				21FB9F3E2064E36800A186C2 /* WorkSecondTableViewCell.swift */,
+				21FB9F3F2064E36800A186C2 /* WorkSecondTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -567,6 +573,7 @@
 				21075568205D8FF200FF4396 /* MineFooterView.xib in Resources */,
 				219D7BCD205E483E009F543B /* PubMesConView.xib in Resources */,
 				216B7C68206394DE00BBACDA /* MemoTableViewCell.xib in Resources */,
+				21FB9F412064E36800A186C2 /* WorkSecondTableViewCell.xib in Resources */,
 				215C15C92063D99F00A9129D /* ConbenTopView.xib in Resources */,
 				215C65D0203EC6B6001C7A92 /* Main.storyboard in Resources */,
 				219D7BC1205E1D8E009F543B /* WorkFirstTableViewCell.xib in Resources */,
@@ -668,6 +675,7 @@
 				216A6C54204CDE7900528FD8 /* WorkViewController.swift in Sources */,
 				219D7BC3205E22EE009F543B /* SubmitPayViewController.swift in Sources */,
 				21387D2B205F55500050DF1F /* MessageRequestVC.swift in Sources */,
+				21FB9F402064E36800A186C2 /* WorkSecondTableViewCell.swift in Sources */,
 				219D7BC9205E4812009F543B /* PubMessageConViewController.swift in Sources */,
 				2137668D203FBCD3000CBCE6 /* Api.swift in Sources */,
 				21387D33205F5DA60050DF1F /* NibLoadableCell.swift in Sources */,

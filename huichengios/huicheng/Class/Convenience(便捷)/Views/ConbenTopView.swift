@@ -7,7 +7,13 @@
 //
 
 import UIKit
-
+protocol ConbenTopViewDelegate {
+    
+    /// 按钮点击
+    ///
+    /// - Parameter tag: tag
+    func btnClick(tag : Int)
+}
 class ConbenTopView: UIView,NibLoadable {
 
     /*
@@ -16,7 +22,6 @@ class ConbenTopView: UIView,NibLoadable {
     override func draw(_ rect: CGRect) {
         // Drawing code
     }
-     @IBOutlet weak var zhongcaiweiBtn: UIButton!
      */
     @IBOutlet weak var kanshousuoBtn: UIButton!
     @IBOutlet weak var gonganjiguanBtn: UIButton!
@@ -26,6 +31,8 @@ class ConbenTopView: UIView,NibLoadable {
     @IBOutlet weak var jianchayuanBtn: UIButton!
     
     @IBOutlet weak var zhongcaiweiBtn: UIButton!
+    
+    var delegate : ConbenTopViewDelegate!
     
     
     /// 上次的btn
@@ -41,20 +48,8 @@ class ConbenTopView: UIView,NibLoadable {
         lastBtn.isSelected = sender.isSelected
         sender.isSelected = !sender.isSelected
         lastBtn = sender
-        
-        switch sender.tag {
-        case 0:
-             HCLog(message: "法院")
-        case 1:
-             HCLog(message: "检察院")
-        case 2:
-             HCLog(message: "公安机关")
-        case 3:
-             HCLog(message: "仲裁委")
-        case 4:
-             HCLog(message: "看守所")
-        default:
-            HCLog(message: "没有")
+                if !(self.delegate == nil) {
+            self.delegate.btnClick(tag: sender.tag)
         }
     }
     

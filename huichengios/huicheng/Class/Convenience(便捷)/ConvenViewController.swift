@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ConvenViewController: BaseViewController {
+class ConvenViewController: BaseViewController,ConbenTopViewDelegate {
     var topView : ConbenTopView!
     
     // MARK: - life circle
@@ -29,9 +29,28 @@ class ConvenViewController: BaseViewController {
         self.navigationBar_rightBtn_image(image:#imageLiteral(resourceName: "mine_search"))
         self.navigation_title_fontsize(name: "便捷", fontsize: 18)
         topView = ConbenTopView.loadNib()
+        topView.delegate  = self
         self.view.addSubview(topView)
     }
-
+    // MARK: - delegate
+    func btnClick(tag: Int) {
+        switch tag {
+        case 0:
+            HCLog(message: "法院")
+        case 1:
+            HCLog(message: "检察院")
+        case 2:
+            HCLog(message: "公安机关")
+        case 3:
+            HCLog(message: "仲裁委")
+        case 4:
+            HCLog(message: "看守所")
+        default:
+            HCLog(message: "没有")
+        }
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

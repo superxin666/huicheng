@@ -7,11 +7,21 @@
 //
 
 import UIKit
+let firstH = CGFloat(140)
+let wotldFirstCellId = "wotldFirstCell_Id"
 
 class WorkViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource {
     /// 列表
     let mainTabelView : UITableView = UITableView()
-    
+    // MARK: - life
+    override func viewWillLayoutSubviews() {
+        mainTabelView.snp.makeConstraints { (make) in
+            make.top.equalTo(self.view).offset(0)
+            make.left.right.equalTo(self.view).offset(0)
+            make.bottom.equalTo(self.view).offset(0)
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,6 +29,7 @@ class WorkViewController: BaseViewController,UITableViewDelegate,UITableViewData
         self.view.backgroundColor = viewBackColor
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "mes_logo"))
         self.navigation_title_fontsize(name: "工作", fontsize: 18)
+        self.creatUI()
     }
     // MARK: - UI
     func creatUI() {
@@ -30,7 +41,7 @@ class WorkViewController: BaseViewController,UITableViewDelegate,UITableViewData
         mainTabelView.showsVerticalScrollIndicator = false
         mainTabelView.showsHorizontalScrollIndicator = false
         mainTabelView.backgroundView?.backgroundColor = .clear
-        mainTabelView.register(UINib.init(nibName: "MineTableViewCell", bundle: nil), forCellReuseIdentifier: MINEID)
+        mainTabelView.register(UINib.init(nibName: "WorkFirstTableViewCell", bundle: nil), forCellReuseIdentifier: wotldFirstCellId)
         
         //        footer.setRefreshingTarget(self, refreshingAction: #selector(HomeViewController.loadMoreData))
         //        header.setRefreshingTarget(self, refreshingAction: #selector(HomeViewController.freshData))
@@ -46,14 +57,10 @@ class WorkViewController: BaseViewController,UITableViewDelegate,UITableViewData
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 1
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell : MineTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: MINEID, for: indexPath) as! MineTableViewCell
-        //        if (cell == nil)  {
-        //            cell = MessageTableViewCell(style: .default, reuseIdentifier: MESSAGEID)
-        //        }
-        cell.setData(index: indexPath.row)
+        let cell : WorkFirstTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: wotldFirstCellId, for: indexPath) as! WorkFirstTableViewCell
         return cell
     }
     
@@ -62,13 +69,11 @@ class WorkViewController: BaseViewController,UITableViewDelegate,UITableViewData
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return mine_cell_height
-    }
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 105
-    }
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 80
+        if indexPath.row == 0 {
+            return firstH
+        } else {
+            return 0
+        }
     }
     
     // MARK: - event response
