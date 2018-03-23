@@ -8,15 +8,24 @@
 
 import UIKit
 
-class ConvenViewController: BaseViewController,ConbenTopViewDelegate {
+class ConvenViewController: BaseViewController,ConbenTopViewDelegate,UITableViewDelegate,UITableViewDataSource {
     var topView : ConbenTopView!
+    /// 列表
+    let mainTabelView : UITableView = UITableView()
+    var dataArr : [Any] = []
     
+
     // MARK: - life circle
     override func viewWillLayoutSubviews() {
         topView.snp.makeConstraints { (make) in
             make.top.equalTo(self.view).offset(LNAVIGATION_HEIGHT+0.5)
             make.left.right.equalTo(self.view).offset(0)
             make.height.equalTo(40)
+        }
+        mainTabelView.snp.makeConstraints { (make) in
+            make.top.equalTo(topView).offset(0)
+            make.left.right.equalTo(self.view).offset(0)
+            make.bottom.equalTo(self.view).offset(0)
         }
     }
     
@@ -31,6 +40,44 @@ class ConvenViewController: BaseViewController,ConbenTopViewDelegate {
         topView = ConbenTopView.loadNib()
         topView.delegate  = self
         self.view.addSubview(topView)
+        self.creatUI()
+    }
+    // MARK: - UI
+    func creatUI() {
+        mainTabelView.backgroundColor = UIColor.clear
+        mainTabelView.delegate = self;
+        mainTabelView.dataSource = self;
+        mainTabelView.tableFooterView = UIView()
+        mainTabelView.separatorStyle = .none
+        mainTabelView.showsVerticalScrollIndicator = false
+        mainTabelView.showsHorizontalScrollIndicator = false
+        mainTabelView.backgroundView?.backgroundColor = .clear
+        mainTabelView.register(UINib.init(nibName: "MessageTableViewCell", bundle: nil), forCellReuseIdentifier: MESSAGEID)
+        //        footer.setRefreshingTarget(self, refreshingAction: #selector(HomeViewController.loadMoreData))
+        //        header.setRefreshingTarget(self, refreshingAction: #selector(HomeViewController.freshData))
+        //        mainTabelView.mj_footer = footer
+        //        mainTabelView.mj_header = header
+        //        mainTabelView.register(MessageTableViewCell.self, forCellReuseIdentifier: MESSAGEID)
+        //        mainTabelView.register(TeachTableViewCell.self, forCellReuseIdentifier: TEACHCELLID)
+        self.view.addSubview(mainTabelView)
+    }
+    
+    // MARK: - delegate
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dataArr.count
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell : MessageTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: MESSAGEID, for: indexPath) as! MessageTableViewCell
+        return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return message_cell_height
     }
     // MARK: - delegate
     func btnClick(tag: Int) {
