@@ -30,7 +30,7 @@ class IncomeViewController:  BaseViewController,UITableViewDataSource,UITableVie
         // Do any additional setup after loading the view.
         self.view.backgroundColor = viewBackColor
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "mes_logo"))
-        self.navigation_title_fontsize(name: "工作日志", fontsize: 18)
+        self.navigation_title_fontsize(name: "我的收款", fontsize: 18)
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
         let iteam1 = self.getUIBarButtonItem(image: #imageLiteral(resourceName: "mine_search"), action: #selector(searchClick), vc: self)
         let iteam2 = self.getUIBarButtonItem(image:#imageLiteral(resourceName: "mine_add"), action: #selector(addClick), vc: self)

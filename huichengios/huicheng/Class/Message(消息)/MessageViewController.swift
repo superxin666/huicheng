@@ -55,6 +55,7 @@ class MessageViewController: BaseViewController,UITableViewDelegate,UITableViewD
         mainTabelView.mj_footer = self.creactFoot()
         mainTabelView.mj_footer.setRefreshingTarget(self, refreshingAction: #selector(loadMoreData))
         mainTabelView.mj_header = header
+//        mainTabelView.mj_footer.isAutomaticallyHidden
         header.setRefreshingTarget(self, refreshingAction: #selector(reflishData))
         self.view.addSubview(mainTabelView)
     }
