@@ -9,7 +9,7 @@
 import UIKit
 let MINEID = "MINE_ID"
 let mine_cell_height = CGFloat(60)
-class MineViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource,MineHeadViewDelegate,MineRequestVCDelegate {
+class MineViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource,MineHeadViewDelegate,MineRequestVCDelegate,MineFooterViewDelegate {
 
     /// 列表
     let mainTabelView : UITableView = UITableView()
@@ -41,6 +41,7 @@ class MineViewController: BaseViewController,UITableViewDelegate,UITableViewData
         self.navigation_title_fontsize(name: "我的", fontsize: 18)
         self.creatUI()
         headView.delegate = self
+        footerView.delegate = self
         request.delegate = self
         request.user_getinfoRequest()
         
@@ -56,13 +57,6 @@ class MineViewController: BaseViewController,UITableViewDelegate,UITableViewData
         mainTabelView.showsHorizontalScrollIndicator = false
         mainTabelView.backgroundView?.backgroundColor = .clear
         mainTabelView.register(UINib.init(nibName: "MineTableViewCell", bundle: nil), forCellReuseIdentifier: MINEID)
-  
-        //        footer.setRefreshingTarget(self, refreshingAction: #selector(HomeViewController.loadMoreData))
-        //        header.setRefreshingTarget(self, refreshingAction: #selector(HomeViewController.freshData))
-        //        mainTabelView.mj_footer = footer
-        //        mainTabelView.mj_header = header
-        //        mainTabelView.register(MessageTableViewCell.self, forCellReuseIdentifier: MESSAGEID)
-        //        mainTabelView.register(TeachTableViewCell.self, forCellReuseIdentifier: TEACHCELLID)
         self.view.addSubview(mainTabelView)
     }
     
@@ -136,6 +130,12 @@ class MineViewController: BaseViewController,UITableViewDelegate,UITableViewData
         vc.model = model
         self.navigationController?.pushViewController(vc, animated: true)
         
+    }
+    
+    func viewTap() {
+        let vc = ResetKeyViewControllerViewController()
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func requestSucceed(data: Any) {

@@ -15,6 +15,9 @@
 		2105D2E7206116C80031B14C /* finance_getinfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2105D2E6206116C80031B14C /* finance_getinfoModel.swift */; };
 		21066CA72065E369009327AD /* ConVenTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21066CA52065E369009327AD /* ConVenTableViewCell.swift */; };
 		21066CA82065E369009327AD /* ConVenTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21066CA62065E369009327AD /* ConVenTableViewCell.xib */; };
+		21066CAD20668311009327AD /* ResetKeyViewControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21066CAB20668311009327AD /* ResetKeyViewControllerViewController.swift */; };
+		21066CB020669918009327AD /* ResetKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21066CAF20669918009327AD /* ResetKeyView.swift */; };
+		21066CB22066992C009327AD /* ResetKeyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21066CB12066992C009327AD /* ResetKeyView.xib */; };
 		21075548205D4C3200FF4396 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21075542205D4C3200FF4396 /* LogInViewController.swift */; };
 		21075549205D4C3200FF4396 /* LoginTopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21075544205D4C3200FF4396 /* LoginTopView.xib */; };
 		2107554A205D4C3200FF4396 /* LoginTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21075545205D4C3200FF4396 /* LoginTopView.swift */; };
@@ -81,8 +84,6 @@
 		216B7C68206394DE00BBACDA /* MemoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 216B7C66206394DE00BBACDA /* MemoTableViewCell.xib */; };
 		216B7C6C2063953300BBACDA /* MemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216B7C6B2063953300BBACDA /* MemoViewController.swift */; };
 		216B7C6E206399D000BBACDA /* InvoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216B7C6D206399D000BBACDA /* InvoiceViewController.swift */; };
-		216B7C71206399F400BBACDA /* InvoiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216B7C6F206399F400BBACDA /* InvoiceTableViewCell.swift */; };
-		216B7C72206399F400BBACDA /* InvoiceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 216B7C70206399F400BBACDA /* InvoiceTableViewCell.xib */; };
 		219D7BB3205E049A009F543B /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7BB2205E049A009F543B /* InfoViewController.swift */; };
 		219D7BB6205E062F009F543B /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7BB4205E062F009F543B /* InfoTableViewCell.swift */; };
 		219D7BB7205E062F009F543B /* InfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 219D7BB5205E062F009F543B /* InfoTableViewCell.xib */; };
@@ -108,6 +109,9 @@
 		2105D2E6206116C80031B14C /* finance_getinfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = finance_getinfoModel.swift; sourceTree = "<group>"; };
 		21066CA52065E369009327AD /* ConVenTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConVenTableViewCell.swift; sourceTree = "<group>"; };
 		21066CA62065E369009327AD /* ConVenTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConVenTableViewCell.xib; sourceTree = "<group>"; };
+		21066CAB20668311009327AD /* ResetKeyViewControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetKeyViewControllerViewController.swift; sourceTree = "<group>"; };
+		21066CAF20669918009327AD /* ResetKeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetKeyView.swift; sourceTree = "<group>"; };
+		21066CB12066992C009327AD /* ResetKeyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResetKeyView.xib; sourceTree = "<group>"; };
 		21075542205D4C3200FF4396 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		21075544205D4C3200FF4396 /* LoginTopView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginTopView.xib; sourceTree = "<group>"; };
 		21075545205D4C3200FF4396 /* LoginTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTopView.swift; sourceTree = "<group>"; };
@@ -177,8 +181,6 @@
 		216B7C66206394DE00BBACDA /* MemoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemoTableViewCell.xib; sourceTree = "<group>"; };
 		216B7C6B2063953300BBACDA /* MemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoViewController.swift; sourceTree = "<group>"; };
 		216B7C6D206399D000BBACDA /* InvoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceViewController.swift; sourceTree = "<group>"; };
-		216B7C6F206399F400BBACDA /* InvoiceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceTableViewCell.swift; sourceTree = "<group>"; };
-		216B7C70206399F400BBACDA /* InvoiceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvoiceTableViewCell.xib; sourceTree = "<group>"; };
 		219D7BB2205E049A009F543B /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		219D7BB4205E062F009F543B /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
 		219D7BB5205E062F009F543B /* InfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoTableViewCell.xib; sourceTree = "<group>"; };
@@ -282,7 +284,8 @@
 				216B7C6220638EE100BBACDA /* IncomeTableViewCell.xib */,
 				216B7C65206394DE00BBACDA /* MemoTableViewCell.swift */,
 				216B7C66206394DE00BBACDA /* MemoTableViewCell.xib */,
-				216B7C6F206399F400BBACDA /* InvoiceTableViewCell.swift */,
+				21066CAF20669918009327AD /* ResetKeyView.swift */,
+				21066CB12066992C009327AD /* ResetKeyView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -407,7 +410,6 @@
 				21075556205D6BC600FF4396 /* Models */,
 				21075555205D6BBB00FF4396 /* Views */,
 				216A6C51204CDE6F00528FD8 /* MineViewController.swift */,
-				216B7C70206399F400BBACDA /* InvoiceTableViewCell.xib */,
 				219D7BB2205E049A009F543B /* InfoViewController.swift */,
 				21387D40205FEB700050DF1F /* MoreInfoViewController.swift */,
 				219D7BC2205E22EE009F543B /* SubmitPayViewController.swift */,
@@ -415,6 +417,7 @@
 				216B7C5F20638E9F00BBACDA /* IncomeViewController.swift */,
 				216B7C6B2063953300BBACDA /* MemoViewController.swift */,
 				216B7C6D206399D000BBACDA /* InvoiceViewController.swift */,
+				21066CAB20668311009327AD /* ResetKeyViewControllerViewController.swift */,
 			);
 			path = "Mine(我的)";
 			sourceTree = "<group>";
@@ -563,10 +566,10 @@
 				219D7BBB205E0C89009F543B /* InfoFirstTableViewCell.xib in Resources */,
 				21075552205D5AD000FF4396 /* MessageTableViewCell.xib in Resources */,
 				21075560205D792C00FF4396 /* MineTableViewCell.xib in Resources */,
-				216B7C72206399F400BBACDA /* InvoiceTableViewCell.xib in Resources */,
 				21075564205D7A4A00FF4396 /* MineHeadView.xib in Resources */,
 				215C65D5203EC6B6001C7A92 /* LaunchScreen.storyboard in Resources */,
 				2107555C205D6EFD00FF4396 /* PubMessageTableViewCell.xib in Resources */,
+				21066CB22066992C009327AD /* ResetKeyView.xib in Resources */,
 				215C65D2203EC6B6001C7A92 /* Assets.xcassets in Resources */,
 				2107554C205D4C3200FF4396 /* LoginMidBottomView.xib in Resources */,
 				216B7C5E20637D7000BBACDA /* WorkBookTableViewCell.xib in Resources */,
@@ -655,6 +658,7 @@
 			files = (
 				216B7C6C2063953300BBACDA /* MemoViewController.swift in Sources */,
 				216B7C6020638E9F00BBACDA /* IncomeViewController.swift in Sources */,
+				21066CB020669918009327AD /* ResetKeyView.swift in Sources */,
 				215C65CD203EC6B6001C7A92 /* ViewController.swift in Sources */,
 				2107554A205D4C3200FF4396 /* LoginTopView.swift in Sources */,
 				219D7BC6205E2E29009F543B /* SubPayTableViewCell.swift in Sources */,
@@ -668,6 +672,7 @@
 				21387D3F205FAB240050DF1F /* newsdetialModel.swift in Sources */,
 				21075558205D6D2000FF4396 /* PubMessageViewController.swift in Sources */,
 				219D7BB3205E049A009F543B /* InfoViewController.swift in Sources */,
+				21066CAD20668311009327AD /* ResetKeyViewControllerViewController.swift in Sources */,
 				21376681203FBA9D000CBCE6 /* ImageView+loading.swift in Sources */,
 				2107554B205D4C3200FF4396 /* LoginMidBottomView.swift in Sources */,
 				21376687203FBAEB000CBCE6 /* View+Clipping.swift in Sources */,
@@ -680,7 +685,6 @@
 				21387D33205F5DA60050DF1F /* NibLoadableCell.swift in Sources */,
 				21541DD32062635E0003746E /* work_getlistModel.swift in Sources */,
 				216A6C59204CE7D800528FD8 /* BaseNetViewController.swift in Sources */,
-				216B7C71206399F400BBACDA /* InvoiceTableViewCell.swift in Sources */,
 				21387D41205FEB700050DF1F /* MoreInfoViewController.swift in Sources */,
 				21075548205D4C3200FF4396 /* LogInViewController.swift in Sources */,
 				219D7BBA205E0C89009F543B /* InfoFirstTableViewCell.swift in Sources */,

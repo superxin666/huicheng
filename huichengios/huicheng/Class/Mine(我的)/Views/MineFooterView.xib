@@ -62,6 +62,10 @@
                 <constraint firstAttribute="bottom" secondItem="MwU-bt-Len" secondAttribute="bottom" id="rPM-GQ-MgB"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="backView" destination="MwU-bt-Len" id="VhW-fg-ApJ"/>
+            </connections>
+            <point key="canvasLocation" x="-141" y="47"/>
         </view>
     </objects>
     <resources>
