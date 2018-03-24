@@ -17,5 +17,15 @@ class ResetKeyView: UIView,NibLoadable {
         // Drawing code
     }
     */
-
+    @IBAction func endText(_ sender: UITextField) {
+        if sender.tag == 0 {
+            
+        } else if sender.tag == 1 {
+            
+        } else {
+            
+        }
+        HCLog(message: sender.text)
+    }
+    
 }
