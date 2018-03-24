@@ -184,10 +184,10 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
     }
     // MARK: 工作日志
     //获取列表
-    func work_getlistRequest() {
+    func work_getlistRequest(p : Int, c: Int) {
         request.delegate = self
         type = .work_getlist
-        let url =   work_getlist_api + "k=\(UserInfoLoaclManger.getKey())"
+        let url =   work_getlist_api + "c=\(c)&p=\(p)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
     }
     //查看详情

@@ -16,7 +16,7 @@ class WorkBookViewController: BaseViewController,UITableViewDataSource,UITableVi
     let request : MineRequestVC = MineRequestVC()
     var dataArr :[work_getlistModel] = []
     
-    
+    var pageNum : Int = 1
     // MARK: - life
     override func viewWillLayoutSubviews() {
         mainTabelView.snp.makeConstraints { (make) in
@@ -37,8 +37,7 @@ class WorkBookViewController: BaseViewController,UITableViewDataSource,UITableVi
         let iteam2 = self.getUIBarButtonItem(image:#imageLiteral(resourceName: "mine_add"), action: #selector(addClick), vc: self)
         self.navigationItem.rightBarButtonItems = [iteam1,iteam2]
         self.creatUI()
-        request.delegate = self
-        request.work_getlistRequest()
+        self.requestApi()
         
     }
     // MARK: - UI
@@ -52,13 +51,8 @@ class WorkBookViewController: BaseViewController,UITableViewDataSource,UITableVi
         mainTabelView.showsHorizontalScrollIndicator = false
         mainTabelView.backgroundView?.backgroundColor = .clear
         mainTabelView.register(UINib.init(nibName: "WorkBookTableViewCell", bundle: nil), forCellReuseIdentifier: workbookcellid)
-        
-        //        footer.setRefreshingTarget(self, refreshingAction: #selector(HomeViewController.loadMoreData))
-        //        header.setRefreshingTarget(self, refreshingAction: #selector(HomeViewController.freshData))
-        //        mainTabelView.mj_footer = footer
-        //        mainTabelView.mj_header = header
-        //        mainTabelView.register(MessageTableViewCell.self, forCellReuseIdentifier: MESSAGEID)
-        //        mainTabelView.register(TeachTableViewCell.self, forCellReuseIdentifier: TEACHCELLID)
+        mainTabelView.mj_footer = self.creactFoot()
+        mainTabelView.mj_footer.setRefreshingTarget(self, refreshingAction: #selector(loadMoreData))
         self.view.addSubview(mainTabelView)
     }
     
@@ -85,13 +79,36 @@ class WorkBookViewController: BaseViewController,UITableViewDataSource,UITableVi
     }
     
     func requestSucceed(data: Any) {
-        dataArr = data as! [work_getlistModel]
-        mainTabelView.reloadData()
+        let arr = data as! [work_getlistModel]
+        if arr.count > 0 {
+            dataArr = dataArr + arr
+            HCLog(message: dataArr.count)
+            mainTabelView.reloadData()
+        } else {
+            if pageNum > 1 {
+               SVPMessageShow.showErro(infoStr: "已经加载全部内容")
+            }
+            
+        }
+        
+        if mainTabelView.mj_footer.isRefreshing {
+            mainTabelView.mj_footer.endRefreshing()
+        }
     }
     func requestFail() {
         
     }
+    // MARK: - data
+    @objc func loadMoreData() {
+        HCLog(message: "加载更多")
+        pageNum = pageNum + 1
+        self.requestApi()
+    }
     
+    func requestApi() {
+        request.delegate = self
+        request.work_getlistRequest(p: pageNum, c: 8)
+    }
     // MARK: - event response
     override func navigationLeftBtnClick() {
         self.navigationController?.popViewController(animated: true)
