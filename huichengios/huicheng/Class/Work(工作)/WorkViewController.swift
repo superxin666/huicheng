@@ -10,7 +10,7 @@ import UIKit
 let firstH = CGFloat(140)
 let wotldFirstCellId = "wotldFirstCell_Id"
 
-class WorkViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource {
+class WorkViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource,WorkFirstTableViewCellDelegate {
     /// 列表
     let mainTabelView : UITableView = UITableView()
     // MARK: - life
@@ -57,10 +57,12 @@ class WorkViewController: BaseViewController,UITableViewDelegate,UITableViewData
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 5
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : WorkFirstTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: wotldFirstCellId, for: indexPath) as! WorkFirstTableViewCell
+        cell.delegate = self
+        cell.setData(rowNum: indexPath.row)
         return cell
     }
     
@@ -69,13 +71,102 @@ class WorkViewController: BaseViewController,UITableViewDelegate,UITableViewData
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0 {
+        if indexPath.row == 0 || indexPath.row == 4{
             return firstH
         } else {
-            return 0
+            return 215
         }
     }
     
+    func workFirstTableViewCellBtnClick(tag: Int, rowNum:Int) {
+        if rowNum == 0 {
+            HCLog(message: "案件")
+            switch tag {
+            case 0:
+                HCLog(message: "按键登记")
+            case 1:
+                HCLog(message: "生成合同")
+            case 2:
+                HCLog(message: "案件查询")
+            case 3:
+                HCLog(message: "利益冲突")
+            default:
+                HCLog(message: "暂无")
+            }
+        } else if rowNum == 1 {
+            HCLog(message: "合同")
+//            "合同管理","结案申请","合同审核","结案审核","审核进度查询"
+            switch tag {
+            case 0:
+                HCLog(message: "合同管理")
+            case 1:
+                HCLog(message: "结案申请")
+            case 2:
+                HCLog(message: "合同审核")
+            case 3:
+                HCLog(message: "结案审核")
+            case 4:
+                HCLog(message: "审核进度查询")
+            default:
+                HCLog(message: "暂无")
+            }
+        } else if rowNum == 2{
+//            "函件管理","诉讼函","民事函","刑事函","自定义函","签章进度查询","签章审核"
+            switch tag {
+            case 0:
+                HCLog(message: "函件管理")
+            case 1:
+                HCLog(message: "诉讼函")
+            case 2:
+                HCLog(message: "民事函")
+            case 3:
+                HCLog(message: "刑事函")
+            case 4:
+                HCLog(message: "自定义函")
+            case 5:
+                HCLog(message: "签章进度查询")
+            case 6:
+                HCLog(message: "签章审核")
+            default:
+                HCLog(message: "暂无")
+            }
+        } else if rowNum == 3{
+            HCLog(message: "财务")
+//            "收款登记","收款审核","支付收款","支付审核","报销审核","发票审核","签章审核"
+            switch tag {
+            case 0:
+                HCLog(message: "收款登记")
+            case 1:
+                HCLog(message: "收款审核")
+            case 2:
+                HCLog(message: "支付收款")
+            case 3:
+                HCLog(message: "支付审核")
+            case 4:
+                HCLog(message: "报销审核")
+            case 5:
+                HCLog(message: "发票审核")
+            case 6:
+                HCLog(message: "签章审核")
+            default:
+                HCLog(message: "暂无")
+            }
+        } else {
+            HCLog(message: "其他")
+//                let labelNameAr4 = ["会议室预约","发布公告","共享模板",]
+            switch tag {
+            case 0:
+                HCLog(message: "会议室预约")
+            case 1:
+                HCLog(message: "发布公告")
+            case 2:
+                HCLog(message: "共享模板")
+            default:
+                HCLog(message: "暂无")
+            }
+        }
+
+    }
     // MARK: - event response
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
