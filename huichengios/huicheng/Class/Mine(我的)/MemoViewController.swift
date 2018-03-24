@@ -14,7 +14,7 @@ class MemoViewController:  BaseViewController,UITableViewDataSource,UITableViewD
     
     let request : MineRequestVC = MineRequestVC()
     var dataArr :[memo_getlistModel] = []
-    
+    var pageNum : Int = 1
     
     // MARK: - life
     override func viewWillLayoutSubviews() {
@@ -32,12 +32,9 @@ class MemoViewController:  BaseViewController,UITableViewDataSource,UITableViewD
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "mes_logo"))
         self.navigation_title_fontsize(name: "备忘录", fontsize: 18)
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
-        let iteam1 = self.getUIBarButtonItem(image: #imageLiteral(resourceName: "mine_search"), action: #selector(searchClick), vc: self)
-        let iteam2 = self.getUIBarButtonItem(image:#imageLiteral(resourceName: "mine_add"), action: #selector(addClick), vc: self)
-        self.navigationItem.rightBarButtonItems = [iteam1,iteam2]
+        self.navigationBar_rightBtn_image(image: #imageLiteral(resourceName: "mine_add"))
         self.creatUI()
-        request.delegate = self
-        request.memo_getlistRequest(p: 1)
+        self.requestApi()
         
     }
     // MARK: - UI
@@ -52,12 +49,8 @@ class MemoViewController:  BaseViewController,UITableViewDataSource,UITableViewD
         mainTabelView.backgroundView?.backgroundColor = .clear
         mainTabelView.register(UINib.init(nibName: "MemoTableViewCell", bundle: nil), forCellReuseIdentifier: MemoTableViewCellID)
         
-        //        footer.setRefreshingTarget(self, refreshingAction: #selector(HomeViewController.loadMoreData))
-        //        header.setRefreshingTarget(self, refreshingAction: #selector(HomeViewController.freshData))
-        //        mainTabelView.mj_footer = footer
-        //        mainTabelView.mj_header = header
-        //        mainTabelView.register(MessageTableViewCell.self, forCellReuseIdentifier: MESSAGEID)
-        //        mainTabelView.register(TeachTableViewCell.self, forCellReuseIdentifier: TEACHCELLID)
+        mainTabelView.mj_footer = self.creactFoot()
+        mainTabelView.mj_footer.setRefreshingTarget(self, refreshingAction: #selector(loadMoreData))
         self.view.addSubview(mainTabelView)
     }
     
@@ -84,16 +77,41 @@ class MemoViewController:  BaseViewController,UITableViewDataSource,UITableViewD
     }
     
     func requestSucceed(data: Any) {
-        dataArr = data as! [memo_getlistModel]
-        mainTabelView.reloadData()
+    
+        let arr = data as! [memo_getlistModel]
+        if arr.count > 0 {
+            dataArr = dataArr + arr
+            HCLog(message: dataArr.count)
+            mainTabelView.reloadData()
+        } else {
+            SVPMessageShow.showErro(infoStr: "已经加载全部内容")
+        }
+        
+        if mainTabelView.mj_footer.isRefreshing {
+            mainTabelView.mj_footer.endRefreshing()
+        }
+
     }
     func requestFail() {
         
     }
+       // MARK: - data
+    @objc func loadMoreData() {
+        HCLog(message: "加载更多")
+        pageNum = pageNum + 1
+        self.requestApi()
+    }
     
+    func requestApi() {
+        request.delegate = self
+        request.memo_getlistRequest(p: pageNum)
+    }
     // MARK: - event response
     override func navigationLeftBtnClick() {
         self.navigationController?.popViewController(animated: true)
+    }
+    override func navigationRightBtnClick() {
+        HCLog(message: "添加")
     }
     @objc func searchClick() {
         HCLog(message: "搜索")

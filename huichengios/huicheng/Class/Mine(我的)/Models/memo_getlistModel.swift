@@ -15,10 +15,11 @@ import ObjectMapper
 class memo_getlistModel: Mappable {
     var id: Int!
     var content: String!
-    var state: String!
+    var state: Int!
+    var stateStr: String!
     var remindtime: String!
-    
-    
+    var isremind: Int!
+    var isremindStr: String!
     init() {}
     required init?(map: Map){
         mapping(map: map)
@@ -29,5 +30,8 @@ class memo_getlistModel: Mappable {
         content <- map["content"]
         remindtime <- map["remindtime"]
         state <- map["state"]
+        stateStr <- map["stateStr"]
+        isremind <- map["isremind"]
+        isremindStr <- map["isremindStr"]
     }
 }
