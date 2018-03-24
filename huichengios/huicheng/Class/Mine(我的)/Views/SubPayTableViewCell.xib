@@ -27,13 +27,13 @@
                         <color key="textColor" red="0.090196078430000007" green="0.2274509804" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未审核" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QUI-ky-Plp">
-                        <rect key="frame" x="310" y="42" width="50" height="20"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="审核驳回" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QUI-ky-Plp">
+                        <rect key="frame" x="300" y="42" width="60" height="20"/>
                         <color key="backgroundColor" red="0.090196078430000007" green="0.2274509804" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="20" id="6oT-b2-cTa"/>
-                            <constraint firstAttribute="width" constant="50" id="7og-AY-6wG"/>
+                            <constraint firstAttribute="width" constant="60" id="UUP-SW-XIj"/>
+                            <constraint firstAttribute="height" constant="20" id="jvj-J6-ShH"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -69,15 +69,15 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="saA-EN-1vx" secondAttribute="trailing" id="2rv-QQ-hbW"/>
+                    <constraint firstAttribute="trailing" secondItem="QUI-ky-Plp" secondAttribute="trailing" constant="15" id="3Pi-mW-DVm"/>
+                    <constraint firstItem="QUI-ky-Plp" firstAttribute="top" secondItem="xlK-3Q-Uoa" secondAttribute="bottom" constant="8" id="5ap-vu-AkB"/>
                     <constraint firstItem="gyp-vJ-aP9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="5pW-fk-mnR"/>
-                    <constraint firstItem="QUI-ky-Plp" firstAttribute="top" secondItem="xlK-3Q-Uoa" secondAttribute="bottom" constant="8" id="9cP-ng-G9z"/>
                     <constraint firstAttribute="trailing" secondItem="xlK-3Q-Uoa" secondAttribute="trailing" constant="15" id="9g9-XJ-xXq"/>
                     <constraint firstItem="uC9-eQ-pbj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="Cd2-2t-2ms"/>
                     <constraint firstAttribute="trailing" secondItem="uC9-eQ-pbj" secondAttribute="trailing" constant="180" id="Mzw-Rg-K22"/>
                     <constraint firstAttribute="bottom" secondItem="saA-EN-1vx" secondAttribute="bottom" id="RXK-BO-xvt"/>
                     <constraint firstItem="gyp-vJ-aP9" firstAttribute="top" secondItem="uC9-eQ-pbj" secondAttribute="bottom" constant="10" id="cVi-hg-76m"/>
                     <constraint firstAttribute="trailing" secondItem="gyp-vJ-aP9" secondAttribute="trailing" constant="260" id="eGA-Vm-wlk"/>
-                    <constraint firstAttribute="trailing" secondItem="QUI-ky-Plp" secondAttribute="trailing" constant="15" id="fgL-Az-OrN"/>
                     <constraint firstItem="uC9-eQ-pbj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="j2h-wZ-Ul1"/>
                     <constraint firstItem="saA-EN-1vx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="mla-0P-1LG"/>
                     <constraint firstItem="xlK-3Q-Uoa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="21" id="u7n-Ni-H5U"/>

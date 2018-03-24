@@ -23,8 +23,10 @@ class SubPayTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+        self.stateLabel.hc_makeRadius(radius: 1)
     }
     func setData(model  :expense_getlistModel) {
+     
         if let type = model.type ,let money = model.money {
             self.titleLabel.text = "\(type) \(money)元 "
             
@@ -38,9 +40,17 @@ class SubPayTableViewCell: UITableViewCell {
             self.timeLabel.text = time
             
         }
-        if let state = model.stateStr {
-            self.stateLabel.text = state
-            
+        if let stateStr = model.stateStr {
+            self.stateLabel.text = stateStr
+        }
+        if let state = model.state {
+            if state == 0 {
+                self.stateLabel.backgroundColor = darkblueColor
+            } else if state == 1 {
+                self.stateLabel.backgroundColor = UIColor.hc_colorFromRGB(rgbValue: 0x999999)
+            } else {
+                self.stateLabel.backgroundColor = orangeColor
+            }
         }
 
 

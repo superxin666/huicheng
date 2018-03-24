@@ -12,9 +12,9 @@ import ObjectMapper
 class expense_getlistModel: Mappable {
     var id: Int!
     var type: String!
-    var total: String!
-    var money: String!
-    var state: String!
+    var total: Int!
+    var money: Int!
+    var state: Int!
     var addtime: String!
     var stateStr: String!
     
