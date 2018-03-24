@@ -7,7 +7,8 @@
 //
 
 import UIKit
-
+let ConVenTableViewCellID = "ConVenTableViewCell_ID"
+let ConVenTableViewCellH = CGFloat(100)
 class ConvenViewController: BaseViewController,ConbenTopViewDelegate,UITableViewDelegate,UITableViewDataSource {
     var topView : ConbenTopView!
     /// 列表
@@ -23,7 +24,7 @@ class ConvenViewController: BaseViewController,ConbenTopViewDelegate,UITableView
             make.height.equalTo(40)
         }
         mainTabelView.snp.makeConstraints { (make) in
-            make.top.equalTo(topView).offset(0)
+            make.top.equalTo(topView).offset(40)
             make.left.right.equalTo(self.view).offset(0)
             make.bottom.equalTo(self.view).offset(0)
         }
@@ -52,7 +53,7 @@ class ConvenViewController: BaseViewController,ConbenTopViewDelegate,UITableView
         mainTabelView.showsVerticalScrollIndicator = false
         mainTabelView.showsHorizontalScrollIndicator = false
         mainTabelView.backgroundView?.backgroundColor = .clear
-        mainTabelView.register(UINib.init(nibName: "MessageTableViewCell", bundle: nil), forCellReuseIdentifier: MESSAGEID)
+        mainTabelView.register(UINib.init(nibName: "ConVenTableViewCell", bundle: nil), forCellReuseIdentifier: ConVenTableViewCellID)
         //        footer.setRefreshingTarget(self, refreshingAction: #selector(HomeViewController.loadMoreData))
         //        header.setRefreshingTarget(self, refreshingAction: #selector(HomeViewController.freshData))
         //        mainTabelView.mj_footer = footer
@@ -67,17 +68,17 @@ class ConvenViewController: BaseViewController,ConbenTopViewDelegate,UITableView
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataArr.count
+        return 10
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell : MessageTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: MESSAGEID, for: indexPath) as! MessageTableViewCell
+        let cell : ConVenTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: ConVenTableViewCellID, for: indexPath) as! ConVenTableViewCell
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return message_cell_height
+        return ConVenTableViewCellH
     }
     // MARK: - delegate
     func btnClick(tag: Int) {

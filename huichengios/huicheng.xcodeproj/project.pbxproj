@@ -13,6 +13,8 @@
 		2105D2E3206111220031B14C /* invoice_getinfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2105D2E2206111220031B14C /* invoice_getinfoModel.swift */; };
 		2105D2E52061161F0031B14C /* finance_getlistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2105D2E42061161F0031B14C /* finance_getlistModel.swift */; };
 		2105D2E7206116C80031B14C /* finance_getinfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2105D2E6206116C80031B14C /* finance_getinfoModel.swift */; };
+		21066CA72065E369009327AD /* ConVenTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21066CA52065E369009327AD /* ConVenTableViewCell.swift */; };
+		21066CA82065E369009327AD /* ConVenTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21066CA62065E369009327AD /* ConVenTableViewCell.xib */; };
 		21075548205D4C3200FF4396 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21075542205D4C3200FF4396 /* LogInViewController.swift */; };
 		21075549205D4C3200FF4396 /* LoginTopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21075544205D4C3200FF4396 /* LoginTopView.xib */; };
 		2107554A205D4C3200FF4396 /* LoginTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21075545205D4C3200FF4396 /* LoginTopView.swift */; };
@@ -106,6 +108,8 @@
 		2105D2E2206111220031B14C /* invoice_getinfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = invoice_getinfoModel.swift; sourceTree = "<group>"; };
 		2105D2E42061161F0031B14C /* finance_getlistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = finance_getlistModel.swift; sourceTree = "<group>"; };
 		2105D2E6206116C80031B14C /* finance_getinfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = finance_getinfoModel.swift; sourceTree = "<group>"; };
+		21066CA52065E369009327AD /* ConVenTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConVenTableViewCell.swift; sourceTree = "<group>"; };
+		21066CA62065E369009327AD /* ConVenTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConVenTableViewCell.xib; sourceTree = "<group>"; };
 		21075542205D4C3200FF4396 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		21075544205D4C3200FF4396 /* LoginTopView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginTopView.xib; sourceTree = "<group>"; };
 		21075545205D4C3200FF4396 /* LoginTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTopView.swift; sourceTree = "<group>"; };
@@ -355,6 +359,8 @@
 			children = (
 				215C15C62063D99600A9129D /* ConbenTopView.swift */,
 				215C15C82063D99F00A9129D /* ConbenTopView.xib */,
+				21066CA52065E369009327AD /* ConVenTableViewCell.swift */,
+				21066CA62065E369009327AD /* ConVenTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -572,6 +578,7 @@
 				216B7C5E20637D7000BBACDA /* WorkBookTableViewCell.xib in Resources */,
 				21075568205D8FF200FF4396 /* MineFooterView.xib in Resources */,
 				219D7BCD205E483E009F543B /* PubMesConView.xib in Resources */,
+				21066CA82065E369009327AD /* ConVenTableViewCell.xib in Resources */,
 				216B7C68206394DE00BBACDA /* MemoTableViewCell.xib in Resources */,
 				21FB9F412064E36800A186C2 /* WorkSecondTableViewCell.xib in Resources */,
 				215C15C92063D99F00A9129D /* ConbenTopView.xib in Resources */,
@@ -698,6 +705,7 @@
 				215C65CB203EC6B6001C7A92 /* AppDelegate.swift in Sources */,
 				21075551205D5AD000FF4396 /* MessageTableViewCell.swift in Sources */,
 				21387D43205FF1DE0050DF1F /* invoice_getlistModel.swift in Sources */,
+				21066CA72065E369009327AD /* ConVenTableViewCell.swift in Sources */,
 				21387D3D205FA8F70050DF1F /* user_getinfoModel.swift in Sources */,
 				2105D2E52061161F0031B14C /* finance_getlistModel.swift in Sources */,
 				2137667D203FBA20000CBCE6 /* pch.swift in Sources */,
