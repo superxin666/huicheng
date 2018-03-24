@@ -56,4 +56,24 @@ class SubPayTableViewCell: UITableViewCell {
 
     }
     
+    func setData_finance(model : finance_getlistModel) {
+        if let type = model.type ,let money = model.money {
+            self.titleLabel.text = "\(type) \(money)元 "
+            
+        }
+        if let num = model.num {
+            self.subLabel.text = num
+            
+        }
+        
+        if let time = model.addtime {
+            self.timeLabel.text = time
+            
+        }
+        if let stateStr = model.state {
+            self.stateLabel.text = stateStr
+            self.stateLabel.backgroundColor = darkblueColor
+        }
+    }
+    
 }

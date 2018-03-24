@@ -7,7 +7,7 @@
 //  我的收款
 
 import UIKit
-let IncomeTableViewCellid = "IncomeTableViewCell_id"
+let IncomeTableViewCellid = "SUBMITPAY_ID"
 let IncomeTableViewCellH = CGFloat(80)
 class IncomeViewController:  BaseViewController,UITableViewDataSource,UITableViewDelegate ,MineRequestVCDelegate {
     let mainTabelView : UITableView = UITableView()
@@ -50,14 +50,8 @@ class IncomeViewController:  BaseViewController,UITableViewDataSource,UITableVie
         mainTabelView.showsVerticalScrollIndicator = false
         mainTabelView.showsHorizontalScrollIndicator = false
         mainTabelView.backgroundView?.backgroundColor = .clear
-        mainTabelView.register(UINib.init(nibName: "IncomeTableViewCell", bundle: nil), forCellReuseIdentifier: IncomeTableViewCellid)
-        
-        //        footer.setRefreshingTarget(self, refreshingAction: #selector(HomeViewController.loadMoreData))
-        //        header.setRefreshingTarget(self, refreshingAction: #selector(HomeViewController.freshData))
-        //        mainTabelView.mj_footer = footer
-        //        mainTabelView.mj_header = header
-        //        mainTabelView.register(MessageTableViewCell.self, forCellReuseIdentifier: MESSAGEID)
-        //        mainTabelView.register(TeachTableViewCell.self, forCellReuseIdentifier: TEACHCELLID)
+        mainTabelView.register(UINib.init(nibName: "SubPayTableViewCell", bundle: nil), forCellReuseIdentifier: IncomeTableViewCellid)
+    
         self.view.addSubview(mainTabelView)
     }
     
@@ -69,9 +63,9 @@ class IncomeViewController:  BaseViewController,UITableViewDataSource,UITableVie
         return dataArr.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell : IncomeTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: IncomeTableViewCellid, for: indexPath) as! IncomeTableViewCell
+        let cell : SubPayTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: IncomeTableViewCellid, for: indexPath) as! SubPayTableViewCell
         if indexPath.row < dataArr.count {
-            cell.setData(model: dataArr[indexPath.row])
+            cell.setData_finance(model: dataArr[indexPath.row])
         }
         return cell
     }

@@ -20,9 +20,9 @@ class finance_getlistModel: Mappable {
     var num: String!
     var user: String!
     var type: String!
-    var money: String!
+    var money: Int!
     var addtime: String!
-
+    var state: String!
     
     
     init() {}
@@ -37,5 +37,7 @@ class finance_getlistModel: Mappable {
         type <- map["type"]
         money <- map["money"]
         addtime <- map["addtime"]
+        
+        state <- map["state"]
     }
 }
