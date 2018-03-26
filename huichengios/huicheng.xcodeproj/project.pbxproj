@@ -100,6 +100,8 @@
 		21CFDDC42068E30500745A48 /* AddMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CFDDC32068E30500745A48 /* AddMemoViewController.swift */; };
 		21CFDDC72068E8E500745A48 /* InvoiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CFDDC52068E8E500745A48 /* InvoiceTableViewCell.swift */; };
 		21CFDDC82068E8E500745A48 /* InvoiceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21CFDDC62068E8E500745A48 /* InvoiceTableViewCell.xib */; };
+		21CFDDCA2069000300745A48 /* AddMemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CFDDC92069000300745A48 /* AddMemoView.swift */; };
+		21CFDDCC2069000B00745A48 /* AddMemoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21CFDDCB2069000B00745A48 /* AddMemoView.xib */; };
 		88EEB2BAA16F8A6E3AED0F0A /* Pods_huicheng.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B3B926EC39335E65CFE2DE /* Pods_huicheng.framework */; };
 /* End PBXBuildFile section */
 
@@ -200,6 +202,8 @@
 		21CFDDC32068E30500745A48 /* AddMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemoViewController.swift; sourceTree = "<group>"; };
 		21CFDDC52068E8E500745A48 /* InvoiceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceTableViewCell.swift; sourceTree = "<group>"; };
 		21CFDDC62068E8E500745A48 /* InvoiceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvoiceTableViewCell.xib; sourceTree = "<group>"; };
+		21CFDDC92069000300745A48 /* AddMemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemoView.swift; sourceTree = "<group>"; };
+		21CFDDCB2069000B00745A48 /* AddMemoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddMemoView.xib; sourceTree = "<group>"; };
 		97B8B5BC41ED2EA904010B3A /* Pods-huicheng.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-huicheng.release.xcconfig"; path = "Pods/Target Support Files/Pods-huicheng/Pods-huicheng.release.xcconfig"; sourceTree = "<group>"; };
 		98FDFB3873660C12BD78F6BE /* Pods-huicheng.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-huicheng.debug.xcconfig"; path = "Pods/Target Support Files/Pods-huicheng/Pods-huicheng.debug.xcconfig"; sourceTree = "<group>"; };
 		A6B3B926EC39335E65CFE2DE /* Pods_huicheng.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_huicheng.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -294,6 +298,8 @@
 				21066CB12066992C009327AD /* ResetKeyView.xib */,
 				21CFDDC52068E8E500745A48 /* InvoiceTableViewCell.swift */,
 				21CFDDC62068E8E500745A48 /* InvoiceTableViewCell.xib */,
+				21CFDDC92069000300745A48 /* AddMemoView.swift */,
+				21CFDDCB2069000B00745A48 /* AddMemoView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -583,6 +589,7 @@
 				2107554C205D4C3200FF4396 /* LoginMidBottomView.xib in Resources */,
 				216B7C5E20637D7000BBACDA /* WorkBookTableViewCell.xib in Resources */,
 				21075568205D8FF200FF4396 /* MineFooterView.xib in Resources */,
+				21CFDDCC2069000B00745A48 /* AddMemoView.xib in Resources */,
 				219D7BCD205E483E009F543B /* PubMesConView.xib in Resources */,
 				21066CA82065E369009327AD /* ConVenTableViewCell.xib in Resources */,
 				21CFDDC82068E8E500745A48 /* InvoiceTableViewCell.xib in Resources */,
@@ -680,6 +687,7 @@
 				219D7BB6205E062F009F543B /* InfoTableViewCell.swift in Sources */,
 				2105D2DF2060AEC40031B14C /* memo_getinfoModel.swift in Sources */,
 				21387D3F205FAB240050DF1F /* newsdetialModel.swift in Sources */,
+				21CFDDCA2069000300745A48 /* AddMemoView.swift in Sources */,
 				21075558205D6D2000FF4396 /* PubMessageViewController.swift in Sources */,
 				219D7BB3205E049A009F543B /* InfoViewController.swift in Sources */,
 				21066CAD20668311009327AD /* ResetKeyViewControllerViewController.swift in Sources */,
