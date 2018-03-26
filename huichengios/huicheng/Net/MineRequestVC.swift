@@ -221,14 +221,10 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed(data: model)
             }
-        } else if type == .invoice_getlist{
-            let arr = Mapper<expense_getlistModel>().mapArray(JSONArray: response as! [[String : Any]])
-            HCLog(message: arr.count)
-            if !(self.delegate == nil) {
-                self.delegate.requestSucceed(data: arr)
-            }
-        } else if type == .memo_getlist {
+        }  else if type == .memo_getlist {
             //备忘录 列表
+            HCLog(message: "备忘录请求成功")
+
             let arr = Mapper<memo_getlistModel>().mapArray(JSONArray: response as! [[String : Any]])
             HCLog(message: arr.count)
             if !(self.delegate == nil) {
@@ -247,11 +243,18 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
             }
         } else if type == .expense_getinfo{
             //报销详情
+            
         } else if type == .expense_gettype{
             //获取报销类型列表
-        } else if type == .invoice_getinfo{
-            //发票详情
             
+        } else if type == .invoice_getlist{
+            //发票列表
+            HCLog(message: "发票列表请求成功")
+            let arr = Mapper<invoice_getlistModel>().mapArray(JSONArray: response as! [[String : Any]])
+            HCLog(message: arr.count)
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed(data: arr)
+            }
             
         } else if type == .work_getlist{
             //工作日志 列表

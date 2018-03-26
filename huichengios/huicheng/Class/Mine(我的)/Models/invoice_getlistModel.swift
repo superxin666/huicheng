@@ -20,8 +20,8 @@ import ObjectMapper
 class invoice_getlistModel: Mappable {
     var id: Int!
     var type: String!
-    var title: String!
-    var money: String!
+    var titlesStr: String!
+    var money: Int!
     var sendtype: String!
     var addtime: String!
     var state: String!
@@ -34,9 +34,8 @@ class invoice_getlistModel: Mappable {
     func mapping(map: Map) {
         id <- map["id"]
         type <- map["type"]
-        title <- map["title"]
+        titlesStr <- map["title"]
         money <- map["money"]
-    
         sendtype <- map["sendtype"]
         addtime <- map["addtime"]
         state <- map["state"]

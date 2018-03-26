@@ -10,8 +10,10 @@ import UIKit
 let MemoTableViewCellID = "MemoTableViewCell_id"
 
 class MemoViewController:  BaseViewController,UITableViewDataSource,UITableViewDelegate ,MineRequestVCDelegate {
-    let mainTabelView : UITableView = UITableView()
     
+    
+    
+    let mainTabelView : UITableView = UITableView()
     let request : MineRequestVC = MineRequestVC()
     var dataArr :[memo_getlistModel] = []
     var pageNum : Int = 1
@@ -112,13 +114,12 @@ class MemoViewController:  BaseViewController,UITableViewDataSource,UITableViewD
     }
     override func navigationRightBtnClick() {
         HCLog(message: "添加")
+        let vc = AddMemoViewController()
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+        
     }
-    @objc func searchClick() {
-        HCLog(message: "搜索")
-    }
-    @objc func addClick() {
-        HCLog(message: "添加")
-    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -32,7 +32,7 @@ class SubmitPayViewController: BaseViewController,UITableViewDataSource,UITableV
  
         // Do any additional setup after loading the view.
         self.view.backgroundColor = viewBackColor
-        self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "mes_logo"))
+
         self.navigation_title_fontsize(name: "报销申请", fontsize: 18)
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
         let iteam1 = self.getUIBarButtonItem(image: #imageLiteral(resourceName: "mine_search"), action: #selector(searchClick), vc: self)
@@ -92,7 +92,6 @@ class SubmitPayViewController: BaseViewController,UITableViewDataSource,UITableV
         } else {
             SVPMessageShow.showErro(infoStr: "已经加载全部内容")
         }
-        
         if mainTabelView.mj_footer.isRefreshing {
             mainTabelView.mj_footer.endRefreshing()
         }
