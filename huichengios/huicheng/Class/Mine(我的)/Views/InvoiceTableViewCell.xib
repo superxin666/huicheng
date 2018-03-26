@@ -45,11 +45,11 @@
                         <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HYf-kV-3OQ">
-                        <rect key="frame" x="255" y="60" width="50" height="20"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HYf-kV-3OQ">
+                        <rect key="frame" x="245" y="60" width="60" height="20"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="50" id="nI0-bR-dZd"/>
-                            <constraint firstAttribute="height" constant="20" id="zlZ-Om-Kbp"/>
+                            <constraint firstAttribute="width" constant="60" id="Xlu-bZ-9EI"/>
+                            <constraint firstAttribute="height" constant="20" id="foZ-lu-PPW"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -69,15 +69,15 @@
                     <constraint firstItem="BCA-fL-jNJ" firstAttribute="top" secondItem="QKz-pz-84M" secondAttribute="bottom" constant="10" id="4kh-O6-Ytr"/>
                     <constraint firstItem="qag-qh-uXP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Bfg-Hi-oPc"/>
                     <constraint firstAttribute="trailing" secondItem="BCA-fL-jNJ" secondAttribute="trailing" constant="65" id="FEQ-8A-Kc0"/>
+                    <constraint firstItem="HYf-kV-3OQ" firstAttribute="top" secondItem="BCA-fL-jNJ" secondAttribute="bottom" id="Mvg-sM-cga"/>
                     <constraint firstAttribute="bottom" secondItem="qag-qh-uXP" secondAttribute="bottom" id="MzM-Mo-awg"/>
                     <constraint firstAttribute="trailing" secondItem="QKz-pz-84M" secondAttribute="trailing" constant="65" id="duw-sE-QFy"/>
                     <constraint firstItem="QKz-pz-84M" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="fL1-ND-dns"/>
-                    <constraint firstAttribute="trailing" secondItem="HYf-kV-3OQ" secondAttribute="trailing" constant="15" id="feI-Hs-q0f"/>
                     <constraint firstItem="VOT-CX-KRO" firstAttribute="top" secondItem="BCA-fL-jNJ" secondAttribute="bottom" constant="10" id="qgo-uY-UvZ"/>
                     <constraint firstItem="VOT-CX-KRO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="swd-Zw-Dvx"/>
                     <constraint firstAttribute="trailing" secondItem="qag-qh-uXP" secondAttribute="trailing" id="wIr-75-1fZ"/>
+                    <constraint firstAttribute="trailing" secondItem="HYf-kV-3OQ" secondAttribute="trailing" constant="15" id="x5Y-JW-LjI"/>
                     <constraint firstItem="QKz-pz-84M" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="xWz-6x-4WZ"/>
-                    <constraint firstItem="HYf-kV-3OQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="60" id="zfP-Jp-k0X"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
