@@ -31,7 +31,6 @@ class MemoViewController:  BaseViewController,UITableViewDataSource,UITableViewD
         
         // Do any additional setup after loading the view.
         self.view.backgroundColor = viewBackColor
-        self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "mes_logo"))
         self.navigation_title_fontsize(name: "备忘录", fontsize: 18)
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
         self.navigationBar_rightBtn_image(image: #imageLiteral(resourceName: "mine_add"))
