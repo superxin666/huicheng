@@ -15,7 +15,7 @@ class AddMemoViewController: BaseViewController {
     // MARK: - life
     override func viewWillLayoutSubviews() {
         backView.snp.makeConstraints { (make) in
-            make.top.equalTo(0)
+            make.top.equalTo(LNAVIGATION_HEIGHT)
             make.left.right.equalTo(0)
             make.height.equalTo(250)
         }
