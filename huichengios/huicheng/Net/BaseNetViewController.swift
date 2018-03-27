@@ -36,7 +36,7 @@ class BaseNetViewController: UIViewController {
                 
             } else {
                 
-                HCLog(message: returnResult.debugDescription)
+                HCLog(message: "请求错误1："+returnResult.debugDescription)
                 if self.delegate != nil {
                     SVPMessageShow .showErro(infoStr: "请求失败")
                 }

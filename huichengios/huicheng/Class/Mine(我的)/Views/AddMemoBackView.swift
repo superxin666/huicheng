@@ -10,8 +10,8 @@ import UIKit
 
 class AddMemoBackView: UIView,NibLoadable,UITextViewDelegate {
     
-    /// 是否提醒
-    var isNotice : Int!
+    /// 是否提醒 默认不开 0不开1开
+    var isNotice : Int = 0
     
     /// 备忘内容
     var noticeStr : String!

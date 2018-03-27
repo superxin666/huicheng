@@ -47,7 +47,8 @@ class AddMemoViewController: BaseViewController,MineRequestVCDelegate {
             SVPMessageShow.showErro(infoStr: "请输入内容")
         }
         request.delegate = self
-        request.memo_saveRequest(n: backView.noticeStr, t: backView.timeStr, i: backView.isNotice, id: 0)
+//        backView.timeStr
+        request.memo_saveRequest(n: backView.noticeStr, t: "2018-03-28", i: backView.isNotice, id: 0)
         
         
     }
