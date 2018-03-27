@@ -96,6 +96,7 @@ extension String {
         let dfmatter = DateFormatter()
         dfmatter.dateFormat="yyyy-MM-dd HH:mm:ss"
         let date = dfmatter.date(from: dateStr)
+        
         var  styleSty = ""
         switch style {
         case 0:
@@ -104,6 +105,9 @@ extension String {
             styleSty = "HH:mm"
         case 2:
             styleSty = "HH:mm"
+        case 3:
+            styleSty = "yyyy-MM-dd HH:mm:ss"
+
         default:
             styleSty = "yyyy.MM.dd HH:mm"
         }
@@ -111,6 +115,32 @@ extension String {
         let dfmatter2 = DateFormatter()
         dfmatter2.dateFormat = styleSty
         return dfmatter2.string(from: date!)
+    }
+    
+    
+    static func hc_getDate(date : Date) -> String {
+//        let dfmatter = DateFormatter()
+//        dfmatter.dateFormat="yyyy-MM-dd HH:mm:ss"
+//        let date = dfmatter.date(from: dateStr)
+//
+//        var  styleSty = ""
+//        switch style {
+//        case 0:
+//            styleSty = "MM.dd HH:mm"
+//        case 1:
+//            styleSty = "HH:mm"
+//        case 2:
+//            styleSty = "HH:mm"
+//        case 3:
+//            styleSty = "yyyy-MM-dd HH:mm:ss"
+//
+//        default:
+//            styleSty = "yyyy.MM.dd HH:mm"
+//        }
+        
+        let dfmatter2 = DateFormatter()
+        dfmatter2.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return dfmatter2.string(from: date)
     }
 
     /// 将str转为attributeStr

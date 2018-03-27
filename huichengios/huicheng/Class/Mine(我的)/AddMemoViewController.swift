@@ -17,7 +17,7 @@ class AddMemoViewController: BaseViewController {
         backView.snp.makeConstraints { (make) in
             make.top.equalTo(LNAVIGATION_HEIGHT)
             make.left.right.equalTo(0)
-            make.height.equalTo(250)
+            make.bottom.equalTo(0)
         }
     }
     
@@ -39,6 +39,15 @@ class AddMemoViewController: BaseViewController {
     
     override func navigationRightBtnClick() {
         HCLog(message: "确定")
+        if backView.textView.isFirstResponder {
+            backView.textView.resignFirstResponder()
+        }
+        if !(backView.noticeStr.count > 0) {
+            SVPMessageShow.showErro(infoStr: "请输入内容")
+        }
+        
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

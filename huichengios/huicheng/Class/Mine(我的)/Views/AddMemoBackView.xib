@@ -6,13 +6,14 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="AddMemoBackView" customModule="huicheng" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qve-QY-N4F">
@@ -21,7 +22,6 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="150" id="WpP-Rb-VON"/>
                     </constraints>
-                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
@@ -52,7 +52,7 @@
                             <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提醒时间" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XSE-kj-Ol3">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XSE-kj-Ol3">
                             <rect key="frame" x="80" y="13" width="180" height="14"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="14" id="DzS-5e-ZUM"/>
@@ -97,6 +97,9 @@
                                 <constraint firstAttribute="height" constant="31" id="5a7-sg-GDi"/>
                                 <constraint firstAttribute="width" constant="47" id="RKq-rR-x86"/>
                             </constraints>
+                            <connections>
+                                <action selector="noticeSwitch:" destination="iN0-l3-epB" eventType="valueChanged" id="w0d-pA-AfQ"/>
+                            </connections>
                         </switch>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -108,23 +111,44 @@
                         <constraint firstAttribute="height" constant="40" id="yKd-5q-tuh"/>
                     </constraints>
                 </view>
+                <datePicker hidden="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="8KV-vd-nXc">
+                    <rect key="frame" x="0.0" y="500" width="375" height="167"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="8KV-vd-nXc" secondAttribute="height" multiplier="375:167" id="1ac-b9-8Tu"/>
+                    </constraints>
+                    <date key="date" timeIntervalSinceReferenceDate="543849086.01689506">
+                        <!--2018-03-27 13:11:26 +0000-->
+                    </date>
+                    <connections>
+                        <action selector="datePickValueChanged:" destination="iN0-l3-epB" eventType="valueChanged" id="cOy-Mn-sGU"/>
+                    </connections>
+                </datePicker>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="mDE-aQ-Mji" secondAttribute="trailing" constant="10" id="3PA-qL-A2K"/>
                 <constraint firstItem="1Z9-HU-PyU" firstAttribute="top" secondItem="mDE-aQ-Mji" secondAttribute="bottom" id="DXJ-lu-2F2"/>
+                <constraint firstItem="8KV-vd-nXc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="DZq-xv-HGA"/>
                 <constraint firstItem="1Z9-HU-PyU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="GGe-5e-Ev4"/>
                 <constraint firstItem="mDE-aQ-Mji" firstAttribute="top" secondItem="qve-QY-N4F" secondAttribute="bottom" id="JWR-OO-uaK"/>
                 <constraint firstItem="qve-QY-N4F" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="SD9-N9-38V"/>
+                <constraint firstAttribute="bottom" secondItem="8KV-vd-nXc" secondAttribute="bottom" id="Uwg-lP-dIn"/>
                 <constraint firstAttribute="trailing" secondItem="qve-QY-N4F" secondAttribute="trailing" constant="10" id="WgS-BM-xZQ"/>
                 <constraint firstAttribute="trailing" secondItem="1Z9-HU-PyU" secondAttribute="trailing" constant="10" id="l06-QM-FNI"/>
+                <constraint firstAttribute="trailing" secondItem="8KV-vd-nXc" secondAttribute="trailing" id="vi4-vh-Ylf"/>
                 <constraint firstItem="qve-QY-N4F" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="xDk-MZ-140"/>
                 <constraint firstItem="mDE-aQ-Mji" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="zTp-Tj-K9B"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-358" y="251"/>
+            <connections>
+                <outlet property="textView" destination="qve-QY-N4F" id="Pi6-om-vhS"/>
+                <outlet property="timeBackView" destination="mDE-aQ-Mji" id="6Li-Qt-BCa"/>
+                <outlet property="timeLabel" destination="XSE-kj-Ol3" id="CPm-CX-VV7"/>
+                <outlet property="timePicker" destination="8KV-vd-nXc" id="Paw-kz-Bw8"/>
+            </connections>
+            <point key="canvasLocation" x="-824" y="246"/>
         </view>
     </objects>
 </document>
