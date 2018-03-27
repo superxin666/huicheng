@@ -9,15 +9,15 @@
 import UIKit
 
 class AddMemoViewController: BaseViewController {
-    var backView : AddMemoView!
+    let backView = AddMemoBackView.loadNib()
+    
     
     // MARK: - life
     override func viewWillLayoutSubviews() {
-        
         backView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.view).offset(0)
-            make.left.right.equalTo(self.view).offset(0)
-            make.height.equalTo(270)
+            make.top.equalTo(0)
+            make.left.right.equalTo(0)
+            make.height.equalTo(250)
         }
     }
     
@@ -29,8 +29,7 @@ class AddMemoViewController: BaseViewController {
         self.navigation_title_fontsize(name: "添加备忘录", fontsize: 18)
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
         self.navigationBar_rightBtn_title(name: "确定")
-        backView = AddMemoView.loadNib()
-        self.view.addSubview(backView)
+        self.view.addSubview(self.backView)
 
     }
     

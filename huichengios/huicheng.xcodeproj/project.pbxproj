@@ -59,6 +59,8 @@
 		21387D41205FEB700050DF1F /* MoreInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21387D40205FEB700050DF1F /* MoreInfoViewController.swift */; };
 		21387D43205FF1DE0050DF1F /* invoice_getlistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21387D42205FF1DE0050DF1F /* invoice_getlistModel.swift */; };
 		21387D45205FF7240050DF1F /* expense_getlistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21387D44205FF7240050DF1F /* expense_getlistModel.swift */; };
+		2148A2D0206A38AB00D996C5 /* AddMemoBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2148A2CF206A38AB00D996C5 /* AddMemoBackView.swift */; };
+		2148A2D2206A38B500D996C5 /* AddMemoBackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2148A2D1206A38B500D996C5 /* AddMemoBackView.xib */; };
 		21541DD32062635E0003746E /* work_getlistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21541DD22062635E0003746E /* work_getlistModel.swift */; };
 		21541DD5206265010003746E /* work_getinfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21541DD4206265010003746E /* work_getinfoModel.swift */; };
 		215C15C72063D99600A9129D /* ConbenTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215C15C62063D99600A9129D /* ConbenTopView.swift */; };
@@ -100,8 +102,6 @@
 		21CFDDC42068E30500745A48 /* AddMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CFDDC32068E30500745A48 /* AddMemoViewController.swift */; };
 		21CFDDC72068E8E500745A48 /* InvoiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CFDDC52068E8E500745A48 /* InvoiceTableViewCell.swift */; };
 		21CFDDC82068E8E500745A48 /* InvoiceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21CFDDC62068E8E500745A48 /* InvoiceTableViewCell.xib */; };
-		21CFDDCA2069000300745A48 /* AddMemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CFDDC92069000300745A48 /* AddMemoView.swift */; };
-		21CFDDCC2069000B00745A48 /* AddMemoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21CFDDCB2069000B00745A48 /* AddMemoView.xib */; };
 		88EEB2BAA16F8A6E3AED0F0A /* Pods_huicheng.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B3B926EC39335E65CFE2DE /* Pods_huicheng.framework */; };
 /* End PBXBuildFile section */
 
@@ -159,6 +159,8 @@
 		21387D40205FEB700050DF1F /* MoreInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreInfoViewController.swift; sourceTree = "<group>"; };
 		21387D42205FF1DE0050DF1F /* invoice_getlistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = invoice_getlistModel.swift; sourceTree = "<group>"; };
 		21387D44205FF7240050DF1F /* expense_getlistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = expense_getlistModel.swift; sourceTree = "<group>"; };
+		2148A2CF206A38AB00D996C5 /* AddMemoBackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemoBackView.swift; sourceTree = "<group>"; };
+		2148A2D1206A38B500D996C5 /* AddMemoBackView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddMemoBackView.xib; sourceTree = "<group>"; };
 		21541DD22062635E0003746E /* work_getlistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = work_getlistModel.swift; sourceTree = "<group>"; };
 		21541DD4206265010003746E /* work_getinfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = work_getinfoModel.swift; sourceTree = "<group>"; };
 		215C15C62063D99600A9129D /* ConbenTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConbenTopView.swift; sourceTree = "<group>"; };
@@ -202,8 +204,6 @@
 		21CFDDC32068E30500745A48 /* AddMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemoViewController.swift; sourceTree = "<group>"; };
 		21CFDDC52068E8E500745A48 /* InvoiceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceTableViewCell.swift; sourceTree = "<group>"; };
 		21CFDDC62068E8E500745A48 /* InvoiceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvoiceTableViewCell.xib; sourceTree = "<group>"; };
-		21CFDDC92069000300745A48 /* AddMemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemoView.swift; sourceTree = "<group>"; };
-		21CFDDCB2069000B00745A48 /* AddMemoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddMemoView.xib; sourceTree = "<group>"; };
 		97B8B5BC41ED2EA904010B3A /* Pods-huicheng.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-huicheng.release.xcconfig"; path = "Pods/Target Support Files/Pods-huicheng/Pods-huicheng.release.xcconfig"; sourceTree = "<group>"; };
 		98FDFB3873660C12BD78F6BE /* Pods-huicheng.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-huicheng.debug.xcconfig"; path = "Pods/Target Support Files/Pods-huicheng/Pods-huicheng.debug.xcconfig"; sourceTree = "<group>"; };
 		A6B3B926EC39335E65CFE2DE /* Pods_huicheng.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_huicheng.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -298,8 +298,8 @@
 				21066CB12066992C009327AD /* ResetKeyView.xib */,
 				21CFDDC52068E8E500745A48 /* InvoiceTableViewCell.swift */,
 				21CFDDC62068E8E500745A48 /* InvoiceTableViewCell.xib */,
-				21CFDDC92069000300745A48 /* AddMemoView.swift */,
-				21CFDDCB2069000B00745A48 /* AddMemoView.xib */,
+				2148A2CF206A38AB00D996C5 /* AddMemoBackView.swift */,
+				2148A2D1206A38B500D996C5 /* AddMemoBackView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -581,6 +581,7 @@
 				219D7BBB205E0C89009F543B /* InfoFirstTableViewCell.xib in Resources */,
 				21075552205D5AD000FF4396 /* MessageTableViewCell.xib in Resources */,
 				21075560205D792C00FF4396 /* MineTableViewCell.xib in Resources */,
+				2148A2D2206A38B500D996C5 /* AddMemoBackView.xib in Resources */,
 				21075564205D7A4A00FF4396 /* MineHeadView.xib in Resources */,
 				215C65D5203EC6B6001C7A92 /* LaunchScreen.storyboard in Resources */,
 				2107555C205D6EFD00FF4396 /* PubMessageTableViewCell.xib in Resources */,
@@ -589,7 +590,6 @@
 				2107554C205D4C3200FF4396 /* LoginMidBottomView.xib in Resources */,
 				216B7C5E20637D7000BBACDA /* WorkBookTableViewCell.xib in Resources */,
 				21075568205D8FF200FF4396 /* MineFooterView.xib in Resources */,
-				21CFDDCC2069000B00745A48 /* AddMemoView.xib in Resources */,
 				219D7BCD205E483E009F543B /* PubMesConView.xib in Resources */,
 				21066CA82065E369009327AD /* ConVenTableViewCell.xib in Resources */,
 				21CFDDC82068E8E500745A48 /* InvoiceTableViewCell.xib in Resources */,
@@ -687,7 +687,6 @@
 				219D7BB6205E062F009F543B /* InfoTableViewCell.swift in Sources */,
 				2105D2DF2060AEC40031B14C /* memo_getinfoModel.swift in Sources */,
 				21387D3F205FAB240050DF1F /* newsdetialModel.swift in Sources */,
-				21CFDDCA2069000300745A48 /* AddMemoView.swift in Sources */,
 				21075558205D6D2000FF4396 /* PubMessageViewController.swift in Sources */,
 				219D7BB3205E049A009F543B /* InfoViewController.swift in Sources */,
 				21066CAD20668311009327AD /* ResetKeyViewControllerViewController.swift in Sources */,
@@ -717,6 +716,7 @@
 				21CFDDC42068E30500745A48 /* AddMemoViewController.swift in Sources */,
 				21387D2D205F56590050DF1F /* LoginRequestVC.swift in Sources */,
 				2107555B205D6EFD00FF4396 /* PubMessageTableViewCell.swift in Sources */,
+				2148A2D0206A38AB00D996C5 /* AddMemoBackView.swift in Sources */,
 				215C65CB203EC6B6001C7A92 /* AppDelegate.swift in Sources */,
 				21075551205D5AD000FF4396 /* MessageTableViewCell.swift in Sources */,
 				21387D43205FF1DE0050DF1F /* invoice_getlistModel.swift in Sources */,

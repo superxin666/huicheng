@@ -1,14 +1,14 @@
 //
-//  AddMemoView.swift
+//  AddMemoBackView.swift
 //  huicheng
 //
-//  Created by lvxin on 2018/3/26.
+//  Created by lvxin on 2018/3/27.
 //  Copyright © 2018年 lvxin. All rights reserved.
 //
 
 import UIKit
 
-class AddMemoView: UIView, NibLoadable {
+class AddMemoBackView: UIView,NibLoadable {
 
     /*
     // Only override draw() if you perform custom drawing.

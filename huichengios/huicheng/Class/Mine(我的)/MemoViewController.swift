@@ -26,6 +26,9 @@ class MemoViewController:  BaseViewController,UITableViewDataSource,UITableViewD
             make.bottom.equalTo(self.view).offset(0)
         }
     }
+    override func viewWillAppear(_ animated: Bool) {
+        self.requestApi()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,7 +38,6 @@ class MemoViewController:  BaseViewController,UITableViewDataSource,UITableViewD
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
         self.navigationBar_rightBtn_image(image: #imageLiteral(resourceName: "mine_add"))
         self.creatUI()
-        self.requestApi()
         
     }
     // MARK: - UI
