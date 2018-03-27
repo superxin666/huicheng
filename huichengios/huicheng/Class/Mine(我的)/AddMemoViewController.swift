@@ -8,9 +8,10 @@
 
 import UIKit
 
-class AddMemoViewController: BaseViewController {
+class AddMemoViewController: BaseViewController,MineRequestVCDelegate {
     let backView = AddMemoBackView.loadNib()
-    
+    let request : MineRequestVC = MineRequestVC()
+
     
     // MARK: - life
     override func viewWillLayoutSubviews() {
@@ -45,8 +46,19 @@ class AddMemoViewController: BaseViewController {
         if !(backView.noticeStr.count > 0) {
             SVPMessageShow.showErro(infoStr: "请输入内容")
         }
+        request.delegate = self
+        request.memo_saveRequest(n: backView.noticeStr, t: backView.timeStr, i: backView.isNotice, id: 0)
         
         
+    }
+    func requestSucceed(data: Any) {
+        let model = data as! CodeData
+        if model.code == 1 {
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    func requestFail() {
         
     }
 
