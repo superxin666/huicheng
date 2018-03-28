@@ -34,14 +34,16 @@ class AddMemoViewController: BaseViewController,MineRequestVCDelegate {
 
         // Do any additional setup after loading the view.
         self.view.backgroundColor = viewBackColor
+        request.delegate = self
         if let type = self.type {
             if type == .add_type {
                 self.addUI()
             } else {
+                //获取详情
+                request.memo_getinfoRequest(id: momeoID)
                 self.detailUI()
             }
         } else {
-            
             self.addUI()
         }
 
@@ -55,8 +57,9 @@ class AddMemoViewController: BaseViewController,MineRequestVCDelegate {
     }
     
     func detailUI() {
-        self.navigation_title_fontsize(name: "备忘录", fontsize: 18)
+        self.navigation_title_fontsize(name: "查看备忘录", fontsize: 18)
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
+        //
         self.view.addSubview(self.backView)
     }
     
@@ -64,20 +67,26 @@ class AddMemoViewController: BaseViewController,MineRequestVCDelegate {
     // MARK: - event response
 
     override func navigationLeftBtnClick() {
+        if self.type == .add_type {
+            alertController = UIAlertController(title: nil, message: "是否放弃本次记录", preferredStyle: .alert)
+            let sureAction = UIAlertAction(title: "确定", style: .default) { (action) in
+                self.navigationController?.popViewController(animated: true)
+            }
+            let cancleAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
+                self.alertController.dismiss(animated: true, completion: {
+                    
+                })
+            }
+            alertController.addAction(cancleAction)
+            alertController.addAction(sureAction)
+            self.present((alertController)!, animated: true, completion: nil)
         
-        alertController = UIAlertController(title: nil, message: "是否放弃本次记录", preferredStyle: .alert)
-        let sureAction = UIAlertAction(title: "确定", style: .default) { (action) in
+        } else {
+            
             self.navigationController?.popViewController(animated: true)
+
         }
-        let cancleAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
-            self.alertController.dismiss(animated: true, completion: {
-                
-            })
-        }
-        alertController.addAction(cancleAction)
-        alertController.addAction(sureAction)
-        self.present((alertController)!, animated: true, completion: nil)
-        self.navigationController?.popViewController(animated: true)
+
     }
     
     override func navigationRightBtnClick() {
@@ -93,16 +102,23 @@ class AddMemoViewController: BaseViewController,MineRequestVCDelegate {
             SVPMessageShow.showErro(infoStr: "请输入时间")
             return
         }
-        request.delegate = self
+
         request.memo_saveRequest(n: backView.noticeStr, t: backView.timeStr, i: backView.isNotice, id: 0)
         
         
     }
     // MARK: - delegate
     func requestSucceed(data: Any,type : MineRequestVC_enum) {
-        let model = data as! CodeData
-        if model.code == 1 {
-            self.navigationController?.popViewController(animated: true)
+        if type == .memo_save {
+            //添加
+            let model = data as! CodeData
+            if model.code == 1 {
+                self.navigationController?.popViewController(animated: true)
+            }
+        } else {
+            //详情
+                let model = data as! memo_getinfoModel
+
         }
     }
     

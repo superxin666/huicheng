@@ -73,6 +73,15 @@ class AddMemoBackView: UIView,NibLoadable,UITextViewDelegate {
     }
     
     
+    /// 详情
+    ///
+    /// - Parameter model: <#model description#>
+    func setData(model : memo_getinfoModel) {
+        
+        
+    }
+    
+    
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

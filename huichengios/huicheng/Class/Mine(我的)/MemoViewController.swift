@@ -78,6 +78,7 @@ class MemoViewController:  BaseViewController,UITableViewDataSource,UITableViewD
             let vc = AddMemoViewController()
             vc.hidesBottomBarWhenPushed = true
             vc.momeoID =  model.id
+            vc.type = .detail_type
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
