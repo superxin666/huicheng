@@ -138,7 +138,7 @@ class MineViewController: BaseViewController,UITableViewDelegate,UITableViewData
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    func requestSucceed(data: Any) {
+    func requestSucceed(data: Any,type : MineRequestVC_enum) {
         model = data as! user_getinfoModel
         headView.setData(model: model)
     }

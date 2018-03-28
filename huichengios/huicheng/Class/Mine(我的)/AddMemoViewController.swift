@@ -16,6 +16,9 @@ class AddMemoViewController: BaseViewController,MineRequestVCDelegate {
     var type : AddMemoViewController_type!
     var alertController : UIAlertController!
     
+    /// id
+    var momeoID : Int!
+
     
     // MARK: - life
     override func viewWillLayoutSubviews() {
@@ -31,14 +34,31 @@ class AddMemoViewController: BaseViewController,MineRequestVCDelegate {
 
         // Do any additional setup after loading the view.
         self.view.backgroundColor = viewBackColor
-        
+        if let type = self.type {
+            if type == .add_type {
+                self.addUI()
+            } else {
+                self.detailUI()
+            }
+        } else {
+            
+            self.addUI()
+        }
+
+    }
+    // MARK: - UI
+    func addUI()  {
         self.navigation_title_fontsize(name: "添加备忘录", fontsize: 18)
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
         self.navigationBar_rightBtn_title(name: "确定")
         self.view.addSubview(self.backView)
-
     }
     
+    func detailUI() {
+        self.navigation_title_fontsize(name: "备忘录", fontsize: 18)
+        self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
+        self.view.addSubview(self.backView)
+    }
     
     
     // MARK: - event response
@@ -79,7 +99,7 @@ class AddMemoViewController: BaseViewController,MineRequestVCDelegate {
         
     }
     // MARK: - delegate
-    func requestSucceed(data: Any) {
+    func requestSucceed(data: Any,type : MineRequestVC_enum) {
         let model = data as! CodeData
         if model.code == 1 {
             self.navigationController?.popViewController(animated: true)

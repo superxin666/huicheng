@@ -77,7 +77,7 @@ class IncomeViewController:  BaseViewController,UITableViewDataSource,UITableVie
         return IncomeTableViewCellH
     }
     
-    func requestSucceed(data: Any) {
+    func requestSucceed(data: Any,type : MineRequestVC_enum) {
         dataArr = data as! [finance_getlistModel]
         mainTabelView.reloadData()
     }

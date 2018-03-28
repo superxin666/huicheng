@@ -83,7 +83,7 @@ class SubmitPayViewController: BaseViewController,UITableViewDataSource,UITableV
         return subPay_cell_height
     }
     
-    func requestSucceed(data: Any) {
+    func requestSucceed(data: Any,type : MineRequestVC_enum) {
         let arr = data as! [expense_getlistModel]
         if arr.count > 0 {
             dataArr = dataArr + arr

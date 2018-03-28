@@ -73,19 +73,25 @@ class MemoViewController:  BaseViewController,UITableViewDataSource,UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row < self.dataArr.count {
+            let model : memo_getlistModel = self.dataArr[indexPath.row]
+            let vc = AddMemoViewController()
+            vc.hidesBottomBarWhenPushed = true
+            vc.momeoID =  model.id
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return IncomeTableViewCellH
     }
     
-    func requestSucceed(data: Any) {
+    func requestSucceed(data: Any,type : MineRequestVC_enum) {
     
         let arr = data as! [memo_getlistModel]
         if arr.count > 0 {
             if pageNum > 1 {
                 dataArr = dataArr + arr
-
             } else {
                 if dataArr.count > 0 {
                     self.dataArr.removeAll()
@@ -124,6 +130,7 @@ class MemoViewController:  BaseViewController,UITableViewDataSource,UITableViewD
     override func navigationRightBtnClick() {
         HCLog(message: "添加")
         let vc = AddMemoViewController()
+        vc.type = .add_type
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
         
