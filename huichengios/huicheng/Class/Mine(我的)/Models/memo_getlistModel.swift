@@ -7,7 +7,7 @@
 //  记录列表
 //"id": 10,//ID
 //"content": "11111111111111",//内容
-//"state": "已提醒",//提醒状态
+//"state": "1已提醒 0为提醒",//提醒状态
 //"remindtime": "2016-08-11 17:07:00"//提醒时间
 import UIKit
 import ObjectMapper

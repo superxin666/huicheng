@@ -35,11 +35,20 @@ class MemoTableViewCell: UITableViewCell {
         if let stateStr = model.stateStr {
             self.stateLabel.text = stateStr
         }
+        
         if let state = model.state {
             if state == 1{
                 self.stateLabel.backgroundColor = UIColor.hc_ColorFromInt(red: 204, green: 204, blue: 204, alpha: 1.0)
             } else {
                 self.stateLabel.backgroundColor = darkblueColor
+            }
+        }
+        
+        if let  isremind = model.isremind {
+            if isremind == 1 {
+                self.noticeImagView.isHidden = true
+            } else {
+                self.noticeImagView.isHidden = false
             }
         }
         

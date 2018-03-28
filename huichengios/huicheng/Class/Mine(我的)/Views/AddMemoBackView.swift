@@ -85,7 +85,7 @@ class AddMemoBackView: UIView,NibLoadable,UITextViewDelegate {
         } else {
             self.switch.isOn = false
         }
-        
+    
     }
     
     
