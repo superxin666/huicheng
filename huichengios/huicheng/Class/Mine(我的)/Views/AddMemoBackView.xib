@@ -111,7 +111,7 @@
                         <constraint firstAttribute="height" constant="40" id="yKd-5q-tuh"/>
                     </constraints>
                 </view>
-                <datePicker hidden="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="8KV-vd-nXc">
+                <datePicker hidden="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="8KV-vd-nXc">
                     <rect key="frame" x="0.0" y="500" width="375" height="167"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="8KV-vd-nXc" secondAttribute="height" multiplier="375:167" id="1ac-b9-8Tu"/>

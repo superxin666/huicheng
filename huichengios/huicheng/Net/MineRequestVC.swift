@@ -161,11 +161,12 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
     func memo_saveRequest(n:String,t:String,i:Int,id : Int = 0) {
         request.delegate = self
         type = .memo_save
+        let tStr :String = t.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
          var url = ""
         if id > 0 {
-            url = memo_save_api + "k=\(UserInfoLoaclManger.getKey())&n=\(n)&t=\(t)&i=\(i)&id=\(id)"
+            url = memo_save_api + "k=\(UserInfoLoaclManger.getKey())&n=\(n)&t=\(tStr)&i=\(i)&id=\(id)"
         } else {
-            url = memo_save_api + "k=\(UserInfoLoaclManger.getKey())&n=\(n)&t=\(t)&i=\(i)"
+            url = memo_save_api + "k=\(UserInfoLoaclManger.getKey())&n=\(n)&t=\(tStr)&i=\(i)"
         }
        
         request.request_api(url: url)
