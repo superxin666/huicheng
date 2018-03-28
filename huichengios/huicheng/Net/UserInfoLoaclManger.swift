@@ -39,4 +39,9 @@ class UserInfoLoaclManger: NSObject {
         return keyStr as! String
         
     }
+    
+    /// 清除key
+    class func cleanKey()  {
+        UserDefaults.standard.set("", forKey: KEY)
+    }
 }

@@ -59,6 +59,9 @@
 		21387D41205FEB700050DF1F /* MoreInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21387D40205FEB700050DF1F /* MoreInfoViewController.swift */; };
 		21387D43205FF1DE0050DF1F /* invoice_getlistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21387D42205FF1DE0050DF1F /* invoice_getlistModel.swift */; };
 		21387D45205FF7240050DF1F /* expense_getlistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21387D44205FF7240050DF1F /* expense_getlistModel.swift */; };
+		213F77E5206B31F100075FC6 /* SetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213F77E4206B31F100075FC6 /* SetViewController.swift */; };
+		213F77E7206B352900075FC6 /* SetBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213F77E6206B352900075FC6 /* SetBackView.swift */; };
+		213F77E9206B353A00075FC6 /* SetBackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 213F77E8206B353A00075FC6 /* SetBackView.xib */; };
 		2148A2D0206A38AB00D996C5 /* AddMemoBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2148A2CF206A38AB00D996C5 /* AddMemoBackView.swift */; };
 		2148A2D2206A38B500D996C5 /* AddMemoBackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2148A2D1206A38B500D996C5 /* AddMemoBackView.xib */; };
 		21541DD32062635E0003746E /* work_getlistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21541DD22062635E0003746E /* work_getlistModel.swift */; };
@@ -159,6 +162,9 @@
 		21387D40205FEB700050DF1F /* MoreInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreInfoViewController.swift; sourceTree = "<group>"; };
 		21387D42205FF1DE0050DF1F /* invoice_getlistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = invoice_getlistModel.swift; sourceTree = "<group>"; };
 		21387D44205FF7240050DF1F /* expense_getlistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = expense_getlistModel.swift; sourceTree = "<group>"; };
+		213F77E4206B31F100075FC6 /* SetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetViewController.swift; sourceTree = "<group>"; };
+		213F77E6206B352900075FC6 /* SetBackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetBackView.swift; sourceTree = "<group>"; };
+		213F77E8206B353A00075FC6 /* SetBackView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetBackView.xib; sourceTree = "<group>"; };
 		2148A2CF206A38AB00D996C5 /* AddMemoBackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemoBackView.swift; sourceTree = "<group>"; };
 		2148A2D1206A38B500D996C5 /* AddMemoBackView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddMemoBackView.xib; sourceTree = "<group>"; };
 		21541DD22062635E0003746E /* work_getlistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = work_getlistModel.swift; sourceTree = "<group>"; };
@@ -300,6 +306,8 @@
 				21CFDDC62068E8E500745A48 /* InvoiceTableViewCell.xib */,
 				2148A2CF206A38AB00D996C5 /* AddMemoBackView.swift */,
 				2148A2D1206A38B500D996C5 /* AddMemoBackView.xib */,
+				213F77E6206B352900075FC6 /* SetBackView.swift */,
+				213F77E8206B353A00075FC6 /* SetBackView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -433,6 +441,7 @@
 				21CFDDC32068E30500745A48 /* AddMemoViewController.swift */,
 				216B7C6D206399D000BBACDA /* InvoiceViewController.swift */,
 				21066CAB20668311009327AD /* ResetKeyViewControllerViewController.swift */,
+				213F77E4206B31F100075FC6 /* SetViewController.swift */,
 			);
 			path = "Mine(我的)";
 			sourceTree = "<group>";
@@ -574,6 +583,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				213F77E9206B353A00075FC6 /* SetBackView.xib in Resources */,
 				216B7C6420638EE100BBACDA /* IncomeTableViewCell.xib in Resources */,
 				21075549205D4C3200FF4396 /* LoginTopView.xib in Resources */,
 				219D7BC7205E2E29009F543B /* SubPayTableViewCell.xib in Resources */,
@@ -677,6 +687,7 @@
 				216B7C6020638E9F00BBACDA /* IncomeViewController.swift in Sources */,
 				21066CB020669918009327AD /* ResetKeyView.swift in Sources */,
 				215C65CD203EC6B6001C7A92 /* ViewController.swift in Sources */,
+				213F77E5206B31F100075FC6 /* SetViewController.swift in Sources */,
 				2107554A205D4C3200FF4396 /* LoginTopView.swift in Sources */,
 				219D7BC6205E2E29009F543B /* SubPayTableViewCell.swift in Sources */,
 				216B7C5D20637D7000BBACDA /* WorkBookTableViewCell.swift in Sources */,
@@ -686,6 +697,7 @@
 				21376689203FBAF4000CBCE6 /* SVPMessageShow.swift in Sources */,
 				219D7BB6205E062F009F543B /* InfoTableViewCell.swift in Sources */,
 				2105D2DF2060AEC40031B14C /* memo_getinfoModel.swift in Sources */,
+				213F77E7206B352900075FC6 /* SetBackView.swift in Sources */,
 				21387D3F205FAB240050DF1F /* newsdetialModel.swift in Sources */,
 				21075558205D6D2000FF4396 /* PubMessageViewController.swift in Sources */,
 				219D7BB3205E049A009F543B /* InfoViewController.swift in Sources */,

@@ -27,8 +27,12 @@ class BaseNetViewController: UIViewController {
                 let model = Mapper<CodeData>().map(JSON: json as! [String : Any])!
                 if model.code == 1 {
                     if self.delegate != nil {
-                        self.delegate.requestSucceed(response: model.data)
-                    }
+                        if let data = model.data {
+                            self.delegate.requestSucceed(response: data)
+                        } else {
+                            self.delegate.requestSucceed(response: json)
+                        }
+                     }
                 } else {
                     SVPMessageShow .showErro(infoStr: model.msg)
                     self.delegate.requestFail(response:json)

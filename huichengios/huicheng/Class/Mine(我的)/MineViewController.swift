@@ -133,7 +133,7 @@ class MineViewController: BaseViewController,UITableViewDelegate,UITableViewData
     }
     
     func viewTap() {
-        let vc = ResetKeyViewControllerViewController()
+        let vc = SetViewController()
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
