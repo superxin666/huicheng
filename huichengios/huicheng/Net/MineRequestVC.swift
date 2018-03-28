@@ -14,7 +14,7 @@ enum MineRequestVC_enum {
          memo_getlist,memo_getinfo,memo_save,memo_del,
          expense_save,expense_getinfo,expense_gettype,
          finance_getlist,finance_getinfo,
-         work_getlist,work_getinfo,work_save
+         work_getlist,work_getinfo,work_save,user_editpass
 }
 
 protocol MineRequestVCDelegate {
@@ -35,6 +35,19 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
         let url =   user_getinfo_api + "k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
 
+    }
+    /// 修改密码
+    ///
+    /// - Parameters:
+    ///   - op: 旧密码
+    ///   - np: 新密码
+    func resetKey(op:String,np : String)  {
+        request.delegate = self
+        type = .user_editpass
+        let url =   user_editpass_api + "op=\(op)&np=\(np)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+
+        
     }
     // MARK: 报销申请
     ///  报销申请 获取列表
@@ -236,7 +249,7 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed(data: model)
             }
-        } else if (type == .memo_save) || (type == .memo_del) || (type == .expense_save){
+        } else if (type == .memo_save) || (type == .memo_del) || (type == .expense_save) || (type == .user_editpass){
             let model = Mapper<CodeData>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed(data: model)

@@ -9,7 +9,15 @@
 import UIKit
 
 class ResetKeyView: UIView,NibLoadable {
-
+    var oldkey : String!
+    var newkey : String!
+    var surekey :String!
+    
+    @IBOutlet weak var sureTextField: UITextField!
+    
+    @IBOutlet weak var oldTextField: UITextField!
+    
+    @IBOutlet weak var newTextField: UITextField!
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
@@ -18,12 +26,16 @@ class ResetKeyView: UIView,NibLoadable {
     }
     */
     @IBAction func endText(_ sender: UITextField) {
-        if sender.tag == 0 {
-            
-        } else if sender.tag == 1 {
-            
-        } else {
-            
+        
+        if let text = sender.text {
+            if sender.tag == 0 {
+                oldkey = text
+            } else if sender.tag == 1 {
+                newkey = text
+            } else {
+                surekey = text
+            }
+
         }
         HCLog(message: sender.text)
     }

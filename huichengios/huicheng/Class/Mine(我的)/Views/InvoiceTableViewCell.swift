@@ -25,19 +25,12 @@ class InvoiceTableViewCell: UITableViewCell {
 
         if let type = model.type , let money = model.money {
             self.titleLabel.text = "\(type) \(money)"
-        } else {
-            self.titleLabel.text = "13"
         }
-//
         if let titleStr = model.titlesStr {
             self.subLabel.text = titleStr
-        } else {
-            self.subLabel.text = "12344"
         }
         if let time = model.addtime {
             self.timeLabel.text = time
-        } else {
-            self.timeLabel.text = "asdf"
         }
     }
     override func setSelected(_ selected: Bool, animated: Bool) {

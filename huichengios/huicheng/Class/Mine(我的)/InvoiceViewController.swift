@@ -91,7 +91,9 @@ class InvoiceViewController:  BaseViewController, UITableViewDataSource, UITable
             HCLog(message: dataArr.count)
             mainTabelView.reloadData()
         } else {
-            SVPMessageShow.showErro(infoStr: "已经加载全部内容")
+            if pageNum > 1 {
+                SVPMessageShow.showErro(infoStr: "已经加载全部内容")
+            }
         }
         if mainTabelView.mj_footer.isRefreshing {
             mainTabelView.mj_footer.endRefreshing()

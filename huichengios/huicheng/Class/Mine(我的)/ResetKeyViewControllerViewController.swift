@@ -8,8 +8,9 @@
 
 import UIKit
 
-class ResetKeyViewControllerViewController: BaseViewController {
+class ResetKeyViewControllerViewController: BaseViewController,MineRequestVCDelegate {
     let backView = ResetKeyView.loadNib()
+    let request : MineRequestVC = MineRequestVC()
 
     override func viewWillLayoutSubviews() {
         backView.snp.makeConstraints { (make) in
@@ -30,11 +31,57 @@ class ResetKeyViewControllerViewController: BaseViewController {
         self.view.addSubview(backView)
     }
     
+    // MARK: - delegate
+    func requestSucceed(data: Any) {
+        let model = data as! CodeData
+        if model.code == 1 {
+            UserInfoLoaclManger.cleanKey()
+            let dele :AppDelegate = UIApplication.shared.delegate as! AppDelegate
+            dele.showLogin()
+        }
+        
+    }
+    
+    func requestFail() {
+        
+    }
+
+    
+    // MARK: - Navigation
+
     override func navigationLeftBtnClick() {
         self.navigationController?.popViewController(animated: true)
     }
     override func navigationRightBtnClick() {
+        if backView.oldTextField.isFirstResponder {
+            backView.oldTextField.resignFirstResponder()
+        }
+        if backView.newTextField.isFirstResponder {
+            backView.newTextField.resignFirstResponder()
+        }
+        if backView.sureTextField.isFirstResponder {
+            backView.sureTextField.resignFirstResponder()
+        }
+        
         HCLog(message: "确定")
+        if !(backView.oldkey.count > 0) {
+            SVPMessageShow.showErro(infoStr: "请输入旧密码")
+            return
+        }
+        if !(backView.newkey.count > 0) {
+            SVPMessageShow.showErro(infoStr: "请输入新密码")
+            return
+        }
+        if !(backView.surekey.count > 0) {
+            SVPMessageShow.showErro(infoStr: "请输入确认密码")
+            return
+        }
+        if !(backView.newkey == backView.surekey) {
+            SVPMessageShow.showErro(infoStr: "请输入相同的新密码与确认密码")
+            return
+        }
+        request.delegate = self
+        request.resetKey(op: backView.oldkey, np: backView.newkey)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
