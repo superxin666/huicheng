@@ -8,6 +8,7 @@
 
 import UIKit
 enum AddMemoViewController_type {
+    //添加    详情
     case add_type,detail_type
 }
 class AddMemoViewController: BaseViewController,MineRequestVCDelegate {
@@ -40,7 +41,7 @@ class AddMemoViewController: BaseViewController,MineRequestVCDelegate {
                 self.addUI()
             } else {
                 //获取详情
-                request.memo_getinfoRequest(id: momeoID)
+                self.delnet()
                 self.detailUI()
             }
         } else {
@@ -59,6 +60,7 @@ class AddMemoViewController: BaseViewController,MineRequestVCDelegate {
     func detailUI() {
         self.navigation_title_fontsize(name: "查看备忘录", fontsize: 18)
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
+        self.navigationBar_rightBtn_title(name: "编辑")
         //
         self.view.addSubview(self.backView)
     }
@@ -90,6 +92,15 @@ class AddMemoViewController: BaseViewController,MineRequestVCDelegate {
     }
     
     override func navigationRightBtnClick() {
+        if self.type == .add_type {
+            self.addClick()
+        } else {
+            self.actionClick()
+        }
+    }
+    
+    //确认添加
+    func addClick() {
         HCLog(message: "确定")
         if backView.textView.isFirstResponder {
             backView.textView.resignFirstResponder()
@@ -102,11 +113,31 @@ class AddMemoViewController: BaseViewController,MineRequestVCDelegate {
             SVPMessageShow.showErro(infoStr: "请输入时间")
             return
         }
-
-        request.memo_saveRequest(n: backView.noticeStr, t: backView.timeStr, i: backView.isNotice, id: 0)
-        
+        self.addnet()
+    }
+    //操作
+    func actionClick() {
+        alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let actcion1 = UIAlertAction(title: "编辑", style: .default) { (aciton) in
+            
+        }
+        let actcion2 = UIAlertAction(title: "删除", style: .default) { (aciton) in
+            
+        }
+        let actcion3 = UIAlertAction(title: "取消", style: .cancel) { (aciton) in
+            self.alertController.dismiss(animated: true, completion: {
+                
+            })
+            
+        }
+        alertController.addAction(actcion1)
+        alertController.addAction(actcion2)
+        alertController.addAction(actcion3)
+        self.present(alertController, animated: true, completion: nil)
         
     }
+
+
     // MARK: - delegate
     func requestSucceed(data: Any,type : MineRequestVC_enum) {
         if type == .memo_save {
@@ -124,6 +155,19 @@ class AddMemoViewController: BaseViewController,MineRequestVCDelegate {
     
     func requestFail() {
         
+    }
+    
+    // MARK: - net
+    func addnet() {
+        request.memo_saveRequest(n: backView.noticeStr, t: backView.timeStr, i: backView.isNotice, id: 0)
+
+    }
+    
+    func detailnet() {
+        
+    }
+    func delnet()  {
+        request.memo_getinfoRequest(id: momeoID)
     }
 
     override func didReceiveMemoryWarning() {
