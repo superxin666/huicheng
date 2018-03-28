@@ -118,7 +118,7 @@ class AddMemoViewController: BaseViewController,MineRequestVCDelegate {
         } else {
             //详情
                 let model = data as! memo_getinfoModel
-
+                backView.setData(model: model)
         }
     }
     

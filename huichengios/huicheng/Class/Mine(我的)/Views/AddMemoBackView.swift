@@ -20,6 +20,7 @@ class AddMemoBackView: UIView,NibLoadable,UITextViewDelegate {
     var timeStr : String!
     
     
+    @IBOutlet weak var `switch`: UISwitch!
     
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var timeLabel: UILabel!
@@ -77,7 +78,13 @@ class AddMemoBackView: UIView,NibLoadable,UITextViewDelegate {
     ///
     /// - Parameter model: <#model description#>
     func setData(model : memo_getinfoModel) {
-        
+        self.textView.text = model.content
+        self.timeLabel.text = model.remindtime
+        if model.isremind == 1 {
+            self.switch.isOn = true
+        } else {
+            self.switch.isOn = false
+        }
         
     }
     

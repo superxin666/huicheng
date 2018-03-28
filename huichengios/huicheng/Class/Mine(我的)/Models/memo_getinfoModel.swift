@@ -17,7 +17,7 @@ class memo_getinfoModel: Mappable {
     var content: String!
     var state: Int!
     var stateStr: String!
-    var isremind: String!
+    var isremind: Int!
     var isremindStr: String!
     var remindtime: String!
     

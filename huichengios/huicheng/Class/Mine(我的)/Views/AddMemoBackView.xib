@@ -143,6 +143,7 @@
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="switch" destination="fcB-2n-sWv" id="1M3-Xg-5xm"/>
                 <outlet property="textView" destination="qve-QY-N4F" id="Pi6-om-vhS"/>
                 <outlet property="timeBackView" destination="mDE-aQ-Mji" id="6Li-Qt-BCa"/>
                 <outlet property="timeLabel" destination="XSE-kj-Ol3" id="CPm-CX-VV7"/>
