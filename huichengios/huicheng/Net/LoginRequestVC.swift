@@ -27,7 +27,8 @@ class LoginRequestVC: UIViewController,BaseNetViewControllerDelegate {
     ///   - p: 密码
     func loginRequest(u:String,p:String) {
         request.delegate = self
-        let url =   login_api + "u=\(u)&p=\(p)"
+        let uStr : String = u.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let url =   login_api + "u=\(uStr)&p=\(p)"
         request.request_api(url: url)
         
     }

@@ -83,7 +83,15 @@ class MemoViewController:  BaseViewController,UITableViewDataSource,UITableViewD
     
         let arr = data as! [memo_getlistModel]
         if arr.count > 0 {
-            dataArr = dataArr + arr
+            if pageNum > 1 {
+                dataArr = dataArr + arr
+
+            } else {
+                if dataArr.count > 0 {
+                    self.dataArr.removeAll()
+                }
+                dataArr =  arr
+            }
             HCLog(message: dataArr.count)
             mainTabelView.reloadData()
         } else {
