@@ -88,7 +88,7 @@ class MineViewController: BaseViewController,UITableViewDelegate,UITableViewData
             self.navigationController?.pushViewController(vc, animated: true)
         case 1:
             //报销申请
-            let vc = SubmitPayViewController()
+            let vc = ExpenseViewController()
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
 

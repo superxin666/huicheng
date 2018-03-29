@@ -10,11 +10,11 @@ import UIKit
 import ObjectMapper
 enum MineRequestVC_enum {
     case user_getinfo,
-         invoice_getlist,invoice_getinfo,invoice_gettype,
-         memo_getlist,memo_getinfo,memo_save,memo_del,
-         expense_save,expense_getinfo,expense_gettype,
+         invoice_getlist,invoice_getinfo,invoice_gettype,//发票
+         memo_getlist,memo_getinfo,memo_save,memo_del,//备忘录
+         expense_save,expense_getinfo,expense_gettype,expense_getlist,//报销
          finance_getlist,finance_getinfo,
-         work_getlist,work_getinfo,work_save,user_editpass
+         work_getlist,work_getinfo,work_save,user_editpass//工作日志
 }
 
 protocol MineRequestVCDelegate {
@@ -52,9 +52,9 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
     // MARK: 报销申请
     ///  报销申请 获取列表
     func expense_getlistRequest(p : Int, c: Int) {
-        let url =   expense_getlist + "c=\(c)&p=\(p)&k=\(UserInfoLoaclManger.getKey())"
+        let url =   expense_getlist_api + "c=\(c)&p=\(p)&k=\(UserInfoLoaclManger.getKey())"
         request.delegate = self
-        type = .invoice_getlist
+        type = .expense_getlist
         request.request_api(url: url)
     }
     
@@ -257,9 +257,19 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
             }
         } else if type == .expense_getinfo{
             //报销详情
+
+            
+        } else if type == .expense_getlist{
+            //报销列表
+            let arr = Mapper<expense_getlistModel>().mapArray(JSONArray: response as! [[String : Any]])
+            HCLog(message: arr.count)
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed(data: arr,type : type)
+            }
             
         } else if type == .expense_gettype{
             //获取报销类型列表
+            
             
         } else if type == .invoice_getlist{
             //发票列表

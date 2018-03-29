@@ -10,7 +10,7 @@ import UIKit
 let SUBMITPAYID = "SUBMITPAY_ID"
 let subPay_cell_height = CGFloat(80)
 
-class SubmitPayViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate ,MineRequestVCDelegate{
+class ExpenseViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate ,MineRequestVCDelegate{
     /// 列表
     let mainTabelView : UITableView = UITableView()
     
@@ -27,6 +27,11 @@ class SubmitPayViewController: BaseViewController,UITableViewDataSource,UITableV
             make.bottom.equalTo(self.view).offset(0)
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.requestApi()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
  
@@ -37,9 +42,9 @@ class SubmitPayViewController: BaseViewController,UITableViewDataSource,UITableV
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
         let iteam1 = self.getUIBarButtonItem(image: #imageLiteral(resourceName: "mine_search"), action: #selector(searchClick), vc: self)
         let iteam2 = self.getUIBarButtonItem(image:#imageLiteral(resourceName: "mine_add"), action: #selector(addClick), vc: self)
-        self.navigationItem.rightBarButtonItems = [iteam1,iteam2]
+        self.navigationItem.rightBarButtonItems = [iteam2,iteam1]
         self.creatUI()
-        self.requestApi()
+  
         
     }
     // MARK: - UI
@@ -56,7 +61,6 @@ class SubmitPayViewController: BaseViewController,UITableViewDataSource,UITableV
         mainTabelView.mj_footer = self.creactFoot()
         mainTabelView.mj_footer.setRefreshingTarget(self, refreshingAction: #selector(loadMoreData))
         mainTabelView.mj_header = header
-        //        mainTabelView.mj_footer.isAutomaticallyHidden
         header.setRefreshingTarget(self, refreshingAction: #selector(reflishData))
         self.view.addSubview(mainTabelView)
     }
@@ -86,11 +90,24 @@ class SubmitPayViewController: BaseViewController,UITableViewDataSource,UITableV
     func requestSucceed(data: Any,type : MineRequestVC_enum) {
         let arr = data as! [expense_getlistModel]
         if arr.count > 0 {
-            dataArr = dataArr + arr
+            
+            if pageNum > 1 {
+                dataArr = dataArr + arr
+            } else {
+                if dataArr.count > 0 {
+                    self.dataArr.removeAll()
+                }
+                dataArr =  arr
+            }
             HCLog(message: dataArr.count)
             mainTabelView.reloadData()
         } else {
-            SVPMessageShow.showErro(infoStr: "已经加载全部内容")
+            if pageNum > 1 {
+                      SVPMessageShow.showErro(infoStr: "已经加载全部内容")
+            } else {
+                
+            }
+      
         }
         if mainTabelView.mj_footer.isRefreshing {
             mainTabelView.mj_footer.endRefreshing()
@@ -130,6 +147,10 @@ class SubmitPayViewController: BaseViewController,UITableViewDataSource,UITableV
     }
     @objc func addClick() {
         HCLog(message: "添加")
+        let vc = AddExpenseViewController()
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
