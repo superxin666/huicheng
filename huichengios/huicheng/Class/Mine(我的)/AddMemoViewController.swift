@@ -8,8 +8,8 @@
 
 import UIKit
 enum AddMemoViewController_type {
-    //添加    详情
-    case add_type,detail_type
+    //添加    详情  编辑
+    case add_type,detail_type,edit_type
 }
 class AddMemoViewController: BaseViewController,MineRequestVCDelegate {
     let backView = AddMemoBackView.loadNib()
@@ -41,30 +41,32 @@ class AddMemoViewController: BaseViewController,MineRequestVCDelegate {
                 self.addUI()
             } else {
                 //获取详情
-                self.delnet()
+                self.detailnet()
                 self.detailUI()
             }
         } else {
             self.addUI()
         }
-
+        self.view.addSubview(self.backView)
     }
     // MARK: - UI
     func addUI()  {
         self.navigation_title_fontsize(name: "添加备忘录", fontsize: 18)
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
         self.navigationBar_rightBtn_title(name: "确定")
-        self.view.addSubview(self.backView)
     }
     
     func detailUI() {
         self.navigation_title_fontsize(name: "查看备忘录", fontsize: 18)
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
         self.navigationBar_rightBtn_title(name: "编辑")
-        //
-        self.view.addSubview(self.backView)
     }
     
+    func editUI()  {
+        self.navigation_title_fontsize(name: "编辑备忘录", fontsize: 18)
+        self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
+        self.navigationBar_rightBtn_title(name: "保存")
+    }
     
     // MARK: - event response
 
@@ -93,9 +95,15 @@ class AddMemoViewController: BaseViewController,MineRequestVCDelegate {
     
     override func navigationRightBtnClick() {
         if self.type == .add_type {
+            //添加
             self.addClick()
-        } else {
+        } else if self.type == .detail_type {
+            //详情
             self.actionClick()
+
+        } else {
+            //编辑
+            self.editeNet()
         }
     }
     
@@ -115,14 +123,16 @@ class AddMemoViewController: BaseViewController,MineRequestVCDelegate {
         }
         self.addnet()
     }
+    
     //操作
     func actionClick() {
         alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let actcion1 = UIAlertAction(title: "编辑", style: .default) { (aciton) in
-            
+            self.editUI()
+            self.type = .edit_type
         }
         let actcion2 = UIAlertAction(title: "删除", style: .default) { (aciton) in
-            
+            self.delnet()
         }
         let actcion3 = UIAlertAction(title: "取消", style: .cancel) { (aciton) in
             self.alertController.dismiss(animated: true, completion: {
@@ -146,6 +156,13 @@ class AddMemoViewController: BaseViewController,MineRequestVCDelegate {
             if model.code == 1 {
                 self.navigationController?.popViewController(animated: true)
             }
+        } else if type == .memo_del{
+            //删除
+            let model = data as! CodeData
+            if model.code == 1 {
+                self.navigationController?.popViewController(animated: true)
+            }
+
         } else {
             //详情
                 let model = data as! memo_getinfoModel
@@ -164,10 +181,18 @@ class AddMemoViewController: BaseViewController,MineRequestVCDelegate {
     }
     
     func detailnet() {
-        
+        request.memo_getinfoRequest(id: momeoID)
     }
     func delnet()  {
-        request.memo_getinfoRequest(id: momeoID)
+        request.memo_delRequest(id: self.momeoID)
+
+    }
+    
+    func editeNet() {
+        if  self.backView.textView.isFirstResponder{
+            self.backView.textView.resignFirstResponder()
+        }
+         request.memo_saveRequest(n: backView.noticeStr, t: backView.timeStr, i: backView.isNotice, id:momeoID)
     }
 
     override func didReceiveMemoryWarning() {

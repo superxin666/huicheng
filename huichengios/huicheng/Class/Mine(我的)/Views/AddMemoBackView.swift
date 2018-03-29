@@ -29,9 +29,9 @@ class AddMemoBackView: UIView,NibLoadable,UITextViewDelegate {
         
         HCLog(message: sender.isOn)
         if sender.isOn {
-            isNotice = 0
-        } else {
             isNotice = 1
+        } else {
+            isNotice = 0
         }
         
     }
@@ -65,11 +65,19 @@ class AddMemoBackView: UIView,NibLoadable,UITextViewDelegate {
         self.timeLabel.text = timeStr
     }
     
+    
+    /// 展示时间
     @objc func showTime() {
         if textView.isFirstResponder {
             textView.resignFirstResponder()
         }
         self.timePicker.isHidden = !self.timePicker.isHidden
+        let str : String = String.getDateNow()
+
+        //赋值当前时间
+        self.timeLabel.text  = str
+        self.timeStr = str
+        HCLog(message: "当前时间\(str)")
         
     }
     
@@ -85,6 +93,10 @@ class AddMemoBackView: UIView,NibLoadable,UITextViewDelegate {
         } else {
             self.switch.isOn = false
         }
+        
+        self.isNotice = model.isremind
+        self.noticeStr = model.content
+        self.timeStr = model.remindtime
     
     }
     

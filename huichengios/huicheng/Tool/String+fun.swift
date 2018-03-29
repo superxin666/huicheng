@@ -142,6 +142,17 @@ extension String {
         dfmatter2.dateFormat = "yyyy-MM-dd HH:mm:ss"
         return dfmatter2.string(from: date)
     }
+    
+    
+    /// 获取当前时间
+    ///
+    /// - Returns: <#return value description#>
+    static func getDateNow()->String  {
+        let date  = Date()
+        let dfmatter2 = DateFormatter()
+        dfmatter2.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return dfmatter2.string(from: date)
+    }
 
     /// 将str转为attributeStr
     ///
