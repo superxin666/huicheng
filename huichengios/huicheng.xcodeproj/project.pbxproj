@@ -38,6 +38,9 @@
 		21089E99206E791B00573B6A /* FinanceDetialTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21089E97206E791B00573B6A /* FinanceDetialTableViewCell.xib */; };
 		21089E9B206E7A3500573B6A /* FinanceDetialHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21089E9A206E7A3500573B6A /* FinanceDetialHeadView.swift */; };
 		21089E9D206E7A3D00573B6A /* FinanceDetialHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21089E9C206E7A3D00573B6A /* FinanceDetialHeadView.xib */; };
+		21089E9F206E810600573B6A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21089E9E206E810600573B6A /* SearchViewController.swift */; };
+		21089EA2206E829400573B6A /* SearchStateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21089EA0206E829400573B6A /* SearchStateTableViewCell.swift */; };
+		21089EA3206E829400573B6A /* SearchStateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21089EA1206E829400573B6A /* SearchStateTableViewCell.xib */; };
 		210EB650206DE502000DE966 /* expense_gettypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210EB64F206DE502000DE966 /* expense_gettypeModel.swift */; };
 		210EB652206E333F000DE966 /* FinanceDetialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210EB651206E333F000DE966 /* FinanceDetialViewController.swift */; };
 		21340BD7206CB46800E30B53 /* AddExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21340BD6206CB46800E30B53 /* AddExpenseViewController.swift */; };
@@ -149,6 +152,9 @@
 		21089E97206E791B00573B6A /* FinanceDetialTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinanceDetialTableViewCell.xib; sourceTree = "<group>"; };
 		21089E9A206E7A3500573B6A /* FinanceDetialHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceDetialHeadView.swift; sourceTree = "<group>"; };
 		21089E9C206E7A3D00573B6A /* FinanceDetialHeadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinanceDetialHeadView.xib; sourceTree = "<group>"; };
+		21089E9E206E810600573B6A /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		21089EA0206E829400573B6A /* SearchStateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStateTableViewCell.swift; sourceTree = "<group>"; };
+		21089EA1206E829400573B6A /* SearchStateTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchStateTableViewCell.xib; sourceTree = "<group>"; };
 		210EB64F206DE502000DE966 /* expense_gettypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = expense_gettypeModel.swift; sourceTree = "<group>"; };
 		210EB651206E333F000DE966 /* FinanceDetialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceDetialViewController.swift; sourceTree = "<group>"; };
 		21340BD6206CB46800E30B53 /* AddExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseViewController.swift; sourceTree = "<group>"; };
@@ -332,6 +338,8 @@
 				21089E97206E791B00573B6A /* FinanceDetialTableViewCell.xib */,
 				21089E9A206E7A3500573B6A /* FinanceDetialHeadView.swift */,
 				21089E9C206E7A3D00573B6A /* FinanceDetialHeadView.xib */,
+				21089EA0206E829400573B6A /* SearchStateTableViewCell.swift */,
+				21089EA1206E829400573B6A /* SearchStateTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -467,6 +475,7 @@
 				216B7C6B2063953300BBACDA /* MemoViewController.swift */,
 				21CFDDC32068E30500745A48 /* AddMemoViewController.swift */,
 				216B7C6D206399D000BBACDA /* InvoiceViewController.swift */,
+				21089E9E206E810600573B6A /* SearchViewController.swift */,
 				21066CAB20668311009327AD /* ResetKeyViewControllerViewController.swift */,
 				213F77E4206B31F100075FC6 /* SetViewController.swift */,
 			);
@@ -621,6 +630,7 @@
 				21075560205D792C00FF4396 /* MineTableViewCell.xib in Resources */,
 				2148A2D2206A38B500D996C5 /* AddMemoBackView.xib in Resources */,
 				21075564205D7A4A00FF4396 /* MineHeadView.xib in Resources */,
+				21089EA3206E829400573B6A /* SearchStateTableViewCell.xib in Resources */,
 				215C65D5203EC6B6001C7A92 /* LaunchScreen.storyboard in Resources */,
 				2107555C205D6EFD00FF4396 /* PubMessageTableViewCell.xib in Resources */,
 				21066CB22066992C009327AD /* ResetKeyView.xib in Resources */,
@@ -743,12 +753,14 @@
 				216A6C54204CDE7900528FD8 /* WorkViewController.swift in Sources */,
 				219D7BC3205E22EE009F543B /* ExpenseViewController.swift in Sources */,
 				21387D2B205F55500050DF1F /* MessageRequestVC.swift in Sources */,
+				21089E9F206E810600573B6A /* SearchViewController.swift in Sources */,
 				219D7BC9205E4812009F543B /* PubMessageConViewController.swift in Sources */,
 				2137668D203FBCD3000CBCE6 /* Api.swift in Sources */,
 				21387D33205F5DA60050DF1F /* NibLoadableCell.swift in Sources */,
 				21541DD32062635E0003746E /* work_getlistModel.swift in Sources */,
 				216A6C59204CE7D800528FD8 /* BaseNetViewController.swift in Sources */,
 				21387D41205FEB700050DF1F /* MoreInfoViewController.swift in Sources */,
+				21089EA2206E829400573B6A /* SearchStateTableViewCell.swift in Sources */,
 				21075548205D4C3200FF4396 /* LogInViewController.swift in Sources */,
 				219D7BBA205E0C89009F543B /* InfoFirstTableViewCell.swift in Sources */,
 				215C15C72063D99600A9129D /* ConbenTopView.swift in Sources */,

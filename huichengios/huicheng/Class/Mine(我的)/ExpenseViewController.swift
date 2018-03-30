@@ -152,6 +152,10 @@ class ExpenseViewController: BaseViewController,UITableViewDataSource,UITableVie
     }
     @objc func searchClick() {
         HCLog(message: "搜索")
+        let vc = SearchViewController()
+        vc.hidesBottomBarWhenPushed = true
+        vc.type = .expense_type
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     @objc func addClick() {
         HCLog(message: "添加")
