@@ -9,7 +9,7 @@
 import UIKit
 let IncomeTableViewCellid = "SUBMITPAY_ID"
 let IncomeTableViewCellH = CGFloat(80)
-class IncomeViewController:  BaseViewController,UITableViewDataSource,UITableViewDelegate ,MineRequestVCDelegate {
+class FinanceViewController:  BaseViewController,UITableViewDataSource,UITableViewDelegate ,MineRequestVCDelegate {
     let mainTabelView : UITableView = UITableView()
     
     let request : MineRequestVC = MineRequestVC()
@@ -32,9 +32,7 @@ class IncomeViewController:  BaseViewController,UITableViewDataSource,UITableVie
       
         self.navigation_title_fontsize(name: "我的收款", fontsize: 18)
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
-        let iteam1 = self.getUIBarButtonItem(image: #imageLiteral(resourceName: "mine_search"), action: #selector(searchClick), vc: self)
-        let iteam2 = self.getUIBarButtonItem(image:#imageLiteral(resourceName: "mine_add"), action: #selector(addClick), vc: self)
-        self.navigationItem.rightBarButtonItems = [iteam1,iteam2]
+        self.navigationBar_rightBtn_image(image: #imageLiteral(resourceName: "mine_search"))
         self.creatUI()
         request.delegate = self
         request.finance_getlistRequest()
@@ -89,11 +87,8 @@ class IncomeViewController:  BaseViewController,UITableViewDataSource,UITableVie
     override func navigationLeftBtnClick() {
         self.navigationController?.popViewController(animated: true)
     }
-    @objc func searchClick() {
+    override func navigationRightBtnClick() {
         HCLog(message: "搜索")
-    }
-    @objc func addClick() {
-        HCLog(message: "添加")
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

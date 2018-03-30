@@ -100,7 +100,7 @@ class MineViewController: BaseViewController,UITableViewDelegate,UITableViewData
 
         case 3:
             //我的收款
-            let vc = IncomeViewController()
+            let vc = FinanceViewController()
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
         case 4:
