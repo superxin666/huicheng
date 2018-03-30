@@ -176,7 +176,8 @@ class AddMemoViewController: BaseViewController,MineRequestVCDelegate {
     
     // MARK: - net
     func addnet() {
-        request.memo_saveRequest(n: backView.noticeStr, t: backView.timeStr, i: backView.isNotice, id: 0)
+        // backView.timeStr,  "2018-12-03 09:00"
+        request.memo_saveRequest(n: backView.noticeStr, t:backView.timeStr, i: backView.isNotice, id: 0)
 
     }
     

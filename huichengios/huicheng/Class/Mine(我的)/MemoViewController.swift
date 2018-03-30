@@ -102,7 +102,9 @@ class MemoViewController:  BaseViewController,UITableViewDataSource,UITableViewD
             HCLog(message: dataArr.count)
             mainTabelView.reloadData()
         } else {
-            SVPMessageShow.showErro(infoStr: "已经加载全部内容")
+            if pageNum > 1 {
+                   SVPMessageShow.showErro(infoStr: "已经加载全部内容")
+            }          
         }
         
         if mainTabelView.mj_footer.isRefreshing {
