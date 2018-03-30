@@ -34,6 +34,10 @@
 		21075564205D7A4A00FF4396 /* MineHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21075563205D7A4A00FF4396 /* MineHeadView.xib */; };
 		21075566205D8FE700FF4396 /* MineFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21075565205D8FE700FF4396 /* MineFooterView.swift */; };
 		21075568205D8FF200FF4396 /* MineFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21075567205D8FF200FF4396 /* MineFooterView.xib */; };
+		21089E98206E791B00573B6A /* FinanceDetialTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21089E96206E791B00573B6A /* FinanceDetialTableViewCell.swift */; };
+		21089E99206E791B00573B6A /* FinanceDetialTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21089E97206E791B00573B6A /* FinanceDetialTableViewCell.xib */; };
+		21089E9B206E7A3500573B6A /* FinanceDetialHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21089E9A206E7A3500573B6A /* FinanceDetialHeadView.swift */; };
+		21089E9D206E7A3D00573B6A /* FinanceDetialHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21089E9C206E7A3D00573B6A /* FinanceDetialHeadView.xib */; };
 		210EB650206DE502000DE966 /* expense_gettypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210EB64F206DE502000DE966 /* expense_gettypeModel.swift */; };
 		210EB652206E333F000DE966 /* FinanceDetialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210EB651206E333F000DE966 /* FinanceDetialViewController.swift */; };
 		21340BD7206CB46800E30B53 /* AddExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21340BD6206CB46800E30B53 /* AddExpenseViewController.swift */; };
@@ -141,6 +145,10 @@
 		21075563205D7A4A00FF4396 /* MineHeadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MineHeadView.xib; sourceTree = "<group>"; };
 		21075565205D8FE700FF4396 /* MineFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineFooterView.swift; sourceTree = "<group>"; };
 		21075567205D8FF200FF4396 /* MineFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MineFooterView.xib; sourceTree = "<group>"; };
+		21089E96206E791B00573B6A /* FinanceDetialTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceDetialTableViewCell.swift; sourceTree = "<group>"; };
+		21089E97206E791B00573B6A /* FinanceDetialTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinanceDetialTableViewCell.xib; sourceTree = "<group>"; };
+		21089E9A206E7A3500573B6A /* FinanceDetialHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceDetialHeadView.swift; sourceTree = "<group>"; };
+		21089E9C206E7A3D00573B6A /* FinanceDetialHeadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinanceDetialHeadView.xib; sourceTree = "<group>"; };
 		210EB64F206DE502000DE966 /* expense_gettypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = expense_gettypeModel.swift; sourceTree = "<group>"; };
 		210EB651206E333F000DE966 /* FinanceDetialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceDetialViewController.swift; sourceTree = "<group>"; };
 		21340BD6206CB46800E30B53 /* AddExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseViewController.swift; sourceTree = "<group>"; };
@@ -320,6 +328,10 @@
 				213F77E8206B353A00075FC6 /* SetBackView.xib */,
 				21340BD8206CBDDB00E30B53 /* AddExpenseBackView.swift */,
 				21340BDA206CBDE400E30B53 /* AddExpenseBackView.xib */,
+				21089E96206E791B00573B6A /* FinanceDetialTableViewCell.swift */,
+				21089E97206E791B00573B6A /* FinanceDetialTableViewCell.xib */,
+				21089E9A206E7A3500573B6A /* FinanceDetialHeadView.swift */,
+				21089E9C206E7A3D00573B6A /* FinanceDetialHeadView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -601,6 +613,7 @@
 				213F77E9206B353A00075FC6 /* SetBackView.xib in Resources */,
 				216B7C6420638EE100BBACDA /* IncomeTableViewCell.xib in Resources */,
 				21075549205D4C3200FF4396 /* LoginTopView.xib in Resources */,
+				21089E9D206E7A3D00573B6A /* FinanceDetialHeadView.xib in Resources */,
 				219D7BC7205E2E29009F543B /* SubPayTableViewCell.xib in Resources */,
 				219D7BB7205E062F009F543B /* InfoTableViewCell.xib in Resources */,
 				219D7BBB205E0C89009F543B /* InfoFirstTableViewCell.xib in Resources */,
@@ -619,6 +632,7 @@
 				21066CA82065E369009327AD /* ConVenTableViewCell.xib in Resources */,
 				21CFDDC82068E8E500745A48 /* InvoiceTableViewCell.xib in Resources */,
 				216B7C68206394DE00BBACDA /* MemoTableViewCell.xib in Resources */,
+				21089E99206E791B00573B6A /* FinanceDetialTableViewCell.xib in Resources */,
 				215C15C92063D99F00A9129D /* ConbenTopView.xib in Resources */,
 				21340BDB206CBDE400E30B53 /* AddExpenseBackView.xib in Resources */,
 				215C65D0203EC6B6001C7A92 /* Main.storyboard in Resources */,
@@ -722,6 +736,7 @@
 				21376681203FBA9D000CBCE6 /* ImageView+loading.swift in Sources */,
 				21340BD9206CBDDB00E30B53 /* AddExpenseBackView.swift in Sources */,
 				2107554B205D4C3200FF4396 /* LoginMidBottomView.swift in Sources */,
+				21089E98206E791B00573B6A /* FinanceDetialTableViewCell.swift in Sources */,
 				21376687203FBAEB000CBCE6 /* View+Clipping.swift in Sources */,
 				21340BD7206CB46800E30B53 /* AddExpenseViewController.swift in Sources */,
 				21376684203FBAB2000CBCE6 /* UILabel+Init.swift in Sources */,
@@ -772,6 +787,7 @@
 				219D7BCB205E4830009F543B /* PubMesConView.swift in Sources */,
 				216A6C52204CDE6F00528FD8 /* MineViewController.swift in Sources */,
 				216B7C6E206399D000BBACDA /* InvoiceViewController.swift in Sources */,
+				21089E9B206E7A3500573B6A /* FinanceDetialHeadView.swift in Sources */,
 				21CFDDC72068E8E500745A48 /* InvoiceTableViewCell.swift in Sources */,
 				2105D2E7206116C80031B14C /* finance_getinfoModel.swift in Sources */,
 				21387D37205F8E4E0050DF1F /* noticelistModel.swift in Sources */,
