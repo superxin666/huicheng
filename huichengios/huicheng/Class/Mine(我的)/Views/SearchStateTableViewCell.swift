@@ -9,7 +9,12 @@
 import UIKit
 
 class SearchStateTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource {
+    //0 1 2 3
     var nameArr = ["未审核","已审核","审核驳回","已支付",]
+    var idArr = ["0","1","2","3",]
+//    当前id
+    var cuurectID : String!
+    
     
     @IBOutlet weak var pickView: UIPickerView!
     
@@ -43,11 +48,14 @@ class SearchStateTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerV
 //    }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        //显示
         let str = nameArr[row]
         let label = UILabel(frame: CGRect(x: 0, y: 15, width: 100, height: 20))
         label.text = str
         label.textColor = UIColor.hc_colorFromRGB(rgbValue: 0x666666)
         label.font = hc_fontThin(13)
+        //id
+        cuurectID = idArr[row]
         return label
     }
     

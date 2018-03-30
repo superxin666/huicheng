@@ -50,9 +50,15 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
         
     }
     // MARK: 报销申请
-    ///  报销申请 获取列表
-    func expense_getlistRequest(p : Int, c: Int) {
-        let url =   expense_getlist_api + "c=\(c)&p=\(p)&k=\(UserInfoLoaclManger.getKey())"
+    
+    /// 报销申请 获取列表
+    ///
+    /// - Parameters:
+    ///   - p: <#p description#>
+    ///   - c: <#c description#>
+    ///   - s: 状态 0-未审核;1-已审核;2-审核驳回;3-已支付
+    func expense_getlistRequest(p : Int, c: Int, s:String) {
+        let url =   expense_getlist_api + "c=\(c)&p=\(p)&s=\(s)&k=\(UserInfoLoaclManger.getKey())"
         request.delegate = self
         type = .expense_getlist
         request.request_api(url: url)

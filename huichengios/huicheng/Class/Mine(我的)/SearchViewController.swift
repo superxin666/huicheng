@@ -7,6 +7,7 @@
 //  搜索
 
 import UIKit
+typealias SearchViewControllerBlock = (_ stateId : String)->()
 enum SearchViewController_type {
     case expense_type
 }
@@ -19,6 +20,12 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
     var type : SearchViewController_type!
 //   行数
     var rowNum : Int!
+    
+    /// 选择类型 block
+    var sureStateBlock : SearchViewControllerBlock!
+    
+    var stateCell : SearchStateTableViewCell!
+    
     // MARK: - life
     override func viewWillLayoutSubviews() {
         mainTabelView.snp.makeConstraints { (make) in
@@ -37,6 +44,7 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             self.navigation_title_fontsize(name: "报销查询", fontsize: 18)
             rowNum = 1
         }
+        self.navigationBar_rightBtn_title(name: "确定")
         self.creatUI()
     }
     // MARK: - UI
@@ -63,9 +71,8 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         return rowNum
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell : SearchStateTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: Searchcell_expenseID, for: indexPath) as! SearchStateTableViewCell
-
-        return cell
+        stateCell  = tableView.dequeueReusableCell(withIdentifier: Searchcell_expenseID, for: indexPath) as! SearchStateTableViewCell
+        return stateCell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -80,6 +87,10 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         
     }
     override func navigationLeftBtnClick() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    override func navigationRightBtnClick() {
+        self.sureStateBlock(stateCell.cuurectID)
         self.navigationController?.popViewController(animated: true)
     }
     override func didReceiveMemoryWarning() {

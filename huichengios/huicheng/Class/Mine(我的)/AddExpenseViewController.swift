@@ -7,9 +7,11 @@
 //  添加报销申请
 
 import UIKit
+typealias AddExpenseViewControllerBlock = ()->()
 enum AddExpenseViewController_type {
     case add_type,detaile_type
 }
+
 class AddExpenseViewController: BaseViewController ,MineRequestVCDelegate{
     var backView : AddExpenseBackView!
     var request : MineRequestVC = MineRequestVC()
@@ -18,7 +20,7 @@ class AddExpenseViewController: BaseViewController ,MineRequestVCDelegate{
     
     var type: AddExpenseViewController_type!
     var expenseId : Int!
-    
+    var sureStateBlock : AddExpenseViewControllerBlock!
     
     // MARK: - life cicle
     override func viewWillLayoutSubviews() {
@@ -56,6 +58,7 @@ class AddExpenseViewController: BaseViewController ,MineRequestVCDelegate{
             //保存
             let model : CodeData = data as! CodeData
             if model.code == 1 {
+                self.sureStateBlock()
                 self.navigationController?.popViewController(animated: true)
             }
             

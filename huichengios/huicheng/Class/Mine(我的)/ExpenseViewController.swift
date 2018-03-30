@@ -13,12 +13,14 @@ let subPay_cell_height = CGFloat(80)
 class ExpenseViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate ,MineRequestVCDelegate{
     /// 列表
     let mainTabelView : UITableView = UITableView()
-    
-    
     let request : MineRequestVC = MineRequestVC()
     var dataArr :[expense_getlistModel] = []
     
     var pageNum : Int = 1
+    
+    /// 查询状态:可为空 0-未审核;1-已审核;2-审核驳回;3-已支付
+    var state : String!
+    
     // MARK: - life
     override func viewWillLayoutSubviews() {
         mainTabelView.snp.makeConstraints { (make) in
@@ -29,7 +31,7 @@ class ExpenseViewController: BaseViewController,UITableViewDataSource,UITableVie
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.requestApi()
+        
     }
     
     override func viewDidLoad() {
@@ -44,7 +46,7 @@ class ExpenseViewController: BaseViewController,UITableViewDataSource,UITableVie
         let iteam2 = self.getUIBarButtonItem(image:#imageLiteral(resourceName: "mine_add"), action: #selector(addClick), vc: self)
         self.navigationItem.rightBarButtonItems = [iteam2,iteam1]
         self.creatUI()
-  
+        self.requestApi()
         
     }
     // MARK: - UI
@@ -108,15 +110,15 @@ class ExpenseViewController: BaseViewController,UITableViewDataSource,UITableVie
                 dataArr =  arr
             }
             HCLog(message: dataArr.count)
-            mainTabelView.reloadData()
+      
         } else {
             if pageNum > 1 {
                       SVPMessageShow.showErro(infoStr: "已经加载全部内容")
             } else {
                 
             }
-      
         }
+        mainTabelView.reloadData()
         if mainTabelView.mj_footer.isRefreshing {
             mainTabelView.mj_footer.endRefreshing()
         }
@@ -143,7 +145,11 @@ class ExpenseViewController: BaseViewController,UITableViewDataSource,UITableVie
     
     func requestApi() {
         request.delegate = self
-        request.expense_getlistRequest(p: pageNum, c: 8)
+        if let stateNum = state {
+            request.expense_getlistRequest(p: pageNum, c: 8, s: stateNum)
+        } else {
+            request.expense_getlistRequest(p: pageNum, c: 8, s: "")
+        }
     }
 
     // MARK: - event response
@@ -155,6 +161,12 @@ class ExpenseViewController: BaseViewController,UITableViewDataSource,UITableVie
         let vc = SearchViewController()
         vc.hidesBottomBarWhenPushed = true
         vc.type = .expense_type
+        weak var weakSelf = self
+        vc.sureStateBlock = {(idstr) in
+            weakSelf?.dataArr.removeAll()
+            weakSelf?.state = idstr
+            weakSelf?.requestApi()
+        }
         self.navigationController?.pushViewController(vc, animated: true)
     }
     @objc func addClick() {
@@ -162,6 +174,10 @@ class ExpenseViewController: BaseViewController,UITableViewDataSource,UITableVie
         let vc = AddExpenseViewController()
         vc.hidesBottomBarWhenPushed = true
         vc.type = .add_type
+        weak var weakSelf = self
+        vc.sureStateBlock = {
+            weakSelf?.requestApi()
+        }
         self.navigationController?.pushViewController(vc, animated: true)
         
     }
