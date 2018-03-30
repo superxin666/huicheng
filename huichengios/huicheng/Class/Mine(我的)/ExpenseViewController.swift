@@ -81,6 +81,14 @@ class ExpenseViewController: BaseViewController,UITableViewDataSource,UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row < self.dataArr.count {
+            let model = self.dataArr[indexPath.row]
+            let vc = AddExpenseViewController()
+            vc.hidesBottomBarWhenPushed = true
+            vc.type = .detaile_type
+            vc.expenseId = model.id
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -149,6 +157,7 @@ class ExpenseViewController: BaseViewController,UITableViewDataSource,UITableVie
         HCLog(message: "添加")
         let vc = AddExpenseViewController()
         vc.hidesBottomBarWhenPushed = true
+        vc.type = .add_type
         self.navigationController?.pushViewController(vc, animated: true)
         
     }

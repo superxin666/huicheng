@@ -7,10 +7,12 @@
 // 报销详情
 //"id": 119,//ID
 //"type": 1,//报销类型
-//"typeStr": "差旅费",//报销类型显示文字 "total": 44,//单据数量
+//"typeStr": "差旅费",
+//报销类型显示文字 "total": 44,//单据数量
 //"money": 444444,//报销金额
 //"state": 0,//状态
-//"stateStr": "未审核",//状态显示文字 "addtime": "2018-02-27 16:26:43"//申请时间
+//"stateStr": "未审核",
+//状态显示文字 "addtime": "2018-02-27 16:26:43"//申请时间
 
 import UIKit
 import ObjectMapper
@@ -19,12 +21,13 @@ class expense_getinfoModel: Mappable {
     var id: Int!
     var type: Int!
     var typeStr: String!
-    var total: String!
-    var money: String!
-    var state: String!
-    var addtime: String!
-    var stateStr: String!
+    var typeNote: String!
     
+    var total: Int!
+    var money: Int!
+    var state: Int!
+    var stateStr: String!
+    var addtime: String!
     
     
     init() {}
@@ -39,7 +42,8 @@ class expense_getinfoModel: Mappable {
 
         total <- map["total"]
         money <- map["money"]
-        
+        typeNote <- map["typeNote"]
+
         addtime <- map["addtime"]
         stateStr <- map["stateStr"]
         state <- map["state"]

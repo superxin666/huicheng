@@ -10,6 +10,8 @@ import UIKit
 
 class AddExpenseBackView: UIView,NibLoadable,UIPickerViewDelegate ,UIPickerViewDataSource{
     var dataArr : [expense_gettypeModel] = []
+    var dataModel : expense_getinfoModel!
+    
     @IBOutlet weak var pickView: UIPickerView!
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -40,9 +42,9 @@ class AddExpenseBackView: UIView,NibLoadable,UIPickerViewDelegate ,UIPickerViewD
     }
     
     
+    /// 添加
     func setData()  {
-        //标题
-        self.titleLabel.text = "1、发票的付款单位为：北京市惠诚律师事务所，不得简写。\n2、发票必须为当年的票据"
+     
         //展示第一个数据的 提示
         if dataArr.count > 0  {
             let model : expense_gettypeModel = dataArr[0]
@@ -54,11 +56,39 @@ class AddExpenseBackView: UIView,NibLoadable,UIPickerViewDelegate ,UIPickerViewD
 
     }
     
+    /// 详情展示
+    ///
+    /// - Parameter model: <#model description#>
+    func setDataDetail(model : expense_getinfoModel) {
+        dataModel = model
+        self.pickView.isUserInteractionEnabled = false
+        self.moneyField.isUserInteractionEnabled = false
+        self.numField.isUserInteractionEnabled = false
+        //
+        if let money =  model.money {
+            self.moneyField.placeholder = "\(money)"
+        }
+        
+        if let total =  model.total {
+            self.numField.placeholder = "\(total)"
+        }
+
+        if let note =  model.typeNote {
+            self.infoLabel.text = note
+        }
+        
+    }
+
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-            return dataArr.count
+        if self.dataArr.count > 0 {
+            return self.dataArr.count
+        } else {
+            return 1
+        }
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if row < self.dataArr.count {
@@ -74,10 +104,18 @@ class AddExpenseBackView: UIView,NibLoadable,UIPickerViewDelegate ,UIPickerViewD
             let model = self.dataArr[row]
             str = model.name
             type = model.id
+        } else {
+            if let model = dataModel {
+                str = model.typeStr
+            }
         }
         return str
     }
+    
+    
     override func awakeFromNib() {
+        //标题
+        self.titleLabel.text = "1、发票的付款单位为：北京市惠诚律师事务所，不得简写。\n2、发票必须为当年的票据"
         self.pickView.delegate = self
         self.pickView.dataSource = self
     }

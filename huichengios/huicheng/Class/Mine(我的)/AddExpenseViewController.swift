@@ -7,12 +7,18 @@
 //  添加报销申请
 
 import UIKit
-
+enum AddExpenseViewController_type {
+    case add_type,detaile_type
+}
 class AddExpenseViewController: BaseViewController ,MineRequestVCDelegate{
     var backView : AddExpenseBackView!
-    
     var request : MineRequestVC = MineRequestVC()
     var dataArr : [expense_gettypeModel] = []
+    
+    
+    var type: AddExpenseViewController_type!
+    var expenseId : Int!
+    
     
     // MARK: - life cicle
     override func viewWillLayoutSubviews() {
@@ -29,13 +35,20 @@ class AddExpenseViewController: BaseViewController ,MineRequestVCDelegate{
         self.view.backgroundColor = viewBackColor
         self.navigation_title_fontsize(name: "报销申请", fontsize: 18)
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
-        self.navigationBar_rightBtn_title(name: "确定")
         request.delegate = self
         backView = AddExpenseBackView.loadNib()
         self.view.addSubview(backView)
         
-        //获取报销类型
-        request.expense_gettypeRequest()
+        if self.type == .add_type {
+            //获取报销类型
+            self.navigationBar_rightBtn_title(name: "确定")
+            request.expense_gettypeRequest()
+        } else {
+            //报销详情
+            request.expense_getinfoRequest(id: expenseId)
+
+        }
+
     }
     // MARK: - delegate
     func requestSucceed(data: Any, type: MineRequestVC_enum) {
@@ -47,7 +60,7 @@ class AddExpenseViewController: BaseViewController ,MineRequestVCDelegate{
             }
             
             
-        } else {
+        } else if type == .expense_gettype{
             //type 列表
             let arr = data as! [expense_gettypeModel]
             if dataArr.count > 0 {
@@ -58,16 +71,17 @@ class AddExpenseViewController: BaseViewController ,MineRequestVCDelegate{
             backView.setData()
             backView.pickView.reloadAllComponents()
             
+        } else if type == .expense_getinfo{
+            //详情
+            let model : expense_getinfoModel = data as! expense_getinfoModel
+            backView.setDataDetail(model: model)
+            backView.pickView.reloadAllComponents()
+
         }
     }
     func requestFail() {
         
     }
-    
-    // MARK: - net
-
-    
-    
     // MARK: - response
     override func navigationRightBtnClick() {
         HCLog(message: "确定")
