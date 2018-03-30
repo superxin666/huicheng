@@ -162,9 +162,11 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
         request.delegate = self
         type = .memo_save
         let tStr :String = t.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let nStr :String = n.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        
          var url = ""
         if id > 0 {
-            url = memo_save_api + "k=\(UserInfoLoaclManger.getKey())&n=\(n)&t=\(tStr)&i=\(i)&id=\(id)"
+            url = memo_save_api + "k=\(UserInfoLoaclManger.getKey())&n=\(nStr)&t=\(tStr)&i=\(i)&id=\(id)"
         } else {
             url = memo_save_api + "k=\(UserInfoLoaclManger.getKey())&n=\(n)&t=\(tStr)&i=\(i)"
         }
@@ -269,8 +271,11 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
             
         } else if type == .expense_gettype{
             //获取报销类型列表
-            
-            
+            let arr = Mapper<expense_gettypeModel>().mapArray(JSONArray: response as! [[String : Any]])
+            HCLog(message: arr.count)
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed(data: arr,type : type)
+            }
         } else if type == .invoice_getlist{
             //发票列表
             HCLog(message: "发票列表请求成功")
