@@ -41,7 +41,10 @@ class AddExpenseViewController: BaseViewController ,MineRequestVCDelegate{
     func requestSucceed(data: Any, type: MineRequestVC_enum) {
         if type == .expense_save {
             //保存
-            
+            let model : CodeData = data as! CodeData
+            if model.code == 1 {
+                self.navigationController?.popViewController(animated: true)
+            }
             
             
         } else {
@@ -68,6 +71,12 @@ class AddExpenseViewController: BaseViewController ,MineRequestVCDelegate{
     // MARK: - response
     override func navigationRightBtnClick() {
         HCLog(message: "确定")
+        if backView.moneyField.isFirstResponder {
+            backView.moneyField.resignFirstResponder()
+        }
+        if backView.numField.isFirstResponder {
+            backView.numField.resignFirstResponder()
+        }
         guard let type = backView.type else {
             SVPMessageShow.showErro(infoStr: "请选择报销类型")
             return
@@ -76,7 +85,6 @@ class AddExpenseViewController: BaseViewController ,MineRequestVCDelegate{
             SVPMessageShow.showErro(infoStr: "请输入报销金额")
             return
         }
-
         guard let num = backView.num else {
             SVPMessageShow.showErro(infoStr: "请输入票据数量")
             return

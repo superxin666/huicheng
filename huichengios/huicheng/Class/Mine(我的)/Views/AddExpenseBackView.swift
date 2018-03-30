@@ -15,7 +15,9 @@ class AddExpenseBackView: UIView,NibLoadable,UIPickerViewDelegate ,UIPickerViewD
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var infoLabel: UILabel!
     
+    @IBOutlet weak var moneyField: UITextField!
     
+    @IBOutlet weak var numField: UITextField!
     /// 报销类型
     var type : Int!
     
@@ -47,6 +49,7 @@ class AddExpenseBackView: UIView,NibLoadable,UIPickerViewDelegate ,UIPickerViewD
             if let str = model.note {
                 self.infoLabel.text = str
             }
+            self.type = model.id
         }
 
     }
@@ -58,7 +61,12 @@ class AddExpenseBackView: UIView,NibLoadable,UIPickerViewDelegate ,UIPickerViewD
             return dataArr.count
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
+        if row < self.dataArr.count {
+            let model : expense_gettypeModel = dataArr[row]
+            if let str = model.note {
+                self.infoLabel.text = str
+            }
+        }
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         var str = ""
@@ -67,7 +75,6 @@ class AddExpenseBackView: UIView,NibLoadable,UIPickerViewDelegate ,UIPickerViewD
             str = model.name
             type = model.id
         }
-        
         return str
     }
     override func awakeFromNib() {
