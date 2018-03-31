@@ -61,6 +61,9 @@
 		2108BB8B206FE326002A4212 /* ObjectTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2108BB89206FE326002A4212 /* ObjectTableViewCell.xib */; };
 		2108BB8E206FE34A002A4212 /* MessageNeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108BB8C206FE34A002A4212 /* MessageNeedTableViewCell.swift */; };
 		2108BB8F206FE34A002A4212 /* MessageNeedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2108BB8D206FE34A002A4212 /* MessageNeedTableViewCell.xib */; };
+		2108BB92206FF2BB002A4212 /* CheckcaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108BB90206FF2BB002A4212 /* CheckcaseTableViewCell.swift */; };
+		2108BB93206FF2BB002A4212 /* CheckcaseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2108BB91206FF2BB002A4212 /* CheckcaseTableViewCell.xib */; };
+		2108BB95206FF723002A4212 /* CheckcaseResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108BB94206FF723002A4212 /* CheckcaseResultViewController.swift */; };
 		210EB650206DE502000DE966 /* expense_gettypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210EB64F206DE502000DE966 /* expense_gettypeModel.swift */; };
 		210EB652206E333F000DE966 /* FinanceDetialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210EB651206E333F000DE966 /* FinanceDetialViewController.swift */; };
 		21340BD7206CB46800E30B53 /* AddExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21340BD6206CB46800E30B53 /* AddExpenseViewController.swift */; };
@@ -195,6 +198,9 @@
 		2108BB89206FE326002A4212 /* ObjectTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ObjectTableViewCell.xib; sourceTree = "<group>"; };
 		2108BB8C206FE34A002A4212 /* MessageNeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageNeedTableViewCell.swift; sourceTree = "<group>"; };
 		2108BB8D206FE34A002A4212 /* MessageNeedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageNeedTableViewCell.xib; sourceTree = "<group>"; };
+		2108BB90206FF2BB002A4212 /* CheckcaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckcaseTableViewCell.swift; sourceTree = "<group>"; };
+		2108BB91206FF2BB002A4212 /* CheckcaseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheckcaseTableViewCell.xib; sourceTree = "<group>"; };
+		2108BB94206FF723002A4212 /* CheckcaseResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckcaseResultViewController.swift; sourceTree = "<group>"; };
 		210EB64F206DE502000DE966 /* expense_gettypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = expense_gettypeModel.swift; sourceTree = "<group>"; };
 		210EB651206E333F000DE966 /* FinanceDetialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceDetialViewController.swift; sourceTree = "<group>"; };
 		21340BD6206CB46800E30B53 /* AddExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseViewController.swift; sourceTree = "<group>"; };
@@ -566,6 +572,7 @@
 				216A6C53204CDE7900528FD8 /* WorkViewController.swift */,
 				2108BB76206FD0B3002A4212 /* ReleaseViewController.swift */,
 				2108BB78206FD219002A4212 /* CheckcaseViewController.swift */,
+				2108BB94206FF723002A4212 /* CheckcaseResultViewController.swift */,
 			);
 			path = "Work(工作)";
 			sourceTree = "<group>";
@@ -596,6 +603,8 @@
 				2108BB89206FE326002A4212 /* ObjectTableViewCell.xib */,
 				2108BB8C206FE34A002A4212 /* MessageNeedTableViewCell.swift */,
 				2108BB8D206FE34A002A4212 /* MessageNeedTableViewCell.xib */,
+				2108BB90206FF2BB002A4212 /* CheckcaseTableViewCell.swift */,
+				2108BB91206FF2BB002A4212 /* CheckcaseTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -707,6 +716,7 @@
 				21066CA82065E369009327AD /* ConVenTableViewCell.xib in Resources */,
 				21CFDDC82068E8E500745A48 /* InvoiceTableViewCell.xib in Resources */,
 				216B7C68206394DE00BBACDA /* MemoTableViewCell.xib in Resources */,
+				2108BB93206FF2BB002A4212 /* CheckcaseTableViewCell.xib in Resources */,
 				21089E99206E791B00573B6A /* FinanceDetialTableViewCell.xib in Resources */,
 				215C15C92063D99F00A9129D /* ConbenTopView.xib in Resources */,
 				21340BDB206CBDE400E30B53 /* AddExpenseBackView.xib in Resources */,
@@ -839,9 +849,11 @@
 				216A6C57204CDE9D00528FD8 /* BaseViewController.swift in Sources */,
 				216A6C50204CDE6700528FD8 /* MessageViewController.swift in Sources */,
 				2108BB73206F2E33002A4212 /* quick_getlistModel.swift in Sources */,
+				2108BB95206FF723002A4212 /* CheckcaseResultViewController.swift in Sources */,
 				21376685203FBAB2000CBCE6 /* UIButton+Init.swift in Sources */,
 				21387D39205F9C540050DF1F /* newslistModel.swift in Sources */,
 				2137668F203FBF27000CBCE6 /* HCNavigationController.swift in Sources */,
+				2108BB92206FF2BB002A4212 /* CheckcaseTableViewCell.swift in Sources */,
 				2137668B203FBAFD000CBCE6 /* String+fun.swift in Sources */,
 				210EB652206E333F000DE966 /* FinanceDetialViewController.swift in Sources */,
 				2108BB6E206F2602002A4212 /* SearchTimeTableViewCell.swift in Sources */,

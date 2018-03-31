@@ -90,6 +90,10 @@ class WorkViewController: BaseViewController,UITableViewDelegate,UITableViewData
                 HCLog(message: "案件查询")
             case 3:
                 HCLog(message: "利益冲突")
+                let vc = CheckcaseViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+                
             default:
                 HCLog(message: "暂无")
             }
