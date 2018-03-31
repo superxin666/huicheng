@@ -34,7 +34,7 @@ class WorkBookViewController: BaseViewController,UITableViewDataSource,UITableVi
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
         let iteam1 = self.getUIBarButtonItem(image: #imageLiteral(resourceName: "mine_search"), action: #selector(searchClick), vc: self)
         let iteam2 = self.getUIBarButtonItem(image:#imageLiteral(resourceName: "mine_add"), action: #selector(addClick), vc: self)
-        self.navigationItem.rightBarButtonItems = [iteam1,iteam2]
+        self.navigationItem.rightBarButtonItems = [iteam2,iteam1]
         self.creatUI()
         self.requestApi()
         
@@ -117,6 +117,10 @@ class WorkBookViewController: BaseViewController,UITableViewDataSource,UITableVi
     }
     @objc func addClick() {
         HCLog(message: "添加")
+        let vc = AddWorkViewController()
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

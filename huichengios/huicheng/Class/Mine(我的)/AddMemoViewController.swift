@@ -59,7 +59,7 @@ class AddMemoViewController: BaseViewController,MineRequestVCDelegate {
     func detailUI() {
         self.navigation_title_fontsize(name: "查看备忘录", fontsize: 18)
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
-        self.navigationBar_rightBtn_title(name: "编辑")
+        self.navigationBar_rightBtn_title(name: "操作")
     }
     
     func editUI()  {

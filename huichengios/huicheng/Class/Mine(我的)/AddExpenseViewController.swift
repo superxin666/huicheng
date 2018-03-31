@@ -47,6 +47,7 @@ class AddExpenseViewController: BaseViewController ,MineRequestVCDelegate{
             request.expense_gettypeRequest()
         } else {
             //报销详情
+            self.navigationBar_rightBtn_title(name: "编辑")
             request.expense_getinfoRequest(id: expenseId)
 
         }
@@ -87,26 +88,30 @@ class AddExpenseViewController: BaseViewController ,MineRequestVCDelegate{
     }
     // MARK: - response
     override func navigationRightBtnClick() {
-        HCLog(message: "确定")
-        if backView.moneyField.isFirstResponder {
-            backView.moneyField.resignFirstResponder()
+        if self.type == .add_type {
+            HCLog(message: "确定")
+            if backView.moneyField.isFirstResponder {
+                backView.moneyField.resignFirstResponder()
+            }
+            if backView.numField.isFirstResponder {
+                backView.numField.resignFirstResponder()
+            }
+            guard let type = backView.type else {
+                SVPMessageShow.showErro(infoStr: "请选择报销类型")
+                return
+            }
+            guard let money = backView.money else {
+                SVPMessageShow.showErro(infoStr: "请输入报销金额")
+                return
+            }
+            guard let num = backView.num else {
+                SVPMessageShow.showErro(infoStr: "请输入票据数量")
+                return
+            }
+            request.expense_saveRequest(t: type, n: money, m:  num)
+        } else {
+            HCLog(message: "编辑")
         }
-        if backView.numField.isFirstResponder {
-            backView.numField.resignFirstResponder()
-        }
-        guard let type = backView.type else {
-            SVPMessageShow.showErro(infoStr: "请选择报销类型")
-            return
-        }
-        guard let money = backView.money else {
-            SVPMessageShow.showErro(infoStr: "请输入报销金额")
-            return
-        }
-        guard let num = backView.num else {
-            SVPMessageShow.showErro(infoStr: "请输入票据数量")
-            return
-        }
-        request.expense_saveRequest(t: type, n: money, m:  num)
         
     }
     override func navigationLeftBtnClick() {
