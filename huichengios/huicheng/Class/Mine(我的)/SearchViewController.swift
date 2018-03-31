@@ -9,10 +9,11 @@
 import UIKit
 typealias SearchViewControllerBlock = (_ stateId : String)->()
 enum SearchViewController_type {
-    case expense_type
+    //发票申请           收款记录
+    case expense_type, finance_type
 }
 let Searchcell_expenseID = "Searchcell_expense_id"
-
+let Searchcell_finance_typeID = "Searchcell_finance_type_id"
 class SearchViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate {
     /// 列表
     let mainTabelView : UITableView = UITableView()
@@ -43,6 +44,9 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         if type == .expense_type {
             self.navigation_title_fontsize(name: "报销查询", fontsize: 18)
             rowNum = 1
+        } else if  type == .finance_type{
+            self.navigation_title_fontsize(name: "收款查询", fontsize: 18)
+            rowNum = 5
         }
         self.navigationBar_rightBtn_title(name: "确定")
         self.creatUI()
@@ -59,6 +63,9 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         mainTabelView.backgroundView?.backgroundColor = .clear
         if type == .expense_type {
             mainTabelView.register(UINib.init(nibName: "SearchStateTableViewCell", bundle: nil), forCellReuseIdentifier: Searchcell_expenseID)
+        } else if type == .finance_type {
+            mainTabelView.register(UINib.init(nibName: "SearchPersionTableViewCell", bundle: nil), forCellReuseIdentifier: Searchcell_finance_typeID)
+            
         }
         self.view.addSubview(mainTabelView)
     }
@@ -71,8 +78,33 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         return rowNum
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        stateCell  = tableView.dequeueReusableCell(withIdentifier: Searchcell_expenseID, for: indexPath) as! SearchStateTableViewCell
-        return stateCell
+        if type == .expense_type {
+            stateCell  = tableView.dequeueReusableCell(withIdentifier: Searchcell_expenseID, for: indexPath) as! SearchStateTableViewCell
+            return stateCell
+        } else if type == .finance_type{
+            let cell : SearchPersionTableViewCell = tableView.dequeueReusableCell(withIdentifier: Searchcell_finance_typeID, for: indexPath) as! SearchPersionTableViewCell
+            if indexPath.row == 0 {
+                //交款人
+                cell.setData(titleStr: "交款人", fieldTag: 0)
+            } else if indexPath.row == 1 {
+                //合同编号
+                cell.setData(titleStr: "合同编号", fieldTag: 1)
+            } else if indexPath.row == 2 {
+                //开始时间
+                
+            } else if indexPath.row == 3 {
+                //结束时间
+                
+            } else {
+                //状态
+                stateCell  = tableView.dequeueReusableCell(withIdentifier: Searchcell_expenseID, for: indexPath) as! SearchStateTableViewCell
+                return stateCell
+            }
+            return cell
+            
+        } else {
+            return UITableViewCell()
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
