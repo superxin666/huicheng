@@ -10,7 +10,7 @@ import UIKit
 
 class CheckcaseViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate {
    let mainTabelView : UITableView = UITableView()
-    
+   var cell : CheckcaseTableViewCell!
     
     // MARK: - life
     override func viewWillLayoutSubviews() {
@@ -54,7 +54,7 @@ class CheckcaseViewController: BaseViewController,UITableViewDataSource,UITableV
         return 2
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell : CheckcaseTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: CheckcaseTableViewCellID, for: indexPath) as! CheckcaseTableViewCell
+        cell  = tableView.dequeueReusableCell(withIdentifier: CheckcaseTableViewCellID, for: indexPath) as! CheckcaseTableViewCell
         if indexPath.row == 0 {
             cell.setData(titleStr: "关系人", rowTag: 0)
         } else {
@@ -67,6 +67,15 @@ class CheckcaseViewController: BaseViewController,UITableViewDataSource,UITableV
     }
     override func navigationRightBtnClick() {
         HCLog(message: "确定")
+        if cell.textField.isFirstResponder {
+            cell.textField.resignFirstResponder()
+        }
+        if !(cell.nameStr.count > 0) && !(cell.num.count > 0) {
+            SVPMessageShow.showErro(infoStr: "关系人与身份证号必须填写一个")
+            return
+        }
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
