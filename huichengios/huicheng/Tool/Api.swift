@@ -32,6 +32,10 @@ let user_getinfo_api = "uc/user_getinfo?"
 let user_editpass_api = "uc/user_editpass?"
 
 
+//-----------------------法庭信息管理
+let quick_getlist_api = "quick/getlist?"
+
+
 //-----------------------发票申请 获取列表
 let invoice_getlist_api = "uc/invoice_getlist?"
 let invoice_getinfo_api = "uc/invoice_getinfo?"

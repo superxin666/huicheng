@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rFC-Di-mai">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rFC-Di-mai">
                         <rect key="frame" x="25" y="20" width="270" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="Ccz-ve-uxS"/>
@@ -28,8 +28,8 @@
                         <color key="textColor" red="0.090196078430000007" green="0.2274509804" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q8P-eU-07F">
-                        <rect key="frame" x="25" y="42" width="37.5" height="13"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q8P-eU-07F">
+                        <rect key="frame" x="25" y="42" width="0.0" height="13"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="13" id="z9W-dm-hEG"/>
                         </constraints>
@@ -44,7 +44,7 @@
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <inset key="titleEdgeInsets" minX="5.5" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        <state key="normal" title="Button" image="Con_per">
+                        <state key="normal" image="Con_per">
                             <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>
@@ -55,7 +55,7 @@
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <inset key="titleEdgeInsets" minX="5.5" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        <state key="normal" title="Button" image="Con_phone">
+                        <state key="normal" image="Con_phone">
                             <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>
@@ -66,7 +66,7 @@
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <inset key="titleEdgeInsets" minX="5.5" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        <state key="normal" title="Button" image="Con_em">
+                        <state key="normal" image="Con_em">
                             <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>
@@ -98,7 +98,14 @@
                     <constraint firstAttribute="trailing" secondItem="bS3-v1-0ty" secondAttribute="trailing" constant="25" id="zW1-v7-BUi"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="-220" y="8"/>
+            <connections>
+                <outlet property="adrLabel" destination="q8P-eU-07F" id="Grw-Wd-JSz"/>
+                <outlet property="emailLabel" destination="bS3-v1-0ty" id="zIn-s6-kZK"/>
+                <outlet property="nameLabel" destination="IGW-KN-Sn0" id="QBh-dR-pCT"/>
+                <outlet property="phoneLabel" destination="9Kr-p8-pxJ" id="Ttu-OR-yzh"/>
+                <outlet property="titleLabel" destination="rFC-Di-mai" id="ym0-Et-4zZ"/>
+            </connections>
+            <point key="canvasLocation" x="-77" y="11"/>
         </tableViewCell>
     </objects>
     <resources>

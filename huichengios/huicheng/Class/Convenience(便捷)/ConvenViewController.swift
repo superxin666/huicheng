@@ -9,13 +9,20 @@
 import UIKit
 let ConVenTableViewCellID = "ConVenTableViewCell_ID"
 let ConVenTableViewCellH = CGFloat(100)
-class ConvenViewController: BaseViewController,ConbenTopViewDelegate,UITableViewDelegate,UITableViewDataSource {
+class ConvenViewController: BaseViewController,ConbenTopViewDelegate,UITableViewDelegate,UITableViewDataSource,ConvenRequestVCDelegate {
     var topView : ConbenTopView!
     /// 列表
     let mainTabelView : UITableView = UITableView()
-    var dataArr : [Any] = []
+    let request : ConvenRequestVC = ConvenRequestVC()
+    /// 数据 数组
+    var dataArr : [quick_getlistModel] = []
     
-
+    var pageNum : Int = 1
+    
+    /// 默认 1 法院
+    var type : Int = 1
+    
+    
     // MARK: - life circle
     override func viewWillLayoutSubviews() {
         topView.snp.makeConstraints { (make) in
@@ -42,6 +49,8 @@ class ConvenViewController: BaseViewController,ConbenTopViewDelegate,UITableView
         topView.delegate  = self
         self.view.addSubview(topView)
         self.creatUI()
+        request.delegate = self
+        self.requestApi()
     }
     // MARK: - UI
     func creatUI() {
@@ -54,12 +63,11 @@ class ConvenViewController: BaseViewController,ConbenTopViewDelegate,UITableView
         mainTabelView.showsHorizontalScrollIndicator = false
         mainTabelView.backgroundView?.backgroundColor = .clear
         mainTabelView.register(UINib.init(nibName: "ConVenTableViewCell", bundle: nil), forCellReuseIdentifier: ConVenTableViewCellID)
-        //        footer.setRefreshingTarget(self, refreshingAction: #selector(HomeViewController.loadMoreData))
-        //        header.setRefreshingTarget(self, refreshingAction: #selector(HomeViewController.freshData))
-        //        mainTabelView.mj_footer = footer
-        //        mainTabelView.mj_header = header
-        //        mainTabelView.register(MessageTableViewCell.self, forCellReuseIdentifier: MESSAGEID)
-        //        mainTabelView.register(TeachTableViewCell.self, forCellReuseIdentifier: TEACHCELLID)
+//        mainTabelView.mj_footer = self.creactFoot()
+//        mainTabelView.mj_footer.setRefreshingTarget(self, refreshingAction: #selector(loadMoreData))
+//        mainTabelView.mj_header = header
+//        header.setRefreshingTarget(self, refreshingAction: #selector(reflishData))
+
         self.view.addSubview(mainTabelView)
     }
     
@@ -68,10 +76,14 @@ class ConvenViewController: BaseViewController,ConbenTopViewDelegate,UITableView
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return self.dataArr.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : ConVenTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: ConVenTableViewCellID, for: indexPath) as! ConVenTableViewCell
+        if indexPath.row < self.dataArr.count {
+            let model = self.dataArr[indexPath.row]
+            cell.setData(model: model)
+        }
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -80,22 +92,71 @@ class ConvenViewController: BaseViewController,ConbenTopViewDelegate,UITableView
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return ConVenTableViewCellH
     }
+    //net
+    func requestSucceed(data: Any, type: ConvenRequestVC_enum) {
+        let arr  = data as! [quick_getlistModel]
+        if arr.count > 0 {
+            if pageNum > 1 {
+                self.dataArr = arr + self.dataArr
+            } else {
+                self.dataArr = arr
+            }
+        } else {
+            if pageNum > 1 {
+                SVPMessageShow.showErro(infoStr: "已经加载全部内容")
+            } else {
+                SVPMessageShow.showErro(infoStr: "暂无内容")
+            }
+        }
+        mainTabelView.reloadData()
+    }
+    func requestFail() {
+        
+    }
+    // MARK: - net
+    func requestApi() {
+        request.quick_getlistRequest(t: type, kw: "")
+    }
+    //加载更多
+    @objc func loadMoreData()  {
+        pageNum = pageNum + 1
+        self.requestApi()
+        
+    }
+    //刷新
+    @objc func reflishData() {
+        pageNum = 1
+        if self.dataArr .count > 0 {
+            self.dataArr.removeAll()
+        }
+        self.requestApi()
+    }
+    
     // MARK: - delegate
     func btnClick(tag: Int) {
         switch tag {
         case 0:
             HCLog(message: "法院")
+            type = 1
         case 1:
             HCLog(message: "检察院")
+            type = 2
         case 2:
             HCLog(message: "公安机关")
+            type = 3
         case 3:
             HCLog(message: "仲裁委")
+            type = 4
         case 4:
             HCLog(message: "看守所")
+            type = 5
         default:
             HCLog(message: "没有")
         }
+        if self.dataArr.count > 0 {
+            self.dataArr.removeAll()
+        }
+        self.requestApi()
         
     }
     
