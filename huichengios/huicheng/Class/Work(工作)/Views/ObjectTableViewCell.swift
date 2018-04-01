@@ -11,7 +11,10 @@ let ObjectTableViewCellH = CGFloat(50)
 let ObjectTableViewCellID = "ObjectTableViewCell_ID"
 class ObjectTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var contentLabel: UILabel!
+
+    @IBOutlet weak var pickView: UIPickerView!
+    
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

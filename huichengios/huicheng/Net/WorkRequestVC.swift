@@ -11,7 +11,7 @@ import ObjectMapper
 enum WorkRequestVC_enum {
     //
     case checkcase,//利益冲突检查
-         newslist1//公告  获取列表
+         save,newslist1,getobjectlist,newspublic//公告  发布/编辑公告  获取列表  获取接收对象  发布/撤销公告
 }
 protocol WorkRequestVCDelegate : NSObjectProtocol{
     //
@@ -40,7 +40,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
     
     
     
-
+    // MARK: 公告管理
     
     /// <#Description#>
     ///
@@ -60,6 +60,16 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
     }
     
     
+    /// 获取接收对象
+    func getobjectlistRequest() {
+        request.delegate = self
+        type = .getobjectlist
+        let url =   getobjectlist_api + "k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+    }
+    
+    
+    
     func requestSucceed(response: Any) {
         if type == .checkcase {
             //利益冲突检查
@@ -76,6 +86,13 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
                 self.delegate.requestSucceed(data: arr)
             }
             
+        } else if type == .getobjectlist{
+            //获取接收对象
+            let arr = Mapper<getobjectlistModel>().mapArray(JSONArray: response as! [[String : Any]])
+            HCLog(message: arr.count)
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed(data: arr)
+            }
         }
     }
     

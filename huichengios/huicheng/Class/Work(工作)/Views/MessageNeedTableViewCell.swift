@@ -11,11 +11,11 @@ let MessageNeedTableViewCellH = CGFloat(50)
 let MessageNeedTableViewCellID = "MessageNeedTableViewCell_ID"
 class MessageNeedTableViewCell: UITableViewCell {
     @IBOutlet weak var `switch`: UISwitch!
-    
     @IBOutlet weak var titleLabel: UILabel!
     
     
     @IBAction func switchValueChanged(_ sender: UISwitch) {
+        
         
     }
     

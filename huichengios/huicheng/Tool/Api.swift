@@ -25,6 +25,16 @@ let newslist_api = "message/newslist?"
 /// 详情
 let newsdetial_api = "message/newsdetial?"
 
+/// 公告管理 获取列表
+let newslist1_api = "message/newslist1?"
+///  发布/编辑公告
+let save_api = "message/save?"
+/// 获取接收对象
+let getobjectlist_api = "message/getobjectlist?"
+/// 发布/撤销公告
+let newspublic_api = "message/newspublic?"
+
+
 //-----------------------个人信息
 let user_getinfo_api = "uc/user_getinfo?"
 
@@ -35,8 +45,7 @@ let user_editpass_api = "uc/user_editpass?"
 /// 利益冲突检查
 let checkcase_api = "case/checkcase?"
 
-/// 公告管理 获取列表
-let newslist1_api = "message/newslist1?"
+
 
 //-----------------------法庭信息管理
 let quick_getlist_api = "quick/getlist?"

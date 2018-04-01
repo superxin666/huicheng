@@ -7,10 +7,15 @@
 //
 
 import UIKit
+enum AddNoticeViewController_type {
+//    添加  详情
+    case addNotice,detail
+}
 
 class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate {
     let mainTabelView : UITableView = UITableView()
     let request : WorkRequestVC = WorkRequestVC()
+    var type : AddNoticeViewController_type!
     
     // MARK: - life
     override func viewWillLayoutSubviews() {
@@ -25,9 +30,18 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
         
         // Do any additional setup after loading the view.
         self.view.backgroundColor = viewBackColor
-        self.navigation_title_fontsize(name: "公告查看", fontsize: 18)
-        self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
-        self.navigationBar_rightBtn_title(name: "操作")
+        if type == .addNotice{
+            self.navigation_title_fontsize(name: "发布公告", fontsize: 18)
+            self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
+            self.navigationBar_rightBtn_title(name: "确定")
+            request.getobjectlistRequest()
+            
+        } else {
+            self.navigation_title_fontsize(name: "公告查看", fontsize: 18)
+            self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
+            self.navigationBar_rightBtn_title(name: "操作")
+        }
+
         self.creatUI()
     }
     // MARK: - UI
@@ -68,8 +82,9 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
             let cell : FileTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: FileTableViewCellID, for: indexPath) as! FileTableViewCell
             return cell
         } else if indexPath.row == 3 {
-            let cell : ObjectTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: ObjectTableViewCellID, for: indexPath) as! ObjectTableViewCell
-            
+            let cell :SearchStateTableViewCell  = tableView.dequeueReusableCell(withIdentifier: Searchcell_expenseID, for: indexPath) as! SearchStateTableViewCell
+            cell.setData_Object(titleStr: "接受对象")
+            cell.type = .Object
             return cell
         } else {
             let cell : MessageNeedTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: MessageNeedTableViewCellID, for: indexPath) as! MessageNeedTableViewCell
@@ -93,6 +108,13 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
     }
     override func navigationLeftBtnClick() {
         self.navigationController?.popViewController(animated: true)
+    }
+    override func navigationRightBtnClick() {
+        if type == .addNotice{
+            HCLog(message: "确定")
+        } else {
+            HCLog(message: "操作")
+        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

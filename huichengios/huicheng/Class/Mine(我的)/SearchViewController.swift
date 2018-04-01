@@ -80,6 +80,8 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if type == .expense_type {
             stateCell  = tableView.dequeueReusableCell(withIdentifier: Searchcell_expenseID, for: indexPath) as! SearchStateTableViewCell
+            stateCell.type = .searchState
+            stateCell.setData_searchState(titleStr: "状态")
             return stateCell
         } else if type == .finance_type{
             let cell : SearchPersionTableViewCell = tableView.dequeueReusableCell(withIdentifier: Searchcell_finance_typeID, for: indexPath) as! SearchPersionTableViewCell
