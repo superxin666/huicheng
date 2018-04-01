@@ -66,7 +66,7 @@ class CheckcaseViewController: BaseViewController,UITableViewDataSource,UITableV
             return cell1
         } else {
             cell  = tableView.dequeueReusableCell(withIdentifier: CheckcaseTableViewCellID, for: indexPath) as! CheckcaseTableViewCell
-            cell.setData(titleStr: "关系人身份证号码", rowTag: 1)
+            cell.setData(titleStr: "关系人身份证号码", rowTag: 0)
             return cell
         }
     }
@@ -105,6 +105,7 @@ class CheckcaseViewController: BaseViewController,UITableViewDataSource,UITableV
         }
         HCLog(message: cell1.conTent)
         HCLog(message: cell.num)
+        requestVC.checkcaseRequest(n: cell1.conTent, i: cell.num)
     }
 
     override func didReceiveMemoryWarning() {

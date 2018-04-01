@@ -33,7 +33,7 @@ class CheckcaseTableViewCell: UITableViewCell {
     }
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        // Initialization code234321344567564321
 
     }
 
