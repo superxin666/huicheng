@@ -30,6 +30,10 @@ let user_getinfo_api = "uc/user_getinfo?"
 
 /// 修改密码
 let user_editpass_api = "uc/user_editpass?"
+///-----------------------工作
+
+/// 利益冲突检查
+let checkcase_api = "case/checkcase?"
 
 
 //-----------------------法庭信息管理

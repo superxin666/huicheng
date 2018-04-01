@@ -63,7 +63,7 @@
                 <outlet property="textField" destination="ptk-Mn-GR3" id="hJ6-1s-7Bx"/>
                 <outlet property="titleLabel" destination="FGQ-Cl-t3v" id="Mjh-ny-2cv"/>
             </connections>
-            <point key="canvasLocation" x="1049" y="-20"/>
+            <point key="canvasLocation" x="744" y="-53"/>
         </tableViewCell>
     </objects>
 </document>

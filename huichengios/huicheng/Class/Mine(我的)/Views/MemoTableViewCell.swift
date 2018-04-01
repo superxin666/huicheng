@@ -4,7 +4,7 @@
 //
 //  Created by lvxin on 2018/3/22.
 //  Copyright © 2018年 lvxin. All rights reserved.
-//
+//  备忘录cell
 
 import UIKit
 

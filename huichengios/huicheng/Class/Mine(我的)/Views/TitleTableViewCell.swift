@@ -10,17 +10,27 @@ import UIKit
 let TitleTableViewCellH = CGFloat(50)
 let TitleTableViewCellID = "TitleTableViewCell_ID"
 class TitleTableViewCell: UITableViewCell {
-    @IBOutlet weak var textField: UITextField!
-    
     @IBOutlet weak var titleLabel: UILabel!
     
+    var conTent :String = ""
+    
+    
+    @IBOutlet weak var textField: UITextField!
+    
+    @IBOutlet weak var titleNameLabel: UILabel!
+    
+    
     @IBAction func endText(_ sender: UITextField) {
-        
-        
+        if let str = sender.text {
+            conTent = str
+        }
     }
     
     
-    
+    func setData_checkCaseView(titleStr : String) {
+        self.titleNameLabel.textColor = darkblueColor
+        self.titleNameLabel.text = titleStr
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
