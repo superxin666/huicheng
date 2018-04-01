@@ -7,7 +7,8 @@
 //
 
 import UIKit
-
+let ObjectTableViewCellH = CGFloat(50)
+let ObjectTableViewCellID = "ObjectTableViewCell_ID"
 class ObjectTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!

@@ -28,6 +28,9 @@ class WorkBookTableViewCell: UITableViewCell {
     
     }
     
+    /// 工作日志
+    ///
+    /// - Parameter model: <#model description#>
     func setData(model : work_getlistModel)  {
         if let title = model.title {
             self.titleLabel.text = title
@@ -38,6 +41,10 @@ class WorkBookTableViewCell: UITableViewCell {
         
     }
     
+    
+    /// 冲突检查
+    ///
+    /// - Parameter model: <#model description#>
     func setData_checkcase(model : checkcaseModel)  {
         self.statsLabel.backgroundColor = .clear
         self.statsLabel.textColor = UIColor.hc_colorFromRGB(rgbValue: 0x666666)
@@ -56,6 +63,29 @@ class WorkBookTableViewCell: UITableViewCell {
         
         if let workersNameStr = model.workersName {
             self.statsLabel.text = workersNameStr
+        }
+    }
+    
+    /// 公告列表
+    ///
+    /// - Parameter model: <#model description#>
+    func setData_news(model : newslist1Model) {
+        self.statsLabel.backgroundColor = darkblueColor
+        if let titleStr = model.title {
+            self.titleLabel.text = titleStr
+        }
+        var timeStr = ""
+        
+        if let createtime = model.createtime {
+            timeStr = createtime
+        }
+        if let userStr = model.user {
+            timeStr = timeStr + userStr
+        }
+        self.timeLabel.text = timeStr
+        
+        if let stateStr = model.state {
+            self.statsLabel.text = stateStr
         }
     }
     

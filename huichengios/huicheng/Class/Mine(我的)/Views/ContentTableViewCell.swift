@@ -15,6 +15,7 @@ class ContentTableViewCell: UITableViewCell,UITextViewDelegate {
     
     @IBOutlet weak var textView: UITextView!
     
+    var conTent :String = ""
     
     func textViewDidEndEditing(_ textView: UITextView) {
         HCLog(message: textView.text!)

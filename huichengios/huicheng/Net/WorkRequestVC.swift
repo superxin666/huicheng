@@ -9,7 +9,9 @@
 import UIKit
 import ObjectMapper
 enum WorkRequestVC_enum {
-    case checkcase
+    //
+    case checkcase,//利益冲突检查
+         newslist1//公告  获取列表
 }
 protocol WorkRequestVCDelegate : NSObjectProtocol{
     //
@@ -38,13 +40,42 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
     
     
     
+
+    
+    /// <#Description#>
+    ///
+    /// - Parameters:
+    ///   - p: 当前页码
+    ///   - c: 每页显示条数
+    ///   - bid: 分所 ID，INT 型，可不传
+    ///   - t: 标题
+    ///   - b: 发布时间段-开始
+    ///   - e: 发布时间段-结束
+    ///   - u: 发布者
+    func newslist1Request(p:Int,c:Int,bid:Int,t:String,b:String,e:String,u:String) {
+        request.delegate = self
+        type = .newslist1
+        let url =   newslist1_api + "p=\(p)&c=\(c)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+    }
+    
+    
     func requestSucceed(response: Any) {
         if type == .checkcase {
+            //利益冲突检查
             let arr = Mapper<checkcaseModel>().mapArray(JSONArray: response as! [[String : Any]])
             HCLog(message: arr.count)
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed(data: arr)
             }
+        } else if type == .newslist1{
+            //公告  获取列表
+            let arr = Mapper<newslist1Model>().mapArray(JSONArray: response as! [[String : Any]])
+            HCLog(message: arr.count)
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed(data: arr)
+            }
+            
         }
     }
     

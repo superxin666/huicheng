@@ -35,6 +35,8 @@ let user_editpass_api = "uc/user_editpass?"
 /// 利益冲突检查
 let checkcase_api = "case/checkcase?"
 
+/// 公告管理 获取列表
+let newslist1_api = "message/newslist1?"
 
 //-----------------------法庭信息管理
 let quick_getlist_api = "quick/getlist?"

@@ -163,6 +163,10 @@ class WorkViewController: BaseViewController,UITableViewDelegate,UITableViewData
                 HCLog(message: "会议室预约")
             case 1:
                 HCLog(message: "发布公告")
+                let vc = NoticeViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+                
             case 2:
                 HCLog(message: "共享模板")
             default:

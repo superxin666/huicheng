@@ -7,7 +7,8 @@
 //
 
 import UIKit
-
+let MessageNeedTableViewCellH = CGFloat(50)
+let MessageNeedTableViewCellID = "MessageNeedTableViewCell_ID"
 class MessageNeedTableViewCell: UITableViewCell {
     @IBOutlet weak var `switch`: UISwitch!
     

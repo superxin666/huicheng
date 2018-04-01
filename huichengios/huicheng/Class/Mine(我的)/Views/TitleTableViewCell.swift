@@ -27,10 +27,23 @@ class TitleTableViewCell: UITableViewCell {
     }
     
     
+    /// 利益冲突
+    ///
+    /// - Parameter titleStr: <#titleStr description#>
     func setData_checkCaseView(titleStr : String) {
         self.titleNameLabel.textColor = darkblueColor
         self.titleNameLabel.text = titleStr
     }
+    
+    
+    /// 发布公告
+    ///
+    /// - Parameter titleStr: <#titleStr description#>
+    func setData_AddNotice(titleStr : String) {
+        self.titleNameLabel.textColor = darkblueColor
+        self.titleNameLabel.text = titleStr
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
