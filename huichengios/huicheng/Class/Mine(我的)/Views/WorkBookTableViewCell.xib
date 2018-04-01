@@ -32,10 +32,13 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="未读" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hWL-KQ-gQ0">
-                        <rect key="frame" x="310" y="40" width="50" height="20"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未读未读" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hWL-KQ-gQ0">
+                        <rect key="frame" x="300" y="40" width="60" height="20"/>
                         <color key="backgroundColor" red="0.090196078430000007" green="0.2274509804" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="IkI-0S-ibM"/>
+                            <constraint firstAttribute="width" constant="60" id="dCk-wh-O5d"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -46,6 +49,10 @@
                         <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="hWL-KQ-gQ0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="40" id="391-r4-Z7x"/>
+                    <constraint firstAttribute="trailing" secondItem="hWL-KQ-gQ0" secondAttribute="trailing" constant="15" id="VMb-mO-fNb"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="statsLabel" destination="hWL-KQ-gQ0" id="AAZ-k1-1Sv"/>

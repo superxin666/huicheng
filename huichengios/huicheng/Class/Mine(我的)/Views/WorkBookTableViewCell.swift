@@ -39,7 +39,24 @@ class WorkBookTableViewCell: UITableViewCell {
     }
     
     func setData_checkcase(model : checkcaseModel)  {
+        self.statsLabel.backgroundColor = .clear
+        self.statsLabel.textColor = UIColor.hc_colorFromRGB(rgbValue: 0x666666)
+        if let nameStr = model.name {
+            self.titleLabel.text = nameStr
+        }
+        var timeStr = ""
         
+        if let regtime = model.regtime {
+            timeStr = regtime
+        }
+        if let workersNameStr = model.workersName {
+            timeStr = timeStr + workersNameStr
+        }
+        self.timeLabel.text = timeStr
+        
+        if let workersNameStr = model.workersName {
+            self.statsLabel.text = workersNameStr
+        }
     }
     
 }
