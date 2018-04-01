@@ -52,7 +52,7 @@
                 <outlet property="timeLabel" destination="6Gp-Hz-4cB" id="QSw-L7-KGR"/>
                 <outlet property="titleLabel" destination="YzR-KD-HnG" id="aW0-WX-4vd"/>
             </connections>
-            <point key="canvasLocation" x="-10" y="70"/>
+            <point key="canvasLocation" x="-161" y="34"/>
         </tableViewCell>
     </objects>
 </document>

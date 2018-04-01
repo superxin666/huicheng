@@ -77,6 +77,7 @@ class CheckcaseViewController: BaseViewController,UITableViewDataSource,UITableV
         if arr.count > 0 {
             let vc = CheckcaseResultViewController()
             vc.hidesBottomBarWhenPushed = true
+            vc.dataArr = arr
             self.navigationController?.pushViewController(vc, animated: true)
         }  else {
             SVPMessageShow.showErro(infoStr: "暂无数据")

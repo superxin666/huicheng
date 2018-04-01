@@ -7,6 +7,8 @@
 //  工作日志列表
 
 import UIKit
+let workbookcellHeight = CGFloat(80)
+let workbookcellid = "workbookcel_id"
 
 class WorkBookTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
@@ -33,6 +35,10 @@ class WorkBookTableViewCell: UITableViewCell {
         if let time = model.addtime {
             self.timeLabel.text = time
         }
+        
+    }
+    
+    func setData_checkcase(model : checkcaseModel)  {
         
     }
     

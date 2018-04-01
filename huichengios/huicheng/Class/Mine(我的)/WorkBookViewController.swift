@@ -7,8 +7,7 @@
 //  工作日志
 
 import UIKit
-let workbookcellHeight = CGFloat(80)
-let workbookcellid = "workbookcel_id"
+
 
 class WorkBookViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate ,MineRequestVCDelegate {
     let mainTabelView : UITableView = UITableView()
