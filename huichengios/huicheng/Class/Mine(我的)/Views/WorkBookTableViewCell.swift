@@ -77,7 +77,7 @@ class WorkBookTableViewCell: UITableViewCell {
         var timeStr = ""
         
         if let createtime = model.createtime {
-            timeStr = createtime
+            timeStr = String.hc_getDate_string(dateStr: createtime)
         }
         if let userStr = model.user {
             timeStr = timeStr + userStr
