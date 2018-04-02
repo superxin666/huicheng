@@ -1,15 +1,17 @@
 //
-//  SearchTimeTableViewCell.swift
+//  endTimeTableViewCell.swift
 //  huicheng
 //
-//  Created by lvxin on 2018/3/31.
+//  Created by lvxin on 2018/4/2.
 //  Copyright © 2018年 lvxin. All rights reserved.
 //
 
 import UIKit
 
-class SearchTimeTableViewCell: UITableViewCell {
-
+class endTimeTableViewCell: UITableViewCell {
+    @IBOutlet weak var titleNameLabel: UILabel!
+    
+    @IBOutlet weak var timeLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
