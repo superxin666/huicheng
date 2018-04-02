@@ -72,7 +72,7 @@ class CheckcaseViewController: BaseViewController,UITableViewDataSource,UITableV
     }
     
     
-    func requestSucceed(data: Any) {
+    func requestSucceed(data: Any,type : WorkRequestVC_enum) {
         let arr : [checkcaseModel] = data as! [checkcaseModel]
         if arr.count > 0 {
             let vc = CheckcaseResultViewController()

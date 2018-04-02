@@ -15,7 +15,7 @@ enum WorkRequestVC_enum {
 }
 protocol WorkRequestVCDelegate : NSObjectProtocol{
     //
-    func requestSucceed(data:Any) -> Void
+    func requestSucceed(data:Any,type : WorkRequestVC_enum) -> Void
     func requestFail() -> Void
     
 }
@@ -68,6 +68,28 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
         request.request_api(url: url)
     }
     
+    /// <#Description#>
+    ///
+    /// - Parameters:
+    ///   - id: 添加信息时可不值，编辑信息时必传;
+    ///   - t: 标题
+    ///   - n: 内容，支持富文本
+    ///   - o: 接收对象，INT 型
+    ///   - s: 状态，INT 型 0-未发布;1-已发布
+    ///   - d: 是否发送短信，INT 型 返回值
+    func saveRequest(id:String,t:String,n:String,o:String,s:Int,d:Int) {
+        request.delegate = self
+        type = .save
+        let tStr : String = t.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let nStr : String = n.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+
+        let url =   save_api + "t=\(tStr)&n=\(nStr)&o=\(o)&s=\(s)&d=\(d)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+
+    }
+    
+    
+    
     
     
     func requestSucceed(response: Any) {
@@ -76,14 +98,14 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
             let arr = Mapper<checkcaseModel>().mapArray(JSONArray: response as! [[String : Any]])
             HCLog(message: arr.count)
             if !(self.delegate == nil) {
-                self.delegate.requestSucceed(data: arr)
+                self.delegate.requestSucceed(data: arr,type : type)
             }
         } else if type == .newslist1{
             //公告  获取列表
             let arr = Mapper<newslist1Model>().mapArray(JSONArray: response as! [[String : Any]])
             HCLog(message: arr.count)
             if !(self.delegate == nil) {
-                self.delegate.requestSucceed(data: arr)
+                self.delegate.requestSucceed(data: arr,type : type)
             }
             
         } else if type == .getobjectlist{
@@ -91,7 +113,13 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
             let arr = Mapper<getobjectlistModel>().mapArray(JSONArray: response as! [[String : Any]])
             HCLog(message: arr.count)
             if !(self.delegate == nil) {
-                self.delegate.requestSucceed(data: arr)
+                self.delegate.requestSucceed(data: arr,type : type)
+            }
+        } else if type == .save{
+            //发布公告
+            let model = Mapper<CodeData>().map(JSON: response as! [String : Any])!
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed(data: model,type : type)
             }
         }
     }

@@ -13,9 +13,17 @@ class MessageNeedTableViewCell: UITableViewCell {
     @IBOutlet weak var `switch`: UISwitch!
     @IBOutlet weak var titleLabel: UILabel!
     
+    /// 0-不发;1-发短信 默认不发
+    var need : Int = 0
     
     @IBAction func switchValueChanged(_ sender: UISwitch) {
-        
+        HCLog(message: sender.isOn)
+        if sender.isOn {
+            need = 1
+        } else {
+            need = 0
+        }
+
         
     }
     

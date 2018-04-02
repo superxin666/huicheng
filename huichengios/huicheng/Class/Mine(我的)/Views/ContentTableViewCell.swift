@@ -19,6 +19,10 @@ class ContentTableViewCell: UITableViewCell,UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         HCLog(message: textView.text!)
+        if let str = textView.text {
+            conTent = str
+        }
+
     }
     
     

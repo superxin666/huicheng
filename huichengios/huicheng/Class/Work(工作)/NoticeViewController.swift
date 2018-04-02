@@ -73,7 +73,7 @@ class NoticeViewController: BaseViewController,UITableViewDataSource,UITableView
         return workbookcellHeight
     }
     
-    func requestSucceed(data: Any) {
+    func requestSucceed(data: Any,type : WorkRequestVC_enum) {
         let arr : [newslist1Model] = data as! [newslist1Model]
         if arr.count > 0 {
             dataArr = arr + dataArr
@@ -109,6 +109,7 @@ class NoticeViewController: BaseViewController,UITableViewDataSource,UITableView
         HCLog(message: "添加")
         let vc = AddNoticeViewController()
         vc.hidesBottomBarWhenPushed = true
+        vc.type = .addNotice
         self.navigationController?.pushViewController(vc, animated: true)
         
     }

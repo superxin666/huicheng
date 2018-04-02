@@ -16,13 +16,13 @@ class SearchStateTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerV
     //0 1 2 3
     var nameArr = ["未审核","已审核","审核驳回","已支付",]
     var idArr = ["0","1","2","3",]
-    var cuurectID : String!
+    var cuurectID : String = ""
     //接受对象
     //数组
-    var dataArr : [getobjectlistModel]!
+    var dataArr : [getobjectlistModel] = []
     
-    /// 类型
-    var type :SearchStateTableViewCellType!
+    /// 类型 默认搜索
+    var type :SearchStateTableViewCellType = .searchState
     
     @IBOutlet weak var titleNameLabel: UILabel!
     @IBOutlet weak var pickView: UIPickerView!

@@ -15,6 +15,10 @@ class ObjectTableViewCell: UITableViewCell {
     @IBOutlet weak var pickView: UIPickerView!
     
     
+    /// 对象id
+    var objectId : Int!
+    
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
