@@ -15,9 +15,8 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="160"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="LKz-qO-zwU">
+                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="LKz-qO-zwU">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="160"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <date key="date" timeIntervalSinceReferenceDate="544284415.97767198">
                         <!--2018-04-01 14:06:55 +0000-->
                     </date>
@@ -27,6 +26,12 @@
                 </datePicker>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="LKz-qO-zwU" secondAttribute="trailing" id="8ni-OL-Fmn"/>
+                <constraint firstItem="LKz-qO-zwU" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="9Gw-wc-w6s"/>
+                <constraint firstAttribute="bottom" secondItem="LKz-qO-zwU" secondAttribute="bottom" id="mRt-6B-JC6"/>
+                <constraint firstItem="LKz-qO-zwU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="nar-1U-QFw"/>
+            </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

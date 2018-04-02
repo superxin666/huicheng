@@ -17,11 +17,15 @@ class DatePickView: UIView {
         // Drawing code
     }
     */
+    var timeStr : String = ""
+    
     @IBAction func timeChange(_ sender: UIDatePicker) {
         
         
         HCLog(message: sender.date)
-        let timeStr = String.hc_getDate(date: sender.date)
+        let str = String.hc_getDate(date: sender.date)
+        HCLog(message: str)
+        timeStr = str
    
     }
     
