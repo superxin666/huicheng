@@ -76,7 +76,7 @@ class NoticeViewController: BaseViewController,UITableViewDataSource,UITableView
     func requestSucceed(data: Any,type : WorkRequestVC_enum) {
         let arr : [newslist1Model] = data as! [newslist1Model]
         if arr.count > 0 {
-            dataArr = arr + dataArr
+            dataArr =  dataArr + arr
         } else {
             if pageNum > 1 {
                 SVPMessageShow.showErro(infoStr: "已经加载所有数据")
