@@ -8,8 +8,8 @@
 
 import UIKit
 enum AddNoticeViewController_type {
-//    添加  详情
-    case addNotice,detail
+//    添加  详情  编辑
+    case addNotice,detail,edit
 }
 typealias AddNoticeViewControllerBlock = ()->()
 
@@ -42,6 +42,9 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
     
     var reflishBlock : AddNoticeViewControllerBlock!
     
+    var rowNum = 5
+    
+    
     
     // MARK: - life
     override func viewWillLayoutSubviews() {
@@ -63,6 +66,7 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
             self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
             self.navigationBar_rightBtn_title(name: "确定")
             request.getobjectlistRequest()
+            rowNum = 5
             
             
         } else {
@@ -70,6 +74,7 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
             self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
             self.navigationBar_rightBtn_title(name: "操作")
             messageRequest.newsdetialRequest(id: detailId)
+            rowNum = 4
         }
         self.creatUI()
     }
@@ -95,7 +100,11 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        if self.type == .addNotice {
+            return 4
+        } else {
+            return 5
+        }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
@@ -245,6 +254,9 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
  
             self.addRequest()
             
+        } else if type == .edit{
+            self.editeRequest()
+
         } else {
             HCLog(message: "操作")
             weak var weakself = self
@@ -322,6 +334,11 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
                 
             } else if self.actionNum == 2 {
                 //编辑
+                self.rowNum = 5
+                self.type = .edit
+                self.navigationBar_rightBtn_title(name: "确定")
+
+                self.mainTabelView.reloadData()
                 self.editeRequest()
                 
             } else {
