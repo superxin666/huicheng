@@ -118,7 +118,7 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
         }
     }
     
-    func requestSucceed(data: Any, type: WorkRequestVC_enum) {
+    func requestSucceed_work(data: Any, type: WorkRequestVC_enum) {
         SVPMessageShow.dismissSVP()
         if type == .getobjectlist {
             //获取对象
@@ -134,7 +134,7 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
         }
     }
     
-    func requestFail() {
+    func requestFail_work() {
         
     }
     

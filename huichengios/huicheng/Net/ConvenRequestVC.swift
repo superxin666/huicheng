@@ -13,8 +13,8 @@ enum ConvenRequestVC_enum {
     case getlist
 }
 protocol ConvenRequestVCDelegate {
-    func requestSucceed(data : Any,type : ConvenRequestVC_enum) -> Void
-    func requestFail() -> Void
+    func requestSucceed_con(data : Any,type : ConvenRequestVC_enum) -> Void
+    func requestFail_con() -> Void
     
 }
 
@@ -44,7 +44,7 @@ class ConvenRequestVC: UIViewController, BaseNetViewControllerDelegate {
             let arr = Mapper<quick_getlistModel>().mapArray(JSONArray: response as! [[String : Any]])
             HCLog(message: arr.count)
             if !(self.delegate == nil) {
-                self.delegate.requestSucceed(data: arr,type : .getlist)
+                self.delegate.requestSucceed_con(data: arr,type : .getlist)
             }
         }
     }

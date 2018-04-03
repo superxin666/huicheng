@@ -73,7 +73,7 @@ class NoticeViewController: BaseViewController,UITableViewDataSource,UITableView
         return workbookcellHeight
     }
     
-    func requestSucceed(data: Any,type : WorkRequestVC_enum) {
+    func requestSucceed_work(data: Any,type : WorkRequestVC_enum) {
         let arr : [newslist1Model] = data as! [newslist1Model]
         if arr.count > 0 {
             dataArr =  dataArr + arr
@@ -88,7 +88,7 @@ class NoticeViewController: BaseViewController,UITableViewDataSource,UITableView
         }
 
     }
-    func requestFail() {
+    func requestFail_work() {
         
     }
     func requestApi() {

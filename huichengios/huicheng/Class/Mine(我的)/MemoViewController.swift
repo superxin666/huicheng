@@ -87,7 +87,7 @@ class MemoViewController:  BaseViewController,UITableViewDataSource,UITableViewD
         return IncomeTableViewCellH
     }
     
-    func requestSucceed(data: Any,type : MineRequestVC_enum) {
+    func requestSucceed_mine(data: Any,type : MineRequestVC_enum) {
     
         let arr = data as! [memo_getlistModel]
         if arr.count > 0 {
@@ -112,7 +112,7 @@ class MemoViewController:  BaseViewController,UITableViewDataSource,UITableViewD
         }
 
     }
-    func requestFail() {
+    func requestFail_mine() {
         
     }
        // MARK: - data

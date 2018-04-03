@@ -18,8 +18,8 @@ enum MineRequestVC_enum {
 }
 
 protocol MineRequestVCDelegate {
-    func requestSucceed(data : Any,type : MineRequestVC_enum) -> Void
-    func requestFail() -> Void
+    func requestSucceed_mine(data : Any,type : MineRequestVC_enum) -> Void
+    func requestFail_mine() -> Void
     
 }
 
@@ -241,7 +241,7 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
         if type == .user_getinfo {
             let model = Mapper<user_getinfoModel>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {
-                self.delegate.requestSucceed(data: model,type : .user_getinfo)
+                self.delegate.requestSucceed_mine(data: model,type : .user_getinfo)
             }
         }  else if type == .memo_getlist {
             //备忘录 列表
@@ -250,24 +250,24 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
             let arr = Mapper<memo_getlistModel>().mapArray(JSONArray: response as! [[String : Any]])
             HCLog(message: arr.count)
             if !(self.delegate == nil) {
-                self.delegate.requestSucceed(data: arr,type : .memo_getlist)
+                self.delegate.requestSucceed_mine(data: arr,type : .memo_getlist)
             }
         }else if type == .memo_getinfo {
             //备忘录 详情
             let model = Mapper<memo_getinfoModel>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {
-                self.delegate.requestSucceed(data: model,type : .memo_getinfo)
+                self.delegate.requestSucceed_mine(data: model,type : .memo_getinfo)
             }
         } else if (type == .memo_save) || (type == .memo_del) || (type == .expense_save) || (type == .user_editpass){
             let model = Mapper<CodeData>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {
-                self.delegate.requestSucceed(data: model,type : type)
+                self.delegate.requestSucceed_mine(data: model,type : type)
             }
         } else if type == .expense_getinfo{
             //报销详情
             let model = Mapper<expense_getinfoModel>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {
-                self.delegate.requestSucceed(data: model,type : type)
+                self.delegate.requestSucceed_mine(data: model,type : type)
             }
 
             
@@ -276,7 +276,7 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
             let arr = Mapper<expense_getlistModel>().mapArray(JSONArray: response as! [[String : Any]])
             HCLog(message: arr.count)
             if !(self.delegate == nil) {
-                self.delegate.requestSucceed(data: arr,type : type)
+                self.delegate.requestSucceed_mine(data: arr,type : type)
             }
             
         } else if type == .expense_gettype{
@@ -284,7 +284,7 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
             let arr = Mapper<expense_gettypeModel>().mapArray(JSONArray: response as! [[String : Any]])
             HCLog(message: arr.count)
             if !(self.delegate == nil) {
-                self.delegate.requestSucceed(data: arr,type : type)
+                self.delegate.requestSucceed_mine(data: arr,type : type)
             }
         } else if type == .invoice_getlist{
             //发票列表
@@ -292,7 +292,7 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
             let arr = Mapper<invoice_getlistModel>().mapArray(JSONArray: response as! [[String : Any]])
             HCLog(message: arr.count)
             if !(self.delegate == nil) {
-                self.delegate.requestSucceed(data: arr,type : type)
+                self.delegate.requestSucceed_mine(data: arr,type : type)
             }
             
         } else if type == .work_getlist{
@@ -300,7 +300,7 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
             let arr = Mapper<work_getlistModel>().mapArray(JSONArray: response as! [[String : Any]])
             HCLog(message: arr.count)
             if !(self.delegate == nil) {
-                self.delegate.requestSucceed(data: arr,type : type)
+                self.delegate.requestSucceed_mine(data: arr,type : type)
             }
 
         } else if type == .finance_getlist{
@@ -308,7 +308,7 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
             let arr = Mapper<finance_getlistModel>().mapArray(JSONArray: response as! [[String : Any]])
             HCLog(message: arr.count)
             if !(self.delegate == nil) {
-                self.delegate.requestSucceed(data: arr,type : type)
+                self.delegate.requestSucceed_mine(data: arr,type : type)
             }
 
         }

@@ -149,7 +149,7 @@ class AddMemoViewController: BaseViewController,MineRequestVCDelegate {
 
 
     // MARK: - delegate
-    func requestSucceed(data: Any,type : MineRequestVC_enum) {
+    func requestSucceed_mine(data: Any,type : MineRequestVC_enum) {
         if type == .memo_save {
             //添加
             let model = data as! CodeData
@@ -170,7 +170,7 @@ class AddMemoViewController: BaseViewController,MineRequestVCDelegate {
         }
     }
     
-    func requestFail() {
+    func requestFail_mine() {
         
     }
     

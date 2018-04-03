@@ -39,11 +39,11 @@ class PubMessageConViewController: BaseViewController,MessageRequestVCDelegate {
             request.newsdetialRequest(id: newsID)
         }
     }
-    func requestSucceed(data: Any) {
+    func requestSucceed_message(data: Any) {
         let model : newsdetialModel = data as! newsdetialModel
         contentView.setData(model: model)
     }
-    func requestFail() {
+    func requestFail_message() {
         
     }
     override func navigationLeftBtnClick() {

@@ -84,7 +84,7 @@ class InvoiceViewController:  BaseViewController, UITableViewDataSource, UITable
         return InvoiceViewTableViewCellH
     }
     
-    func requestSucceed(data: Any,type : MineRequestVC_enum) {
+    func requestSucceed_mine(data: Any,type : MineRequestVC_enum) {
         let arr = data as! [invoice_getlistModel]
         if arr.count > 0 {
             dataArr = dataArr + arr
@@ -102,7 +102,7 @@ class InvoiceViewController:  BaseViewController, UITableViewDataSource, UITable
             mainTabelView.mj_header.endRefreshing()
         }
     }
-    func requestFail() {
+    func requestFail_mine() {
         
     }
     // MARK: - data

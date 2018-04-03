@@ -15,8 +15,8 @@ enum WorkRequestVC_enum {
 }
 protocol WorkRequestVCDelegate : NSObjectProtocol{
     //
-    func requestSucceed(data:Any,type : WorkRequestVC_enum) -> Void
-    func requestFail() -> Void
+    func requestSucceed_work(data:Any,type : WorkRequestVC_enum) -> Void
+    func requestFail_work() -> Void
     
 }
 
@@ -98,14 +98,14 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
             let arr = Mapper<checkcaseModel>().mapArray(JSONArray: response as! [[String : Any]])
             HCLog(message: arr.count)
             if !(self.delegate == nil) {
-                self.delegate.requestSucceed(data: arr,type : type)
+                self.delegate.requestSucceed_work(data: arr,type : type)
             }
         } else if type == .newslist1{
             //公告  获取列表
             let arr = Mapper<newslist1Model>().mapArray(JSONArray: response as! [[String : Any]])
             HCLog(message: arr.count)
             if !(self.delegate == nil) {
-                self.delegate.requestSucceed(data: arr,type : type)
+                self.delegate.requestSucceed_work(data: arr,type : type)
             }
             
         } else if type == .getobjectlist{
@@ -113,13 +113,13 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
             let arr = Mapper<getobjectlistModel>().mapArray(JSONArray: response as! [[String : Any]])
             HCLog(message: arr.count)
             if !(self.delegate == nil) {
-                self.delegate.requestSucceed(data: arr,type : type)
+                self.delegate.requestSucceed_work(data: arr,type : type)
             }
         } else if type == .save{
             //发布公告
             let model = Mapper<CodeData>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {
-                self.delegate.requestSucceed(data: model,type : type)
+                self.delegate.requestSucceed_work(data: model,type : type)
             }
         }
     }

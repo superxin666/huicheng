@@ -93,7 +93,7 @@ class ConvenViewController: BaseViewController,ConbenTopViewDelegate,UITableView
         return ConVenTableViewCellH
     }
     //net
-    func requestSucceed(data: Any, type: ConvenRequestVC_enum) {
+    func requestSucceed_con(data: Any, type: ConvenRequestVC_enum) {
         let arr  = data as! [quick_getlistModel]
         if arr.count > 0 {
             if pageNum > 1 {
@@ -110,7 +110,7 @@ class ConvenViewController: BaseViewController,ConbenTopViewDelegate,UITableView
         }
         mainTabelView.reloadData()
     }
-    func requestFail() {
+    func requestFail_con() {
         
     }
     // MARK: - net

@@ -85,12 +85,12 @@ class FinanceDetialViewController: BaseViewController,MineRequestVCDelegate,UITa
         return view
         
     }
-    func requestSucceed(data: Any,type : MineRequestVC_enum) {
+    func requestSucceed_mine(data: Any,type : MineRequestVC_enum) {
         let model : finance_getinfoModel = data as! finance_getinfoModel
         
         
     }
-    func requestFail() {
+    func requestFail_mine() {
         
     }
     override func navigationLeftBtnClick() {

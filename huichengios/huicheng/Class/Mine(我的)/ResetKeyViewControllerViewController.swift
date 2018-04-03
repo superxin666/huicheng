@@ -32,7 +32,7 @@ class ResetKeyViewControllerViewController: BaseViewController,MineRequestVCDele
     }
     
     // MARK: - delegate
-    func requestSucceed(data: Any,type : MineRequestVC_enum) {
+    func requestSucceed_mine(data: Any,type : MineRequestVC_enum) {
         let model = data as! CodeData
         if model.code == 1 {
             UserInfoLoaclManger.cleanKey()
@@ -42,7 +42,7 @@ class ResetKeyViewControllerViewController: BaseViewController,MineRequestVCDele
         
     }
     
-    func requestFail() {
+    func requestFail_mine() {
         
     }
 

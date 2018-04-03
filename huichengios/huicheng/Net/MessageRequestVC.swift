@@ -13,8 +13,8 @@ enum MessageRequestVC_enum {
 }
 protocol MessageRequestVCDelegate : NSObjectProtocol{
     //
-    func requestSucceed(data:Any) -> Void
-     func requestFail() -> Void
+    func requestSucceed_message(data:Any) -> Void
+     func requestFail_message() -> Void
 
 }
 
@@ -67,18 +67,18 @@ class MessageRequestVC: UIViewController,BaseNetViewControllerDelegate {
             let arr = Mapper<noticelistModel>().mapArray(JSONArray: response as! [[String : Any]])
             HCLog(message: arr.count)
             if !(self.delegate == nil) {
-                self.delegate.requestSucceed(data: arr)
+                self.delegate.requestSucceed_message(data: arr)
             }
         } else if type == .newslist{
             let arr = Mapper<newslistModel>().mapArray(JSONArray: response as! [[String : Any]])
             HCLog(message: arr.count)
             if !(self.delegate == nil) {
-                self.delegate.requestSucceed(data: arr)
+                self.delegate.requestSucceed_message(data: arr)
             }
         } else if type == .newsdetial{
             let model = Mapper<newsdetialModel>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {
-                self.delegate.requestSucceed(data: model)
+                self.delegate.requestSucceed_message(data: model)
                 
             }
 

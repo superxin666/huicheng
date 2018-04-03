@@ -83,11 +83,11 @@ class FinanceViewController:  BaseViewController,UITableViewDataSource,UITableVi
         return IncomeTableViewCellH
     }
     
-    func requestSucceed(data: Any,type : MineRequestVC_enum) {
+    func requestSucceed_mine(data: Any,type : MineRequestVC_enum) {
         dataArr = data as! [finance_getlistModel]
         mainTabelView.reloadData()
     }
-    func requestFail() {
+    func requestFail_mine() {
         
     }
     

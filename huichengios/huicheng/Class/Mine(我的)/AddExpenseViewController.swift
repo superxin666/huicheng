@@ -54,7 +54,7 @@ class AddExpenseViewController: BaseViewController ,MineRequestVCDelegate{
 
     }
     // MARK: - delegate
-    func requestSucceed(data: Any, type: MineRequestVC_enum) {
+    func requestSucceed_mine(data: Any, type: MineRequestVC_enum) {
         if type == .expense_save {
             //保存
             let model : CodeData = data as! CodeData
@@ -83,7 +83,7 @@ class AddExpenseViewController: BaseViewController ,MineRequestVCDelegate{
 
         }
     }
-    func requestFail() {
+    func requestFail_mine() {
         
     }
     // MARK: - response

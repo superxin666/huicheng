@@ -84,12 +84,12 @@ class PubMessageViewController: BaseViewController,UITableViewDelegate,UITableVi
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    func requestSucceed(data: Any) {
+    func requestSucceed_message(data: Any) {
         dataArr = data as! [newslistModel]
         HCLog(message: dataArr.count)
         mainTabelView.reloadData()
     }
-    func requestFail() {
+    func requestFail_message() {
         
     }
     // MARK: - event reponse

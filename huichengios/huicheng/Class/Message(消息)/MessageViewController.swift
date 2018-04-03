@@ -80,7 +80,7 @@ class MessageViewController: BaseViewController,UITableViewDelegate,UITableViewD
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return message_cell_height
     }
-    func requestSucceed(data: Any) {
+    func requestSucceed_message(data: Any) {
         let arr = data as! [noticelistModel]
         if arr.count > 0 {
             dataArr = dataArr + arr
@@ -98,7 +98,7 @@ class MessageViewController: BaseViewController,UITableViewDelegate,UITableViewD
 
         }
     }
-    func requestFail() {
+    func requestFail_message() {
         
     }
     // MARK: - data
