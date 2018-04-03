@@ -12,20 +12,30 @@ enum AddNoticeViewController_type {
     case addNotice,detail
 }
 
-class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate,WorkRequestVCDelegate {
+class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate,WorkRequestVCDelegate,MessageRequestVCDelegate {
     let mainTabelView : UITableView = UITableView()
     let request : WorkRequestVC = WorkRequestVC()
+    let messageRequest : MessageRequestVC = MessageRequestVC()
+    
     
     /// 类型
     var type : AddNoticeViewController_type!
+    /// 详情id
+    var detailId : Int!
+    
     /// 详情数据模型
-    var detailModel : newslist1Model!
+    var detailModel : newsdetialModel!
+    
     
     var titleCell : TitleTableViewCell!
     var contentCell : ContentTableViewCell!
     var fileCell : FileTableViewCell!
     var objectCell :SearchStateTableViewCell!
     var messageCell : MessageNeedTableViewCell!
+    
+     var alertController : UIAlertController!
+
+    
     // MARK: - life
     override func viewWillLayoutSubviews() {
         mainTabelView.snp.makeConstraints { (make) in
@@ -40,17 +50,19 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
         // Do any additional setup after loading the view.
         self.view.backgroundColor = viewBackColor
         request.delegate = self
+        messageRequest.delegate = self
         if type == .addNotice{
             self.navigation_title_fontsize(name: "发布公告", fontsize: 18)
             self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
             self.navigationBar_rightBtn_title(name: "确定")
-//            request.getobjectlistRequest()
+            request.getobjectlistRequest()
             
             
         } else {
             self.navigation_title_fontsize(name: "公告查看", fontsize: 18)
             self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
             self.navigationBar_rightBtn_title(name: "操作")
+            messageRequest.newsdetialRequest(id: detailId)
         }
         self.creatUI()
     }
@@ -94,8 +106,6 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
             objectCell  = tableView.dequeueReusableCell(withIdentifier: Searchcell_expenseID, for: indexPath) as! SearchStateTableViewCell
             objectCell.type = .Object
             objectCell.setData_Object(titleStr: "接受对象")
-            
-            
             return objectCell
         } else {
             messageCell  = tableView.dequeueReusableCell(withIdentifier: MessageNeedTableViewCellID, for: indexPath) as! MessageNeedTableViewCell
@@ -117,14 +127,18 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
             return MessageNeedTableViewCellH
         }
     }
-    
+    // MARK: - net
+
     func requestSucceed_work(data: Any, type: WorkRequestVC_enum) {
         SVPMessageShow.dismissSVP()
         if type == .getobjectlist {
             //获取对象
             let arr : [getobjectlistModel] = data as! [getobjectlistModel]
             self.objectCell.dataArr = arr
-            self.objectCell.reloadInputViews()
+      
+            HCLog(message: self.objectCell.dataArr.count)
+            
+            self.objectCell.pickView.reloadAllComponents()
         } else if type == .save {
             //发布
             let model : CodeData = data as! CodeData
@@ -138,12 +152,24 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
         
     }
     
-    // MARK: - net
     
+    func requestSucceed_message(data: Any) {
+        let model : newsdetialModel = data as! newsdetialModel
+        detailModel = model
+        titleCell.setData_noticeDetail(titleStr: "", contentStr: model.title)
+        contentCell.setData_notice(contentStr: model.content)
+        let objectmodel : getobjectlistModel = getobjectlistModel()
+        objectmodel.name = model.object
+        objectmodel.id = 0
+        objectCell.dataArr = [objectmodel]
+        objectCell.pickView.reloadAllComponents()
+//        messageCell.setData_needState(need: model)
+        
+    }
     
-    
-    
-    
+    func requestFail_message() {
+        
+    }
     
     override func navigationLeftBtnClick() {
         self.navigationController?.popViewController(animated: true)
@@ -179,8 +205,86 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
             
         } else {
             HCLog(message: "操作")
+            weak var weakself = self
+            if detailModel.state == 1 {
+                //已经发布 只有撤回
+                alertController = UIAlertController(title: nil, message: "", preferredStyle: .actionSheet)
+                let sureAction = UIAlertAction(title: "撤回", style: .default) { (action) in
+                    HCLog(message: "撤回")
+                    weakself?.showSure()
+                }
+                let cancleAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
+                    self.alertController.dismiss(animated: true, completion: {
+                        
+                    })
+                }
+                alertController.addAction(cancleAction)
+                alertController.addAction(sureAction)
+                self.present((alertController)!, animated: true, completion: nil)
+
+                
+            } else {
+                //未发布 已经撤回  发布 修改 删除
+                alertController = UIAlertController(title: nil, message: "", preferredStyle: .actionSheet)
+                
+                
+                let action1 = UIAlertAction(title: "发布", style: .default) { (action) in
+                    HCLog(message: "发布")
+                    self.alertController.dismiss(animated: true, completion: {
+                        weakself?.showSure()
+                    })
+
+                    
+                }
+                let action2 = UIAlertAction(title: "修改", style: .default) { (action) in
+                    HCLog(message: "修改")
+                    self.alertController.dismiss(animated: true, completion: {
+                        weakself?.showSure()
+                    })
+
+
+                }
+                let action3 = UIAlertAction(title: "删除", style: .default) { (action) in
+                    HCLog(message: "删除")
+                    self.alertController.dismiss(animated: true, completion: {
+                        weakself?.showSure()
+                    })
+
+                }
+                let action4 = UIAlertAction(title: "取消", style: .default) { (action) in
+                    self.alertController.dismiss(animated: true, completion: {
+                        
+                    })
+
+                }
+                alertController.addAction(action1)
+                alertController.addAction(action2)
+                alertController.addAction(action3)
+                alertController.addAction(action4)
+                self.present((alertController)!, animated: true, completion: nil)
+
+            }
+            
+            
         }
     }
+    
+    func showSure() {
+        alertController =  UIAlertController(title: nil, message: "确定要操作吗", preferredStyle: .alert)
+        let sureAction = UIAlertAction(title: "确定", style: .default) { (action) in
+            HCLog(message: "确定")
+        }
+        let cancleAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
+            self.alertController.dismiss(animated: true, completion: {
+                
+            })
+        }
+        alertController.addAction(cancleAction)
+        alertController.addAction(sureAction)
+        self.present((alertController)!, animated: true, completion: nil)
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

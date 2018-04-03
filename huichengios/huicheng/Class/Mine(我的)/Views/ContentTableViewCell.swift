@@ -26,6 +26,13 @@ class ContentTableViewCell: UITableViewCell,UITextViewDelegate {
     }
     
     
+    /// 通知详情 内容
+    ///
+    /// - Parameter contentStr: <#contentStr description#>
+    func setData_notice(contentStr : String) {
+        self.textView.text = contentStr
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

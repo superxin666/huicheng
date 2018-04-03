@@ -24,8 +24,8 @@ class newslist1Model: Mappable {
     var branch: String!
     var createtime: String!
     var isread: String!
-    var state: String!
-
+    var state: Int!
+    var stateStr: String!
     
     
     

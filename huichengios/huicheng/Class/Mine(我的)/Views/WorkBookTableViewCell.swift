@@ -84,7 +84,7 @@ class WorkBookTableViewCell: UITableViewCell {
         }
         self.timeLabel.text = timeStr
         
-        if let stateStr = model.state {
+        if let stateStr = model.stateStr {
             self.statsLabel.text = stateStr
         }
     }

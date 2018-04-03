@@ -23,8 +23,15 @@ class MessageNeedTableViewCell: UITableViewCell {
         } else {
             need = 0
         }
-
-        
+    }
+    
+    
+    func setData_needState( need : Int) {
+        if need == 1 {
+            self.switch.isOn = true
+        } else {
+            self.switch.isOn = false
+        }
     }
     
     override func awakeFromNib() {

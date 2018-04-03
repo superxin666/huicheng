@@ -44,6 +44,15 @@ class TitleTableViewCell: UITableViewCell {
         self.titleNameLabel.text = titleStr
     }
     
+    /// 公告详情
+    ///
+    /// - Parameters:
+    ///   - titleStr: <#titleStr description#>
+    ///   - contentStr: <#contentStr description#>
+    func setData_noticeDetail(titleStr : String, contentStr : String) {
+//        self.setData_AddNotice(titleStr: titleStr)
+        self.textField.placeholder = contentStr
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

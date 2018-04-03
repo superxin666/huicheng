@@ -60,6 +60,7 @@ class SearchStateTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerV
         self.titleNameLabel.text = titleStr
     }
     
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -82,9 +83,9 @@ class SearchStateTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerV
            cuurectID = idArr[row]
         } else {
             let model = dataArr[row]
-            
             titleStr = model.name!
             cuurectID = "\(model.id!)"
+            
         }
         let label = UILabel(frame: CGRect(x: 0, y: 15, width: 100, height: 20))
         label.text = titleStr

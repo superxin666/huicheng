@@ -67,6 +67,14 @@ class NoticeViewController: BaseViewController,UITableViewDataSource,UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row < self.dataArr.count {
+            let model = self.dataArr[indexPath.row]
+            let vc = AddNoticeViewController()
+            vc.detailId = model.id
+            vc.type = .detail
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
