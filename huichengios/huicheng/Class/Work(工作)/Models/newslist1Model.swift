@@ -43,6 +43,6 @@ class newslist1Model: Mappable {
         createtime <- map["createtime"]
         isread <- map["isread"]
         state <- map["state"]
-
+        stateStr <- map["stateStr"]
     }
 }

@@ -33,8 +33,12 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
     var objectCell :SearchStateTableViewCell!
     var messageCell : MessageNeedTableViewCell!
     
-     var alertController : UIAlertController!
+    var alertController : UIAlertController!
 
+    
+    /// 操作 0撤回 1发布 2修改 3删除
+    var actionNum : Int!
+    
     
     // MARK: - life
     override func viewWillLayoutSubviews() {
@@ -171,6 +175,24 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
         
     }
     
+    
+    
+    func publishRequest()  {
+        
+    }
+    
+    func deleRequest() {
+        
+    }
+    
+    func editeRequest() {
+        
+    }
+    
+    func recallRequest() {
+        
+    }
+    
     override func navigationLeftBtnClick() {
         self.navigationController?.popViewController(animated: true)
     }
@@ -211,7 +233,9 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
                 alertController = UIAlertController(title: nil, message: "", preferredStyle: .actionSheet)
                 let sureAction = UIAlertAction(title: "撤回", style: .default) { (action) in
                     HCLog(message: "撤回")
+                    weakself?.actionNum = 0
                     weakself?.showSure()
+                    
                 }
                 let cancleAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
                     self.alertController.dismiss(animated: true, completion: {
@@ -230,28 +254,23 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
                 
                 let action1 = UIAlertAction(title: "发布", style: .default) { (action) in
                     HCLog(message: "发布")
-                    self.alertController.dismiss(animated: true, completion: {
-                        weakself?.showSure()
-                    })
-
+                    weakself?.actionNum = 1
+                    weakself?.showSure()
+                    
                     
                 }
                 let action2 = UIAlertAction(title: "修改", style: .default) { (action) in
                     HCLog(message: "修改")
-                    self.alertController.dismiss(animated: true, completion: {
-                        weakself?.showSure()
-                    })
-
+                    weakself?.actionNum = 2
+                    weakself?.showSure()
 
                 }
                 let action3 = UIAlertAction(title: "删除", style: .default) { (action) in
                     HCLog(message: "删除")
-                    self.alertController.dismiss(animated: true, completion: {
-                        weakself?.showSure()
-                    })
-
+                    weakself?.actionNum = 3
+                    weakself?.showSure()
                 }
-                let action4 = UIAlertAction(title: "取消", style: .default) { (action) in
+                let action4 = UIAlertAction(title: "取消", style: .cancel) { (action) in
                     self.alertController.dismiss(animated: true, completion: {
                         
                     })
@@ -273,10 +292,21 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
         alertController =  UIAlertController(title: nil, message: "确定要操作吗", preferredStyle: .alert)
         let sureAction = UIAlertAction(title: "确定", style: .default) { (action) in
             HCLog(message: "确定")
+            if self.actionNum == 0 {
+                //
+                self.recallRequest()
+            } else if self.actionNum == 1 {
+                self.publishRequest()
+            } else if self.actionNum == 2 {
+                self.editeRequest()
+            } else {
+                self.deleRequest()
+            }
+            
         }
         let cancleAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
             self.alertController.dismiss(animated: true, completion: {
-                
+                HCLog(message: "取消")
             })
         }
         alertController.addAction(cancleAction)
