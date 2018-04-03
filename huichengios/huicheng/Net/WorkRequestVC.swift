@@ -90,6 +90,19 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
     
     
     
+    /// 发布/撤销公告
+    ///
+    /// - Parameters:
+    ///   - id: 公告id
+    ///   - s: 1发布 2撤销
+    func newspublicRequest(id: Int,s:Int) {
+        request.delegate = self
+        type = .newspublic
+        let url =   newspublic_api + "id=\(id)&s=\(s)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+    }
+    
+    
     
     
     func requestSucceed(response: Any) {
@@ -115,7 +128,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work(data: arr,type : type)
             }
-        } else if type == .save{
+        } else if type == .save || type == .newspublic{
             //发布公告
             let model = Mapper<CodeData>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {

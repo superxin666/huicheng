@@ -23,6 +23,8 @@ class newsdetialModel: Mappable {
     var content:String!
     var object:String!
     var state:Int!
+    var objectid:Int!
+
     var stateStr:String!
     var user:String!
     var createtime:String!
@@ -41,6 +43,8 @@ class newsdetialModel: Mappable {
         state <- map["state"]
         stateStr <- map["stateStr"]
         user <- map["user"]
+        objectid <- map["objectid"]
+
     }
     
 }

@@ -31,6 +31,7 @@ class ContentTableViewCell: UITableViewCell,UITextViewDelegate {
     /// - Parameter contentStr: <#contentStr description#>
     func setData_notice(contentStr : String) {
         self.textView.text = contentStr
+        self.conTent = contentStr
     }
     
     override func awakeFromNib() {

@@ -72,6 +72,10 @@ class NoticeViewController: BaseViewController,UITableViewDataSource,UITableView
             let vc = AddNoticeViewController()
             vc.detailId = model.id
             vc.type = .detail
+            weak var weakSelf = self
+            vc.reflishBlock = {
+               weakSelf?.reflishData()
+            }
             self.navigationController?.pushViewController(vc, animated: true)
             
         }
@@ -103,6 +107,14 @@ class NoticeViewController: BaseViewController,UITableViewDataSource,UITableView
         request.delegate = self
         request.newslist1Request(p: pageNum, c: 8, bid: 0, t: "", b: "", e: "", u: "")
         
+    }
+    
+    func reflishData() {
+        if self.dataArr.count > 0 {
+            self.dataArr.removeAll()
+        }
+        pageNum = 1
+        self.requestApi()
     }
     @objc func loadMoreData() {
         HCLog(message: "加载更多")

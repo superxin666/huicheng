@@ -52,6 +52,7 @@ class TitleTableViewCell: UITableViewCell {
     func setData_noticeDetail(titleStr : String, contentStr : String) {
 //        self.setData_AddNotice(titleStr: titleStr)
         self.textField.placeholder = contentStr
+        self.conTent = contentStr
     }
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -11,6 +11,7 @@ enum AddNoticeViewController_type {
 //    添加  详情
     case addNotice,detail
 }
+typealias AddNoticeViewControllerBlock = ()->()
 
 class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate,WorkRequestVCDelegate,MessageRequestVCDelegate {
     let mainTabelView : UITableView = UITableView()
@@ -38,6 +39,8 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
     
     /// 操作 0撤回 1发布 2修改 3删除
     var actionNum : Int!
+    
+    var reflishBlock : AddNoticeViewControllerBlock!
     
     
     // MARK: - life
@@ -143,8 +146,8 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
             HCLog(message: self.objectCell.dataArr.count)
             
             self.objectCell.pickView.reloadAllComponents()
-        } else if type == .save {
-            //发布
+        } else if type == .save || type == .newspublic {
+            //添加  发布 撤销
             let model : CodeData = data as! CodeData
             if model.code == 1 {
               self.navigationController?.popViewController(animated: true)
@@ -158,15 +161,22 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
     
     
     func requestSucceed_message(data: Any) {
+    //获取详情
         let model : newsdetialModel = data as! newsdetialModel
         detailModel = model
         titleCell.setData_noticeDetail(titleStr: "", contentStr: model.title)
         contentCell.setData_notice(contentStr: model.content)
         let objectmodel : getobjectlistModel = getobjectlistModel()
         objectmodel.name = model.object
-        objectmodel.id = 0
+        objectmodel.id = model.objectid
         objectCell.dataArr = [objectmodel]
         objectCell.pickView.reloadAllComponents()
+        
+        
+        if detailModel.state == 1 {
+            //已经发布 页面不能编辑
+            self.mainTabelView.isUserInteractionEnabled = false
+        }
 //        messageCell.setData_needState(need: model)
         
     }
@@ -178,52 +188,62 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
     
     
     func publishRequest()  {
+        request.newspublicRequest(id: self.detailId, s: 1)
         
     }
     
+    func recallRequest() {
+        request.newspublicRequest(id: self.detailId, s: 2)
+
+    }
+
     func deleRequest() {
+        
         
     }
     
     func editeRequest() {
         
+        self.addRequest()
     }
     
-    func recallRequest() {
+    func addRequest()  {
+        if titleCell.textField.isFirstResponder{
+            titleCell.textField.resignFirstResponder()
+        }
+        if contentCell.textView.isFirstResponder{
+            contentCell.textView.resignFirstResponder()
+        }
         
+        if !(titleCell.conTent.count > 0 ){
+            SVPMessageShow.showErro(infoStr: "请输入标题")
+            return
+        }
+        if !(contentCell.conTent.count > 0 ){
+            SVPMessageShow.showErro(infoStr: "请输入内容")
+            return
+        }
+        if !(objectCell.cuurectID.count > 0) {
+            SVPMessageShow.showErro(infoStr: "请选择接受对象")
+            return
+        }
+        //o: objectCell.cuurectID
+        SVPMessageShow.showLoad(title:"发布中~~")
+        if let id = detailId {
+            request.saveRequest(id: "\(id)", t: titleCell.conTent, n: contentCell.conTent, o: objectCell.cuurectID, s: 0, d: messageCell.need)
+        } else {
+            request.saveRequest(id: "", t: titleCell.conTent, n: contentCell.conTent, o: objectCell.cuurectID, s: 0, d: messageCell.need)
+        }
     }
+    
     
     override func navigationLeftBtnClick() {
         self.navigationController?.popViewController(animated: true)
     }
     override func navigationRightBtnClick() {
         if type == .addNotice{
-            HCLog(message: "确定")
-            if type == .addNotice{
-                if titleCell.textField.isFirstResponder{
-                    titleCell.textField.resignFirstResponder()
-                }
-                if contentCell.textView.isFirstResponder{
-                    contentCell.textView.resignFirstResponder()
-                }
-                
-                if !(titleCell.conTent.count > 0 ){
-                    SVPMessageShow.showErro(infoStr: "请输入标题")
-                    return
-                }
-                if !(contentCell.conTent.count > 0 ){
-                    SVPMessageShow.showErro(infoStr: "请输入内容")
-                    return
-                }
-//                if !(objectCell.cuurectID.count > 0) {
-//                    SVPMessageShow.showErro(infoStr: "请选择接受对象")
-//                    return
-//                }
-                //o: objectCell.cuurectID
-                SVPMessageShow.showLoad(title:"发布中")
-                request.saveRequest(id: "", t: titleCell.conTent, n: contentCell.conTent, o: "1", s: 0, d: messageCell.need)
-            }
-            
+ 
+            self.addRequest()
             
         } else {
             HCLog(message: "操作")
@@ -293,14 +313,21 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
         let sureAction = UIAlertAction(title: "确定", style: .default) { (action) in
             HCLog(message: "确定")
             if self.actionNum == 0 {
-                //
+                //撤回
                 self.recallRequest()
+                
             } else if self.actionNum == 1 {
+                //发布
                 self.publishRequest()
+                
             } else if self.actionNum == 2 {
+                //编辑
                 self.editeRequest()
+                
             } else {
+                //删除
                 self.deleRequest()
+                
             }
             
         }
