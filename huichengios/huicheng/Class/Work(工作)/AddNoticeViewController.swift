@@ -74,6 +74,7 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
             self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
             self.navigationBar_rightBtn_title(name: "操作")
             messageRequest.newsdetialRequest(id: detailId)
+            self.mainTabelView.isUserInteractionEnabled = false
             rowNum = 4
         }
         self.creatUI()
@@ -155,10 +156,11 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
             HCLog(message: self.objectCell.dataArr.count)
             
             self.objectCell.pickView.reloadAllComponents()
-        } else if type == .save || type == .newspublic {
-            //添加  发布 撤销
+        } else if type == .save || type == .newspublic || type == .del{
+            //添加  发布 撤销 删除
             let model : CodeData = data as! CodeData
             if model.code == 1 {
+              self.reflishBlock()
               self.navigationController?.popViewController(animated: true)
             }
         }
@@ -181,13 +183,6 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
         objectCell.dataArr = [objectmodel]
         objectCell.pickView.reloadAllComponents()
         
-        
-        if detailModel.state == 1 {
-            //已经发布 页面不能编辑
-            self.mainTabelView.isUserInteractionEnabled = false
-        }
-//        messageCell.setData_needState(need: model)
-        
     }
     
     func requestFail_message() {
@@ -205,10 +200,9 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
         request.newspublicRequest(id: self.detailId, s: 2)
 
     }
-
+    
     func deleRequest() {
-        
-        
+        request.delRequest(id: self.detailId)
     }
     
     func editeRequest() {
@@ -337,10 +331,9 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
                 self.rowNum = 5
                 self.type = .edit
                 self.navigationBar_rightBtn_title(name: "确定")
-
+                self.mainTabelView.isUserInteractionEnabled = true
                 self.mainTabelView.reloadData()
-                self.editeRequest()
-                
+               
             } else {
                 //删除
                 self.deleRequest()

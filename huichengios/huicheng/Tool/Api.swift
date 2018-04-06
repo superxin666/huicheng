@@ -33,7 +33,8 @@ let save_api = "message/save?"
 let getobjectlist_api = "message/getobjectlist?"
 /// 发布/撤销公告
 let newspublic_api = "message/newspublic?"
-
+/// 删除公告
+let del_api = "message/del?"
 
 //-----------------------个人信息
 let user_getinfo_api = "uc/user_getinfo?"

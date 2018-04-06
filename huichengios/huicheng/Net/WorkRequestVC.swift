@@ -11,7 +11,7 @@ import ObjectMapper
 enum WorkRequestVC_enum {
     //
     case checkcase,//利益冲突检查
-         save,newslist1,getobjectlist,newspublic//公告  发布/编辑公告  获取列表  获取接收对象  发布/撤销公告
+         save,newslist1,getobjectlist,newspublic,del//公告  发布/编辑公告  获取列表  获取接收对象  发布/撤销公告  删除
 }
 protocol WorkRequestVCDelegate : NSObjectProtocol{
     //
@@ -102,6 +102,15 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
         request.request_api(url: url)
     }
     
+    /// 删除消息
+    ///
+    /// - Parameter id: id
+    func delRequest(id: Int) {
+        request.delegate = self
+        type = .del
+        let url =   del_api + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+    }
     
     
     
