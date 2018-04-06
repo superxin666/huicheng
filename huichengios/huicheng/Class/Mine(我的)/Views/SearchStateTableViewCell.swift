@@ -7,6 +7,8 @@
 //  搜索页面--状态选择   发布公告--接受对象
 
 import UIKit
+let SearchStateTableViewCellID = "SearchStateTableViewCell_id"
+
 enum SearchStateTableViewCellType {
     //搜索中状态  接受对象
     case searchState,Object

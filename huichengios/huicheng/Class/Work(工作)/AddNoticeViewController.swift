@@ -92,7 +92,7 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
         mainTabelView.register(UINib.init(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: TitleTableViewCellID)
         mainTabelView.register(UINib.init(nibName: "ContentTableViewCell", bundle: nil), forCellReuseIdentifier: ContentTableViewCellID)
         mainTabelView.register(UINib.init(nibName: "FileTableViewCell", bundle: nil), forCellReuseIdentifier: FileTableViewCellID)
-        mainTabelView.register(UINib.init(nibName: "SearchStateTableViewCell", bundle: nil), forCellReuseIdentifier: Searchcell_expenseID)
+        mainTabelView.register(UINib.init(nibName: "SearchStateTableViewCell", bundle: nil), forCellReuseIdentifier: SearchStateTableViewCellID)
         mainTabelView.register(UINib.init(nibName: "MessageNeedTableViewCell", bundle: nil), forCellReuseIdentifier: MessageNeedTableViewCellID)
         self.view.addSubview(mainTabelView)
     }
@@ -120,7 +120,7 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
             
             return fileCell
         } else if indexPath.row == 3 {
-            objectCell  = tableView.dequeueReusableCell(withIdentifier: Searchcell_expenseID, for: indexPath) as! SearchStateTableViewCell
+            objectCell  = tableView.dequeueReusableCell(withIdentifier: SearchStateTableViewCellID, for: indexPath) as! SearchStateTableViewCell
             objectCell.type = .Object
             objectCell.setData_Object(titleStr: "接受对象")
             return objectCell

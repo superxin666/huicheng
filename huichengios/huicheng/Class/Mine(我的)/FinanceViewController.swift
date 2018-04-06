@@ -97,6 +97,11 @@ class FinanceViewController:  BaseViewController,UITableViewDataSource,UITableVi
     }
     override func navigationRightBtnClick() {
         HCLog(message: "搜索")
+        let vc = SearchViewController()
+        vc.hidesBottomBarWhenPushed = true
+        vc.type = .finance_type
+        self.navigationController?.pushViewController(vc, animated: true)
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

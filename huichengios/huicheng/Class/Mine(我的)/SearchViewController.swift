@@ -13,7 +13,6 @@ enum SearchViewController_type {
     //发票申请           收款记录       工作日志
     case expense_type, finance_type , work_type
 }
-let Searchcell_expenseID = "Searchcell_expense_id"
 let Searchcell_finance_typeID = "Searchcell_finance_type_id"
 class SearchViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate,DatePickViewDelegate {
     /// 列表
@@ -87,10 +86,13 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         mainTabelView.showsHorizontalScrollIndicator = false
         mainTabelView.backgroundView?.backgroundColor = .clear
         if type == .expense_type {
-            mainTabelView.register(UINib.init(nibName: "SearchStateTableViewCell", bundle: nil), forCellReuseIdentifier: Searchcell_expenseID)
+            mainTabelView.register(UINib.init(nibName: "SearchStateTableViewCell", bundle: nil), forCellReuseIdentifier: SearchStateTableViewCellID)
         } else if type == .finance_type {
-            mainTabelView.register(UINib.init(nibName: "SearchPersionTableViewCell", bundle: nil), forCellReuseIdentifier: Searchcell_finance_typeID)
             
+            mainTabelView.register(UINib.init(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: TitleTableViewCellID)
+            mainTabelView.register(UINib.init(nibName: "SearchPersionTableViewCell", bundle: nil), forCellReuseIdentifier: SearchPersionTableViewCellID)
+            mainTabelView.register(UINib.init(nibName: "endTimeTableViewCell", bundle: nil), forCellReuseIdentifier: endTimeTableViewCellid)
+            mainTabelView.register(UINib.init(nibName: "SearchStateTableViewCell", bundle: nil), forCellReuseIdentifier: SearchStateTableViewCellID)
         } else if type == .work_type {
             mainTabelView.register(UINib.init(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: TitleTableViewCellID)
             mainTabelView.register(UINib.init(nibName: "SearchPersionTableViewCell", bundle: nil), forCellReuseIdentifier: SearchPersionTableViewCellID)
@@ -110,36 +112,42 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if type == .expense_type {
-            stateCell  = tableView.dequeueReusableCell(withIdentifier: Searchcell_expenseID, for: indexPath) as! SearchStateTableViewCell
+            stateCell  = tableView.dequeueReusableCell(withIdentifier: SearchStateTableViewCellID, for: indexPath) as! SearchStateTableViewCell
             stateCell.type = .searchState
             stateCell.setData_searchState(titleStr: "状态")
             return stateCell
         } else if type == .finance_type{
+            //我都收款
+            
             if indexPath.row == 0 {
-                let cell : SearchPersionTableViewCell = tableView.dequeueReusableCell(withIdentifier: Searchcell_finance_typeID, for: indexPath) as! SearchPersionTableViewCell
+    
+                titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
                 //交款人
-                cell.setData(titleStr: "交款人", fieldTag: 0)
-                return cell
-                
+                titleCell.setData_search(titleStr: "交款人")
+                return titleCell
             } else if indexPath.row == 1 {
+
                 //合同编号
-                let cell : SearchPersionTableViewCell = tableView.dequeueReusableCell(withIdentifier: Searchcell_finance_typeID, for: indexPath) as! SearchPersionTableViewCell
-                //交款人
-                cell.setData(titleStr: "合同编号", fieldTag: 1)
-                return cell
-                
+                persionCell = tableView.dequeueReusableCell(withIdentifier: SearchPersionTableViewCellID, for: indexPath) as! SearchPersionTableViewCell
+                persionCell.setData(titleStr: "合同编号", fieldTag: 1)
+                return persionCell
+
             } else if indexPath.row == 2 {
                 //开始时间
-                let cell : endTimeTableViewCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-                return cell
+                startTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                startTimeCell.setData(titleStr: "开始时间", tag: 0)
                 
+                return startTimeCell
             } else if indexPath.row == 3 {
                 //结束时间
-                let cell : endTimeTableViewCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-                return cell
+                endTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                endTimeCell.setData(titleStr: "结束时间", tag: 1)
+                return endTimeCell
             } else {
                 //状态
-                stateCell  = tableView.dequeueReusableCell(withIdentifier: Searchcell_expenseID, for: indexPath) as! SearchStateTableViewCell
+                stateCell  = tableView.dequeueReusableCell(withIdentifier: SearchStateTableViewCellID, for: indexPath) as! SearchStateTableViewCell
+                stateCell.type = .searchState
+                stateCell.setData_searchState(titleStr: "状态")
                 return stateCell
             }
             
@@ -183,6 +191,15 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
                 //开始时间
                 self.showTime_start()
             } else {
+                //结束时间
+                self.showTime_end()
+            }
+        } else if type == .finance_type{
+            //收款
+            if indexPath.row == 2 {
+                //开始时间
+                self.showTime_start()
+            } else if indexPath.row == 3 {
                 //结束时间
                 self.showTime_end()
             }
