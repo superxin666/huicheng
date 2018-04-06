@@ -241,6 +241,12 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         if self.type == .expense_type {
             self.sureStateBlock(stateCell.cuurectID)
         } else if self.type == .work_type  {
+            if titleCell.textField.isFirstResponder {
+                titleCell.textField.resignFirstResponder()
+            }
+            if persionCell.textField.isFirstResponder {
+                persionCell.textField.resignFirstResponder()
+            }
             self.sureWorkBlock(titleCell.conTent,persionCell.contentStr,startTimeStr,endTimeStr)
         }
         self.navigationController?.popViewController(animated: true)

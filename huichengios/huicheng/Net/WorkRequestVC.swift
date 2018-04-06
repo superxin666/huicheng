@@ -63,7 +63,15 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
         if u.count > 0 {
             uStr = u.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         }
-        let url =   newslist1_api + "p=\(p)&c=\(c)&t=\(tStr)&b=\(b)&e=\(e)&u=\(uStr)&k=\(UserInfoLoaclManger.getKey())"
+        var bStr = ""
+        if b.count > 0 {
+            bStr = b.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+        var eStr = ""
+        if e.count > 0 {
+            eStr = b.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+        let url =   newslist1_api + "p=\(p)&c=\(c)&t=\(tStr)&b=\(bStr)&e=\(eStr)&u=\(uStr)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
     }
     

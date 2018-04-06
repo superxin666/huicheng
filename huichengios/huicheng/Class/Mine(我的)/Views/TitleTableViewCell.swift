@@ -61,6 +61,7 @@ class TitleTableViewCell: UITableViewCell {
     ///
     /// - Parameter titleStr: <#titleStr description#>
     func setData_search(titleStr : String)  {
+        self.titleNameLabel.textColor = darkblueColor
         self.titleNameLabel.text = titleStr
     }
     override func awakeFromNib() {

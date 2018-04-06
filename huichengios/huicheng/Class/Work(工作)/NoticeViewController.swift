@@ -15,6 +15,10 @@ class NoticeViewController: BaseViewController,UITableViewDataSource,UITableView
     let request : WorkRequestVC = WorkRequestVC()
     var dataArr :[newslist1Model] = []
     var pageNum : Int = 1
+    var titleStr : String = ""
+    var perStr : String = ""
+    var startTime : String = ""
+    var endTime : String = ""
     // MARK: - life
     override func viewWillLayoutSubviews() {
         mainTabelView.snp.makeConstraints { (make) in
@@ -107,7 +111,7 @@ class NoticeViewController: BaseViewController,UITableViewDataSource,UITableView
     }
     func requestApi() {
         request.delegate = self
-        request.newslist1Request(p: pageNum, c: 8, bid: 0, t: "", b: "", e: "", u: "")
+        request.newslist1Request(p: pageNum, c: 8, bid: 0, t: self.titleStr, b: self.startTime, e: self.endTime, u: self.perStr)
         
     }
     
@@ -127,8 +131,18 @@ class NoticeViewController: BaseViewController,UITableViewDataSource,UITableView
         HCLog(message: "搜索")
         let vc = SearchViewController()
         vc.type = .work_type
+        weak var weakself = self
         vc.sureWorkBlock = {(titleStr, perStr, startTime ,endTime) in
-            self.reflishData()
+            HCLog(message: titleStr)
+            HCLog(message: perStr)
+            HCLog(message: startTime)
+            HCLog(message: endTime)
+            weakself?.titleStr = titleStr
+            weakself?.perStr = perStr
+            weakself?.startTime = startTime
+            weakself?.endTime = endTime
+            weakself?.reflishData()
+            
         }
         self.navigationController?.pushViewController(vc, animated: true)
         
