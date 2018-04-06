@@ -54,6 +54,15 @@ class TitleTableViewCell: UITableViewCell {
         self.textField.placeholder = contentStr
         self.conTent = contentStr
     }
+    
+    
+    
+    /// 搜索页面 标题
+    ///
+    /// - Parameter titleStr: <#titleStr description#>
+    func setData_search(titleStr : String)  {
+        self.titleNameLabel.text = titleStr
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

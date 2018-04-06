@@ -7,14 +7,15 @@
 //  搜索
 
 import UIKit
-typealias SearchViewControllerBlock = (_ stateId : String)->()
+typealias SearchViewControllerBlock_expense = (_ stateId : String)->()
+typealias SearchViewControllerBlock_work = (_ titleStr : String,_ personStr : String,_ StartTimeStr : String,_ endTimeStr : String)->()
 enum SearchViewController_type {
-    //发票申请           收款记录
-    case expense_type, finance_type
+    //发票申请           收款记录       工作日志
+    case expense_type, finance_type , work_type
 }
 let Searchcell_expenseID = "Searchcell_expense_id"
 let Searchcell_finance_typeID = "Searchcell_finance_type_id"
-class SearchViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate {
+class SearchViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate,DatePickViewDelegate {
     /// 列表
     let mainTabelView : UITableView = UITableView()
 //    类型
@@ -23,9 +24,30 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
     var rowNum : Int!
     
     /// 选择类型 block
-    var sureStateBlock : SearchViewControllerBlock!
+    var sureStateBlock : SearchViewControllerBlock_expense!
     
+    /// 工作日志
+    var sureWorkBlock : SearchViewControllerBlock_work!
+
+    /// 状态cell
     var stateCell : SearchStateTableViewCell!
+    
+    /// 标题
+    var titleCell : TitleTableViewCell!
+    
+    /// 发布人
+    var persionCell : SearchPersionTableViewCell!
+    
+    
+    /// 时间
+    var startTimeCell : endTimeTableViewCell!
+    var endTimeCell : endTimeTableViewCell!
+    /// 开始时间
+    var startTimeStr : String = ""
+    /// 结束时间
+    var endTimeStr : String = ""
+    /// 时间
+    var timeView : DatePickView = DatePickView.loadNib()
     
     // MARK: - life
     override func viewWillLayoutSubviews() {
@@ -47,6 +69,9 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         } else if  type == .finance_type{
             self.navigation_title_fontsize(name: "收款查询", fontsize: 18)
             rowNum = 5
+        } else if type == .work_type{
+            self.navigation_title_fontsize(name: "公告查询", fontsize: 18)
+            rowNum = 4
         }
         self.navigationBar_rightBtn_title(name: "确定")
         self.creatUI()
@@ -66,6 +91,12 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         } else if type == .finance_type {
             mainTabelView.register(UINib.init(nibName: "SearchPersionTableViewCell", bundle: nil), forCellReuseIdentifier: Searchcell_finance_typeID)
             
+        } else if type == .work_type {
+            mainTabelView.register(UINib.init(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: TitleTableViewCellID)
+            mainTabelView.register(UINib.init(nibName: "SearchPersionTableViewCell", bundle: nil), forCellReuseIdentifier: SearchPersionTableViewCellID)
+            mainTabelView.register(UINib.init(nibName: "endTimeTableViewCell", bundle: nil), forCellReuseIdentifier: endTimeTableViewCellid)
+            
+            
         }
         self.view.addSubview(mainTabelView)
     }
@@ -84,25 +115,62 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             stateCell.setData_searchState(titleStr: "状态")
             return stateCell
         } else if type == .finance_type{
-            let cell : SearchPersionTableViewCell = tableView.dequeueReusableCell(withIdentifier: Searchcell_finance_typeID, for: indexPath) as! SearchPersionTableViewCell
             if indexPath.row == 0 {
+                let cell : SearchPersionTableViewCell = tableView.dequeueReusableCell(withIdentifier: Searchcell_finance_typeID, for: indexPath) as! SearchPersionTableViewCell
                 //交款人
                 cell.setData(titleStr: "交款人", fieldTag: 0)
+                return cell
+                
             } else if indexPath.row == 1 {
                 //合同编号
+                let cell : SearchPersionTableViewCell = tableView.dequeueReusableCell(withIdentifier: Searchcell_finance_typeID, for: indexPath) as! SearchPersionTableViewCell
+                //交款人
                 cell.setData(titleStr: "合同编号", fieldTag: 1)
+                return cell
+                
             } else if indexPath.row == 2 {
                 //开始时间
+                let cell : endTimeTableViewCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                return cell
                 
             } else if indexPath.row == 3 {
                 //结束时间
-                
+                let cell : endTimeTableViewCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                return cell
             } else {
                 //状态
                 stateCell  = tableView.dequeueReusableCell(withIdentifier: Searchcell_expenseID, for: indexPath) as! SearchStateTableViewCell
                 return stateCell
             }
-            return cell
+            
+            
+        } else if type == .work_type{
+            //工作日志搜索
+            if indexPath.row == 0 {
+                titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                //标题
+                titleCell.setData_search(titleStr: "标题")
+                return titleCell
+                
+            } else if indexPath.row == 1 {
+                //发布人
+                persionCell = tableView.dequeueReusableCell(withIdentifier: SearchPersionTableViewCellID, for: indexPath) as! SearchPersionTableViewCell
+                persionCell.setData(titleStr: "发布人", fieldTag: 1)
+                return persionCell
+                
+            } else if indexPath.row == 2 {
+                //开始时间
+                startTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                startTimeCell.setData(titleStr: "开始时间", tag: 0)
+      
+                return startTimeCell
+                
+            } else {
+                //结束时间
+                endTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                endTimeCell.setData(titleStr: "结束时间", tag: 1)
+                return endTimeCell
+            }
             
         } else {
             return UITableViewCell()
@@ -110,21 +178,71 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if type == .work_type {
+            if indexPath.row == 2 {
+                //开始时间
+                self.showTime_start()
+            } else {
+                //结束时间
+                self.showTime_end()
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if type == .expense_type {
             return CGFloat(50)
         } else {
-            return 0
+            return CGFloat(50)
         }
         
     }
+    
+    
+    
+    /// 显示时间
+    func showTime_end() {
+        timeView.removeFromSuperview()
+        self.view.addSubview(timeView)
+        timeView.delegate = self
+        timeView.setData(type: 1)
+        timeView.snp.makeConstraints { (make) in
+            make.left.right.equalTo(0)
+            make.bottom.equalTo(0)
+            make.height.equalTo(160)
+        }
+    }
+    func showTime_start() {
+        timeView.removeFromSuperview()
+        self.view.addSubview(timeView)
+        timeView.delegate = self
+        timeView.setData(type: 0)
+        timeView.snp.makeConstraints { (make) in
+            make.left.right.equalTo(0)
+            make.bottom.equalTo(0)
+            make.height.equalTo(160)
+        }
+    }
+
+    func datePickViewTime(timeStr: String,type : Int) {
+        if type == 0 {
+            startTimeStr = timeStr
+            startTimeCell.setTime(str: startTimeStr)
+        } else {
+            endTimeStr = timeStr
+            endTimeCell.setTime(str: endTimeStr)
+        }
+    }
+
     override func navigationLeftBtnClick() {
         self.navigationController?.popViewController(animated: true)
     }
     override func navigationRightBtnClick() {
-        self.sureStateBlock(stateCell.cuurectID)
+        if self.type == .expense_type {
+            self.sureStateBlock(stateCell.cuurectID)
+        } else if self.type == .work_type  {
+            self.sureWorkBlock(titleCell.conTent,persionCell.contentStr,startTimeStr,endTimeStr)
+        }
         self.navigationController?.popViewController(animated: true)
     }
     override func didReceiveMemoryWarning() {

@@ -55,7 +55,15 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
     func newslist1Request(p:Int,c:Int,bid:Int,t:String,b:String,e:String,u:String) {
         request.delegate = self
         type = .newslist1
-        let url =   newslist1_api + "p=\(p)&c=\(c)&k=\(UserInfoLoaclManger.getKey())"
+        var tStr = ""
+        if t.count > 0 {
+            tStr = t.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+        var uStr = ""
+        if u.count > 0 {
+            uStr = u.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+        let url =   newslist1_api + "p=\(p)&c=\(c)&t=\(tStr)&b=\(b)&e=\(e)&u=\(uStr)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
     }
     

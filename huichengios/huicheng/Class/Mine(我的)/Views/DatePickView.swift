@@ -7,8 +7,11 @@
 //
 
 import UIKit
+protocol DatePickViewDelegate {
+    func datePickViewTime(timeStr : String,type : Int)
+}
 
-class DatePickView: UIView {
+class DatePickView: UIView,NibLoadable {
 
     /*
     // Only override draw() if you perform custom drawing.
@@ -18,15 +21,30 @@ class DatePickView: UIView {
     }
     */
     var timeStr : String = ""
+    var delegate : DatePickViewDelegate!
+    
+    /// 0 是开始时间 1是结束时间
+    var typeNum : Int!
+    
     
     @IBAction func timeChange(_ sender: UIDatePicker) {
-        
         
         HCLog(message: sender.date)
         let str = String.hc_getDate(date: sender.date)
         HCLog(message: str)
         timeStr = str
-   
+
+    }
+    @IBAction func sureClick(_ sender: UIButton) {
+        if let delegate = self.delegate {
+            delegate.datePickViewTime(timeStr: timeStr,type: typeNum)
+        }
+        self.removeFromSuperview()
+    }
+    
+    func setData(type : Int)  {
+        typeNum = type
+        
     }
     
 }

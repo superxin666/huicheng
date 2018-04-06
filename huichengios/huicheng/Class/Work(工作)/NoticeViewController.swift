@@ -31,7 +31,9 @@ class NoticeViewController: BaseViewController,UITableViewDataSource,UITableView
         
         self.navigation_title_fontsize(name: "发布公告", fontsize: 18)
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
-        self.navigationBar_rightBtn_image(image: #imageLiteral(resourceName: "mine_add"))
+        let iteam1 = self.getUIBarButtonItem(image: #imageLiteral(resourceName: "mine_search"), action: #selector(searchClick), vc: self)
+        let iteam2 = self.getUIBarButtonItem(image:#imageLiteral(resourceName: "mine_add"), action: #selector(addClick), vc: self)
+        self.navigationItem.rightBarButtonItems = [iteam1,iteam2]
         self.creatUI()
         self.requestApi()
     }
@@ -121,11 +123,17 @@ class NoticeViewController: BaseViewController,UITableViewDataSource,UITableView
         pageNum = pageNum + 1
         self.requestApi()
     }
-    
-    override func navigationLeftBtnClick() {
-        self.navigationController?.popViewController(animated: true)
+    @objc func searchClick() {
+        HCLog(message: "搜索")
+        let vc = SearchViewController()
+        vc.type = .work_type
+        vc.sureWorkBlock = {(titleStr, perStr, startTime ,endTime) in
+            self.reflishData()
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
+        
     }
-    override func navigationRightBtnClick() {
+    @objc func addClick() {
         HCLog(message: "添加")
         let vc = AddNoticeViewController()
         vc.hidesBottomBarWhenPushed = true
@@ -133,6 +141,10 @@ class NoticeViewController: BaseViewController,UITableViewDataSource,UITableView
         self.navigationController?.pushViewController(vc, animated: true)
         
     }
+    override func navigationLeftBtnClick() {
+        self.navigationController?.popViewController(animated: true)
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
