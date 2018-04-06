@@ -8,9 +8,10 @@
 
 import UIKit
 
-class FinanceDetialHeadView: UIView {
+class FinanceDetialHeadView: UIView,NibLoadable {
 
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var titleNameLabel: UILabel!
+    
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
@@ -20,7 +21,7 @@ class FinanceDetialHeadView: UIView {
     */
     
     func setData(name : String) {
-        self.titleLabel.text = name
+        self.titleNameLabel.text = name
     }
 
 }

@@ -33,8 +33,8 @@ class finance_getinfoModel: Mappable {
     var id: Int!
     var num: String!
     var principal: String!
-    var dealamount: String!
-    var paymoney: String!
+    var dealamount: Int!
+    var paymoney: Int!
     var user: String!
     
     var type: Int!
@@ -49,7 +49,7 @@ class finance_getinfoModel: Mappable {
     var note: String!
     var funadmin: String!
     var paytime: String!
-
+    var applytime: String!
 
     
     
@@ -78,6 +78,6 @@ class finance_getinfoModel: Mappable {
         note <- map["note"]
         funadmin <- map["funadmin"]
         paytime <- map["paytime"]
-
+        applytime <- map["applytime"]
     }
 }

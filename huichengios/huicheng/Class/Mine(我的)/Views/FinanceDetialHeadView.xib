@@ -35,8 +35,9 @@
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="titleLabel" destination="GqT-w2-S60" id="aNc-xV-7zf"/>
+                <outlet property="titleNameLabel" destination="GqT-w2-S60" id="R99-Ug-2WB"/>
             </connections>
+            <point key="canvasLocation" x="-128" y="44"/>
         </view>
     </objects>
 </document>

@@ -15,6 +15,14 @@ class FinanceViewController:  BaseViewController,UITableViewDataSource,UITableVi
     let request : MineRequestVC = MineRequestVC()
     var dataArr :[finance_getlistModel] = []
     
+    var pageNum : Int = 1
+    
+
+    var nStr : String = ""
+    var sStr : String = ""
+    var startTime : String = ""
+    var endTime : String = ""
+    var noTime : String = ""
     
     // MARK: - life
     override func viewWillLayoutSubviews() {
@@ -35,7 +43,7 @@ class FinanceViewController:  BaseViewController,UITableViewDataSource,UITableVi
         self.navigationBar_rightBtn_image(image: #imageLiteral(resourceName: "mine_search"))
         self.creatUI()
         request.delegate = self
-        request.finance_getlistRequest()
+        request.finance_getlistRequest(p: pageNum, c: 8, no: noTime, n: nStr, s: sStr, st: startTime, et: endTime)
         
     }
     // MARK: - UI

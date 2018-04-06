@@ -19,11 +19,12 @@ class finance_getlistModel: Mappable {
     var id: Int!
     var num: String!
     var user: String!
-    var type: String!
+    var type: Int!
+    var typeStr: String!
     var money: Int!
     var addtime: String!
-    var state: String!
-    
+    var state: Int!
+    var stateStr: String!
     
     init() {}
     required init?(map: Map){
@@ -35,9 +36,11 @@ class finance_getlistModel: Mappable {
         num <- map["num"]
         user <- map["user"]
         type <- map["type"]
+        typeStr <- map["typeStr"]
         money <- map["money"]
         addtime <- map["addtime"]
         
         state <- map["state"]
+        stateStr <- map["stateStr"]
     }
 }

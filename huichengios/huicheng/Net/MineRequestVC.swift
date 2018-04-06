@@ -191,10 +191,10 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
     }
     // MARK: 我的收款
     //列表
-    func finance_getlistRequest() {
+    func finance_getlistRequest(p:Int,c:Int,no:String,n:String,s:String,st:String,et:String) {
         request.delegate = self
         type = .finance_getlist
-        let url =   finance_getlist_api + "k=\(UserInfoLoaclManger.getKey())"
+        let url =   finance_getlist_api + "p=\(p)&c=\(c)&no=\(no)&n=\(n)&s=\(s)&st=\(st)&et=\(et)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
     }
     //详情

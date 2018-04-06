@@ -51,7 +51,7 @@ class LoginRequestVC: UIViewController,BaseNetViewControllerDelegate {
     /// - Parameter m: <#m description#>
     func sendcodeRequest(m: String) {
         request.delegate = self
-        let url =   sendcode_api + "&m=\(m)"
+        let url =   sendcode_api + "m=\(m)"
         request.request_api(url: url)
     }
     

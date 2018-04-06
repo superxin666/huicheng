@@ -57,7 +57,7 @@ class SubPayTableViewCell: UITableViewCell {
     }
     
     func setData_finance(model : finance_getlistModel) {
-        if let type = model.type ,let money = model.money {
+        if let type = model.typeStr ,let money = model.money {
             self.titleLabel.text = "\(type) \(money)元 "
             
         }
@@ -70,9 +70,16 @@ class SubPayTableViewCell: UITableViewCell {
             self.timeLabel.text = time
             
         }
-        if let stateStr = model.state {
+        if let stateStr = model.stateStr {
+            HCLog(message: stateStr)
             self.stateLabel.text = stateStr
-            self.stateLabel.backgroundColor = darkblueColor
+        }
+        if let state = model.state{
+            if state == 3 {
+                self.stateLabel.backgroundColor = UIColor.hc_ColorFromInt(red: 204, green: 204, blue: 204, alpha: 1)
+            } else {
+                self.stateLabel.backgroundColor = darkblueColor
+            }
         }
     }
     
