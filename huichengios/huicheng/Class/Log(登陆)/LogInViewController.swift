@@ -129,12 +129,12 @@ class LogInViewController: UIViewController,LoginTopViewDelegate,LoginMidBottomV
   
         
     }
-    func requestSucceed() {
+    func requestSucceed_Login() {
         let dele :AppDelegate = UIApplication.shared.delegate as! AppDelegate
         SVPMessageShow.showSucess(infoStr: "登录成功")
         dele.showMain()
     }
-    func requestFail() {
+    func requestFail_Login() {
         
     }
 

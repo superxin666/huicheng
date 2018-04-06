@@ -93,11 +93,11 @@ class LoginMidBottomView: UIView,NibLoadable,LoginRequestVCDelegate {
         
     }
     
-    func requestSucceed() {
+    func requestSucceed_Login() {
         SVPMessageShow.showSucess(infoStr: "已发送")
     }
     
-    func requestFail() {
+    func requestFail_Login() {
         HCLog(message: "失败123")
         codeLabel.isUserInteractionEnabled = true
         timeNum = 60

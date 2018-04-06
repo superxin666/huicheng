@@ -10,8 +10,8 @@ import UIKit
 import ObjectMapper
 
 protocol LoginRequestVCDelegate {
-    func requestSucceed() -> Void
-    func requestFail() -> Void
+    func requestSucceed_Login() -> Void
+    func requestFail_Login() -> Void
 
 }
 class LoginRequestVC: UIViewController,BaseNetViewControllerDelegate {
@@ -67,7 +67,7 @@ class LoginRequestVC: UIViewController,BaseNetViewControllerDelegate {
             if str == "1"{
                 //存储成工
                 if self.delegate != nil {
-                    self.delegate.requestSucceed()
+                    self.delegate.requestSucceed_Login()
                 }
             }
 
@@ -76,7 +76,7 @@ class LoginRequestVC: UIViewController,BaseNetViewControllerDelegate {
     }
     
     func requestFail(response: Any) {
-        self.delegate.requestFail()
+        self.delegate.requestFail_Login()
     }
 
     /*
