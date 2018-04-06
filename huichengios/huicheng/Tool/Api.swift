@@ -12,6 +12,8 @@ let base_imageOrFile_api = "http://47.94.108.111:18000"
 
 //------------------------登陆
 let login_api = "base/login?"
+let sendcode_api = "base/sendcode?"
+let mobilelogin_api = "base/mobilelogin?"
 
 
 //------------------------消息

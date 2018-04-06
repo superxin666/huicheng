@@ -33,6 +33,28 @@ class LoginRequestVC: UIViewController,BaseNetViewControllerDelegate {
         
     }
     
+    /// 手机号登陆
+    ///
+    /// - Parameters:
+    ///   - m: <#m description#>
+    ///   - n: <#n description#>
+    func mobileloginRequest(m:String,n:String) {
+        request.delegate = self
+
+        let url =   mobilelogin_api + "m=\(m)&n=\(n)"
+        request.request_api(url: url)
+    }
+    
+    
+    /// 获取验证码
+    ///
+    /// - Parameter m: <#m description#>
+    func sendcodeRequest(m: String) {
+        request.delegate = self
+        let url =   sendcode_api + "&m=\(m)"
+        request.request_api(url: url)
+    }
+    
     func requestSucceed(response: Any) {
         HCLog(message: response)
         let model = Mapper<LoginModel>().map(JSON: response as! [String : Any])!
@@ -54,7 +76,7 @@ class LoginRequestVC: UIViewController,BaseNetViewControllerDelegate {
     }
     
     func requestFail(response: Any) {
-        
+        self.delegate.requestFail()
     }
 
     /*

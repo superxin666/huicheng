@@ -14,6 +14,9 @@ class LogInViewController: UIViewController,LoginTopViewDelegate,LoginMidBottomV
     var bottomView : LoginMidBottomView!
     let request = LoginRequestVC()
     
+    /// 0是手机号  1是账号密码
+    var type : Int = 0
+    
     
     override func viewWillLayoutSubviews() {
         topView.snp.makeConstraints { (make) in
@@ -53,6 +56,7 @@ class LogInViewController: UIViewController,LoginTopViewDelegate,LoginMidBottomV
 
         if tagNum == 100 {
             HCLog(message: "手机代理")
+            type = 0
             bottomView.phoneTextField.keyboardType = .numberPad
             bottomView.phoneTextField.tag = 100
             bottomView.codeTextField.tag = 101
@@ -60,9 +64,10 @@ class LogInViewController: UIViewController,LoginTopViewDelegate,LoginMidBottomV
             bottomView.phoneImageView.image = #imageLiteral(resourceName: "log_phone")
             bottomView.phoneTextField.placeholder = "手机号"
             bottomView.codeTextField.placeholder = "短信验证码"
-            bottomView.getCodeBtn.isHidden = false
+            bottomView.codeLabel.isHidden = false
         } else {
             HCLog(message: "账号代理")
+            type = 1
             bottomView.phoneTextField.keyboardType = .default
             
             bottomView.phoneTextField.tag = 102
@@ -70,7 +75,7 @@ class LogInViewController: UIViewController,LoginTopViewDelegate,LoginMidBottomV
             bottomView.phoneImageView.image = #imageLiteral(resourceName: "log_persion")
             bottomView.phoneTextField.placeholder = "手机号/邮箱"
             bottomView.codeTextField.placeholder = "密码"
-            bottomView.getCodeBtn.isHidden = true
+            bottomView.codeLabel.isHidden = true
         }
     }
     func login() {
@@ -91,19 +96,37 @@ class LogInViewController: UIViewController,LoginTopViewDelegate,LoginMidBottomV
             SVPMessageShow.showErro(infoStr: "输入密码")
             return
         }
-        if !(uStr.count>0) {
-            SVPMessageShow.showErro(infoStr: "输入手机号或者账号")
-            return
+        if type == 0 {
+            if !(uStr.count>0) {
+                SVPMessageShow.showErro(infoStr: "输入手机号")
+                return
+            }
+            if !(pStr.count>0) {
+                SVPMessageShow.showErro(infoStr: "输入验证码")
+                return
+            }
+            //登陆请求
+            HCLog(message:"账号\(uStr)")
+            HCLog(message:"密码\(pStr)")
+            request.mobileloginRequest(m: uStr, n: pStr)
+            
+        } else {
+            if !(uStr.count>0) {
+                SVPMessageShow.showErro(infoStr: "输入账号")
+                return
+            }
+            if !(pStr.count>0) {
+                SVPMessageShow.showErro(infoStr: "输入密码")
+                return
+            }
+            //登陆请求
+            HCLog(message:"账号\(uStr)")
+            HCLog(message:"密码\(pStr)")
+            
+            request.loginRequest(u: uStr, p: pStr)
         }
-        if !(pStr.count>0) {
-            SVPMessageShow.showErro(infoStr: "输入密码")
-            return
-        }
-        //登陆请求
-        HCLog(message:"账号\(uStr)")
-        HCLog(message:"密码\(pStr)")
-        
-        request.loginRequest(u: uStr, p: pStr)
+
+  
         
     }
     func requestSucceed() {

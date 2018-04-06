@@ -37,7 +37,7 @@
                             </constraints>
                         </view>
                         <textField opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机号" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="mzO-zu-b4c">
-                            <rect key="frame" x="51" y="25" width="165" height="28"/>
+                            <rect key="frame" x="51" y="25" width="50" height="28"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="tintColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                             <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -47,18 +47,16 @@
                                 <action selector="fieldEnd:forEvent:" destination="iN0-l3-epB" eventType="editingDidEnd" id="rY8-MU-aNO"/>
                             </connections>
                         </textField>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kVL-c3-L4x">
-                            <rect key="frame" x="230" y="25" width="80" height="28"/>
+                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="获取验证码" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BIB-PK-JxY">
+                            <rect key="frame" x="230" y="25" width="80" height="25"/>
                             <constraints>
-                                <constraint firstAttribute="width" secondItem="kVL-c3-L4x" secondAttribute="height" multiplier="20:7" id="THO-8Q-X9D"/>
+                                <constraint firstAttribute="height" constant="25" id="6mq-fX-r8n"/>
+                                <constraint firstAttribute="width" constant="80" id="Mr1-mE-yGN"/>
                             </constraints>
-                            <state key="normal" title="获取验证码">
-                                <color key="titleColor" red="0.29803921568627451" green="0.37254901960784315" blue="0.62352941176470589" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="getCodeClick:" destination="-1" eventType="touchUpInside" id="dsi-Ny-OYV"/>
-                            </connections>
-                        </button>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" red="0.090196078430000007" green="0.2274509804" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <accessibility key="accessibilityConfiguration">
@@ -66,15 +64,13 @@
                     </accessibility>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="tBy-sd-dBf" secondAttribute="bottom" id="4ky-J7-KzD"/>
-                        <constraint firstItem="tBy-sd-dBf" firstAttribute="top" secondItem="kVL-c3-L4x" secondAttribute="bottom" constant="6" id="6jQ-Cd-iz5"/>
                         <constraint firstItem="tBy-sd-dBf" firstAttribute="top" secondItem="f2d-0y-Z9N" secondAttribute="bottom" constant="6" id="7E7-BE-9J3"/>
-                        <constraint firstAttribute="trailing" secondItem="kVL-c3-L4x" secondAttribute="trailing" constant="5" id="Csm-y6-VQw"/>
+                        <constraint firstItem="BIB-PK-JxY" firstAttribute="top" secondItem="0Vp-dv-A6u" secondAttribute="top" constant="25" id="JG3-6d-v0y"/>
                         <constraint firstItem="mzO-zu-b4c" firstAttribute="leading" secondItem="f2d-0y-Z9N" secondAttribute="trailing" constant="23" id="MM1-yk-7lp"/>
-                        <constraint firstItem="kVL-c3-L4x" firstAttribute="top" secondItem="0Vp-dv-A6u" secondAttribute="top" constant="25" id="NtQ-0k-jSk"/>
                         <constraint firstItem="mzO-zu-b4c" firstAttribute="top" secondItem="0Vp-dv-A6u" secondAttribute="top" constant="25" id="QbA-T0-DNq"/>
                         <constraint firstItem="tBy-sd-dBf" firstAttribute="leading" secondItem="0Vp-dv-A6u" secondAttribute="leading" id="RWb-rH-xOe"/>
                         <constraint firstItem="f2d-0y-Z9N" firstAttribute="top" secondItem="0Vp-dv-A6u" secondAttribute="top" constant="25" id="Rmr-Il-dbh"/>
-                        <constraint firstItem="kVL-c3-L4x" firstAttribute="leading" secondItem="mzO-zu-b4c" secondAttribute="trailing" constant="14" id="YKh-eR-yM7"/>
+                        <constraint firstAttribute="trailing" secondItem="BIB-PK-JxY" secondAttribute="trailing" constant="5" id="fDu-Nl-v49"/>
                         <constraint firstItem="tBy-sd-dBf" firstAttribute="top" secondItem="mzO-zu-b4c" secondAttribute="bottom" constant="6" id="j7N-qy-CA6"/>
                         <constraint firstAttribute="trailing" secondItem="tBy-sd-dBf" secondAttribute="trailing" id="oqo-AH-HQT"/>
                         <constraint firstAttribute="width" secondItem="0Vp-dv-A6u" secondAttribute="height" multiplier="21:4" id="rN8-wj-ZGt"/>
@@ -171,13 +167,13 @@
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="codeLabel" destination="BIB-PK-JxY" id="gKj-Kf-49l"/>
                 <outlet property="codeTextField" destination="oBw-Ku-zI2" id="pml-YY-IUo"/>
-                <outlet property="getCodeBtn" destination="kVL-c3-L4x" id="dDq-9h-of3"/>
                 <outlet property="logBtn" destination="Zkh-M4-Tcw" id="2VW-iE-dw5"/>
                 <outlet property="phoneImageView" destination="f2d-0y-Z9N" id="8br-wj-dA3"/>
                 <outlet property="phoneTextField" destination="mzO-zu-b4c" id="lN6-YJ-fmb"/>
             </connections>
-            <point key="canvasLocation" x="-1189" y="-227"/>
+            <point key="canvasLocation" x="-1418" y="-233"/>
         </view>
     </objects>
     <resources>
