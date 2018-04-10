@@ -32,6 +32,16 @@ class InvoiceTableViewCell: UITableViewCell {
         if let time = model.addtime {
             self.timeLabel.text = time
         }
+        if let state = model.state, let statestr = model.stateStr {
+            self.stteLabel.text = statestr
+            if state == 0 {
+                self.stteLabel.backgroundColor = darkblueColor
+            } else if state == 2 {
+                self.stteLabel.backgroundColor = UIColor.hc_ColorFromInt(red: 255, green: 105, blue: 0, alpha: 1.0)
+            } else {
+                self.stteLabel.backgroundColor = UIColor.hc_ColorFromInt(red: 204, green: 204, blue: 204, alpha: 1.0)
+            }
+        }
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
