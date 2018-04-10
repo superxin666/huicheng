@@ -21,6 +21,9 @@ class InvoiceViewController:  BaseViewController, UITableViewDataSource, UITable
     var dataArr :[invoice_getlistModel] = []
     
     var pageNum : Int = 1
+
+    /// 0-未审核;1-已审核;2-审核驳回;3-已寄送
+    var state : String = ""
     // MARK: - life
     override func viewWillLayoutSubviews() {
         mainTabelView.snp.makeConstraints { (make) in
@@ -121,7 +124,7 @@ class InvoiceViewController:  BaseViewController, UITableViewDataSource, UITable
     
     func requestApi() {
         request.delegate = self
-        request.invoice_getlistRequest(p: pageNum, c: 8)
+        request.invoice_getlistRequest(p: pageNum, c: 8, s : state)
     }
     
     // MARK: - event response
@@ -130,6 +133,16 @@ class InvoiceViewController:  BaseViewController, UITableViewDataSource, UITable
     }
     @objc func searchClick() {
         HCLog(message: "搜索")
+        let vc = SearchViewController()
+        vc.hidesBottomBarWhenPushed = true
+        vc.type = .invoice_getlist
+        weak var weakSelf = self
+        vc.sureStateBlock = {(idstr) in
+            weakSelf?.dataArr.removeAll()
+            weakSelf?.state = idstr
+            weakSelf?.requestApi()
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     @objc func addClick() {
         HCLog(message: "添加")

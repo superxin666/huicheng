@@ -10,21 +10,28 @@ import UIKit
 let SearchStateTableViewCellID = "SearchStateTableViewCell_id"
 
 enum SearchStateTableViewCellType {
-    //搜索中状态  接受对象
-    case searchState,Object
+    //搜索中状态  报销  接受对象      发票列表
+    case searchState,Object,invoice_getlist
 }
 class SearchStateTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource {
-    //搜索
+    var cuurectID : String = ""
+    /// 类型 默认搜索
+    var type :SearchStateTableViewCellType = .searchState
+    //搜索 报销
     //0 1 2 3
     var nameArr = ["未审核","已审核","审核驳回","已支付",]
     var idArr = ["0","1","2","3",]
-    var cuurectID : String = ""
+
     //接受对象
     //数组
     var dataArr : [getobjectlistModel] = []
-    
-    /// 类型 默认搜索
-    var type :SearchStateTableViewCellType = .searchState
+
+    //发票
+    var nameArr_invoice = ["未审核","已审核","审核驳回","已寄送",]
+    var idArr_invoice = ["0","1","2","3",]
+
+
+
     
     @IBOutlet weak var titleNameLabel: UILabel!
     @IBOutlet weak var pickView: UIPickerView!
@@ -69,6 +76,8 @@ class SearchStateTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerV
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if type == .searchState {
             return nameArr.count
+        } else if type == .invoice_getlist {
+            return nameArr_invoice.count
         } else {
             return dataArr.count
         }
@@ -83,6 +92,9 @@ class SearchStateTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerV
         if type == .searchState {
            titleStr = nameArr[row]
            cuurectID = idArr[row]
+        } else if type == .invoice_getlist {
+            titleStr = nameArr[row]
+            cuurectID = idArr[row]
         } else {
             let model = dataArr[row]
             titleStr = model.name!

@@ -100,8 +100,8 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
     
     // MARK: 发票申请
     ///  发票申请 获取列表
-    func invoice_getlistRequest(p : Int, c: Int) {
-        let url =   invoice_getlist_api + "c=\(c)&p=\(p)&k=\(UserInfoLoaclManger.getKey())"
+    func invoice_getlistRequest(p : Int, c: Int ,s : String) {
+        let url =   invoice_getlist_api + "s=\(s)&c=\(c)&p=\(p)&k=\(UserInfoLoaclManger.getKey())"
         request.delegate = self
         type = .invoice_getlist
         request.request_api(url: url)

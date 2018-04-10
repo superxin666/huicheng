@@ -10,8 +10,8 @@ import UIKit
 typealias SearchViewControllerBlock_expense = (_ stateId : String)->()
 typealias SearchViewControllerBlock_work = (_ titleStr : String,_ personStr : String,_ StartTimeStr : String,_ endTimeStr : String)->()
 enum SearchViewController_type {
-    //发票申请           收款记录       工作日志
-    case expense_type, finance_type , work_type
+    //发票申请           收款记录       工作日志      发票列表
+    case expense_type, finance_type , work_type ,invoice_getlist
 }
 let Searchcell_finance_typeID = "Searchcell_finance_type_id"
 class SearchViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate,DatePickViewDelegate {
@@ -71,6 +71,9 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         } else if type == .work_type{
             self.navigation_title_fontsize(name: "公告查询", fontsize: 18)
             rowNum = 4
+        } else if type == .invoice_getlist{
+            self.navigation_title_fontsize(name: "发票查询", fontsize: 18)
+            rowNum = 1
         }
         self.navigationBar_rightBtn_title(name: "确定")
         self.creatUI()
@@ -85,7 +88,7 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         mainTabelView.showsVerticalScrollIndicator = false
         mainTabelView.showsHorizontalScrollIndicator = false
         mainTabelView.backgroundView?.backgroundColor = .clear
-        if type == .expense_type {
+        if type == .expense_type || type == .invoice_getlist {
             mainTabelView.register(UINib.init(nibName: "SearchStateTableViewCell", bundle: nil), forCellReuseIdentifier: SearchStateTableViewCellID)
         } else if type == .finance_type {
             
@@ -116,6 +119,13 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             stateCell.type = .searchState
             stateCell.setData_searchState(titleStr: "状态")
             return stateCell
+        } else if type == .invoice_getlist{
+            stateCell  = tableView.dequeueReusableCell(withIdentifier: SearchStateTableViewCellID, for: indexPath) as! SearchStateTableViewCell
+            stateCell.type = .searchState
+            stateCell.setData_searchState(titleStr: "状态")
+            return stateCell
+
+
         } else if type == .finance_type{
             //我都收款
             
@@ -255,7 +265,7 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         self.navigationController?.popViewController(animated: true)
     }
     override func navigationRightBtnClick() {
-        if self.type == .expense_type {
+        if self.type == .expense_type || self.type == .invoice_getlist {
             self.sureStateBlock(stateCell.cuurectID)
         } else if self.type == .work_type  {
             if titleCell.textField.isFirstResponder {
