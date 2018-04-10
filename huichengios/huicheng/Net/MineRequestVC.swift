@@ -10,7 +10,7 @@ import UIKit
 import ObjectMapper
 enum MineRequestVC_enum {
     case user_getinfo,
-         invoice_getlist,invoice_getinfo,invoice_gettype,//发票
+         invoice_getlist,invoice_getinfo,invoice_gettype,invoice_save,//发票
          memo_getlist,memo_getinfo,memo_save,memo_del,//备忘录
          expense_save,expense_getinfo,expense_gettype,expense_getlist,//报销
          finance_getlist,finance_getinfo,
@@ -125,6 +125,14 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
         request.request_api(url: url)
     }
 
+
+    func invoice_saveRequest(typeStr:String,title:String,money:String,creditcode:String,sendtype:String,content:String,isbooks:String,applytime:String,identifier:String,eaddr:String,ephone:String,ebank:String,ecard:String,name:String,phone:String,zip:String,addr:String,paytype:String,mtime:String,remark:String)  {
+
+        let url =   invoice_save_api + "k=\(UserInfoLoaclManger.getKey())"
+        request.delegate = self
+        type = .invoice_save
+        request.request_api(url: url)
+    }
 
     
     
@@ -258,7 +266,7 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_mine(data: model,type : .memo_getinfo)
             }
-        } else if (type == .memo_save) || (type == .memo_del) || (type == .expense_save) || (type == .user_editpass){
+        } else if (type == .memo_save) || (type == .memo_del) || (type == .expense_save) || (type == .user_editpass) || (type == .invoice_save){
             let model = Mapper<CodeData>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_mine(data: model,type : type)
@@ -295,7 +303,7 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
                 self.delegate.requestSucceed_mine(data: arr,type : type)
             }
             
-        } else if type == .work_getlist{
+        }  else if type == .work_getlist{
             //工作日志 列表
             let arr = Mapper<work_getlistModel>().mapArray(JSONArray: response as! [[String : Any]])
             HCLog(message: arr.count)

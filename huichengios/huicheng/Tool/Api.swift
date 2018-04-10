@@ -58,7 +58,7 @@ let quick_getlist_api = "quick/getlist?"
 let invoice_getlist_api = "uc/invoice_getlist?"
 let invoice_getinfo_api = "uc/invoice_getinfo?"
 let invoice_gettype_api = "uc/invoice_gettype?"
-
+let invoice_save_api = "uc/invoice_save?"
 //-----------------------报销申请 获取列表
 let expense_getlist_api = "uc/expense_getlist?"
 //申请报销
