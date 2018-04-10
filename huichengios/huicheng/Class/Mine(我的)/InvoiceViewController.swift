@@ -92,12 +92,13 @@ class InvoiceViewController:  BaseViewController, UITableViewDataSource, UITable
         if arr.count > 0 {
             dataArr = dataArr + arr
             HCLog(message: dataArr.count)
-            mainTabelView.reloadData()
+
         } else {
             if pageNum > 1 {
                 SVPMessageShow.showErro(infoStr: "已经加载全部内容")
             }
         }
+        mainTabelView.reloadData()
         if mainTabelView.mj_footer.isRefreshing {
             mainTabelView.mj_footer.endRefreshing()
         }
@@ -140,7 +141,7 @@ class InvoiceViewController:  BaseViewController, UITableViewDataSource, UITable
         vc.sureStateBlock = {(idstr) in
             weakSelf?.dataArr.removeAll()
             weakSelf?.state = idstr
-            weakSelf?.requestApi()
+            weakSelf?.reflishData()
         }
         self.navigationController?.pushViewController(vc, animated: true)
     }

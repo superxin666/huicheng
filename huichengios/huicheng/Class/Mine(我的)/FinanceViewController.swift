@@ -22,7 +22,7 @@ class FinanceViewController:  BaseViewController,UITableViewDataSource,UITableVi
     var sStr : String = ""
     var startTime : String = ""
     var endTime : String = ""
-    var noTime : String = ""
+    var noStr : String = ""
     
     // MARK: - life
     override func viewWillLayoutSubviews() {
@@ -43,7 +43,7 @@ class FinanceViewController:  BaseViewController,UITableViewDataSource,UITableVi
         self.navigationBar_rightBtn_image(image: #imageLiteral(resourceName: "mine_search"))
         self.creatUI()
         request.delegate = self
-        request.finance_getlistRequest(p: pageNum, c: 8, no: noTime, n: nStr, s: sStr, st: startTime, et: endTime)
+        self.requestApi()
         
     }
     // MARK: - UI
@@ -91,6 +91,12 @@ class FinanceViewController:  BaseViewController,UITableViewDataSource,UITableVi
         return IncomeTableViewCellH
     }
     
+    
+    // MARK: - net
+    func requestApi() {
+         request.finance_getlistRequest(p: pageNum, c: 8, no: noStr, n: nStr, s: sStr, st: startTime, et: endTime)
+    }
+    
     func requestSucceed_mine(data: Any,type : MineRequestVC_enum) {
         dataArr = data as! [finance_getlistModel]
         mainTabelView.reloadData()
@@ -108,6 +114,15 @@ class FinanceViewController:  BaseViewController,UITableViewDataSource,UITableVi
         let vc = SearchViewController()
         vc.hidesBottomBarWhenPushed = true
         vc.type = .finance_type
+        weak var weakself = self
+        vc.sureFinanceBlock = {(no,n,s,st,et) in
+            weakself?.noStr = no
+            weakself?.nStr = n
+            weakself?.sStr = s
+            weakself?.startTime = st
+            weakself?.endTime = et
+            weakself?.requestApi()
+        }
         self.navigationController?.pushViewController(vc, animated: true)
         
     }

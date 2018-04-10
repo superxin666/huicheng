@@ -10,8 +10,9 @@ import UIKit
 let SearchStateTableViewCellID = "SearchStateTableViewCell_id"
 
 enum SearchStateTableViewCellType {
-    //搜索中状态  报销  接受对象      发票列表
-    case searchState,Object,invoice_getlist
+
+    //搜索中状态  报销  接受对象      发票列表    我的收款
+    case searchState,Object,invoice_getlist,finance
 }
 class SearchStateTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource {
     var cuurectID : String = ""
@@ -30,7 +31,8 @@ class SearchStateTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerV
     var nameArr_invoice = ["未审核","已审核","审核驳回","已寄送",]
     var idArr_invoice = ["0","1","2","3",]
 
-
+    var nameArr_finance = ["未支付","已支付",]
+    var idArr_finance = ["1","3",]
 
     
     @IBOutlet weak var titleNameLabel: UILabel!
@@ -76,10 +78,19 @@ class SearchStateTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerV
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if type == .searchState {
             return nameArr.count
+
         } else if type == .invoice_getlist {
             return nameArr_invoice.count
-        } else {
+
+        }  else if type == .finance {
+
+            return nameArr_finance.count
+
+        } else if type == .Object {
+
             return dataArr.count
+        } else {
+            return 0
         }
         
     }
@@ -90,15 +101,24 @@ class SearchStateTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerV
         //显示
         var titleStr = ""
         if type == .searchState {
+            //发票
            titleStr = nameArr[row]
            cuurectID = idArr[row]
+
         } else if type == .invoice_getlist {
             titleStr = nameArr[row]
             cuurectID = idArr[row]
-        } else {
+        } else if type == .Object {
+            //接受对象
+
             let model = dataArr[row]
             titleStr = model.name!
             cuurectID = "\(model.id!)"
+            
+        } else if type == .finance{
+            //收款
+            titleStr = nameArr_finance[row]
+            cuurectID = idArr_finance[row]
             
         }
         let label = UILabel(frame: CGRect(x: 0, y: 15, width: 100, height: 20))

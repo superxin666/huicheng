@@ -9,9 +9,13 @@
 import UIKit
 typealias SearchViewControllerBlock_expense = (_ stateId : String)->()
 typealias SearchViewControllerBlock_work = (_ titleStr : String,_ personStr : String,_ StartTimeStr : String,_ endTimeStr : String)->()
+typealias SearchViewControllerBlock_finance = (_ noStr : String,_ nStr : String,_ sStr : String,_ stStr : String,_ etStr : String)->()
+
 enum SearchViewController_type {
-    //发票申请           收款记录       工作日志      发票列表
+
+    //发票申请           收款记录       工作日志      发票列表         
     case expense_type, finance_type , work_type ,invoice_getlist
+
 }
 let Searchcell_finance_typeID = "Searchcell_finance_type_id"
 class SearchViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate,DatePickViewDelegate {
@@ -27,6 +31,10 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
     
     /// 工作日志
     var sureWorkBlock : SearchViewControllerBlock_work!
+    
+    /// 我都收款
+    var sureFinanceBlock : SearchViewControllerBlock_finance!
+    
 
     /// 状态cell
     var stateCell : SearchStateTableViewCell!
@@ -156,14 +164,14 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             } else {
                 //状态
                 stateCell  = tableView.dequeueReusableCell(withIdentifier: SearchStateTableViewCellID, for: indexPath) as! SearchStateTableViewCell
-                stateCell.type = .searchState
+                stateCell.type = .finance
                 stateCell.setData_searchState(titleStr: "状态")
                 return stateCell
             }
             
             
         } else if type == .work_type{
-            //工作日志搜索
+            //公告搜索
             if indexPath.row == 0 {
                 titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
                 //标题
@@ -275,6 +283,15 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
                 persionCell.textField.resignFirstResponder()
             }
             self.sureWorkBlock(titleCell.conTent,persionCell.contentStr,startTimeStr,endTimeStr)
+        } else if self.type == .finance_type{
+            if titleCell.textField.isFirstResponder {
+                titleCell.textField.resignFirstResponder()
+            }
+            if persionCell.textField.isFirstResponder {
+                persionCell.textField.resignFirstResponder()
+            }
+            self.sureFinanceBlock(titleCell.conTent,persionCell.contentStr,stateCell.cuurectID,startTimeStr,endTimeStr)
+            
         }
         self.navigationController?.popViewController(animated: true)
     }
