@@ -20,7 +20,7 @@ class DatePickView: UIView,NibLoadable {
         // Drawing code
     }
     */
-    var timeStr : String = ""
+    var timeStr : String = String.getDateNow()
     var delegate : DatePickViewDelegate!
     
     /// 0 是开始时间 1是结束时间

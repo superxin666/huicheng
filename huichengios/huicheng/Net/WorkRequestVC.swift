@@ -132,7 +132,15 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
     func casegetlistRerquest(p:Int,c:Int,b:String,s:String) {
         request.delegate = self
         type = .case_getlist
-        let url =   case_getlist_api + "p=\(p)&c=\(c)&b=\(b)&s=\(s)&k=\(UserInfoLoaclManger.getKey())"
+        var bStr = ""
+        if b.count > 0 {
+            bStr = b.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+        var eStr = ""
+        if s.count > 0 {
+            eStr = b.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+        let url =   case_getlist_api + "p=\(p)&c=\(c)&b=\(bStr)&s=\(eStr)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
     }
     

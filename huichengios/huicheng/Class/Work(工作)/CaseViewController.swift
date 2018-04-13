@@ -114,6 +114,20 @@ class CaseViewController: BaseViewController,UITableViewDataSource,UITableViewDe
     }
     override func navigationRightBtnClick() {
         HCLog(message: "搜索")
+        let vc = SearchViewController()
+        vc.type = .caselsit_type
+        weak var weakself = self
+        vc.sureCaselsitBlock = {( startTime ,endTime) in
+            HCLog(message: startTime)
+            HCLog(message: endTime)
+            weakself?.bTimeStr = startTime
+            weakself?.endTimeStr = endTime
+            weakself?.reflishData()
+
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
+
+
     }
     
     override func didReceiveMemoryWarning() {

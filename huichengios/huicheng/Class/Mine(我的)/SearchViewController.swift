@@ -10,11 +10,11 @@ import UIKit
 typealias SearchViewControllerBlock_expense = (_ stateId : String)->()
 typealias SearchViewControllerBlock_work = (_ titleStr : String,_ personStr : String,_ StartTimeStr : String,_ endTimeStr : String)->()
 typealias SearchViewControllerBlock_finance = (_ noStr : String,_ nStr : String,_ sStr : String,_ stStr : String,_ etStr : String)->()
-
+typealias SearchViewControllerBlock_caselsit = (_ stStr : String,_ etStr : String)->()
 enum SearchViewController_type {
 
-    //发票申请           收款记录       工作日志      发票列表         
-    case expense_type, finance_type , work_type ,invoice_getlist
+    //发票申请           收款记录       工作日志      发票列表         案件查询
+    case expense_type, finance_type , work_type ,invoice_getlist,caselsit_type
 
 }
 let Searchcell_finance_typeID = "Searchcell_finance_type_id"
@@ -35,6 +35,8 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
     /// 我都收款
     var sureFinanceBlock : SearchViewControllerBlock_finance!
     
+    /// 案件查询
+    var sureCaselsitBlock : SearchViewControllerBlock_caselsit!
 
     /// 状态cell
     var stateCell : SearchStateTableViewCell!
@@ -82,6 +84,9 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         } else if type == .invoice_getlist{
             self.navigation_title_fontsize(name: "发票查询", fontsize: 18)
             rowNum = 1
+        }else if type == .caselsit_type{
+            self.navigation_title_fontsize(name: "案件查询", fontsize: 18)
+            rowNum = 2
         }
         self.navigationBar_rightBtn_title(name: "确定")
         self.creatUI()
@@ -110,6 +115,8 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             mainTabelView.register(UINib.init(nibName: "endTimeTableViewCell", bundle: nil), forCellReuseIdentifier: endTimeTableViewCellid)
             
             
+        }else if type == .caselsit_type {
+            mainTabelView.register(UINib.init(nibName: "endTimeTableViewCell", bundle: nil), forCellReuseIdentifier: endTimeTableViewCellid)
         }
         self.view.addSubview(mainTabelView)
     }
@@ -198,6 +205,22 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
                 return endTimeCell
             }
             
+        }else if type == .caselsit_type{
+            //公告搜索
+            if indexPath.row == 0 {
+                //开始时间
+                startTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                startTimeCell.setData(titleStr: "开始时间", tag: 0)
+                return startTimeCell
+
+            } else {
+                //结束时间
+                endTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                endTimeCell.setData(titleStr: "结束时间", tag: 1)
+                return endTimeCell
+
+            }
+
         } else {
             return UITableViewCell()
         }
@@ -212,12 +235,12 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
                 //结束时间
                 self.showTime_end()
             }
-        } else if type == .finance_type{
+        } else if type == .finance_type || type == .caselsit_type{
             //收款
-            if indexPath.row == 2 {
+            if indexPath.row == 0 {
                 //开始时间
                 self.showTime_start()
-            } else if indexPath.row == 3 {
+            } else if indexPath.row == 1 {
                 //结束时间
                 self.showTime_end()
             }
@@ -292,6 +315,8 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             }
             self.sureFinanceBlock(titleCell.conTent,persionCell.contentStr,stateCell.cuurectID,startTimeStr,endTimeStr)
             
+        } else if self.type == .caselsit_type {
+            self.sureCaselsitBlock(startTimeStr,endTimeStr)
         }
         self.navigationController?.popViewController(animated: true)
     }
