@@ -34,6 +34,14 @@ class SearchStateTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerV
     var nameArr_finance = ["未支付","已支付",]
     var idArr_finance = ["1","3",]
 
+
+    //律师
+    var data_userlist : [userlistModel] = []
+    //组别
+    var data_branch : [branchModel] = []
+    //案件类型
+    var data_casetype : [casetypeModel] = []
+
     
     @IBOutlet weak var titleNameLabel: UILabel!
     @IBOutlet weak var pickView: UIPickerView!
@@ -58,7 +66,7 @@ class SearchStateTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerV
     ///
     /// - Parameter titleStr: <#titleStr description#>
     func setData_searchState(titleStr : String) {
-        self.titleNameLabel.textAlignment = .right
+        self.titleNameLabel.textAlignment = .left
         self.titleNameLabel.text = titleStr
     }
     
@@ -72,14 +80,15 @@ class SearchStateTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerV
     }
 
 
-    /// 添加案件  详情
+    /// 添加/详情  案件
     ///
     /// - Parameters:
     ///   - titleStr: <#titleStr description#>
     ///   - index: <#index description#>
     func setData_addCase(titleStr : String,index: IndexPath)  {
-
-
+        self.titleNameLabel.textAlignment = .right
+        self.titleNameLabel.text = titleStr
+        self.pickView.tag = index.row
     }
 
     
@@ -100,6 +109,18 @@ class SearchStateTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerV
         } else if type == .Object {
 
             return dataArr.count
+        } else if type == .caseAdd {
+            if self.pickView.tag == 0 {
+                return self.data_casetype.count
+            } else if self.pickView.tag == 3 {
+                return self.data_userlist.count
+            }else if self.pickView.tag == 4 {
+                return self.data_branch.count
+            }else if self.pickView.tag == 5 {
+                return self.data_userlist.count
+            } else {
+                return self.data_userlist.count
+            }
         } else {
             return 0
         }
@@ -131,6 +152,11 @@ class SearchStateTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerV
             titleStr = nameArr_finance[row]
             cuurectID = idArr_finance[row]
             
+        }else if type == .caseAdd{
+            //案件
+            titleStr = nameArr_finance[row]
+            cuurectID = idArr_finance[row]
+
         }
         let label = UILabel(frame: CGRect(x: 0, y: 15, width: pickerView.frame.width, height: 20))
         label.text = titleStr

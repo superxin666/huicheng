@@ -34,13 +34,23 @@
                             <constraint firstAttribute="height" constant="49" id="Voi-vd-cvM"/>
                         </constraints>
                     </pickerView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vPs-Xn-R3X">
+                        <rect key="frame" x="10" y="49" width="310" height="0.5"/>
+                        <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="hJa-Wn-Zbb"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="4CG-st-w9A" firstAttribute="leading" secondItem="kdc-Bw-pMb" secondAttribute="trailing" constant="10" id="C8V-pH-XJW"/>
+                    <constraint firstItem="vPs-Xn-R3X" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Hyp-sP-vGW"/>
+                    <constraint firstAttribute="trailing" secondItem="vPs-Xn-R3X" secondAttribute="trailing" id="MZj-KX-y6e"/>
                     <constraint firstItem="kdc-Bw-pMb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="SIs-Aw-0nf"/>
                     <constraint firstItem="kdc-Bw-pMb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Xf7-pK-l2D"/>
                     <constraint firstAttribute="trailing" secondItem="4CG-st-w9A" secondAttribute="trailing" constant="70" id="bbi-hu-nmv"/>
                     <constraint firstItem="4CG-st-w9A" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="gFo-DM-Hsx"/>
+                    <constraint firstAttribute="bottom" secondItem="vPs-Xn-R3X" secondAttribute="bottom" id="sTJ-bG-f3x"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

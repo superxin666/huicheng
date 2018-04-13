@@ -70,7 +70,7 @@ class TitleTableViewCell: UITableViewCell {
         self.textField.tag = tagNum
         self.titleNameLabel.textColor = darkblueColor
         self.titleNameLabel.text = titleStr
-         self.titleNameLabel.textAlignment = .right
+         self.titleNameLabel.textAlignment = .left
     }
     
     func setData_caseAdd(titleStr : String) {

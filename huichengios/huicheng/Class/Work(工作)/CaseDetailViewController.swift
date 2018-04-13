@@ -54,6 +54,7 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
         mainTabelView.register(UINib.init(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: TitleTableViewCellID)
         mainTabelView.register(UINib.init(nibName: "SearchStateTableViewCell", bundle: nil), forCellReuseIdentifier: SearchStateTableViewCellID)
         mainTabelView.register(UINib.init(nibName: "ContentTableViewCell", bundle: nil), forCellReuseIdentifier: ContentTableViewCellID)
+        mainTabelView.register(UINib.init(nibName: "endTimeTableViewCell", bundle: nil), forCellReuseIdentifier: endTimeTableViewCellid)
         self.view.addSubview(mainTabelView)
     }
     // MARK: - delegate
@@ -79,15 +80,18 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
                 let cell : SearchStateTableViewCell  = tableView.dequeueReusableCell(withIdentifier: SearchStateTableViewCellID, for: indexPath) as! SearchStateTableViewCell
                 cell.setData_searchState(titleStr: name1[indexPath.row])
                 return cell
-            } else if indexPath.row == 1 || indexPath.row == 2{
+            } else if indexPath.row == 1{
                 let cell : TitleTableViewCell  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
                 cell.delegate = self
                 cell.setData_caseDetail(titleStr: name1[indexPath.row], contentStr: "",indexPath : indexPath)
                 cell.tag = indexPath.row
                 return cell
             }  else {
-                let cell : ContentTableViewCell  = tableView.dequeueReusableCell(withIdentifier: ContentTableViewCellID, for: indexPath) as! ContentTableViewCell
-                return cell
+                //结束时间
+                let endTimeCell : endTimeTableViewCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                endTimeCell.setData_case(titleStr: "立案日期")
+
+                return endTimeCell
             }
         } else if  indexPath.section == 1 {
             if indexPath.row == 0 {

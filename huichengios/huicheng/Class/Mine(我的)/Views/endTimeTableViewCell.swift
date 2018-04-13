@@ -24,10 +24,27 @@ class endTimeTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+
+
+    /// 时间标题
+    ///
+    /// - Parameters:
+    ///   - titleStr: <#titleStr description#>
+    ///   - tag: <#tag description#>
     func setData(titleStr  :String,tag : Int)  {
         self.titleNameLabel.text = titleStr
     }
+
+
+    func setData_case(titleStr  :String) {
+
+        self.titleNameLabel.text = titleStr
+        self.titleNameLabel.textAlignment = .left
+    }
+
+    /// 选择时间之后 展示时间
+    ///
+    /// - Parameter str: <#str description#>
     func setTime(str : String) {
         self.timeLabel.text = str
     }
