@@ -38,6 +38,7 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
         self.navigationBar_rightBtn_title(name: "操作")
         self.creatUI()
         request.delegate = self
+        request.casegetinfoRerquest(id: caseId)
 
 
     }
@@ -52,6 +53,7 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
         mainTabelView.showsHorizontalScrollIndicator = false
         mainTabelView.backgroundView?.backgroundColor = .clear
         mainTabelView.register(UINib.init(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: TitleTableViewCellID)
+        mainTabelView.register(UINib.init(nibName: "Title2TableViewCell", bundle: nil), forCellReuseIdentifier: Title2TableViewCellID)
         mainTabelView.register(UINib.init(nibName: "SearchStateTableViewCell", bundle: nil), forCellReuseIdentifier: SearchStateTableViewCellID)
         mainTabelView.register(UINib.init(nibName: "ContentTableViewCell", bundle: nil), forCellReuseIdentifier: ContentTableViewCellID)
         mainTabelView.register(UINib.init(nibName: "endTimeTableViewCell", bundle: nil), forCellReuseIdentifier: endTimeTableViewCellid)
@@ -59,17 +61,16 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
     }
     // MARK: - delegate
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 3
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return name1.count
-//        if section == 0{
-//            return 7
-//        } else if section == 1 {
-//            return 2
-//        } else {
-//            return 2
-//        }
+        if section == 0{
+            return 7
+        } else if section == 1 {
+            return 2
+        } else {
+            return 2
+        }
 
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -94,17 +95,18 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
                 return endTimeCell
             }
         } else if  indexPath.section == 1 {
-            if indexPath.row == 0 {
-                return UITableViewCell()
-            } else {
-                return UITableViewCell()
-            }
+            let cell : Title2TableViewCell  = tableView.dequeueReusableCell(withIdentifier: Title2TableViewCellID, for: indexPath) as! Title2TableViewCell
+            cell.setData(titleStr: name2[indexPath.row])
+            return cell
         } else {
             if indexPath.row == 0 {
-                return UITableViewCell()
+                let cell : ContentTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: ContentTableViewCellID, for: indexPath) as! ContentTableViewCell
+                cell.setData_case(title: name3[indexPath.row])
+                return cell
+
             } else {
                 let cell : TitleTableViewCell  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
-                cell.setData_checkCaseView(titleStr: name1[indexPath.row], indexPath: indexPath)
+                cell.setData_checkCaseView(titleStr: name3[indexPath.row], indexPath: indexPath)
                 cell.tag = indexPath.row
                 return cell
             }
@@ -112,7 +114,16 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        if indexPath.section == 2 {
+            if indexPath.row == 0 {
+                return ContentTableViewCellH
+            } else {
+                return 50
+            }
+        } else {
+            return 50
+        }
+
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0  {
@@ -136,6 +147,8 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
 
     // MARK: - net
     func requestSucceed_work(data: Any, type: WorkRequestVC_enum) {
+        let model  : caseDetailModel = data as! caseDetailModel
+
 
     }
     func requestFail_work() {

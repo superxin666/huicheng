@@ -145,10 +145,13 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
     }
 
 
+    /// 案件详情
+    ///
+    /// - Parameter id: <#id description#>
     func casegetinfoRerquest(id:Int) {
         request.delegate = self
         type = .case_getinfo
-        let url =   case_getlist_api + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
+        let url =   case_getinfo_api + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
     }
 

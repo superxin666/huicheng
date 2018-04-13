@@ -33,6 +33,12 @@ class ContentTableViewCell: UITableViewCell,UITextViewDelegate {
         self.textView.text = contentStr
         self.conTent = contentStr
     }
+
+    
+    func setData_case(title : String) {
+        self.titleLabel.textColor = darkblueColor
+        self.titleLabel.text = title
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

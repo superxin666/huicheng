@@ -69,9 +69,14 @@ class CaseViewController: BaseViewController,UITableViewDataSource,UITableViewDe
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = CaseDetailViewController()
-        vc.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(vc, animated: true)
+        if indexPath.row  < self.dataArr.count {
+            let model : checkcaseModel  = self.dataArr[indexPath.row]
+            let vc = CaseDetailViewController()
+            vc.caseId = model.id
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return CaseTableViewCellH
