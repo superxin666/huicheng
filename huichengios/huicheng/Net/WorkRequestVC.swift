@@ -152,7 +152,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
         request.delegate = self
         type = .case_getinfo
         let url =   case_getinfo_api + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
-        request.request_api(url: url)
+        request.request_api(url: url,type: .alltyper)
     }
 
 
@@ -167,7 +167,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
             }
         } else if type == .case_getinfo{
             //案情详情
-            let model = Mapper<caseDetailModel>().map(JSON: response as! [String : Any])!
+            let model = Mapper<caseDetailModelMap>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work(data: model,type : type)
             }

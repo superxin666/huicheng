@@ -22,7 +22,7 @@ enum reponsetype {
 class BaseNetViewController: UIViewController {
     weak var delegate :BaseNetViewControllerDelegate!
 
-    func request_api(url : String,type :  reponsetype = .alltyper){
+    func request_api(url : String,type :  reponsetype = .datatype){
         let url = base_api + url
         HCLog(message: url)
         Alamofire.request(url, method: .get).responseJSON { (returnResult) in
@@ -31,7 +31,7 @@ class BaseNetViewController: UIViewController {
                 let model = Mapper<CodeData>().map(JSON: json as! [String : Any])!
                 if model.code == 1 {
                     if self.delegate != nil {
-                        if type == .alltyper{
+                        if type == .datatype{
                             if let data = model.data {
                                 self.delegate.requestSucceed(response: data)
                             } else {

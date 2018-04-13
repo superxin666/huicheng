@@ -56,7 +56,7 @@ class caseDetailModel: Mappable {
     var oz: String!
     var oj: String!
     var oa: String!
-    var r: String!
+    var r: Int!
     var rStr: String!
     var d: Int!
     var dStr: String!
@@ -103,5 +103,23 @@ class caseDetailModel: Mappable {
         ct <- map["ct"]
         sj <- map["sj"]
         addtime <- map["addtime"]
+    }
+}
+
+class caseDetailModelMap: Mappable {
+    var data: caseDetailModel!
+    var departments: [departmentModel] = []
+    var users: [userlistModel] = []
+
+
+    init() {}
+    required init?(map: Map){
+        mapping(map: map)
+    }
+    // Mappable
+    func mapping(map: Map) {
+        data <- map["data"]
+        departments <- map["departments"]
+        users <- map["users"]
     }
 }

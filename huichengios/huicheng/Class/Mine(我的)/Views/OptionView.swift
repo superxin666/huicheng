@@ -1,20 +1,24 @@
 //
-//  SearchStateTableViewCell.swift
+//  OptionView.swift
 //  huicheng
 //
-//  Created by lvxin on 2018/3/30.
+//  Created by lvxin on 2018/4/13.
 //  Copyright © 2018年 lvxin. All rights reserved.
-//  搜索页面--状态选择   发布公告--接受对象
+//
 
 import UIKit
-let SearchStateTableViewCellID = "SearchStateTableViewCell_id"
+protocol OptionViewDelgate {
+    func optionSure(idStr : String,pickTag : Int)
+}
 
-enum SearchStateTableViewCellType {
+enum OptionViewType {
 
     //搜索中状态  报销  接受对象      发票列表    我的收款  案件添加
     case searchState,Object,invoice_getlist,finance, caseAdd
 }
-class SearchStateTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource {
+class OptionView: UIView,UIPickerViewDelegate, UIPickerViewDataSource {
+    var delegate : OptionViewDelgate!
+
     var cuurectID : String = ""
     /// 类型 默认搜索
     var type :SearchStateTableViewCellType = .searchState
@@ -44,81 +48,26 @@ class SearchStateTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerV
     //案件类型
     var data_casetypeArr : [casetypeModel] = []
 
-    
-    @IBOutlet weak var titleNameLabel: UILabel!
-    @IBOutlet weak var pickView: UIPickerView!
-    
-    
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-        self.pickView.delegate = self
-        self.pickView.dataSource = self
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
-    
-    /// 搜索页面
-    ///
-    /// - Parameter titleStr: <#titleStr description#>
-    func setData_searchState(titleStr : String) {
-        self.titleNameLabel.textAlignment = .left
-        self.titleNameLabel.text = titleStr
-    }
-    
-    
-    /// 发布公告--接受对象
-    ///
-    /// - Parameter titleStr: <#titleStr description#>
-    func setData_Object(titleStr : String) {
-        self.titleNameLabel.textAlignment = .left
-        self.titleNameLabel.text = titleStr
-    }
 
 
-    /// 添加/详情  案件
-    ///
-    /// - Parameters:
-    ///   - titleStr: <#titleStr description#>
-    ///   - index: <#index description#>
-    func setData_addCase(titleStr : String,index: IndexPath)  {
-        self.titleNameLabel.textAlignment = .right
-        self.titleNameLabel.text = titleStr
-        self.pickView.tag = index.row
-    }
-
-
-    /// 案件管理
-    ///
-    /// - Parameters:
-    ///   - titleStr: <#titleStr description#>
-    ///   - caseArr: <#caseArr description#>
-    ///   - indexPath: <#indexPath description#>
-    func setData_caseDetail(titleStr : String,caseArr : [Any],indexPath : IndexPath) {
+    func setData_case(dataArr : [Any],indexPath : IndexPath) {
         self.pickView.tag = indexPath.row
-        self.titleNameLabel.textAlignment = .left
-        self.titleNameLabel.text = titleStr
         if indexPath.row == 0 {
-            data_casetypeArr = caseArr as! [casetypeModel]
+            data_casetypeArr = dataArr as! [casetypeModel]
         } else if indexPath.row == 3 {
-            data_userlistArr = caseArr as! [userlistModel]
+            data_userlistArr = dataArr as! [userlistModel]
         } else if indexPath.row == 4 {
-            data_departArr = caseArr as! [departmentModel]
+            data_departArr = dataArr as! [departmentModel]
         } else if indexPath.row == 5 {
-            data_userlistArr1 = caseArr as! [userlistModel]
+            data_userlistArr1 = dataArr as! [userlistModel]
         } else {
-            data_userlistArr2 = caseArr as! [userlistModel]
+            data_userlistArr2 = dataArr as! [userlistModel]
         }
-
+        self.pickView.reloadAllComponents()
     }
 
-    
+
+
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -152,18 +101,18 @@ class SearchStateTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerV
         } else {
             return 0
         }
-        
+
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-   
+
     }
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         //显示
         var titleStr = ""
         if type == .searchState {
             //发票
-           titleStr = nameArr[row]
-           cuurectID = idArr[row]
+            titleStr = nameArr[row]
+            cuurectID = idArr[row]
 
         } else if type == .invoice_getlist {
             titleStr = nameArr[row]
@@ -174,24 +123,71 @@ class SearchStateTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerV
             let model = dataArr[row]
             titleStr = model.name!
             cuurectID = "\(model.id!)"
-            
+
         } else if type == .finance{
             //收款
             titleStr = nameArr_finance[row]
             cuurectID = idArr_finance[row]
-            
+
         }else if type == .caseAdd{
             //案件
-            titleStr = nameArr_finance[row]
-            cuurectID = idArr_finance[row]
+            if self.pickView.tag == 0 {
+                //类型
+                let model : casetypeModel = self.data_casetypeArr[row]
+                titleStr = model.name
+                cuurectID = "\(model.id)"
+
+            } else if self.pickView.tag == 3 {
+                //立案律师
+                let model : userlistModel = self.data_userlistArr[row]
+                titleStr = model.name
+                cuurectID = "\(model.id)"
+
+            }else if self.pickView.tag == 4 {
+                //部门
+                let model : departmentModel = self.data_departArr[row]
+                titleStr = model.name
+                cuurectID = "\(model.id)"
+            }else if self.pickView.tag == 5 {
+                //承办律师1
+                let model : userlistModel = self.data_userlistArr1[row]
+                titleStr = model.name
+                cuurectID = "\(model.id)"
+
+            } else {
+                //承办律师2
+                let model : userlistModel = self.data_userlistArr2[row]
+                titleStr = model.name
+                cuurectID = "\(model.id)"
+            }
 
         }
         let label = UILabel(frame: CGRect(x: 0, y: 15, width: pickerView.frame.width, height: 20))
         label.text = titleStr
         label.textColor = UIColor.hc_colorFromRGB(rgbValue: 0x666666)
         label.font = hc_fontThin(13)
-        label.textAlignment = .left
+        label.textAlignment = .center
         return label
     }
-    
+
+    @IBOutlet weak var pickView: UIPickerView!
+
+    @IBAction func sureClick(_ sender: UIButton) {
+        if let delegate = self.delegate {
+            delegate.optionSure(idStr: cuurectID, pickTag: self.pickView.tag)
+        }
+    }
+
+    override func awakeFromNib() {
+        self.pickView.delegate = self
+    }
+    /*
+    // Only override draw() if you perform custom drawing.
+    // An empty implementation adversely affects performance during animation.
+    override func draw(_ rect: CGRect) {
+        // Drawing code
+    }
+    */
+
+
 }

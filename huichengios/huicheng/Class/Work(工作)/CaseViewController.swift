@@ -73,6 +73,7 @@ class CaseViewController: BaseViewController,UITableViewDataSource,UITableViewDe
             let model : checkcaseModel  = self.dataArr[indexPath.row]
             let vc = CaseDetailViewController()
             vc.caseId = model.id
+            vc.type = .caseDetail
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
         }

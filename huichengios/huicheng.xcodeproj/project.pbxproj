@@ -159,6 +159,11 @@
 		21DDC9D2208095790067197D /* branchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DDC9D1208095790067197D /* branchModel.swift */; };
 		21DDC9D520809E880067197D /* Title2TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DDC9D320809E880067197D /* Title2TableViewCell.swift */; };
 		21DDC9D620809E880067197D /* Title2TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21DDC9D420809E880067197D /* Title2TableViewCell.xib */; };
+		21DDC9D82080BDA30067197D /* departmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DDC9D72080BDA30067197D /* departmentModel.swift */; };
+		21DDC9DA2080C8F10067197D /* OptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DDC9D92080C8F10067197D /* OptionView.swift */; };
+		21DDC9DC2080C8FC0067197D /* OptionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21DDC9DB2080C8FC0067197D /* OptionView.xib */; };
+		21DDC9DF2080CA460067197D /* OptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DDC9DD2080CA460067197D /* OptionTableViewCell.swift */; };
+		21DDC9E02080CA460067197D /* OptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21DDC9DE2080CA460067197D /* OptionTableViewCell.xib */; };
 		88EEB2BAA16F8A6E3AED0F0A /* Pods_huicheng.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B3B926EC39335E65CFE2DE /* Pods_huicheng.framework */; };
 /* End PBXBuildFile section */
 
@@ -318,6 +323,11 @@
 		21DDC9D1208095790067197D /* branchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = branchModel.swift; sourceTree = "<group>"; };
 		21DDC9D320809E880067197D /* Title2TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title2TableViewCell.swift; sourceTree = "<group>"; };
 		21DDC9D420809E880067197D /* Title2TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Title2TableViewCell.xib; sourceTree = "<group>"; };
+		21DDC9D72080BDA30067197D /* departmentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = departmentModel.swift; sourceTree = "<group>"; };
+		21DDC9D92080C8F10067197D /* OptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionView.swift; sourceTree = "<group>"; };
+		21DDC9DB2080C8FC0067197D /* OptionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OptionView.xib; sourceTree = "<group>"; };
+		21DDC9DD2080CA460067197D /* OptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionTableViewCell.swift; sourceTree = "<group>"; };
+		21DDC9DE2080CA460067197D /* OptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OptionTableViewCell.xib; sourceTree = "<group>"; };
 		97B8B5BC41ED2EA904010B3A /* Pods-huicheng.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-huicheng.release.xcconfig"; path = "Pods/Target Support Files/Pods-huicheng/Pods-huicheng.release.xcconfig"; sourceTree = "<group>"; };
 		98FDFB3873660C12BD78F6BE /* Pods-huicheng.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-huicheng.debug.xcconfig"; path = "Pods/Target Support Files/Pods-huicheng/Pods-huicheng.debug.xcconfig"; sourceTree = "<group>"; };
 		A6B3B926EC39335E65CFE2DE /* Pods_huicheng.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_huicheng.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -428,6 +438,10 @@
 				2108BB69206F22B2002A4212 /* SearchPersionTableViewCell.xib */,
 				2109654E20711ECD0012FDDB /* DatePickView.swift */,
 				2109655020711ED40012FDDB /* DatePickView.xib */,
+				21DDC9D92080C8F10067197D /* OptionView.swift */,
+				21DDC9DB2080C8FC0067197D /* OptionView.xib */,
+				21DDC9DD2080CA460067197D /* OptionTableViewCell.swift */,
+				21DDC9DE2080CA460067197D /* OptionTableViewCell.xib */,
 				2102E86E2071C06100536F41 /* StartTimeTableViewCell.swift */,
 				2102E86F2071C06100536F41 /* StartTimeTableViewCell.xib */,
 				2102E8722071C07E00536F41 /* endTimeTableViewCell.swift */,
@@ -643,6 +657,7 @@
 				21DDC9CD2080949B0067197D /* userlistModel.swift */,
 				21DDC9CF208095150067197D /* casetypeModel.swift */,
 				21DDC9D1208095790067197D /* branchModel.swift */,
+				21DDC9D72080BDA30067197D /* departmentModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -761,6 +776,7 @@
 				21075564205D7A4A00FF4396 /* MineHeadView.xib in Resources */,
 				21089EA3206E829400573B6A /* SearchStateTableViewCell.xib in Resources */,
 				215C65D5203EC6B6001C7A92 /* LaunchScreen.storyboard in Resources */,
+				21DDC9E02080CA460067197D /* OptionTableViewCell.xib in Resources */,
 				2109655120711ED40012FDDB /* DatePickView.xib in Resources */,
 				2108BB8F206FE34A002A4212 /* MessageNeedTableViewCell.xib in Resources */,
 				2107555C205D6EFD00FF4396 /* PubMessageTableViewCell.xib in Resources */,
@@ -777,6 +793,7 @@
 				21CFDDC82068E8E500745A48 /* InvoiceTableViewCell.xib in Resources */,
 				216B7C68206394DE00BBACDA /* MemoTableViewCell.xib in Resources */,
 				2108BB93206FF2BB002A4212 /* CheckcaseTableViewCell.xib in Resources */,
+				21DDC9DC2080C8FC0067197D /* OptionView.xib in Resources */,
 				21089E99206E791B00573B6A /* FinanceDetialTableViewCell.xib in Resources */,
 				215C15C92063D99F00A9129D /* ConbenTopView.xib in Resources */,
 				21340BDB206CBDE400E30B53 /* AddExpenseBackView.xib in Resources */,
@@ -924,6 +941,7 @@
 				2137668B203FBAFD000CBCE6 /* String+fun.swift in Sources */,
 				214AA6B8207F9504004F2B63 /* CaseViewController.swift in Sources */,
 				210EB652206E333F000DE966 /* FinanceDetialViewController.swift in Sources */,
+				21DDC9D82080BDA30067197D /* departmentModel.swift in Sources */,
 				2137667F203FBA61000CBCE6 /* Color+fun.swift in Sources */,
 				21CFDDC42068E30500745A48 /* AddMemoViewController.swift in Sources */,
 				21387D2D205F56590050DF1F /* LoginRequestVC.swift in Sources */,
@@ -951,7 +969,9 @@
 				2109654B20710B5E0012FDDB /* AddNoticeViewController.swift in Sources */,
 				216A6C4E204CDE5500528FD8 /* ConvenViewController.swift in Sources */,
 				219D7BC0205E1D8E009F543B /* WorkFirstTableViewCell.swift in Sources */,
+				21DDC9DA2080C8F10067197D /* OptionView.swift in Sources */,
 				214AA6BB207F9876004F2B63 /* CaseTableViewCell.swift in Sources */,
+				21DDC9DF2080CA460067197D /* OptionTableViewCell.swift in Sources */,
 				216B7C6320638EE100BBACDA /* IncomeTableViewCell.swift in Sources */,
 				2105D2DD2060ADFC0031B14C /* memo_getlistModel.swift in Sources */,
 				219D7BCB205E4830009F543B /* PubMesConView.swift in Sources */,

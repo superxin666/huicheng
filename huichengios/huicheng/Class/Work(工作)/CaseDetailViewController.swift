@@ -7,7 +7,9 @@
 //  案件详情--- 修改 删除 添加 生成合同
 
 import UIKit
-
+enum CaseDetailViewControllerType {
+    case caseDetail,addCase,editeCase
+}
 class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource,WorkRequestVCDelegate,TitleTableViewCellDelegate {
     let mainTabelView : UITableView = UITableView()
     let request : WorkRequestVC = WorkRequestVC()
@@ -15,11 +17,16 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
     let name1 = ["案件类型","案件名称","立案日期","立案律师","案件组别","承办律师","承办律师",]
     var content1 :[String] = []
     let name2 = ["委托人情况","对方当事人情况"]
-    let content2 : [String] = []
+    var content2 : [String] = []
     let name3 = ["案件自述","标的"]
-    let content3 : [String] = []
-    
+    var content3 : [String] = []
+
+    var caseDetailModel : caseDetailModelMap =  caseDetailModelMap()
+
+
     var caseId : Int!
+    var type : CaseDetailViewControllerType!
+
     // MARK: - life
     override func viewWillLayoutSubviews() {
         mainTabelView.snp.makeConstraints { (make) in
@@ -33,12 +40,22 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
 
         // Do any additional setup after loading the view.
         self.view.backgroundColor = viewBackColor
-        self.navigation_title_fontsize(name: "案情详情", fontsize: 18)
-        self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
-        self.navigationBar_rightBtn_title(name: "操作")
-        self.creatUI()
         request.delegate = self
-        request.casegetinfoRerquest(id: caseId)
+        if self.type == .caseDetail {
+            self.navigation_title_fontsize(name: "案情详情", fontsize: 18)
+            self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
+            self.navigationBar_rightBtn_title(name: "操作")
+
+            request.casegetinfoRerquest(id: caseId)
+//            mainTabelView.isUserInteractionEnabled = false
+
+        } else if self.type == .addCase {
+
+        } else {
+
+        }
+        self.creatUI()
+
 
 
     }
@@ -54,7 +71,7 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
         mainTabelView.backgroundView?.backgroundColor = .clear
         mainTabelView.register(UINib.init(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: TitleTableViewCellID)
         mainTabelView.register(UINib.init(nibName: "Title2TableViewCell", bundle: nil), forCellReuseIdentifier: Title2TableViewCellID)
-        mainTabelView.register(UINib.init(nibName: "SearchStateTableViewCell", bundle: nil), forCellReuseIdentifier: SearchStateTableViewCellID)
+        mainTabelView.register(UINib.init(nibName: "OptionTableViewCell", bundle: nil), forCellReuseIdentifier: OptionTableViewCellID)
         mainTabelView.register(UINib.init(nibName: "ContentTableViewCell", bundle: nil), forCellReuseIdentifier: ContentTableViewCellID)
         mainTabelView.register(UINib.init(nibName: "endTimeTableViewCell", bundle: nil), forCellReuseIdentifier: endTimeTableViewCellid)
         self.view.addSubview(mainTabelView)
@@ -78,19 +95,32 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
 
         if indexPath.section == 0 {
             if indexPath.row == 0 || indexPath.row == 3 || indexPath.row == 4 || indexPath.row == 5 || indexPath.row == 6 {
-                let cell : SearchStateTableViewCell  = tableView.dequeueReusableCell(withIdentifier: SearchStateTableViewCellID, for: indexPath) as! SearchStateTableViewCell
-                cell.setData_searchState(titleStr: name1[indexPath.row])
+                let cell : OptionTableViewCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
+                let titleStr = name1[indexPath.row]
+                var contentStr = ""
+                if content1.count > 0 {
+                    contentStr = content1[indexPath.row]
+                }
+                cell.setData_caseDetail(titleStr: titleStr, contentStr: contentStr)
                 return cell
             } else if indexPath.row == 1{
                 let cell : TitleTableViewCell  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
                 cell.delegate = self
-                cell.setData_caseDetail(titleStr: name1[indexPath.row], contentStr: "",indexPath : indexPath)
+                var contentStr = ""
+                if content1.count > 0 {
+                    contentStr = content1[indexPath.row]
+                }
+                cell.setData_caseDetail(titleStr: name1[indexPath.row], contentStr: contentStr,indexPath : indexPath)
                 cell.tag = indexPath.row
                 return cell
             }  else {
                 //结束时间
                 let endTimeCell : endTimeTableViewCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-                endTimeCell.setData_case(titleStr: "立案日期")
+                var timeStr = ""
+                if content1.count > 0 {
+                    timeStr = content1[indexPath.row]
+                }
+                endTimeCell.setData_case(titleStr: "立案日期", timeStr: timeStr)
 
                 return endTimeCell
             }
@@ -101,13 +131,20 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
         } else {
             if indexPath.row == 0 {
                 let cell : ContentTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: ContentTableViewCellID, for: indexPath) as! ContentTableViewCell
-                cell.setData_case(title: name3[indexPath.row])
+                var contentStr = ""
+                if content3.count > 0 {
+                    contentStr = content3[indexPath.row]
+                }
+                cell.setData_case(title: name3[indexPath.row], contentCase: contentStr)
                 return cell
 
             } else {
                 let cell : TitleTableViewCell  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
-                cell.setData_checkCaseView(titleStr: name3[indexPath.row], indexPath: indexPath)
-                cell.tag = indexPath.row
+                var contentStr = ""
+                if content3.count > 0 {
+                    contentStr = content3[indexPath.row]
+                }
+                cell.setData_caseDetail(titleStr: name3[indexPath.row], contentStr: contentStr, indexPath: indexPath)
                 return cell
             }
         }
@@ -139,6 +176,15 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
         view.backgroundColor = viewBackColor
         return view
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 1 {
+            if indexPath.row == 0 {
+
+            } else {
+
+            }
+        }
+    }
     // MARK: - 标题输入代理
     func endEdite(inputStr: String, tagNum: Int) {
         HCLog(message: inputStr)
@@ -147,9 +193,29 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
 
     // MARK: - net
     func requestSucceed_work(data: Any, type: WorkRequestVC_enum) {
-        let model  : caseDetailModel = data as! caseDetailModel
+        if type == .case_getinfo {
+            caseDetailModel = data as! caseDetailModelMap
+            //案件类型
+            content1.append(caseDetailModel.data.typeStr)
+            //名字
+            content1.append(caseDetailModel.data.n)
+            //时间
+            content1.append(caseDetailModel.data.rt)
+            //律师
+            content1.append(caseDetailModel.data.rStr)
+            //组别
+            content1.append(caseDetailModel.data.dStr)
+            //自述
+            content1.append(caseDetailModel.data.ct)
+            //标的
+            content1.append(caseDetailModel.data.sj)
 
 
+            content3.append(caseDetailModel.data.ct)
+            content3.append(caseDetailModel.data.sj)
+            
+        }
+        self.mainTabelView.reloadData()
     }
     func requestFail_work() {
 

@@ -34,10 +34,17 @@ class ContentTableViewCell: UITableViewCell,UITextViewDelegate {
         self.conTent = contentStr
     }
 
-    
-    func setData_case(title : String) {
+
+    /// 案件 详情
+    ///
+    /// - Parameters:
+    ///   - title: <#title description#>
+    ///   - contentCase: <#contentCase description#>
+    func setData_case(title : String,contentCase : String) {
         self.titleLabel.textColor = darkblueColor
         self.titleLabel.text = title
+
+        self.textView.text = contentCase
     }
     
     override func awakeFromNib() {

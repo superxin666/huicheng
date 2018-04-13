@@ -36,10 +36,16 @@ class endTimeTableViewCell: UITableViewCell {
     }
 
 
-    func setData_case(titleStr  :String) {
+    /// 案件 详情
+    ///
+    /// - Parameters:
+    ///   - titleStr: <#titleStr description#>
+    ///   - timeStr: <#timeStr description#>
+    func setData_case(titleStr  :String,timeStr : String) {
 
         self.titleNameLabel.text = titleStr
         self.titleNameLabel.textAlignment = .left
+        self.timeLabel.text = timeStr
     }
 
     /// 选择时间之后 展示时间

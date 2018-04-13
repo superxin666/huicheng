@@ -37,10 +37,11 @@ class TitleTableViewCell: UITableViewCell {
     ///
     /// - Parameter titleStr: <#titleStr description#>
     func setData_checkCaseView(titleStr : String,indexPath : IndexPath) {
-
         
         self.titleNameLabel.textColor = darkblueColor
         self.titleNameLabel.text = titleStr
+
+
 
     }
     
@@ -65,12 +66,20 @@ class TitleTableViewCell: UITableViewCell {
     }
 
 
+    /// 案件 详情
+    ///
+    /// - Parameters:
+    ///   - titleStr: <#titleStr description#>
+    ///   - contentStr: <#contentStr description#>
+    ///   - indexPath: <#indexPath description#>
     func setData_caseDetail(titleStr : String, contentStr : String,indexPath : IndexPath) {
         let tagNum = indexPath.section * 10 + indexPath.row
         self.textField.tag = tagNum
         self.titleNameLabel.textColor = darkblueColor
         self.titleNameLabel.text = titleStr
-         self.titleNameLabel.textAlignment = .left
+        self.titleNameLabel.textAlignment = .left
+
+        self.textField.text = contentStr
     }
     
     func setData_caseAdd(titleStr : String) {
