@@ -13,7 +13,7 @@ enum CaseDetailViewControllerType {
 class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource,WorkRequestVCDelegate,TitleTableViewCellDelegate {
     let mainTabelView : UITableView = UITableView()
     let request : WorkRequestVC = WorkRequestVC()
-
+    var alertController : UIAlertController!
     let name1 = ["案件类型","案件名称","立案日期","立案律师","案件组别","承办律师","承办律师",]
     var content1 :[String] = []
     let name2 = ["委托人情况","对方当事人情况"]
@@ -228,6 +228,27 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
 
     override func navigationRightBtnClick() {
         HCLog(message: "操作")
+        alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let actcion1 = UIAlertAction(title: "生成合同", style: .default) { (aciton) in
+
+        }
+        let actcion2 = UIAlertAction(title: "修改", style: .default) { (aciton) in
+
+        }
+        let actcion3 = UIAlertAction(title: "删除", style: .default) { (aciton) in
+
+        }
+        let actcion4 = UIAlertAction(title: "取消", style: .cancel) { (aciton) in
+            self.alertController.dismiss(animated: true, completion: {
+
+            })
+
+        }
+        alertController.addAction(actcion1)
+        alertController.addAction(actcion2)
+        alertController.addAction(actcion3)
+        alertController.addAction(actcion4)
+        self.present(alertController, animated: true, completion: nil)
     }
     override func navigationLeftBtnClick() {
         self.navigationController?.popViewController(animated: true)
