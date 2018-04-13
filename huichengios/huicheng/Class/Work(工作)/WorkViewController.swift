@@ -83,17 +83,21 @@ class WorkViewController: BaseViewController,UITableViewDelegate,UITableViewData
             HCLog(message: "案件")
             switch tag {
             case 0:
-                HCLog(message: "按键登记")
+                HCLog(message: "案件登记")
             case 1:
-                HCLog(message: "生成合同")
+                HCLog(message: "案件管理")
+                let vc = CaseViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+
             case 2:
-                HCLog(message: "案件查询")
-            case 3:
                 HCLog(message: "利益冲突")
                 let vc = CheckcaseViewController()
                 vc.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
-                
+
+            case 3:
+                HCLog(message: "暂无")
             default:
                 HCLog(message: "暂无")
             }

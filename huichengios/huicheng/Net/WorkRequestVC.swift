@@ -11,7 +11,8 @@ import ObjectMapper
 enum WorkRequestVC_enum {
     //
     case checkcase,//利益冲突检查
-         save,newslist1,getobjectlist,newspublic,del//公告  发布/编辑公告  获取列表  获取接收对象  发布/撤销公告  删除
+         save,newslist1,getobjectlist,newspublic,del,//公告  发布/编辑公告  获取列表  获取接收对象  发布/撤销公告  删除
+         case_getlist//案件列表
 }
 protocol WorkRequestVCDelegate : NSObjectProtocol{
     //
@@ -127,11 +128,17 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
         let url =   del_api + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
     }
-    
+     // MARK: 获取案件
+    func casegetlistRerquest(p:Int,c:Int,b:String,s:String) {
+        request.delegate = self
+        type = .case_getlist
+        let url =   case_getlist_api + "p=\(p)&c=\(c)&b=\(b)&s=\(s)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+    }
     
     
     func requestSucceed(response: Any) {
-        if type == .checkcase {
+        if type == .checkcase || type == .case_getlist {
             //利益冲突检查
             let arr = Mapper<checkcaseModel>().mapArray(JSONArray: response as! [[String : Any]])
             HCLog(message: arr.count)

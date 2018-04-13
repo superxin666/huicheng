@@ -38,6 +38,21 @@ let newspublic_api = "message/newspublic?"
 /// 删除公告
 let del_api = "message/del?"
 
+/// 案件管理 获取列表
+
+let case_getlist_api = "case/getlist?"
+
+/// 保存  修改
+let case_save_api = "case/save?"
+
+/// 获取详情
+let case_getinfo_api = "case/getinfo?"
+
+/// 删除
+let case_del_api = "case/del?"
+
+/// 生成合同
+let case_createdeals_api = "case/createdeals?"
 //-----------------------个人信息
 let user_getinfo_api = "uc/user_getinfo?"
 

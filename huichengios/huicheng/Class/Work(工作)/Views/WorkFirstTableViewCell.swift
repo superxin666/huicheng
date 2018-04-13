@@ -14,7 +14,7 @@ class WorkFirstTableViewCell: UITableViewCell {
     var delegate  : WorkFirstTableViewCellDelegate!
     let titleStrArr = ["案件","合同","签章","财务","其他"]
     
-    let labelNameAr0 = ["案件登记","生成合同","案件查询","利益冲突查询",]
+    let labelNameAr0 = ["案件登记","案件管理","利益冲突查询",]
     let labelNameAr1 = ["合同管理","结案申请","合同审核","结案审核","审核进度查询"]
     let labelNameAr2 = ["函件管理","诉讼函","民事函","刑事函","自定义函","签章进度查询","签章审核"]
     let labelNameAr3 = ["收款登记","收款审核","支付收款","支付审核","报销审核","发票审核","签章审核"]
@@ -97,6 +97,7 @@ class WorkFirstTableViewCell: UITableViewCell {
         self.titleLabel.text = titleStrArr[rowNum]
         switch rowNum {
         case 0:
+            self.view4.isHidden = true
             self.view5.isHidden = true
             self.view6.isHidden = true
             self.view7.isHidden = true
@@ -105,7 +106,7 @@ class WorkFirstTableViewCell: UITableViewCell {
             self.label1 .text = self.labelNameAr0[0]
             self.label2 .text = self.labelNameAr0[1]
             self.label3 .text = self.labelNameAr0[2]
-            self.label4 .text = self.labelNameAr0[3]
+
         case 1:
             self.view6.isHidden = true
             self.view7.isHidden = true
