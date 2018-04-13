@@ -164,6 +164,7 @@
 		21DDC9DC2080C8FC0067197D /* OptionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21DDC9DB2080C8FC0067197D /* OptionView.xib */; };
 		21DDC9DF2080CA460067197D /* OptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DDC9DD2080CA460067197D /* OptionTableViewCell.swift */; };
 		21DDC9E02080CA460067197D /* OptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21DDC9DE2080CA460067197D /* OptionTableViewCell.xib */; };
+		21DDC9E22080DCB90067197D /* CasePersionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DDC9E12080DCB90067197D /* CasePersionViewController.swift */; };
 		88EEB2BAA16F8A6E3AED0F0A /* Pods_huicheng.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B3B926EC39335E65CFE2DE /* Pods_huicheng.framework */; };
 /* End PBXBuildFile section */
 
@@ -328,6 +329,7 @@
 		21DDC9DB2080C8FC0067197D /* OptionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OptionView.xib; sourceTree = "<group>"; };
 		21DDC9DD2080CA460067197D /* OptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionTableViewCell.swift; sourceTree = "<group>"; };
 		21DDC9DE2080CA460067197D /* OptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OptionTableViewCell.xib; sourceTree = "<group>"; };
+		21DDC9E12080DCB90067197D /* CasePersionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CasePersionViewController.swift; sourceTree = "<group>"; };
 		97B8B5BC41ED2EA904010B3A /* Pods-huicheng.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-huicheng.release.xcconfig"; path = "Pods/Target Support Files/Pods-huicheng/Pods-huicheng.release.xcconfig"; sourceTree = "<group>"; };
 		98FDFB3873660C12BD78F6BE /* Pods-huicheng.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-huicheng.debug.xcconfig"; path = "Pods/Target Support Files/Pods-huicheng/Pods-huicheng.debug.xcconfig"; sourceTree = "<group>"; };
 		A6B3B926EC39335E65CFE2DE /* Pods_huicheng.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_huicheng.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -633,6 +635,7 @@
 				2108BB94206FF723002A4212 /* CheckcaseResultViewController.swift */,
 				214AA6B7207F9504004F2B63 /* CaseViewController.swift */,
 				21DDC9C9208051140067197D /* CaseDetailViewController.swift */,
+				21DDC9E12080DCB90067197D /* CasePersionViewController.swift */,
 			);
 			path = "Work(工作)";
 			sourceTree = "<group>";
@@ -899,6 +902,7 @@
 				213F77E7206B352900075FC6 /* SetBackView.swift in Sources */,
 				21387D3F205FAB240050DF1F /* newsdetialModel.swift in Sources */,
 				21075558205D6D2000FF4396 /* PubMessageViewController.swift in Sources */,
+				21DDC9E22080DCB90067197D /* CasePersionViewController.swift in Sources */,
 				219D7BB3205E049A009F543B /* InfoViewController.swift in Sources */,
 				2108BB8A206FE326002A4212 /* ObjectTableViewCell.swift in Sources */,
 				2108BB71206F28E7002A4212 /* ConvenRequestVC.swift in Sources */,

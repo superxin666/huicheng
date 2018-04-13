@@ -179,9 +179,14 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             if indexPath.row == 0 {
+                let vc = CasePersionViewController()
+                vc.type =  .principal
+                self.navigationController?.pushViewController(vc, animated: true)
 
             } else {
-
+                let vc = CasePersionViewController()
+                vc.type =  .opposite
+                self.navigationController?.pushViewController(vc, animated: true)
             }
         }
     }
