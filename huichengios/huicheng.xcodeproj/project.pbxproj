@@ -152,6 +152,8 @@
 		21CFDDC42068E30500745A48 /* AddMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CFDDC32068E30500745A48 /* AddMemoViewController.swift */; };
 		21CFDDC72068E8E500745A48 /* InvoiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CFDDC52068E8E500745A48 /* InvoiceTableViewCell.swift */; };
 		21CFDDC82068E8E500745A48 /* InvoiceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21CFDDC62068E8E500745A48 /* InvoiceTableViewCell.xib */; };
+		21DDC9CA208051140067197D /* CaseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DDC9C9208051140067197D /* CaseDetailViewController.swift */; };
+		21DDC9CC208054040067197D /* caseDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DDC9CB208054040067197D /* caseDetailModel.swift */; };
 		88EEB2BAA16F8A6E3AED0F0A /* Pods_huicheng.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B3B926EC39335E65CFE2DE /* Pods_huicheng.framework */; };
 /* End PBXBuildFile section */
 
@@ -304,6 +306,8 @@
 		21CFDDC32068E30500745A48 /* AddMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemoViewController.swift; sourceTree = "<group>"; };
 		21CFDDC52068E8E500745A48 /* InvoiceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceTableViewCell.swift; sourceTree = "<group>"; };
 		21CFDDC62068E8E500745A48 /* InvoiceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvoiceTableViewCell.xib; sourceTree = "<group>"; };
+		21DDC9C9208051140067197D /* CaseDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseDetailViewController.swift; sourceTree = "<group>"; };
+		21DDC9CB208054040067197D /* caseDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = caseDetailModel.swift; sourceTree = "<group>"; };
 		97B8B5BC41ED2EA904010B3A /* Pods-huicheng.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-huicheng.release.xcconfig"; path = "Pods/Target Support Files/Pods-huicheng/Pods-huicheng.release.xcconfig"; sourceTree = "<group>"; };
 		98FDFB3873660C12BD78F6BE /* Pods-huicheng.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-huicheng.debug.xcconfig"; path = "Pods/Target Support Files/Pods-huicheng/Pods-huicheng.debug.xcconfig"; sourceTree = "<group>"; };
 		A6B3B926EC39335E65CFE2DE /* Pods_huicheng.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_huicheng.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -604,6 +608,7 @@
 				2108BB78206FD219002A4212 /* CheckcaseViewController.swift */,
 				2108BB94206FF723002A4212 /* CheckcaseResultViewController.swift */,
 				214AA6B7207F9504004F2B63 /* CaseViewController.swift */,
+				21DDC9C9208051140067197D /* CaseDetailViewController.swift */,
 			);
 			path = "Work(工作)";
 			sourceTree = "<group>";
@@ -622,6 +627,7 @@
 			isa = PBXGroup;
 			children = (
 				2109654620708D130012FDDB /* checkcaseModel.swift */,
+				21DDC9CB208054040067197D /* caseDetailModel.swift */,
 				21096548207101820012FDDB /* newslist1Model.swift */,
 				2109654C207116830012FDDB /* getobjectlistModel.swift */,
 			);
@@ -853,6 +859,7 @@
 				21387D45205FF7240050DF1F /* expense_getlistModel.swift in Sources */,
 				21387D3B205FA7860050DF1F /* MineRequestVC.swift in Sources */,
 				21387D2F205F5A910050DF1F /* LoginModel.swift in Sources */,
+				21DDC9CA208051140067197D /* CaseDetailViewController.swift in Sources */,
 				21376689203FBAF4000CBCE6 /* SVPMessageShow.swift in Sources */,
 				219D7BB6205E062F009F543B /* InfoTableViewCell.swift in Sources */,
 				2105D2DF2060AEC40031B14C /* memo_getinfoModel.swift in Sources */,
@@ -942,6 +949,7 @@
 				2109654D207116830012FDDB /* getobjectlistModel.swift in Sources */,
 				21075562205D7A3700FF4396 /* MineHeadView.swift in Sources */,
 				2108BB77206FD0B3002A4212 /* NoticeViewController.swift in Sources */,
+				21DDC9CC208054040067197D /* caseDetailModel.swift in Sources */,
 				21541DD5206265010003746E /* work_getinfoModel.swift in Sources */,
 				2102E8742071C07E00536F41 /* endTimeTableViewCell.swift in Sources */,
 				2108BB82206FD7F3002A4212 /* ContentTableViewCell.swift in Sources */,

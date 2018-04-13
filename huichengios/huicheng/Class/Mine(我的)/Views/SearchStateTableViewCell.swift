@@ -11,8 +11,8 @@ let SearchStateTableViewCellID = "SearchStateTableViewCell_id"
 
 enum SearchStateTableViewCellType {
 
-    //搜索中状态  报销  接受对象      发票列表    我的收款
-    case searchState,Object,invoice_getlist,finance
+    //搜索中状态  报销  接受对象      发票列表    我的收款  案件添加
+    case searchState,Object,invoice_getlist,finance, caseAdd
 }
 class SearchStateTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource {
     var cuurectID : String = ""
@@ -30,7 +30,7 @@ class SearchStateTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerV
     //发票
     var nameArr_invoice = ["未审核","已审核","审核驳回","已寄送",]
     var idArr_invoice = ["0","1","2","3",]
-
+    // 我的收款
     var nameArr_finance = ["未支付","已支付",]
     var idArr_finance = ["1","3",]
 
@@ -70,7 +70,18 @@ class SearchStateTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerV
         self.titleNameLabel.textAlignment = .left
         self.titleNameLabel.text = titleStr
     }
-    
+
+
+    /// 添加案件  详情
+    ///
+    /// - Parameters:
+    ///   - titleStr: <#titleStr description#>
+    ///   - index: <#index description#>
+    func setData_addCase(titleStr : String,index: IndexPath)  {
+
+
+    }
+
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -121,10 +132,11 @@ class SearchStateTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerV
             cuurectID = idArr_finance[row]
             
         }
-        let label = UILabel(frame: CGRect(x: 0, y: 15, width: 100, height: 20))
+        let label = UILabel(frame: CGRect(x: 0, y: 15, width: pickerView.frame.width, height: 20))
         label.text = titleStr
         label.textColor = UIColor.hc_colorFromRGB(rgbValue: 0x666666)
         label.font = hc_fontThin(13)
+        label.textAlignment = .left
         return label
     }
     

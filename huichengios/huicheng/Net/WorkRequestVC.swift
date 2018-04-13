@@ -12,7 +12,7 @@ enum WorkRequestVC_enum {
     //
     case checkcase,//利益冲突检查
          save,newslist1,getobjectlist,newspublic,del,//公告  发布/编辑公告  获取列表  获取接收对象  发布/撤销公告  删除
-         case_getlist//案件列表
+         case_getlist,case_getinfo//案件列表  获取案件详情
 }
 protocol WorkRequestVCDelegate : NSObjectProtocol{
     //
@@ -143,7 +143,16 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
         let url =   case_getlist_api + "p=\(p)&c=\(c)&b=\(bStr)&s=\(eStr)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
     }
-    
+
+
+    func casegetinfoRerquest(id:Int) {
+        request.delegate = self
+        type = .case_getinfo
+        let url =   case_getlist_api + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+    }
+
+
     
     func requestSucceed(response: Any) {
         if type == .checkcase || type == .case_getlist {
@@ -153,7 +162,15 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work(data: arr,type : type)
             }
-        } else if type == .newslist1{
+        } else if type == .case_getinfo{
+            //案情详情
+            let model = Mapper<caseDetailModel>().map(JSON: response as! [String : Any])!
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed_work(data: model,type : type)
+            }
+
+        }
+        else if type == .newslist1{
             //公告  获取列表
             let arr = Mapper<newslist1Model>().mapArray(JSONArray: response as! [[String : Any]])
             HCLog(message: arr.count)

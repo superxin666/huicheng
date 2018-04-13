@@ -9,12 +9,15 @@
 import UIKit
 let TitleTableViewCellH = CGFloat(50)
 let TitleTableViewCellID = "TitleTableViewCell_ID"
+
+protocol TitleTableViewCellDelegate {
+    func endEdite(inputStr : String, tagNum : Int)
+}
+
 class TitleTableViewCell: UITableViewCell {
-    @IBOutlet weak var titleLabel: UILabel!
-    
+    var delegate : TitleTableViewCellDelegate!
+
     var conTent :String = ""
-    
-    
     @IBOutlet weak var textField: UITextField!
     
     @IBOutlet weak var titleNameLabel: UILabel!
@@ -23,6 +26,9 @@ class TitleTableViewCell: UITableViewCell {
     @IBAction func endText(_ sender: UITextField) {
         if let str = sender.text {
             conTent = str
+            if let delgate = self.delegate {
+                delgate.endEdite(inputStr: conTent, tagNum: self.textField.tag)
+            }
         }
     }
     
@@ -30,9 +36,12 @@ class TitleTableViewCell: UITableViewCell {
     /// 利益冲突
     ///
     /// - Parameter titleStr: <#titleStr description#>
-    func setData_checkCaseView(titleStr : String) {
+    func setData_checkCaseView(titleStr : String,indexPath : IndexPath) {
+
+        
         self.titleNameLabel.textColor = darkblueColor
         self.titleNameLabel.text = titleStr
+
     }
     
     
@@ -54,7 +63,20 @@ class TitleTableViewCell: UITableViewCell {
         self.textField.placeholder = contentStr
         self.conTent = contentStr
     }
+
+
+    func setData_caseDetail(titleStr : String, contentStr : String,indexPath : IndexPath) {
+        let tagNum = indexPath.section * 10 + indexPath.row
+        self.textField.tag = tagNum
+        self.titleNameLabel.textColor = darkblueColor
+        self.titleNameLabel.text = titleStr
+         self.titleNameLabel.textAlignment = .right
+    }
     
+    func setData_caseAdd(titleStr : String) {
+        self.titleNameLabel.textColor = darkblueColor
+        self.titleNameLabel.text = titleStr
+    }
     
     
     /// 搜索页面 标题

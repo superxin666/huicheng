@@ -62,7 +62,7 @@ class CheckcaseViewController: BaseViewController,UITableViewDataSource,UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             cell1  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
-            cell1.setData_checkCaseView(titleStr: "关系人")
+            cell1.setData_checkCaseView(titleStr: "关系人",indexPath: indexPath)
             return cell1
         } else {
             cell  = tableView.dequeueReusableCell(withIdentifier: CheckcaseTableViewCellID, for: indexPath) as! CheckcaseTableViewCell
