@@ -14,11 +14,15 @@ protocol BaseNetViewControllerDelegate: NSObjectProtocol{
     func requestSucceed(response :Any) -> Void
     func requestFail(response :Any) -> Void
 }
+enum reponsetype {
+    case datatype
+    case alltyper
+}
 
 class BaseNetViewController: UIViewController {
     weak var delegate :BaseNetViewControllerDelegate!
 
-    func request_api(url : String){
+    func request_api(url : String,type :  reponsetype = .alltyper){
         let url = base_api + url
         HCLog(message: url)
         Alamofire.request(url, method: .get).responseJSON { (returnResult) in
@@ -27,8 +31,12 @@ class BaseNetViewController: UIViewController {
                 let model = Mapper<CodeData>().map(JSON: json as! [String : Any])!
                 if model.code == 1 {
                     if self.delegate != nil {
-                        if let data = model.data {
-                            self.delegate.requestSucceed(response: data)
+                        if type == .alltyper{
+                            if let data = model.data {
+                                self.delegate.requestSucceed(response: data)
+                            } else {
+                                self.delegate.requestSucceed(response: json)
+                            }
                         } else {
                             self.delegate.requestSucceed(response: json)
                         }
