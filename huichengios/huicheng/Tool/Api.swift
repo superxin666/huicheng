@@ -14,8 +14,15 @@ let base_imageOrFile_api = "http://47.94.108.111:18000"
 let login_api = "base/login?"
 let sendcode_api = "base/sendcode?"
 let mobilelogin_api = "base/mobilelogin?"
-
-
+//------------------------基础信息调用
+/// 分所列表
+let branch_api = "base/branch?"
+/// 部门列表
+let department_api = "base/department?"
+/// 本所律师列表
+let userlist_api = "base/userlist?"
+/// 案件类型
+let casetype_api = "base/casetype?"
 //------------------------消息
 
 /// 待办通知 列表获取

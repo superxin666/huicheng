@@ -12,7 +12,8 @@ enum WorkRequestVC_enum {
     //
     case checkcase,//利益冲突检查
          save,newslist1,getobjectlist,newspublic,del,//公告  发布/编辑公告  获取列表  获取接收对象  发布/撤销公告  删除
-         case_getlist,case_getinfo//案件列表  获取案件详情
+         case_getlist,case_getinfo,//案件列表  获取案件详情
+         branch,department,userlist,casetype//分所列表  部门列表  本所律师列表  案件类型
 }
 protocol WorkRequestVCDelegate : NSObjectProtocol{
     //
@@ -25,8 +26,41 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
     var delegate :WorkRequestVCDelegate!
     let request : BaseNetViewController = BaseNetViewController()
     var type : WorkRequestVC_enum!
-    
-    
+
+
+    // MARK: 基础信息调用
+    func branchRequest() {
+        request.delegate = self
+        type = .branch
+        let url =   branch_api + "k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+    }
+
+    /// 部门列表
+    func departmentRequest()  {
+        request.delegate = self
+        type = .department
+        let url =   department_api + "k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+    }
+
+    /// 本所律师列表
+    func userlistRequest() {
+        request.delegate = self
+        type = .userlist
+        let url =   userlist_api + "k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+    }
+
+    /// 案件类型
+    func casetypeRequest() {
+        request.delegate = self
+        type = .casetype
+        let url =   casetype_api + "k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+    }
+
+    // MARK: 利益冲突检查
     /// 利益冲突检查
     ///
     /// - Parameters:
@@ -193,6 +227,34 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
             let model = Mapper<CodeData>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work(data: model,type : type)
+            }
+        } else if type == .department{
+            //部门列表
+            let arr = Mapper<departmentModel>().mapArray(JSONArray: response as! [[String : Any]])
+            HCLog(message: arr.count)
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed_work(data: arr,type : type)
+            }
+        } else if type == .userlist{
+            //本所律师列表
+            let arr = Mapper<userlistModel>().mapArray(JSONArray: response as! [[String : Any]])
+            HCLog(message: arr.count)
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed_work(data: arr,type : type)
+            }
+        } else if type == .casetype{
+            //案件类型
+            let arr = Mapper<casetypeModel>().mapArray(JSONArray: response as! [[String : Any]])
+            HCLog(message: arr.count)
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed_work(data: arr,type : type)
+            }
+        } else if type == .branch{
+            //分所列表
+            let arr = Mapper<branchModel>().mapArray(JSONArray: response as! [[String : Any]])
+            HCLog(message: arr.count)
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed_work(data: arr,type : type)
             }
         }
     }

@@ -84,6 +84,10 @@ class WorkViewController: BaseViewController,UITableViewDelegate,UITableViewData
             switch tag {
             case 0:
                 HCLog(message: "案件登记")
+                let vc = CaseDetailViewController()
+                vc.type = .addCase
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
             case 1:
                 HCLog(message: "案件管理")
                 let vc = CaseViewController()

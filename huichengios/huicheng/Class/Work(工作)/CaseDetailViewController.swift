@@ -10,7 +10,7 @@ import UIKit
 enum CaseDetailViewControllerType {
     case caseDetail,addCase,editeCase
 }
-class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource,WorkRequestVCDelegate,TitleTableViewCellDelegate {
+class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource,WorkRequestVCDelegate,TitleTableViewCellDelegate,OptionViewDelgate {
     let mainTabelView : UITableView = UITableView()
     let request : WorkRequestVC = WorkRequestVC()
     var alertController : UIAlertController!
@@ -21,7 +21,23 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
     let name3 = ["案件自述","标的"]
     var content3 : [String] = []
 
+    /// 详情数据模型
     var caseDetailModel : caseDetailModelMap =  caseDetailModelMap()
+
+    /// 添加案件数据模型
+    var addmodel : caseDetailModelMap = caseDetailModelMap()
+
+    /// 案件类型
+    var caseTypeArr : [casetypeModel] = []
+    /// 律师
+    var userList : [userlistModel] = []
+    /// 组别
+    var dep : [departmentModel] = []
+
+
+    /// 选项
+    let optionView : OptionView = OptionView.loadNib()
+
 
 
     var caseId : Int!
@@ -42,14 +58,15 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
         self.view.backgroundColor = viewBackColor
         request.delegate = self
         if self.type == .caseDetail {
-            self.navigation_title_fontsize(name: "案情详情", fontsize: 18)
+            self.navigation_title_fontsize(name: "案件详情", fontsize: 18)
             self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
             self.navigationBar_rightBtn_title(name: "操作")
-
             request.casegetinfoRerquest(id: caseId)
-//            mainTabelView.isUserInteractionEnabled = false
-
         } else if self.type == .addCase {
+            self.navigation_title_fontsize(name: "案件登记", fontsize: 18)
+            self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
+            self.navigationBar_rightBtn_title(name: "确定")
+            request.casetypeRequest()
 
         } else {
 
@@ -199,7 +216,24 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
         return view
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 1 {
+        if indexPath.section == 0 {
+            if indexPath.row == 0 {
+                //案件类型
+                self.showOptionPickView(type: indexPath)
+            } else if indexPath.row == 2 {
+                //立案日期
+
+            } else if indexPath.row == 3 {
+                //立案律师
+            } else if indexPath.row == 4 {
+                //案件组别
+            } else if indexPath.row == 5 {
+                //承办律师
+            } else {
+                //承办律师
+            }
+
+        } else if indexPath.section == 1 {
             let vc = CasePersionViewController()
 
             var arr : [String] = []
@@ -250,41 +284,110 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
             //标的
             content1.append(caseDetailModel.data.sj)
 
-
             content3.append(caseDetailModel.data.ct)
             content3.append(caseDetailModel.data.sj)
-            
+            self.mainTabelView.reloadData()
+        } else if type == .casetype {
+            //案件类型
+            caseTypeArr = data as! [casetypeModel]
+        } else if type == .userlist {
+            userList = data as! [userlistModel]
+        } else if type == .department {
+            dep = data as! [departmentModel]
         }
-        self.mainTabelView.reloadData()
+
     }
     func requestFail_work() {
 
     }
 
+    // MARK: 事件点击
     override func navigationRightBtnClick() {
-        HCLog(message: "操作")
-        alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let actcion1 = UIAlertAction(title: "生成合同", style: .default) { (aciton) in
+        if self.type == .caseDetail {
+            HCLog(message: "操作")
+            alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            let actcion1 = UIAlertAction(title: "生成合同", style: .default) { (aciton) in
+                self.showAlert(typeNum: 0)
+            }
+            let actcion2 = UIAlertAction(title: "修改", style: .default) { (aciton) in
+                self.showAlert(typeNum: 1)
+            }
+            let actcion3 = UIAlertAction(title: "删除", style: .default) { (aciton) in
+                self.showAlert(typeNum: 2)
+            }
+            let actcion4 = UIAlertAction(title: "取消", style: .cancel) { (aciton) in
+                self.alertController.dismiss(animated: true, completion: {
+
+                })
+
+            }
+            alertController.addAction(actcion1)
+            alertController.addAction(actcion2)
+            alertController.addAction(actcion3)
+            alertController.addAction(actcion4)
+            self.present(alertController, animated: true, completion: nil)
+        } else if self.type == .addCase{
+            HCLog(message: "添加案件")
 
         }
-        let actcion2 = UIAlertAction(title: "修改", style: .default) { (aciton) in
 
-        }
-        let actcion3 = UIAlertAction(title: "删除", style: .default) { (aciton) in
+    }
 
+
+    func showAlert(typeNum : Int) {
+        var titleStr = ""
+
+        if typeNum == 0 {
+            titleStr = "是否确定生成合同"
+        } else if typeNum == 1 {
+            titleStr = "是否确定修改本条记录"
+        } else {
+            titleStr = "是否确定删除本条记录"
         }
-        let actcion4 = UIAlertAction(title: "取消", style: .cancel) { (aciton) in
+        alertController = UIAlertController(title: nil, message: titleStr, preferredStyle: .alert)
+        let actcion1 = UIAlertAction(title: "确定", style: .default) { (aciton) in
+            if typeNum == 0 {
+                HCLog(message: "生成")
+            } else if typeNum == 1 {
+                HCLog(message: "修改")
+            } else {
+                HCLog(message: "删除")
+            }
+        }
+        let actcion2 = UIAlertAction(title: "取消", style: .cancel) { (aciton) in
             self.alertController.dismiss(animated: true, completion: {
 
             })
-
         }
         alertController.addAction(actcion1)
         alertController.addAction(actcion2)
-        alertController.addAction(actcion3)
-        alertController.addAction(actcion4)
         self.present(alertController, animated: true, completion: nil)
+
     }
+
+    func showOptionPickView(type : IndexPath) {
+        self.maskView.addSubview(self.optionView)
+        self.view.window?.addSubview(self.maskView)
+        self.optionView.delegate = self
+
+        if type.row == 0 {
+            self.optionView.setData_case(dataArr: self.caseTypeArr, indexPath: type)
+        }
+
+        self.optionView.snp.makeConstraints { (make) in
+            make.left.right.equalTo(0)
+            make.bottom.equalTo(0)
+            make.height.equalTo(160)
+        }
+    }
+
+    func optionSure(idStr: String, pickTag: Int) {
+        HCLog(message: idStr)
+        HCLog(message: pickTag)
+        self.optionView.removeFromSuperview()
+        self.maskView.removeFromSuperview()
+    }
+
     override func navigationLeftBtnClick() {
         self.navigationController?.popViewController(animated: true)
     }

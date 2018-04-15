@@ -13,7 +13,14 @@ class BaseViewController: UIViewController {
 
     let header = MJRefreshNormalHeader() //头部刷新
     let footer = MJRefreshAutoNormalFooter() // 底部刷新
-    
+
+    /// 背景
+    lazy var maskView : UIView   = {()-> UIView in
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: KSCREEN_WIDTH, height: KSCREEN_HEIGHT))
+        view.backgroundColor = UIColor.hc_ColorFromInt(red: 0, green: 0, blue: 0, alpha: 0.7)
+        return view
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -67,6 +67,8 @@ class caseDetailModel: Mappable {
     var ct: String = ""
     var sj: String = ""
     var addtime: String = ""
+
+    
     init() {}
     required init?(map: Map){
         mapping(map: map)
