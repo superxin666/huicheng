@@ -39,34 +39,34 @@ class caseDetailModel: Mappable {
     var type: Int!
     var typeStr: String!
     var casenum: String!
-    var n: String!
-    var rt: String!
-    var pn: String!
-    var pc: String!
-    var pp: String!
-    var pz: String!
-    var pj: String!
+    var n: String = ""
+    var rt: String = ""
+    var pn: String = ""
+    var pc: String = ""
+    var pp: String = ""
+    var pz: String = ""
+    var pj: String = ""
 
-    var pd: String!
-    var pa: String!
+    var pd: String = ""
+    var pa: String = ""
 
-    var on: String!
-    var oc: String!
-    var op: String!
-    var oz: String!
-    var oj: String!
-    var oa: String!
+    var on: String = ""
+    var oc: String = ""
+    var op: String = ""
+    var oz: String = ""
+    var oj: String = ""
+    var oa: String = ""
     var r: Int!
-    var rStr: String!
+    var rStr: String = ""
     var d: Int!
-    var dStr: String!
+    var dStr: String = ""
     var w1: Int!
-    var w1Str: String!
+    var w1Str: String = ""
     var w2: Int!
-    var w2Str: String!
-    var ct: String!
-    var sj: String!
-    var addtime: String!
+    var w2Str: String = ""
+    var ct: String = ""
+    var sj: String = ""
+    var addtime: String = ""
     init() {}
     required init?(map: Map){
         mapping(map: map)

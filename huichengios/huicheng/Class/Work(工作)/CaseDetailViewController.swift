@@ -91,8 +91,6 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
 
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-
         if indexPath.section == 0 {
             if indexPath.row == 0 || indexPath.row == 3 || indexPath.row == 4 || indexPath.row == 5 || indexPath.row == 6 {
                 let cell : OptionTableViewCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
@@ -100,6 +98,11 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
                 var contentStr = ""
                 if content1.count > 0 {
                     contentStr = content1[indexPath.row]
+                }
+                if type == .caseDetail{
+                    cell.isUserInteractionEnabled = false
+                } else {
+                    cell.isUserInteractionEnabled = true
                 }
                 cell.setData_caseDetail(titleStr: titleStr, contentStr: contentStr)
                 return cell
@@ -112,6 +115,11 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
                 }
                 cell.setData_caseDetail(titleStr: name1[indexPath.row], contentStr: contentStr,indexPath : indexPath)
                 cell.tag = indexPath.row
+                if type == .caseDetail{
+                    cell.isUserInteractionEnabled = false
+                } else {
+                    cell.isUserInteractionEnabled = true
+                }
                 return cell
             }  else {
                 //结束时间
@@ -121,7 +129,11 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
                     timeStr = content1[indexPath.row]
                 }
                 endTimeCell.setData_case(titleStr: "立案日期", timeStr: timeStr)
-
+                if type == .caseDetail{
+                    endTimeCell.isUserInteractionEnabled = false
+                } else {
+                    endTimeCell.isUserInteractionEnabled = true
+                }
                 return endTimeCell
             }
         } else if  indexPath.section == 1 {
@@ -136,6 +148,11 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
                     contentStr = content3[indexPath.row]
                 }
                 cell.setData_case(title: name3[indexPath.row], contentCase: contentStr)
+                if type == .caseDetail{
+                    cell.isUserInteractionEnabled = false
+                } else {
+                    cell.isUserInteractionEnabled = true
+                }
                 return cell
 
             } else {
@@ -145,6 +162,11 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
                     contentStr = content3[indexPath.row]
                 }
                 cell.setData_caseDetail(titleStr: name3[indexPath.row], contentStr: contentStr, indexPath: indexPath)
+                if type == .caseDetail{
+                    cell.isUserInteractionEnabled = false
+                } else {
+                    cell.isUserInteractionEnabled = true
+                }
                 return cell
             }
         }
@@ -178,16 +200,29 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
-            if indexPath.row == 0 {
-                let vc = CasePersionViewController()
-                vc.type =  .principal
-                self.navigationController?.pushViewController(vc, animated: true)
+            let vc = CasePersionViewController()
 
+            var arr : [String] = []
+            if indexPath.row == 0 {
+                vc.type =  .principal_detail
+                arr.append(caseDetailModel.data.pn)
+                arr.append(caseDetailModel.data.pc)
+                arr.append(caseDetailModel.data.pp)
+                arr.append(caseDetailModel.data.pz)
+                arr.append(caseDetailModel.data.pj)
+                arr.append(caseDetailModel.data.pd)
+                arr.append(caseDetailModel.data.pa)
             } else {
-                let vc = CasePersionViewController()
-                vc.type =  .opposite
-                self.navigationController?.pushViewController(vc, animated: true)
+                vc.type =  .opposite_detail
+                arr.append(caseDetailModel.data.on)
+                arr.append(caseDetailModel.data.oc)
+                arr.append(caseDetailModel.data.op)
+                arr.append(caseDetailModel.data.oz)
+                arr.append(caseDetailModel.data.oj)
+                arr.append(caseDetailModel.data.oa)
             }
+            vc.dataArr = arr
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     // MARK: - 标题输入代理

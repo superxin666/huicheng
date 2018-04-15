@@ -79,7 +79,11 @@ class TitleTableViewCell: UITableViewCell {
         self.titleNameLabel.text = titleStr
         self.titleNameLabel.textAlignment = .left
 
-        self.textField.text = contentStr
+        if !(contentStr.count > 0) {
+            self.textField.text = "暂无"
+        } else {
+            self.textField.text = contentStr
+        }
     }
     
     func setData_caseAdd(titleStr : String) {
