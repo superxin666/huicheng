@@ -10,7 +10,7 @@ import UIKit
 enum CaseDetailViewControllerType {
     case caseDetail,addCase,editeCase
 }
-class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource,WorkRequestVCDelegate,TitleTableViewCellDelegate,OptionViewDelgate {
+class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource,WorkRequestVCDelegate,TitleTableViewCellDelegate,OptionViewDelgate,DatePickViewDelegate {
     let mainTabelView : UITableView = UITableView()
     let request : WorkRequestVC = WorkRequestVC()
     var alertController : UIAlertController!
@@ -37,11 +37,17 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
 
     /// 选项
     let optionView : OptionView = OptionView.loadNib()
-
-
-
+    
+    /// 时间
+    let dateView : DatePickView = DatePickView.loadNib()
+    
+    
     var caseId : Int!
     var type : CaseDetailViewControllerType!
+    
+    /// 当前选中的行
+    var currectIndexpath : IndexPath!
+    
 
     // MARK: - life
     override func viewWillLayoutSubviews() {
@@ -66,8 +72,7 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
             self.navigation_title_fontsize(name: "案件登记", fontsize: 18)
             self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
             self.navigationBar_rightBtn_title(name: "确定")
-            request.casetypeRequest()
-
+            
         } else {
 
         }
@@ -216,21 +221,50 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
         return view
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        currectIndexpath = indexPath
+
         if indexPath.section == 0 {
             if indexPath.row == 0 {
                 //案件类型
-                self.showOptionPickView(type: indexPath)
+                if caseTypeArr.count > 0 {
+                    self.showOptionPickView(type: indexPath)
+                } else {
+                    request.casetypeRequest()
+                }
             } else if indexPath.row == 2 {
                 //立案日期
-
+                self.showDate()
             } else if indexPath.row == 3 {
                 //立案律师
+                if userList.count > 0 {
+                    self.showOptionPickView(type: indexPath)
+                } else {
+                    request.userlistRequest()
+                }
+                
             } else if indexPath.row == 4 {
                 //案件组别
+                if userList.count > 0 {
+                    self.showOptionPickView(type: indexPath)
+                } else {
+                    request.departmentRequest()
+                }
             } else if indexPath.row == 5 {
                 //承办律师
+                if userList.count > 0 {
+                    self.showOptionPickView(type: indexPath)
+                } else {
+                    request.userlistRequest()
+                }
+
             } else {
                 //承办律师
+                if userList.count > 0 {
+                    self.showOptionPickView(type: indexPath)
+                } else {
+                    request.userlistRequest()
+                }
+
             }
 
         } else if indexPath.section == 1 {
@@ -266,6 +300,12 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
     }
 
     // MARK: - net
+    func caseTypeRequest() {
+        
+    }
+    
+    
+    
     func requestSucceed_work(data: Any, type: WorkRequestVC_enum) {
         if type == .case_getinfo {
             caseDetailModel = data as! caseDetailModelMap
@@ -290,10 +330,16 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
         } else if type == .casetype {
             //案件类型
             caseTypeArr = data as! [casetypeModel]
+            self.showOptionPickView(type: currectIndexpath)
         } else if type == .userlist {
+            //律师
             userList = data as! [userlistModel]
+            self.showOptionPickView(type: currectIndexpath)
+
         } else if type == .department {
+            //部门
             dep = data as! [departmentModel]
+            self.showOptionPickView(type: currectIndexpath)
         }
 
     }
@@ -364,27 +410,71 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
         self.present(alertController, animated: true, completion: nil)
 
     }
-
+    
+    /// 显示选项
+    ///
+    /// - Parameter type: <#type description#>
     func showOptionPickView(type : IndexPath) {
         self.maskView.addSubview(self.optionView)
         self.view.window?.addSubview(self.maskView)
-        self.optionView.delegate = self
-
         if type.row == 0 {
             self.optionView.setData_case(dataArr: self.caseTypeArr, indexPath: type)
+        } else if type.row == 3 || type.row == 5 || type.row == 6 {
+            self.optionView.setData_case(dataArr: self.userList, indexPath: type)
+        } else if type.row == 4 {
+            self.optionView.setData_case(dataArr: self.dep, indexPath: type)
         }
-
+        self.optionView.delegate = self
+        
         self.optionView.snp.makeConstraints { (make) in
             make.left.right.equalTo(0)
             make.bottom.equalTo(0)
             make.height.equalTo(160)
         }
     }
-
-    func optionSure(idStr: String, pickTag: Int) {
+    
+    
+    /// 选项代理
+    ///
+    /// - Parameters:
+    ///   - idStr: <#idStr description#>
+    ///   - titleStr: <#titleStr description#>
+    ///   - pickTag: <#pickTag description#>
+    func optionSure(idStr: String, titleStr: String, pickTag: Int) {
+        HCLog(message: titleStr)
         HCLog(message: idStr)
         HCLog(message: pickTag)
+        
+        let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: pickTag, section: 0)) as! OptionTableViewCell
+        cell.setOptionData(contentStr: titleStr)
+        
         self.optionView.removeFromSuperview()
+        self.maskView.removeFromSuperview()
+        
+    }
+    
+    
+    /// 显示时间
+    func showDate() {
+        self.maskView.addSubview(self.dateView)
+        self.view.window?.addSubview(self.maskView)
+        self.dateView.delegate = self
+        self.dateView.snp.makeConstraints { (make) in
+            make.left.right.equalTo(0)
+            make.bottom.equalTo(0)
+            make.height.equalTo(160)
+        }
+    }
+    
+    /// 时间选项代理
+    ///
+    /// - Parameters:
+    ///   - timeStr: <#timeStr description#>
+    ///   - type: <#type description#>
+    func datePickViewTime(timeStr: String, type: Int) {
+        HCLog(message: timeStr)
+        HCLog(message: type)
+        self.dateView.removeFromSuperview()
         self.maskView.removeFromSuperview()
     }
 

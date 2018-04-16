@@ -23,8 +23,8 @@ class DatePickView: UIView,NibLoadable {
     var timeStr : String = String.getDateNow()
     var delegate : DatePickViewDelegate!
     
-    /// 0 是开始时间 1是结束时间
-    var typeNum : Int!
+    /// 0 是开始时间 1是结束时间 默认为0
+    var typeNum : Int = 0
     
     
     @IBAction func timeChange(_ sender: UIDatePicker) {
