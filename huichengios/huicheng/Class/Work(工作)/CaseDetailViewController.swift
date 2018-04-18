@@ -365,13 +365,13 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
 
     }
 
-    func showOptionPickView(type : IndexPath) {
+    func showOptionPickView(indexPath : IndexPath) {
         self.maskView.addSubview(self.optionView)
         self.view.window?.addSubview(self.maskView)
         self.optionView.delegate = self
 
         if type.row == 0 {
-            self.optionView.setData_case(dataArr: self.caseTypeArr, indexPath: type)
+            self.optionView.setData_case(dataArr: self.caseTypeArr, indexPath: indexPath)
         }
 
         self.optionView.snp.makeConstraints { (make) in
