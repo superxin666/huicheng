@@ -21,6 +21,10 @@ class OptionTableViewCell: UITableViewCell {
         self.contentLabel.text = contentStr
 
     }
+    
+    func setOptionData(contentStr : String)  {
+        self.contentLabel.text = contentStr
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

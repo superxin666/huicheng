@@ -8,7 +8,7 @@
 
 import UIKit
 protocol OptionViewDelgate {
-    func optionSure(idStr : String,pickTag : Int)
+    func optionSure(idStr : String,titleStr : String,pickTag : Int)
 }
 
 enum OptionViewType {
@@ -19,7 +19,12 @@ enum OptionViewType {
 class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSource {
     var delegate : OptionViewDelgate!
 
+    /// 当前id
     var cuurectID : String = ""
+    
+    /// 当前标题
+    var currectStr : String = ""
+    
     /// 类型 默认搜索
     var type :OptionViewType = .searchState
     //搜索 报销
@@ -57,12 +62,16 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
             self.type = .caseType
             data_casetypeArr = dataArr as! [casetypeModel]
         } else if indexPath.row == 3 {
+            self.type = .caseUser
             data_userlistArr = dataArr as! [userlistModel]
         } else if indexPath.row == 4 {
+            self.type = .caseDep
             data_departArr = dataArr as! [departmentModel]
         } else if indexPath.row == 5 {
+            self.type = .caseUser
             data_userlistArr1 = dataArr as! [userlistModel]
         } else {
+            self.type = .caseUser
             data_userlistArr2 = dataArr as! [userlistModel]
         }
         self.pickView.reloadAllComponents()
@@ -77,34 +86,27 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if type == .searchState {
             return nameArr.count
-
+            
         } else if type == .invoice_getlist {
             return nameArr_invoice.count
-
+            
         }  else if type == .finance {
-
+            
             return nameArr_finance.count
-
+            
         } else if type == .Object {
-
+            
             return dataArr.count
         } else if type == .caseType {
-             return self.data_casetypeArr.count
-//            if self.pickView.tag == 0 {
-//                return self.data_casetypeArr.count
-//            } else if self.pickView.tag == 3 {
-//                return self.data_userlistArr.count
-//            }else if self.pickView.tag == 4 {
-//                return self.data_departArr.count
-//            }else if self.pickView.tag == 5 {
-//                return self.data_userlistArr1.count
-//            } else {
-//                return self.data_userlistArr2.count
-//            }
+            return self.data_casetypeArr.count
+        }else if type == .caseDep {
+            return self.data_departArr.count
+        } else if type == .caseUser {
+            return self.data_userlistArr.count
         } else {
             return 0
         }
-
+        
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 
@@ -137,36 +139,17 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
             let model : casetypeModel = self.data_casetypeArr[row]
             titleStr = model.name
             cuurectID = "\(model.id)"
-//            if self.pickView.tag == 0 {
-//                //类型
-//                let model : casetypeModel = self.data_casetypeArr[row]
-//                titleStr = model.name
-//                cuurectID = "\(model.id)"
-//
-//            } else if self.pickView.tag == 3 {
-//                //立案律师
-//                let model : userlistModel = self.data_userlistArr[row]
-//                titleStr = model.name
-//                cuurectID = "\(model.id)"
-//
-//            }else if self.pickView.tag == 4 {
-//                //部门
-//                let model : departmentModel = self.data_departArr[row]
-//                titleStr = model.name
-//                cuurectID = "\(model.id)"
-//            }else if self.pickView.tag == 5 {
-//                //承办律师1
-//                let model : userlistModel = self.data_userlistArr1[row]
-//                titleStr = model.name
-//                cuurectID = "\(model.id)"
-//
-//            } else {
-//                //承办律师2
-//                let model : userlistModel = self.data_userlistArr2[row]
-//                titleStr = model.name
-//                cuurectID = "\(model.id)"
-//            }
-
+            currectStr = titleStr
+        } else if type == .caseDep {
+            let model : departmentModel = self.data_departArr[row]
+            titleStr = model.name
+            cuurectID = "\(model.id)"
+            currectStr = titleStr
+        } else if type == .caseUser {
+            let model : userlistModel = self.data_userlistArr[row]
+            titleStr = model.name
+            cuurectID = "\(model.id)"
+            currectStr = titleStr
         }
         let label = UILabel(frame: CGRect(x: 0, y: 15, width: pickerView.frame.width, height: 20))
         label.text = titleStr
@@ -180,7 +163,7 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
 
     @IBAction func sureClick(_ sender: UIButton) {
         if let delegate = self.delegate {
-            delegate.optionSure(idStr: cuurectID, pickTag: self.pickView.tag)
+            delegate.optionSure(idStr: cuurectID, titleStr: currectStr, pickTag: self.pickView.tag)
         }
      
     }
