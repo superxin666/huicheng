@@ -323,6 +323,13 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
                 weak var weekself = self
                 if indexPath.row == 0 {
                     vc.type = . principal_add
+                    vc.pnStr = self.pnStr
+                    vc.pcStr = self.pcStr
+                    vc.ppStr = self.ppStr
+                    vc.pzStr = self.pzStr
+                    vc.pjStr = self.pjStr
+                    vc.pdStr = self.pdStr
+                    vc.paStr = self.paStr
                     vc.sureBlock = {(pn:String,pc:String, pp:String, pz:String, pj:String, pd:String,  pa:String) in
                         weekself?.pnStr = pn
                         weekself?.pcStr = pc
@@ -335,6 +342,12 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
                     }
                 } else {
                     vc.type = . opposit_add
+                    vc.pnStr = self.onStr
+                    vc.pcStr = self.ocStr
+                    vc.ppStr = self.opStr
+                    vc.pzStr = self.ozStr
+                    vc.pjStr = self.ojStr
+                    vc.paStr = self.oaStr
                     vc.sureBlock = {(pn:String,pc:String, pp:String, pz:String, pj:String, pd:String,  pa:String) in
                         weekself?.onStr = pn
                         weekself?.ocStr = pc
@@ -370,7 +383,7 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
     /// 添加案件
     func caseAddRequest() {
         //全部必填
-        
+
 
 
 

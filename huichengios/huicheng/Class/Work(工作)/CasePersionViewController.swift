@@ -18,7 +18,7 @@ enum CasePersionViewControllertype {
 class CasePersionViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate,TitleTableViewCellDelegate {
     var type  : CasePersionViewControllertype!
     var nameArr : [String] = ["委托人","联系人","电话","邮编","职务","身份证号","联系地址",]
-    var dataArr : Array<String>!
+    var dataArr : Array<String> = []
 
     var alertController : UIAlertController!
 
@@ -54,6 +54,14 @@ class CasePersionViewController: BaseViewController,UITableViewDataSource,UITabl
         } else if type == .principal_add {
             self.navigation_title_fontsize(name: "委托人情况", fontsize: 18)
             self.navigationBar_rightBtn_title(name: "确定")
+            dataArr.append(self.pnStr)
+            dataArr.append(self.pcStr)
+            dataArr.append( self.ppStr)
+            dataArr.append(self.pzStr)
+            dataArr.append(self.pjStr)
+            dataArr.append( self.pdStr)
+            dataArr.append(self.paStr)
+
 
         } else if type == .opposite_detail {
             self.navigation_title_fontsize(name: "对方当事人情况", fontsize: 18)
@@ -63,6 +71,13 @@ class CasePersionViewController: BaseViewController,UITableViewDataSource,UITabl
             self.navigation_title_fontsize(name: "对方当事人情况", fontsize: 18)
             self.navigationBar_rightBtn_title(name: "确定")
             nameArr.remove(at: 5)
+            dataArr.append(self.pnStr)
+            dataArr.append(self.pcStr)
+            dataArr.append( self.ppStr)
+            dataArr.append(self.pzStr)
+            dataArr.append(self.pjStr)
+            dataArr.append(self.paStr)
+
         }
 
 
@@ -91,13 +106,14 @@ class CasePersionViewController: BaseViewController,UITableViewDataSource,UITabl
         let cell : TitleTableViewCell  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
         cell.delegate = self
         cell.tag = indexPath.row
+        if indexPath.row < nameArr.count {
+            cell.setData_caseDetail(titleStr: nameArr[indexPath.row], contentStr: dataArr[indexPath.row],indexPath : indexPath)
+        }
         if type == .principal_detail || type == .opposite_detail{
-            if indexPath.row < dataArr.count {
-                cell.setData_caseDetail(titleStr: nameArr[indexPath.row], contentStr: dataArr[indexPath.row],indexPath : indexPath)
-            }
+
             cell.isUserInteractionEnabled = false
         } else {
-            cell.setData_caseAdd(titleStr:  nameArr[indexPath.row], indexPath: indexPath)
+//            cell.setData_caseAdd(titleStr:  nameArr[indexPath.row], indexPath: indexPath)
             cell.isUserInteractionEnabled = true
         }
         return cell
