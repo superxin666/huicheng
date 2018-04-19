@@ -12,7 +12,7 @@ enum WorkRequestVC_enum {
     //
     case checkcase,//利益冲突检查
          save,newslist1,getobjectlist,newspublic,del,//公告  发布/编辑公告  获取列表  获取接收对象  发布/撤销公告  删除
-         case_getlist,case_getinfo,//案件列表  获取案件详情
+         case_getlist,case_getinfo,case_add,//案件列表  获取案件详情  添加案件
          branch,department,userlist,casetype//分所列表  部门列表  本所律师列表  案件类型
 }
 protocol WorkRequestVCDelegate : NSObjectProtocol{
@@ -190,6 +190,64 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
     }
 
 
+    /// 添加案件
+    ///
+    /// - Parameters:
+    ///   - t: <#t description#>
+    ///   - n: <#n description#>
+    ///   - rt: <#rt description#>
+    ///   - pn: <#pn description#>
+    ///   - pc: <#pc description#>
+    ///   - pp: <#pp description#>
+    ///   - pz: <#pz description#>
+    ///   - pj: <#pj description#>
+    ///   - pd: <#pd description#>
+    ///   - pa: <#pa description#>
+    ///   - on: <#on description#>
+    ///   - oc: <#oc description#>
+    ///   - op: <#op description#>
+    ///   - oz: <#oz description#>
+    ///   - oj: <#oj description#>
+    ///   - oa: <#oa description#>
+    ///   - r: <#r description#>
+    ///   - d: <#d description#>
+    ///   - w1: <#w1 description#>
+    ///   - w2: <#w2 description#>
+    ///   - ct: <#ct description#>
+    ///   - sj: <#sj description#>
+    func caseAdd(t:String,n:String,rt:String,pn:String,pc:String,pp:String,pz:String,pj:String,pd:String,pa:String,on:String,oc:String,op:String,oz:String,oj:String,oa:String,r:String,d:String,w1:String,w2:String,ct:String,sj:String,id:String)  {
+        var arr : Array<String> = [t,n,rt,pn,pc,pp,pz,pj,pd,pa,on,oc,op,oz,oj,oa,r,d,w1,w2,ct,sj,id].map { (str) -> String in
+            str.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+
+        }
+        request.delegate = self
+        type = .case_add
+//        var nStr = ""
+//        if n.count > 0 {
+//            nStr = n.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+//        }
+//        var rtStr = ""
+//        if rt.count > 0 {
+//            rtStr = rt.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+//        }
+//        var pnStr = ""
+//        if pn.count > 0 {
+//            pnStr = pn.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+//        }
+//        var pcStr = ""
+//        if pc.count > 0 {
+//            pcStr = pc.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+//        }
+//        var pcStr = ""
+//        if pc.count > 0 {
+//            pcStr = pc.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+//        }
+
+        let url =   case_save_api + "t=\(arr[0])&n=\(arr[1])&n=\(arr[2])&rt=\(arr[3])&pn=\(arr[4])&pc=\(arr[5])&n=\(arr[6])&n=\(arr[7])&n=\(arr[8])&n=\(arr[9])&n=\(arr[10])&n=\(arr[11])&n=\(arr[12])&n=\(arr[13])&n=\(arr[14])&n=\(arr[15])&n=\(arr[16])&n=\(arr[17])&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url,type: .alltyper)
+    }
+
+
     
     func requestSucceed(response: Any) {
         if type == .checkcase || type == .case_getlist {
@@ -255,6 +313,11 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
             HCLog(message: arr.count)
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work(data: arr,type : type)
+            }
+        } else if type == .case_add{
+            let model = Mapper<CodeData>().map(JSON: response as! [String : Any])!
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed_work(data: model,type : type)
             }
         }
     }

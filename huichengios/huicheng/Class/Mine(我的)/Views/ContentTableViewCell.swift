@@ -5,11 +5,16 @@
 //  Created by lvxin on 2018/3/31.
 //  Copyright © 2018年 lvxin. All rights reserved.
 //  内容cell
+protocol ContentTableViewCellDelegate {
+    func endText_content(content:String)
 
+}
 import UIKit
 let ContentTableViewCellH = CGFloat(200)
 let ContentTableViewCellID = "ContentTableViewCell_ID"
 class ContentTableViewCell: UITableViewCell,UITextViewDelegate {
+    var delegate : ContentTableViewCellDelegate!
+
     @IBOutlet weak var titleLabel: UILabel!
     
     
@@ -21,6 +26,9 @@ class ContentTableViewCell: UITableViewCell,UITextViewDelegate {
         HCLog(message: textView.text!)
         if let str = textView.text {
             conTent = str
+        }
+        if let delegate = self.delegate {
+            delegate.endText_content(content: conTent)
         }
 
     }

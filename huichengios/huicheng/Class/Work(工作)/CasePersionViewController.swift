@@ -7,19 +7,32 @@
 //
 
 import UIKit
+typealias CasePersionViewControllerBlock = (_ pn:String,_ pc:String,_ pp:String,_ pz:String,_ pj:String,_ pd:String, _ pa:String)->()
+
 enum CasePersionViewControllertype {
     //委托人                              对方当事人
     case principal_detail,principal_add, opposite_detail,opposit_add
+
+
 }
 class CasePersionViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate,TitleTableViewCellDelegate {
     var type  : CasePersionViewControllertype!
     var nameArr : [String] = ["委托人","联系人","电话","邮编","职务","身份证号","联系地址",]
     var dataArr : Array<String>!
 
+    var alertController : UIAlertController!
 
     let mainTabelView : UITableView = UITableView()
     let request : WorkRequestVC = WorkRequestVC()
+    var sureBlock : CasePersionViewControllerBlock!
 
+    var pnStr : String = ""
+    var pcStr : String = ""
+    var ppStr : String = ""
+    var pzStr : String = ""
+    var pjStr : String = ""
+    var pdStr : String = ""
+    var paStr : String = ""
     // MARK: - life
     override func viewWillLayoutSubviews() {
         mainTabelView.snp.makeConstraints { (make) in
@@ -77,13 +90,14 @@ class CasePersionViewController: BaseViewController,UITableViewDataSource,UITabl
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : TitleTableViewCell  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
         cell.delegate = self
-        if indexPath.row < dataArr.count {
-            cell.setData_caseDetail(titleStr: nameArr[indexPath.row], contentStr: dataArr[indexPath.row],indexPath : indexPath)
-        }
         cell.tag = indexPath.row
         if type == .principal_detail || type == .opposite_detail{
+            if indexPath.row < dataArr.count {
+                cell.setData_caseDetail(titleStr: nameArr[indexPath.row], contentStr: dataArr[indexPath.row],indexPath : indexPath)
+            }
             cell.isUserInteractionEnabled = false
         } else {
+            cell.setData_caseAdd(titleStr:  nameArr[indexPath.row], indexPath: indexPath)
             cell.isUserInteractionEnabled = true
         }
         return cell
@@ -97,13 +111,60 @@ class CasePersionViewController: BaseViewController,UITableViewDataSource,UITabl
     func endEdite(inputStr: String, tagNum: Int) {
         HCLog(message: inputStr)
         HCLog(message: tagNum)
+        if self.type == .principal_add {
+            if tagNum == 10  {
+                pnStr = inputStr
+            } else if tagNum == 11 {
+                pcStr = inputStr
+            } else if tagNum == 12 {
+                ppStr = inputStr
+            } else if tagNum == 13 {
+                pzStr = inputStr
+            } else if tagNum == 14 {
+                pjStr = inputStr
+            } else if tagNum == 15 {
+                pdStr = inputStr
+            } else if tagNum == 16 {
+                paStr = inputStr
+            }
+
+        } else {
+            if tagNum == 10  {
+                pnStr = inputStr
+            } else if tagNum == 11 {
+                pcStr = inputStr
+            } else if tagNum == 12 {
+                ppStr = inputStr
+            } else if tagNum == 13 {
+                pzStr = inputStr
+            } else if tagNum == 14 {
+                pjStr = inputStr
+            } else if tagNum == 15 {
+                paStr = inputStr
+            }
+        }
     }
 
     override func navigationLeftBtnClick() {
-        self.navigationController?.popViewController(animated: true)
+        alertController = UIAlertController(title: nil, message: "是否放弃本次记录", preferredStyle: .alert)
+        let actcion1 = UIAlertAction(title: "确定", style: .default) { (aciton) in
+            self.navigationController?.popViewController(animated: true)
+        }
+        let actcion2 = UIAlertAction(title: "取消", style: .cancel) { (aciton) in
+            self.alertController.dismiss(animated: true, completion: {
+
+            })
+        }
+        alertController.addAction(actcion1)
+        alertController.addAction(actcion2)
+        self.present(alertController, animated: true, completion: nil)
+
+
     }
     override func navigationRightBtnClick() {
         HCLog(message: "确定")
+        self.sureBlock(self.pnStr ,self.pcStr  ,self.ppStr, self.pzStr,self.pjStr,self.pdStr, self.paStr)
+
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -86,9 +86,15 @@ class TitleTableViewCell: UITableViewCell {
         }
     }
     
-    func setData_caseAdd(titleStr : String) {
+    /// 案件  添加
+    ///
+    /// - Parameter titleStr: <#titleStr description#>
+    func setData_caseAdd(titleStr : String,indexPath : IndexPath) {
+        let tagNum = indexPath.section * 10 + indexPath.row
+        self.textField.tag = tagNum
         self.titleNameLabel.textColor = darkblueColor
         self.titleNameLabel.text = titleStr
+        self.titleNameLabel.textAlignment = .left
     }
     
     

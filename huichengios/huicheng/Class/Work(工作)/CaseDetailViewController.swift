@@ -10,7 +10,7 @@ import UIKit
 enum CaseDetailViewControllerType {
     case caseDetail,addCase,editeCase
 }
-class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource,WorkRequestVCDelegate,TitleTableViewCellDelegate,OptionViewDelgate,DatePickViewDelegate {
+class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource,WorkRequestVCDelegate,TitleTableViewCellDelegate,OptionViewDelgate,DatePickViewDelegate,ContentTableViewCellDelegate {
     let mainTabelView : UITableView = UITableView()
     let request : WorkRequestVC = WorkRequestVC()
     var alertController : UIAlertController!
@@ -40,13 +40,36 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
     
     /// 时间
     let dateView : DatePickView = DatePickView.loadNib()
-    
-    
     var caseId : Int!
     var type : CaseDetailViewControllerType!
     
     /// 当前选中的行
     var currectIndexpath : IndexPath!
+
+    //-------添加案件参数
+    /// 案件类型
+    var tStr : String = ""
+    var nStr : String = ""
+    var rtStr : String = ""
+    var pnStr : String = ""
+    var pcStr : String = ""
+    var ppStr : String = ""
+    var pzStr : String = ""
+    var pjStr : String = ""
+    var pdStr : String = ""
+    var paStr : String = ""
+    var onStr : String = ""
+    var ocStr : String = ""
+    var opStr : String = ""
+    var ozStr : String = ""
+    var ojStr : String = ""
+    var oaStr : String = ""
+    var rStr : String = ""
+    var dStr : String = ""
+    var w1Str : String = ""
+    var w2Str : String = ""
+    var ctStr : String = ""
+    var sjStr : String = ""
     
 
     // MARK: - life
@@ -166,6 +189,7 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
             if indexPath.row == 0 {
                 let cell : ContentTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: ContentTableViewCellID, for: indexPath) as! ContentTableViewCell
                 var contentStr = ""
+                cell.delegate = self
                 if content3.count > 0 {
                     contentStr = content3[indexPath.row]
                 }
@@ -222,6 +246,7 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         currectIndexpath = indexPath
+        self.view.endEditing(true)
 
         if indexPath.section == 0 {
             if indexPath.row == 0 {
@@ -270,39 +295,81 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
 
         } else if indexPath.section == 1 {
             let vc = CasePersionViewController()
+            if self.type == .caseDetail{
+                var arr : [String] = []
+                if indexPath.row == 0 {
+                    vc.type =  .principal_detail
+                    arr.append(caseDetailModel.data.pn)
+                    arr.append(caseDetailModel.data.pc)
+                    arr.append(caseDetailModel.data.pp)
+                    arr.append(caseDetailModel.data.pz)
+                    arr.append(caseDetailModel.data.pj)
+                    arr.append(caseDetailModel.data.pd)
+                    arr.append(caseDetailModel.data.pa)
+                } else {
+                    vc.type =  .opposite_detail
+                    arr.append(caseDetailModel.data.on)
+                    arr.append(caseDetailModel.data.oc)
+                    arr.append(caseDetailModel.data.op)
+                    arr.append(caseDetailModel.data.oz)
+                    arr.append(caseDetailModel.data.oj)
+                    arr.append(caseDetailModel.data.oa)
+                }
+                vc.dataArr = arr
+                self.navigationController?.pushViewController(vc, animated: true)
 
-            var arr : [String] = []
-            if indexPath.row == 0 {
-                vc.type =  .principal_detail
-                arr.append(caseDetailModel.data.pn)
-                arr.append(caseDetailModel.data.pc)
-                arr.append(caseDetailModel.data.pp)
-                arr.append(caseDetailModel.data.pz)
-                arr.append(caseDetailModel.data.pj)
-                arr.append(caseDetailModel.data.pd)
-                arr.append(caseDetailModel.data.pa)
             } else {
-                vc.type =  .opposite_detail
-                arr.append(caseDetailModel.data.on)
-                arr.append(caseDetailModel.data.oc)
-                arr.append(caseDetailModel.data.op)
-                arr.append(caseDetailModel.data.oz)
-                arr.append(caseDetailModel.data.oj)
-                arr.append(caseDetailModel.data.oa)
+                weak var weekself = self
+                if indexPath.row == 0 {
+                    vc.type = . principal_add
+                    vc.sureBlock = {(pn:String,pc:String, pp:String, pz:String, pj:String, pd:String,  pa:String) in
+                        weekself?.pnStr = pn
+                        weekself?.pcStr = pc
+                        weekself?.ppStr = pp
+                        weekself?.pzStr = pz
+                        weekself?.pjStr = pj
+                        weekself?.pdStr = pd
+                        weekself?.paStr = pa
+
+                    }
+                } else {
+                    vc.type = . opposit_add
+                    vc.sureBlock = {(pn:String,pc:String, pp:String, pz:String, pj:String, pd:String,  pa:String) in
+                        weekself?.onStr = pn
+                        weekself?.ocStr = pc
+                        weekself?.opStr = pp
+                        weekself?.ozStr = pz
+                        weekself?.ojStr = pj
+                        weekself?.oaStr = pa
+
+                    }
+                }
+                self.navigationController?.pushViewController(vc, animated: true)
             }
-            vc.dataArr = arr
-            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     // MARK: - 标题输入代理
     func endEdite(inputStr: String, tagNum: Int) {
         HCLog(message: inputStr)
         HCLog(message: tagNum)
+        if tagNum == 11 {
+            //名字
+            self.nStr = inputStr
+        } else {
+            //标的
+            self.sjStr = inputStr
+        }
+    }
+    func endText_content(content: String) {
+        self.ctStr = content
     }
 
     // MARK: - net
-    func caseTypeRequest() {
-        
+
+    /// 添加案件
+    func caseAddRequest() {
+        SVPMessageShow.showLoad(title: "正在发布")
+        request.caseAdd(t: tStr, n: nStr, rt: rtStr, pn: pnStr, pc: pcStr, pp: ppStr, pz: pzStr, pj: pjStr, pd: pdStr, pa: paStr, on: onStr, oc: ocStr, op: opStr, oz: ozStr, oj: ojStr, oa: oaStr, r: rStr, d: dStr, w1: w1Str, w2: w2Str, ct: ctStr, sj: sjStr, id: "")
     }
     
     
@@ -342,6 +409,10 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
             dep = data as! [departmentModel]
             self.showOptionPickView(indexPath: currectIndexpath)
 
+        } else if type == .case_add{
+            //添加案件
+            SVPMessageShow.dismissSVP()
+            self.navigationController?.popViewController(animated: true)
         }
 
     }
@@ -376,7 +447,7 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
             self.present(alertController, animated: true, completion: nil)
         } else if self.type == .addCase{
             HCLog(message: "添加案件")
-
+            self.caseAddRequest()
         }
 
     }
@@ -447,7 +518,22 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
         HCLog(message: titleStr)
         HCLog(message: idStr)
         HCLog(message: pickTag)
-        
+        if pickTag == 0 {
+            //类型
+            self.tStr = idStr
+        } else if pickTag == 3 {
+            //立案律师
+            self.rStr = idStr
+        } else if pickTag == 4 {
+            //案件
+            self.dStr = idStr
+        } else if pickTag == 5 {
+            //承办律师
+            self.w1Str = idStr
+        } else {
+            //承办律师
+            self.w2Str = idStr
+        }
         let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: pickTag, section: 0)) as! OptionTableViewCell
         cell.setOptionData(contentStr: titleStr)
         
@@ -477,6 +563,7 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
     func datePickViewTime(timeStr: String, type: Int) {
         HCLog(message: timeStr)
         HCLog(message: type)
+        self.rtStr = timeStr
         let cell : endTimeTableViewCell  = self.mainTabelView.cellForRow(at: IndexPath(row: 2, section: 0)) as! endTimeTableViewCell
         cell.setTime(str: timeStr)
         self.dateView.removeFromSuperview()
@@ -484,7 +571,19 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
     }
 
     override func navigationLeftBtnClick() {
-        self.navigationController?.popViewController(animated: true)
+        alertController = UIAlertController(title: nil, message: "是否放弃本次记录", preferredStyle: .alert)
+        let actcion1 = UIAlertAction(title: "确定", style: .default) { (aciton) in
+            self.navigationController?.popViewController(animated: true)
+        }
+        let actcion2 = UIAlertAction(title: "取消", style: .cancel) { (aciton) in
+            self.alertController.dismiss(animated: true, completion: {
+
+            })
+        }
+        alertController.addAction(actcion1)
+        alertController.addAction(actcion2)
+        self.present(alertController, animated: true, completion: nil)
+
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
