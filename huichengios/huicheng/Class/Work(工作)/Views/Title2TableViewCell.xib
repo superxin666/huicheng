@@ -27,7 +27,7 @@
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pub_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="uDu-ox-GdG">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pub_arrow_right" translatesAutoresizingMaskIntoConstraints="NO" id="uDu-ox-GdG">
                         <rect key="frame" x="300" y="16" width="10" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="1vF-4J-i2T"/>
@@ -58,6 +58,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="pub_arrow" width="10" height="17"/>
+        <image name="pub_arrow_right" width="7" height="12"/>
     </resources>
 </document>
