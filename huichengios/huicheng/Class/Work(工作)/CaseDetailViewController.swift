@@ -244,7 +244,7 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
                 
             } else if indexPath.row == 4 {
                 //案件组别
-                if userList.count > 0 {
+                if dep.count > 0 {
                     self.showOptionPickView(indexPath: currectIndexpath)
 
                 } else {
@@ -477,6 +477,8 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
     func datePickViewTime(timeStr: String, type: Int) {
         HCLog(message: timeStr)
         HCLog(message: type)
+        let cell : endTimeTableViewCell  = self.mainTabelView.cellForRow(at: IndexPath(row: 2, section: 0)) as! endTimeTableViewCell
+        cell.setTime(str: timeStr)
         self.dateView.removeFromSuperview()
         self.maskView.removeFromSuperview()
     }
