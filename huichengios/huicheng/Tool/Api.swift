@@ -70,6 +70,8 @@ let user_editpass_api = "uc/user_editpass?"
 /// 利益冲突检查
 let checkcase_api = "case/checkcase?"
 
+/// 合同列表
+let deal_getlist_api = "deal/getlist?"
 
 
 //-----------------------法庭信息管理

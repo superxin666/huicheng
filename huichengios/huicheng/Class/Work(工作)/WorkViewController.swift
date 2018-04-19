@@ -111,6 +111,10 @@ class WorkViewController: BaseViewController,UITableViewDelegate,UITableViewData
             switch tag {
             case 0:
                 HCLog(message: "合同管理")
+                let vc = DealViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+
             case 1:
                 HCLog(message: "结案申请")
             case 2:
