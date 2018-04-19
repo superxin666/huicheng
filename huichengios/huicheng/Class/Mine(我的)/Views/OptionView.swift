@@ -138,17 +138,17 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
             //案件
             let model : casetypeModel = self.data_casetypeArr[row]
             titleStr = model.name
-            cuurectID = "\(model.id)"
+            cuurectID = "\(model.id!)"
             currectStr = titleStr
         } else if type == .caseDep {
             let model : departmentModel = self.data_departArr[row]
             titleStr = model.name
-            cuurectID = "\(model.id)"
+            cuurectID = "\(model.id!)"
             currectStr = titleStr
         } else if type == .caseUser {
             let model : userlistModel = self.data_userlistArr[row]
             titleStr = model.name
-            cuurectID = "\(model.id)"
+            cuurectID = "\(model.id!)"
             currectStr = titleStr
         }
         let label = UILabel(frame: CGRect(x: 0, y: 15, width: pickerView.frame.width, height: 20))

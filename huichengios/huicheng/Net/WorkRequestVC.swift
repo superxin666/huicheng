@@ -222,28 +222,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
         }
         request.delegate = self
         type = .case_add
-//        var nStr = ""
-//        if n.count > 0 {
-//            nStr = n.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-//        }
-//        var rtStr = ""
-//        if rt.count > 0 {
-//            rtStr = rt.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-//        }
-//        var pnStr = ""
-//        if pn.count > 0 {
-//            pnStr = pn.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-//        }
-//        var pcStr = ""
-//        if pc.count > 0 {
-//            pcStr = pc.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-//        }
-//        var pcStr = ""
-//        if pc.count > 0 {
-//            pcStr = pc.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-//        }
-
-        let url =   case_save_api + "t=\(arr[0])&n=\(arr[1])&n=\(arr[2])&rt=\(arr[3])&pn=\(arr[4])&pc=\(arr[5])&n=\(arr[6])&n=\(arr[7])&n=\(arr[8])&n=\(arr[9])&n=\(arr[10])&n=\(arr[11])&n=\(arr[12])&n=\(arr[13])&n=\(arr[14])&n=\(arr[15])&n=\(arr[16])&n=\(arr[17])&k=\(UserInfoLoaclManger.getKey())"
+        let url =   case_save_api + "t=\(arr[0])&n=\(arr[1])&rt=\(arr[2])&pn=\(arr[3])&pc=\(arr[4])&pp=\(arr[5])&pz=\(arr[6])&pj=\(arr[7])&pd=\(arr[8])&pa=\(arr[9])&on=\(arr[10])&oc=\(arr[11])&op=\(arr[12])&oz=\(arr[13])&oj=\(arr[14])&oa=\(arr[15])&r=\(arr[16])&d=\(arr[17])&w1=\(arr[18])&w2=\(arr[19])&ct=\(arr[20])&sj=\(arr[21])&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url,type: .alltyper)
     }
 

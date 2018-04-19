@@ -10,8 +10,8 @@ import UIKit
 enum CaseDetailViewControllerType {
     case caseDetail,addCase,editeCase
 }
-class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource,WorkRequestVCDelegate,TitleTableViewCellDelegate,OptionViewDelgate,DatePickViewDelegate,ContentTableViewCellDelegate {
-    let mainTabelView : UITableView = UITableView()
+class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,TitleTableViewCellDelegate,OptionViewDelgate,DatePickViewDelegate,ContentTableViewCellDelegate {
+    var mainTabelView : UITableView!
     let request : WorkRequestVC = WorkRequestVC()
     var alertController : UIAlertController!
     let name1 = ["案件类型","案件名称","立案日期","立案律师","案件组别","承办律师","承办律师",]
@@ -74,11 +74,11 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
 
     // MARK: - life
     override func viewWillLayoutSubviews() {
-        mainTabelView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.view).offset(0)
-            make.left.right.equalTo(self.view).offset(0)
-            make.bottom.equalTo(self.view).offset(0)
-        }
+//        mainTabelView.snp.makeConstraints { (make) in
+//            make.top.equalTo(self.view).offset(0)
+//            make.left.right.equalTo(self.view).offset(0)
+//            make.bottom.equalTo(self.view).offset(0)
+//        }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,26 +106,23 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
     }
     // MARK: - UI
     func creatUI() {
-        mainTabelView.backgroundColor = UIColor.clear
-        mainTabelView.delegate = self;
-        mainTabelView.dataSource = self;
-        mainTabelView.tableFooterView = UIView()
-        mainTabelView.separatorStyle = .none
-        mainTabelView.showsVerticalScrollIndicator = false
-        mainTabelView.showsHorizontalScrollIndicator = false
-        mainTabelView.backgroundView?.backgroundColor = .clear
-        mainTabelView.register(UINib.init(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: TitleTableViewCellID)
-        mainTabelView.register(UINib.init(nibName: "Title2TableViewCell", bundle: nil), forCellReuseIdentifier: Title2TableViewCellID)
-        mainTabelView.register(UINib.init(nibName: "OptionTableViewCell", bundle: nil), forCellReuseIdentifier: OptionTableViewCellID)
-        mainTabelView.register(UINib.init(nibName: "ContentTableViewCell", bundle: nil), forCellReuseIdentifier: ContentTableViewCellID)
-        mainTabelView.register(UINib.init(nibName: "endTimeTableViewCell", bundle: nil), forCellReuseIdentifier: endTimeTableViewCellid)
-        self.view.addSubview(mainTabelView)
+        self.tableView .backgroundColor = viewBackColor
+        self.tableView .tableFooterView = UIView()
+        self.tableView .separatorStyle = .none
+        self.tableView .showsVerticalScrollIndicator = false
+        self.tableView .showsHorizontalScrollIndicator = false
+        self.tableView .backgroundView?.backgroundColor = .clear
+        self.tableView .register(UINib.init(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: TitleTableViewCellID)
+        self.tableView .register(UINib.init(nibName: "Title2TableViewCell", bundle: nil), forCellReuseIdentifier: Title2TableViewCellID)
+        self.tableView .register(UINib.init(nibName: "OptionTableViewCell", bundle: nil), forCellReuseIdentifier: OptionTableViewCellID)
+        self.tableView .register(UINib.init(nibName: "ContentTableViewCell", bundle: nil), forCellReuseIdentifier: ContentTableViewCellID)
+        self.tableView .register(UINib.init(nibName: "endTimeTableViewCell", bundle: nil), forCellReuseIdentifier: endTimeTableViewCellid)
     }
     // MARK: - delegate
-    func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0{
             return 7
         } else if section == 1 {
@@ -135,7 +132,7 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
         }
 
     }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             if indexPath.row == 0 || indexPath.row == 3 || indexPath.row == 4 || indexPath.row == 5 || indexPath.row == 6 {
                 let cell : OptionTableViewCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
@@ -218,7 +215,7 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
         }
     }
 
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 2 {
             if indexPath.row == 0 {
                 return ContentTableViewCellH
@@ -230,7 +227,7 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
         }
 
     }
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0  {
             return 0
         } else if section == 1 {
@@ -239,12 +236,12 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
             return 20
         }
     }
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: KSCREEN_WIDTH, height: 20))
         view.backgroundColor = viewBackColor
         return view
     }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         currectIndexpath = indexPath
         self.view.endEditing(true)
 
@@ -447,6 +444,7 @@ class CaseDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
             self.present(alertController, animated: true, completion: nil)
         } else if self.type == .addCase{
             HCLog(message: "添加案件")
+            self.view.endEditing(true)
             self.caseAddRequest()
         }
 

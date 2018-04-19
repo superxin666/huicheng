@@ -112,34 +112,34 @@ class CasePersionViewController: BaseViewController,UITableViewDataSource,UITabl
         HCLog(message: inputStr)
         HCLog(message: tagNum)
         if self.type == .principal_add {
-            if tagNum == 10  {
+            if tagNum == 0  {
                 pnStr = inputStr
-            } else if tagNum == 11 {
+            } else if tagNum == 1 {
                 pcStr = inputStr
-            } else if tagNum == 12 {
+            } else if tagNum == 2 {
                 ppStr = inputStr
-            } else if tagNum == 13 {
+            } else if tagNum == 3 {
                 pzStr = inputStr
-            } else if tagNum == 14 {
+            } else if tagNum == 4 {
                 pjStr = inputStr
-            } else if tagNum == 15 {
+            } else if tagNum == 5 {
                 pdStr = inputStr
-            } else if tagNum == 16 {
+            } else if tagNum == 6 {
                 paStr = inputStr
             }
 
         } else {
-            if tagNum == 10  {
+            if tagNum == 0  {
                 pnStr = inputStr
-            } else if tagNum == 11 {
+            } else if tagNum == 1 {
                 pcStr = inputStr
-            } else if tagNum == 12 {
+            } else if tagNum == 2 {
                 ppStr = inputStr
-            } else if tagNum == 13 {
+            } else if tagNum == 3 {
                 pzStr = inputStr
-            } else if tagNum == 14 {
+            } else if tagNum == 4 {
                 pjStr = inputStr
-            } else if tagNum == 15 {
+            } else if tagNum == 5 {
                 paStr = inputStr
             }
         }
@@ -163,8 +163,9 @@ class CasePersionViewController: BaseViewController,UITableViewDataSource,UITabl
     }
     override func navigationRightBtnClick() {
         HCLog(message: "确定")
+        self.view.endEditing(true)
         self.sureBlock(self.pnStr ,self.pcStr  ,self.ppStr, self.pzStr,self.pjStr,self.pdStr, self.paStr)
-
+        self.navigationController?.popViewController(animated: true)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
