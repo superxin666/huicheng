@@ -11,7 +11,6 @@ enum CaseDetailViewControllerType {
     case caseDetail,addCase,editeCase
 }
 class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,TitleTableViewCellDelegate,OptionViewDelgate,DatePickViewDelegate,ContentTableViewCellDelegate {
-    var mainTabelView : UITableView!
     let request : WorkRequestVC = WorkRequestVC()
     var alertController : UIAlertController!
     let name1 = ["案件类型","案件名称","立案日期","立案律师","案件组别","承办律师","承办律师",]
@@ -154,6 +153,8 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
                 var contentStr = ""
                 if content1.count > 0 {
                     contentStr = content1[indexPath.row]
+                } else {
+                    contentStr = self.nStr
                 }
                 cell.setData_caseDetail(titleStr: name1[indexPath.row], contentStr: contentStr,indexPath : indexPath)
                 cell.tag = indexPath.row
@@ -200,9 +201,12 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
 
             } else {
                 let cell : TitleTableViewCell  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                cell.delegate = self
                 var contentStr = ""
                 if content3.count > 0 {
                     contentStr = content3[indexPath.row]
+                } else {
+                    contentStr = self.sjStr
                 }
                 cell.setData_caseDetail(titleStr: name3[indexPath.row], contentStr: contentStr, indexPath: indexPath)
                 if type == .caseDetail{
@@ -349,7 +353,7 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
     func endEdite(inputStr: String, tagNum: Int) {
         HCLog(message: inputStr)
         HCLog(message: tagNum)
-        if tagNum == 11 {
+        if tagNum == 1 {
             //名字
             self.nStr = inputStr
         } else {
@@ -365,6 +369,11 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
 
     /// 添加案件
     func caseAddRequest() {
+        //全部必填
+        
+
+
+
         SVPMessageShow.showLoad(title: "正在发布")
         request.caseAdd(t: tStr, n: nStr, rt: rtStr, pn: pnStr, pc: pcStr, pp: ppStr, pz: pzStr, pj: pjStr, pd: pdStr, pa: paStr, on: onStr, oc: ocStr, op: opStr, oz: ozStr, oj: ojStr, oa: oaStr, r: rStr, d: dStr, w1: w1Str, w2: w2Str, ct: ctStr, sj: sjStr, id: "")
     }
@@ -391,7 +400,7 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
 
             content3.append(caseDetailModel.data.ct)
             content3.append(caseDetailModel.data.sj)
-            self.mainTabelView.reloadData()
+            self.tableView.reloadData()
         } else if type == .casetype {
             //案件类型
             caseTypeArr = data as! [casetypeModel]
@@ -532,7 +541,7 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
             //承办律师
             self.w2Str = idStr
         }
-        let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: pickTag, section: 0)) as! OptionTableViewCell
+        let cell : OptionTableViewCell = self.tableView.cellForRow(at: IndexPath(row: pickTag, section: 0)) as! OptionTableViewCell
         cell.setOptionData(contentStr: titleStr)
         
         self.optionView.removeFromSuperview()
@@ -562,25 +571,30 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
         HCLog(message: timeStr)
         HCLog(message: type)
         self.rtStr = timeStr
-        let cell : endTimeTableViewCell  = self.mainTabelView.cellForRow(at: IndexPath(row: 2, section: 0)) as! endTimeTableViewCell
+        let cell : endTimeTableViewCell  = self.tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as! endTimeTableViewCell
         cell.setTime(str: timeStr)
         self.dateView.removeFromSuperview()
         self.maskView.removeFromSuperview()
     }
 
     override func navigationLeftBtnClick() {
-        alertController = UIAlertController(title: nil, message: "是否放弃本次记录", preferredStyle: .alert)
-        let actcion1 = UIAlertAction(title: "确定", style: .default) { (aciton) in
+        if self.type == .addCase {
+            alertController = UIAlertController(title: nil, message: "是否放弃本次记录", preferredStyle: .alert)
+            let actcion1 = UIAlertAction(title: "确定", style: .default) { (aciton) in
+                self.navigationController?.popViewController(animated: true)
+            }
+            let actcion2 = UIAlertAction(title: "取消", style: .cancel) { (aciton) in
+                self.alertController.dismiss(animated: true, completion: {
+
+                })
+            }
+            alertController.addAction(actcion1)
+            alertController.addAction(actcion2)
+            self.present(alertController, animated: true, completion: nil)
+        } else {
             self.navigationController?.popViewController(animated: true)
         }
-        let actcion2 = UIAlertAction(title: "取消", style: .cancel) { (aciton) in
-            self.alertController.dismiss(animated: true, completion: {
 
-            })
-        }
-        alertController.addAction(actcion1)
-        alertController.addAction(actcion2)
-        self.present(alertController, animated: true, completion: nil)
 
     }
     override func didReceiveMemoryWarning() {

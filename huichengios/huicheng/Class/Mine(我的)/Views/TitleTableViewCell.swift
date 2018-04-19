@@ -79,11 +79,8 @@ class TitleTableViewCell: UITableViewCell {
         self.titleNameLabel.text = titleStr
         self.titleNameLabel.textAlignment = .left
 
-        if !(contentStr.count > 0) {
-            self.textField.text = "暂无"
-        } else {
-            self.textField.text = contentStr
-        }
+        self.textField.text = contentStr
+
     }
     
     /// 案件  添加
