@@ -216,10 +216,23 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
     ///   - ct: <#ct description#>
     ///   - sj: <#sj description#>
     func caseAdd(t:String,n:String,rt:String,pn:String,pc:String,pp:String,pz:String,pj:String,pd:String,pa:String,on:String,oc:String,op:String,oz:String,oj:String,oa:String,r:String,d:String,w1:String,w2:String,ct:String,sj:String,id:String)  {
-        var arr : Array<String> = [t,n,rt,pn,pc,pp,pz,pj,pd,pa,on,oc,op,oz,oj,oa,r,d,w1,w2,ct,sj,id].map { (str) -> String in
+
+        let inputArr : Array<String> = [t,n,rt,pn,pc,pp,pz,pj,pd,pa,on,oc,op,oz,oj,oa,r,d,w1,w2,ct,sj,id]
+        let nameArr = ["案件类型","案件名称","立案日期","委托方-委托人","委托方-联系人","委托方-电话","委托方-邮编","委托方-职务","委托方-身份证号","委托方-联系地址","对方当事方-委托人","对方当事方-联系人","对方当事方-电话","对方当事方-邮编","对方当事方-职务","对方当事方-联系地址","立案律师","案件组别","承办律师","承办律师","案件自述","标的"]
+
+        for i in 0..<inputArr.count {
+            let str = inputArr[i]
+            if !(str.count > 0) {
+                SVPMessageShow.showErro(infoStr: "请您输入"+"\(nameArr[i])")
+                return
+            }
+        }
+//        HCLog(message: "1212312321")
+        var arr : Array<String> = inputArr.map { (str) -> String in
             str.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
 
         }
+
         request.delegate = self
         type = .case_add
         let url =   case_save_api + "t=\(arr[0])&n=\(arr[1])&rt=\(arr[2])&pn=\(arr[3])&pc=\(arr[4])&pp=\(arr[5])&pz=\(arr[6])&pj=\(arr[7])&pd=\(arr[8])&pa=\(arr[9])&on=\(arr[10])&oc=\(arr[11])&op=\(arr[12])&oz=\(arr[13])&oj=\(arr[14])&oa=\(arr[15])&r=\(arr[16])&d=\(arr[17])&w1=\(arr[18])&w2=\(arr[19])&ct=\(arr[20])&sj=\(arr[21])&k=\(UserInfoLoaclManger.getKey())"

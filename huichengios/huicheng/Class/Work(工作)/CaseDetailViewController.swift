@@ -383,7 +383,11 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
     /// 添加案件
     func caseAddRequest() {
         //全部必填
-
+        if !(self.tStr.count > 0) {
+            SVPMessageShow.showErro(infoStr: "请输入案件名称")
+            return
+        }
+        
 
 
 
