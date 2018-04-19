@@ -15,10 +15,15 @@ class WorkFirstTableViewCell: UITableViewCell {
     let titleStrArr = ["案件","合同","签章","财务","其他"]
     
     let labelNameAr0 = ["案件登记","案件管理","利益冲突查询",]
+    let imageAr0 = [#imageLiteral(resourceName: "案件登记"),#imageLiteral(resourceName: "案件查询"),#imageLiteral(resourceName: "利益冲突查询")]
     let labelNameAr1 = ["合同管理","结案申请","合同审核","结案审核","审核进度查询"]
+    let imageAr1 = [#imageLiteral(resourceName: "合同管理"),#imageLiteral(resourceName: "结案申请"),#imageLiteral(resourceName: "合同审核"),#imageLiteral(resourceName: "结案审核"),#imageLiteral(resourceName: "审核进度查询")]
     let labelNameAr2 = ["函件管理","诉讼函","民事函","刑事函","自定义函","签章进度查询","签章审核"]
+    let imageAr2 = [#imageLiteral(resourceName: "函件管理"),#imageLiteral(resourceName: "诉讼函"),#imageLiteral(resourceName: "民事函"),#imageLiteral(resourceName: "刑事函"),#imageLiteral(resourceName: "自定义函"),#imageLiteral(resourceName: "签章进度查询"),#imageLiteral(resourceName: "签章审核")]
     let labelNameAr3 = ["收款登记","收款审核","支付收款","支付审核","报销审核","发票审核","签章审核"]
+    let imageAr3 = [#imageLiteral(resourceName: "收款登记"),#imageLiteral(resourceName: "收款审核"),#imageLiteral(resourceName: "支付收款"),#imageLiteral(resourceName: "支付审核"),#imageLiteral(resourceName: "报销审核"),#imageLiteral(resourceName: "发票审核"),#imageLiteral(resourceName: "签章审核")]
     let labelNameAr4 = ["会议室预约","发布公告","共享模板",]
+    let imageAr4 = [#imageLiteral(resourceName: "会议室预约"),#imageLiteral(resourceName: "发布公告"),#imageLiteral(resourceName: "共享模板")]
   
     var row : Int!
     
@@ -107,6 +112,11 @@ class WorkFirstTableViewCell: UITableViewCell {
             self.label2 .text = self.labelNameAr0[1]
             self.label3 .text = self.labelNameAr0[2]
 
+            self.imageView1.image = self.imageAr0[0]
+            self.imageView2.image = self.imageAr0[1]
+            self.imageView3.image = self.imageAr0[2]
+
+
         case 1:
             self.view6.isHidden = true
             self.view7.isHidden = true
@@ -117,6 +127,12 @@ class WorkFirstTableViewCell: UITableViewCell {
             self.label3 .text = self.labelNameAr1[2]
             self.label4 .text = self.labelNameAr1[3]
             self.label5 .text = self.labelNameAr1[4]
+
+            self.imageView1.image = self.imageAr1[0]
+            self.imageView2.image = self.imageAr1[1]
+            self.imageView3.image = self.imageAr1[2]
+            self.imageView4.image = self.imageAr1[3]
+            self.imageView5.image = self.imageAr1[4]
         case 2:
     
             self.view8.isHidden = true
@@ -129,6 +145,14 @@ class WorkFirstTableViewCell: UITableViewCell {
             self.label6 .text = self.labelNameAr2[5]
             self.label7 .text = self.labelNameAr2[6]
 
+            self.imageView1.image = self.imageAr2[0]
+            self.imageView2.image = self.imageAr2[1]
+            self.imageView3.image = self.imageAr2[2]
+            self.imageView4.image = self.imageAr2[3]
+            self.imageView5.image = self.imageAr2[4]
+            self.imageView6.image = self.imageAr2[5]
+            self.imageView7.image = self.imageAr2[6]
+
         case 3:
             self.view8.isHidden = true
             
@@ -139,6 +163,15 @@ class WorkFirstTableViewCell: UITableViewCell {
             self.label5 .text = self.labelNameAr3[4]
             self.label6 .text = self.labelNameAr3[5]
             self.label7 .text = self.labelNameAr3[6]
+
+            self.imageView1.image = self.imageAr3[0]
+            self.imageView2.image = self.imageAr3[1]
+            self.imageView3.image = self.imageAr3[2]
+            self.imageView4.image = self.imageAr3[3]
+            self.imageView5.image = self.imageAr3[4]
+            self.imageView6.image = self.imageAr3[5]
+            self.imageView7.image = self.imageAr3[6]
+
         case 4:
             self.view4.isHidden = true
             self.view5.isHidden = true
@@ -149,6 +182,9 @@ class WorkFirstTableViewCell: UITableViewCell {
             self.label1 .text = self.labelNameAr4[0]
             self.label2 .text = self.labelNameAr4[1]
             self.label3 .text = self.labelNameAr4[2]
+            self.imageView1.image = self.imageAr4[0]
+            self.imageView2.image = self.imageAr4[1]
+            self.imageView3.image = self.imageAr4[2]
 
         default:
             break

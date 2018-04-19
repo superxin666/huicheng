@@ -114,6 +114,7 @@
 		21541DD32062635E0003746E /* work_getlistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21541DD22062635E0003746E /* work_getlistModel.swift */; };
 		21541DD5206265010003746E /* work_getinfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21541DD4206265010003746E /* work_getinfoModel.swift */; };
 		21553CBF20887159009284B1 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21553CBE20887159009284B1 /* BaseTableViewController.swift */; };
+		21553CC12088940E009284B1 /* DealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21553CC02088940E009284B1 /* DealViewController.swift */; };
 		215C15C72063D99600A9129D /* ConbenTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215C15C62063D99600A9129D /* ConbenTopView.swift */; };
 		215C15C92063D99F00A9129D /* ConbenTopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 215C15C82063D99F00A9129D /* ConbenTopView.xib */; };
 		215C65CB203EC6B6001C7A92 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215C65CA203EC6B6001C7A92 /* AppDelegate.swift */; };
@@ -278,6 +279,7 @@
 		21541DD22062635E0003746E /* work_getlistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = work_getlistModel.swift; sourceTree = "<group>"; };
 		21541DD4206265010003746E /* work_getinfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = work_getinfoModel.swift; sourceTree = "<group>"; };
 		21553CBE20887159009284B1 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
+		21553CC02088940E009284B1 /* DealViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealViewController.swift; sourceTree = "<group>"; };
 		215C15C62063D99600A9129D /* ConbenTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConbenTopView.swift; sourceTree = "<group>"; };
 		215C15C82063D99F00A9129D /* ConbenTopView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConbenTopView.xib; sourceTree = "<group>"; };
 		215C65C7203EC6B6001C7A92 /* huicheng.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = huicheng.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -638,6 +640,7 @@
 				214AA6B7207F9504004F2B63 /* CaseViewController.swift */,
 				21DDC9C9208051140067197D /* CaseDetailViewController.swift */,
 				21DDC9E12080DCB90067197D /* CasePersionViewController.swift */,
+				21553CC02088940E009284B1 /* DealViewController.swift */,
 			);
 			path = "Work(工作)";
 			sourceTree = "<group>";
@@ -894,6 +897,7 @@
 				213F77E5206B31F100075FC6 /* SetViewController.swift in Sources */,
 				2107554A205D4C3200FF4396 /* LoginTopView.swift in Sources */,
 				219D7BC6205E2E29009F543B /* SubPayTableViewCell.swift in Sources */,
+				21553CC12088940E009284B1 /* DealViewController.swift in Sources */,
 				216B7C5D20637D7000BBACDA /* WorkBookTableViewCell.swift in Sources */,
 				21387D45205FF7240050DF1F /* expense_getlistModel.swift in Sources */,
 				21387D3B205FA7860050DF1F /* MineRequestVC.swift in Sources */,
