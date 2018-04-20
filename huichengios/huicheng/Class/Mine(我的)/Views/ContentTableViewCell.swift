@@ -43,6 +43,16 @@ class ContentTableViewCell: UITableViewCell,UITextViewDelegate {
     }
 
 
+    /// 案件详情
+    ///
+    /// - Parameter titleStr: <#titleStr description#>
+    func setData_overdeal(titleStr : String) {
+        self.titleLabel.textColor = darkblueColor
+        self.titleLabel.text = titleStr
+
+    }
+
+
     /// 案件 详情
     ///
     /// - Parameters:

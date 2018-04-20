@@ -19,6 +19,10 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
     var dealID : Int!
     var alertController : UIAlertController!
 
+    /// 数据模型
+    var dealModel : getinfoDealModel!
+
+
     // MARK: - life
     override func viewWillLayoutSubviews() {
         mainTabelView.snp.makeConstraints { (make) in
@@ -105,12 +109,12 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
         return view
     }
     func requestSucceed_work(data: Any, type: WorkRequestVC_enum) {
-        let model : getinfoDealModel = data as! getinfoDealModel
-        sectionContent.append(model.dealsnum)
-        sectionContent.append(model.typeStr)
-        sectionContent.append(model.n)
-        sectionContent.append(model.dealpaylasttime)
-        sectionContent.append(model.amount)
+        dealModel = data as! getinfoDealModel
+        sectionContent.append(dealModel.dealsnum)
+        sectionContent.append(dealModel.typeStr)
+        sectionContent.append(dealModel.n)
+        sectionContent.append(dealModel.dealpaylasttime)
+        sectionContent.append(dealModel.amount)
         self.mainTabelView.reloadData()
 
     }
@@ -126,6 +130,8 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
         alertController = UIAlertController(title: nil, message: "", preferredStyle: .actionSheet)
         let actcion1 = UIAlertAction(title: "申请结案", style: .default) { (aciton) in
             let vc = OverCaseViewController()
+            vc.dealId = self.dealModel.id
+            vc.dealNum = self.dealModel.dealsnum
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
         }

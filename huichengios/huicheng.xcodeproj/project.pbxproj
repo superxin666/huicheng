@@ -80,6 +80,8 @@
 		2126DBD920897BC500977802 /* Title3TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2126DBD720897BC500977802 /* Title3TableViewCell.xib */; };
 		2126DBDB208981C600977802 /* getinfoDealModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2126DBDA208981C600977802 /* getinfoDealModel.swift */; };
 		2126DBDD20898E5C00977802 /* OverCaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2126DBDC20898E5C00977802 /* OverCaseViewController.swift */; };
+		2126DBE02089CB9B00977802 /* Title4TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2126DBDE2089CB9B00977802 /* Title4TableViewCell.swift */; };
+		2126DBE12089CB9B00977802 /* Title4TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2126DBDF2089CB9B00977802 /* Title4TableViewCell.xib */; };
 		21340BD7206CB46800E30B53 /* AddExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21340BD6206CB46800E30B53 /* AddExpenseViewController.swift */; };
 		21340BD9206CBDDB00E30B53 /* AddExpenseBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21340BD8206CBDDB00E30B53 /* AddExpenseBackView.swift */; };
 		21340BDB206CBDE400E30B53 /* AddExpenseBackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21340BDA206CBDE400E30B53 /* AddExpenseBackView.xib */; };
@@ -250,6 +252,8 @@
 		2126DBD720897BC500977802 /* Title3TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Title3TableViewCell.xib; sourceTree = "<group>"; };
 		2126DBDA208981C600977802 /* getinfoDealModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getinfoDealModel.swift; sourceTree = "<group>"; };
 		2126DBDC20898E5C00977802 /* OverCaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverCaseViewController.swift; sourceTree = "<group>"; };
+		2126DBDE2089CB9B00977802 /* Title4TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title4TableViewCell.swift; sourceTree = "<group>"; };
+		2126DBDF2089CB9B00977802 /* Title4TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Title4TableViewCell.xib; sourceTree = "<group>"; };
 		21340BD6206CB46800E30B53 /* AddExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseViewController.swift; sourceTree = "<group>"; };
 		21340BD8206CBDDB00E30B53 /* AddExpenseBackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseBackView.swift; sourceTree = "<group>"; };
 		21340BDA206CBDE400E30B53 /* AddExpenseBackView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddExpenseBackView.xib; sourceTree = "<group>"; };
@@ -704,6 +708,8 @@
 				21DDC9D420809E880067197D /* Title2TableViewCell.xib */,
 				2126DBD620897BC500977802 /* Title3TableViewCell.swift */,
 				2126DBD720897BC500977802 /* Title3TableViewCell.xib */,
+				2126DBDE2089CB9B00977802 /* Title4TableViewCell.swift */,
+				2126DBDF2089CB9B00977802 /* Title4TableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -816,6 +822,7 @@
 				2126DBD920897BC500977802 /* Title3TableViewCell.xib in Resources */,
 				216B7C5E20637D7000BBACDA /* WorkBookTableViewCell.xib in Resources */,
 				21075568205D8FF200FF4396 /* MineFooterView.xib in Resources */,
+				2126DBE12089CB9B00977802 /* Title4TableViewCell.xib in Resources */,
 				219D7BCD205E483E009F543B /* PubMesConView.xib in Resources */,
 				21066CA82065E369009327AD /* ConVenTableViewCell.xib in Resources */,
 				21CFDDC82068E8E500745A48 /* InvoiceTableViewCell.xib in Resources */,
@@ -979,6 +986,7 @@
 				21CFDDC42068E30500745A48 /* AddMemoViewController.swift in Sources */,
 				21387D2D205F56590050DF1F /* LoginRequestVC.swift in Sources */,
 				2107555B205D6EFD00FF4396 /* PubMessageTableViewCell.swift in Sources */,
+				2126DBE02089CB9B00977802 /* Title4TableViewCell.swift in Sources */,
 				2148A2D0206A38AB00D996C5 /* AddMemoBackView.swift in Sources */,
 				2108BB6A206F22B2002A4212 /* SearchPersionTableViewCell.swift in Sources */,
 				215C65CB203EC6B6001C7A92 /* AppDelegate.swift in Sources */,

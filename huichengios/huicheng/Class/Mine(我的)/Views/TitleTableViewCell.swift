@@ -93,6 +93,21 @@ class TitleTableViewCell: UITableViewCell {
         self.titleNameLabel.text = titleStr
         self.titleNameLabel.textAlignment = .left
     }
+
+
+    /// 结案信息
+    ///
+    /// - Parameters:
+    ///   - titleStr: <#titleStr description#>
+    ///   - indexPath: <#indexPath description#>
+    func setData_ovewdeal(titleStr : String,indexPath : IndexPath)  {
+        let tagNum = indexPath.row
+        self.textField.tag = tagNum
+        self.titleNameLabel.textColor = darkblueColor
+        self.titleNameLabel.text = titleStr
+        self.titleNameLabel.textAlignment = .left
+
+    }
     
     
     /// 搜索页面 标题

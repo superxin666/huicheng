@@ -76,6 +76,9 @@ let deal_getlist_api = "deal/getlist?"
 /// 详情
 let deal_getinfo_api = "deal/getinfo?"
 
+/// 申请结案
+let deal_oversave_api = "deal/oversave?"
+
 
 
 //-----------------------法庭信息管理

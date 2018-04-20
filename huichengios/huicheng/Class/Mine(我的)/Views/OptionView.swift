@@ -78,6 +78,11 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
     }
 
 
+    func setData_deal(dataArr : [Any])  {
+        self.type = .caseUser
+        data_userlistArr = dataArr as! [userlistModel]
+        self.pickView.reloadAllComponents()
+    }
 
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

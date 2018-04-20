@@ -39,7 +39,6 @@ class DatePickView: UIView,NibLoadable {
         if let delegate = self.delegate {
             delegate.datePickViewTime(timeStr: timeStr,type: typeNum)
         }
-        self.removeFromSuperview()
     }
     
     func setData(type : Int)  {
