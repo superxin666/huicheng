@@ -73,6 +73,10 @@ let checkcase_api = "case/checkcase?"
 /// 合同列表
 let deal_getlist_api = "deal/getlist?"
 
+/// 详情
+let deal_getinfo_api = "deal/getinfo?"
+
+
 
 //-----------------------法庭信息管理
 let quick_getlist_api = "quick/getlist?"

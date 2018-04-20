@@ -70,6 +70,11 @@ class DealViewController:  BaseViewController,UITableViewDataSource,UITableViewD
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row  < self.dataArr.count {
+            let model :dealGetlistModel  = self.dataArr[indexPath.row]
+
+            let vc = DealDetailViewController()
+            vc.dealID = model.id
+            self.navigationController?.pushViewController(vc, animated: true)
 
         }
 

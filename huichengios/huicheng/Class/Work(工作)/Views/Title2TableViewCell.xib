@@ -55,6 +55,7 @@
             <connections>
                 <outlet property="titleNameLabel" destination="zLa-HR-udd" id="fub-ek-4IN"/>
             </connections>
+            <point key="canvasLocation" x="-138" y="87"/>
         </tableViewCell>
     </objects>
     <resources>
