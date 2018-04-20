@@ -14,11 +14,8 @@ class DealViewController:  BaseViewController,UITableViewDataSource,UITableViewD
     var dataArr : [dealGetlistModel] = []
     var pageNum : Int = 1
 
-    /// 开始时间
-    var bTimeStr = ""
-
-    /// 结束时间
-    var endTimeStr = ""
+    /// 合同编号
+    var numStr = ""
 
 
     // MARK: - life
@@ -52,6 +49,7 @@ class DealViewController:  BaseViewController,UITableViewDataSource,UITableViewD
         mainTabelView.showsHorizontalScrollIndicator = false
         mainTabelView.backgroundView?.backgroundColor = .clear
         mainTabelView.register(UINib.init(nibName: "CaseTableViewCell", bundle: nil), forCellReuseIdentifier: CaseTableViewCellId)
+        mainTabelView.mj_footer = self.creactFoot()
         mainTabelView.mj_footer.setRefreshingTarget(self, refreshingAction: #selector(loadMoreData))
         self.view.addSubview(mainTabelView)
     }
@@ -82,7 +80,7 @@ class DealViewController:  BaseViewController,UITableViewDataSource,UITableViewD
     // MARK: - net
     func requestApi() {
         requestVC.delegate = self
-        requestVC.dealgetlist(p: pageNum, c: 8, n: "")
+        requestVC.dealgetlist(p: pageNum, c: 8, n: self.numStr)
     }
 
     func reflishData() {
@@ -122,15 +120,11 @@ class DealViewController:  BaseViewController,UITableViewDataSource,UITableViewD
     override func navigationRightBtnClick() {
         HCLog(message: "搜索")
         let vc = SearchViewController()
-        vc.type = .caselsit_type
+        vc.type = .deal_type
         weak var weakself = self
-        vc.sureCaselsitBlock = {( startTime ,endTime) in
-            HCLog(message: startTime)
-            HCLog(message: endTime)
-            weakself?.bTimeStr = startTime
-            weakself?.endTimeStr = endTime
+        vc.sureDealBlock = {content in
+            weakself?.numStr = content
             weakself?.reflishData()
-
         }
         self.navigationController?.pushViewController(vc, animated: true)
 
