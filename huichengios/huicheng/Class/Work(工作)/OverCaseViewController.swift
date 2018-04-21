@@ -186,7 +186,7 @@ class OverCaseViewController: BaseTableViewController,ContentTableViewCellDelega
             self.showOptionPickView()
         } else if type == .oversave{
             //申请完结
-
+            self.navigationController?.popToRootViewController(animated: true)
         }
     }
 
@@ -200,6 +200,18 @@ class OverCaseViewController: BaseTableViewController,ContentTableViewCellDelega
     override func navigationRightBtnClick() {
         HCLog(message: "确定")
         self.view.endEditing(true)
+        if !(self.nStr.count > 0) {
+            SVPMessageShow.showErro(infoStr: "请选择律师")
+            return
+        }
+        if !(self.rtStr.count > 0) {
+            SVPMessageShow.showErro(infoStr: "请选择时间")
+            return
+        }
+        if !(self.dStr.count > 0) {
+            SVPMessageShow.showErro(infoStr: "请输入总结")
+            return
+        }
         request.dealoversave(id: self.dealId, n: self.nStr, t: self.rtStr, d: self.dStr, i: "")
     }
 

@@ -116,6 +116,9 @@ class DealViewController:  BaseViewController,UITableViewDataSource,UITableViewD
             }
         }
         self.mainTabelView.reloadData()
+        if mainTabelView.mj_footer.isRefreshing {
+            mainTabelView.mj_footer.endRefreshing()
+        }
     }
 
     func requestFail_work() {

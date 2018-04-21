@@ -14,7 +14,7 @@ enum WorkRequestVC_enum {
          save,newslist1,getobjectlist,newspublic,del,//公告  发布/编辑公告  获取列表  获取接收对象  发布/撤销公告  删除
          case_getlist,case_getinfo,case_add,casedel,//案件列表  获取案件详情  添加案件  删除
          branch,department,userlist,casetype,//分所列表  部门列表  本所律师列表  案件类型
-         deal,getinfo,oversave,dealdel//合同列表 详情  申请结案
+         deal,getinfo,oversave,dealdel//合同列表 详情  申请结案  删除合同
 }
 protocol WorkRequestVCDelegate : NSObjectProtocol{
     //
@@ -289,7 +289,15 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
     func dealoversave(id : Int,n:String,t:String,d:String,i:String)  {
         request.delegate = self
         type = .oversave
-        let url =   deal_oversave_api + "id=\(id)&n=\(n)&t=\(t)&d=\(d)&k=\(UserInfoLoaclManger.getKey())"
+        var tStr = ""
+        if t.count > 0 {
+            tStr = t.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+        var dStr = ""
+        if d.count > 0 {
+            dStr = d.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+        let url =   deal_oversave_api + "id=\(id)&n=\(n)&t=\(tStr)&d=\(dStr)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
 
     }
@@ -305,6 +313,8 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
         let url =   deal_del_api + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
     }
+
+
 
     func requestSucceed(response: Any) {
         if type == .checkcase || type == .case_getlist {
