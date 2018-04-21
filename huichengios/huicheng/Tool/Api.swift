@@ -79,7 +79,8 @@ let deal_getinfo_api = "deal/getinfo?"
 /// 申请结案
 let deal_oversave_api = "deal/oversave?"
 
-
+/// 删除
+let deal_del_api = "deal/del?"
 
 //-----------------------法庭信息管理
 let quick_getlist_api = "quick/getlist?"

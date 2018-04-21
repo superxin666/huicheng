@@ -8,8 +8,11 @@
 //  合同详情
 
 import UIKit
+typealias DealDetailViewControllerBlcok = ()->()
 
 class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource,WorkRequestVCDelegate {
+    var sucessBlock : DealDetailViewControllerBlcok!
+
     let mainTabelView : UITableView = UITableView()
     let requestVC = WorkRequestVC()
     var sectionNameArr = ["合同编号","案件类型","案件名称","合同有效期","合同总款","合同扫描件"]
@@ -109,13 +112,19 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
         return view
     }
     func requestSucceed_work(data: Any, type: WorkRequestVC_enum) {
-        dealModel = data as! getinfoDealModel
-        sectionContent.append(dealModel.dealsnum)
-        sectionContent.append(dealModel.typeStr)
-        sectionContent.append(dealModel.n)
-        sectionContent.append(dealModel.dealpaylasttime)
-        sectionContent.append(dealModel.amount)
-        self.mainTabelView.reloadData()
+        if type == .getinfo {
+            dealModel = data as! getinfoDealModel
+            sectionContent.append(dealModel.dealsnum)
+            sectionContent.append(dealModel.typeStr)
+            sectionContent.append(dealModel.n)
+            sectionContent.append(dealModel.dealpaylasttime)
+            sectionContent.append(dealModel.amount)
+            self.mainTabelView.reloadData()
+        } else if type == .dealdel  {
+            self.sucessBlock()
+            self.navigationController?.popViewController(animated: true)
+        }
+
 
     }
 
@@ -128,12 +137,50 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
     }
     override func navigationRightBtnClick() {
         alertController = UIAlertController(title: nil, message: "", preferredStyle: .actionSheet)
-        let actcion1 = UIAlertAction(title: "申请结案", style: .default) { (aciton) in
-            let vc = OverCaseViewController()
-            vc.dealId = self.dealModel.id
-            vc.dealNum = self.dealModel.dealsnum
-            vc.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(vc, animated: true)
+        if self.dealModel.state == 1 {
+            //审核合同过只能申请结案
+            let actcion1 = UIAlertAction(title: "申请结案", style: .default) { (aciton) in
+                self.showAlert(typeNum: 1)
+            }
+            alertController.addAction(actcion1)
+
+        } else {
+            let actcion1 = UIAlertAction(title: "删除", style: .default) { (aciton) in
+                self.showAlert(typeNum: 2)
+            }
+            alertController.addAction(actcion1)
+
+        }
+        let actcion2 = UIAlertAction(title: "取消", style: .cancel) { (aciton) in
+            self.alertController.dismiss(animated: true, completion: {
+
+            })
+        }
+
+        alertController.addAction(actcion2)
+        self.present(alertController, animated: true, completion: nil)
+    }
+
+    func showAlert(typeNum : Int) {
+        var titleStr = ""
+        if typeNum == 1 {
+            titleStr = "是否确定申请结案"
+        } else {
+            titleStr = "是否确定删除本条记录"
+        }
+        alertController = UIAlertController(title: nil, message: titleStr, preferredStyle: .alert)
+        let actcion1 = UIAlertAction(title: "确定", style: .default) { (aciton) in
+            if typeNum == 1 {
+                HCLog(message: "结案")
+                let vc = OverCaseViewController()
+                vc.dealId = self.dealModel.id
+                vc.dealNum = self.dealModel.dealsnum
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            } else {
+                HCLog(message: "删除")
+                self.requestVC.dealdelRequest(id: self.dealID)
+            }
         }
         let actcion2 = UIAlertAction(title: "取消", style: .cancel) { (aciton) in
             self.alertController.dismiss(animated: true, completion: {
@@ -143,6 +190,7 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
         alertController.addAction(actcion1)
         alertController.addAction(actcion2)
         self.present(alertController, animated: true, completion: nil)
+
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

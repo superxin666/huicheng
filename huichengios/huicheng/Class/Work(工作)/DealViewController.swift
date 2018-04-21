@@ -74,6 +74,10 @@ class DealViewController:  BaseViewController,UITableViewDataSource,UITableViewD
 
             let vc = DealDetailViewController()
             vc.dealID = model.id
+            weak var weakself = self
+            vc.sucessBlock = {
+                weakself?.reflishData()
+            }
             self.navigationController?.pushViewController(vc, animated: true)
 
         }

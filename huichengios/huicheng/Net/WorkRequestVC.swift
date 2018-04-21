@@ -14,7 +14,7 @@ enum WorkRequestVC_enum {
          save,newslist1,getobjectlist,newspublic,del,//公告  发布/编辑公告  获取列表  获取接收对象  发布/撤销公告  删除
          case_getlist,case_getinfo,case_add,casedel,//案件列表  获取案件详情  添加案件  删除
          branch,department,userlist,casetype,//分所列表  部门列表  本所律师列表  案件类型
-         deal,getinfo,oversave//合同列表 详情  申请结案
+         deal,getinfo,oversave,dealdel//合同列表 详情  申请结案
 }
 protocol WorkRequestVCDelegate : NSObjectProtocol{
     //
@@ -294,6 +294,18 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
 
     }
 
+
+
+    /// 合同删除
+    ///
+    /// - Parameter id: <#id description#>
+    func dealdelRequest(id : Int) {
+        request.delegate = self
+        type = .dealdel
+        let url =   deal_del_api + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+    }
+
     func requestSucceed(response: Any) {
         if type == .checkcase || type == .case_getlist {
             //利益冲突检查
@@ -325,7 +337,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work(data: arr,type : type)
             }
-        } else if type == .save || type == .newspublic || type == .oversave || type == .casedel{
+        } else if type == .save || type == .newspublic || type == .oversave || type == .casedel || type == .dealdel{
             //发布公告
             let model = Mapper<CodeData>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {
