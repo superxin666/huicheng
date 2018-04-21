@@ -12,7 +12,7 @@ enum WorkRequestVC_enum {
     //
     case checkcase,//利益冲突检查
          save,newslist1,getobjectlist,newspublic,del,//公告  发布/编辑公告  获取列表  获取接收对象  发布/撤销公告  删除
-         case_getlist,case_getinfo,case_add,//案件列表  获取案件详情  添加案件
+         case_getlist,case_getinfo,case_add,casedel,//案件列表  获取案件详情  添加案件  删除
          branch,department,userlist,casetype,//分所列表  部门列表  本所律师列表  案件类型
          deal,getinfo,oversave//合同列表 详情  申请结案
 }
@@ -240,6 +240,19 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
         request.request_api(url: url,type: .alltyper)
     }
 
+
+    /// 删除合同
+    ///
+    /// - Parameter id: <#id description#>
+    func casedelRequest(id : Int) {
+        request.delegate = self
+        type = . casedel
+        let url =   case_del_api + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+    }
+
+
+
     // MARK: 合同管理
 
     /// 列表
@@ -312,7 +325,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work(data: arr,type : type)
             }
-        } else if type == .save || type == .newspublic || type == .oversave{
+        } else if type == .save || type == .newspublic || type == .oversave || type == .casedel{
             //发布公告
             let model = Mapper<CodeData>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {

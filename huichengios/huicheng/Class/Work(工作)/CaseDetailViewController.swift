@@ -10,8 +10,11 @@ import UIKit
 enum CaseDetailViewControllerType {
     case caseDetail,addCase,editeCase
 }
+typealias CaseDetailViewControllerBlock = ()->()
 class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,TitleTableViewCellDelegate,OptionViewDelgate,DatePickViewDelegate,ContentTableViewCellDelegate {
     let request : WorkRequestVC = WorkRequestVC()
+    var successBlock : CaseDetailViewControllerBlock!
+
     var alertController : UIAlertController!
     let name1 = ["案件类型","案件名称","立案日期","立案律师","案件组别","承办律师","承办律师",]
     var content1 :[String] = []
@@ -433,6 +436,9 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
             //添加案件
             SVPMessageShow.dismissSVP()
             self.navigationController?.popViewController(animated: true)
+        } else if type == .casedel{
+            self.successBlock()
+            self.navigationController?.popViewController(animated: true)
         }
 
     }
@@ -492,6 +498,7 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
                 HCLog(message: "修改")
             } else {
                 HCLog(message: "删除")
+                self.request.casedelRequest(id: self.caseId)
             }
         }
         let actcion2 = UIAlertAction(title: "取消", style: .cancel) { (aciton) in

@@ -74,6 +74,10 @@ class CaseViewController: BaseViewController,UITableViewDataSource,UITableViewDe
             let vc = CaseDetailViewController()
             vc.caseId = model.id
             vc.type = .caseDetail
+            weak var weakself = self
+            vc.successBlock = {
+                weakself?.reflishData()
+            }
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
         }
