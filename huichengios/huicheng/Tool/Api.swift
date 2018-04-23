@@ -94,6 +94,13 @@ let deal_getapplylist_api = "deal/getapplylist?"
 
 /// 结案审核 获取列表
 let deal_getoverlist_api = "deal/getoverlist?"
+/// /-----------------------模板共享
+
+/// 获取列表
+let share_getlist_api = "share/getlist?"
+
+///  获取我的模板列表
+let share_getmylist_api = "share/getmylist?"
 
 
 //-----------------------法庭信息管理

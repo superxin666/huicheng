@@ -46,6 +46,19 @@ class RoomTableViewCell: UITableViewCell {
 
     }
 
+    func setData_share(model :shareGetlistModel)  {
+        if let title = model.title {
+            self.titleLabel.text = title
+        }
+        if let addtime = model.addtime,let typeStr = model.typeStr {
+            self.titleLabel.text = String.hc_getDate_string(dateStr: addtime) + "  " + typeStr
+
+        }
+        if let user = model.user {
+            self.stateLabel.text = user
+        }
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

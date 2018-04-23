@@ -17,8 +17,10 @@ enum WorkRequestVC_enum {
          deal,getinfo,oversave,dealdel,//合同列表 详情  申请结案  删除合同
          room,roomsave,roomdel,//会议室
          dealgetapplylist,// 合同审核  获取列表
-         dealgetoverlist//结案审核
+         dealgetoverlist,//结案审核
+         sharegetlist//模板共享 获取列表
 }
+
 protocol WorkRequestVCDelegate : NSObjectProtocol{
     //
     func requestSucceed_work(data:Any,type : WorkRequestVC_enum) -> Void
@@ -412,6 +414,24 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
         let url = room_del_api   + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
     }
+    // MARK: 模板共享
+
+    /// 获取列表
+    ///
+    /// - Parameters:
+    ///   - p: <#p description#>
+    ///   - c: <#c description#>
+    ///   - t: 0-不限;1-诉讼案件;2-非诉案件;3-刑事案件;4-法律顾问;5-采购合同;6-资质文件;
+    ///   - kw: 关键字
+    func sharegetlistRequest(p:Int,c:Int,t:String,kw:String) {
+        request.delegate = self
+        type = .sharegetlist
+        let url = share_getlist_api   + "p=\(p)&c=\(c)&t=\(t)&kw=\(kw)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+    }
+
+
+
 
     func requestSucceed(response: Any) {
         if type == .checkcase || type == .case_getlist {
@@ -501,6 +521,11 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
                 self.delegate.requestSucceed_work(data: arr,type : type)
             }
 
+        } else if type == .sharegetlist{
+            let arr = Mapper<shareGetlistModel>().mapArray(JSONArray: response as! [[String : Any]])
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed_work(data: arr,type : type)
+            }
         }
     }
     

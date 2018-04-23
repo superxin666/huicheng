@@ -188,6 +188,9 @@ class WorkViewController: BaseViewController,UITableViewDelegate,UITableViewData
                 
             case 2:
                 HCLog(message: "共享模板")
+                let vc = ShareViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
             default:
                 HCLog(message: "暂无")
             }
