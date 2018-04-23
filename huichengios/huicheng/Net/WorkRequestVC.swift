@@ -15,7 +15,9 @@ enum WorkRequestVC_enum {
          case_getlist,case_getinfo,case_add,casedel,//案件列表  获取案件详情  添加案件  删除
          branch,department,userlist,casetype,//分所列表  部门列表  本所律师列表  案件类型
          deal,getinfo,oversave,dealdel,//合同列表 详情  申请结案  删除合同
-         room,roomsave,roomdel//会议室
+         room,roomsave,roomdel,//会议室
+         dealgetapplylist,// 合同审核  获取列表
+         dealgetoverlist//结案审核
 }
 protocol WorkRequestVCDelegate : NSObjectProtocol{
     //
@@ -314,15 +316,55 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
         let url =   deal_del_api + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
     }
+    // MARK: 合同审核
+
+
+    /// 合同审核 获取列表
+    ///
+    /// - Parameters:
+    ///   - p: <#p description#>
+    ///   - c: <#c description#>
+    ///   - n: <#n description#>
+    ///   - b: <#b description#>
+    ///   - e: <#e description#>
+    ///   - u: <#u description#>
+    ///   - p: <#p description#>
+    func dealgetapplylist(p:Int,c:Int,n:String,b:String,e:String,u:String) {
+        request.delegate = self
+        type = .dealgetapplylist
+        let url = deal_getapplylist_api   + "c=\(c)&p=\(p)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+    }
+
+
+
+    ///  结案审核 获取列表
+    ///
+    /// - Parameters:
+    ///   - p: <#p description#>
+    ///   - c: <#c description#>
+    ///   - n: <#n description#>
+    ///   - b: <#b description#>
+    ///   - e: <#e description#>
+    ///   - u: <#u description#>
+    ///   - pr: <#pr description#>
+    func dealgetoverlistRequest(p:Int,c:Int,n:String,b:String,e:String,u:String,pr:String) {
+        request.delegate = self
+        type = .dealgetoverlist
+        let url = deal_getoverlist_api   + "c=\(c)&p=\(p)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+
+    }
 
     // MARK: 会议室
-
     func roomgetlist(){
         request.delegate = self
         type = .room
         let url = room_getlist_api   + "k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
     }
+
+
 
 
     /// 会议室保存
@@ -441,7 +483,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work(data: model,type : type)
             }
-        } else if type == .deal{
+        } else if type == .deal || type == .dealgetapplylist || type == .dealgetoverlist{
             let arr = Mapper<dealGetlistModel>().mapArray(JSONArray: response as! [[String : Any]])
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work(data: arr,type : type)

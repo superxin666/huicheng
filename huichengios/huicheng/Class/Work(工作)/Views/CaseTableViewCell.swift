@@ -47,7 +47,7 @@ class CaseTableViewCell: UITableViewCell {
     }
 
 
-    /// 合同管理
+    /// 合同管理  合同审核
     ///
     /// - Parameter model: <#model description#>
     func setData_deal(model :dealGetlistModel) {
@@ -73,7 +73,6 @@ class CaseTableViewCell: UITableViewCell {
            self.nameLabel.textColor = .white
         }
 
-        
     }
     
 }

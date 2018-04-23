@@ -117,8 +117,14 @@ class WorkViewController: BaseViewController,UITableViewDelegate,UITableViewData
 
             case 1:
                 HCLog(message: "合同审核")
+                let vc = DealCheckViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
             case 2:
                 HCLog(message: "结案审核")
+                let vc = CaseCheckViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
             case 3:
                   HCLog(message: "审核进度查询")
             default:

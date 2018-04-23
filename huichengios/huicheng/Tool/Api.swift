@@ -88,6 +88,14 @@ let deal_oversave_api = "deal/oversave?"
 /// 删除
 let deal_del_api = "deal/del?"
 
+
+/// 合同审核 获取列表
+let deal_getapplylist_api = "deal/getapplylist?"
+
+/// 结案审核 获取列表
+let deal_getoverlist_api = "deal/getoverlist?"
+
+
 //-----------------------法庭信息管理
 let quick_getlist_api = "quick/getlist?"
 
