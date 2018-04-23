@@ -17,7 +17,7 @@ class RoomViewController: BaseViewController,UITableViewDataSource,UITableViewDe
     /// 合同编号
     var numStr = ""
 
-
+    var alertController : UIAlertController!
     // MARK: - life
     override func viewWillLayoutSubviews() {
         mainTabelView.snp.makeConstraints { (make) in
@@ -64,6 +64,24 @@ class RoomViewController: BaseViewController,UITableViewDataSource,UITableViewDe
             let model = self.dataArr[indexPath.row]
             cell.setData(model: model)
         }
+        weak var weakself = self
+
+        cell.delBlock = {model in
+
+            weakself?.alertController = UIAlertController(title: nil, message: "是否删除本条记录", preferredStyle: .alert)
+            let sureAction = UIAlertAction(title: "确定", style: .default) { (action) in
+                HCLog(message: "确定")
+                weakself?.requestVC.roomdel(id: model.id)
+            }
+            let cancleAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
+                self.alertController.dismiss(animated: true, completion: {
+
+                })
+            }
+            weakself?.alertController.addAction(cancleAction)
+            weakself?.alertController.addAction(sureAction)
+            self.present((weakself?.alertController)!, animated: true, completion: nil)
+        }
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -92,9 +110,14 @@ class RoomViewController: BaseViewController,UITableViewDataSource,UITableViewDe
 
 
     func requestSucceed_work(data: Any,type : WorkRequestVC_enum) {
-        let arr : [roomModel] = data as! [roomModel]
-        self.dataArr =  arr
-        self.mainTabelView.reloadData()
+        if type == .roomdel {
+            self.reflishData()
+        } else {
+            let arr : [roomModel] = data as! [roomModel]
+            self.dataArr =  arr
+            self.mainTabelView.reloadData()
+        }
+
     }
 
     func requestFail_work() {

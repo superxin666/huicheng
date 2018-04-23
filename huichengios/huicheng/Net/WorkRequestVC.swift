@@ -408,8 +408,8 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
     /// - Parameter id: <#id description#>
     func roomdel(id : Int) {
         request.delegate = self
-        type = .roomsave
-        let url = room_getlist_api   + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
+        type = .roomdel
+        let url = room_del_api   + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
     }
 

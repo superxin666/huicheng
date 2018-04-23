@@ -9,15 +9,18 @@
 import UIKit
 let RoomTableViewCellID = "UITableViewCell_id"
 let RoomTableViewCellH = CGFloat(80)
-
+typealias RoomTableViewCellBlock = (_ model : roomModel)->()
 
 class RoomTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
 
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var stateLabel: UILabel!
+    var delBlock : RoomTableViewCellBlock!
+    var dataModel : roomModel!
 
     func setData(model : roomModel)  {
+        dataModel = model
         if let bt = model.bt,let et = model.et,let ut = model.ut {
             let str = String.hc_getDate_string(dateStr: bt) + "~" + String.hc_getDate_string(dateStr: et)+"\(ut)小时"
             self.titleLabel.text = str
@@ -46,7 +49,14 @@ class RoomTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapClik))
+        self.addGestureRecognizer(tap)
     }
+
+    @objc func tapClik() {
+        self.delBlock(dataModel)
+    }
+
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
