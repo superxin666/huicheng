@@ -52,6 +52,8 @@ class CaseViewController: BaseViewController,UITableViewDataSource,UITableViewDe
         mainTabelView.showsHorizontalScrollIndicator = false
         mainTabelView.backgroundView?.backgroundColor = .clear
         mainTabelView.register(UINib.init(nibName: "CaseTableViewCell", bundle: nil), forCellReuseIdentifier: CaseTableViewCellId)
+        mainTabelView.mj_footer = self.creactFoot()
+        mainTabelView.mj_footer.setRefreshingTarget(self, refreshingAction: #selector(loadMoreData))
         self.view.addSubview(mainTabelView)
     }
     // MARK: - delegate

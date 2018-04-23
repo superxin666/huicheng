@@ -8,7 +8,7 @@
 
 import UIKit
 let RoomTableViewCellID = "UITableViewCell_id"
-let RoomTableViewCellH = CGFloat(50)
+let RoomTableViewCellH = CGFloat(80)
 
 
 class RoomTableViewCell: UITableViewCell {

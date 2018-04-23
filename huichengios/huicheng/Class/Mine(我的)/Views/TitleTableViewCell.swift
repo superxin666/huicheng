@@ -53,6 +53,16 @@ class TitleTableViewCell: UITableViewCell {
         self.titleNameLabel.textColor = darkblueColor
         self.titleNameLabel.text = titleStr
     }
+
+
+    /// 会议室
+    ///
+    /// - Parameter titleStr: <#titleStr description#>
+    func setData_room(titleStr: String) {
+        self.textField.keyboardType = .numberPad
+        self.titleNameLabel.textColor = darkblueColor
+        self.titleNameLabel.text = titleStr
+    }
     
     /// 公告详情
     ///

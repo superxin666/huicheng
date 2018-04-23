@@ -69,7 +69,8 @@ let user_editpass_api = "uc/user_editpass?"
 /// -----------------------会议室
 let room_getlist_api = "room/getlist?"
 
-
+let room_save_api = "room/save?"
+let room_del_api = "room/del?"
 /// 利益冲突检查
 let checkcase_api = "case/checkcase?"
 

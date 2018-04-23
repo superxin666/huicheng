@@ -107,6 +107,14 @@ class RoomViewController: BaseViewController,UITableViewDataSource,UITableViewDe
     }
     override func navigationRightBtnClick() {
         HCLog(message: "添加")
+        let vc = AddRoomViewController()
+        vc.hidesBottomBarWhenPushed = true
+        weak var  weakself = self
+        vc.sucessBlock = {
+            weakself?.reflishData()
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
+
     }
     
 

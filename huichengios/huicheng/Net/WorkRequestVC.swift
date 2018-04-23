@@ -15,7 +15,7 @@ enum WorkRequestVC_enum {
          case_getlist,case_getinfo,case_add,casedel,//案件列表  获取案件详情  添加案件  删除
          branch,department,userlist,casetype,//分所列表  部门列表  本所律师列表  案件类型
          deal,getinfo,oversave,dealdel,//合同列表 详情  申请结案  删除合同
-         room//会议室
+         room,roomsave,roomdel//会议室
 }
 protocol WorkRequestVCDelegate : NSObjectProtocol{
     //
@@ -247,7 +247,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
     /// - Parameter id: <#id description#>
     func casedelRequest(id : Int) {
         request.delegate = self
-        type = . casedel
+        type = . roomdel
         let url =   case_del_api + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
     }
@@ -324,6 +324,53 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
         request.request_api(url: url)
     }
 
+
+    /// 会议室保存
+    ///
+    /// - Parameters:
+    ///   - b: <#b description#>
+    ///   - e: <#e description#>
+    ///   - t: <#t description#>
+    ///   - n: <#n description#>
+    func roomsave(b:String,e:String,t:String,n:String) {
+        request.delegate = self
+        type = .roomsave
+        var bStr = ""
+        if b.count > 0 {
+            bStr = b.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        } else {
+            SVPMessageShow.showErro(infoStr: "输入开始时间")
+            return
+        }
+        var eStr = ""
+        if e.count > 0 {
+            eStr = e.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }else {
+            SVPMessageShow.showErro(infoStr: "输入结束时间")
+            return
+        }
+        var nStr = ""
+        if n.count > 0 {
+            nStr = n.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        } else {
+            SVPMessageShow.showErro(infoStr: "输入备注")
+            return
+        }
+
+        let url = room_save_api  + "b=\(bStr)&e=\(eStr)&n=\(nStr)&t=\(t)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+    }
+
+    /// 删除
+    ///
+    /// - Parameter id: <#id description#>
+    func roomdel(id : Int) {
+        request.delegate = self
+        type = .roomsave
+        let url = room_getlist_api   + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+    }
+
     func requestSucceed(response: Any) {
         if type == .checkcase || type == .case_getlist {
             //利益冲突检查
@@ -355,7 +402,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work(data: arr,type : type)
             }
-        } else if type == .save || type == .newspublic || type == .oversave || type == .casedel || type == .dealdel{
+        } else if type == .save || type == .newspublic || type == .oversave || type == .casedel || type == .dealdel || type == .roomsave || type == .roomdel{
             //发布公告
             let model = Mapper<CodeData>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {
