@@ -14,7 +14,8 @@ enum WorkRequestVC_enum {
          save,newslist1,getobjectlist,newspublic,del,//公告  发布/编辑公告  获取列表  获取接收对象  发布/撤销公告  删除
          case_getlist,case_getinfo,case_add,casedel,//案件列表  获取案件详情  添加案件  删除
          branch,department,userlist,casetype,//分所列表  部门列表  本所律师列表  案件类型
-         deal,getinfo,oversave,dealdel//合同列表 详情  申请结案  删除合同
+         deal,getinfo,oversave,dealdel,//合同列表 详情  申请结案  删除合同
+         room//会议室
 }
 protocol WorkRequestVCDelegate : NSObjectProtocol{
     //
@@ -314,7 +315,14 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
         request.request_api(url: url)
     }
 
+    // MARK: 会议室
 
+    func roomgetlist(){
+        request.delegate = self
+        type = .room
+        let url = room_getlist_api   + "k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+    }
 
     func requestSucceed(response: Any) {
         if type == .checkcase || type == .case_getlist {
@@ -396,6 +404,12 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
             let model = Mapper<getinfoDealModel>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work(data: model,type : type)
+            }
+
+        } else if type == .room{
+            let arr = Mapper<roomModel>().mapArray(JSONArray: response as! [[String : Any]])
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed_work(data: arr,type : type)
             }
 
         }

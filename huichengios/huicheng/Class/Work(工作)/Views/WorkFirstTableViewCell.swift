@@ -16,8 +16,8 @@ class WorkFirstTableViewCell: UITableViewCell {
     
     let labelNameAr0 = ["案件登记","案件管理","利益冲突查询",]
     let imageAr0 = [#imageLiteral(resourceName: "案件登记"),#imageLiteral(resourceName: "案件查询"),#imageLiteral(resourceName: "利益冲突查询")]
-    let labelNameAr1 = ["合同管理","结案申请","合同审核","结案审核","审核进度查询"]
-    let imageAr1 = [#imageLiteral(resourceName: "合同管理"),#imageLiteral(resourceName: "结案申请"),#imageLiteral(resourceName: "合同审核"),#imageLiteral(resourceName: "结案审核"),#imageLiteral(resourceName: "审核进度查询")]
+    let labelNameAr1 = ["合同管理","合同审核","结案审核","审核查询"]
+    let imageAr1 = [#imageLiteral(resourceName: "合同管理"),#imageLiteral(resourceName: "合同审核"),#imageLiteral(resourceName: "结案审核"),#imageLiteral(resourceName: "审核进度查询")]
     let labelNameAr2 = ["函件管理","诉讼函","民事函","刑事函","自定义函","签章进度查询","签章审核"]
     let imageAr2 = [#imageLiteral(resourceName: "函件管理"),#imageLiteral(resourceName: "诉讼函"),#imageLiteral(resourceName: "民事函"),#imageLiteral(resourceName: "刑事函"),#imageLiteral(resourceName: "自定义函"),#imageLiteral(resourceName: "签章进度查询"),#imageLiteral(resourceName: "签章审核")]
     let labelNameAr3 = ["收款登记","收款审核","支付收款","支付审核","报销审核","发票审核","签章审核"]
@@ -118,6 +118,7 @@ class WorkFirstTableViewCell: UITableViewCell {
 
 
         case 1:
+            self.view5.isHidden = true
             self.view6.isHidden = true
             self.view7.isHidden = true
             self.view8.isHidden = true
@@ -126,13 +127,13 @@ class WorkFirstTableViewCell: UITableViewCell {
             self.label2 .text = self.labelNameAr1[1]
             self.label3 .text = self.labelNameAr1[2]
             self.label4 .text = self.labelNameAr1[3]
-            self.label5 .text = self.labelNameAr1[4]
+
 
             self.imageView1.image = self.imageAr1[0]
             self.imageView2.image = self.imageAr1[1]
             self.imageView3.image = self.imageAr1[2]
             self.imageView4.image = self.imageAr1[3]
-            self.imageView5.image = self.imageAr1[4]
+
         case 2:
     
             self.view8.isHidden = true

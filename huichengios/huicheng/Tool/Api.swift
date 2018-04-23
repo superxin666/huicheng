@@ -44,8 +44,8 @@ let getobjectlist_api = "message/getobjectlist?"
 let newspublic_api = "message/newspublic?"
 /// 删除公告
 let del_api = "message/del?"
-
-/// 案件管理 获取列表
+//----------------------- 案件管理
+///  获取列表
 
 let case_getlist_api = "case/getlist?"
 
@@ -65,12 +65,17 @@ let user_getinfo_api = "uc/user_getinfo?"
 
 /// 修改密码
 let user_editpass_api = "uc/user_editpass?"
-///-----------------------工作
+
+/// -----------------------会议室
+let room_getlist_api = "room/getlist?"
+
 
 /// 利益冲突检查
 let checkcase_api = "case/checkcase?"
 
-/// 合同列表
+/// /-----------------------合同
+
+/// 列表
 let deal_getlist_api = "deal/getlist?"
 
 /// 详情

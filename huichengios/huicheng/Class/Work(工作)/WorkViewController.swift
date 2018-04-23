@@ -71,7 +71,7 @@ class WorkViewController: BaseViewController,UITableViewDelegate,UITableViewData
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0 || indexPath.row == 4{
+        if indexPath.row == 0 || indexPath.row == 1 || indexPath.row == 4{
             return firstH
         } else {
             return 215
@@ -116,13 +116,11 @@ class WorkViewController: BaseViewController,UITableViewDelegate,UITableViewData
                 self.navigationController?.pushViewController(vc, animated: true)
 
             case 1:
-                HCLog(message: "结案申请")
-            case 2:
                 HCLog(message: "合同审核")
-            case 3:
+            case 2:
                 HCLog(message: "结案审核")
-            case 4:
-                HCLog(message: "审核进度查询")
+            case 3:
+                  HCLog(message: "审核进度查询")
             default:
                 HCLog(message: "暂无")
             }
@@ -173,6 +171,9 @@ class WorkViewController: BaseViewController,UITableViewDelegate,UITableViewData
             switch tag {
             case 0:
                 HCLog(message: "会议室预约")
+                let vc = RoomViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
             case 1:
                 HCLog(message: "发布公告")
                 let vc = NoticeViewController()
