@@ -84,6 +84,8 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
         self.pickView.reloadAllComponents()
     }
 
+ 
+
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
