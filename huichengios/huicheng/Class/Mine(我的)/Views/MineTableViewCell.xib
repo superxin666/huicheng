@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mes_ alarm" translatesAutoresizingMaskIntoConstraints="NO" id="Vtm-Wd-JtG">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vtm-Wd-JtG">
                         <rect key="frame" x="25" y="22" width="18" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="S5k-zH-ES5"/>
@@ -36,7 +36,7 @@
                         <color key="textColor" red="0.090196078430000007" green="0.2274509804" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mes_ alarm" translatesAutoresizingMaskIntoConstraints="NO" id="UdB-Do-9Ig">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pub_arrow_right" translatesAutoresizingMaskIntoConstraints="NO" id="UdB-Do-9Ig">
                         <rect key="frame" x="342" y="24" width="8" height="14"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="8" id="dVT-Zu-D6Y"/>
@@ -64,12 +64,13 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="iconImageView" destination="Vtm-Wd-JtG" id="Utk-Cd-PSw"/>
                 <outlet property="titleLabel" destination="jWB-Se-hUe" id="GY3-WB-owj"/>
             </connections>
             <point key="canvasLocation" x="-220" y="22"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="mes_ alarm" width="20" height="24"/>
+        <image name="pub_arrow_right" width="7" height="12"/>
     </resources>
 </document>

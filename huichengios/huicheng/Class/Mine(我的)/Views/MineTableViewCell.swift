@@ -10,13 +10,16 @@ import UIKit
 
 class MineTableViewCell: UITableViewCell {
     let nameArr = ["备忘录","报销申请","发票申请","我的收款","工作日志",]
+    let imageNameArr = [#imageLiteral(resourceName: "备忘录"),#imageLiteral(resourceName: "报销申请"),#imageLiteral(resourceName: "发票申请"),#imageLiteral(resourceName: "我的收款"),#imageLiteral(resourceName: "工作日志")]
     @IBOutlet weak var titleLabel: UILabel!
     
+    @IBOutlet weak var iconImageView: UIImageView!
     /// 标题
     var titleStr : String!
     
     func setData(index : Int)  {
         self.titleLabel.text = nameArr[index]
+        self.iconImageView.image = imageNameArr[index]
     }
     
     override func awakeFromNib() {

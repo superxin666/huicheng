@@ -127,6 +127,19 @@ class TitleTableViewCell: UITableViewCell {
         self.titleNameLabel.textColor = darkblueColor
         self.titleNameLabel.text = titleStr
     }
+
+    /// 发票申请
+    ///
+    /// - Parameters:
+    ///   - title: <#title description#>
+    ///   - content: <#content description#>
+    func setData_addinvoce(title : String,content : String)  {
+        self.titleNameLabel.textColor = darkblueColor
+        self.titleNameLabel.text = title
+
+        self.textField.text = content
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

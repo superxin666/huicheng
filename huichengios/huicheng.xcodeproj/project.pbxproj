@@ -77,6 +77,8 @@
 		210EB652206E333F000DE966 /* FinanceDetialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210EB651206E333F000DE966 /* FinanceDetialViewController.swift */; };
 		2123A380208EFCC000C50FA9 /* ShareHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2123A37F208EFCC000C50FA9 /* ShareHeadView.swift */; };
 		2123A382208EFCD300C50FA9 /* ShareHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2123A381208EFCD300C50FA9 /* ShareHeadView.xib */; };
+		2123A385208F0C7400C50FA9 /* SelectedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2123A383208F0C7400C50FA9 /* SelectedTableViewCell.swift */; };
+		2123A386208F0C7400C50FA9 /* SelectedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2123A384208F0C7400C50FA9 /* SelectedTableViewCell.xib */; };
 		2124D71B208D66530007B5EE /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2124D71A208D66530007B5EE /* RoomViewController.swift */; };
 		2124D71D208D67570007B5EE /* roomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2124D71C208D67570007B5EE /* roomModel.swift */; };
 		2124D720208D69D20007B5EE /* RoomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2124D71E208D69D20007B5EE /* RoomTableViewCell.swift */; };
@@ -263,6 +265,8 @@
 		210EB651206E333F000DE966 /* FinanceDetialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceDetialViewController.swift; sourceTree = "<group>"; };
 		2123A37F208EFCC000C50FA9 /* ShareHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareHeadView.swift; sourceTree = "<group>"; };
 		2123A381208EFCD300C50FA9 /* ShareHeadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShareHeadView.xib; sourceTree = "<group>"; };
+		2123A383208F0C7400C50FA9 /* SelectedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedTableViewCell.swift; sourceTree = "<group>"; };
+		2123A384208F0C7400C50FA9 /* SelectedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectedTableViewCell.xib; sourceTree = "<group>"; };
 		2124D71A208D66530007B5EE /* RoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewController.swift; sourceTree = "<group>"; };
 		2124D71C208D67570007B5EE /* roomModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = roomModel.swift; sourceTree = "<group>"; };
 		2124D71E208D69D20007B5EE /* RoomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomTableViewCell.swift; sourceTree = "<group>"; };
@@ -502,6 +506,8 @@
 				2108BB81206FD7F3002A4212 /* ContentTableViewCell.xib */,
 				2108BB84206FD809002A4212 /* FileTableViewCell.swift */,
 				2108BB85206FD809002A4212 /* FileTableViewCell.xib */,
+				2123A383208F0C7400C50FA9 /* SelectedTableViewCell.swift */,
+				2123A384208F0C7400C50FA9 /* SelectedTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -873,6 +879,7 @@
 				21CFDDC82068E8E500745A48 /* InvoiceTableViewCell.xib in Resources */,
 				216B7C68206394DE00BBACDA /* MemoTableViewCell.xib in Resources */,
 				2108BB93206FF2BB002A4212 /* CheckcaseTableViewCell.xib in Resources */,
+				2123A386208F0C7400C50FA9 /* SelectedTableViewCell.xib in Resources */,
 				21DDC9DC2080C8FC0067197D /* OptionView.xib in Resources */,
 				21089E99206E791B00573B6A /* FinanceDetialTableViewCell.xib in Resources */,
 				215C15C92063D99F00A9129D /* ConbenTopView.xib in Resources */,
@@ -1016,6 +1023,7 @@
 				2124D720208D69D20007B5EE /* RoomTableViewCell.swift in Sources */,
 				216A6C57204CDE9D00528FD8 /* BaseViewController.swift in Sources */,
 				216A6C50204CDE6700528FD8 /* MessageViewController.swift in Sources */,
+				2123A385208F0C7400C50FA9 /* SelectedTableViewCell.swift in Sources */,
 				2108BB73206F2E33002A4212 /* quick_getlistModel.swift in Sources */,
 				2108BB95206FF723002A4212 /* CheckcaseResultViewController.swift in Sources */,
 				21553CBF20887159009284B1 /* BaseTableViewController.swift in Sources */,

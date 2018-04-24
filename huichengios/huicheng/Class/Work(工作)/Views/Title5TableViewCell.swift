@@ -8,7 +8,7 @@
 
 import UIKit
 let Title5TableViewCellID = "Title5TableViewCell_id"
-let  Title5TableViewCellH = CGFloat(50)
+let  Title5TableViewCellH = CGFloat(80)
 
 
 class Title5TableViewCell: UITableViewCell {

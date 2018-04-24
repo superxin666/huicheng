@@ -8,18 +8,14 @@
 
 import UIKit
 
-class AddInvoiceViewController: BaseViewController,UITableViewDataSource, UITableViewDelegate , MineRequestVCDelegate {
-    /// 列表
-    let mainTabelView : UITableView = UITableView()
+class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate {
+
+    let sectionNameArr = ["发票类型","名称","社会统一信用代码","发票内容","发票金额",]
 
 
     // MARK: - life
     override func viewWillLayoutSubviews() {
-        mainTabelView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.view).offset(0)
-            make.left.right.equalTo(self.view).offset(0)
-            make.bottom.equalTo(self.view).offset(0)
-        }
+
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,28 +30,67 @@ class AddInvoiceViewController: BaseViewController,UITableViewDataSource, UITabl
     }
     // MARK: - UI
     func creatUI() {
-        mainTabelView.backgroundColor = UIColor.clear
-        mainTabelView.delegate = self;
-        mainTabelView.dataSource = self;
-        mainTabelView.tableFooterView = UIView()
-        mainTabelView.separatorStyle = .none
-        mainTabelView.showsVerticalScrollIndicator = false
-        mainTabelView.showsHorizontalScrollIndicator = false
-        mainTabelView.backgroundView?.backgroundColor = .clear
-        mainTabelView.register(UINib.init(nibName: "InvoiceTableViewCell", bundle: nil), forCellReuseIdentifier: InvoiceTableViewCellID)
-        self.view.addSubview(mainTabelView)
+        self.tableView.backgroundColor = viewBackColor
+        self.tableView.delegate = self;
+        self.tableView.dataSource = self;
+        self.tableView.tableFooterView = UIView()
+        self.tableView.separatorStyle = .none
+        self.tableView.showsVerticalScrollIndicator = false
+        self.tableView.showsHorizontalScrollIndicator = false
+        self.tableView.backgroundView?.backgroundColor = .clear
+        self.tableView.register(UINib.init(nibName: "SelectedTableViewCell", bundle: nil), forCellReuseIdentifier: SelectedTableViewCellID)
+        self.tableView.register(UINib.init(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: TitleTableViewCellID)
+        self.tableView.register(UINib.init(nibName: "Title5TableViewCell", bundle: nil), forCellReuseIdentifier: Title5TableViewCellID)
+        self.tableView.register(UINib.init(nibName: "OptionTableViewCell", bundle: nil), forCellReuseIdentifier: OptionTableViewCellID)
+
     }
     // MARK: - delegate
-    func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell : InvoiceTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: InvoiceTableViewCellID, for: indexPath) as! InvoiceTableViewCell
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 5
+        } else if section == 1 {
+            return 0
+        } else {
+            return 0
+        }
 
-        return cell
+    }
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            if indexPath.row == 0   {
+                let cell : SelectedTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: SelectedTableViewCellID, for: indexPath) as! SelectedTableViewCell
+                return cell
+            } else if indexPath.row == 1 || indexPath.row == 3 || indexPath.row == 4{
+                let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                cell.setData_addinvoce(title: sectionNameArr[indexPath.row], content: "")
+                return cell
+            }else {
+                let cell : Title5TableViewCell!  = tableView.dequeueReusableCell(withIdentifier: Title5TableViewCellID, for: indexPath) as! Title5TableViewCell
+                return cell
+            }
+        } else if indexPath.section == 1 {
+            return UITableViewCell()
+        } else {
+            return UITableViewCell()
+        }
+
+
+    }
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            if indexPath.row == 2 {
+                return Title5TableViewCellH
+            } else {
+                return 50
+            }
+        } else if indexPath.section == 1 {
+            return 0
+        } else {
+            return 0
+        }
     }
     // MARK: - net
     func requestFail_mine() {
