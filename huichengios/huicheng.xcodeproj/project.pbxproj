@@ -75,6 +75,8 @@
 		2109655120711ED40012FDDB /* DatePickView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2109655020711ED40012FDDB /* DatePickView.xib */; };
 		210EB650206DE502000DE966 /* expense_gettypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210EB64F206DE502000DE966 /* expense_gettypeModel.swift */; };
 		210EB652206E333F000DE966 /* FinanceDetialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210EB651206E333F000DE966 /* FinanceDetialViewController.swift */; };
+		2123A380208EFCC000C50FA9 /* ShareHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2123A37F208EFCC000C50FA9 /* ShareHeadView.swift */; };
+		2123A382208EFCD300C50FA9 /* ShareHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2123A381208EFCD300C50FA9 /* ShareHeadView.xib */; };
 		2124D71B208D66530007B5EE /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2124D71A208D66530007B5EE /* RoomViewController.swift */; };
 		2124D71D208D67570007B5EE /* roomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2124D71C208D67570007B5EE /* roomModel.swift */; };
 		2124D720208D69D20007B5EE /* RoomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2124D71E208D69D20007B5EE /* RoomTableViewCell.swift */; };
@@ -259,6 +261,8 @@
 		2109655020711ED40012FDDB /* DatePickView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DatePickView.xib; sourceTree = "<group>"; };
 		210EB64F206DE502000DE966 /* expense_gettypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = expense_gettypeModel.swift; sourceTree = "<group>"; };
 		210EB651206E333F000DE966 /* FinanceDetialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceDetialViewController.swift; sourceTree = "<group>"; };
+		2123A37F208EFCC000C50FA9 /* ShareHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareHeadView.swift; sourceTree = "<group>"; };
+		2123A381208EFCD300C50FA9 /* ShareHeadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShareHeadView.xib; sourceTree = "<group>"; };
 		2124D71A208D66530007B5EE /* RoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewController.swift; sourceTree = "<group>"; };
 		2124D71C208D67570007B5EE /* roomModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = roomModel.swift; sourceTree = "<group>"; };
 		2124D71E208D69D20007B5EE /* RoomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomTableViewCell.swift; sourceTree = "<group>"; };
@@ -746,6 +750,8 @@
 				2126DBE5208B454700977802 /* Title5TableViewCell.xib */,
 				2124D71E208D69D20007B5EE /* RoomTableViewCell.swift */,
 				2124D71F208D69D20007B5EE /* RoomTableViewCell.xib */,
+				2123A37F208EFCC000C50FA9 /* ShareHeadView.swift */,
+				2123A381208EFCD300C50FA9 /* ShareHeadView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -857,6 +863,7 @@
 				2107554C205D4C3200FF4396 /* LoginMidBottomView.xib in Resources */,
 				2126DBD920897BC500977802 /* Title3TableViewCell.xib in Resources */,
 				216B7C5E20637D7000BBACDA /* WorkBookTableViewCell.xib in Resources */,
+				2123A382208EFCD300C50FA9 /* ShareHeadView.xib in Resources */,
 				2124D721208D69D20007B5EE /* RoomTableViewCell.xib in Resources */,
 				2126DBE7208B454700977802 /* Title5TableViewCell.xib in Resources */,
 				21075568205D8FF200FF4396 /* MineFooterView.xib in Resources */,
@@ -1031,6 +1038,7 @@
 				21387D2D205F56590050DF1F /* LoginRequestVC.swift in Sources */,
 				2107555B205D6EFD00FF4396 /* PubMessageTableViewCell.swift in Sources */,
 				2126DBE02089CB9B00977802 /* Title4TableViewCell.swift in Sources */,
+				2123A380208EFCC000C50FA9 /* ShareHeadView.swift in Sources */,
 				2148A2D0206A38AB00D996C5 /* AddMemoBackView.swift in Sources */,
 				2108BB6A206F22B2002A4212 /* SearchPersionTableViewCell.swift in Sources */,
 				215C65CB203EC6B6001C7A92 /* AppDelegate.swift in Sources */,

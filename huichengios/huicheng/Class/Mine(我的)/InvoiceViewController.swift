@@ -147,6 +147,10 @@ class InvoiceViewController:  BaseViewController, UITableViewDataSource, UITable
     }
     @objc func addClick() {
         HCLog(message: "添加")
+        let vc = AddInvoiceViewController()
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+
     }
 
     override func didReceiveMemoryWarning() {
