@@ -22,29 +22,55 @@ class Selected2TableViewCell: UITableViewCell {
 
     var delegate : Selected2TableViewCellDelegate!
 
+    /// 类型显示 0：是否入账 1：送达 2 付费方式
+    var showType = 0
+
     /// 送达方式 0-上门自取;1-快递邮寄
     var sendtype = "0"
-
     ///是否已入帐 0-未入帐;1-已入帐
     var isbooksStr = "0"
+    /// 快递-付费方式 0-收件人付费;1-律师帐扣
+    var paytype = "0"
 
     var lastBtn : UIButton!
 
-    /// 是否入账
+
+    /// 发票申请 选项
     ///
     /// - Parameters:
     ///   - title: <#title description#>
     ///   - leftStr: <#leftStr description#>
-    ///   - right: <#right description#>
-    func setDataAddInvoice(title:String,leftStr: String,rightStr:String,indexPath : IndexPath)  {
+    ///   - rightStr: <#rightStr description#>
+    ///   - show: 0：是否入账 1：送达方式 2 付费方式
+    func setData(title:String,leftStr: String,rightStr:String,show : Int)  {
+        showType = show
         self.titleNameLabel.text = title
+        
         self.leftBtn.setTitle(leftStr, for: .normal)
         self.rightBtn.setTitle(rightStr, for: .normal)
+        if showType == 0 {
+            self.leftBtn.tag = 10
+            self.rightBtn.tag = 100
+        } else if showType == 1 {
+            self.leftBtn.tag = 20
+            self.rightBtn.tag = 200
+        } else{
+            self.leftBtn.tag = 30
+            self.rightBtn.tag = 300
+        }
+    }
 
-        self.leftBtn.tag = indexPath.section * 10 + indexPath.row
-        self.rightBtn.tag = 100 + indexPath.section * 10 + indexPath.row
-        leftBtn.isSelected = true
-        lastBtn = leftBtn
+
+    func setSelected(selectedType : String) {
+        if selectedType == "0" {
+            rightBtn.isSelected = false
+            leftBtn.isSelected = true
+
+        } else {
+            leftBtn.isSelected = false
+            rightBtn.isSelected = true
+
+        }
     }
 
 
@@ -66,23 +92,26 @@ class Selected2TableViewCell: UITableViewCell {
             //是否入账
             isbooksStr = "0"
             str = isbooksStr
-        } else if tagNum == 110 {
+        } else if tagNum == 100 {
             isbooksStr = "1"
             str = isbooksStr
-        } else if tagNum == 11 {
+        } else if tagNum == 20 {
             // 送达方式
             sendtype = "0"
             str = sendtype
-        } else if tagNum == 111 {
+
+        } else if tagNum == 200{
             sendtype = "1"
             str = sendtype
+
+        } else if tagNum == 30{
+            paytype = "0"
+            str = paytype
+        } else {
+            paytype = "1"
+            str = paytype
         }
-
-
-        if (self.delegate) != nil  {
-            delegate.selectedClickDelegate(tag: tagNum, type: str)
-        }
-
+        self.delegate.selectedClickDelegate(tag: tagNum, type: str)
     }
 
 
@@ -91,6 +120,8 @@ class Selected2TableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        lastBtn = leftBtn
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

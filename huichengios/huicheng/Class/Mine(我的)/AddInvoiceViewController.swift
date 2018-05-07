@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,TitleTableViewCellDelegate {
+class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,TitleTableViewCellDelegate,Selected2TableViewCellDelegate {
 
     let sectionNameArr = ["发票类型","名称","社会统一信用代码","发票内容","发票金额",]
 
@@ -37,8 +37,15 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
     /// 送达方式 0-上门自取;1-快递邮寄
     var sendtype = "0"
 
+    /// 快递-付费方式 0-收件人付费;1-律师帐扣
+    var paytype = "0"
+
     /// 第一组 行数
     var section1RowNum = 2
+
+    /// 备注
+    var remarkStr = ""
+
 
     // MARK: - life
     override func viewWillLayoutSubviews() {
@@ -87,20 +94,6 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
             return 5
         } else if section == 1 {
             return currectSectionArr.count
-//            if isbooksStr == "1"{
-//                //已入账 显示入账时间
-//                section1RowNum = section1RowNum + 1
-//            } else {
-//
-//            }
-//            if sendtype == "0"{
-//                //上门自取
-//                section1RowNum = section1RowNum + 1
-//            } else {
-//                //
-//                section1RowNum = section1RowNum + 6
-//            }
-//            return section1RowNum
         } else {
             return 1
         }
@@ -126,28 +119,140 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
             if section1Type == 0  {
                 if indexPath.row == 0 {
                     let cell : Selected2TableViewCell!  = tableView.dequeueReusableCell(withIdentifier: Selected2TableViewCellID, for: indexPath) as! Selected2TableViewCell
-                    cell.setDataAddInvoice(title: section1NameArr[indexPath.row], leftStr: "未入账", rightStr: "已入账", indexPath: indexPath)
+                    cell.setData(title: section1NameArr[indexPath.row], leftStr: "未入账", rightStr: "已入账", show: 0)
+                    cell.setSelected(selectedType: isbooksStr)
+                    cell.delegate = self
                     return cell
                 } else if indexPath.row == 1 {
                     let cell : Selected2TableViewCell!  = tableView.dequeueReusableCell(withIdentifier: Selected2TableViewCellID, for: indexPath) as! Selected2TableViewCell
-                    cell.setDataAddInvoice(title: section1NameArr[indexPath.row], leftStr: "上门自取", rightStr: "快递邮寄", indexPath: indexPath)
+                    cell.delegate = self
+                    cell.setData(title: section1NameArr[indexPath.row], leftStr: "上门自取", rightStr: "快递邮寄", show: 1)
+                    cell.setSelected(selectedType: sendtype)
                     return cell
-                } else if indexPath.row == 1 {
+                } else if indexPath.row == 2 {
                     let cell : endTimeTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-                    cell.setData(titleStr: "上门自取时间", tag: 0)
+                    cell.setData(titleStr: "自取时间", tag: 0)
                     return cell
                 } else {
                     let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
                     cell.delegate = self
-                    cell.setData_addinvoce(title: section1NameArr[indexPath.row], content: "",indexPath : indexPath)
+                    cell.setData_addinvoce(title: section1NameArr[indexPath.row], content: remarkStr,indexPath : indexPath)
                     return cell
                 }
             } else if section1Type == 1 {
-                return UITableViewCell()
+
+                if indexPath.row == 0 {
+                    let cell : Selected2TableViewCell!  = tableView.dequeueReusableCell(withIdentifier: Selected2TableViewCellID, for: indexPath) as! Selected2TableViewCell
+                    cell.delegate = self
+                    cell.setData(title: section1NameArr1[indexPath.row], leftStr: "未入账", rightStr: "已入账", show: 0)
+                    cell.setSelected(selectedType: isbooksStr)
+                    return cell
+                } else if indexPath.row == 1 {
+                    let cell : endTimeTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                    cell.setData(titleStr: "入账时间", tag: 1)
+                    return cell
+
+                } else if indexPath.row == 2 {
+                    let cell : Selected2TableViewCell!  = tableView.dequeueReusableCell(withIdentifier: Selected2TableViewCellID, for: indexPath) as! Selected2TableViewCell
+                       cell.setData(title: section1NameArr1[indexPath.row], leftStr: "上门自取", rightStr: "快递邮寄", show: 1)
+                    cell.setSelected(selectedType: sendtype)
+                    cell.delegate = self
+                    return cell
+
+                } else if indexPath.row == 3{
+                    let cell : endTimeTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                    cell.setData(titleStr: "自取时间", tag: 0)
+                    return cell
+
+                } else {
+                    let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                    cell.delegate = self
+                    cell.setData_addinvoce(title: section1NameArr1[indexPath.row], content: remarkStr,indexPath : indexPath)
+                    return cell
+                }
             } else if section1Type == 2 {
-                return UITableViewCell()
+                if indexPath.row == 0 {
+                    let cell : Selected2TableViewCell!  = tableView.dequeueReusableCell(withIdentifier: Selected2TableViewCellID, for: indexPath) as! Selected2TableViewCell
+                    cell.delegate = self
+                    cell.setData(title: section1NameArr2[indexPath.row], leftStr: "未入账", rightStr: "已入账", show: 0)
+                    cell.setSelected(selectedType: isbooksStr)
+                    return cell
+                } else if indexPath.row == 1 {
+                    let cell : Selected2TableViewCell!  = tableView.dequeueReusableCell(withIdentifier: Selected2TableViewCellID, for: indexPath) as! Selected2TableViewCell
+                    cell.setData(title: section1NameArr2[indexPath.row], leftStr: "上门自取", rightStr: "快递邮寄", show: 1)
+                    cell.setSelected(selectedType: sendtype)
+                    cell.delegate = self
+                    return cell
+
+                } else if indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 4 || indexPath.row == 5{
+                    let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                    cell.delegate = self
+                    cell.setData_addinvoce(title: section1NameArr2[indexPath.row], content: remarkStr,indexPath : indexPath)
+                    return cell
+
+                } else if indexPath.row == 6{
+                    let cell : Selected2TableViewCell!  = tableView.dequeueReusableCell(withIdentifier: Selected2TableViewCellID, for: indexPath) as! Selected2TableViewCell
+                    cell.delegate = self
+                    cell.setData(title: section1NameArr2[indexPath.row], leftStr: "收件人付费", rightStr: "律师账扣", show: 2)
+                    cell.setSelected(selectedType: paytype)
+                    return cell
+
+                }else if indexPath.row == 7{
+                    let cell : endTimeTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                    cell.setData(titleStr: "收件时间", tag: 3)
+                    return cell
+
+                } else {
+                    let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                    cell.delegate = self
+                    cell.setData_addinvoce(title: section1NameArr2[indexPath.row], content: remarkStr,indexPath : indexPath)
+                    return cell
+                }
             } else {
-               return UITableViewCell()
+                if indexPath.row == 0 {
+                    let cell : Selected2TableViewCell!  = tableView.dequeueReusableCell(withIdentifier: Selected2TableViewCellID, for: indexPath) as! Selected2TableViewCell
+                    cell.delegate = self
+                    cell.setData(title: section1NameArr3[indexPath.row], leftStr: "未入账", rightStr: "已入账", show: 0)
+                    cell.setSelected(selectedType: isbooksStr)
+                    return cell
+                } else if indexPath.row == 1 {
+                    let cell : endTimeTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                    cell.setData(titleStr: "入账时间", tag: 1)
+                    return cell
+
+
+                } else if indexPath.row == 2 {
+
+                    let cell : Selected2TableViewCell!  = tableView.dequeueReusableCell(withIdentifier: Selected2TableViewCellID, for: indexPath) as! Selected2TableViewCell
+
+                    cell.setData(title: section1NameArr3[indexPath.row], leftStr: "上门自取", rightStr: "快递邮寄", show: 1)
+                    cell.setSelected(selectedType: sendtype)
+                    cell.delegate = self
+                    return cell
+                } else if indexPath.row == 3 || indexPath.row == 4 || indexPath.row == 5 || indexPath.row == 6{
+                    let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                    cell.delegate = self
+                    cell.setData_addinvoce(title: section1NameArr3[indexPath.row], content: remarkStr,indexPath : indexPath)
+                    return cell
+
+                } else if indexPath.row == 7{
+                    let cell : Selected2TableViewCell!  = tableView.dequeueReusableCell(withIdentifier: Selected2TableViewCellID, for: indexPath) as! Selected2TableViewCell
+                    cell.delegate = self
+                    cell.setData(title: section1NameArr3[indexPath.row], leftStr: "收件人付费", rightStr: "律师账扣", show: 2)
+                    cell.setSelected(selectedType: paytype)
+                    return cell
+
+                }else if indexPath.row == 8{
+                    let cell : endTimeTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                    cell.setData(titleStr: "收件时间", tag: 3)
+                    return cell
+
+                } else {
+                    let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                    cell.delegate = self
+                    cell.setData_addinvoce(title: section1NameArr3[indexPath.row], content: remarkStr,indexPath : indexPath)
+                    return cell
+                }
             }
 
         } else {
@@ -185,6 +290,11 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
             return 0
         }
     }
+
+    func getCell(row : Int) {
+
+
+    }
     // MARK: - net
     func requestFail_mine() {
 
@@ -195,6 +305,44 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
 
     func endEdite(inputStr: String, tagNum: Int) {
 
+    }
+
+    func selectedClickDelegate(tag: Int, type: String) {
+        HCLog(message:"代理")
+        if tag == 10 {
+            //是否入账
+            isbooksStr = "0"
+//            str = isbooksStr
+        } else if tag == 100 {
+            isbooksStr = "1"
+//            str = isbooksStr
+        } else if tag == 20{
+            // 送达方式
+            sendtype = "0"
+//            str = sendtype
+        } else if tag == 200 {
+            sendtype = "1"
+//            str = sendtype
+        } else if tag == 30 {
+            paytype = "0"
+        } else {
+            paytype = "1"
+        }
+        if isbooksStr == "0" && sendtype == "0" {
+            section1Type = 0
+            currectSectionArr = section1NameArr
+        } else if isbooksStr == "1" && sendtype == "0" {
+            section1Type = 1
+            currectSectionArr = section1NameArr1
+        } else if isbooksStr == "0" && sendtype == "1" {
+            section1Type = 2
+            currectSectionArr = section1NameArr2
+        } else if isbooksStr == "1" && sendtype == "1" {
+            section1Type = 3
+            currectSectionArr = section1NameArr3
+        }
+
+        self.tableView.reloadSections([1], with: .automatic)
     }
 
     override func navigationRightBtnClick() {
