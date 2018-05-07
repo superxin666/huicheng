@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,TitleTableViewCellDelegate,Selected2TableViewCellDelegate {
+class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,TitleTableViewCellDelegate,Selected2TableViewCellDelegate,Title5TableViewCellDelegate,DatePickViewDelegate {
 
     let sectionNameArr = ["发票类型","名称","社会统一信用代码","发票内容","发票金额",]
 
@@ -31,6 +31,29 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
     var currectSectionArr : [String] = []
 
 
+    /// 发票类型,INT 型;0-增值税普通发票;1-增值税专用发票;
+    var typeStr : String = ""
+
+    /// 名称
+    var titleStr : String = ""
+
+    /// 社会统一信用代码
+    var creditcodeStr : String = ""
+
+    /// 发票内容
+    var contentStr : String = ""
+
+    /// 发票金额
+    var moneyStr : String = ""
+
+
+    /// 入帐时间
+    var applytimeStr : String = ""
+
+    /// 上门自取时间
+    var mtimeStr : String = ""
+
+
     ///是否已入帐 0-未入帐;1-已入帐
     var isbooksStr = "0"
 
@@ -46,6 +69,8 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
     /// 备注
     var remarkStr = ""
 
+    /// 时间
+    let dateView : DatePickView = DatePickView.loadNib()
 
     // MARK: - life
     override func viewWillLayoutSubviews() {
@@ -84,6 +109,8 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
         self.tableView.register(UINib.init(nibName: "OptionTableViewCell", bundle: nil), forCellReuseIdentifier: OptionTableViewCellID)
         self.tableView.register(UINib.init(nibName: "endTimeTableViewCell", bundle: nil), forCellReuseIdentifier: endTimeTableViewCellid)
         self.tableView.register(UINib.init(nibName: "Selected2TableViewCell", bundle: nil), forCellReuseIdentifier: Selected2TableViewCellID)
+        self.tableView.register(UINib.init(nibName: "NoticeTableViewCell", bundle: nil), forCellReuseIdentifier: NoticeTableViewCellID)
+
     }
     // MARK: - delegate
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -105,13 +132,24 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
                 let cell : SelectedTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: SelectedTableViewCellID, for: indexPath) as! SelectedTableViewCell
                 cell.setData_addinvoice()
                 return cell
-            } else if indexPath.row == 1 || indexPath.row == 3 || indexPath.row == 4{
+            } else if indexPath.row == 1 {
                 let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
                 cell.delegate = self
-                cell.setData_addinvoce(title: sectionNameArr[indexPath.row], content: "",indexPath : indexPath)
+                cell.setData_addinvoce(title: sectionNameArr[indexPath.row], content: titleStr,indexPath : indexPath)
                 return cell
-            }else {
+            } else if indexPath.row == 2 {
                 let cell : Title5TableViewCell!  = tableView.dequeueReusableCell(withIdentifier: Title5TableViewCellID, for: indexPath) as! Title5TableViewCell
+                cell.delegate = self
+                return cell
+            }else if indexPath.row == 3 {
+                let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                cell.delegate = self
+                cell.setData_addinvoce(title: sectionNameArr[indexPath.row], content: contentStr,indexPath : indexPath)
+                return cell
+            } else {
+                let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                cell.delegate = self
+                cell.setData_addinvoce_mon(title: sectionNameArr[indexPath.row], content: moneyStr,indexPath : indexPath)
                 return cell
             }
         } else if indexPath.section == 1 {
@@ -131,7 +169,8 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
                     return cell
                 } else if indexPath.row == 2 {
                     let cell : endTimeTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-                    cell.setData(titleStr: "自取时间", tag: 0)
+                    cell.setData(titleStr: "自取时间", tag: 1)
+                    cell.setTime(str: mtimeStr)
                     return cell
                 } else {
                     let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
@@ -149,7 +188,8 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
                     return cell
                 } else if indexPath.row == 1 {
                     let cell : endTimeTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-                    cell.setData(titleStr: "入账时间", tag: 1)
+                    cell.setData(titleStr: "入账时间", tag: 10)
+                    cell.setTime(str: applytimeStr)
                     return cell
 
                 } else if indexPath.row == 2 {
@@ -161,7 +201,8 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
 
                 } else if indexPath.row == 3{
                     let cell : endTimeTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-                    cell.setData(titleStr: "自取时间", tag: 0)
+                    cell.setData(titleStr: "自取时间", tag: 1)
+                    cell.setTime(str: mtimeStr)
                     return cell
 
                 } else {
@@ -194,7 +235,7 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
                     let cell : Selected2TableViewCell!  = tableView.dequeueReusableCell(withIdentifier: Selected2TableViewCellID, for: indexPath) as! Selected2TableViewCell
                     cell.delegate = self
                     cell.setData(title: section1NameArr2[indexPath.row], leftStr: "收件人付费", rightStr: "律师账扣", show: 2)
-                    cell.setSelected(selectedType: paytype)
+                    cell.setSelected(selectedType: applytimeStr)
                     return cell
 
                 }else if indexPath.row == 7{
@@ -218,6 +259,7 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
                 } else if indexPath.row == 1 {
                     let cell : endTimeTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
                     cell.setData(titleStr: "入账时间", tag: 1)
+                    cell.setTime(str: applytimeStr)
                     return cell
 
 
@@ -256,11 +298,53 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
             }
 
         } else {
-            return UITableViewCell()
+            let cell : NoticeTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: NoticeTableViewCellID, for: indexPath) as! NoticeTableViewCell
+            cell.setData(contentStr: "本人承诺于开票日期起一个月内收回款项，逾期未收回的，从其账上直接按发票金额扣减等额款项")
+            return cell
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.view.endEditing(true)
+        if indexPath.section == 1 {
+            if section1Type == 0  {
+                if indexPath.row == 2 {
+                    //自取时间
+                    dateView.setData(type: 10)
+                    self.showDate()
+                }
+            } else if section1Type == 1 {
+                if indexPath.row == 1 {
+                    //入账时间
+                    dateView.setData(type: 20)
+                    self.showDate()
+                } else if indexPath.row == 3 {
+                    //自取时间
+                    dateView.setData(type: 30)
+                    self.showDate()
+                }
+
+            } else if section1Type == 2 {
+                if indexPath.row == 7 {
+                    //收件时间
+                    dateView.setData(type: 40)
+                    self.showDate()
+                }
+            } else {
+                if indexPath.row == 1 {
+                    //入账时间
+                     dateView.setData(type: 50)
+                     self.showDate()
+                } else if indexPath.row == 8 {
+                    //收件时间
+                    dateView.setData(type: 60)
+                    self.showDate()
+                }
+            }
         }
 
-
     }
+
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
             if indexPath.row == 2 {
@@ -271,7 +355,7 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
         } else if indexPath.section == 1 {
             return 50
         } else {
-            return 0
+            return 50
         }
     }
 
@@ -304,10 +388,24 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
     }
 
     func endEdite(inputStr: String, tagNum: Int) {
+        HCLog(message: "内容\(tagNum)" + inputStr)
+        if tagNum == 1 {
+            self.titleStr = inputStr
+        } else if tagNum == 3 {
+            self.contentStr = inputStr
+        }  else if tagNum == 4{
+            self.moneyStr = inputStr
+        }
+    }
 
+    func endText_title5(inputStr: String, tagNum: Int) {
+        HCLog(message: inputStr)
+        creditcodeStr = inputStr
     }
 
     func selectedClickDelegate(tag: Int, type: String) {
+        self.view.endEditing(true)
+
         HCLog(message:"代理")
         if tag == 10 {
             //是否入账
@@ -344,9 +442,63 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
 
         self.tableView.reloadSections([1], with: .automatic)
     }
+    /// 显示时间
+    func showDate() {
+        self.maskView.addSubview(self.dateView)
+        self.view.window?.addSubview(self.maskView)
+        self.dateView.delegate = self
+        self.dateView.snp.makeConstraints { (make) in
+            make.left.right.equalTo(0)
+            make.bottom.equalTo(0)
+            make.height.equalTo(160)
+        }
+    }
 
+    /// 时间选项代理
+    ///
+    /// - Parameters:
+    ///   - timeStr: <#timeStr description#>
+    ///   - type: <#type description#>
+    func datePickViewTime(timeStr: String, type: Int) {
+        HCLog(message: timeStr)
+        HCLog(message: type)
+        if type == 10 {
+            let cell : endTimeTableViewCell  = self.tableView.cellForRow(at: IndexPath(row: 2, section: 1)) as! endTimeTableViewCell
+            cell.setTime(str: timeStr)
+        } else if type == 20 {
+            let cell : endTimeTableViewCell  = self.tableView.cellForRow(at: IndexPath(row: 1, section: 1)) as! endTimeTableViewCell
+            cell.setTime(str: timeStr)
+        } else if type == 30 {
+            let cell : endTimeTableViewCell  = self.tableView.cellForRow(at: IndexPath(row: 3, section: 1)) as! endTimeTableViewCell
+            cell.setTime(str: timeStr)
+        } else if type == 40 {
+            let cell : endTimeTableViewCell  = self.tableView.cellForRow(at: IndexPath(row: 7, section: 1)) as! endTimeTableViewCell
+            cell.setTime(str: timeStr)
+        } else if type == 50 {
+            let cell : endTimeTableViewCell  = self.tableView.cellForRow(at: IndexPath(row: 1, section: 1)) as! endTimeTableViewCell
+            cell.setTime(str: timeStr)
+        } else if type == 60 {
+            let cell : endTimeTableViewCell  = self.tableView.cellForRow(at: IndexPath(row: 8, section: 1)) as! endTimeTableViewCell
+            cell.setTime(str: timeStr)
+        }
+        if type == 10 || type == 30 {
+            //自取
+            mtimeStr = timeStr
+        }
+        if type == 20 || type == 50 {
+            //入账
+            applytimeStr = timeStr
+        }
+        if type == 40 || type == 60 {
+            //收件
+        }
+
+        self.dateView.removeFromSuperview()
+        self.maskView.removeFromSuperview()
+    }
     override func navigationRightBtnClick() {
         HCLog(message: "确定")
+        self.view.endEditing(true)
     }
     override func navigationLeftBtnClick() {
         self.navigationController?.popViewController(animated: true)

@@ -36,6 +36,9 @@
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
+                        <connections>
+                            <action selector="title5EndText:" destination="KGk-i7-Jjw" eventType="editingDidEnd" id="cIC-Ap-lHF"/>
+                        </connections>
                     </textField>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R6J-Rv-O25">
                         <rect key="frame" x="10" y="79" width="310" height="0.5"/>
@@ -57,9 +60,10 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="textField" destination="Pea-Zf-tw6" id="Hz4-zG-2W5"/>
                 <outlet property="titleNameLabel" destination="YTl-aD-kjc" id="JWI-Gf-9Ql"/>
             </connections>
-            <point key="canvasLocation" x="-122" y="-16"/>
+            <point key="canvasLocation" x="-852" y="23"/>
         </tableViewCell>
     </objects>
 </document>

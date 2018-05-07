@@ -141,6 +141,23 @@ class TitleTableViewCell: UITableViewCell {
         self.textField.text = content
     }
 
+
+    /// 金额
+    ///
+    /// - Parameters:
+    ///   - title: <#title description#>
+    ///   - content: <#content description#>
+    ///   - indexPath: <#indexPath description#>
+    func setData_addinvoce_mon(title : String,content : String,indexPath : IndexPath)  {
+        self.textField.tag = indexPath.section * 10 + indexPath.row
+        self.titleNameLabel.textColor = darkblueColor
+        self.titleNameLabel.text = title
+
+        self.textField.text = content
+        self.textField.keyboardType = .numberPad
+    }
+
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -128,7 +128,7 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
 
     func invoice_saveRequest(typeStr:String,title:String,money:String,creditcode:String,sendtype:String,content:String,isbooks:String,applytime:String,identifier:String,eaddr:String,ephone:String,ebank:String,ecard:String,name:String,phone:String,zip:String,addr:String,paytype:String,mtime:String,remark:String)  {
 
-        let url =   invoice_save_api + "k=\(UserInfoLoaclManger.getKey())"
+        let url =   invoice_save_api + "type=\(typeStr)&title=\(title)&money=\(money)&creditcode=\(creditcode)&sendtype=\(sendtype)&content=\(content)&isbooks=\(isbooks)&applytime=\(applytime)&identifier=\(identifier)&eaddr=\(eaddr)&ephone=\(ephone)&ebank=\(ebank)&name=\(name)&phone=\(phone)&zip=\(zip)&addr=\(addr)&paytype=\(paytype)&mtime=\(mtime)&remark=\(remark)&k=\(UserInfoLoaclManger.getKey())"
         request.delegate = self
         type = .invoice_save
         request.request_api(url: url)

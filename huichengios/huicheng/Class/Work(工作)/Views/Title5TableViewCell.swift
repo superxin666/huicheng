@@ -9,16 +9,26 @@
 import UIKit
 let Title5TableViewCellID = "Title5TableViewCell_id"
 let  Title5TableViewCellH = CGFloat(80)
+protocol Title5TableViewCellDelegate {
 
+    func endText_title5(inputStr: String, tagNum: Int)
+}
 
 class Title5TableViewCell: UITableViewCell {
+    var delegate :Title5TableViewCellDelegate!
+    var conTent : String = ""
+
+    @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var titleNameLabel: UILabel!
-    @IBOutlet weak var cancleBtn: UIButton!
-    @IBOutlet weak var openBtn: UIButton!
-
-    @IBAction func btnClick(_ sender: UIButton) {
 
 
+    @IBAction func title5EndText(_ sender: UITextField) {
+        if let str = sender.text {
+            conTent = str
+            if let delgate = self.delegate {
+                delgate.endText_title5(inputStr: conTent, tagNum: self.textField.tag)
+            }
+        }
 
     }
 
