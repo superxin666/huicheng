@@ -133,7 +133,8 @@ class TitleTableViewCell: UITableViewCell {
     /// - Parameters:
     ///   - title: <#title description#>
     ///   - content: <#content description#>
-    func setData_addinvoce(title : String,content : String)  {
+    func setData_addinvoce(title : String,content : String,indexPath : IndexPath)  {
+        self.textField.tag = indexPath.section * 10 + indexPath.row
         self.titleNameLabel.textColor = darkblueColor
         self.titleNameLabel.text = title
 

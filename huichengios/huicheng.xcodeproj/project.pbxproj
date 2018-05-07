@@ -79,6 +79,8 @@
 		2123A382208EFCD300C50FA9 /* ShareHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2123A381208EFCD300C50FA9 /* ShareHeadView.xib */; };
 		2123A385208F0C7400C50FA9 /* SelectedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2123A383208F0C7400C50FA9 /* SelectedTableViewCell.swift */; };
 		2123A386208F0C7400C50FA9 /* SelectedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2123A384208F0C7400C50FA9 /* SelectedTableViewCell.xib */; };
+		2123A389208F39F800C50FA9 /* Selected2TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2123A387208F39F800C50FA9 /* Selected2TableViewCell.swift */; };
+		2123A38A208F39F800C50FA9 /* Selected2TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2123A388208F39F800C50FA9 /* Selected2TableViewCell.xib */; };
 		2124D71B208D66530007B5EE /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2124D71A208D66530007B5EE /* RoomViewController.swift */; };
 		2124D71D208D67570007B5EE /* roomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2124D71C208D67570007B5EE /* roomModel.swift */; };
 		2124D720208D69D20007B5EE /* RoomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2124D71E208D69D20007B5EE /* RoomTableViewCell.swift */; };
@@ -267,6 +269,8 @@
 		2123A381208EFCD300C50FA9 /* ShareHeadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShareHeadView.xib; sourceTree = "<group>"; };
 		2123A383208F0C7400C50FA9 /* SelectedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedTableViewCell.swift; sourceTree = "<group>"; };
 		2123A384208F0C7400C50FA9 /* SelectedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectedTableViewCell.xib; sourceTree = "<group>"; };
+		2123A387208F39F800C50FA9 /* Selected2TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selected2TableViewCell.swift; sourceTree = "<group>"; };
+		2123A388208F39F800C50FA9 /* Selected2TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Selected2TableViewCell.xib; sourceTree = "<group>"; };
 		2124D71A208D66530007B5EE /* RoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewController.swift; sourceTree = "<group>"; };
 		2124D71C208D67570007B5EE /* roomModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = roomModel.swift; sourceTree = "<group>"; };
 		2124D71E208D69D20007B5EE /* RoomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomTableViewCell.swift; sourceTree = "<group>"; };
@@ -508,6 +512,8 @@
 				2108BB85206FD809002A4212 /* FileTableViewCell.xib */,
 				2123A383208F0C7400C50FA9 /* SelectedTableViewCell.swift */,
 				2123A384208F0C7400C50FA9 /* SelectedTableViewCell.xib */,
+				2123A387208F39F800C50FA9 /* Selected2TableViewCell.swift */,
+				2123A388208F39F800C50FA9 /* Selected2TableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -863,6 +869,7 @@
 				2107555C205D6EFD00FF4396 /* PubMessageTableViewCell.xib in Resources */,
 				2108BB8B206FE326002A4212 /* ObjectTableViewCell.xib in Resources */,
 				21066CB22066992C009327AD /* ResetKeyView.xib in Resources */,
+				2123A38A208F39F800C50FA9 /* Selected2TableViewCell.xib in Resources */,
 				2108BB87206FD809002A4212 /* FileTableViewCell.xib in Resources */,
 				215C65D2203EC6B6001C7A92 /* Assets.xcassets in Resources */,
 				21DDC9D620809E880067197D /* Title2TableViewCell.xib in Resources */,
@@ -1004,6 +1011,7 @@
 				21376687203FBAEB000CBCE6 /* View+Clipping.swift in Sources */,
 				21340BD7206CB46800E30B53 /* AddExpenseViewController.swift in Sources */,
 				2108BB7E206FD7D8002A4212 /* TitleTableViewCell.swift in Sources */,
+				2123A389208F39F800C50FA9 /* Selected2TableViewCell.swift in Sources */,
 				2108BB8E206FE34A002A4212 /* MessageNeedTableViewCell.swift in Sources */,
 				21376684203FBAB2000CBCE6 /* UILabel+Init.swift in Sources */,
 				216A6C54204CDE7900528FD8 /* WorkViewController.swift in Sources */,

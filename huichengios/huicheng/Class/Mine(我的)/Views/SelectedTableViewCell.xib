@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="SelectedTableViewCell" customModule="huicheng" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="KGk-i7-Jjw" customClass="SelectedTableViewCell" customModule="huicheng" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -52,6 +52,9 @@
                             <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                         <state key="selected" image="pub_selected"/>
+                        <connections>
+                            <action selector="btnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="flt-sb-Uxz"/>
+                        </connections>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kub-VR-g5b">
                         <rect key="frame" x="10" y="49" width="310" height="0.5"/>
@@ -80,7 +83,7 @@
                 <outlet property="normalBtn" destination="Lbc-vE-6gH" id="YeQ-b5-3Qq"/>
                 <outlet property="specialBtn" destination="haA-hv-Qti" id="sNA-bR-BBU"/>
             </connections>
-            <point key="canvasLocation" x="-265" y="-18"/>
+            <point key="canvasLocation" x="-527" y="-14"/>
         </tableViewCell>
     </objects>
     <resources>
