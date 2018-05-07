@@ -8,7 +8,10 @@
 
 import UIKit
 
-class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,TitleTableViewCellDelegate,Selected2TableViewCellDelegate,Title5TableViewCellDelegate,DatePickViewDelegate {
+class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,TitleTableViewCellDelegate,Selected2TableViewCellDelegate,Title5TableViewCellDelegate,DatePickViewDelegate,SelectedTableViewCellDelegate {
+
+    let requestVC = MineRequestVC()
+
 
     let sectionNameArr = ["发票类型","名称","社会统一信用代码","发票内容","发票金额",]
 
@@ -53,6 +56,21 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
     /// 上门自取时间
     var mtimeStr : String = ""
 
+    /// 收件人
+    var nameStr : String = ""
+
+    /// 收件人电话
+    var phoneStr : String = ""
+
+    /// 邮编
+    var zipStr : String = ""
+
+    /// 收件地址
+    var addrStr : String = ""
+
+    /// 备注
+    var remarkStr : String = ""
+
 
     ///是否已入帐 0-未入帐;1-已入帐
     var isbooksStr = "0"
@@ -66,9 +84,6 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
     /// 第一组 行数
     var section1RowNum = 2
 
-    /// 备注
-    var remarkStr = ""
-
     /// 时间
     let dateView : DatePickView = DatePickView.loadNib()
 
@@ -81,7 +96,7 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
 
         // Do any additional setup after loading the view.
         self.view.backgroundColor = viewBackColor
-
+        requestVC.delegate  = self
         self.navigation_title_fontsize(name: "发票申请", fontsize: 18)
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
         self.navigationBar_rightBtn_title(name: "确定")
@@ -384,17 +399,45 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
 
     }
     func requestSucceed_mine(data: Any, type: MineRequestVC_enum) {
-
+        self.navigationController?.popViewController(animated: true)
     }
 
     func endEdite(inputStr: String, tagNum: Int) {
         HCLog(message: "内容\(tagNum)" + inputStr)
+
         if tagNum == 1 {
             self.titleStr = inputStr
         } else if tagNum == 3 {
             self.contentStr = inputStr
         }  else if tagNum == 4{
             self.moneyStr = inputStr
+        } else {
+            if section1Type == 2 {
+                if tagNum == 12{
+                    nameStr = inputStr
+                }else if tagNum == 13{
+                    phoneStr = inputStr
+                }else if tagNum == 14{
+                    zipStr = inputStr
+                }else if tagNum == 15{
+                    addrStr = inputStr
+                } else {
+                    remarkStr = inputStr
+                }
+            } else {
+                if tagNum == 13{
+                    nameStr = inputStr
+                }else if tagNum == 14{
+                    phoneStr = inputStr
+                }else if tagNum == 15{
+                    zipStr = inputStr
+                }else if tagNum == 16{
+                    addrStr = inputStr
+                } else {
+                    remarkStr = inputStr
+                }
+
+            }
         }
     }
 
@@ -442,6 +485,11 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
 
         self.tableView.reloadSections([1], with: .automatic)
     }
+
+    func selectedClickDelegate_type(tag: Int, type: String) {
+        typeStr = type
+    }
+    
     /// 显示时间
     func showDate() {
         self.maskView.addSubview(self.dateView)
@@ -499,6 +547,13 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
     override func navigationRightBtnClick() {
         HCLog(message: "确定")
         self.view.endEditing(true)
+        let cell : NoticeTableViewCell  = self.tableView.cellForRow(at: IndexPath(row: 0, section: 2)) as! NoticeTableViewCell
+        if !cell.isNotice {
+            SVPMessageShow.showErro(infoStr: "请勾选承诺")
+            return
+        }
+
+        requestVC.invoice_saveRequest(typeStr: typeStr, title: titleStr, money: moneyStr, creditcode: creditcodeStr, sendtype: sendtype, content: contentStr, isbooks: isbooksStr, applytime: applytimeStr, identifier: "", eaddr: "", ephone: phoneStr, ebank: "", ecard: "", name: nameStr, phone: phoneStr, zip: zipStr, addr: addrStr, paytype: paytype, mtime: mtimeStr, remark: remarkStr)
     }
     override func navigationLeftBtnClick() {
         self.navigationController?.popViewController(animated: true)

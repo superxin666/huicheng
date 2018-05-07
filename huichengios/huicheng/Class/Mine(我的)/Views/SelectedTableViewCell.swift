@@ -11,11 +11,14 @@ import UIKit
 let SelectedTableViewCellH = CGFloat(50)
 let SelectedTableViewCellID = "SelectedTableViewCell_id"
 
+protocol SelectedTableViewCellDelegate {
+    func selectedClickDelegate_type(tag : Int,type : String)
+}
 
 class SelectedTableViewCell: UITableViewCell {
     @IBOutlet weak var specialBtn: UIButton!
     @IBOutlet weak var normalBtn: UIButton!
-
+    var delegate : SelectedTableViewCellDelegate!
     var lastBtn : UIButton!
 
     /// 0-增值税普通发票;1-增值税专用发票
@@ -47,6 +50,7 @@ class SelectedTableViewCell: UITableViewCell {
             //专项
             invoiceType = "1"
         }
+        self.delegate.selectedClickDelegate_type(tag: 0, type: invoiceType)
     }
 
 

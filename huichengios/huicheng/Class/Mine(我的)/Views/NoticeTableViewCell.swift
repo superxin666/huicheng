@@ -10,12 +10,17 @@ import UIKit
 let NoticeTableViewCellID = "NoticeTableViewCell_ID"
 let NoticeTableViewCellh = CGFloat(50)
 
+
+
 class NoticeTableViewCell: UITableViewCell {
+    var isNotice : Bool = false
+
+
     @IBOutlet weak var contentLabel: UILabel!
 
     @IBAction func btnClick(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
-
+        isNotice  = sender.isSelected
 
     }
 

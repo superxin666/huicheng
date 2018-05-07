@@ -128,14 +128,75 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
 
     func invoice_saveRequest(typeStr:String,title:String,money:String,creditcode:String,sendtype:String,content:String,isbooks:String,applytime:String,identifier:String,eaddr:String,ephone:String,ebank:String,ecard:String,name:String,phone:String,zip:String,addr:String,paytype:String,mtime:String,remark:String)  {
 
-        let url =   invoice_save_api + "type=\(typeStr)&title=\(title)&money=\(money)&creditcode=\(creditcode)&sendtype=\(sendtype)&content=\(content)&isbooks=\(isbooks)&applytime=\(applytime)&identifier=\(identifier)&eaddr=\(eaddr)&ephone=\(ephone)&ebank=\(ebank)&name=\(name)&phone=\(phone)&zip=\(zip)&addr=\(addr)&paytype=\(paytype)&mtime=\(mtime)&remark=\(remark)&k=\(UserInfoLoaclManger.getKey())"
+        if !(title.count > 0) {
+            SVPMessageShow.showErro(infoStr: "请输入标题")
+            return
+        }
+
+        if !(creditcode.count > 0) {
+            SVPMessageShow.showErro(infoStr: "请输入信用代码")
+            return
+        }
+        if !(content.count > 0) {
+            SVPMessageShow.showErro(infoStr: "请输入发票内容")
+            return
+        }
+        if !(money.count > 0) {
+            SVPMessageShow.showErro(infoStr: "请输入发票金额")
+            return
+        }
+
+        if isbooks == "1" {
+            if !(applytime.count > 0) {
+                SVPMessageShow.showErro(infoStr: "请输入入账时间")
+                return
+            }
+        }
+        if sendtype == "0" {
+            if !(mtime.count > 0) {
+                SVPMessageShow.showErro(infoStr: "请输入上门自取时间")
+                return
+            }
+        } else {
+            if !(name.count > 0) {
+                SVPMessageShow.showErro(infoStr: "请输入收件人")
+                return
+            }
+            if !(phone.count > 0) {
+                SVPMessageShow.showErro(infoStr: "请输入联系电话")
+                return
+            }
+            if !(zip.count > 0) {
+                SVPMessageShow.showErro(infoStr: "请输入邮编")
+                return
+            }
+            if !(addr.count > 0) {
+                SVPMessageShow.showErro(infoStr: "请输入邮寄地址")
+                return
+            }
+        }
+
+
+
+
+        let titleStr :String = title.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let creditcodeStr :String = creditcode.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let contentStr :String = content.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let applytimeStr :String = applytime.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let mtimeStr :String = mtime.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let nameStr :String = name.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let phoneStr :String = phone.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let zipStr :String = zip.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let addrStr :String = mtime.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let remarkStr :String = remark.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+
+        let url =   invoice_save_api + "type=\(typeStr)&title=\(titleStr)&money=\(money)&creditcode=\(creditcodeStr)&sendtype=\(sendtype)&content=\(contentStr)&isbooks=\(isbooks)&applytime=\(applytimeStr)&identifier=\(identifier)&eaddr=\(eaddr)&ephone=\(ephone)&ebank=\(ebank)&name=\(nameStr)&phone=\(phoneStr)&zip=\(zipStr)&addr=\(addrStr)&paytype=\(paytype)&mtime=\(mtimeStr)&remark=\(remarkStr)&k=\(UserInfoLoaclManger.getKey())"
         request.delegate = self
         type = .invoice_save
         request.request_api(url: url)
     }
 
-    
-    
+
     // MARK: 备忘录
     
     /// 备忘录 调取列表
