@@ -10,7 +10,8 @@ import UIKit
 let FileTableViewCellH = CGFloat(50)
 let FileTableViewCellID = "FileTableViewCell_ID"
 class FileTableViewCell: UITableViewCell {
-
+    @IBOutlet weak var titleNameLabel: UILabel!
+    
     @IBOutlet weak var fileNameLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,6 +22,10 @@ class FileTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+
+    func setData_deal() {
+        self.titleNameLabel.text = "合同扫描件"
     }
     
 }

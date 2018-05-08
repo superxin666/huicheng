@@ -9,7 +9,7 @@
 import UIKit
 
 class OverDealViewController:
-BaseTableViewController,ContentTableViewCellDelegate,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDelegate{
+BaseTableViewController,ContentTableViewCellDelegate,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDelegate,SelectedTableViewCellDelegate{
 
 
 
@@ -24,8 +24,11 @@ BaseTableViewController,ContentTableViewCellDelegate,DatePickViewDelegate,Option
 
     /// 总款
     var aStr : String = ""
-    /// 发票信息
+
+
+    /// 0-未开;1-已开
     var itStr : String = ""
+    /// 发票信息(整型)
     var itIdStr : String = ""
 
     /// 时间
@@ -45,7 +48,7 @@ BaseTableViewController,ContentTableViewCellDelegate,DatePickViewDelegate,Option
         // Do any additional setup after loading the view.
         self.view.backgroundColor = viewBackColor
         request.delegate = self
-        self.navigation_title_fontsize(name: "申请结案", fontsize: 18)
+        self.navigation_title_fontsize(name: "生成合同", fontsize: 18)
         self.navigationBar_rightBtn_title(name: "确定")
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
         self.creatUI()
@@ -62,7 +65,7 @@ BaseTableViewController,ContentTableViewCellDelegate,DatePickViewDelegate,Option
         self.tableView .register(UINib.init(nibName: "Title4TableViewCell", bundle: nil), forCellReuseIdentifier: Title4TableViewCellID)
         self.tableView .register(UINib.init(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: TitleTableViewCellID)
         self.tableView .register(UINib.init(nibName: "endTimeTableViewCell", bundle: nil), forCellReuseIdentifier: endTimeTableViewCellid)
-        self.tableView .register(UINib.init(nibName: "Title5TableViewCell", bundle: nil), forCellReuseIdentifier: Title5TableViewCellID)
+        self.tableView .register(UINib.init(nibName: "SelectedTableViewCell", bundle: nil), forCellReuseIdentifier: SelectedTableViewCellID)
 
         self.tableView .register(UINib.init(nibName: "OptionTableViewCell", bundle: nil), forCellReuseIdentifier: OptionTableViewCellID)
         self.tableView .register(UINib.init(nibName: "FileTableViewCell", bundle: nil), forCellReuseIdentifier: FileTableViewCellID)
@@ -83,8 +86,8 @@ BaseTableViewController,ContentTableViewCellDelegate,DatePickViewDelegate,Option
             cell.setData_overCase(titleStr: "合同编号", contentStr: dealNum)
             return cell
         } else if indexPath.row == 1  {
-            let cell : OptionTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
-            cell.setData_caseDetail(titleStr: "合同总款", contentStr: aStr)
+            let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+            cell.setData_caseAdd(titleStr: "合同总款", indexPath: indexPath)
             return cell
         } else if indexPath.row == 2 {
             let cell : endTimeTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
@@ -92,8 +95,9 @@ BaseTableViewController,ContentTableViewCellDelegate,DatePickViewDelegate,Option
             return cell
 
         } else if indexPath.row == 3 {
-            let cell : Title5TableViewCell!  = tableView.dequeueReusableCell(withIdentifier: Title5TableViewCellID, for: indexPath) as! Title5TableViewCell
-            cell.setData(titleStr: "开票情况")
+            let cell : SelectedTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: SelectedTableViewCellID, for: indexPath) as! SelectedTableViewCell
+            cell.delegate = self
+            cell.setData_deal()
             return cell
         } else if indexPath.row == 4 {
             let cell : OptionTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
@@ -101,6 +105,7 @@ BaseTableViewController,ContentTableViewCellDelegate,DatePickViewDelegate,Option
             return cell
         } else {
             let cell : FileTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: FileTableViewCellID, for: indexPath) as! FileTableViewCell
+            cell.setData_deal()
             return cell
         }
     }
@@ -123,11 +128,7 @@ BaseTableViewController,ContentTableViewCellDelegate,DatePickViewDelegate,Option
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 3 {
-            return ContentTableViewCellH
-        } else {
-            return 50
-        }
+        return 50
     }
 
     func endText_content(content: String) {
@@ -178,11 +179,15 @@ BaseTableViewController,ContentTableViewCellDelegate,DatePickViewDelegate,Option
     }
 
     func optionSure(idStr: String, titleStr: String, pickTag: Int) {
-        let cell : OptionTableViewCell = self.tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as! OptionTableViewCell
+        let cell : OptionTableViewCell = self.tableView.cellForRow(at: IndexPath(row: 4, section: 0)) as! OptionTableViewCell
         aStr = idStr
         cell.setOptionData(contentStr: titleStr)
         self.optionView.removeFromSuperview()
         self.maskView.removeFromSuperview()
+    }
+
+    func selectedClickDelegate_type(tag: Int, type: String) {
+
     }
 
     func requestSucceed_work(data: Any, type: WorkRequestVC_enum) {

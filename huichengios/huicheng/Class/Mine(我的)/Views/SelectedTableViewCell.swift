@@ -16,12 +16,13 @@ protocol SelectedTableViewCellDelegate {
 }
 
 class SelectedTableViewCell: UITableViewCell {
+    @IBOutlet weak var titleNameLabel: UILabel!
     @IBOutlet weak var specialBtn: UIButton!
     @IBOutlet weak var normalBtn: UIButton!
     var delegate : SelectedTableViewCellDelegate!
     var lastBtn : UIButton!
 
-    /// 0-增值税普通发票;1-增值税专用发票
+    /// 0-增值税普通发票;1-增值税专用发票  0-未开;1-已开
     var invoiceType = "0"
 
 
@@ -30,6 +31,15 @@ class SelectedTableViewCell: UITableViewCell {
     func setData_addinvoice() {
         normalBtn.isSelected = true
         lastBtn = normalBtn
+    }
+
+    func setData_deal() {
+        normalBtn.isSelected = true
+        lastBtn = normalBtn
+        self.titleNameLabel.text = "发票情况"
+
+        normalBtn.setTitle("未开", for: .normal)
+        specialBtn.setTitle("已开", for: .normal)
     }
 
     @IBAction func btnClick(_ sender: UIButton) {
@@ -50,7 +60,10 @@ class SelectedTableViewCell: UITableViewCell {
             //专项
             invoiceType = "1"
         }
-        self.delegate.selectedClickDelegate_type(tag: 0, type: invoiceType)
+        if self.delegate != nil {
+            self.delegate.selectedClickDelegate_type(tag: 0, type: invoiceType)
+        }
+
     }
 
 

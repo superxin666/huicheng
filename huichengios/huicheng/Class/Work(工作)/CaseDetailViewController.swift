@@ -4,7 +4,7 @@
 //
 //  Created by lvxin on 2018/4/13.
 //  Copyright © 2018年 lvxin. All rights reserved.
-//  案件详情--- 修改 删除 添加 生成合同
+//  案件详情--- 修改 删除 添加
 
 import UIKit
 enum CaseDetailViewControllerType {
@@ -394,6 +394,11 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
         SVPMessageShow.showLoad(title: "正在发布")
         request.caseAdd(t: tStr, n: nStr, rt: rtStr, pn: pnStr, pc: pcStr, pp: ppStr, pz: pzStr, pj: pjStr, pd: pdStr, pa: paStr, on: onStr, oc: ocStr, op: opStr, oz: ozStr, oj: ojStr, oa: oaStr, r: rStr, d: dStr, w1: w1Str, w2: w2Str, ct: ctStr, sj: sjStr, id: "")
     }
+
+
+    func editeRequest() {
+        request.caseAdd(t: tStr, n: nStr, rt: rtStr, pn: pnStr, pc: pcStr, pp: ppStr, pz: pzStr, pj: pjStr, pd: pdStr, pa: paStr, on: onStr, oc: ocStr, op: opStr, oz: ozStr, oj: ojStr, oa: oaStr, r: rStr, d: dStr, w1: w1Str, w2: w2Str, ct: ctStr, sj: sjStr, id: "\(caseId!)")
+    }
     
     
     
@@ -402,21 +407,30 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
             caseDetailModel = data as! caseDetailModelMap
             //案件类型
             content1.append(caseDetailModel.data.typeStr)
+
             //名字
             content1.append(caseDetailModel.data.n)
+
             //时间
             content1.append(caseDetailModel.data.rt)
+
             //律师
             content1.append(caseDetailModel.data.rStr)
+
             //组别
             content1.append(caseDetailModel.data.dStr)
-            //自述
-            content1.append(caseDetailModel.data.ct)
-            //标的
-            content1.append(caseDetailModel.data.sj)
 
+
+            content1.append(caseDetailModel.data.w1Str)
+
+
+            content1.append(caseDetailModel.data.w2Str)
+
+             //自述
             content3.append(caseDetailModel.data.ct)
+            //标的
             content3.append(caseDetailModel.data.sj)
+
             self.tableView.reloadData()
         } else if type == .casetype {
             //案件类型
@@ -435,6 +449,9 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
         } else if type == .case_add{
             //添加案件
             SVPMessageShow.dismissSVP()
+            if self.type == .editeCase {
+                self.successBlock()
+            }
             self.navigationController?.popViewController(animated: true)
         } else if type == .casedel{
             self.successBlock()
@@ -475,6 +492,10 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
             HCLog(message: "添加案件")
             self.view.endEditing(true)
             self.caseAddRequest()
+        } else if self.type == .editeCase{
+            HCLog(message: "修改案件")
+            self.view.endEditing(true)
+            self.editeRequest()
         }
 
     }
@@ -494,9 +515,45 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
         let actcion1 = UIAlertAction(title: "确定", style: .default) { (aciton) in
             if typeNum == 0 {
                 HCLog(message: "生成")
+                let vc = OverDealViewController()
+                vc.dealId = self.caseId
+                vc.dealNum = self.caseDetailModel.data.casenum
+                self.navigationController?.pushViewController(vc, animated: true)
+
 
             } else if typeNum == 1 {
                 HCLog(message: "修改")
+                self.navigationBar_rightBtn_title(name: "确定")
+                self.type = .editeCase
+
+                self.tStr = self.caseDetailModel.data.typeStr
+                self.nStr = self.caseDetailModel.data.n
+                self.rtStr = self.caseDetailModel.data.rt
+                self.rStr = self.caseDetailModel.data.rStr
+                self.dStr = self.caseDetailModel.data.dStr
+                self.ctStr = self.caseDetailModel.data.ct
+                self.sjStr = self.caseDetailModel.data.sj
+
+                self.w1Str = "\(self.caseDetailModel.data.w1!)"
+                self.w2Str = "\(self.caseDetailModel.data.w2!)"
+
+                self.pnStr = self.caseDetailModel.data.pn
+                self.pcStr = self.caseDetailModel.data.pc
+                self.ppStr = self.caseDetailModel.data.pp
+                self.pzStr = self.caseDetailModel.data.pz
+                self.pjStr = self.caseDetailModel.data.pj
+                self.pdStr = self.caseDetailModel.data.pd
+                self.paStr = self.caseDetailModel.data.pa
+
+
+                self.onStr = self.caseDetailModel.data.on
+                self.ocStr = self.caseDetailModel.data.oc
+                self.opStr = self.caseDetailModel.data.op
+                self.ozStr = self.caseDetailModel.data.oz
+                self.ojStr = self.caseDetailModel.data.oj
+                self.oaStr = self.caseDetailModel.data.oa
+
+                self.tableView.reloadData()
             } else {
                 HCLog(message: "删除")
                 self.request.casedelRequest(id: self.caseId)

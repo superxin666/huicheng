@@ -4,7 +4,7 @@
 //
 //  Created by lvxin on 2018/4/13.
 //  Copyright © 2018年 lvxin. All rights reserved.
-//
+//   委托人  对方当事人 页面
 
 import UIKit
 typealias CasePersionViewControllerBlock = (_ pn:String,_ pc:String,_ pp:String,_ pz:String,_ pj:String,_ pd:String, _ pa:String)->()
@@ -162,19 +162,23 @@ class CasePersionViewController: BaseViewController,UITableViewDataSource,UITabl
     }
 
     override func navigationLeftBtnClick() {
-        alertController = UIAlertController(title: nil, message: "是否放弃本次记录", preferredStyle: .alert)
-        let actcion1 = UIAlertAction(title: "确定", style: .default) { (aciton) in
+        if self.type == .principal_detail ||  self.type == .opposite_detail {
             self.navigationController?.popViewController(animated: true)
-        }
-        let actcion2 = UIAlertAction(title: "取消", style: .cancel) { (aciton) in
-            self.alertController.dismiss(animated: true, completion: {
+        } else {
+            alertController = UIAlertController(title: nil, message: "是否放弃本次记录", preferredStyle: .alert)
+            let actcion1 = UIAlertAction(title: "确定", style: .default) { (aciton) in
+                self.navigationController?.popViewController(animated: true)
+            }
+            let actcion2 = UIAlertAction(title: "取消", style: .cancel) { (aciton) in
+                self.alertController.dismiss(animated: true, completion: {
 
-            })
-        }
-        alertController.addAction(actcion1)
-        alertController.addAction(actcion2)
-        self.present(alertController, animated: true, completion: nil)
+                })
+            }
+            alertController.addAction(actcion1)
+            alertController.addAction(actcion2)
+            self.present(alertController, animated: true, completion: nil)
 
+        }
 
     }
     override func navigationRightBtnClick() {

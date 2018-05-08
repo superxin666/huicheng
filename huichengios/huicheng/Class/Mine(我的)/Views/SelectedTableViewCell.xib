@@ -82,8 +82,9 @@
             <connections>
                 <outlet property="normalBtn" destination="Lbc-vE-6gH" id="YeQ-b5-3Qq"/>
                 <outlet property="specialBtn" destination="haA-hv-Qti" id="sNA-bR-BBU"/>
+                <outlet property="titleNameLabel" destination="YUW-aC-yLM" id="gyu-2F-6r0"/>
             </connections>
-            <point key="canvasLocation" x="-527" y="-14"/>
+            <point key="canvasLocation" x="-720" y="-27"/>
         </tableViewCell>
     </objects>
     <resources>
