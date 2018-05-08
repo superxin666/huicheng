@@ -33,7 +33,7 @@ class InfoViewController: BaseViewController,UITableViewDelegate,UITableViewData
         // Do any additional setup after loading the view.
         self.view.backgroundColor = viewBackColor
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
-        self.navigationBar_rightBtn_title(name: "编辑")
+//        self.navigationBar_rightBtn_title(name: "编辑")
         self.navigation_title_fontsize(name: "个人信息", fontsize: 18)
         self.creatUI()
         contentArr.append(model.face)
@@ -78,7 +78,7 @@ class InfoViewController: BaseViewController,UITableViewDelegate,UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell : InfoFirstTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: INFOID_first, for: indexPath) as! InfoFirstTableViewCell
-            
+            cell.setData(imageUrl: model.face)
             return cell
         } else {
             let cell : InfoTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: INFOID, for: indexPath) as! InfoTableViewCell

@@ -494,6 +494,7 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
         let actcion1 = UIAlertAction(title: "确定", style: .default) { (aciton) in
             if typeNum == 0 {
                 HCLog(message: "生成")
+
             } else if typeNum == 1 {
                 HCLog(message: "修改")
             } else {

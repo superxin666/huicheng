@@ -10,6 +10,7 @@ import UIKit
 
 class InfoFirstTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var iconImageView: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,7 +22,7 @@ class InfoFirstTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     func setData(imageUrl : String) {
-        
+        iconImageView.setImage_kf(imageName: imageUrl, placeholderImage: #imageLiteral(resourceName: "log_persion"))
     }
     
 }

@@ -64,8 +64,8 @@ class CaseTableViewCell: UITableViewCell {
         if let stateStr = model.stateStr {
             self.nameLabel.text = stateStr
         }
-        if let stateStr = model.stateStr {
-            self.nameLabel.text = stateStr
+        if let reguser = model.reguser {
+            self.subLabel.text = reguser
 
         }
         if let state = model.state {

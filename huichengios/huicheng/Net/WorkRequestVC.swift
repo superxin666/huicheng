@@ -251,7 +251,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
     /// - Parameter id: <#id description#>
     func casedelRequest(id : Int) {
         request.delegate = self
-        type = . roomdel
+        type = . casedel
         let url =   case_del_api + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
     }
