@@ -71,9 +71,12 @@ class DealCheckViewController: BaseViewController,UITableViewDataSource,UITableV
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row  < self.dataArr.count {
             let model :dealGetlistModel  = self.dataArr[indexPath.row]
-
             let vc = DealCheckDetailViewController()
             vc.dealID = model.id
+            weak var weakself = self
+            vc.sucessBlock = {
+                weakself?.reflishData()
+            }
             self.navigationController?.pushViewController(vc, animated: true)
 
         }

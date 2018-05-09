@@ -9,8 +9,12 @@
 //  合同审核详情
 
 import UIKit
+typealias DealCheckDetailViewControllerBlock = ()->()
 
 class DealCheckDetailViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource,WorkRequestVCDelegate,SelectedTableViewCellDelegate,ContentTableViewCellDelegate {
+
+    var sucessBlock :DealCheckDetailViewControllerBlock!
+
     let mainTabelView : UITableView = UITableView()
     let requestVC = WorkRequestVC()
     var dataArr : [dealGetlistModel] = []
@@ -233,7 +237,7 @@ class DealCheckDetailViewController: BaseViewController,UITableViewDelegate,UITa
     }
 
     func endText_content(content: String) {
-
+        self.nStr = content
     }
 
     // MARK: - net
@@ -255,6 +259,7 @@ class DealCheckDetailViewController: BaseViewController,UITableViewDelegate,UITa
 
             self.mainTabelView.reloadData()
         } else {
+            self.sucessBlock()
             self.navigationController?.popViewController(animated: true)
         }
     }
@@ -269,12 +274,17 @@ class DealCheckDetailViewController: BaseViewController,UITableViewDelegate,UITa
     }
     override func navigationRightBtnClick() {
         HCLog(message: "保存")
-        alertController = UIAlertController(title: nil, message: "确定保存", preferredStyle: .actionSheet)
-        let actcion1 = UIAlertAction(title: "确定", style: .default) { (aciton) in
-            self.requestVC.applysaveRequest(id: "\(self.dealID)", s: self.stateStr, n: self.nStr)
+        self.view.endEditing(true)
+        if self.stateStr == "2" {
+            if !(self.nStr.count > 0){
+                SVPMessageShow.showErro(infoStr: "请输入驳回原因")
+                return
+            }
         }
-        alertController.addAction(actcion1)
-
+        alertController = UIAlertController(title: nil, message: "确定保存", preferredStyle: .alert)
+        let actcion1 = UIAlertAction(title: "确定", style: .default) { (aciton) in
+            self.requestVC.applysaveRequest(id: "\(self.dealID!)", s: self.stateStr, n: self.nStr)
+        }
         let actcion2 = UIAlertAction(title: "取消", style: .cancel) { (aciton) in
             self.alertController.dismiss(animated: true, completion: {
 

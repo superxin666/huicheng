@@ -348,12 +348,6 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
     func applysaveRequest(id:String,s:String,n:String) {
         request.delegate = self
         type = .applysave
-        if s == "2" {
-            if !(n.count > 0){
-                SVPMessageShow.showErro(infoStr: "请输入驳回原因")
-                return
-            }
-        }
         var nStr = ""
         if nStr.count > 0 {
             nStr = n.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
@@ -488,7 +482,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work(data: arr,type : type)
             }
-        } else if type == .save || type == .newspublic || type == .oversave || type == .casedel || type == .dealdel || type == .roomsave || type == .roomdel{
+        } else if type == .save || type == .newspublic || type == .oversave || type == .casedel || type == .dealdel || type == .roomsave || type == .roomdel || type == .applysave{
             //发布公告
             let model = Mapper<CodeData>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {
