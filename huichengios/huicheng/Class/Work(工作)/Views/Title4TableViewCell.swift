@@ -32,6 +32,7 @@ class Title4TableViewCell: UITableViewCell {
     ///   - titleStr: <#titleStr description#>
     ///   - contentStr: <#contentStr description#>
     func setData_overCase(titleStr : String,contentStr : String) {
+        self.backgroundColor = .white
         self.titleNameLabel.text = titleStr
         self.subLabel.text = contentStr
     }

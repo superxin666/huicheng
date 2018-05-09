@@ -16,9 +16,20 @@ class DealCheckDetailViewController: BaseViewController,UITableViewDelegate,UITa
     var dataArr : [dealGetlistModel] = []
     var dealID : Int!
 
+//    1-审核通过;2-审核驳回
+    var stateStr = "1"
+    /// 驳回原因
+    var nStr = ""
 
 
+    /// 数据模型
+    var dealModel : getinfoDealModel!
 
+    var section1titleArr = ["合同编号","合同有效期","合同总款","发票情况","发票内容","案件类型","案件名称","案件自述","合同扫描件"]
+    var sectionContent:[String] = []
+    var section2titleArr = ["基本情况","委托人情况"]
+
+    var alertController : UIAlertController!
     // MARK: - life
     override func viewWillLayoutSubviews() {
         mainTabelView.snp.makeConstraints { (make) in
@@ -37,7 +48,8 @@ class DealCheckDetailViewController: BaseViewController,UITableViewDelegate,UITa
         self.navigationBar_rightBtn_title(name: "保存")
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
         self.creatUI()
-        self.requestApi()
+        requestVC.delegate = self
+        requestVC.dealgetinfo(id: dealID)
     }
     // MARK: - UI
     func creatUI() {
@@ -49,10 +61,11 @@ class DealCheckDetailViewController: BaseViewController,UITableViewDelegate,UITa
         mainTabelView.showsVerticalScrollIndicator = false
         mainTabelView.showsHorizontalScrollIndicator = false
         mainTabelView.backgroundView?.backgroundColor = .clear
+
         mainTabelView.register(UINib.init(nibName: "SelectedTableViewCell", bundle: nil), forCellReuseIdentifier: SelectedTableViewCellID)
-        mainTabelView.register(UINib.init(nibName: " ContentTableViewCell", bundle: nil), forCellReuseIdentifier: ContentTableViewCellID)
-        mainTabelView.register(UINib.init(nibName: " Title4TableViewCell", bundle: nil), forCellReuseIdentifier: Title4TableViewCellID)
-        mainTabelView.register(UINib.init(nibName: " Title2TableViewCell", bundle: nil), forCellReuseIdentifier: Title2TableViewCellID)
+        mainTabelView.register(UINib.init(nibName: "ContentTableViewCell", bundle: nil), forCellReuseIdentifier: ContentTableViewCellID)
+        mainTabelView.register(UINib.init(nibName: "Title4TableViewCell", bundle: nil), forCellReuseIdentifier: Title4TableViewCellID)
+        mainTabelView.register(UINib.init(nibName: "Title2TableViewCell", bundle: nil), forCellReuseIdentifier: Title2TableViewCellID)
         self.view.addSubview(mainTabelView)
     }
     // MARK: - delegate
@@ -61,7 +74,12 @@ class DealCheckDetailViewController: BaseViewController,UITableViewDelegate,UITa
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 2
+            if stateStr == "1" {
+                return 1
+            } else {
+                return 2
+            }
+
         } else if section == 1 {
             return 9
         } else {
@@ -73,33 +91,83 @@ class DealCheckDetailViewController: BaseViewController,UITableViewDelegate,UITa
         if indexPath.section == 0 {
             if indexPath.row == 0 {
                 let cell : SelectedTableViewCell  = tableView.dequeueReusableCell(withIdentifier: SelectedTableViewCellID, for: indexPath) as! SelectedTableViewCell
-                cell.setData_dealcheckdetail()
+                cell.delegate = self
+                cell.setData_dealcheckdetail(state: stateStr)
                 return cell
             } else {
 
                 let cell : ContentTableViewCell  = tableView.dequeueReusableCell(withIdentifier: ContentTableViewCellID, for: indexPath) as! ContentTableViewCell
                 cell.delegate = self
-                cell.setData_overdeal(titleStr: "驳回原因")
+                cell.setData_dealDetail(titleStr: "驳回原因",contentStr : nStr)
                 return cell
             }
         } else if indexPath.section == 1 {
             if indexPath.row == 7 {
-                let cell : ContentTableViewCell  = tableView.dequeueReusableCell(withIdentifier: ContentTableViewCellID, for: indexPath) as! ContentTableViewCell
-                cell.setData_dealcheckdetail(title: "案件自述", contentCase: "123")
+
+                let cell : ContentTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: ContentTableViewCellID, for: indexPath) as! ContentTableViewCell
+                var str = ""
+                if indexPath.row < sectionContent.count {
+                    str = sectionContent[indexPath.row]
+                }
+                cell.setData_dealcheckdetail(title: section1titleArr[indexPath.row], contentCase: str)
                 return cell
+
             } else if indexPath.row == 8 {
                 let cell : Title2TableViewCell  = tableView.dequeueReusableCell(withIdentifier: Title2TableViewCellID, for: indexPath) as! Title2TableViewCell
-                cell.setData(titleStr: "合同扫描件")
+                cell.setData(titleStr: section1titleArr[indexPath.row])
                 return cell
             } else {
                 let cell : Title4TableViewCell  = tableView.dequeueReusableCell(withIdentifier: Title4TableViewCellID, for: indexPath) as! Title4TableViewCell
-                cell.setData_overCase(titleStr: "12", contentStr: "34")
+                var str = ""
+                if indexPath.row < sectionContent.count {
+                    str = sectionContent[indexPath.row]
+                }
+                cell.setData_overCase(titleStr: section1titleArr[indexPath.row], contentStr: str)
                 return cell
             }
         } else {
             let cell : Title2TableViewCell  = tableView.dequeueReusableCell(withIdentifier: Title2TableViewCellID, for: indexPath) as! Title2TableViewCell
-            cell.setData(titleStr: "合同扫描件")
+            cell.setData(titleStr: section2titleArr[indexPath.row])
             return cell
+        }
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 2 {
+            var arr : [String] = []
+            var arr2 : [String] = []
+            if indexPath.row == 0 {
+                HCLog(message: "基本情况")
+                let vc = BaseInfoViewController()
+
+                arr.append(dealModel.rStr)
+                arr.append(dealModel.rt)
+                arr.append(dealModel.w1Str)
+                arr.append(dealModel.w2Str)
+
+
+                arr2.append(dealModel.ct)
+                arr2.append(dealModel.sj)
+
+                vc.dataArr = arr
+                vc.dataArr2 = arr2
+
+                self.navigationController?.pushViewController(vc, animated: true)
+            } else {
+                //委托人情况
+                let vc = CasePersionViewController()
+                vc.type =  .principal_detail
+                arr.append(dealModel.pn)
+                arr.append(dealModel.pc)
+                arr.append(dealModel.pp)
+                arr.append(dealModel.pz)
+                arr.append(dealModel.pj)
+                arr.append(dealModel.pd)
+                arr.append(dealModel.pa)
+                vc.dataArr = arr
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+
         }
     }
 
@@ -142,10 +210,10 @@ class DealCheckDetailViewController: BaseViewController,UITableViewDelegate,UITa
                 return 50
             }
         }  else if indexPath.section == 1 {
-            if indexPath.row == 8 {
+            if indexPath.row == 7 {
                 return ContentTableViewCellH
             } else {
-                return 50
+                return Title4TableViewCellH
             }
         } else {
             return 50
@@ -154,6 +222,13 @@ class DealCheckDetailViewController: BaseViewController,UITableViewDelegate,UITa
     }
 
     func selectedClickDelegate_type(tag: Int, type: String) {
+        HCLog(message: type)
+        if type == "0" {
+            stateStr = "1"
+        } else {
+            stateStr = "2"
+        }
+        mainTabelView.reloadSections([0], with: .automatic)
 
     }
 
@@ -167,7 +242,21 @@ class DealCheckDetailViewController: BaseViewController,UITableViewDelegate,UITa
 
 
     func requestSucceed_work(data: Any,type : WorkRequestVC_enum) {
+        if type == .getinfo {
+            dealModel = data as! getinfoDealModel
+            sectionContent.append(dealModel.dealsnum)
+            sectionContent.append("\(dealModel.begintime!)~\(dealModel.endtime!)")
+            sectionContent.append(dealModel.amount)
+            sectionContent.append(dealModel.ispaperStr)
+            sectionContent.append("")
+            sectionContent.append(dealModel.typeStr)
+            sectionContent.append(dealModel.n)
+            sectionContent.append(dealModel.ct)
 
+            self.mainTabelView.reloadData()
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 
     func requestFail_work() {
@@ -180,6 +269,20 @@ class DealCheckDetailViewController: BaseViewController,UITableViewDelegate,UITa
     }
     override func navigationRightBtnClick() {
         HCLog(message: "保存")
+        alertController = UIAlertController(title: nil, message: "确定保存", preferredStyle: .actionSheet)
+        let actcion1 = UIAlertAction(title: "确定", style: .default) { (aciton) in
+            self.requestVC.applysaveRequest(id: "\(self.dealID)", s: self.stateStr, n: self.nStr)
+        }
+        alertController.addAction(actcion1)
+
+        let actcion2 = UIAlertAction(title: "取消", style: .cancel) { (aciton) in
+            self.alertController.dismiss(animated: true, completion: {
+
+            })
+        }
+        alertController.addAction(actcion1)
+        alertController.addAction(actcion2)
+        self.present(alertController, animated: true, completion: nil)
 
     }
 

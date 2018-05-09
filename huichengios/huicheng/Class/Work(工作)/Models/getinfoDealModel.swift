@@ -34,14 +34,15 @@ class getinfoDealModel: Mappable {
     var casenum: String!
     var n : String!
     var rt : String!
+
     var pn: String!
     var pc: String!
-
     var pp: String!
     var pz: String!
     var pj: String!
     var pd: String!
     var pa: String!
+
     var on: String!
     var oc: String!
     var op : String!
@@ -92,12 +93,15 @@ class getinfoDealModel: Mappable {
         casenum <- map["casenum"]
         n <- map["n"]
         rt <- map["rt"]
+
         pn <- map["pn"]
         pc <- map["pc"]
         pz <- map["pz"]
         pj <- map["pj"]
         pd <- map["pd"]
         pa <- map["pa"]
+        pp <- map["pp"]
+
         on <- map["on"]
         oc <- map["oc"]
         op <- map["op"]

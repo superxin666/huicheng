@@ -43,11 +43,20 @@ class SelectedTableViewCell: UITableViewCell {
         specialBtn.setTitle("已开", for: .normal)
     }
 
-    func setData_dealcheckdetail() {
-        normalBtn.isSelected = true
-        lastBtn = normalBtn
-        self.titleNameLabel.text = "审核状态"
+    func setData_dealcheckdetail(state : String) {
+        if state == "1" {
+            specialBtn.isSelected = false
 
+            normalBtn.isSelected = true
+            lastBtn = normalBtn
+        } else {
+            normalBtn.isSelected = false
+
+            specialBtn.isSelected = true
+            lastBtn = specialBtn
+        }
+
+        self.titleNameLabel.text = "审核状态"
         normalBtn.setTitle("审核通过", for: .normal)
         specialBtn.setTitle("驳回审核", for: .normal)
     }

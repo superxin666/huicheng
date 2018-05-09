@@ -91,6 +91,7 @@ let deal_del_api = "deal/del?"
 
 /// 合同审核 获取列表
 let deal_getapplylist_api = "deal/getapplylist?"
+let deal_applysave_api = "deal/applysave?"
 
 /// 结案审核 获取列表
 let deal_getoverlist_api = "deal/getoverlist?"

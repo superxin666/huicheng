@@ -50,6 +50,14 @@ class ContentTableViewCell: UITableViewCell,UITextViewDelegate {
         self.titleLabel.textColor = darkblueColor
         self.titleLabel.text = titleStr
 
+
+    }
+
+    func setData_dealDetail(titleStr : String,contentStr : String) {
+        self.titleLabel.textColor = darkblueColor
+        self.titleLabel.text = titleStr
+
+        self.textView.text = contentStr
     }
 
 
