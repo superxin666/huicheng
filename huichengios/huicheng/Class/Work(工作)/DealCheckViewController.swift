@@ -72,12 +72,8 @@ class DealCheckViewController: BaseViewController,UITableViewDataSource,UITableV
         if indexPath.row  < self.dataArr.count {
             let model :dealGetlistModel  = self.dataArr[indexPath.row]
 
-            let vc = DealDetailViewController()
+            let vc = DealCheckDetailViewController()
             vc.dealID = model.id
-            weak var weakself = self
-            vc.sucessBlock = {
-                weakself?.reflishData()
-            }
             self.navigationController?.pushViewController(vc, animated: true)
 
         }
@@ -89,7 +85,7 @@ class DealCheckViewController: BaseViewController,UITableViewDataSource,UITableV
     // MARK: - net
     func requestApi() {
         requestVC.delegate = self
-        requestVC.dealgetapplylist(p: pageNum, c: 8, n: "", b: "", e: "", u: "")
+        requestVC.dealgetapplylist(p: pageNum, c: 8, n: numStr, b: "", e: "", u: "")
     }
 
     func reflishData() {

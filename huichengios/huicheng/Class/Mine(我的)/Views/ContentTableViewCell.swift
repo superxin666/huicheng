@@ -64,6 +64,20 @@ class ContentTableViewCell: UITableViewCell,UITextViewDelegate {
 
         self.textView.text = contentCase
     }
+
+    /// 合同审查
+    ///
+    /// - Parameters:
+    ///   - title: <#title description#>
+    ///   - contentCase: <#contentCase description#>
+    func setData_dealcheckdetail(title : String,contentCase : String) {
+        self.titleLabel.textColor = darkblueColor
+        self.titleLabel.text = title
+        self.textView.text = contentCase
+        self.textView.isUserInteractionEnabled = false
+    }
+
+
     
     override func awakeFromNib() {
         super.awakeFromNib()

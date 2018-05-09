@@ -33,6 +33,7 @@ class SelectedTableViewCell: UITableViewCell {
         lastBtn = normalBtn
     }
 
+    /// 生成合同
     func setData_deal() {
         normalBtn.isSelected = true
         lastBtn = normalBtn
@@ -40,6 +41,15 @@ class SelectedTableViewCell: UITableViewCell {
 
         normalBtn.setTitle("未开", for: .normal)
         specialBtn.setTitle("已开", for: .normal)
+    }
+
+    func setData_dealcheckdetail() {
+        normalBtn.isSelected = true
+        lastBtn = normalBtn
+        self.titleNameLabel.text = "审核状态"
+
+        normalBtn.setTitle("审核通过", for: .normal)
+        specialBtn.setTitle("驳回审核", for: .normal)
     }
 
     @IBAction func btnClick(_ sender: UIButton) {
