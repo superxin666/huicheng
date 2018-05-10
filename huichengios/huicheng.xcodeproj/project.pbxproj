@@ -141,6 +141,7 @@
 		214AA6BC207F9876004F2B63 /* CaseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 214AA6BA207F9876004F2B63 /* CaseTableViewCell.xib */; };
 		214C8FE120A3CD9500B09C3B /* CaseCheckDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214C8FE020A3CD9500B09C3B /* CaseCheckDetailViewController.swift */; };
 		214C8FE320A42D0F00B09C3B /* CheckInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214C8FE220A42D0F00B09C3B /* CheckInfoViewController.swift */; };
+		214C8FE520A4306E00B09C3B /* DealSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214C8FE420A4306E00B09C3B /* DealSearchViewController.swift */; };
 		21541DD32062635E0003746E /* work_getlistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21541DD22062635E0003746E /* work_getlistModel.swift */; };
 		21541DD5206265010003746E /* work_getinfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21541DD4206265010003746E /* work_getinfoModel.swift */; };
 		21553CBF20887159009284B1 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21553CBE20887159009284B1 /* BaseTableViewController.swift */; };
@@ -338,6 +339,7 @@
 		214AA6BA207F9876004F2B63 /* CaseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CaseTableViewCell.xib; sourceTree = "<group>"; };
 		214C8FE020A3CD9500B09C3B /* CaseCheckDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseCheckDetailViewController.swift; sourceTree = "<group>"; };
 		214C8FE220A42D0F00B09C3B /* CheckInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInfoViewController.swift; sourceTree = "<group>"; };
+		214C8FE420A4306E00B09C3B /* DealSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealSearchViewController.swift; sourceTree = "<group>"; };
 		21541DD22062635E0003746E /* work_getlistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = work_getlistModel.swift; sourceTree = "<group>"; };
 		21541DD4206265010003746E /* work_getinfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = work_getinfoModel.swift; sourceTree = "<group>"; };
 		21553CBE20887159009284B1 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
@@ -720,6 +722,7 @@
 				2124D726208DBA9D0007B5EE /* CaseCheckViewController.swift */,
 				214C8FE020A3CD9500B09C3B /* CaseCheckDetailViewController.swift */,
 				214C8FE220A42D0F00B09C3B /* CheckInfoViewController.swift */,
+				214C8FE420A4306E00B09C3B /* DealSearchViewController.swift */,
 				2124D71A208D66530007B5EE /* RoomViewController.swift */,
 				2124D722208D73280007B5EE /* AddRoomViewController.swift */,
 				2124D72C208E196E0007B5EE /* ShareViewController.swift */,
@@ -1126,6 +1129,7 @@
 				21CFDDC72068E8E500745A48 /* InvoiceTableViewCell.swift in Sources */,
 				2105D2E7206116C80031B14C /* finance_getinfoModel.swift in Sources */,
 				21387D37205F8E4E0050DF1F /* noticelistModel.swift in Sources */,
+				214C8FE520A4306E00B09C3B /* DealSearchViewController.swift in Sources */,
 				2109654D207116830012FDDB /* getobjectlistModel.swift in Sources */,
 				21075562205D7A3700FF4396 /* MineHeadView.swift in Sources */,
 				2108BB77206FD0B3002A4212 /* NoticeViewController.swift in Sources */,

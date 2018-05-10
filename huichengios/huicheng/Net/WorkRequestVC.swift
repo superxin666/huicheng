@@ -16,7 +16,7 @@ enum WorkRequestVC_enum {
          branch,department,userlist,casetype,//分所列表  部门列表  本所律师列表  案件类型
          deal,getinfo,oversave,dealdel,//合同列表 详情  申请结案  删除合同
          room,roomsave,roomdel,//会议室
-         dealgetapplylist,applysave,// 合同审核  获取列表
+         dealgetapplylist,applysave,searchlist,// 合同审核  获取列表
          dealgetoverlist,dealgetoverinfo,checkoversave,//结案审核
          sharegetlist//模板共享 获取列表
 }
@@ -356,6 +356,23 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
         request.request_api(url: url)
     }
 
+    /// 合同查询
+    ///
+    /// - Parameters:
+    ///   - p: <#p description#>
+    ///   - c: <#c description#>
+    ///   - n: <#n description#>
+    func searchlistReuest(p:Int,c:Int,n:String) {
+        request.delegate = self
+        type = .searchlist
+        var nStr = ""
+        if nStr.count > 0 {
+            nStr = n.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+        let url = deal_searchlist_api   + "p=\(p)&c=\(c)&n=\(nStr)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+    }
+
 
     // MARK: 结案审核
     ///   获取列表
@@ -564,7 +581,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work(data: model,type : type)
             }
-        } else if type == .deal || type == .dealgetapplylist || type == .dealgetoverlist{
+        } else if type == .deal || type == .dealgetapplylist || type == .dealgetoverlist || type == .searchlist{
             let arr = Mapper<dealGetlistModel>().mapArray(JSONArray: response as! [[String : Any]])
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work(data: arr,type : type)

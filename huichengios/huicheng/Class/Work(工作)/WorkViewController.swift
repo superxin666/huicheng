@@ -126,7 +126,10 @@ class WorkViewController: BaseViewController,UITableViewDelegate,UITableViewData
                 vc.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
             case 3:
-                  HCLog(message: "审核进度查询")
+                  HCLog(message: "审核查询")
+                  let vc = DealSearchViewController()
+                  vc.hidesBottomBarWhenPushed = true
+                  self.navigationController?.pushViewController(vc, animated: true)
             default:
                 HCLog(message: "暂无")
             }
