@@ -95,6 +95,54 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
         }
 
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 1 {
+            if indexPath.row == 0 {
+                HCLog(message: "发票信息")
+            } else if indexPath.row == 1 {
+                HCLog(message: "基本情况")
+                var arr : [String] = []
+                var arr2 : [String] = []
+                let vc = BaseInfoViewController()
+
+                arr.append(dealModel.rStr)
+                arr.append(dealModel.rt)
+                arr.append(dealModel.w1Str)
+                arr.append(dealModel.w2Str)
+                arr2.append(dealModel.ct)
+                arr2.append(dealModel.sj)
+
+                vc.dataArr = arr
+                vc.dataArr2 = arr2
+
+                self.navigationController?.pushViewController(vc, animated: true)
+
+            }else if indexPath.row == 2 {
+                HCLog(message: "委托人情况")
+                var arr : [String] = []
+                //委托人情况
+                let vc = CasePersionViewController()
+                vc.type =  .principal_detail
+                arr.append(dealModel.pn)
+                arr.append(dealModel.pc)
+                arr.append(dealModel.pp)
+                arr.append(dealModel.pz)
+                arr.append(dealModel.pj)
+                arr.append(dealModel.pd)
+                arr.append(dealModel.pa)
+                vc.dataArr = arr
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else if indexPath.row == 3 {
+                HCLog(message: "对方当事人情况")
+            }else if indexPath.row == 4 {
+                HCLog(message: "函件列表")
+            }else if indexPath.row == 5 {
+                HCLog(message: "收款记录")
+            }else  {
+                HCLog(message: "审核状态")
+            }
+        }
+    }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
@@ -119,6 +167,10 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
             sectionContent.append(dealModel.n)
             sectionContent.append(dealModel.dealpaylasttime)
             sectionContent.append(dealModel.amount)
+
+
+
+            
             self.mainTabelView.reloadData()
         } else if type == .dealdel  {
             self.sucessBlock()
