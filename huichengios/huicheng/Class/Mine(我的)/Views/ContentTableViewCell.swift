@@ -5,9 +5,9 @@
 //  Created by lvxin on 2018/3/31.
 //  Copyright © 2018年 lvxin. All rights reserved.
 //  内容cell
-protocol ContentTableViewCellDelegate {
-    func endText_content(content:String)
 
+protocol ContentTableViewCellDelegate {
+    func endText_content(content:String,tagNum : Int)
 }
 import UIKit
 let ContentTableViewCellH = CGFloat(200)
@@ -28,7 +28,7 @@ class ContentTableViewCell: UITableViewCell,UITextViewDelegate {
             conTent = str
         }
         if let delegate = self.delegate {
-            delegate.endText_content(content: conTent)
+            delegate.endText_content(content: conTent,tagNum : self.textView.tag)
         }
 
     }
@@ -85,6 +85,19 @@ class ContentTableViewCell: UITableViewCell,UITextViewDelegate {
         self.textView.isUserInteractionEnabled = false
     }
 
+
+    /// 结案审核详情
+    ///
+    /// - Parameters:
+    ///   - title: <#title description#>
+    ///   - contentCase: <#contentCase description#>
+    ///   - tag: <#tag description#>
+    func setData_casecheckDetail(title : String,contentCase : String,tag: Int) {
+        self.titleLabel.textColor = darkblueColor
+        self.titleLabel.text = title
+        self.textView.text = contentCase
+        self.textView.tag = tag
+    }
 
     
     override func awakeFromNib() {

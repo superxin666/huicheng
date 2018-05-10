@@ -377,7 +377,7 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
             self.sjStr = inputStr
         }
     }
-    func endText_content(content: String) {
+    func endText_content(content: String,tagNum : Int) {
         self.ctStr = content
     }
 

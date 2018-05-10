@@ -62,7 +62,7 @@ class getinfoDealModel: Mappable {
     var ct : String!
     var sj: String!
     var addtime: String!
-
+    var mt: String!
 
     init() {}
     required init?(map: Map){
@@ -121,6 +121,6 @@ class getinfoDealModel: Mappable {
         ct <- map["ct"]
         sj <- map["sj"]
         addtime <- map["addtime"]
-
+        mt <- map["mt"]
     }
 }

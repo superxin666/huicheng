@@ -103,7 +103,7 @@ class AddRoomViewController: BaseTableViewController,TitleTableViewCellDelegate 
         self.tStr = inputStr
     }
 
-    func endText_content(content: String) {
+    func endText_content(content: String,tagNum : Int) {
         HCLog(message: content)
         self.nStr = content
     }

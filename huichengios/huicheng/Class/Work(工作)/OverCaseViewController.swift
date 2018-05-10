@@ -124,7 +124,7 @@ class OverCaseViewController: BaseTableViewController,ContentTableViewCellDelega
         }
     }
 
-    func endText_content(content: String) {
+    func endText_content(content: String,tagNum : Int) {
         dStr = content
     }
 

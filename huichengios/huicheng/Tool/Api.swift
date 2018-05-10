@@ -95,6 +95,9 @@ let deal_applysave_api = "deal/applysave?"
 
 /// 结案审核 获取列表
 let deal_getoverlist_api = "deal/getoverlist?"
+let deal_getoverinfo_api = "deal/getoverinfo?"
+let deal_checkoversave_api = "deal/checkoversave?"
+
 /// /-----------------------模板共享
 
 /// 获取列表

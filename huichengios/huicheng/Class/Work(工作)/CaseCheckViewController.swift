@@ -73,7 +73,7 @@ class CaseCheckViewController: BaseViewController,UITableViewDataSource,UITableV
         if indexPath.row  < self.dataArr.count {
             let model :dealGetlistModel  = self.dataArr[indexPath.row]
 
-            let vc = DealDetailViewController()
+            let vc = CaseCheckDetailViewController()
             vc.dealID = model.id
             weak var weakself = self
             vc.sucessBlock = {

@@ -17,7 +17,7 @@ enum WorkRequestVC_enum {
          deal,getinfo,oversave,dealdel,//合同列表 详情  申请结案  删除合同
          room,roomsave,roomdel,//会议室
          dealgetapplylist,applysave,// 合同审核  获取列表
-         dealgetoverlist,//结案审核
+         dealgetoverlist,dealgetoverinfo,checkoversave,//结案审核
          sharegetlist//模板共享 获取列表
 }
 
@@ -357,8 +357,8 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
     }
 
 
-
-    ///  结案审核 获取列表
+    // MARK: 结案审核
+    ///   获取列表
     ///
     /// - Parameters:
     ///   - p: <#p description#>
@@ -375,6 +375,49 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
         request.request_api(url: url)
 
     }
+
+
+    /// 获取详情
+    ///
+    /// - Parameter id: <#id description#>
+    func dealgetoverinfoRequest(id:String) {
+        request.delegate = self
+        type = .dealgetoverinfo
+        let url = deal_getoverinfo_api   + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+
+    }
+
+    /// 结案确认保存
+    ///
+    /// - Parameters:
+    ///   - id: <#id description#>
+    ///   - s: <#s description#>
+    ///   - n: <#n description#>
+    ///   - pn: <#pn description#>
+    ///   - rn: <#rn description#>
+    func checkoversaveRewuest(id:String,s:String,n:String,pn:String,rn:String) {
+        var pnStr = ""
+        pnStr = pn.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+
+        var rnStr = ""
+        rnStr = rn.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        
+        var nStr = ""
+        if n.count > 0 {
+            nStr = n.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+
+
+        request.delegate = self
+        type = .checkoversave
+        let url = deal_checkoversave_api   + "id=\(id)&s=\(s)&pn=\(pnStr)&n=\(nStr)&rn=\(rnStr)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+    }
+
+
+
+
 
     // MARK: 会议室
     func roomgetlist(){
@@ -482,7 +525,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work(data: arr,type : type)
             }
-        } else if type == .save || type == .newspublic || type == .oversave || type == .casedel || type == .dealdel || type == .roomsave || type == .roomdel || type == .applysave{
+        } else if type == .save || type == .newspublic || type == .oversave || type == .casedel || type == .dealdel || type == .roomsave || type == .roomdel || type == .applysave || type == .checkoversave{
             //发布公告
             let model = Mapper<CodeData>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {
@@ -527,7 +570,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
                 self.delegate.requestSucceed_work(data: arr,type : type)
             }
 
-        } else if type == .getinfo{
+        } else if type == .getinfo || type == .dealgetoverinfo{
             let model = Mapper<getinfoDealModel>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work(data: model,type : type)
