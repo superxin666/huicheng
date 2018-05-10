@@ -267,7 +267,7 @@ class CaseCheckDetailViewController: BaseTableViewController,WorkRequestVCDelega
         } else {
             self.rnStr = content
         }
-
+        
     }
 
     // MARK: - net

@@ -108,7 +108,7 @@ class getinfoDealModel: Mappable {
         oz <- map["oz"]
 
         oj <- map["oj"]
-        oa <- map["ooan"]
+        oa <- map["oa"]
         r <- map["r"]
         rStr <- map["rStr"]
         d <- map["d"]

@@ -104,17 +104,14 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
                 var arr : [String] = []
                 var arr2 : [String] = []
                 let vc = BaseInfoViewController()
-
                 arr.append(dealModel.rStr)
                 arr.append(dealModel.rt)
                 arr.append(dealModel.w1Str)
                 arr.append(dealModel.w2Str)
                 arr2.append(dealModel.ct)
                 arr2.append(dealModel.sj)
-
                 vc.dataArr = arr
                 vc.dataArr2 = arr2
-
                 self.navigationController?.pushViewController(vc, animated: true)
 
             }else if indexPath.row == 2 {
@@ -132,14 +129,38 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
                 arr.append(dealModel.pa)
                 vc.dataArr = arr
                 self.navigationController?.pushViewController(vc, animated: true)
+
             }else if indexPath.row == 3 {
                 HCLog(message: "对方当事人情况")
+                var arr : [String] = []
+                let vc = CasePersionViewController()
+                vc.type =  .opposite_detail
+                arr.append(dealModel.on)
+                arr.append(dealModel.oc)
+                arr.append(dealModel.op)
+                arr.append(dealModel.oz)
+                arr.append(dealModel.oj)
+                arr.append(dealModel.oa)
+                vc.dataArr = arr
+                self.navigationController?.pushViewController(vc, animated: true)
+
             }else if indexPath.row == 4 {
                 HCLog(message: "函件列表")
+
             }else if indexPath.row == 5 {
                 HCLog(message: "收款记录")
+                
+
             }else  {
                 HCLog(message: "审核状态")
+                var arr : [String] = []
+                let vc = CheckInfoViewController()
+                arr.append(dealModel.stateStr)
+                arr.append(dealModel.admin)
+                arr.append(dealModel.applytime)
+                vc.dataArr = arr
+                self.navigationController?.pushViewController(vc, animated: true)
+
             }
         }
     }
