@@ -97,6 +97,7 @@ class ContentTableViewCell: UITableViewCell,UITextViewDelegate {
         self.titleLabel.text = title
         self.textView.text = contentCase
         self.textView.tag = tag
+        self.textView.isUserInteractionEnabled = true
     }
 
     

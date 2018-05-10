@@ -111,11 +111,12 @@ class CaseCheckDetailViewController: BaseTableViewController,WorkRequestVCDelega
         } else if indexPath.section == 1 {
             if indexPath.row == 0 {
                 let cell : ContentTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: ContentTableViewCellID, for: indexPath) as! ContentTableViewCell
-
+                cell.delegate = self
                 cell.setData_casecheckDetail(title: "委托人意见", contentCase: pnStr, tag: 20)
                 return cell
             } else {
                 let cell : ContentTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: ContentTableViewCellID, for: indexPath) as! ContentTableViewCell
+                cell.delegate = self
                 cell.setData_casecheckDetail(title: "律师事务所负责人意见", contentCase: rnStr, tag: 200)
                 return cell
             }
@@ -127,7 +128,6 @@ class CaseCheckDetailViewController: BaseTableViewController,WorkRequestVCDelega
                     str = section2Content[indexPath.row]
                 }
                 cell.setData_dealcheckdetail(title: section2titleArr[indexPath.row], contentCase: str)
-                cell.isUserInteractionEnabled = false
                 return cell
 
             } else {
@@ -228,10 +228,11 @@ class CaseCheckDetailViewController: BaseTableViewController,WorkRequestVCDelega
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            if indexPath.row == 1 {
-                return ContentTableViewCellH
-            } else {
+            if indexPath.row == 0 {
                 return 50
+
+            } else {
+                return ContentTableViewCellH
             }
         }  else if indexPath.section == 1 {
             return ContentTableViewCellH
@@ -319,7 +320,7 @@ class CaseCheckDetailViewController: BaseTableViewController,WorkRequestVCDelega
 
         alertController = UIAlertController(title: nil, message: "确定保存", preferredStyle: .alert)
         let actcion1 = UIAlertAction(title: "确定", style: .default) { (aciton) in
-            self.requestVC.checkoversaveRewuest(id: "\(self.dealID)", s: self.stateStr, n: self.nStr, pn: self.pnStr, rn: self.rnStr)
+            self.requestVC.checkoversaveRewuest(id: "\(self.dealID!)", s: self.stateStr, n: self.nStr, pn: self.pnStr, rn: self.rnStr)
         }
         let actcion2 = UIAlertAction(title: "取消", style: .cancel) { (aciton) in
             self.alertController.dismiss(animated: true, completion: {
