@@ -157,6 +157,16 @@ class TitleTableViewCell: UITableViewCell {
         self.textField.keyboardType = .numberPad
     }
 
+    /// 工作日志
+    ///
+    /// - Parameters:
+    ///   - titleStr: <#titleStr description#>
+    ///   - congtentStr: <#congtentStr description#>
+    func setData_work(titleStr : String,congtentStr : String) {
+        self.titleNameLabel.textColor = darkblueColor
+        self.titleNameLabel.text = titleStr
+        self.textField.text = congtentStr
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -70,6 +70,15 @@ class WorkBookViewController: BaseViewController,UITableViewDataSource,UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row < self.dataArr.count {
+            let model = self.dataArr[indexPath.row]
+
+            let vc = AddWorkViewController()
+            vc.type = .detail
+            vc.workID = model.id
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -102,6 +111,13 @@ class WorkBookViewController: BaseViewController,UITableViewDataSource,UITableVi
         pageNum = pageNum + 1
         self.requestApi()
     }
+
+    func reflish() {
+        HCLog(message: "刷新")
+        self.dataArr.removeAll()
+        pageNum = 1
+        self.requestApi()
+    }
     
     func requestApi() {
         request.delegate = self
@@ -117,6 +133,11 @@ class WorkBookViewController: BaseViewController,UITableViewDataSource,UITableVi
     @objc func addClick() {
         HCLog(message: "添加")
         let vc = AddWorkViewController()
+        vc.type = .add
+        weak var weakself = self
+        vc.sucessBlock = {
+            weakself?.reflish()
+        }
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
         

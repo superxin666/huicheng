@@ -100,6 +100,23 @@ class ContentTableViewCell: UITableViewCell,UITextViewDelegate {
         self.textView.isUserInteractionEnabled = true
     }
 
+
+    /// 工作日志
+    ///
+    /// - Parameters:
+    ///   - title: <#title description#>
+    ///   - contentCase: <#contentCase description#>
+    func setData_work(title : String,contentCase : String) {
+        self.titleLabel.textColor = darkblueColor
+        self.titleLabel.text = title
+
+
+        let attrStr = try! NSAttributedString(
+            data: contentCase.data(using: String.Encoding.unicode, allowLossyConversion: true)!,
+            options:[NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
+        self.textView.attributedText = attrStr
+    }
+
     
     override func awakeFromNib() {
         super.awakeFromNib()

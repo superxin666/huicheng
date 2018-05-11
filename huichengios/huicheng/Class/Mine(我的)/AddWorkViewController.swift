@@ -10,11 +10,23 @@ import UIKit
 enum AddWorkViewControllerType {
     case add,detail
 }
-class AddWorkViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate {
+typealias AddWorkViewControllerBlocl = ()->()
+class AddWorkViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate,MineRequestVCDelegate,TitleTableViewCellDelegate,ContentTableViewCellDelegate {
+    var sucessBlock : AddWorkViewControllerBlocl!
+
+    let requestVC = MineRequestVC()
+
     var type : AddWorkViewControllerType!
 
     let mainTabelView : UITableView = UITableView()
-    
+
+    var workID : Int!
+
+    var workDetailModel : work_getinfoModel!
+
+    var tStr = ""
+
+    var nStr = ""
     // MARK: - life
     override func viewWillLayoutSubviews() {
         mainTabelView.snp.makeConstraints { (make) in
@@ -31,8 +43,11 @@ class AddWorkViewController: BaseViewController,UITableViewDataSource,UITableVie
          self.view.backgroundColor = viewBackColor
         self.navigation_title_fontsize(name: "工作日志", fontsize: 18)
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
+        requestVC.delegate = self
         if type == .add {
             self.navigationBar_rightBtn_title(name: "确定")
+        } else {
+            requestVC.work_getinfoRequest(id: self.workID!)
         }
 
         self.creatUI()
@@ -62,9 +77,23 @@ class AddWorkViewController: BaseViewController,UITableViewDataSource,UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+            cell.delegate = self
+            cell.setData_work(titleStr: "标题", congtentStr: tStr)
+            if type == .add{
+                cell.isUserInteractionEnabled = true
+            } else {
+                cell.isUserInteractionEnabled = false
+            }
             return cell
         } else if indexPath.row == 1 {
             let cell : ContentTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: ContentTableViewCellID, for: indexPath) as! ContentTableViewCell
+            cell.delegate = self
+            cell.setData_work(title: "内容", contentCase: nStr)
+            if type == .add{
+                cell.isUserInteractionEnabled = true
+            } else {
+                cell.isUserInteractionEnabled = false
+            }
             return cell
         } else {
             let cell : FileTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: FileTableViewCellID, for: indexPath) as! FileTableViewCell
@@ -90,12 +119,50 @@ class AddWorkViewController: BaseViewController,UITableViewDataSource,UITableVie
             return FileTableViewCellH
         }
     }
+
+    func requestSucceed_mine(data: Any, type: MineRequestVC_enum) {
+        if type == .work_getinfo {
+            //获取详情
+            workDetailModel = data as! work_getinfoModel
+            tStr = workDetailModel.title
+            nStr = workDetailModel.content
+            self.mainTabelView.reloadData()
+        } else if type == .work_save{
+            //保存
+            self.sucessBlock()
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+
+    func requestFail_mine() {
+
+    }
+    func endEdite(inputStr: String, tagNum: Int) {
+        self.tStr = inputStr
+    }
+    func endText_content(content: String, tagNum: Int) {
+        self.nStr = content
+    }
     
     override func navigationLeftBtnClick() {
         self.navigationController?.popViewController(animated: true)
     }
     override func navigationRightBtnClick() {
-        HCLog(message: "确定")
+        if self.type == .add {
+            HCLog(message: "确定")
+            self.view.endEditing(true)
+            if !(tStr.count > 0){
+                SVPMessageShow.showErro(infoStr: "请输入标题")
+                return
+            }
+            if !(nStr.count > 0){
+                SVPMessageShow.showErro(infoStr: "请输入内容名")
+                return
+            }
+            requestVC.work_save_apiRequest(t: tStr, n: nStr, a: "")
+        }
+
+
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -285,7 +285,7 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
     func work_getinfoRequest(id:Int) {
         request.delegate = self
         type = .work_getinfo
-        let url =   work_getinfo_api + "id=\(id)&k=\(UserInfoLoaclManger.getKey)"
+        let url =   work_getinfo_api + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
     }
     
@@ -298,7 +298,9 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
     func work_save_apiRequest(t:String,n:String,a:String) {
         request.delegate = self
         type = .work_save
-        let url =   work_save_api + "t=\(t)&n=\(n)&a=\(a)&k=\(UserInfoLoaclManger.getKey())"
+        let tStr = t.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let nStr = n.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let url =   work_save_api + "t=\(tStr)&n=\(nStr)&a=\(a)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
     }
 
@@ -327,7 +329,7 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_mine(data: model,type : .memo_getinfo)
             }
-        } else if (type == .memo_save) || (type == .memo_del) || (type == .expense_save) || (type == .user_editpass) || (type == .invoice_save){
+        } else if (type == .memo_save) || (type == .memo_del) || (type == .expense_save) || (type == .user_editpass) || (type == .invoice_save || type == .work_save){
             let model = Mapper<CodeData>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_mine(data: model,type : type)
@@ -370,6 +372,13 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
             HCLog(message: arr.count)
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_mine(data: arr,type : type)
+            }
+
+        }else if type == .work_getinfo{
+            //工作日志 详情
+            let model = Mapper<work_getinfoModel>().map(JSON: response as! [String : Any])!
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed_mine(data: model,type : type)
             }
 
         } else if type == .finance_getlist{
