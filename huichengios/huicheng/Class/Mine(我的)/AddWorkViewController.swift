@@ -7,8 +7,12 @@
 //  添加工作日志
 
 import UIKit
-
+enum AddWorkViewControllerType {
+    case add,detail
+}
 class AddWorkViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate {
+    var type : AddWorkViewControllerType!
+
     let mainTabelView : UITableView = UITableView()
     
     // MARK: - life
@@ -27,7 +31,10 @@ class AddWorkViewController: BaseViewController,UITableViewDataSource,UITableVie
          self.view.backgroundColor = viewBackColor
         self.navigation_title_fontsize(name: "工作日志", fontsize: 18)
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
-        self.navigationBar_rightBtn_title(name: "确定")
+        if type == .add {
+            self.navigationBar_rightBtn_title(name: "确定")
+        }
+
         self.creatUI()
     }
     

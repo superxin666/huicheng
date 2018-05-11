@@ -8,7 +8,7 @@
 
 import UIKit
 enum AddMemoViewController_type {
-    //添加    详情  编辑
+    //   添加      详情         编辑
     case add_type,detail_type,edit_type
 }
 class AddMemoViewController: BaseViewController,MineRequestVCDelegate {
@@ -54,18 +54,21 @@ class AddMemoViewController: BaseViewController,MineRequestVCDelegate {
         self.navigation_title_fontsize(name: "添加备忘录", fontsize: 18)
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
         self.navigationBar_rightBtn_title(name: "确定")
+        self.view.isUserInteractionEnabled = true
     }
     
     func detailUI() {
         self.navigation_title_fontsize(name: "查看备忘录", fontsize: 18)
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
         self.navigationBar_rightBtn_title(name: "操作")
+        self.view.isUserInteractionEnabled = false
     }
     
     func editUI()  {
         self.navigation_title_fontsize(name: "编辑备忘录", fontsize: 18)
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
         self.navigationBar_rightBtn_title(name: "保存")
+        self.view.isUserInteractionEnabled = true
     }
     
     // MARK: - event response
@@ -165,8 +168,8 @@ class AddMemoViewController: BaseViewController,MineRequestVCDelegate {
 
         } else {
             //详情
-                let model = data as! memo_getinfoModel
-                backView.setData(model: model)
+            let model = data as! memo_getinfoModel
+            backView.setData(model: model)
         }
     }
     
