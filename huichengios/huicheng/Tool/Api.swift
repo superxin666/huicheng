@@ -144,4 +144,6 @@ let memo_save_api = "uc/memo_save?"
 let memo_del_api = "uc/memo_del?"
 
 
-
+//------------文件本地地址
+let documentPaths : String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first!
+let filePath = documentPaths + "/filesDocument"

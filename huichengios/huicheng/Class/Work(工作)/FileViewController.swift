@@ -1,16 +1,21 @@
 //
-//  AddWorkViewController.swift
+//  FileViewController.swift
 //  huicheng
 //
-//  Created by lvxin on 2018/3/31.
+//  Created by lvxin on 2018/5/11.
 //  Copyright © 2018年 lvxin. All rights reserved.
-//  添加工作日志
+//  文件列表
 
 import UIKit
 
-class AddWorkViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate {
+class FileViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate {
     let mainTabelView : UITableView = UITableView()
-    
+
+    var alertController : UIAlertController!
+
+    var fileManager = FileManager.default
+    var fileArr :[String]  = Array()
+
     // MARK: - life
     override func viewWillLayoutSubviews() {
         mainTabelView.snp.makeConstraints { (make) in
@@ -19,18 +24,18 @@ class AddWorkViewController: BaseViewController,UITableViewDataSource,UITableVie
             make.bottom.equalTo(self.view).offset(0)
         }
     }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-         self.view.backgroundColor = viewBackColor
-        self.navigation_title_fontsize(name: "工作日志", fontsize: 18)
+        self.view.backgroundColor = viewBackColor
+
+        self.navigation_title_fontsize(name: "文件列表", fontsize: 18)
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
-        self.navigationBar_rightBtn_title(name: "确定")
+        self.getFileData()
         self.creatUI()
+
     }
-    
     // MARK: - UI
     func creatUI() {
         mainTabelView.backgroundColor = UIColor.clear
@@ -41,58 +46,49 @@ class AddWorkViewController: BaseViewController,UITableViewDataSource,UITableVie
         mainTabelView.showsVerticalScrollIndicator = false
         mainTabelView.showsHorizontalScrollIndicator = false
         mainTabelView.backgroundView?.backgroundColor = .clear
-        mainTabelView.register(UINib.init(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: TitleTableViewCellID)
-        mainTabelView.register(UINib.init(nibName: "ContentTableViewCell", bundle: nil), forCellReuseIdentifier: ContentTableViewCellID)
-        mainTabelView.register(UINib.init(nibName: "FileTableViewCell", bundle: nil), forCellReuseIdentifier: FileTableViewCellID)
+        mainTabelView.register(UINib.init(nibName: "FileListTableViewCell", bundle: nil), forCellReuseIdentifier: FileListTableViewCellID)
         self.view.addSubview(mainTabelView)
     }
+    // MARK: - delegate
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return self.fileArr.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
-            let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
-            return cell
-        } else if indexPath.row == 1 {
-            let cell : ContentTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: ContentTableViewCellID, for: indexPath) as! ContentTableViewCell
-            return cell
-        } else {
-            let cell : FileTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: FileTableViewCellID, for: indexPath) as! FileTableViewCell
-            return cell
+        let cell : FileListTableViewCell  = tableView.dequeueReusableCell(withIdentifier: FileListTableViewCellID, for: indexPath) as! FileListTableViewCell
+        if indexPath.row < self.fileArr.count {
+            let name  = self.fileArr[indexPath.row]
+            cell.setData(titleStr: name)
+        }
+        return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row  < self.fileArr.count {
+
+
         }
 
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 2 {
-            let vc = FileViewController()
-            vc.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-    }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0 {
-            return TitleTableViewCellH
-        } else if indexPath.row == 1 {
-            return ContentTableViewCellH
+        return FileListTableViewCellH
+    }
+
+
+    func getFileData() {
+
+        if fileManager.fileExists(atPath: filePath) {
+            let contentsOfPath = try? fileManager.contentsOfDirectory(atPath: filePath)
+            self.fileArr = contentsOfPath!
+            self.mainTabelView.reloadData()
         } else {
-            return FileTableViewCellH
+            HCLog(message: "文件夹不存在")
         }
     }
-    
+
     override func navigationLeftBtnClick() {
         self.navigationController?.popViewController(animated: true)
-    }
-    override func navigationRightBtnClick() {
-        HCLog(message: "确定")
-    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 

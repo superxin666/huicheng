@@ -142,6 +142,9 @@
 		214C8FE120A3CD9500B09C3B /* CaseCheckDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214C8FE020A3CD9500B09C3B /* CaseCheckDetailViewController.swift */; };
 		214C8FE320A42D0F00B09C3B /* CheckInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214C8FE220A42D0F00B09C3B /* CheckInfoViewController.swift */; };
 		214C8FE520A4306E00B09C3B /* DealSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214C8FE420A4306E00B09C3B /* DealSearchViewController.swift */; };
+		21528BB920A52B3300C9950A /* FileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21528BB820A52B3300C9950A /* FileViewController.swift */; };
+		21528BC020A52D6C00C9950A /* FileListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21528BBE20A52D6C00C9950A /* FileListTableViewCell.swift */; };
+		21528BC120A52D6C00C9950A /* FileListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21528BBF20A52D6C00C9950A /* FileListTableViewCell.xib */; };
 		21541DD32062635E0003746E /* work_getlistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21541DD22062635E0003746E /* work_getlistModel.swift */; };
 		21541DD5206265010003746E /* work_getinfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21541DD4206265010003746E /* work_getinfoModel.swift */; };
 		21553CBF20887159009284B1 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21553CBE20887159009284B1 /* BaseTableViewController.swift */; };
@@ -340,6 +343,9 @@
 		214C8FE020A3CD9500B09C3B /* CaseCheckDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseCheckDetailViewController.swift; sourceTree = "<group>"; };
 		214C8FE220A42D0F00B09C3B /* CheckInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInfoViewController.swift; sourceTree = "<group>"; };
 		214C8FE420A4306E00B09C3B /* DealSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealSearchViewController.swift; sourceTree = "<group>"; };
+		21528BB820A52B3300C9950A /* FileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileViewController.swift; sourceTree = "<group>"; };
+		21528BBE20A52D6C00C9950A /* FileListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileListTableViewCell.swift; sourceTree = "<group>"; };
+		21528BBF20A52D6C00C9950A /* FileListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FileListTableViewCell.xib; sourceTree = "<group>"; };
 		21541DD22062635E0003746E /* work_getlistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = work_getlistModel.swift; sourceTree = "<group>"; };
 		21541DD4206265010003746E /* work_getinfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = work_getinfoModel.swift; sourceTree = "<group>"; };
 		21553CBE20887159009284B1 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
@@ -726,6 +732,7 @@
 				2124D71A208D66530007B5EE /* RoomViewController.swift */,
 				2124D722208D73280007B5EE /* AddRoomViewController.swift */,
 				2124D72C208E196E0007B5EE /* ShareViewController.swift */,
+				21528BB820A52B3300C9950A /* FileViewController.swift */,
 			);
 			path = "Work(工作)";
 			sourceTree = "<group>";
@@ -785,6 +792,8 @@
 				2124D71F208D69D20007B5EE /* RoomTableViewCell.xib */,
 				2123A37F208EFCC000C50FA9 /* ShareHeadView.swift */,
 				2123A381208EFCD300C50FA9 /* ShareHeadView.xib */,
+				21528BBE20A52D6C00C9950A /* FileListTableViewCell.swift */,
+				21528BBF20A52D6C00C9950A /* FileListTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -900,6 +909,7 @@
 				2123A382208EFCD300C50FA9 /* ShareHeadView.xib in Resources */,
 				2124D721208D69D20007B5EE /* RoomTableViewCell.xib in Resources */,
 				2126DBE7208B454700977802 /* Title5TableViewCell.xib in Resources */,
+				21528BC120A52D6C00C9950A /* FileListTableViewCell.xib in Resources */,
 				21075568205D8FF200FF4396 /* MineFooterView.xib in Resources */,
 				2126DBE12089CB9B00977802 /* Title4TableViewCell.xib in Resources */,
 				219D7BCD205E483E009F543B /* PubMesConView.xib in Resources */,
@@ -1012,6 +1022,7 @@
 				21387D2F205F5A910050DF1F /* LoginModel.swift in Sources */,
 				21DDC9CA208051140067197D /* CaseDetailViewController.swift in Sources */,
 				21376689203FBAF4000CBCE6 /* SVPMessageShow.swift in Sources */,
+				21528BB920A52B3300C9950A /* FileViewController.swift in Sources */,
 				219D7BB6205E062F009F543B /* InfoTableViewCell.swift in Sources */,
 				2105D2DF2060AEC40031B14C /* memo_getinfoModel.swift in Sources */,
 				213F77E7206B352900075FC6 /* SetBackView.swift in Sources */,
@@ -1117,6 +1128,7 @@
 				2105D2DD2060ADFC0031B14C /* memo_getlistModel.swift in Sources */,
 				2126DBE6208B454700977802 /* Title5TableViewCell.swift in Sources */,
 				2124D71B208D66530007B5EE /* RoomViewController.swift in Sources */,
+				21528BC020A52D6C00C9950A /* FileListTableViewCell.swift in Sources */,
 				219D7BCB205E4830009F543B /* PubMesConView.swift in Sources */,
 				216A6C52204CDE6F00528FD8 /* MineViewController.swift in Sources */,
 				2108BB79206FD219002A4212 /* CheckcaseViewController.swift in Sources */,
