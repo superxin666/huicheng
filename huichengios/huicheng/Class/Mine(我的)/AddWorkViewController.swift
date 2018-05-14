@@ -4,7 +4,7 @@
 //
 //  Created by lvxin on 2018/3/31.
 //  Copyright © 2018年 lvxin. All rights reserved.
-//  添加工作日志
+//  添加工作日志  工作日志只能上传一个文件 参照web
 
 import UIKit
 enum AddWorkViewControllerType {
@@ -27,6 +27,9 @@ class AddWorkViewController: BaseViewController,UITableViewDataSource,UITableVie
     var tStr = ""
 
     var nStr = ""
+
+    var fileArr : Array<String>!
+    var fileCell : FileTableViewCell!
     // MARK: - life
     override func viewWillLayoutSubviews() {
         mainTabelView.snp.makeConstraints { (make) in
@@ -96,8 +99,9 @@ class AddWorkViewController: BaseViewController,UITableViewDataSource,UITableVie
             }
             return cell
         } else {
-            let cell : FileTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: FileTableViewCellID, for: indexPath) as! FileTableViewCell
-            return cell
+            fileCell = tableView.dequeueReusableCell(withIdentifier: FileTableViewCellID, for: indexPath) as! FileTableViewCell
+
+            return fileCell
         }
 
     }
@@ -106,6 +110,12 @@ class AddWorkViewController: BaseViewController,UITableViewDataSource,UITableVie
         if indexPath.row == 2 {
             let vc = FileViewController()
             vc.hidesBottomBarWhenPushed = true
+            weak var weakself = self
+            vc.fileArrBlock = {(fileArr) in
+                let nameStr = fileArr[0]
+                weakself?.fileCell.setData_fileName(fileName: nameStr)
+                weakself?.fileArr = fileArr
+            }
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -159,7 +169,25 @@ class AddWorkViewController: BaseViewController,UITableViewDataSource,UITableVie
                 SVPMessageShow.showErro(infoStr: "请输入内容名")
                 return
             }
-            requestVC.work_save_apiRequest(t: tStr, n: nStr, a: "")
+            if self.fileArr.count > 0 {
+                //上传文件
+                SVPMessageShow.showLoad(title: "正在上传文件")
+                BaseNetViewController.uploadfile(fileName: self.fileArr[0], t: "12", completion: { (data) in
+                    let model = data as! CodeData
+                    if model.code == 1 {
+                        HCLog(message: model.msg)
+                        SVPMessageShow.dismissSVP()
+
+                    } else {
+                        SVPMessageShow.dismissSVP()
+                        SVPMessageShow.showErro(infoStr: "文件上传失败，请重新尝试")
+                    }
+                }) { (erro) in
+                    SVPMessageShow.dismissSVP()
+                    SVPMessageShow.showErro(infoStr: "文件上传失败，请重新尝试")
+                }
+            }
+//            requestVC.work_save_apiRequest(t: tStr, n: nStr, a: "")
         }
 
 

@@ -57,4 +57,43 @@ class BaseNetViewController: UIViewController {
         
     }
 
+
+    static func uploadfile(fileName:String,t:String, completion : @escaping (_ data : Any) ->(), failure : @escaping (_ error : Any)->()) {
+        //
+
+        HCLog(message:  "上传文件开始")
+        let urlStr = base_api + uploadfile_api + "t=\(t)&k=\(UserInfoLoaclManger.getKey())"
+        let filePathStr : String = filePath + "/" + fileName
+        let url :URL = URL(fileURLWithPath: filePathStr)
+        let fileData:Data = try! Data(contentsOf: url)
+        let nameStr : String = fileName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+
+
+        var model:CodeData = CodeData()
+        Alamofire.upload(
+            multipartFormData: { multipartFormData in
+                multipartFormData.append(fileData, withName: "attachs", fileName: nameStr, mimeType: "file/*")
+
+        },
+            to: urlStr,
+            encodingCompletion: { encodingResult in
+                switch encodingResult {
+                case .success(let upload, _, _):
+                    upload.responseJSON { response in
+                        if let json = response.result.value {
+
+                            model = Mapper<CodeData>().map(JSON: json as! [String : Any])!
+                            completion(model)
+                        } else {
+                            failure("请求失败")
+                        }
+                    }
+                case .failure(let encodingError):
+                    failure("请求失败")
+                    print(encodingError)
+                }
+        }
+        )
+    }
+
 }

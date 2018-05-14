@@ -7,14 +7,19 @@
 //  文件列表
 
 import UIKit
+typealias FileViewControllerBlock = ([String])->()
 
 class FileViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate {
+    var fileArrBlock : FileViewControllerBlock!
+
     let mainTabelView : UITableView = UITableView()
 
     var alertController : UIAlertController!
 
     var fileManager = FileManager.default
     var fileArr :[String]  = Array()
+    var selectedFileArr : [String] = Array()
+
 
     // MARK: - life
     override func viewWillLayoutSubviews() {
@@ -32,6 +37,7 @@ class FileViewController: BaseViewController,UITableViewDataSource,UITableViewDe
 
         self.navigation_title_fontsize(name: "文件列表", fontsize: 18)
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
+        self.navigationBar_rightBtn_title(name: "确定")
         self.getFileData()
         self.creatUI()
 
@@ -88,6 +94,11 @@ class FileViewController: BaseViewController,UITableViewDataSource,UITableViewDe
     }
 
     override func navigationLeftBtnClick() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    override func navigationRightBtnClick() {
+
+        self.fileArrBlock(fileArr)
         self.navigationController?.popViewController(animated: true)
     }
     

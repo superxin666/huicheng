@@ -23,6 +23,11 @@ let department_api = "base/department?"
 let userlist_api = "base/userlist?"
 /// 案件类型
 let casetype_api = "base/casetype?"
+
+/// 上传文件
+let uploadfile_api = "base/uploadfile?"
+
+
 //------------------------消息
 
 /// 待办通知 列表获取

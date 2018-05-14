@@ -27,5 +27,8 @@ class FileTableViewCell: UITableViewCell {
     func setData_deal() {
         self.titleNameLabel.text = "合同扫描件"
     }
+    func setData_fileName(fileName : String) {
+        self.fileNameLabel.text = fileName
+    }
     
 }
