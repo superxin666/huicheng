@@ -93,6 +93,13 @@ let deal_oversave_api = "deal/oversave?"
 /// 删除
 let deal_del_api = "deal/del?"
 
+/// /----------------------- 函件管理
+let doc_getlist_api = "doc/getlist?"
+let doc_getinfo_api = "doc/doc_getinfo?"
+let doc_del_api = "doc/doc_del?"
+
+
+
 
 /// 合同审核 获取列表
 let deal_getapplylist_api = "deal/getapplylist?"

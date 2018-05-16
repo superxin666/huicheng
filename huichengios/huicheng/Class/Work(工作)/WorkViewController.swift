@@ -138,6 +138,9 @@ class WorkViewController: BaseViewController,UITableViewDelegate,UITableViewData
             switch tag {
             case 0:
                 HCLog(message: "函件管理")
+                let vc = DocViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
             case 1:
                 HCLog(message: "诉讼函")
             case 2:
