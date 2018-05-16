@@ -192,6 +192,7 @@
 		219D7BCD205E483E009F543B /* PubMesConView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 219D7BCC205E483E009F543B /* PubMesConView.xib */; };
 		21B9177620AC0B4F004031DE /* docgetlistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B9177520AC0B4F004031DE /* docgetlistModel.swift */; };
 		21B9177820AC0C87004031DE /* docgetinfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B9177720AC0C87004031DE /* docgetinfoModel.swift */; };
+		21B9177A20AC20F2004031DE /* InvoiceapplylisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B9177920AC20F2004031DE /* InvoiceapplylisViewController.swift */; };
 		21CFDDC42068E30500745A48 /* AddMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CFDDC32068E30500745A48 /* AddMemoViewController.swift */; };
 		21CFDDC72068E8E500745A48 /* InvoiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CFDDC52068E8E500745A48 /* InvoiceTableViewCell.swift */; };
 		21CFDDC82068E8E500745A48 /* InvoiceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21CFDDC62068E8E500745A48 /* InvoiceTableViewCell.xib */; };
@@ -400,6 +401,7 @@
 		219D7BCC205E483E009F543B /* PubMesConView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PubMesConView.xib; sourceTree = "<group>"; };
 		21B9177520AC0B4F004031DE /* docgetlistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = docgetlistModel.swift; sourceTree = "<group>"; };
 		21B9177720AC0C87004031DE /* docgetinfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = docgetinfoModel.swift; sourceTree = "<group>"; };
+		21B9177920AC20F2004031DE /* InvoiceapplylisViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceapplylisViewController.swift; sourceTree = "<group>"; };
 		21CFDDC32068E30500745A48 /* AddMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemoViewController.swift; sourceTree = "<group>"; };
 		21CFDDC52068E8E500745A48 /* InvoiceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceTableViewCell.swift; sourceTree = "<group>"; };
 		21CFDDC62068E8E500745A48 /* InvoiceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvoiceTableViewCell.xib; sourceTree = "<group>"; };
@@ -740,6 +742,7 @@
 				214C8FE220A42D0F00B09C3B /* CheckInfoViewController.swift */,
 				214C8FE420A4306E00B09C3B /* DealSearchViewController.swift */,
 				21671C8C20AAD94A00E8680C /* DocViewController.swift */,
+				21B9177920AC20F2004031DE /* InvoiceapplylisViewController.swift */,
 				2124D71A208D66530007B5EE /* RoomViewController.swift */,
 				2124D722208D73280007B5EE /* AddRoomViewController.swift */,
 				2124D72C208E196E0007B5EE /* ShareViewController.swift */,
@@ -1094,6 +1097,7 @@
 				21376685203FBAB2000CBCE6 /* UIButton+Init.swift in Sources */,
 				2124D72D208E196E0007B5EE /* ShareViewController.swift in Sources */,
 				21387D39205F9C540050DF1F /* newslistModel.swift in Sources */,
+				21B9177A20AC20F2004031DE /* InvoiceapplylisViewController.swift in Sources */,
 				21DDC9D2208095790067197D /* branchModel.swift in Sources */,
 				21096549207101820012FDDB /* newslist1Model.swift in Sources */,
 				2137668F203FBF27000CBCE6 /* HCNavigationController.swift in Sources */,

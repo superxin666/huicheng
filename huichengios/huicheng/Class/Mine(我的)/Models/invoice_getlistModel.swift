@@ -27,6 +27,11 @@ class invoice_getlistModel: Mappable {
     var addtime: String!
     var state: Int!
     var stateStr: String!
+
+
+    var user: String!
+    var admin: String!
+
     init() {}
     required init?(map: Map){
         mapping(map: map)
@@ -42,5 +47,7 @@ class invoice_getlistModel: Mappable {
         state <- map["state"]
         sendtypeStr <- map["sendtypeStr"]
         stateStr <- map["stateStr"]
+        user <- map["user"]
+        admin <- map["admin"]
     }
 }

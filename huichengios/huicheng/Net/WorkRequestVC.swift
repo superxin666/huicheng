@@ -19,6 +19,7 @@ enum WorkRequestVC_enum {
          dealgetapplylist,applysave,searchlist,// 合同审核  获取列表
          dealgetoverlist,dealgetoverinfo,checkoversave,//结案审核
          doc_getlist,doc_getinfo,doc_del,//函件管理
+         invoice_applylist,invoice_applysave,invoice_del,//发票审批
          sharegetlist//模板共享 获取列表
 }
 
@@ -473,6 +474,51 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
         request.request_api(url: url)
 
     }
+     // MARK: 函件管理
+
+
+    // MARK: 发票审批
+
+
+
+    /// 列表
+    ///
+    /// - Parameters:
+    ///   - p: <#p description#>
+    ///   - c: <#c description#>
+    ///   - n: <#n description#>
+    ///   - u: <#u description#>
+    func invoice_applylist(p:Int,c:Int,u:String) {
+        request.delegate = self
+        type = .invoice_applylist
+        let url = invoice_applylist_api   + "p=\(p)&c=\(c)&u=\(u)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+    }
+
+    /// 保存
+    ///
+    /// - Parameters:
+    ///   - id: <#id description#>
+    ///   - s: <#s description#>
+    ///   - n: <#n description#>
+    func invoice_applysave(id:Int,s:Int,n:String) {
+        request.delegate = self
+        type = .invoice_applysave
+        let sStr = n.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+
+        let url = invoice_applysave_api   + "id=\(id)&s=\(sStr)&n=\(n)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+    }
+
+    /// 删除
+    ///
+    /// - Parameter id: <#id description#>
+    func invoice_del(id:Int) {
+        request.delegate = self
+        type = .invoice_del
+        let url = invoice_invoice_del_api   + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+    }
 
 
     // MARK: 会议室
@@ -581,7 +627,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work(data: arr,type : type)
             }
-        } else if type == .save || type == .newspublic || type == .oversave || type == .casedel || type == .dealdel || type == .roomsave || type == .roomdel || type == .applysave || type == .checkoversave || type == .doc_del{
+        } else if type == .save || type == .newspublic || type == .oversave || type == .casedel || type == .dealdel || type == .roomsave || type == .roomdel || type == .applysave || type == .checkoversave || type == .doc_del || type == .invoice_applysave || type == .invoice_del{
             //发布公告
             let model = Mapper<CodeData>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {
@@ -653,6 +699,13 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work(data: model,type : type)
             }
+        } else if type == .invoice_applylist{
+            let model = Mapper<invoice_getlistModel>().map(JSON: response as! [String : Any])!
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed_work(data: model,type : type)
+            }
+
+
         }
     }
     
