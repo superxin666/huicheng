@@ -95,5 +95,27 @@ class CaseTableViewCell: UITableViewCell {
             self.nameLabel.textColor = .white
         }
     }
+
+    func setData_expense(model : expense_getlistModel) {
+        self.subLabel.isHidden = false
+        if let titlesStr = model.typeStr {
+            self.titleNameLabel.text = titlesStr
+        }
+        if let money = model.money {
+            self.subLabel.text = "\(money)"
+        }
+        if let time = model.addtime {
+            self.timeLabel.text = String.hc_getDate_string(dateStr: time)
+        }
+
+        if let user = model.user {
+            self.typeLabel.text = user
+        }
+        if let state = model.state {
+            self.nameLabel.backgroundColor = darkblueColor
+            self.nameLabel.textColor = .white
+            self.nameLabel.text = model.stateStr
+        }
+    }
     
 }

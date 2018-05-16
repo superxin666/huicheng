@@ -170,6 +170,9 @@ class WorkViewController: BaseViewController,UITableViewDelegate,UITableViewData
                 HCLog(message: "支付审核")
             case 4:
                 HCLog(message: "报销审核")
+                let vc = ExpenseapplylistViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
             case 5:
                 HCLog(message: "发票审核")
                 let vc = InvoiceapplylisViewController()

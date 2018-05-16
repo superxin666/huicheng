@@ -11,14 +11,16 @@ import ObjectMapper
 
 class expense_getlistModel: Mappable {
     var id: Int!
-    var type: String!
+    var type: Int!
+    var typeStr: String!
     var total: Int!
     var money: Int!
     var state: Int!
     var addtime: String!
     var stateStr: String!
     
-    
+    var user: String!
+    var admin: String!
     
     init() {}
     required init?(map: Map){
@@ -28,12 +30,14 @@ class expense_getlistModel: Mappable {
     func mapping(map: Map) {
         id <- map["id"]
         type <- map["type"]
+        typeStr <- map["typeStr"]
         total <- map["total"]
         money <- map["money"]
         
         addtime <- map["addtime"]
         stateStr <- map["stateStr"]
         state <- map["state"]
-        
+        user <- map["user"]
+        admin <- map["admin"]
     }
 }

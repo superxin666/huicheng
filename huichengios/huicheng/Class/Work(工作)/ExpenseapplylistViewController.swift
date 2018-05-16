@@ -1,17 +1,17 @@
 //
-//  InvoiceapplylisViewController.swift
+//  ExpenseapplylistViewController.swift
 //  huicheng
 //
 //  Created by lvxin on 2018/5/16.
 //  Copyright © 2018年 lvxin. All rights reserved.
-//  发票审批
+//  报销审批
 
 import UIKit
 
-class InvoiceapplylisViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate,WorkRequestVCDelegate {
+class ExpenseapplylistViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate,WorkRequestVCDelegate {
     let mainTabelView : UITableView = UITableView()
     let requestVC = WorkRequestVC()
-    var dataArr : [invoice_getlistModel] = []
+    var dataArr : [expense_getlistModel] = []
     var pageNum : Int = 1
 
     /// 合同编号
@@ -32,7 +32,7 @@ class InvoiceapplylisViewController: BaseViewController,UITableViewDataSource,UI
         // Do any additional setup after loading the view.
         self.view.backgroundColor = viewBackColor
 
-        self.navigation_title_fontsize(name: "发票审批", fontsize: 18)
+        self.navigation_title_fontsize(name: "报销审批", fontsize: 18)
         self.navigationBar_rightBtn_image(image: #imageLiteral(resourceName: "mine_search"))
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
         self.creatUI()
@@ -63,8 +63,8 @@ class InvoiceapplylisViewController: BaseViewController,UITableViewDataSource,UI
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : CaseTableViewCell  = tableView.dequeueReusableCell(withIdentifier: CaseTableViewCellId, for: indexPath) as! CaseTableViewCell
         if indexPath.row < self.dataArr.count {
-            let model : invoice_getlistModel = self.dataArr[indexPath.row]
-            cell.setData_invoice(model: model)
+            let model : expense_getlistModel = self.dataArr[indexPath.row]
+            cell.setData_expense(model: model)
         }
         return cell
     }
@@ -80,7 +80,7 @@ class InvoiceapplylisViewController: BaseViewController,UITableViewDataSource,UI
     // MARK: - net
     func requestApi() {
         requestVC.delegate = self
-        requestVC.invoice_applylist(p: pageNum, c: 8, u: "")
+        requestVC.expense_applylistReuest(p: pageNum, c: 8, u: "")
     }
 
     func reflishData() {
@@ -96,7 +96,7 @@ class InvoiceapplylisViewController: BaseViewController,UITableViewDataSource,UI
         self.requestApi()
     }
     func requestSucceed_work(data: Any,type : WorkRequestVC_enum) {
-        let arr : [invoice_getlistModel] = data as! [invoice_getlistModel]
+        let arr : [expense_getlistModel] = data as! [expense_getlistModel]
         if arr.count > 0 {
             self.dataArr = self.dataArr + arr
         }  else {

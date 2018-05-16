@@ -98,10 +98,14 @@ let doc_getlist_api = "doc/getlist?"
 let doc_getinfo_api = "doc/doc_getinfo?"
 let doc_del_api = "doc/doc_del?"
 
-/// /----------------------- 函件管理
+/// /----------------------- 发票审批
 let invoice_applylist_api = "finance/invoice_applylist?"
 let invoice_applysave_api = "finance/invoice_applysave?"
 let invoice_invoice_del_api = "finance/invoice_del?"
+/// /----------------------- 报销审批
+let expense_applylist_api = "finance/expense_applylist?"
+let expense_applysavee_api = "finance/expense_applysave?"
+let expense_del_api = "finance/expense_del?"
 /// 合同审核 获取列表
 let deal_getapplylist_api = "deal/getapplylist?"
 let deal_applysave_api = "deal/applysave?"
