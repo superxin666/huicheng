@@ -15,8 +15,8 @@ typealias SearchViewControllerBlock_deal = (_ contentStr : String)->()
 
 enum SearchViewController_type {
 
-    //发票申请           收款记录       工作日志      发票列表         案件查询        合同查询
-    case expense_type, finance_type , work_type ,invoice_getlist,caselsit_type,deal_type
+    //发票申请           收款记录       工作日志      发票列表         案件查询        合同查询   姓名
+    case expense_type, finance_type , work_type ,invoice_getlist,caselsit_type,deal_type,person
 
 }
 let Searchcell_finance_typeID = "Searchcell_finance_type_id"
@@ -93,10 +93,13 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         }else if type == .caselsit_type{
             self.navigation_title_fontsize(name: "案件查询", fontsize: 18)
             rowNum = 2
-        } else if type == .deal_type{
-            self.navigation_title_fontsize(name: "合同查询", fontsize: 18)
+        } else if type == .deal_type {
+            self.navigation_title_fontsize(name: "编号查询", fontsize: 18)
             rowNum = 1
 
+        } else if type == .person{
+            self.navigation_title_fontsize(name: "信息查询", fontsize: 18)
+            rowNum = 1
         }
         self.navigationBar_rightBtn_title(name: "确定")
         self.creatUI()
@@ -127,7 +130,7 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             
         }else if type == .caselsit_type {
             mainTabelView.register(UINib.init(nibName: "endTimeTableViewCell", bundle: nil), forCellReuseIdentifier: endTimeTableViewCellid)
-        } else if type == .deal_type{
+        } else if type == .deal_type || type == .person{
             mainTabelView.register(UINib.init(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: TitleTableViewCellID)
         }
         self.view.addSubview(mainTabelView)
@@ -239,7 +242,13 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             titleCell.setData_search(titleStr: "合同编号")
             return titleCell
 
-        } else {
+        } else if type == .person{
+            titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+            //标题
+            titleCell.setData_search(titleStr: "姓名")
+            return titleCell
+
+        }  else {
             return UITableViewCell()
         }
     }
@@ -335,7 +344,7 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             
         } else if self.type == .caselsit_type {
             self.sureCaselsitBlock(startTimeStr,endTimeStr)
-        } else if type == .deal_type{
+        } else if type == .deal_type || type == .person {
             if titleCell.textField.isFirstResponder {
                 titleCell.textField.resignFirstResponder()
             }

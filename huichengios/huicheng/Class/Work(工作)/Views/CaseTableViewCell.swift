@@ -117,5 +117,32 @@ class CaseTableViewCell: UITableViewCell {
             self.nameLabel.text = model.stateStr
         }
     }
+
+    /// 银行信息
+    ///
+    /// - Parameter model: <#model description#>
+    func setData_bank(model : bank_getlistModel) {
+        self.typeLabel.isHidden = true
+        self.subLabel.isHidden = false
+        if let name = model.username {
+            self.titleNameLabel.text = name
+        }
+        if let bankname = model.bankname {
+            self.subLabel.text = bankname
+        }
+        if let card = model.bankcard {
+            self.timeLabel.text = card
+        }
+
+        if let stateStr = model.stateStr {
+            self.nameLabel.text = stateStr
+        }
+        if let state = model.state {
+            self.nameLabel.backgroundColor = darkblueColor
+            self.nameLabel.textColor = .white
+            self.nameLabel.text = model.stateStr
+        }
+
+    }
     
 }

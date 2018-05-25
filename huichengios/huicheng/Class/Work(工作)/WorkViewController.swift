@@ -179,7 +179,10 @@ class WorkViewController: BaseViewController,UITableViewDelegate,UITableViewData
                 vc.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
             case 6:
-                HCLog(message: "签章审核")
+                HCLog(message: "银行信息")
+                let vc = BankInfoViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
             default:
                 HCLog(message: "暂无")
             }

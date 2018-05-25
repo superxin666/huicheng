@@ -21,7 +21,8 @@ enum WorkRequestVC_enum {
          doc_getlist,doc_getinfo,doc_del,//函件管理
          invoice_applylist,invoice_applysave,invoice_del,//发票审批
          expense_applylist,expense_applysave,expense_del,//报销审批
-         sharegetlist//模板共享 获取列表
+         sharegetlist,//模板共享 获取列表
+         bank_getlist,bank_getinfo,bank_save//银行信息
 }
 
 protocol WorkRequestVCDelegate : NSObjectProtocol{
@@ -475,13 +476,33 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
         request.request_api(url: url)
 
     }
-     // MARK: 函件管理
+     // MARK: 银行信息
+    func bank_getlistRequest(p:Int,c:Int,u:String,b:String,d:String,n:String) {
+        request.delegate = self
+        type = .bank_getlist
+        let nStr = n.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
 
+        let url = bank_getlist_api   + "p=\(p)&c=\(c)&u=\(u)&b=\(b)&d=\(d)&n=\(nStr)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+    }
+
+    func bank_getinfoRequest(id:Int) {
+        request.delegate = self
+        type = .bank_getinfo
+        let url = bank_getinfo_api   + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+    }
+
+    func bank_saveRequest(id:Int,bank:String,name:String,card:String) {
+        request.delegate = self
+        type = .bank_save
+        let bankStr = bank.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let nameStr = name.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let url = bank_save_api   + "id=\(id)&bank=\(bankStr)&name=\(nameStr)&card=\(card)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+    }
 
     // MARK: 发票审批
-
-
-
     /// 列表
     ///
     /// - Parameters:
@@ -661,7 +682,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work(data: arr,type : type)
             }
-        } else if type == .save || type == .newspublic || type == .oversave || type == .casedel || type == .dealdel || type == .roomsave || type == .roomdel || type == .applysave || type == .checkoversave || type == .doc_del || type == .invoice_applysave || type == .invoice_del || type == .expense_applysave || type == .expense_del{
+        } else if type == .save || type == .newspublic || type == .oversave || type == .casedel || type == .dealdel || type == .roomsave || type == .roomdel || type == .applysave || type == .checkoversave || type == .doc_del || type == .invoice_applysave || type == .invoice_del || type == .expense_applysave || type == .expense_del ||  type == .bank_save{
             //发布公告
             let model = Mapper<CodeData>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {
@@ -742,6 +763,16 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
             let arr = Mapper<expense_getlistModel>().mapArray(JSONArray: response as! [[String : Any]])
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work(data: arr,type : type)
+            }
+        } else if type == .bank_getlist{
+            let arr = Mapper<bank_getlistModel>().mapArray(JSONArray: response as! [[String : Any]])
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed_work(data: arr,type : type)
+            }
+        } else if type == .bank_getinfo{
+            let model = Mapper<bank_getlistModel>().map(JSON: response as! [String : Any])!
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed_work(data: model,type : type)
             }
         }
     }

@@ -20,8 +20,8 @@ class WorkFirstTableViewCell: UITableViewCell {
     let imageAr1 = [#imageLiteral(resourceName: "合同管理"),#imageLiteral(resourceName: "合同审核"),#imageLiteral(resourceName: "结案审核"),#imageLiteral(resourceName: "审核进度查询")]
     let labelNameAr2 = ["函件管理","诉讼函","民事函","刑事函","自定义函","签章进度查询","签章审核"]
     let imageAr2 = [#imageLiteral(resourceName: "函件管理"),#imageLiteral(resourceName: "诉讼函"),#imageLiteral(resourceName: "民事函"),#imageLiteral(resourceName: "刑事函"),#imageLiteral(resourceName: "自定义函"),#imageLiteral(resourceName: "签章进度查询"),#imageLiteral(resourceName: "签章审核")]
-    let labelNameAr3 = ["收款登记","收款审核","支付收款","支付审核","报销审核","发票审核","签章审核"]
-    let imageAr3 = [#imageLiteral(resourceName: "收款登记"),#imageLiteral(resourceName: "收款审核"),#imageLiteral(resourceName: "支付收款"),#imageLiteral(resourceName: "支付审核"),#imageLiteral(resourceName: "报销审核"),#imageLiteral(resourceName: "发票审核"),#imageLiteral(resourceName: "签章审核")]
+    let labelNameAr3 = ["收款登记","收款审核","支付收款","支付审核","报销审核","发票审核","银行信息"]
+    let imageAr3 = [#imageLiteral(resourceName: "收款登记"),#imageLiteral(resourceName: "收款审核"),#imageLiteral(resourceName: "支付收款"),#imageLiteral(resourceName: "支付审核"),#imageLiteral(resourceName: "报销审核"),#imageLiteral(resourceName: "发票审核"),#imageLiteral(resourceName: "银行信息")]
     let labelNameAr4 = ["会议室预约","发布公告","共享模板",]
     let imageAr4 = [#imageLiteral(resourceName: "会议室预约"),#imageLiteral(resourceName: "发布公告"),#imageLiteral(resourceName: "共享模板")]
   

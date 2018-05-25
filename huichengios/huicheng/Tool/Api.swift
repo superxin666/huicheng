@@ -102,6 +102,10 @@ let doc_del_api = "doc/doc_del?"
 let invoice_applylist_api = "finance/invoice_applylist?"
 let invoice_applysave_api = "finance/invoice_applysave?"
 let invoice_invoice_del_api = "finance/invoice_del?"
+/// /----------------------- 银行信息
+let bank_getlist_api = "finance/bank_getlist?"
+let bank_getinfo_api = "finance/bank_getinfo?"
+let bank_save_api = "finance/bank_save?"
 /// /----------------------- 报销审批
 let expense_applylist_api = "finance/expense_applylist?"
 let expense_applysavee_api = "finance/expense_applysave?"
