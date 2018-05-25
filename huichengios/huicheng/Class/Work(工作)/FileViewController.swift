@@ -66,14 +66,19 @@ class FileViewController: BaseViewController,UITableViewDataSource,UITableViewDe
         let cell : FileListTableViewCell  = tableView.dequeueReusableCell(withIdentifier: FileListTableViewCellID, for: indexPath) as! FileListTableViewCell
         if indexPath.row < self.fileArr.count {
             let name  = self.fileArr[indexPath.row]
+
             cell.setData(titleStr: name)
         }
         return cell
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row  < self.fileArr.count {
-
-
+            let str = self.fileArr[indexPath.row]
+            let urlStr : String = filePath + "/" + str
+            let vc = ReadFileViewController()
+            vc.fileUrl = urlStr
+            vc.jump(vc: self)
         }
 
     }
