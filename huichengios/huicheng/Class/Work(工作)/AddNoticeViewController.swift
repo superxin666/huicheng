@@ -43,7 +43,8 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
     var reflishBlock : AddNoticeViewControllerBlock!
     
     var rowNum = 5
-    
+
+     var fileArr : Array<String>!
     
     
     // MARK: - life
@@ -101,11 +102,12 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.type == .addNotice {
-            return 4
-        } else {
-            return 5
-        }
+//        if self.type == .detail {
+//            return 4
+//        } else {
+//            return 5
+//        }
+         return 5
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
@@ -117,7 +119,7 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
             return contentCell
         } else if indexPath.row == 2{
             fileCell = tableView.dequeueReusableCell(withIdentifier: FileTableViewCellID, for: indexPath) as! FileTableViewCell
-            
+
             return fileCell
         } else if indexPath.row == 3 {
             objectCell  = tableView.dequeueReusableCell(withIdentifier: SearchStateTableViewCellID, for: indexPath) as! SearchStateTableViewCell
@@ -128,6 +130,22 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
             messageCell  = tableView.dequeueReusableCell(withIdentifier: MessageNeedTableViewCellID, for: indexPath) as! MessageNeedTableViewCell
             
             return messageCell
+        }
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if self.type == .addNotice {
+            if indexPath.row == 2 {
+                let vc = FileViewController()
+                vc.hidesBottomBarWhenPushed = true
+                weak  var weakSelf = self
+
+                vc.fileArrBlock = {(fileArr) in
+                    let str = fileArr[0]
+                    weakSelf?.fileCell.setData_fileName(fileName: str)
+                    weakSelf?.fileArr = fileArr
+                }
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         }
     }
 
@@ -231,11 +249,36 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
             return
         }
         //o: objectCell.cuurectID
+
         SVPMessageShow.showLoad(title:"发布中~~")
         if let id = detailId {
-            request.saveRequest(id: "\(id)", t: titleCell.conTent, n: contentCell.conTent, o: objectCell.cuurectID, s: 0, d: messageCell.need)
+            request.saveRequest(id: "\(id)", t: titleCell.conTent, n: contentCell.conTent, o: objectCell.cuurectID, s: 0, d: messageCell.need, f: "")
         } else {
-            request.saveRequest(id: "", t: titleCell.conTent, n: contentCell.conTent, o: objectCell.cuurectID, s: 0, d: messageCell.need)
+            if self.fileArr.count > 0 {
+                //上传文件
+                SVPMessageShow.showLoad(title: "正在上传文件")
+                weak var weakSelf = self
+
+                BaseNetViewController.uploadfile(fileName: self.fileArr[0], t: "7", completion: { (data) in
+                    let model = data as! CodeData
+                    if model.code == 1 {
+                        HCLog(message: model.msg)
+                        SVPMessageShow.dismissSVP()
+                        let file = base_imageOrFile_api + model.msg
+                        weakSelf?.request.saveRequest(id: "", t: self.titleCell.conTent, n: self.contentCell.conTent, o: self.objectCell.cuurectID, s: 0, d: self.messageCell.need, f: file)
+
+                    } else {
+                        SVPMessageShow.dismissSVP()
+                        SVPMessageShow.showErro(infoStr: "文件上传失败，请重新尝试")
+                    }
+                }) { (erro) in
+                    SVPMessageShow.dismissSVP()
+                    SVPMessageShow.showErro(infoStr: "文件上传失败，请重新尝试")
+                }
+            } else {
+                request.saveRequest(id: "\(detailId)", t: titleCell.conTent, n: contentCell.conTent, o: objectCell.cuurectID, s: 0, d: messageCell.need, f: "")
+            }
+
         }
     }
     

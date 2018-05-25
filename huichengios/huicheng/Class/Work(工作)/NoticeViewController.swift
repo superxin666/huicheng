@@ -152,6 +152,10 @@ class NoticeViewController: BaseViewController,UITableViewDataSource,UITableView
         let vc = AddNoticeViewController()
         vc.hidesBottomBarWhenPushed = true
         vc.type = .addNotice
+        weak var weakself = self
+        vc.reflishBlock = {
+            weakself?.reflishData()
+        }
         self.navigationController?.pushViewController(vc, animated: true)
         
     }

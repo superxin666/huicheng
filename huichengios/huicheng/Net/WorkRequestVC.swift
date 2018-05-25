@@ -137,13 +137,13 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
     ///   - o: 接收对象，INT 型
     ///   - s: 状态，INT 型 0-未发布;1-已发布
     ///   - d: 是否发送短信，INT 型 返回值
-    func saveRequest(id:String,t:String,n:String,o:String,s:Int,d:Int) {
+    func saveRequest(id:String,t:String,n:String,o:String,s:Int,d:Int,f:String) {
         request.delegate = self
         type = .save
         let tStr : String = t.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         let nStr : String = n.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-
-        let url =   save_api + "t=\(tStr)&n=\(nStr)&o=\(o)&s=\(s)&d=\(d)&k=\(UserInfoLoaclManger.getKey())"
+        let fStr : String = f.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let url =   save_api + "t=\(tStr)&n=\(nStr)&o=\(o)&s=\(s)&d=\(d)&f=\(fStr)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
 
     }

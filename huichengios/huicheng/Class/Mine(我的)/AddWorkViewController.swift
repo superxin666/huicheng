@@ -172,11 +172,15 @@ class AddWorkViewController: BaseViewController,UITableViewDataSource,UITableVie
             if self.fileArr.count > 0 {
                 //上传文件
                 SVPMessageShow.showLoad(title: "正在上传文件")
+                weak var weakSelf = self
+
                 BaseNetViewController.uploadfile(fileName: self.fileArr[0], t: "12", completion: { (data) in
                     let model = data as! CodeData
                     if model.code == 1 {
                         HCLog(message: model.msg)
                         SVPMessageShow.dismissSVP()
+                        let file = base_imageOrFile_api + model.msg
+                        weakSelf?.requestVC.work_save_apiRequest(t: (weakSelf?.tStr)!, n:(weakSelf?.nStr)!, a: file)
 
                     } else {
                         SVPMessageShow.dismissSVP()
@@ -186,8 +190,10 @@ class AddWorkViewController: BaseViewController,UITableViewDataSource,UITableVie
                     SVPMessageShow.dismissSVP()
                     SVPMessageShow.showErro(infoStr: "文件上传失败，请重新尝试")
                 }
+            } else {
+                requestVC.work_save_apiRequest(t: tStr, n:nStr, a: "")
             }
-//            requestVC.work_save_apiRequest(t: tStr, n: nStr, a: "")
+
         }
 
 
