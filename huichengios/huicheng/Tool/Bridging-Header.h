@@ -9,5 +9,8 @@
 #ifndef Bridging_Header_h
 #define Bridging_Header_h
 #import <MJRefresh/MJRefresh.h>
+#import <UMCommon/UMCommon.h>
+#import <UMPush/UMessage.h>
+
 
 #endif /* Bridging_Header_h */

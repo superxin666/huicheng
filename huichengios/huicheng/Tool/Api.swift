@@ -10,6 +10,11 @@ import Foundation
 let base_api = "http://47.94.108.111:18000/api/"
 let base_imageOrFile_api = "http://47.94.108.111:18000"
 
+//------------------------友盟
+let umemgKey = "5a8242c1a40fa3399900089a"
+let umemgSecret = "yr1dleqjikrndhntlggbzoygfc1enpiq"
+
+
 //------------------------登陆
 let login_api = "base/login?"
 let sendcode_api = "base/sendcode?"

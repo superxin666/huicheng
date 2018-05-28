@@ -66,6 +66,7 @@
 		2108BB92206FF2BB002A4212 /* CheckcaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108BB90206FF2BB002A4212 /* CheckcaseTableViewCell.swift */; };
 		2108BB93206FF2BB002A4212 /* CheckcaseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2108BB91206FF2BB002A4212 /* CheckcaseTableViewCell.xib */; };
 		2108BB95206FF723002A4212 /* CheckcaseResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108BB94206FF723002A4212 /* CheckcaseResultViewController.swift */; };
+		21095D5A20BBBB9800759EC3 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21095D5920BBBB9800759EC3 /* UserNotifications.framework */; };
 		2109654520708B390012FDDB /* WorkRequestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2109654420708B390012FDDB /* WorkRequestVC.swift */; };
 		2109654720708D130012FDDB /* checkcaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2109654620708D130012FDDB /* checkcaseModel.swift */; };
 		21096549207101820012FDDB /* newslist1Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21096548207101820012FDDB /* newslist1Model.swift */; };
@@ -276,6 +277,8 @@
 		2108BB90206FF2BB002A4212 /* CheckcaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckcaseTableViewCell.swift; sourceTree = "<group>"; };
 		2108BB91206FF2BB002A4212 /* CheckcaseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheckcaseTableViewCell.xib; sourceTree = "<group>"; };
 		2108BB94206FF723002A4212 /* CheckcaseResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckcaseResultViewController.swift; sourceTree = "<group>"; };
+		21095D5920BBBB9800759EC3 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		21095D5B20BBBBA200759EC3 /* huicheng.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = huicheng.entitlements; sourceTree = "<group>"; };
 		2109654420708B390012FDDB /* WorkRequestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkRequestVC.swift; sourceTree = "<group>"; };
 		2109654620708D130012FDDB /* checkcaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkcaseModel.swift; sourceTree = "<group>"; };
 		21096548207101820012FDDB /* newslist1Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newslist1Model.swift; sourceTree = "<group>"; };
@@ -436,6 +439,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21095D5A20BBBB9800759EC3 /* UserNotifications.framework in Frameworks */,
 				88EEB2BAA16F8A6E3AED0F0A /* Pods_huicheng.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -665,6 +669,7 @@
 		215C65C9203EC6B6001C7A92 /* huicheng */ = {
 			isa = PBXGroup;
 			children = (
+				21095D5B20BBBBA200759EC3 /* huicheng.entitlements */,
 				2137667A203FB7CE000CBCE6 /* Net */,
 				21376678203FB77B000CBCE6 /* Class */,
 				21376677203FB75F000CBCE6 /* Tool */,
@@ -831,6 +836,7 @@
 		6F2EA6AFB613FEB8B4C18340 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				21095D5920BBBB9800759EC3 /* UserNotifications.framework */,
 				A6B3B926EC39335E65CFE2DE /* Pods_huicheng.framework */,
 			);
 			name = Frameworks;
@@ -880,7 +886,15 @@
 				TargetAttributes = {
 					215C65C6203EC6B6001C7A92 = {
 						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1326,16 +1340,17 @@
 			baseConfigurationReference = 98FDFB3873660C12BD78F6BE /* Pods-huicheng.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = huicheng/huicheng.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = NGR2ZQ7TWS;
 				INFOPLIST_FILE = huicheng/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.huicheng.cn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "521dda22-3142-4f6c-b9b1-30534f2c8ffa";
+				PROVISIONING_PROFILE_SPECIFIER = huichengdev;
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/lvxin/huicheng/huichengios/huicheng/Tool/Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1347,16 +1362,17 @@
 			baseConfigurationReference = 97B8B5BC41ED2EA904010B3A /* Pods-huicheng.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = huicheng/huicheng.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = NGR2ZQ7TWS;
 				INFOPLIST_FILE = huicheng/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.huicheng.cn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "521dda22-3142-4f6c-b9b1-30534f2c8ffa";
+				PROVISIONING_PROFILE_SPECIFIER = huichengdev;
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/lvxin/huicheng/huichengios/huicheng/Tool/Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;

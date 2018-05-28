@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         } else {
             self.showLogin()
         }
+        self.setUpUmeng(launchOptions: launchOptions)
         return true
     }
 
@@ -85,7 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
 
         }
     }
-    
+    //MARK:tab
     /// 显示登录
     func showLogin()  {
         let vc = LogInViewController()
@@ -128,6 +129,100 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor:UIColor.hc_colorFromRGB(rgbValue: 0xff6900)], for: .selected)
         tab.viewControllers = vcArr
         self.window?.rootViewController = tab
+    }
+    //MARK:友盟
+    func setUpUmeng(launchOptions : [UIApplicationLaunchOptionsKey: Any]?) {
+        UMConfigure.initWithAppkey(umemgKey, channel: "App Store")
+        UMConfigure.deviceIDForIntegration()
+        let entity : UMessageRegisterEntity = UMessageRegisterEntity()
+
+        entity.types = Int(UInt8(UMessageAuthorizationOptions.alert.rawValue) | UInt8(UMessageAuthorizationOptions.badge.rawValue)|UInt8(UMessageAuthorizationOptions.sound.rawValue))
+
+        UMessage.registerForRemoteNotifications(launchOptions: launchOptions, entity: entity) { (granted, error) in
+            if (granted) {
+
+            } else {
+
+            }
+        }
+
+    }
+
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let device = NSData(data: deviceToken)
+        let deviceId = device.description.replacingOccurrences(of:"<", with:"").replacingOccurrences(of:">", with:"").replacingOccurrences(of:" ", with:"")
+        print(deviceId)
+    }
+
+
+    //MARK:友盟推送代理
+    //iOS10以下使用这两个方法接收通知，
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+        application.applicationIconBadgeNumber = 0        // 标签
+
+        print(userInfo)
+
+//        guard  let payloadStr : String = userInfo["payload"] as? String else {
+//            return
+//        }
+//        KFBLog(message: "payloadStr " + payloadStr)
+//        let data :Data = payloadStr.data(using: .utf8)!
+//        let dict : [String : Any] = try! JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! [String : Any]
+//        let ID : Int =  dict["fenxId"] as! Int
+//        KFBLog(message: "详情\(ID)")
+//        let vc = TeachDetailViewController()
+//        vc.fenxId = ID
+//        vc.hidesBottomBarWhenPushed = true
+//        let tab : UITabBarController = self.window?.rootViewController as! UITabBarController
+//        tab.selectedIndex = 0
+//        let nav : UINavigationController = tab.childViewControllers[0] as! UINavigationController
+//        nav.pushViewController(vc, animated: true)
+
+
+    }
+
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+         print(userInfo)
+        // [ GTSdk ]：将收到的APNs信息传给个推统计
+//        GeTuiSdk.handleRemoteNotification(userInfo);
+//        KFBLog(message: "\n>>>[Receive RemoteNotification]:\(userInfo)\n\n")
+//
+//        completionHandler(UIBackgroundFetchResult.newData);
+        UMessage.setAutoAlert(false)
+        UMessage.didReceiveRemoteNotification(userInfo)
+    }
+
+    //iOS10新增：处理前台收到通知的代理方法
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+
+
+
+
+    }
+    //iOS10新增：处理后台点击通知的代理方法
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+
+        print("didReceiveNotificationResponse: %@",response.notification.request.content.userInfo);
+//        let payloadStr : String = response.notification.request.content.userInfo["payload"] as! String
+//        KFBLog(message: "payloadStr " + payloadStr)
+//        let data :Data = payloadStr.data(using: .utf8)!
+//        let dict : [String : Any] = try! JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! [String : Any]
+//        let ID : Int =  dict["fenxId"] as! Int
+//        KFBLog(message: "详情\(ID)")
+//        let vc = TeachDetailViewController()
+//        vc.fenxId = ID
+//        vc.hidesBottomBarWhenPushed = true
+//        let tab : UITabBarController = self.window?.rootViewController as! UITabBarController
+//        tab.selectedIndex = 0
+//        let nav : UINavigationController = tab.childViewControllers[0] as! UINavigationController
+//        nav.pushViewController(vc, animated: true)
+//
+//        // [ GTSdk ]：将收到的APNs信息传给个推统计
+//        GeTuiSdk.handleRemoteNotification(response.notification.request.content.userInfo);
+//
+        completionHandler();
     }
 
 }
