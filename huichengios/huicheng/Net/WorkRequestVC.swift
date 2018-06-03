@@ -21,7 +21,7 @@ enum WorkRequestVC_enum {
          doc_getlist,doc_getinfo,doc_del,//函件管理
          invoice_applylist,invoice_applysave,invoice_del,//发票审批
          expense_applylist,expense_applysave,expense_del,//报销审批
-         sharegetlist,//模板共享 获取列表
+         sharegetlist,sharegetmylist,//模板共享 获取列表
          bank_getlist,bank_getinfo,bank_save//银行信息
 }
 
@@ -650,6 +650,21 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
 
 
 
+    /// 我的列表
+    ///
+    /// - Parameters:
+    ///   - p: <#p description#>
+    ///   - c: <#c description#>
+    ///   - t: <#t description#>
+    ///   - kw: <#kw description#>
+    func sharegetmylistRequest(p:Int,c:Int,t:String,kw:String) {
+        request.delegate = self
+        type = .sharegetmylist
+        let url = share_getmylist_api   + "p=\(p)&c=\(c)&t=\(t)&kw=\(kw)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+    }
+
+
 
     func requestSucceed(response: Any) {
         if type == .checkcase || type == .case_getlist {
@@ -739,7 +754,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
                 self.delegate.requestSucceed_work(data: arr,type : type)
             }
 
-        } else if type == .sharegetlist{
+        } else if type == .sharegetlist || type == .sharegetmylist{
             let arr = Mapper<shareGetlistModel>().mapArray(JSONArray: response as! [[String : Any]])
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work(data: arr,type : type)

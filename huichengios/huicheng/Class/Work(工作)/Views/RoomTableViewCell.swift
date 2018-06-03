@@ -51,11 +51,34 @@ class RoomTableViewCell: UITableViewCell {
             self.titleLabel.text = title
         }
         if let addtime = model.addtime,let typeStr = model.typeStr {
-            self.titleLabel.text = String.hc_getDate_string(dateStr: addtime) + "  " + typeStr
+            self.contentLabel.text = String.hc_getDate_string(dateStr: addtime) + "  " + typeStr
 
         }
         if let user = model.user {
+            self.stateLabel.backgroundColor = .white
+            self.stateLabel.textColor = UIColor.hc_colorFromRGB(rgbValue: 0x333333)
             self.stateLabel.text = user
+        }
+    }
+    func setData_shareMy(model :shareGetlistModel)  {
+        if let title = model.title {
+            self.titleLabel.text = title
+        }
+        if let addtime = model.addtime,let typeStr = model.typeStr {
+            self.contentLabel.text = String.hc_getDate_string(dateStr: addtime) + "  " + typeStr
+
+        }
+        if let ifedit = model.ifedit {
+            //0 不可编辑 1可编辑
+            self.stateLabel.textColor = .white
+            if ifedit == 0 {
+                self.stateLabel.text = "已发布"
+                self.stateLabel.backgroundColor = UIColor.hc_colorFromRGB(rgbValue: 0x333333)
+            } else {
+                self.stateLabel.text = "未发布"
+                self.stateLabel.backgroundColor = darkblueColor
+            }
+
         }
     }
 
@@ -67,7 +90,7 @@ class RoomTableViewCell: UITableViewCell {
     }
 
     @objc func tapClik() {
-        self.delBlock(dataModel)
+//        self.delBlock(dataModel)
     }
 
 

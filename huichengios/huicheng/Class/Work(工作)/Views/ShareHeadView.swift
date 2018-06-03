@@ -7,8 +7,12 @@
 //
 
 import UIKit
+protocol ShareHeadViewDelegate {
+    func headViewClick(tagNum : Int)
+}
 
 class ShareHeadView: UIView,NibLoadable {
+    var delegate : ShareHeadViewDelegate!
 
     @IBOutlet weak var listBtn: UIButton!
     
@@ -28,6 +32,9 @@ class ShareHeadView: UIView,NibLoadable {
         lastBtn.isSelected = sender.isSelected
         sender.isSelected = !sender.isSelected
         lastBtn = sender
+        if (delegate != nil) {
+            self.delegate.headViewClick(tagNum: tagNum)
+        }
 
     }
 

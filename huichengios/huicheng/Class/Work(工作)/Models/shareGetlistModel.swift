@@ -25,6 +25,8 @@ class shareGetlistModel: Mappable {
     var readcount : Int!
     var addtime : String!
 
+    var ifedit: Int!
+
 
 
     init() {}
@@ -40,6 +42,8 @@ class shareGetlistModel: Mappable {
         user <- map["user"]
         readcount <- map["readcount"]
         addtime <- map["addtime"]
+
+        ifedit <- map["ifedit"]
 
     }
 }

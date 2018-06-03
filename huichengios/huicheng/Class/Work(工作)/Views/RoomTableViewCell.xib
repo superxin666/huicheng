@@ -28,10 +28,9 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E9l-wx-sZQ">
-                        <rect key="frame" x="10" y="45" width="150" height="20"/>
+                        <rect key="frame" x="10" y="45" width="200" height="20"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="150" id="avO-OM-WDV"/>
-                            <constraint firstAttribute="height" constant="20" id="z1O-0T-cqd"/>
+                            <constraint firstAttribute="height" constant="20" id="6QJ-D0-eYj"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -47,20 +46,26 @@
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J9O-qo-68W">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J9O-qo-68W">
                         <rect key="frame" x="10" y="79" width="310" height="0.5"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="jpD-Uj-gNA"/>
+                        </constraints>
                     </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="2sh-7V-jK1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="2fc-vk-Kvt"/>
                     <constraint firstItem="2sh-7V-jK1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="3O7-LR-Xo5"/>
-                    <constraint firstItem="E9l-wx-sZQ" firstAttribute="top" secondItem="2sh-7V-jK1" secondAttribute="bottom" constant="10" id="6DD-8t-mGS"/>
-                    <constraint firstItem="E9l-wx-sZQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Pz4-tc-uNZ"/>
+                    <constraint firstItem="E9l-wx-sZQ" firstAttribute="top" secondItem="2sh-7V-jK1" secondAttribute="bottom" constant="10" id="J0f-sn-8vk"/>
+                    <constraint firstAttribute="bottom" secondItem="J9O-qo-68W" secondAttribute="bottom" id="JtS-Z4-3oY"/>
+                    <constraint firstAttribute="trailing" secondItem="J9O-qo-68W" secondAttribute="trailing" id="Pct-vd-CNC"/>
                     <constraint firstAttribute="trailing" secondItem="2sh-7V-jK1" secondAttribute="trailing" constant="10" id="WSn-o0-a1k"/>
+                    <constraint firstItem="E9l-wx-sZQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="YdJ-Qr-Lyp"/>
                     <constraint firstItem="0h5-cQ-etR" firstAttribute="top" secondItem="2sh-7V-jK1" secondAttribute="bottom" constant="10" id="Ypb-B3-TuT"/>
                     <constraint firstAttribute="trailing" secondItem="0h5-cQ-etR" secondAttribute="trailing" constant="10" id="fX1-S6-t8E"/>
+                    <constraint firstItem="0h5-cQ-etR" firstAttribute="leading" secondItem="E9l-wx-sZQ" secondAttribute="trailing" constant="20" id="lGN-Np-J8s"/>
+                    <constraint firstItem="J9O-qo-68W" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="tmr-uQ-F8x"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
