@@ -85,13 +85,13 @@ class RoomTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        let tap = UITapGestureRecognizer(target: self, action: #selector(tapClik))
-        self.addGestureRecognizer(tap)
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(tapClik))
+//        self.addGestureRecognizer(tap)
     }
 
-    @objc func tapClik() {
+//    @objc func tapClik() {
 //        self.delBlock(dataModel)
-    }
+//    }
 
 
     override func setSelected(_ selected: Bool, animated: Bool) {

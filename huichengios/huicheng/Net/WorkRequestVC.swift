@@ -21,7 +21,7 @@ enum WorkRequestVC_enum {
          doc_getlist,doc_getinfo,doc_del,//函件管理
          invoice_applylist,invoice_applysave,invoice_del,//发票审批
          expense_applylist,expense_applysave,expense_del,//报销审批
-         sharegetlist,sharegetmylist,//模板共享 获取列表
+         sharegetlist,sharegetmylist,sharegetinfo,sharegetreply,sharereplysave,//模板共享 获取列表
          bank_getlist,bank_getinfo,bank_save//银行信息
 }
 
@@ -665,6 +665,45 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
     }
 
 
+    /// 获取详情-正文
+    ///
+    /// - Parameter id: <#id description#>
+    func sharegetinfoRequest(id:Int) {
+        request.delegate = self
+        type = .sharegetinfo
+        let url = share_getinfo_api   + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+    }
+
+
+    /// 获取详情-回复
+    ///
+    /// - Parameter id: <#id description#>
+    func sharegetreplyRequest(id:Int) {
+        request.delegate = self
+        type = .sharegetreply
+        let url = share_sharegetreply_api   + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+    }
+
+    /// 提交回复
+    ///
+    /// - Parameters:
+    ///   - id: <#id description#>
+    ///   - n: <#n description#>
+    func sharereplysaveRequest(id:Int,n:String) {
+        if !(n.count > 0) {
+            SVPMessageShow.showErro(infoStr: "请输入回复内容")
+            return
+        }
+        request.delegate = self
+        type = .sharereplysave
+        let nStr = n.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let url = share_replysave_api   + "id=\(id)&n=\(nStr)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+    }
+
+
 
     func requestSucceed(response: Any) {
         if type == .checkcase || type == .case_getlist {
@@ -697,7 +736,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work(data: arr,type : type)
             }
-        } else if type == .save || type == .newspublic || type == .oversave || type == .casedel || type == .dealdel || type == .roomsave || type == .roomdel || type == .applysave || type == .checkoversave || type == .doc_del || type == .invoice_applysave || type == .invoice_del || type == .expense_applysave || type == .expense_del ||  type == .bank_save{
+        } else if type == .save || type == .newspublic || type == .oversave || type == .casedel || type == .dealdel || type == .roomsave || type == .roomdel || type == .applysave || type == .checkoversave || type == .doc_del || type == .invoice_applysave || type == .invoice_del || type == .expense_applysave || type == .expense_del ||  type == .bank_save || type == .sharereplysave{
             //发布公告
             let model = Mapper<CodeData>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {
@@ -789,6 +828,18 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work(data: model,type : type)
             }
+        } else if type == .sharegetinfo{
+            let model = Mapper<sharegetinfoModel>().map(JSON: response as! [String : Any])!
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed_work(data: model,type : type)
+            }
+
+        } else if type == .sharegetreply{
+            let arr = Mapper<sharegetreplyModel>().mapArray(JSONArray: response as! [[String : Any]])
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed_work(data: arr,type : type)
+            }
+
         }
     }
     

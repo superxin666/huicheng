@@ -127,10 +127,23 @@ class ShareViewController: BaseViewController,UITableViewDataSource,UITableViewD
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row  < self.dataArr.count {
-
-
+        HCLog(message: "点击")
+        var model = shareGetlistModel()
+        if self.viewType == 0 {
+            if !(dataArr.count > 0) {
+                return
+            }
+            model = self.dataArr[indexPath.row]
+        } else {
+            if !(dataArr_my.count > 0) {
+                return
+            }
+            model = self.dataArr_my[indexPath.row]
         }
+
+        let vc = ShareDetailViewController()
+        vc.shareID = model.id
+        self.navigationController?.pushViewController(vc, animated: true)
 
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

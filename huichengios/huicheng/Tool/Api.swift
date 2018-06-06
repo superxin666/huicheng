@@ -128,12 +128,11 @@ let deal_checkoversave_api = "deal/checkoversave?"
 
 /// 获取列表
 let share_getlist_api = "share/getlist?"
-
-
 ///  获取我的模板列表
 let share_getmylist_api = "share/getmylist?"
-
-
+let share_getinfo_api = "share/getinfo?"
+let share_sharegetreply_api = "share/getreply?"
+let share_replysave_api = "share/replysave?"
 //-----------------------法庭信息管理
 let quick_getlist_api = "quick/getlist?"
 

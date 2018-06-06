@@ -104,6 +104,10 @@
 		2126DBE6208B454700977802 /* Title5TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2126DBE4208B454700977802 /* Title5TableViewCell.swift */; };
 		2126DBE7208B454700977802 /* Title5TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2126DBE5208B454700977802 /* Title5TableViewCell.xib */; };
 		212FEA7E20C3789000A466E2 /* ShareDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212FEA7D20C3789000A466E2 /* ShareDetailViewController.swift */; };
+		212FEA8120C3EF1300A466E2 /* Title6TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212FEA7F20C3EF1300A466E2 /* Title6TableViewCell.swift */; };
+		212FEA8220C3EF1300A466E2 /* Title6TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 212FEA8020C3EF1300A466E2 /* Title6TableViewCell.xib */; };
+		212FEA8420C3F10500A466E2 /* sharegetinfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212FEA8320C3F10500A466E2 /* sharegetinfoModel.swift */; };
+		212FEA8620C3F4BA00A466E2 /* sharegetreplyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212FEA8520C3F4BA00A466E2 /* sharegetreplyModel.swift */; };
 		21340BD7206CB46800E30B53 /* AddExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21340BD6206CB46800E30B53 /* AddExpenseViewController.swift */; };
 		21340BD9206CBDDB00E30B53 /* AddExpenseBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21340BD8206CBDDB00E30B53 /* AddExpenseBackView.swift */; };
 		21340BDB206CBDE400E30B53 /* AddExpenseBackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21340BDA206CBDE400E30B53 /* AddExpenseBackView.xib */; };
@@ -212,6 +216,11 @@
 		21DDC9DF2080CA460067197D /* OptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DDC9DD2080CA460067197D /* OptionTableViewCell.swift */; };
 		21DDC9E02080CA460067197D /* OptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21DDC9DE2080CA460067197D /* OptionTableViewCell.xib */; };
 		21DDC9E22080DCB90067197D /* CasePersionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DDC9E12080DCB90067197D /* CasePersionViewController.swift */; };
+		21E76FEC20C78D87009454FD /* Content2TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E76FEA20C78D87009454FD /* Content2TableViewCell.swift */; };
+		21E76FED20C78D87009454FD /* Content2TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21E76FEB20C78D87009454FD /* Content2TableViewCell.xib */; };
+		21E76FF020C7B644009454FD /* Title7TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E76FEE20C7B644009454FD /* Title7TableViewCell.swift */; };
+		21E76FF120C7B644009454FD /* Title7TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21E76FEF20C7B644009454FD /* Title7TableViewCell.xib */; };
+		21E76FF320C7BDFF009454FD /* AddShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E76FF220C7BDFF009454FD /* AddShareViewController.swift */; };
 		21F8469220B7BFCB00F4A678 /* ReadFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F8469120B7BFCB00F4A678 /* ReadFileViewController.swift */; };
 		21F8469420B7DFEA00F4A678 /* BankInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F8469320B7DFEA00F4A678 /* BankInfoViewController.swift */; };
 		21F8469620B7F9DE00F4A678 /* bank_getlistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F8469520B7F9DE00F4A678 /* bank_getlistModel.swift */; };
@@ -317,6 +326,10 @@
 		2126DBE4208B454700977802 /* Title5TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title5TableViewCell.swift; sourceTree = "<group>"; };
 		2126DBE5208B454700977802 /* Title5TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Title5TableViewCell.xib; sourceTree = "<group>"; };
 		212FEA7D20C3789000A466E2 /* ShareDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareDetailViewController.swift; sourceTree = "<group>"; };
+		212FEA7F20C3EF1300A466E2 /* Title6TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title6TableViewCell.swift; sourceTree = "<group>"; };
+		212FEA8020C3EF1300A466E2 /* Title6TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Title6TableViewCell.xib; sourceTree = "<group>"; };
+		212FEA8320C3F10500A466E2 /* sharegetinfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sharegetinfoModel.swift; sourceTree = "<group>"; };
+		212FEA8520C3F4BA00A466E2 /* sharegetreplyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sharegetreplyModel.swift; sourceTree = "<group>"; };
 		21340BD6206CB46800E30B53 /* AddExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseViewController.swift; sourceTree = "<group>"; };
 		21340BD8206CBDDB00E30B53 /* AddExpenseBackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseBackView.swift; sourceTree = "<group>"; };
 		21340BDA206CBDE400E30B53 /* AddExpenseBackView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddExpenseBackView.xib; sourceTree = "<group>"; };
@@ -428,6 +441,11 @@
 		21DDC9DD2080CA460067197D /* OptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionTableViewCell.swift; sourceTree = "<group>"; };
 		21DDC9DE2080CA460067197D /* OptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OptionTableViewCell.xib; sourceTree = "<group>"; };
 		21DDC9E12080DCB90067197D /* CasePersionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CasePersionViewController.swift; sourceTree = "<group>"; };
+		21E76FEA20C78D87009454FD /* Content2TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content2TableViewCell.swift; sourceTree = "<group>"; };
+		21E76FEB20C78D87009454FD /* Content2TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Content2TableViewCell.xib; sourceTree = "<group>"; };
+		21E76FEE20C7B644009454FD /* Title7TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title7TableViewCell.swift; sourceTree = "<group>"; };
+		21E76FEF20C7B644009454FD /* Title7TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Title7TableViewCell.xib; sourceTree = "<group>"; };
+		21E76FF220C7BDFF009454FD /* AddShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddShareViewController.swift; sourceTree = "<group>"; };
 		21F8469120B7BFCB00F4A678 /* ReadFileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadFileViewController.swift; sourceTree = "<group>"; };
 		21F8469320B7DFEA00F4A678 /* BankInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankInfoViewController.swift; sourceTree = "<group>"; };
 		21F8469520B7F9DE00F4A678 /* bank_getlistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bank_getlistModel.swift; sourceTree = "<group>"; };
@@ -554,6 +572,8 @@
 				2108BB7D206FD7D8002A4212 /* TitleTableViewCell.xib */,
 				2108BB80206FD7F3002A4212 /* ContentTableViewCell.swift */,
 				2108BB81206FD7F3002A4212 /* ContentTableViewCell.xib */,
+				21E76FEA20C78D87009454FD /* Content2TableViewCell.swift */,
+				21E76FEB20C78D87009454FD /* Content2TableViewCell.xib */,
 				2108BB84206FD809002A4212 /* FileTableViewCell.swift */,
 				2108BB85206FD809002A4212 /* FileTableViewCell.xib */,
 				2123A383208F0C7400C50FA9 /* SelectedTableViewCell.swift */,
@@ -764,6 +784,7 @@
 				2124D722208D73280007B5EE /* AddRoomViewController.swift */,
 				2124D72C208E196E0007B5EE /* ShareViewController.swift */,
 				212FEA7D20C3789000A466E2 /* ShareDetailViewController.swift */,
+				21E76FF220C7BDFF009454FD /* AddShareViewController.swift */,
 				21528BB820A52B3300C9950A /* FileViewController.swift */,
 				21F8469120B7BFCB00F4A678 /* ReadFileViewController.swift */,
 			);
@@ -799,6 +820,8 @@
 				21B9177520AC0B4F004031DE /* docgetlistModel.swift */,
 				21B9177720AC0C87004031DE /* docgetinfoModel.swift */,
 				21F8469520B7F9DE00F4A678 /* bank_getlistModel.swift */,
+				212FEA8320C3F10500A466E2 /* sharegetinfoModel.swift */,
+				212FEA8520C3F4BA00A466E2 /* sharegetreplyModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -824,6 +847,10 @@
 				2126DBDF2089CB9B00977802 /* Title4TableViewCell.xib */,
 				2126DBE4208B454700977802 /* Title5TableViewCell.swift */,
 				2126DBE5208B454700977802 /* Title5TableViewCell.xib */,
+				212FEA7F20C3EF1300A466E2 /* Title6TableViewCell.swift */,
+				212FEA8020C3EF1300A466E2 /* Title6TableViewCell.xib */,
+				21E76FEE20C7B644009454FD /* Title7TableViewCell.swift */,
+				21E76FEF20C7B644009454FD /* Title7TableViewCell.xib */,
 				2124D71E208D69D20007B5EE /* RoomTableViewCell.swift */,
 				2124D71F208D69D20007B5EE /* RoomTableViewCell.xib */,
 				2123A37F208EFCC000C50FA9 /* ShareHeadView.swift */,
@@ -947,6 +974,7 @@
 				2108BB8B206FE326002A4212 /* ObjectTableViewCell.xib in Resources */,
 				21066CB22066992C009327AD /* ResetKeyView.xib in Resources */,
 				2123A38A208F39F800C50FA9 /* Selected2TableViewCell.xib in Resources */,
+				21E76FF120C7B644009454FD /* Title7TableViewCell.xib in Resources */,
 				2108BB87206FD809002A4212 /* FileTableViewCell.xib in Resources */,
 				215C65D2203EC6B6001C7A92 /* Assets.xcassets in Resources */,
 				21DDC9D620809E880067197D /* Title2TableViewCell.xib in Resources */,
@@ -958,11 +986,13 @@
 				2126DBE7208B454700977802 /* Title5TableViewCell.xib in Resources */,
 				21528BC120A52D6C00C9950A /* FileListTableViewCell.xib in Resources */,
 				21075568205D8FF200FF4396 /* MineFooterView.xib in Resources */,
+				212FEA8220C3EF1300A466E2 /* Title6TableViewCell.xib in Resources */,
 				21671C9120AAD99200E8680C /* DocTableViewCell.xib in Resources */,
 				2126DBE12089CB9B00977802 /* Title4TableViewCell.xib in Resources */,
 				219D7BCD205E483E009F543B /* PubMesConView.xib in Resources */,
 				21066CA82065E369009327AD /* ConVenTableViewCell.xib in Resources */,
 				21CFDDC82068E8E500745A48 /* InvoiceTableViewCell.xib in Resources */,
+				21E76FED20C78D87009454FD /* Content2TableViewCell.xib in Resources */,
 				211A65C920A00957009CD41A /* NoticeTableViewCell.xib in Resources */,
 				216B7C68206394DE00BBACDA /* MemoTableViewCell.xib in Resources */,
 				2108BB93206FF2BB002A4212 /* CheckcaseTableViewCell.xib in Resources */,
@@ -1073,6 +1103,7 @@
 				21528BB920A52B3300C9950A /* FileViewController.swift in Sources */,
 				219D7BB6205E062F009F543B /* InfoTableViewCell.swift in Sources */,
 				2105D2DF2060AEC40031B14C /* memo_getinfoModel.swift in Sources */,
+				212FEA8620C3F4BA00A466E2 /* sharegetreplyModel.swift in Sources */,
 				213F77E7206B352900075FC6 /* SetBackView.swift in Sources */,
 				21387D3F205FAB240050DF1F /* newsdetialModel.swift in Sources */,
 				218746E420A18A29006EB2DC /* DealCheckDetailViewController.swift in Sources */,
@@ -1096,10 +1127,12 @@
 				21376687203FBAEB000CBCE6 /* View+Clipping.swift in Sources */,
 				21340BD7206CB46800E30B53 /* AddExpenseViewController.swift in Sources */,
 				2108BB7E206FD7D8002A4212 /* TitleTableViewCell.swift in Sources */,
+				212FEA8420C3F10500A466E2 /* sharegetinfoModel.swift in Sources */,
 				2123A389208F39F800C50FA9 /* Selected2TableViewCell.swift in Sources */,
 				2108BB8E206FE34A002A4212 /* MessageNeedTableViewCell.swift in Sources */,
 				21376684203FBAB2000CBCE6 /* UILabel+Init.swift in Sources */,
 				216A6C54204CDE7900528FD8 /* WorkViewController.swift in Sources */,
+				21E76FF320C7BDFF009454FD /* AddShareViewController.swift in Sources */,
 				21F8469220B7BFCB00F4A678 /* ReadFileViewController.swift in Sources */,
 				219D7BC3205E22EE009F543B /* ExpenseViewController.swift in Sources */,
 				21387D2B205F55500050DF1F /* MessageRequestVC.swift in Sources */,
@@ -1128,7 +1161,9 @@
 				2109654720708D130012FDDB /* checkcaseModel.swift in Sources */,
 				214C8FE120A3CD9500B09C3B /* CaseCheckDetailViewController.swift in Sources */,
 				21376685203FBAB2000CBCE6 /* UIButton+Init.swift in Sources */,
+				21E76FEC20C78D87009454FD /* Content2TableViewCell.swift in Sources */,
 				2124D72D208E196E0007B5EE /* ShareViewController.swift in Sources */,
+				21E76FF020C7B644009454FD /* Title7TableViewCell.swift in Sources */,
 				21387D39205F9C540050DF1F /* newslistModel.swift in Sources */,
 				21B9177A20AC20F2004031DE /* InvoiceapplylisViewController.swift in Sources */,
 				21DDC9D2208095790067197D /* branchModel.swift in Sources */,
@@ -1179,6 +1214,7 @@
 				21DDC9DA2080C8F10067197D /* OptionView.swift in Sources */,
 				214AA6BB207F9876004F2B63 /* CaseTableViewCell.swift in Sources */,
 				2126DBD52089797500977802 /* DealDetailViewController.swift in Sources */,
+				212FEA8120C3EF1300A466E2 /* Title6TableViewCell.swift in Sources */,
 				21DDC9DF2080CA460067197D /* OptionTableViewCell.swift in Sources */,
 				216B7C6320638EE100BBACDA /* IncomeTableViewCell.swift in Sources */,
 				2105D2DD2060ADFC0031B14C /* memo_getlistModel.swift in Sources */,

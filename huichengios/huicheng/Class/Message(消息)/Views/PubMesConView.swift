@@ -29,7 +29,11 @@ class PubMesConView: UIView,NibLoadable {
             self.subLabel.text = "发布人：\(user)   接收对象：\(object)"
         }
         if let content = model.content {
-            self.contentTextView.text = content
+
+            let attrStr = try! NSAttributedString(
+                data: content.data(using: String.Encoding.unicode, allowLossyConversion: true)!,
+                options:[NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
+            self.contentTextView.attributedText = attrStr
         }
         if let time = model.createtime {
             self.timeLabel.text = time
