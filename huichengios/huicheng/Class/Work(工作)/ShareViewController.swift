@@ -259,15 +259,12 @@ class ShareViewController: BaseViewController,UITableViewDataSource,UITableViewD
     }
     @objc func addClick() {
         HCLog(message: "添加")
-
+        let vc = AddShareViewController()
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     override func navigationLeftBtnClick() {
         self.navigationController?.popViewController(animated: true)
-    }
-    override func navigationRightBtnClick() {
-        HCLog(message: "搜索")
-
-
     }
 
     /*

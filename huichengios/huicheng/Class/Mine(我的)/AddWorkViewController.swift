@@ -28,7 +28,7 @@ class AddWorkViewController: BaseViewController,UITableViewDataSource,UITableVie
 
     var nStr = ""
 
-    var fileArr : Array<String>!
+    var fileArr : Array<String> = []
     var fileCell : FileTableViewCell!
     // MARK: - life
     override func viewWillLayoutSubviews() {

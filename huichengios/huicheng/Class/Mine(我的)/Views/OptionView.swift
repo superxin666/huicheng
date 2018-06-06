@@ -84,7 +84,11 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
         self.pickView.reloadAllComponents()
     }
 
- 
+    func setData_share(dataArr : [Any])  {
+        self.type = .caseType
+        data_casetypeArr = dataArr as! [casetypeModel]
+        self.pickView.reloadAllComponents()
+    }
 
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

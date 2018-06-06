@@ -21,7 +21,7 @@ enum WorkRequestVC_enum {
          doc_getlist,doc_getinfo,doc_del,//函件管理
          invoice_applylist,invoice_applysave,invoice_del,//发票审批
          expense_applylist,expense_applysave,expense_del,//报销审批
-         sharegetlist,sharegetmylist,sharegetinfo,sharegetreply,sharereplysave,//模板共享 获取列表
+         sharegetlist,sharegetmylist,sharegetinfo,sharegetreply,sharereplysave,sharegettype,sharesave,//模板共享 获取列表
          bank_getlist,bank_getinfo,bank_save//银行信息
 }
 
@@ -703,6 +703,36 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
         request.request_api(url: url)
     }
 
+    /// 新建
+    ///
+    /// - Parameters:
+    ///   - id: <#id description#>
+    ///   - n: <#n description#>
+    ///   - t: <#t description#>
+    ///   - d: <#d description#>
+    ///   - f: <#f description#>
+    func sharesavequest(id:String,n:String,t:String,d:String,f:String) {
+        request.delegate = self
+        type = .sharesave
+        let nStr = n.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let tStr = t.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let fStr = f.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+
+        let url = share_save_api   + "id=\(id)&n=\(nStr)&t=\(tStr)&d=\(d)&f=\(fStr)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+    }
+
+
+
+    /// 获取分类信息
+    func sharegettypeRequest() {
+        request.delegate = self
+        type = .sharegettype
+        let url = share_gettype_api   + "k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+
+    }
+
 
 
     func requestSucceed(response: Any) {
@@ -756,8 +786,8 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work(data: arr,type : type)
             }
-        } else if type == .casetype{
-            //案件类型
+        } else if type == .casetype || type == .sharegettype{
+            //案件类型 获取分类信息
             let arr = Mapper<casetypeModel>().mapArray(JSONArray: response as! [[String : Any]])
             HCLog(message: arr.count)
             if !(self.delegate == nil) {

@@ -133,6 +133,8 @@ let share_getmylist_api = "share/getmylist?"
 let share_getinfo_api = "share/getinfo?"
 let share_sharegetreply_api = "share/getreply?"
 let share_replysave_api = "share/replysave?"
+let share_gettype_api = "share/gettype?"
+let share_save_api = "share/save?"
 //-----------------------法庭信息管理
 let quick_getlist_api = "quick/getlist?"
 
