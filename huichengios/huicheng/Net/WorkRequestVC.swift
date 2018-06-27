@@ -494,6 +494,20 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
     }
 
     func bank_saveRequest(id:Int,bank:String,name:String,card:String) {
+
+        if !(bank.count > 0) {
+            SVPMessageShow.showErro(infoStr: "请输入银行名称")
+            return
+        }
+        if !(name.count > 0) {
+            SVPMessageShow.showErro(infoStr: "请输入开户姓名")
+            return
+        }
+        if !(card.count > 0) {
+            SVPMessageShow.showErro(infoStr: "请输入卡号")
+            return
+        }
+
         request.delegate = self
         type = .bank_save
         let bankStr = bank.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!

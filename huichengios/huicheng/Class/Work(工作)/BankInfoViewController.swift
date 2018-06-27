@@ -71,9 +71,11 @@ class BankInfoViewController: BaseViewController,UITableViewDataSource,UITableVi
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row  < self.dataArr.count {
-
+            let model = self.dataArr[indexPath.row]
+            let vc = BankDetailViewController()
+            vc.bankId = model.id
+            self.navigationController?.pushViewController(vc, animated: true)
         }
-
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return CaseTableViewCellH

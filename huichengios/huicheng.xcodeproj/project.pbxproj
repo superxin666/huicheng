@@ -204,6 +204,7 @@
 		21CFDDC42068E30500745A48 /* AddMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CFDDC32068E30500745A48 /* AddMemoViewController.swift */; };
 		21CFDDC72068E8E500745A48 /* InvoiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CFDDC52068E8E500745A48 /* InvoiceTableViewCell.swift */; };
 		21CFDDC82068E8E500745A48 /* InvoiceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21CFDDC62068E8E500745A48 /* InvoiceTableViewCell.xib */; };
+		21DBE4B220E37EC200113ABA /* BankDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DBE4B120E37EC200113ABA /* BankDetailViewController.swift */; };
 		21DDC9CA208051140067197D /* CaseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DDC9C9208051140067197D /* CaseDetailViewController.swift */; };
 		21DDC9CC208054040067197D /* caseDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DDC9CB208054040067197D /* caseDetailModel.swift */; };
 		21DDC9CE2080949B0067197D /* userlistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DDC9CD2080949B0067197D /* userlistModel.swift */; };
@@ -430,6 +431,7 @@
 		21CFDDC32068E30500745A48 /* AddMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemoViewController.swift; sourceTree = "<group>"; };
 		21CFDDC52068E8E500745A48 /* InvoiceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceTableViewCell.swift; sourceTree = "<group>"; };
 		21CFDDC62068E8E500745A48 /* InvoiceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvoiceTableViewCell.xib; sourceTree = "<group>"; };
+		21DBE4B120E37EC200113ABA /* BankDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankDetailViewController.swift; sourceTree = "<group>"; };
 		21DDC9C9208051140067197D /* CaseDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseDetailViewController.swift; sourceTree = "<group>"; };
 		21DDC9CB208054040067197D /* caseDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = caseDetailModel.swift; sourceTree = "<group>"; };
 		21DDC9CD2080949B0067197D /* userlistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userlistModel.swift; sourceTree = "<group>"; };
@@ -783,6 +785,7 @@
 				21B9177920AC20F2004031DE /* InvoiceapplylisViewController.swift */,
 				21B9177B20AC27ED004031DE /* ExpenseapplylistViewController.swift */,
 				21F8469320B7DFEA00F4A678 /* BankInfoViewController.swift */,
+				21DBE4B120E37EC200113ABA /* BankDetailViewController.swift */,
 				2124D71A208D66530007B5EE /* RoomViewController.swift */,
 				2124D722208D73280007B5EE /* AddRoomViewController.swift */,
 				2124D72C208E196E0007B5EE /* ShareViewController.swift */,
@@ -1114,6 +1117,7 @@
 				21DDC9E22080DCB90067197D /* CasePersionViewController.swift in Sources */,
 				2124D71D208D67570007B5EE /* roomModel.swift in Sources */,
 				219D7BB3205E049A009F543B /* InfoViewController.swift in Sources */,
+				21DBE4B220E37EC200113ABA /* BankDetailViewController.swift in Sources */,
 				214C8FE320A42D0F00B09C3B /* CheckInfoViewController.swift in Sources */,
 				2108BB8A206FE326002A4212 /* ObjectTableViewCell.swift in Sources */,
 				2108BB71206F28E7002A4212 /* ConvenRequestVC.swift in Sources */,

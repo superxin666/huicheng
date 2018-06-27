@@ -118,6 +118,22 @@ class TitleTableViewCell: UITableViewCell {
         self.titleNameLabel.textAlignment = .left
 
     }
+
+
+    /// 银行信息详情
+    ///
+    /// - Parameters:
+    ///   - titleStr: <#titleStr description#>
+    ///   - indexPath: <#indexPath description#>
+    func setData_bankInfo(titleStr : String,contentStr : String,indexPath : IndexPath)  {
+        let tagNum = indexPath.row
+        self.textField.tag = tagNum
+        self.titleNameLabel.textColor = darkblueColor
+        self.titleNameLabel.text = titleStr
+        self.titleNameLabel.textAlignment = .left
+        self.textField.text = contentStr
+        
+    }
     
     
     /// 搜索页面 标题
