@@ -90,6 +90,11 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
         self.pickView.reloadAllComponents()
     }
 
+    func setData_bank(dataArr : [Any])  {
+        self.type = .caseDep
+        data_departArr = dataArr as! [departmentModel]
+        self.pickView.reloadAllComponents()
+    }
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1

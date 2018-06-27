@@ -13,8 +13,10 @@ class BankInfoViewController: BaseViewController,UITableViewDataSource,UITableVi
     var pageNum : Int = 1
 
 
+    /// 姓名
     var nameStr = ""
-
+    /// 部门id
+    var dStr = ""
 
 
 
@@ -79,7 +81,7 @@ class BankInfoViewController: BaseViewController,UITableViewDataSource,UITableVi
     // MARK: - net
     func requestApi() {
         requestVC.delegate = self
-        requestVC.bank_getlistRequest(p: pageNum, c: 8, u: "", b: "", d: "", n: nameStr)
+        requestVC.bank_getlistRequest(p: pageNum, c: 8, u: "", b: "", d: dStr, n: nameStr)
 
     }
 
@@ -123,10 +125,11 @@ class BankInfoViewController: BaseViewController,UITableViewDataSource,UITableVi
     override func navigationRightBtnClick() {
         HCLog(message: "搜索")
         let vc = SearchViewController()
-        vc.type = .person
+        vc.type = .departAndPerson
         weak var weakself = self
-        vc.sureDealBlock = {(nameStr ) in
+        vc.sureBankBlock = {(nameStr,idStr ) in
             weakself?.nameStr = nameStr
+            weakself?.dStr = idStr
             weakself?.reflishData()
         }
         self.navigationController?.pushViewController(vc, animated: true)

@@ -12,15 +12,16 @@ typealias SearchViewControllerBlock_work = (_ titleStr : String,_ personStr : St
 typealias SearchViewControllerBlock_finance = (_ noStr : String,_ nStr : String,_ sStr : String,_ stStr : String,_ etStr : String)->()
 typealias SearchViewControllerBlock_caselsit = (_ stStr : String,_ etStr : String)->()
 typealias SearchViewControllerBlock_deal = (_ contentStr : String)->()
+typealias SearchViewControllerBlock_bank = (_ personStr : String,_ dStr : String)->()
 
 enum SearchViewController_type {
 
-    //发票申请           收款记录       工作日志      发票列表         案件查询        合同查询   姓名
-    case expense_type, finance_type , work_type ,invoice_getlist,caselsit_type,deal_type,person
+    //发票申请           收款记录       工作日志      发票列表         案件查询        合同查询   姓名    部门 人员姓名
+    case expense_type, finance_type , work_type ,invoice_getlist,caselsit_type,deal_type,person,departAndPerson
 
 }
 let Searchcell_finance_typeID = "Searchcell_finance_type_id"
-class SearchViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate,DatePickViewDelegate {
+class SearchViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate,DatePickViewDelegate,OptionViewDelgate,WorkRequestVCDelegate {
     /// 列表
     let mainTabelView : UITableView = UITableView()
 //    类型
@@ -43,10 +44,13 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
     /// 案件查询
     var sureDealBlock : SearchViewControllerBlock_deal!
 
+    var sureBankBlock : SearchViewControllerBlock_bank!
+
 
     /// 状态cell
     var stateCell : SearchStateTableViewCell!
-    
+
+    var optionCell :  OptionTableViewCell!
     /// 标题
     var titleCell : TitleTableViewCell!
     
@@ -63,7 +67,21 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
     var endTimeStr : String = ""
     /// 时间
     var timeView : DatePickView = DatePickView.loadNib()
-    
+
+    /// 选项
+    let optionView : OptionView = OptionView.loadNib()
+
+    /// 组别
+    var dep : [departmentModel] = []
+
+    let request : WorkRequestVC = WorkRequestVC()
+
+    /// 当前选中的行
+    var currectIndexpath : IndexPath!
+
+    var dStr : String = ""
+
+
     // MARK: - life
     override func viewWillLayoutSubviews() {
         mainTabelView.snp.makeConstraints { (make) in
@@ -100,6 +118,11 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         } else if type == .person{
             self.navigation_title_fontsize(name: "信息查询", fontsize: 18)
             rowNum = 1
+        } else if type == .departAndPerson{
+            self.navigation_title_fontsize(name: "银行信息查询", fontsize: 18)
+            request.delegate = self
+
+            rowNum = 2
         }
         self.navigationBar_rightBtn_title(name: "确定")
         self.creatUI()
@@ -131,6 +154,9 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         }else if type == .caselsit_type {
             mainTabelView.register(UINib.init(nibName: "endTimeTableViewCell", bundle: nil), forCellReuseIdentifier: endTimeTableViewCellid)
         } else if type == .deal_type || type == .person{
+            mainTabelView.register(UINib.init(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: TitleTableViewCellID)
+        } else if type == .departAndPerson{
+            mainTabelView.register(UINib.init(nibName: "OptionTableViewCell", bundle: nil), forCellReuseIdentifier: OptionTableViewCellID)
             mainTabelView.register(UINib.init(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: TitleTableViewCellID)
         }
         self.view.addSubview(mainTabelView)
@@ -248,13 +274,28 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             titleCell.setData_search(titleStr: "姓名")
             return titleCell
 
+        } else if type == .departAndPerson{
+            if indexPath.row == 0 {
+                titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                //标题
+                titleCell.setData_search(titleStr: "姓名")
+                return titleCell
+            } else {
+                optionCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
+                optionCell.setData_caseDetail(titleStr: "部门", contentStr: "")
+                return optionCell
+            }
+
+
         }  else {
             return UITableViewCell()
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if type == .work_type {
+        self.view.endEditing(true)
+        if type == .finance_type {
+            //收款
             if indexPath.row == 2 {
                 //开始时间
                 self.showTime_start()
@@ -262,8 +303,8 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
                 //结束时间
                 self.showTime_end()
             }
-        } else if type == .finance_type || type == .caselsit_type{
-            //收款
+        } else if type == .work_type || type == .caselsit_type{
+
             if indexPath.row == 0 {
                 //开始时间
                 self.showTime_start()
@@ -271,6 +312,16 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
                 //结束时间
                 self.showTime_end()
             }
+        } else if type == .departAndPerson{
+            currectIndexpath = indexPath
+            //部门
+            //案件组别
+            if dep.count > 0 {
+                self.showOption(indexPath: indexPath)
+            } else {
+                request.departmentRequest()
+            }
+
         }
     }
     
@@ -319,6 +370,44 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         }
     }
 
+
+    func showOption(indexPath : IndexPath) {
+        self.maskView.addSubview(self.optionView)
+        self.view.window?.addSubview(self.maskView)
+        self.optionView.setData_bank(dataArr: self.dep)
+        self.optionView.delegate = self
+        self.optionView.snp.makeConstraints { (make) in
+            make.left.right.equalTo(0)
+            make.bottom.equalTo(0)
+            make.height.equalTo(160)
+        }
+    }
+
+
+
+    func optionSure(idStr: String, titleStr: String, pickTag: Int) {
+        HCLog(message: titleStr)
+        HCLog(message: idStr)
+        HCLog(message: pickTag)
+        dStr = idStr
+        let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 1, section: 0)) as! OptionTableViewCell
+        cell.setOptionData(contentStr: titleStr)
+
+        self.optionView.removeFromSuperview()
+        self.maskView.removeFromSuperview()
+    }
+
+    func requestSucceed_work(data: Any, type: WorkRequestVC_enum) {
+        if type == .department {
+            //部门
+            dep = data as! [departmentModel]
+            self.showOption(indexPath: currectIndexpath)
+
+        }
+    }
+    func requestFail_work() {
+
+    }
     override func navigationLeftBtnClick() {
         self.navigationController?.popViewController(animated: true)
     }
@@ -349,6 +438,11 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
                 titleCell.textField.resignFirstResponder()
             }
             self.sureDealBlock(titleCell.conTent)
+        } else if type == .departAndPerson{
+            if titleCell.textField.isFirstResponder {
+                titleCell.textField.resignFirstResponder()
+            }
+            self.sureBankBlock(titleCell.conTent,self.dStr)
         }
         self.navigationController?.popViewController(animated: true)
     }

@@ -122,7 +122,7 @@ class CaseTableViewCell: UITableViewCell {
     ///
     /// - Parameter model: <#model description#>
     func setData_bank(model : bank_getlistModel) {
-        self.typeLabel.isHidden = true
+        self.typeLabel.isHidden = false
         self.subLabel.isHidden = false
         if let name = model.username {
             self.titleNameLabel.text = name
@@ -132,6 +132,9 @@ class CaseTableViewCell: UITableViewCell {
         }
         if let card = model.bankcard {
             self.timeLabel.text = card
+        }
+        if let department = model.department {
+            self.typeLabel.text = department
         }
 
         if let stateStr = model.stateStr {

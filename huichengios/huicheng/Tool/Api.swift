@@ -124,6 +124,25 @@ let deal_getoverlist_api = "deal/getoverlist?"
 let deal_getoverinfo_api = "deal/getoverinfo?"
 let deal_checkoversave_api = "deal/checkoversave?"
 
+/// /-----------------------收款登记
+/// 获取列表
+let finance_income_getlist_api = "finance/income_getlist?"
+/// 获取详情
+let finance_income_getinfo_api = "finance/income_getinfo?"
+///新增收款-获取合同列表
+let finance_income_getdeals_api = "finance/income_getdeals?"
+/// 新增收款-获取合同详情
+let finance_income_getdealsinfo_api = "finance/income_getdealsinfo?"
+/// 新增收款-保存收款信息为草稿
+let finance_income_save_api = "finance/income_save?"
+//let finance_income_save_api = "finance/income_save?"
+///  删除收款信息
+let finance_income_del_api = "finance/income_del?"
+///  增加收款明细信息
+let finance_income_additem_api = "finance/income_additem?"
+///  删除收款明细信息
+let finance_income_delitem_api = "finance/income_delitem?"
+
 /// /-----------------------模板共享
 
 /// 获取列表
