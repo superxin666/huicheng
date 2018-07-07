@@ -162,6 +162,10 @@ class WorkViewController: BaseViewController,UITableViewDelegate,UITableViewData
             switch tag {
             case 0:
                 HCLog(message: "收款登记")
+                let vc : IncomeListViewController = IncomeListViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+
             case 1:
                 HCLog(message: "收款审核")
             case 2:

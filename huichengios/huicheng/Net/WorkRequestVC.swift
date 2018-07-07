@@ -853,9 +853,10 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
                 self.delegate.requestSucceed_work(data: model,type : type)
             }
         } else if type == .invoice_applylist{
-            let model = Mapper<invoice_getlistModel>().map(JSON: response as! [String : Any])!
+            let arr = Mapper<invoice_getlistModel>().mapArray(JSONArray: response as! [[String : Any]])
+
             if !(self.delegate == nil) {
-                self.delegate.requestSucceed_work(data: model,type : type)
+                self.delegate.requestSucceed_work(data: arr,type : type)
             }
         } else if type == .expense_applylist{
             let arr = Mapper<expense_getlistModel>().mapArray(JSONArray: response as! [[String : Any]])

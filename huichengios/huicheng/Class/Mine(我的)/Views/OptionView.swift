@@ -53,7 +53,10 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
     //案件类型
     var data_casetypeArr : [casetypeModel] = []
 
-
+    func setData()  {
+        self.type = .searchState
+        self.pickView.reloadAllComponents()
+    }
 
     func setData_case(dataArr : [Any],indexPath : IndexPath) {
         self.pickView.tag = indexPath.row

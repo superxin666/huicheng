@@ -15,7 +15,7 @@ enum Work2RequestVC_enum {
 }
 protocol Work2RequestVCDelegate : NSObjectProtocol{
     //
-    func requestSucceed_work2(data:Any,type : WorkRequestVC_enum) -> Void
+    func requestSucceed_work2(data:Any,type : Work2RequestVC_enum) -> Void
     func requestFail_work2() -> Void
 
 }
@@ -27,16 +27,34 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
 
 
 
-    func income_getlistReuest() {
+    ///  获取列表
+    ///
+    /// - Parameters:
+    ///   - p: <#p description#>
+    ///   - c: <#c description#>
+    ///   - bid: <#bid description#>
+    ///   - n: <#n description#>
+    ///   - t: <#t description#>
+    ///   - b: <#b description#>
+    ///   - e: <#e description#>
+    ///   - u: <#u description#>
+    func income_getlistReuest(p:Int,c:Int,bid:Int,n:String,b:String,e:String,u:String,s:String) {
         request.delegate = self
         type = .income_getlist
-        let url =   checkcase_api + "&k=\(UserInfoLoaclManger.getKey())"
+        let url =   finance_income_getlist_api + "&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
+
     }
     
 
     func requestSucceed(response: Any) {
+        if type == .income_getlist {
+            let arr = Mapper<Income_getlistModel>().mapArray(JSONArray: response as! [[String : Any]])
 
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed_work2(data: arr,type : type)
+            }
+        }
     }
 
     func requestFail(response: Any) {

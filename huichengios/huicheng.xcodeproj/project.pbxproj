@@ -184,6 +184,8 @@
 		216B7C6C2063953300BBACDA /* MemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216B7C6B2063953300BBACDA /* MemoViewController.swift */; };
 		216B7C6E206399D000BBACDA /* InvoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216B7C6D206399D000BBACDA /* InvoiceViewController.swift */; };
 		218746E420A18A29006EB2DC /* DealCheckDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218746E320A18A29006EB2DC /* DealCheckDetailViewController.swift */; };
+		219767E820EF841800F5807F /* IncomeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219767E720EF841800F5807F /* IncomeListViewController.swift */; };
+		219767EA20EF86BA00F5807F /* Income_getlistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219767E920EF86BA00F5807F /* Income_getlistModel.swift */; };
 		219D7BB3205E049A009F543B /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7BB2205E049A009F543B /* InfoViewController.swift */; };
 		219D7BB6205E062F009F543B /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7BB4205E062F009F543B /* InfoTableViewCell.swift */; };
 		219D7BB7205E062F009F543B /* InfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 219D7BB5205E062F009F543B /* InfoTableViewCell.xib */; };
@@ -411,6 +413,8 @@
 		216B7C6B2063953300BBACDA /* MemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoViewController.swift; sourceTree = "<group>"; };
 		216B7C6D206399D000BBACDA /* InvoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceViewController.swift; sourceTree = "<group>"; };
 		218746E320A18A29006EB2DC /* DealCheckDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealCheckDetailViewController.swift; sourceTree = "<group>"; };
+		219767E720EF841800F5807F /* IncomeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeListViewController.swift; sourceTree = "<group>"; };
+		219767E920EF86BA00F5807F /* Income_getlistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Income_getlistModel.swift; sourceTree = "<group>"; };
 		219D7BB2205E049A009F543B /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		219D7BB4205E062F009F543B /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
 		219D7BB5205E062F009F543B /* InfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoTableViewCell.xib; sourceTree = "<group>"; };
@@ -760,6 +764,7 @@
 		216A6C4C204CDDB100528FD8 /* Work(工作) */ = {
 			isa = PBXGroup;
 			children = (
+				219767E620EF840500F5807F /* 收款登记 */,
 				219D7BBC205E17B0009F543B /* Models */,
 				219D7BBD205E17B0009F543B /* Views */,
 				216A6C53204CDE7900528FD8 /* WorkViewController.swift */,
@@ -806,6 +811,15 @@
 				21553CBE20887159009284B1 /* BaseTableViewController.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		219767E620EF840500F5807F /* 收款登记 */ = {
+			isa = PBXGroup;
+			children = (
+				219767E920EF86BA00F5807F /* Income_getlistModel.swift */,
+				219767E720EF841800F5807F /* IncomeListViewController.swift */,
+			);
+			path = "收款登记";
 			sourceTree = "<group>";
 		};
 		219D7BBC205E17B0009F543B /* Models */ = {
@@ -1151,8 +1165,10 @@
 				216A6C59204CE7D800528FD8 /* BaseNetViewController.swift in Sources */,
 				213A1E4820A334F1003DF600 /* BaseInfoViewController.swift in Sources */,
 				21387D41205FEB700050DF1F /* MoreInfoViewController.swift in Sources */,
+				219767E820EF841800F5807F /* IncomeListViewController.swift in Sources */,
 				21089EA2206E829400573B6A /* SearchStateTableViewCell.swift in Sources */,
 				21075548205D4C3200FF4396 /* LogInViewController.swift in Sources */,
+				219767EA20EF86BA00F5807F /* Income_getlistModel.swift in Sources */,
 				219D7BBA205E0C89009F543B /* InfoFirstTableViewCell.swift in Sources */,
 				215C15C72063D99600A9129D /* ConbenTopView.swift in Sources */,
 				2124D720208D69D20007B5EE /* RoomTableViewCell.swift in Sources */,

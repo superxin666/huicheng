@@ -50,6 +50,31 @@ class DocTableViewCell: UITableViewCell {
         }
     }
 
+    func setData_incomeList(model : Income_getlistModel) {
+        if let dealnum = model.dealnum {
+            self.titleNameLabel.text = dealnum
+        }
+        if let principal = model.principal {
+            self.subTitleLabel.text = principal
+        }
+
+        self.subNunLabel.isHidden = true
+
+        if let addtime = model.addtime {
+            self.timeLabel.text = String.hc_getDate_string(dateStr: addtime)
+        }
+        if let typeStr = model.typeStr {
+            self.typeLabel.text = typeStr
+        }
+
+        if let stateStr = model.stateStr {
+            self.stateLabel.text = stateStr
+        }
+        if let state = model.state {
+
+        }
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
