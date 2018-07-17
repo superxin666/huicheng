@@ -137,22 +137,23 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
             //发票
             titleStr = nameArr[row]
             cuurectID = idArr[row]
-
+            currectStr = titleStr
         } else if type == .invoice_getlist {
             titleStr = nameArr[row]
             cuurectID = idArr[row]
+            currectStr = titleStr
         } else if type == .Object {
             //接受对象
 
             let model = dataArr[row]
             titleStr = model.name!
             cuurectID = "\(model.id!)"
-
+            currectStr = titleStr
         } else if type == .finance{
             //收款
             titleStr = nameArr_finance[row]
             cuurectID = idArr_finance[row]
-
+            currectStr = titleStr
         }else if type == .caseType{
             //案件
             let model : casetypeModel = self.data_casetypeArr[row]

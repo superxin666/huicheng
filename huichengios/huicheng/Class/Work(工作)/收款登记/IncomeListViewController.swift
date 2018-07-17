@@ -150,8 +150,12 @@ class IncomeListViewController: BaseViewController ,UITableViewDataSource,UITabl
         vc.type = .Income_list
         weak var weakSelf = self
         vc.sureFinanceBlock = {(no,n,s,st,et) in
-
-
+            weakSelf?.numStr = no
+            weakSelf?.uStr = n
+            weakSelf?.sStr = s
+            weakSelf?.bStr = st
+            weakSelf?.eStr = et
+            weakSelf?.reflishData()
         }
         self.navigationController?.pushViewController(vc, animated: true)
     }

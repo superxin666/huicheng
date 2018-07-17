@@ -398,7 +398,9 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
     /// 显示时间
     func showTime_end() {
         timeView.removeFromSuperview()
-        self.view.addSubview(timeView)
+        self.maskView.addSubview(self.timeView)
+        self.view.window?.addSubview(self.maskView)
+
         timeView.delegate = self
         timeView.setData(type: 1)
         timeView.snp.makeConstraints { (make) in
@@ -409,7 +411,8 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
     }
     func showTime_start() {
         timeView.removeFromSuperview()
-        self.view.addSubview(timeView)
+        self.maskView.addSubview(self.timeView)
+        self.view.window?.addSubview(self.maskView)
         timeView.delegate = self
         timeView.setData(type: 0)
         timeView.snp.makeConstraints { (make) in
@@ -420,6 +423,10 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
     }
 
     func datePickViewTime(timeStr: String,type : Int) {
+
+
+        self.timeView.removeFromSuperview()
+        self.maskView.removeFromSuperview()
         if type == 0 {
             startTimeStr = timeStr
             startTimeCell.setTime(str: startTimeStr)
@@ -462,8 +469,14 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         HCLog(message: idStr)
         HCLog(message: pickTag)
         dStr = idStr
-        let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 1, section: 0)) as! OptionTableViewCell
-        cell.setOptionData(contentStr: titleStr)
+        if type == .Income_list {
+            let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 4, section: 0)) as! OptionTableViewCell
+            cell.setOptionData(contentStr: titleStr)
+        } else {
+            let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 0, section: 0)) as! OptionTableViewCell
+            cell.setOptionData(contentStr: titleStr)
+        }
+
 
         self.optionView.removeFromSuperview()
         self.maskView.removeFromSuperview()
@@ -495,13 +508,14 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             }
             self.sureWorkBlock(titleCell.conTent,persionCell.contentStr,startTimeStr,endTimeStr)
         } else if self.type == .finance_type || self.type == .Income_list{
-            if titleCell.textField.isFirstResponder {
-                titleCell.textField.resignFirstResponder()
-            }
-            if persionCell.textField.isFirstResponder {
-                persionCell.textField.resignFirstResponder()
-            }
-            self.sureFinanceBlock(titleCell.conTent,persionCell.contentStr,stateCell.cuurectID,startTimeStr,endTimeStr)
+//            if titleCell.textField.isFirstResponder {
+//                titleCell.textField.resignFirstResponder()
+//            }
+//            if persionCell.textField.isFirstResponder {
+//                persionCell.textField.resignFirstResponder()
+//            }
+            self.view.endEditing(true)
+            self.sureFinanceBlock(titleCell.conTent,persionCell.contentStr,dStr,startTimeStr,endTimeStr)
             
         } else if self.type == .caselsit_type {
             self.sureCaselsitBlock(startTimeStr,endTimeStr)
