@@ -79,8 +79,8 @@ class DocTableViewCell: UITableViewCell {
     ///
     func setData_searchIncome(model : Income_getlistModel) {
 
-        if let dealnum = model.dealnum {
-            self.titleNameLabel.text = dealnum
+        if let dealsnum = model.dealsnum {
+            self.titleNameLabel.text = dealsnum
         }
         if let type = model.type {
             self.subTitleLabel.text = type
@@ -102,8 +102,31 @@ class DocTableViewCell: UITableViewCell {
 
         }
 
+    }
 
+    func setData_incomeHistory(model : Income_getlistModel) {
+        if let amount = model.amount {
+            self.titleNameLabel.text = "收款金额\(amount)"
+        }
+        if let typeStr = model.typeStr {
+            self.subTitleLabel.text = typeStr
+        }
+        if let principal = model.principal {
+            self.subNunLabel.text = principal
+        }
+        if let addtime = model.addtime {
+            self.timeLabel.text = String.hc_getDate_string(dateStr: addtime)
+        }
+        if let user = model.user {
+            self.typeLabel.text = "登记人:\(user)"
+        }
 
+        if let stateStr = model.stateStr {
+            self.stateLabel.text = stateStr
+        }
+        if let state = model.state {
+
+        }
     }
 
     override func awakeFromNib() {

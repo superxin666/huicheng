@@ -117,6 +117,7 @@ class BaseViewController: UIViewController {
         let btn:UIButton = UIButton(type: UIButtonType.custom)
         btn.frame = CGRect(x: 0, y: 0, width: 60, height: 44)
         btn.setTitle(title, for: .normal)
+        btn.setTitleColor(.black, for: .normal)
         btn.addTarget(vc, action: action, for: .touchUpInside)
         btn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -30)
         let item:UIBarButtonItem = UIBarButtonItem(customView:btn)

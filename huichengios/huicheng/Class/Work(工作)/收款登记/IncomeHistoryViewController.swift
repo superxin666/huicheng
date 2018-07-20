@@ -1,14 +1,14 @@
 //
-//  AddIncomeStep2ViewController.swift
+//  IncomeHistoryViewController.swift
 //  huicheng
 //
 //  Created by lvxin on 2018/7/20.
 //  Copyright © 2018年 lvxin. All rights reserved.
-//  添加第二步（搜索合同结果）
+//  收款历史
 
 import UIKit
 
-class AddIncomeStep2ViewController:  BaseViewController,UITableViewDataSource,UITableViewDelegate {
+class IncomeHistoryViewController:  BaseViewController,UITableViewDataSource,UITableViewDelegate {
 
     let mainTabelView : UITableView = UITableView()
     var dataModelArr : [Income_getlistModel] = []
@@ -54,13 +54,13 @@ class AddIncomeStep2ViewController:  BaseViewController,UITableViewDataSource,UI
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.dataModelArr.count
-        
+
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : DocTableViewCell  = tableView.dequeueReusableCell(withIdentifier: DocTableViewCellID, for: indexPath) as! DocTableViewCell
         if indexPath.row < dataModelArr.count {
             let model = dataModelArr[indexPath.row]
-            cell.setData_searchIncome(model: model)
+            cell.setData_incomeHistory(model: model)
         }
         return cell
     }
@@ -70,18 +70,18 @@ class AddIncomeStep2ViewController:  BaseViewController,UITableViewDataSource,UI
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if  indexPath.row < dataModelArr.count {
-            let model : Income_getlistModel  = self.dataModelArr[indexPath.row]
-            let vc : AddIncomeStep3ViewController = AddIncomeStep3ViewController()
-            vc.idStr = model.id
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
     }
-
-
-
     override func navigationLeftBtnClick() {
         self.navigationController?.popViewController(animated: true)
     }
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
 
 }

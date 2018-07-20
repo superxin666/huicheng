@@ -85,6 +85,8 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
 
 
     func income_getdealsinfoRequest(id : Int)  {
+        type = .income_getdealsinfo
+        request.delegate = self
         let url =   finance_income_getdealsinfo_api + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url,type: .alltyper)
         
@@ -99,11 +101,11 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
                 self.delegate.requestSucceed_work2(data: arr,type : type)
             }
         } else if type == .income_getdealsinfo{
+
             let model = Mapper<income_getdealsinfoModel>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work2(data: model,type : type)
             }
-
         }
     }
 

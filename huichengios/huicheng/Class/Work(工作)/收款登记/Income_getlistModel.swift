@@ -28,6 +28,7 @@ class Income_getlistModel: Mappable {
     var workersName :String!
     var party :String!
     var branch :String!
+    var user :String!
 
 
 
@@ -55,6 +56,8 @@ class Income_getlistModel: Mappable {
         workersName <- map["workersName"]
         party <- map["party"]
         branch <- map["branch"]
+        user <- map["user"]
+
 
     }
 

@@ -202,6 +202,7 @@
 		21A49D6D2101EB9B0092CC04 /* AddIncomeStep2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A49D6C2101EB9B0092CC04 /* AddIncomeStep2ViewController.swift */; };
 		21A49D6F21020DEE0092CC04 /* AddIncomeStep3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A49D6E21020DEE0092CC04 /* AddIncomeStep3ViewController.swift */; };
 		21A49D71210215420092CC04 /* income_getdealsinfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A49D70210215420092CC04 /* income_getdealsinfoModel.swift */; };
+		21A49D73210228E80092CC04 /* IncomeHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A49D72210228E80092CC04 /* IncomeHistoryViewController.swift */; };
 		21B9177620AC0B4F004031DE /* docgetlistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B9177520AC0B4F004031DE /* docgetlistModel.swift */; };
 		21B9177820AC0C87004031DE /* docgetinfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B9177720AC0C87004031DE /* docgetinfoModel.swift */; };
 		21B9177A20AC20F2004031DE /* InvoiceapplylisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B9177920AC20F2004031DE /* InvoiceapplylisViewController.swift */; };
@@ -435,6 +436,7 @@
 		21A49D6C2101EB9B0092CC04 /* AddIncomeStep2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIncomeStep2ViewController.swift; sourceTree = "<group>"; };
 		21A49D6E21020DEE0092CC04 /* AddIncomeStep3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIncomeStep3ViewController.swift; sourceTree = "<group>"; };
 		21A49D70210215420092CC04 /* income_getdealsinfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = income_getdealsinfoModel.swift; sourceTree = "<group>"; };
+		21A49D72210228E80092CC04 /* IncomeHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeHistoryViewController.swift; sourceTree = "<group>"; };
 		21B9177520AC0B4F004031DE /* docgetlistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = docgetlistModel.swift; sourceTree = "<group>"; };
 		21B9177720AC0C87004031DE /* docgetinfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = docgetinfoModel.swift; sourceTree = "<group>"; };
 		21B9177920AC20F2004031DE /* InvoiceapplylisViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceapplylisViewController.swift; sourceTree = "<group>"; };
@@ -830,6 +832,7 @@
 				21E9D29D20FDA9C200CA7B49 /* AddIconComeStep1ViewController.swift */,
 				21A49D6C2101EB9B0092CC04 /* AddIncomeStep2ViewController.swift */,
 				21A49D6E21020DEE0092CC04 /* AddIncomeStep3ViewController.swift */,
+				21A49D72210228E80092CC04 /* IncomeHistoryViewController.swift */,
 			);
 			path = "收款登记";
 			sourceTree = "<group>";
@@ -1210,6 +1213,7 @@
 				2137668B203FBAFD000CBCE6 /* String+fun.swift in Sources */,
 				214AA6B8207F9504004F2B63 /* CaseViewController.swift in Sources */,
 				210EB652206E333F000DE966 /* FinanceDetialViewController.swift in Sources */,
+				21A49D73210228E80092CC04 /* IncomeHistoryViewController.swift in Sources */,
 				21DDC9D82080BDA30067197D /* departmentModel.swift in Sources */,
 				2126DBD820897BC500977802 /* Title3TableViewCell.swift in Sources */,
 				2137667F203FBA61000CBCE6 /* Color+fun.swift in Sources */,
