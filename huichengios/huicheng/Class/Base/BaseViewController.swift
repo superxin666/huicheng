@@ -110,6 +110,19 @@ class BaseViewController: UIViewController {
         let item:UIBarButtonItem = UIBarButtonItem(customView:btn)
         return item
     }
+
+
+    func getUIBarButtonItem_title(title : String, action : Selector, vc  :UIViewController)->UIBarButtonItem {
+
+        let btn:UIButton = UIButton(type: UIButtonType.custom)
+        btn.frame = CGRect(x: 0, y: 0, width: 60, height: 44)
+        btn.setTitle(title, for: .normal)
+        btn.addTarget(vc, action: action, for: .touchUpInside)
+        btn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -30)
+        let item:UIBarButtonItem = UIBarButtonItem(customView:btn)
+        return item
+    }
+
     
     func creactFoot()->MJRefreshAutoNormalFooter {
         let footer = MJRefreshAutoNormalFooter() // 底部刷新

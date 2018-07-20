@@ -37,12 +37,8 @@ class TitleTableViewCell: UITableViewCell {
     ///
     /// - Parameter titleStr: <#titleStr description#>
     func setData_checkCaseView(titleStr : String,indexPath : IndexPath) {
-        
         self.titleNameLabel.textColor = darkblueColor
         self.titleNameLabel.text = titleStr
-
-
-
     }
     
     

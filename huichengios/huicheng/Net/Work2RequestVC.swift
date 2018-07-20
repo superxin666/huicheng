@@ -11,7 +11,7 @@ import ObjectMapper
 
 enum Work2RequestVC_enum {
     //
-    case income_getlist//收款登记获取列表
+    case income_getlist,income_getdeals,income_getdealsinfo//收款登记获取列表
 }
 protocol Work2RequestVCDelegate : NSObjectProtocol{
     //
@@ -62,15 +62,48 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
         request.request_api(url: url)
 
     }
-    
+
+
+    func income_getdealsRequest(u:String,n:String,kw:String) {
+        request.delegate = self
+        type = .income_getdeals
+        var nStr = ""
+        if n.count > 0 {
+            nStr = n.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+        var uStr = ""
+        if u.count > 0 {
+            uStr = u.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+        var kwStr = ""
+        if kw.count > 0 {
+            kwStr = kw.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+        let url =   finance_income_getdeals_api + "n=\(nStr)&u=\(uStr)&kw=\(kwStr)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+    }
+
+
+    func income_getdealsinfoRequest(id : Int)  {
+        let url =   finance_income_getdealsinfo_api + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url,type: .alltyper)
+        
+
+    }
 
     func requestSucceed(response: Any) {
-        if type == .income_getlist {
+        if type == .income_getlist ||  type == .income_getdeals{
             let arr = Mapper<Income_getlistModel>().mapArray(JSONArray: response as! [[String : Any]])
 
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work2(data: arr,type : type)
             }
+        } else if type == .income_getdealsinfo{
+            let model = Mapper<income_getdealsinfoModel>().map(JSON: response as! [String : Any])!
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed_work2(data: model,type : type)
+            }
+
         }
     }
 

@@ -12,6 +12,8 @@ import ObjectMapper
 class Income_getlistModel: Mappable {
     var id: Int!
     var dealnum: String!
+    var dealsnum: String!
+
     var addtime: String!
     var amount: String!
     var type: String!
@@ -20,6 +22,12 @@ class Income_getlistModel: Mappable {
     var papernum: String!
     var state: String!
     var stateStr: String!
+
+    var regtime :String!
+    var reguser :String!
+    var workersName :String!
+    var party :String!
+    var branch :String!
 
 
 
@@ -31,6 +39,8 @@ class Income_getlistModel: Mappable {
     func mapping(map: Map) {
         id <- map["id"]
         dealnum <- map["dealnum"]
+        dealsnum <- map["dealsnum"]
+
         addtime <- map["addtime"]
         amount <- map["amount"]
         type <- map["type"]
@@ -39,6 +49,13 @@ class Income_getlistModel: Mappable {
         papernum <- map["papernum"]
         state <- map["state"]
         stateStr <- map["stateStr"]
+
+        regtime <- map["regtime"]
+        reguser <- map["reguser"]
+        workersName <- map["workersName"]
+        party <- map["party"]
+        branch <- map["branch"]
+
     }
 
 }

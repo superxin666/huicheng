@@ -159,10 +159,13 @@ class IncomeListViewController: BaseViewController ,UITableViewDataSource,UITabl
         }
         self.navigationController?.pushViewController(vc, animated: true)
     }
+
+
     @objc func addClick() {
         HCLog(message: "添加")
-
-
+        let vc = AddIconComeStep1ViewController()
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 

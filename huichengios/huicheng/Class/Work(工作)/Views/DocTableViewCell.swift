@@ -71,8 +71,39 @@ class DocTableViewCell: UITableViewCell {
             self.stateLabel.text = stateStr
         }
         if let state = model.state {
+            
+        }
+    }
+
+
+    ///
+    func setData_searchIncome(model : Income_getlistModel) {
+
+        if let dealnum = model.dealnum {
+            self.titleNameLabel.text = dealnum
+        }
+        if let type = model.type {
+            self.subTitleLabel.text = type
+        }
+        if let dealnum = model.dealnum {
+            self.subNunLabel.text = dealnum
+        }
+        if let regtime = model.regtime {
+            self.timeLabel.text = String.hc_getDate_string(dateStr: regtime)
+        }
+        if let reguser = model.reguser {
+            self.typeLabel.text = reguser
+        }
+
+        if let stateStr = model.stateStr {
+            self.stateLabel.text = stateStr
+        }
+        if let state = model.state {
 
         }
+
+
+
     }
 
     override func awakeFromNib() {
