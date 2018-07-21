@@ -13,8 +13,8 @@ protocol OptionViewDelgate {
 
 enum OptionViewType {
 
-    //搜索中状态  报销  接受对象      发票列表    我的收款  案件添加   案件律师   案件部门
-    case searchState,Object,invoice_getlist,finance, caseType,caseUser,caseDep
+    //搜索中状态  报销  接受对象      发票列表    我的收款  案件添加   案件律师   案件部门 发票状态
+    case searchState,Object,invoice_getlist,finance, caseType,caseUser,caseDep,invoiceState
 }
 class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSource {
     var delegate : OptionViewDelgate!
@@ -44,6 +44,10 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
     var idArr_finance = ["1","3",]
 
 
+    // 发票状态
+    var nameArr_invoiceState = ["未开","已开",]
+    var idArr_invoiceState = ["0","1",]
+
     //律师
     var data_userlistArr : [userlistModel] = []
     var data_userlistArr1 : [userlistModel] = []
@@ -57,6 +61,12 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
         self.type = .searchState
         self.pickView.reloadAllComponents()
     }
+
+    func setDatainvoiceState()  {
+        self.type = .invoiceState
+        self.pickView.reloadAllComponents()
+    }
+
 
     func setData_case(dataArr : [Any],indexPath : IndexPath) {
         self.pickView.tag = indexPath.row
@@ -122,6 +132,8 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
             return self.data_departArr.count
         } else if type == .caseUser {
             return self.data_userlistArr.count
+        } else if type == .invoiceState{
+            return self.nameArr_invoiceState.count
         } else {
             return 0
         }
@@ -169,6 +181,10 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
             let model : userlistModel = self.data_userlistArr[row]
             titleStr = model.name
             cuurectID = "\(model.id!)"
+            currectStr = titleStr
+        } else if type == .invoiceState {
+            titleStr = nameArr_invoiceState[row]
+            cuurectID = idArr_invoiceState[row]
             currectStr = titleStr
         }
         let label = UILabel(frame: CGRect(x: 0, y: 15, width: pickerView.frame.width, height: 20))

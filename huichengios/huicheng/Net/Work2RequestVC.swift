@@ -11,7 +11,7 @@ import ObjectMapper
 
 enum Work2RequestVC_enum {
     //
-    case income_getlist,income_getdeals,income_getdealsinfo//收款登记获取列表
+    case income_getlist,income_getdeals,income_getdealsinfo,income_save//收款登记获取列表
 }
 protocol Work2RequestVCDelegate : NSObjectProtocol{
     //
@@ -89,7 +89,19 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
         request.delegate = self
         let url =   finance_income_getdealsinfo_api + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url,type: .alltyper)
-        
+    }
+
+    
+
+    func income_save(id : String,dealid : String,amount : String,addtime : String,user : String,ispaper : String,papernum : String,money : String,invoicetype : String,creditcode : String,issubmit : String) {
+
+        type = .income_save
+        request.delegate = self
+        let userStr = user.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+
+        let url =   finance_income_save_api + "id=\(id)&dealid=\(dealid)&amount=\(amount)&addtime=\(addtime)&user=\(userStr)&ispaper=\(ispaper)&papernum=\(papernum)&money=\(money)&invoicetype=\(invoicetype)&creditcode=\(creditcode)&issubmit=\(issubmit)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+
 
     }
 

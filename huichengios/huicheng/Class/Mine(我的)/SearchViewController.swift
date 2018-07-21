@@ -476,8 +476,6 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 0, section: 0)) as! OptionTableViewCell
             cell.setOptionData(contentStr: titleStr)
         }
-
-
         self.optionView.removeFromSuperview()
         self.maskView.removeFromSuperview()
     }

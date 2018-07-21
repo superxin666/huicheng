@@ -15,7 +15,7 @@ class Income_getlistModel: Mappable {
     var dealsnum: String!
 
     var addtime: String!
-    var amount: String!
+    var amount: Int!
     var type: String!
     var typeStr: String!
     var principal: String!

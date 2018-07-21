@@ -106,14 +106,17 @@ class DocTableViewCell: UITableViewCell {
 
     func setData_incomeHistory(model : Income_getlistModel) {
         if let amount = model.amount {
-            self.titleNameLabel.text = "收款金额\(amount)"
+            self.titleNameLabel.text = "收款金额\(amount)         " + model.typeStr
         }
+        //后台没给参数
         if let typeStr = model.typeStr {
-            self.subTitleLabel.text = typeStr
+            self.subTitleLabel.text = "交款人:\(typeStr)"
         }
+        //后台没给参数
         if let principal = model.principal {
             self.subNunLabel.text = principal
         }
+
         if let addtime = model.addtime {
             self.timeLabel.text = String.hc_getDate_string(dateStr: addtime)
         }

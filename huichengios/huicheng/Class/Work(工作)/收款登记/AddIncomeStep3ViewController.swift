@@ -142,11 +142,17 @@ class AddIncomeStep3ViewController:BaseViewController ,UITableViewDataSource,UIT
     }
 
     @objc func searchClick() {
+        //没有数据来源
         HCLog(message: "收款记录")
+
     }
 
 
     @objc func addClick() {
         HCLog(message: "收款详情")
+        let vc = AddIncomeDetailViewController()
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+
     }
 }
