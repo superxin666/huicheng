@@ -30,7 +30,9 @@ class Income_getlistModel: Mappable {
     var branch :String!
     var user :String!
 
-
+    var admin :String!
+    var applytime :String!
+    var note :String!
 
     init() {}
     required init?(map: Map){
@@ -57,6 +59,11 @@ class Income_getlistModel: Mappable {
         party <- map["party"]
         branch <- map["branch"]
         user <- map["user"]
+
+        admin <- map["admin"]
+        applytime <- map["applytime"]
+        note <- map["note"]
+
 
 
     }

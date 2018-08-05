@@ -150,9 +150,12 @@ class WorkViewController: BaseViewController,UITableViewDelegate,UITableViewData
             case 4:
                 HCLog(message: "自定义函")
             case 5:
-                HCLog(message: "签章进度查询")
+                HCLog(message: "函件查询")
+                let vc = DocSearchViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
             case 6:
-                HCLog(message: "签章审核")
+                HCLog(message: "函件审核")
             default:
                 HCLog(message: "暂无")
             }

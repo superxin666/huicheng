@@ -14,14 +14,15 @@ typealias SearchViewControllerBlock_caselsit = (_ stStr : String,_ etStr : Strin
 typealias SearchViewControllerBlock_deal = (_ contentStr : String)->()
 typealias SearchViewControllerBlock_bank = (_ personStr : String,_ dStr : String)->()
 
+typealias SearchViewControllerBlock_docSearch = (_ nStr : String,_ dnStr : String,_ kwStr : String,_ uStr : String,_ cnStr : String,_ bidStr : String,_ startTimeStr : String,_ endTimeStr : String)->()
 enum SearchViewController_type {
 
     //发票申请           收款记录       工作日志      发票列表         案件查询        合同查询   姓名    部门 人员姓名     收款登记
-    case expense_type, finance_type , work_type ,invoice_getlist,caselsit_type,deal_type,person,departAndPerson,Income_list
+    case expense_type, finance_type , work_type ,invoice_getlist,caselsit_type,deal_type,person,departAndPerson,Income_list,doc_search
 
 }
 let Searchcell_finance_typeID = "Searchcell_finance_type_id"
-class SearchViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate,DatePickViewDelegate,OptionViewDelgate,WorkRequestVCDelegate {
+class SearchViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate,DatePickViewDelegate,OptionViewDelgate,WorkRequestVCDelegate,TitleTableViewCellDelegate {
     /// 列表
     let mainTabelView : UITableView = UITableView()
 //    类型
@@ -45,6 +46,8 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
     var sureDealBlock : SearchViewControllerBlock_deal!
 
     var sureBankBlock : SearchViewControllerBlock_bank!
+
+    var sureDocSearchSure : SearchViewControllerBlock_docSearch!
 
 
     /// 状态cell
@@ -81,6 +84,20 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
 
     var dStr : String = ""
 
+    let doc_searchNameArr = ["合同编号","函件编号","申请人","律师名称","案件名称"]
+
+    /// 合同编号
+    var nStr = ""
+    /// 函件编号
+    var dnStr = ""
+    /// 申请人
+    var kwStr = ""
+    /// 律师名称
+    var uStr = ""
+    /// 案件名称
+    var cnStr = ""
+    /// 分所id
+    var bidStr = ""
 
     // MARK: - life
     override func viewWillLayoutSubviews() {
@@ -126,10 +143,10 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         } else if type == .Income_list{
             self.navigation_title_fontsize(name: "收款登记查询", fontsize: 18)
             request.delegate = self
-
             rowNum = 5
-
-
+        } else if type == .doc_search{
+            self.navigation_title_fontsize(name: "函件查询", fontsize: 18)
+            rowNum = 8
         }
         self.navigationBar_rightBtn_title(name: "确定")
         self.creatUI()
@@ -170,6 +187,12 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             mainTabelView.register(UINib.init(nibName: "SearchPersionTableViewCell", bundle: nil), forCellReuseIdentifier: SearchPersionTableViewCellID)
             mainTabelView.register(UINib.init(nibName: "endTimeTableViewCell", bundle: nil), forCellReuseIdentifier: endTimeTableViewCellid)
             mainTabelView.register(UINib.init(nibName: "OptionTableViewCell", bundle: nil), forCellReuseIdentifier: OptionTableViewCellID)
+        } else if type == .doc_search{
+            mainTabelView.register(UINib.init(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: TitleTableViewCellID)
+            mainTabelView.register(UINib.init(nibName: "endTimeTableViewCell", bundle: nil), forCellReuseIdentifier: endTimeTableViewCellid)
+            mainTabelView.register(UINib.init(nibName: "OptionTableViewCell", bundle: nil), forCellReuseIdentifier: OptionTableViewCellID)
+
+
         }
         self.view.addSubview(mainTabelView)
     }
@@ -198,7 +221,7 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             //我都收款
             
             if indexPath.row == 0 {
-    
+
                 titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
                 //交款人
                 titleCell.setData_search(titleStr: "交款人")
@@ -248,7 +271,7 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
                 //开始时间
                 startTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
                 startTimeCell.setData(titleStr: "开始时间", tag: 0)
-      
+
                 return startTimeCell
                 
             } else {
@@ -332,6 +355,33 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             }
 
 
+        } else if type == .doc_search{
+
+            if indexPath.row == 6  {
+
+                //开始时间
+                startTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                startTimeCell.setData(titleStr: "开始时间", tag: 0)
+                return startTimeCell
+
+            }   else if indexPath.row == 7 {
+                endTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                endTimeCell.setData(titleStr: "结束时间", tag: 1)
+                return endTimeCell
+
+            }  else if indexPath.row == 5 {
+                //部门
+                optionCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
+                optionCell.setData_caseDetail(titleStr: "部门", contentStr: "")
+                return optionCell
+            } else {
+
+                titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                //交款人
+                titleCell.setData_ovewdeal(titleStr: doc_searchNameArr[indexPath.row], indexPath: indexPath)
+                titleCell.delegate = self
+                return titleCell
+            }
         } else {
             return UITableViewCell()
         }
@@ -380,6 +430,23 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             } else if indexPath.row == 4 {
                 //状态
                 self.showOptionView_state()
+            }
+        } else if type == .doc_search {
+            currectIndexpath = indexPath
+            if indexPath.row == 5 {
+                //部门
+                if dep.count > 0 {
+                    self.showOption(indexPath: indexPath)
+                } else {
+                    request.departmentRequest()
+                }
+
+            } else if indexPath.row == 6 {
+                //开始时间
+                self.showTime_start()
+            } else {
+                //结束时间
+                self.showTime_end()
             }
         }
     }
@@ -462,15 +529,18 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         }
     }
 
-
-
     func optionSure(idStr: String, titleStr: String, pickTag: Int) {
         HCLog(message: titleStr)
         HCLog(message: idStr)
         HCLog(message: pickTag)
         dStr = idStr
+        bidStr = idStr
+
         if type == .Income_list {
             let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 4, section: 0)) as! OptionTableViewCell
+            cell.setOptionData(contentStr: titleStr)
+        } else if type == .doc_search {
+            let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 5, section: 0)) as! OptionTableViewCell
             cell.setOptionData(contentStr: titleStr)
         } else {
             let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 0, section: 0)) as! OptionTableViewCell
@@ -480,12 +550,27 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         self.maskView.removeFromSuperview()
     }
 
+    func endEdite(inputStr: String, tagNum: Int) {
+        if self.type == .doc_search {
+            if tagNum == 0 {
+                nStr = inputStr
+            } else if tagNum == 1 {
+                dnStr = inputStr
+            } else if tagNum == 2 {
+                kwStr = inputStr
+            } else if tagNum == 3 {
+                uStr = inputStr
+            } else {
+                cnStr = inputStr
+            }
+        }
+    }
+
     func requestSucceed_work(data: Any, type: WorkRequestVC_enum) {
         if type == .department {
             //部门
             dep = data as! [departmentModel]
             self.showOption(indexPath: currectIndexpath)
-
         }
     }
     func requestFail_work() {
@@ -506,12 +591,6 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             }
             self.sureWorkBlock(titleCell.conTent,persionCell.contentStr,startTimeStr,endTimeStr)
         } else if self.type == .finance_type || self.type == .Income_list{
-//            if titleCell.textField.isFirstResponder {
-//                titleCell.textField.resignFirstResponder()
-//            }
-//            if persionCell.textField.isFirstResponder {
-//                persionCell.textField.resignFirstResponder()
-//            }
             self.view.endEditing(true)
             self.sureFinanceBlock(titleCell.conTent,persionCell.contentStr,dStr,startTimeStr,endTimeStr)
             
@@ -527,6 +606,9 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
                 titleCell.textField.resignFirstResponder()
             }
             self.sureBankBlock(titleCell.conTent,self.dStr)
+        } else if type == .doc_search {
+            self.view.endEditing(true)
+            self.sureDocSearchSure(nStr,dnStr,kwStr,uStr,cnStr,bidStr,startTimeStr,endTimeStr)
         }
         self.navigationController?.popViewController(animated: true)
     }

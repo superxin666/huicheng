@@ -13,7 +13,8 @@ let DocTableViewCellH = CGFloat(100)
 
 class DocTableViewCell: UITableViewCell {
     @IBOutlet weak var titleNameLabel: UILabel!
-
+    @IBOutlet weak var titleNameLabel2: UILabel!
+    
     @IBOutlet weak var subTitleLabel: UILabel!
 
 
@@ -48,6 +49,36 @@ class DocTableViewCell: UITableViewCell {
         if let state = model.state {
 
         }
+    }
+
+    func setData_docSearch(model : docgetlistModel)  {
+        if let docnum = model.docnum {
+            self.titleNameLabel.text = docnum
+        }
+        if let user = model.user {
+            self.titleNameLabel2.text = user
+        }
+
+        if let branchStr = model.branch {
+            self.subTitleLabel.text = branchStr
+        }
+        if let dealnum = model.dealnum {
+            self.subNunLabel.text = dealnum
+        }
+        if let addtime = model.addtime {
+            self.timeLabel.text = String.hc_getDate_string(dateStr: addtime)
+        }
+        if let typeStr = model.typeStr {
+            self.typeLabel.text = typeStr
+        }
+
+        if let stateStr = model.stateStr {
+            self.stateLabel.text = stateStr
+        }
+        if let state = model.state {
+
+        }
+
     }
 
     func setData_incomeList(model : Income_getlistModel) {

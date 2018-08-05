@@ -1,40 +1,39 @@
 
 
-
 //
-//  IncomeListViewController.swift
+//  DocSearchViewController.swift
 //  huicheng
 //
-//  Created by lvxin on 2018/7/6.
+//  Created by lvxin on 2018/8/4.
 //  Copyright © 2018年 lvxin. All rights reserved.
-//  收款登记页面
-
+// 函件搜索
 
 import UIKit
 
-class IncomeListViewController: BaseViewController ,UITableViewDataSource,UITableViewDelegate,Work2RequestVCDelegate {
+class DocSearchViewController: BaseViewController ,UITableViewDataSource,UITableViewDelegate,Work2RequestVCDelegate {
     let mainTabelView : UITableView = UITableView()
     let requestVC = Work2RequestVC()
-    var dataArr : [Income_getlistModel] = []
+    var dataArr : [docgetlistModel] = []
     var pageNum : Int = 1
 
+    /// 分所id
+    var bidStr = ""
+    /// 函件编号
+    var dnStr = ""
     /// 合同编号
-    var numStr = ""
-
-    /// 查询时间段开始;
+    var nStr = ""
+    /// 申请人
+    var kwStr = ""
+    /// 律师名称
+    var uStr = ""
+    /// 案件名称
+    var cnStr = ""
+    /// 开始时间
     var bStr = ""
-
-    /// 查询时间段结束
+    /// 结束时间
     var eStr = ""
 
-    /// u:交款人
-    var uStr = ""
 
-    /// 分所 ID，INT 型，可不传;
-    var bidStr = ""
-
-    /// 状态，INT 型;0-未审核;1-已审核;2-已驳回;3-已支付;
-    var sStr = ""
 
     // MARK: - life
     override func viewWillLayoutSubviews() {
@@ -50,10 +49,9 @@ class IncomeListViewController: BaseViewController ,UITableViewDataSource,UITabl
         // Do any additional setup after loading the view.
         self.view.backgroundColor = viewBackColor
 
-        self.navigation_title_fontsize(name: "收款登记", fontsize: 18)
-        let iteam1 = self.getUIBarButtonItem(image: #imageLiteral(resourceName: "mine_search"), action: #selector(searchClick), vc: self)
-        let iteam2 = self.getUIBarButtonItem(image:#imageLiteral(resourceName: "mine_add"), action: #selector(addClick), vc: self)
-        self.navigationItem.rightBarButtonItems = [iteam2,iteam1]
+        self.navigation_title_fontsize(name: "函件查询", fontsize: 18)
+        self.navigationBar_rightBtn_image(image: #imageLiteral(resourceName: "mine_search"))
+        self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
         self.creatUI()
         self.requestApi()
     }
@@ -68,8 +66,6 @@ class IncomeListViewController: BaseViewController ,UITableViewDataSource,UITabl
         mainTabelView.showsHorizontalScrollIndicator = false
         mainTabelView.backgroundView?.backgroundColor = .clear
         mainTabelView.register(UINib.init(nibName: "DocTableViewCell", bundle: nil), forCellReuseIdentifier: DocTableViewCellID)
-        mainTabelView.mj_footer = self.creactFoot()
-        mainTabelView.mj_footer.setRefreshingTarget(self, refreshingAction: #selector(loadMoreData))
         self.view.addSubview(mainTabelView)
     }
     // MARK: - delegate
@@ -82,30 +78,24 @@ class IncomeListViewController: BaseViewController ,UITableViewDataSource,UITabl
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : DocTableViewCell  = tableView.dequeueReusableCell(withIdentifier: DocTableViewCellID, for: indexPath) as! DocTableViewCell
         if indexPath.row < self.dataArr.count {
-            let model : Income_getlistModel = self.dataArr[indexPath.row]
-            cell.setData_incomeList(model: model)
+            let model : docgetlistModel = self.dataArr[indexPath.row]
+            cell.setData_docSearch(model: model)
         }
         return cell
     }
-
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row  < self.dataArr.count {
-            let model : Income_getlistModel = self.dataArr[indexPath.row]
-            let vc = IncomeDetailViewController()
-            vc.hidesBottomBarWhenPushed = true
-            vc.id = "\(model.id)"
-            vc.type = .detial
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-    }
 
+        }
+
+    }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return DocTableViewCellH
     }
     // MARK: - net
     func requestApi() {
         requestVC.delegate = self
-        requestVC.income_getlistReuest(p: pageNum, c: 8, bid: 1, n: numStr,  b: bStr, e: eStr, u: uStr,s:sStr)
+        requestVC.doc_searchReuqest(dn: self.dnStr, bid: self.bidStr, n: self.nStr, kw: self.kwStr, u: self.uStr, cn: self.cnStr, b: self.bidStr, e: self.eStr)
     }
 
     func reflishData() {
@@ -115,63 +105,43 @@ class IncomeListViewController: BaseViewController ,UITableViewDataSource,UITabl
         pageNum = 1
         self.requestApi()
     }
-    @objc func loadMoreData() {
-        HCLog(message: "加载更多")
-        pageNum = pageNum + 1
-        self.requestApi()
-    }
 
     func requestSucceed_work2(data: Any, type: Work2RequestVC_enum) {
-        let arr : [Income_getlistModel] = data as! [Income_getlistModel]
-        if arr.count > 0 {
-            self.dataArr = self.dataArr + arr
-        }  else {
-            if pageNum > 1 {
-                SVPMessageShow.showErro(infoStr: "暂无数据")
-            } else {
-
-            }
-        }
+        let arr : [docgetlistModel] = data as! [docgetlistModel]
+        self.dataArr = arr
         self.mainTabelView.reloadData()
-        if mainTabelView.mj_footer.isRefreshing {
-            mainTabelView.mj_footer.endRefreshing()
-        }
-
     }
+
+
     func requestFail_work2() {
 
-
     }
+
 
     override func navigationLeftBtnClick() {
         self.navigationController?.popViewController(animated: true)
     }
-
-    @objc func searchClick() {
+    override func navigationRightBtnClick() {
         HCLog(message: "搜索")
         let vc = SearchViewController()
-        vc.hidesBottomBarWhenPushed = true
-        vc.type = .Income_list
-        weak var weakSelf = self
-        vc.sureFinanceBlock = {(no,n,s,st,et) in
-            weakSelf?.numStr = no
-            weakSelf?.uStr = n
-            weakSelf?.sStr = s
-            weakSelf?.bStr = st
-            weakSelf?.eStr = et
-            weakSelf?.reflishData()
+        vc.type = .doc_search
+        weak var weakself = self
+        vc.sureDocSearchSure = {(nStr,dnStr,kwStr,uStr,cnStr,bidStr,startTimeStr,endTimeStr) in
+            weakself?.nStr = nStr
+            weakself?.dnStr = nStr
+            weakself?.kwStr = nStr
+            weakself?.uStr = nStr
+            weakself?.cnStr = nStr
+            weakself?.bidStr = nStr
+            weakself?.bStr = nStr
+            weakself?.eStr = nStr
+            weakself?.reflishData()
         }
         self.navigationController?.pushViewController(vc, animated: true)
-    }
 
 
-    @objc func addClick() {
-        HCLog(message: "添加")
-        let vc = AddIconComeStep1ViewController()
-        vc.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(vc, animated: true)
     }
-    
+
 
     /*
     // MARK: - Navigation

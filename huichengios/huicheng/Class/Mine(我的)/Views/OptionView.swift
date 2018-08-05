@@ -62,6 +62,13 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
         self.pickView.reloadAllComponents()
     }
 
+    func setData_dep(dataArr : [Any])  {
+        self.type = .caseDep
+        data_departArr = dataArr as! [departmentModel]
+        self.pickView.reloadAllComponents()
+    }
+
+
     func setDatainvoiceState()  {
         self.type = .invoiceState
         self.pickView.reloadAllComponents()
