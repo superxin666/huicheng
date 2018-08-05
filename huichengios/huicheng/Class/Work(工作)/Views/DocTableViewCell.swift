@@ -30,8 +30,8 @@ class DocTableViewCell: UITableViewCell {
         if let docnum = model.docnum {
             self.titleNameLabel.text = docnum
         }
-        if let doctypeStr = model.doctypeStr {
-            self.subTitleLabel.text = doctypeStr
+        if let branchStr = model.branch {
+            self.subTitleLabel.text = branchStr
         }
         if let dealnum = model.dealnum {
             self.subNunLabel.text = dealnum

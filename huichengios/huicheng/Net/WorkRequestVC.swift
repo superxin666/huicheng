@@ -18,7 +18,6 @@ enum WorkRequestVC_enum {
          room,roomsave,roomdel,//会议室
          dealgetapplylist,applysave,searchlist,// 合同审核  获取列表
          dealgetoverlist,dealgetoverinfo,checkoversave,//结案审核
-         doc_getlist,doc_getinfo,doc_del,//函件管理
          invoice_applylist,invoice_applysave,invoice_del,//发票审批
          expense_applylist,expense_applysave,expense_del,//报销审批
          sharegetlist,sharegetmylist,sharegetinfo,sharegetreply,sharereplysave,sharegettype,sharesave,//模板共享 获取列表
@@ -438,44 +437,6 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
 
 
     // MARK: 函件管理
-
-    /// 获取函件列表
-    ///
-    /// - Parameters:
-    ///   - p: <#p description#>
-    ///   - c: <#c description#>
-    ///   - n: <#n description#>
-    ///   - bid: <#bid description#>
-    func docgetlistRequset(p:Int,c:Int,n:String,bid:String) {
-        request.delegate = self
-        type = .doc_getlist
-        let url = doc_getlist_api   + "p=\(p)&c=\(c)&n=\(n)&k=\(UserInfoLoaclManger.getKey())"
-        request.request_api(url: url)
-
-    }
-
-
-    /// 详情
-    ///
-    /// - Parameter id: <#id description#>
-    func docgetinfoRequset(id:String) {
-        request.delegate = self
-        type = .doc_getinfo
-        let url = doc_getinfo_api   + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
-        request.request_api(url: url)
-
-    }
-
-    /// 删除
-    ///
-    /// - Parameter id: <#id description#>
-    func docdelRequset(id:String) {
-        request.delegate = self
-        type = .doc_del
-        let url = doc_del_api   + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
-        request.request_api(url: url)
-
-    }
      // MARK: 银行信息
     func bank_getlistRequest(p:Int,c:Int,u:String,b:String,d:String,n:String) {
         request.delegate = self
@@ -780,7 +741,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work(data: arr,type : type)
             }
-        } else if type == .save || type == .newspublic || type == .oversave || type == .casedel || type == .dealdel || type == .roomsave || type == .roomdel || type == .applysave || type == .checkoversave || type == .doc_del || type == .invoice_applysave || type == .invoice_del || type == .expense_applysave || type == .expense_del ||  type == .bank_save || type == .sharereplysave{
+        } else if type == .save || type == .newspublic || type == .oversave || type == .casedel || type == .dealdel || type == .roomsave || type == .roomdel || type == .applysave || type == .checkoversave  || type == .invoice_applysave || type == .invoice_del || type == .expense_applysave || type == .expense_del ||  type == .bank_save || type == .sharereplysave{
             //发布公告
             let model = Mapper<CodeData>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {
@@ -841,16 +802,6 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
             let arr = Mapper<shareGetlistModel>().mapArray(JSONArray: response as! [[String : Any]])
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work(data: arr,type : type)
-            }
-        } else if type == .doc_getlist{
-            let arr = Mapper<docgetlistModel>().mapArray(JSONArray: response as! [[String : Any]])
-            if !(self.delegate == nil) {
-                self.delegate.requestSucceed_work(data: arr,type : type)
-            }
-        } else if type == .doc_getinfo{
-            let model = Mapper<docgetinfoModel>().map(JSON: response as! [String : Any])!
-            if !(self.delegate == nil) {
-                self.delegate.requestSucceed_work(data: model,type : type)
             }
         } else if type == .invoice_applylist{
             let arr = Mapper<invoice_getlistModel>().mapArray(JSONArray: response as! [[String : Any]])

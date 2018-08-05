@@ -99,7 +99,7 @@ let deal_oversave_api = "deal/oversave?"
 let deal_del_api = "deal/del?"
 
 /// /----------------------- 函件管理
-let doc_getlist_api = "doc/getlist?"
+let doc_getlist_api = "doc/doc_getlist?"
 let doc_getinfo_api = "doc/doc_getinfo?"
 let doc_del_api = "doc/doc_del?"
 
@@ -149,6 +149,10 @@ let doc_applylistapi = "doc/doc_applylist?"
 
 /// 函件查询 获取列表
 let doc_searchapi = "doc/doc_search?"
+
+/// 函件管理 获取函件列表
+let doc_getlistapi = "doc/doc_getlist?"
+
 
 
 /// /-----------------------模板共享
@@ -202,3 +206,4 @@ let memo_del_api = "uc/memo_del?"
 //------------文件本地地址
 let documentPaths : String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first!
 let filePath = documentPaths + "/filesDocument"
+let filePath_downLoad = documentPaths + "/downLoadfilesDocument"

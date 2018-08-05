@@ -12,7 +12,7 @@ import ObjectMapper
 enum Work2RequestVC_enum {
     //
     case income_getlist,income_getdeals,income_getdealsinfo,income_save,income_getinfo,//收款登记获取列表
-    doc_applylist,doc_search
+    doc_applylist,doc_search,doc_getlist,doc_getinfo,doc_del
 }
 protocol Work2RequestVCDelegate : NSObjectProtocol{
     //
@@ -116,6 +116,50 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
     }
     // MARK: -  签章
 
+
+
+
+    /// 获取函件列表
+    ///
+    /// - Parameters:
+    ///   - p: <#p description#>
+    ///   - c: <#c description#>
+    ///   - n: <#n description#>
+    ///   - bid: <#bid description#>
+    func docgetlistRequset(p:Int,c:Int,n:String,bid:String) {
+        request.delegate = self
+        type = .doc_getlist
+        let url = doc_getlist_api   + "p=\(p)&c=\(c)&n=\(n)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+
+    }
+
+
+    /// 详情
+    ///
+    /// - Parameter id: <#id description#>
+    func docgetinfoRequset(id:String) {
+        request.delegate = self
+        type = .doc_getinfo
+        let url = doc_getinfo_api   + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+
+    }
+
+    /// 删除
+    ///
+    /// - Parameter id: <#id description#>
+    func docdelRequset(id:String) {
+        request.delegate = self
+        type = .doc_del
+        let url = doc_del_api   + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+
+    }
+
+
+
+
     /// 函件审核
     ///
     /// - Parameters:
@@ -123,7 +167,7 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
     ///   - c: <#c description#>
     ///   - bid: <#bid description#>
     ///   - n: <#n description#>
-    func doc_applylistRequest(p:Int,c:Int,bid:Int,n:String) {
+    func doc_applylistRequest(p:Int,c:Int,bid:String,n:String) {
         type = .doc_applylist
         request.delegate = self
         let url =   doc_applylistapi + "p=\(p)&c=\(c)&n=\(n)&bid=\(bid)&k=\(UserInfoLoaclManger.getKey())"
@@ -172,8 +216,24 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
         request.request_api(url: url)
     }
 
+
+    /// 获取函件列表
+    ///
+    /// - Parameters:
+    ///   - p: <#p description#>
+    ///   - c: <#c description#>
+    ///   - bid: <#bid description#>
+    ///   - n: <#n description#>
+    func doc_getlist(p:Int,c:Int,bid:Int,n:String) {
+        type = .doc_getlist
+        request.delegate = self
+        let url =   doc_getlistapi + "p=\(p)&c=\(c)&n=\(n)&bid=\(bid)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+
+    }
+
     func requestSucceed(response: Any) {
-        if type == .income_getlist ||  type == .income_getdeals{
+        if type == .income_getlist ||  type == .income_getdeals {
             let arr = Mapper<Income_getlistModel>().mapArray(JSONArray: response as! [[String : Any]])
 
             if !(self.delegate == nil) {
@@ -190,10 +250,15 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work2(data: model,type : type)
             }
-        } else if type == .doc_applylist || type == .doc_search{
+        } else if type == .doc_applylist || type == .doc_search || type == .doc_getlist{
             let arr = Mapper<docgetlistModel>().mapArray(JSONArray: response as! [[String : Any]])
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work2(data: arr,type : type)
+            }
+        } else if type == .doc_getinfo{
+            let model = Mapper<docgetinfoModel>().map(JSON: response as! [String : Any])!
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed_work2(data: model,type : type)
             }
         }
     }

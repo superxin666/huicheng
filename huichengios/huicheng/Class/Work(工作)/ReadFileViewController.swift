@@ -12,25 +12,27 @@ import QuickLook
 class ReadFileViewController: QLPreviewController,QLPreviewControllerDelegate,QLPreviewControllerDataSource {
 
     var fileUrl : String!
-//    init(url : String) {
-//        super
-//
-//    }
-//
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.navigation_title_fontsize(name: "函件查询", fontsize: 18)
+
+
+    }
+
+    func navigation_title_fontsize(name:String, fontsize:Int, textColour:UIColor = darkblueColor) {
+        self.title = name
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: ip6(fontsize))]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: textColour]
     }
 
 
     func jump(vc : UIViewController) {
         self.delegate = self
         self.dataSource = self
+
         vc.navigationController?.pushViewController(self, animated: true)
         self.reloadData()
     }
@@ -43,6 +45,8 @@ class ReadFileViewController: QLPreviewController,QLPreviewControllerDelegate,QL
         let url = URL(fileURLWithPath: fileUrl)
         return url as QLPreviewItem
     }
+
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

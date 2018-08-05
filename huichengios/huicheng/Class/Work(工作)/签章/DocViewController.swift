@@ -8,9 +8,9 @@
 
 import UIKit
 
-class DocViewController: BaseViewController ,UITableViewDataSource,UITableViewDelegate,WorkRequestVCDelegate {
+class DocViewController: BaseViewController ,UITableViewDataSource,UITableViewDelegate,Work2RequestVCDelegate {
     let mainTabelView : UITableView = UITableView()
-    let requestVC = WorkRequestVC()
+    let requestVC = Work2RequestVC()
     var dataArr : [docgetlistModel] = []
     var pageNum : Int = 1
 
@@ -71,6 +71,9 @@ class DocViewController: BaseViewController ,UITableViewDataSource,UITableViewDe
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row  < self.dataArr.count {
 
+            let model : docgetlistModel = self.dataArr[indexPath.row]
+            requestVC.docgetinfoRequset(id: "\(model.id!)")
+
         }
 
     }
@@ -81,6 +84,7 @@ class DocViewController: BaseViewController ,UITableViewDataSource,UITableViewDe
     func requestApi() {
         requestVC.delegate = self
         requestVC.docgetlistRequset(p: pageNum, c: 8, n: numStr, bid: "")
+
     }
 
     func reflishData() {
@@ -95,24 +99,38 @@ class DocViewController: BaseViewController ,UITableViewDataSource,UITableViewDe
         pageNum = pageNum + 1
         self.requestApi()
     }
-    func requestSucceed_work(data: Any,type : WorkRequestVC_enum) {
-        let arr : [docgetlistModel] = data as! [docgetlistModel]
-        if arr.count > 0 {
-            self.dataArr = self.dataArr + arr
-        }  else {
-            if pageNum > 1 {
-                SVPMessageShow.showErro(infoStr: "暂无数据")
-            } else {
+    func requestSucceed_work2(data: Any,type : Work2RequestVC_enum) {
+        if type == .doc_getlist {
+            let arr : [docgetlistModel] = data as! [docgetlistModel]
+            if arr.count > 0 {
+                self.dataArr = self.dataArr + arr
+            }  else {
+                if pageNum > 1 {
+                    SVPMessageShow.showErro(infoStr: "暂无数据")
+                } else {
 
+                }
             }
-        }
-        self.mainTabelView.reloadData()
-        if mainTabelView.mj_footer.isRefreshing {
-            mainTabelView.mj_footer.endRefreshing()
+            self.mainTabelView.reloadData()
+            if mainTabelView.mj_footer.isRefreshing {
+                mainTabelView.mj_footer.endRefreshing()
+            }
+
+        } else if type == .doc_getinfo {
+
+            let model : docgetinfoModel = data as! docgetinfoModel
+            let vc = ReadPdfViewController()
+            vc.url = URL(string: base_imageOrFile_api + model.pdf!)
+            vc.type = .tabIteam
+            vc.pdfstate = model.state!
+            self.navigationController?.pushViewController(vc, animated: true)
+
         }
     }
 
-    func requestFail_work() {
+
+
+    func requestFail_work2() {
 
     }
 

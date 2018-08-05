@@ -21,6 +21,7 @@ enum reponsetype {
 
 class BaseNetViewController: UIViewController {
     weak var delegate :BaseNetViewControllerDelegate!
+    var fileManager = FileManager.default
 
     func request_api(url : String,type :  reponsetype = .datatype){
         let url = base_api + url
@@ -95,5 +96,65 @@ class BaseNetViewController: UIViewController {
         }
         )
     }
+
+     func downLoadFile(path : String,name : String, completion : @escaping (_ data : Any) ->(), failure : @escaping (_ error : Any)->()) {
+        //
+
+
+        if fileManager.fileExists(atPath: filePath_downLoad) {
+            HCLog(message: "文件夹已存在")
+        } else {
+            HCLog(message: "创建文件夹")
+            do {
+                try fileManager.createDirectory(atPath: filePath_downLoad, withIntermediateDirectories: true, attributes: nil)
+            } catch _ {
+                HCLog(message: "创建文件夹失败")
+            }
+        }
+
+        //检查文件是否下载过
+        HCLog(message: path)
+        HCLog(message: name)
+        let filePathStr : String = filePath_downLoad + "/" + name
+        HCLog(message: filePathStr)
+        if fileManager.fileExists(atPath: filePathStr) {
+            HCLog(message: "文件已存在")
+            completion(filePathStr)
+
+        } else {
+            //需要下载
+
+//            let vc = BaseViewController()
+//            //            self.downLoadFileRequest(ulrStr: filePathStr, downUrl: path)
+//
+//            vc.SVshowLoad()
+            SVPMessageShow.showLoad()
+
+
+            let filePathStr : String = filePath_downLoad + "/" + name
+            let url  = URL(string: base_imageOrFile_api + path)
+
+            DispatchQueue.global().async {
+                let fileData = NSData(contentsOf: url!)
+                HCLog(message: "下载文件")
+                HCLog(message: fileData?.length)
+                let isok =  fileData?.write(toFile: filePathStr, atomically: true)
+                DispatchQueue.main.async{
+                    SVPMessageShow.dismissSVP()
+                    if let _ = isok {
+                        HCLog(message: "文件保存成功")
+                        completion(filePathStr)
+                    } else {
+
+                        HCLog(message: "文件保存失败")
+                    }
+                }
+            }
+            //
+        }
+
+    }
+
+
 
 }

@@ -156,6 +156,11 @@ class WorkViewController: BaseViewController,UITableViewDelegate,UITableViewData
                 self.navigationController?.pushViewController(vc, animated: true)
             case 6:
                 HCLog(message: "函件审核")
+                let vc = DocApplylistViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+
+
             default:
                 HCLog(message: "暂无")
             }

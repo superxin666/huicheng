@@ -1,38 +1,21 @@
-
-
 //
-//  DocSearchViewController.swift
+//  DocApplylistViewController.swift
 //  huicheng
 //
-//  Created by lvxin on 2018/8/4.
+//  Created by lvxin on 2018/8/5.
 //  Copyright © 2018年 lvxin. All rights reserved.
-// 函件查询
+//  函件审核列表
 
 import UIKit
 
-class DocSearchViewController: BaseViewController ,UITableViewDataSource,UITableViewDelegate,Work2RequestVCDelegate {
+class DocApplylistViewController: BaseViewController ,UITableViewDataSource,UITableViewDelegate,Work2RequestVCDelegate {
     let mainTabelView : UITableView = UITableView()
     let requestVC = Work2RequestVC()
     var dataArr : [docgetlistModel] = []
     var pageNum : Int = 1
 
-    /// 分所id
-    var bidStr = ""
-    /// 函件编号
-    var dnStr = ""
     /// 合同编号
-    var nStr = ""
-    /// 申请人
-    var kwStr = ""
-    /// 律师名称
-    var uStr = ""
-    /// 案件名称
-    var cnStr = ""
-    /// 开始时间
-    var bStr = ""
-    /// 结束时间
-    var eStr = ""
-
+    var numStr = ""
 
 
     // MARK: - life
@@ -49,7 +32,7 @@ class DocSearchViewController: BaseViewController ,UITableViewDataSource,UITable
         // Do any additional setup after loading the view.
         self.view.backgroundColor = viewBackColor
 
-        self.navigation_title_fontsize(name: "函件查询", fontsize: 18)
+        self.navigation_title_fontsize(name: "函件审核", fontsize: 18)
         self.navigationBar_rightBtn_image(image: #imageLiteral(resourceName: "mine_search"))
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
         self.creatUI()
@@ -66,6 +49,8 @@ class DocSearchViewController: BaseViewController ,UITableViewDataSource,UITable
         mainTabelView.showsHorizontalScrollIndicator = false
         mainTabelView.backgroundView?.backgroundColor = .clear
         mainTabelView.register(UINib.init(nibName: "DocTableViewCell", bundle: nil), forCellReuseIdentifier: DocTableViewCellID)
+        mainTabelView.mj_footer = self.creactFoot()
+        mainTabelView.mj_footer.setRefreshingTarget(self, refreshingAction: #selector(loadMoreData))
         self.view.addSubview(mainTabelView)
     }
     // MARK: - delegate
@@ -79,14 +64,12 @@ class DocSearchViewController: BaseViewController ,UITableViewDataSource,UITable
         let cell : DocTableViewCell  = tableView.dequeueReusableCell(withIdentifier: DocTableViewCellID, for: indexPath) as! DocTableViewCell
         if indexPath.row < self.dataArr.count {
             let model : docgetlistModel = self.dataArr[indexPath.row]
-            cell.setData_docSearch(model: model)
+            cell.setData_doc(model: model)
         }
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row  < self.dataArr.count {
-            let model : docgetlistModel = self.dataArr[indexPath.row]
-            requestVC.docgetinfoRequset(id: "\(model.id!)")
 
         }
 
@@ -97,7 +80,7 @@ class DocSearchViewController: BaseViewController ,UITableViewDataSource,UITable
     // MARK: - net
     func requestApi() {
         requestVC.delegate = self
-        requestVC.doc_searchReuqest(dn: self.dnStr, bid: self.bidStr, n: self.nStr, kw: self.kwStr, u: self.uStr, cn: self.cnStr, b: self.bidStr, e: self.eStr)
+        requestVC.doc_applylistRequest(p: pageNum, c: 8, bid: "", n: numStr)
     }
 
     func reflishData() {
@@ -107,38 +90,28 @@ class DocSearchViewController: BaseViewController ,UITableViewDataSource,UITable
         pageNum = 1
         self.requestApi()
     }
-
-    func requestSucceed_work2(data: Any, type: Work2RequestVC_enum) {
-        if type == .doc_search {
-            let arr : [docgetlistModel] = data as! [docgetlistModel]
-            self.dataArr = arr
-            self.mainTabelView.reloadData()
-        } else if type == .doc_getinfo {
-            let model : docgetinfoModel = data as! docgetinfoModel
-            let vc = ReadPdfViewController()
-            vc.url = URL(string: base_imageOrFile_api + model.pdf!)
-            self.navigationController?.pushViewController(vc, animated: true)
-
-//            let filePath = model.pdf!.components(separatedBy: "/")
-//            let fileName = filePath.last
-//            HCLog(message: filePath)
-//            HCLog(message: fileName)
-//
-//            let baseVC = BaseNetViewController()
-////            let url = base_imageOrFile_api + model.pdf!
-//
-//            baseVC.downLoadFile(path: model.pdf!, name: fileName!, completion: { (data) in
-//                let urlStr : String = data as! String
-//                let vc : ReadFileViewController = ReadFileViewController()
-//                vc.fileUrl = urlStr
-//                vc.jump(vc: self)
-//            }) { (erro) in
-//                SVPMessageShow.showErro(infoStr: "文件加载失败，请重新尝试")
-//            }
-
-        }
-
+    @objc func loadMoreData() {
+        HCLog(message: "加载更多")
+        pageNum = pageNum + 1
+        self.requestApi()
     }
+    func requestSucceed_work2(data: Any,type : Work2RequestVC_enum) {
+        let arr : [docgetlistModel] = data as! [docgetlistModel]
+        if arr.count > 0 {
+            self.dataArr = self.dataArr + arr
+        }  else {
+            if pageNum > 1 {
+                SVPMessageShow.showErro(infoStr: "暂无数据")
+            } else {
+
+            }
+        }
+        self.mainTabelView.reloadData()
+        if mainTabelView.mj_footer.isRefreshing {
+            mainTabelView.mj_footer.endRefreshing()
+        }
+    }
+
 
 
     func requestFail_work2() {
@@ -152,17 +125,10 @@ class DocSearchViewController: BaseViewController ,UITableViewDataSource,UITable
     override func navigationRightBtnClick() {
         HCLog(message: "搜索")
         let vc = SearchViewController()
-        vc.type = .doc_search
+        vc.type = .deal_type
         weak var weakself = self
-        vc.sureDocSearchSure = {(nStr,dnStr,kwStr,uStr,cnStr,bidStr,startTimeStr,endTimeStr) in
-            weakself?.nStr = nStr
-            weakself?.dnStr = nStr
-            weakself?.kwStr = nStr
-            weakself?.uStr = nStr
-            weakself?.cnStr = nStr
-            weakself?.bidStr = nStr
-            weakself?.bStr = nStr
-            weakself?.eStr = nStr
+        vc.sureDealBlock = {content in
+            weakself?.numStr = content
             weakself?.reflishData()
         }
         self.navigationController?.pushViewController(vc, animated: true)
