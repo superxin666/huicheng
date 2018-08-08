@@ -260,6 +260,11 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work2(data: model,type : type)
             }
+        } else if type == .doc_del {
+            let model = Mapper<CodeData>().map(JSON: response as! [String : Any])!
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed_work2(data: model,type : type)
+            }
         }
     }
 

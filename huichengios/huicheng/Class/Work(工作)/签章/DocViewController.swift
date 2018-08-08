@@ -123,6 +123,10 @@ class DocViewController: BaseViewController ,UITableViewDataSource,UITableViewDe
             vc.url = URL(string: base_imageOrFile_api + model.pdf!)
             vc.type = .tabIteam
             vc.pdfstate = model.state!
+            vc.id = model.id
+            vc.delDocSucessBlock = {
+                self.reflishData()
+            }
             self.navigationController?.pushViewController(vc, animated: true)
 
         }

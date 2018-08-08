@@ -16,9 +16,13 @@ enum ReadPdfViewControllerType {
     case other
 }
 
-class ReadPdfViewController: BaseViewController {
+typealias ReadPdfViewControllerBlock = ()->()
+
+class ReadPdfViewController: BaseViewController,UIPrintInteractionControllerDelegate,Work2RequestVCDelegate {
 
     var type : ReadPdfViewControllerType = .other
+    
+    var id : Int!
 
     var webView : UIWebView!
 
@@ -28,6 +32,10 @@ class ReadPdfViewController: BaseViewController {
 
     ///  0-未审核;1-已审核;2-审核驳回;3-已盖章
     var pdfstate : Int!
+
+    var requestVC : Work2RequestVC = Work2RequestVC()
+
+    var delDocSucessBlock : ReadPdfViewControllerBlock!
 
 
     override func viewDidLoad() {
@@ -53,13 +61,33 @@ class ReadPdfViewController: BaseViewController {
     override func navigationLeftBtnClick() {
         self.navigationController?.popViewController(animated: true)
     }
+
+
     override func navigationRightBtnClick() {
         HCLog(message: "操作")
-        if pdfstate == 3 {
+        if pdfstate == 3 {//3
             //已经盖章 可打印
             alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             let delAction = UIAlertAction(title: "打印", style: .default) { (action) in
                 HCLog(message: "打印")
+
+                let printVC : UIPrintInteractionController = UIPrintInteractionController.shared
+                printVC.delegate = self
+
+//                let printInfo : UIPrintInfo = UIPrintInfo()
+//                printInfo.outputType = .general
+
+                printVC.showsPageRange = false
+                printVC.printFormatter = self.webView.viewPrintFormatter()
+
+                printVC.present(animated: true, completionHandler: { (printController, completed, erro) in
+                    if !completed {
+                        HCLog(message: "无法完成打印")
+
+                    }
+                })
+
+
             }
 
 
@@ -73,11 +101,14 @@ class ReadPdfViewController: BaseViewController {
             self.present((alertController)!, animated: true, completion: nil)
 
 
-        } else if pdfstate == 0 {
+        } else if pdfstate == 0 {//0
             //未审核 可删除
             alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             let delAction = UIAlertAction(title: "删除", style: .default) { (action) in
                 HCLog(message: "删除")
+                self.requestVC.delegate = self
+                self.requestVC.docdelRequset(id: "\(self.id!)")
+
             }
 
 
@@ -107,6 +138,17 @@ class ReadPdfViewController: BaseViewController {
             self.present((alertController)!, animated: true, completion: nil)
 
         }
+    }
+
+    func requestSucceed_work2(data: Any, type: Work2RequestVC_enum) {
+        if type == .doc_del {
+            self.delDocSucessBlock()
+            self.navigationLeftBtnClick()
+        }
+    }
+
+    func requestFail_work2() {
+
     }
 
     override func didReceiveMemoryWarning() {
