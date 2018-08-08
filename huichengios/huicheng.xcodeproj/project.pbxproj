@@ -120,6 +120,8 @@
 		2130656C211701AC0073ECF9 /* DocApplylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2130656B211701AC0073ECF9 /* DocApplylistViewController.swift */; };
 		2130656E21171EE80073ECF9 /* ShowImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2130656D21171EE80073ECF9 /* ShowImagesViewController.swift */; };
 		21306570211744DA0073ECF9 /* ReadPdfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2130656F211744DA0073ECF9 /* ReadPdfViewController.swift */; };
+		21306574211AF5C40073ECF9 /* CrtDealslistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21306573211AF5C40073ECF9 /* CrtDealslistViewController.swift */; };
+		21306576211AFAA20073ECF9 /* CrtDealslistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21306575211AFAA20073ECF9 /* CrtDealslistModel.swift */; };
 		21340BD7206CB46800E30B53 /* AddExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21340BD6206CB46800E30B53 /* AddExpenseViewController.swift */; };
 		21340BD9206CBDDB00E30B53 /* AddExpenseBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21340BD8206CBDDB00E30B53 /* AddExpenseBackView.swift */; };
 		21340BDB206CBDE400E30B53 /* AddExpenseBackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21340BDA206CBDE400E30B53 /* AddExpenseBackView.xib */; };
@@ -359,6 +361,8 @@
 		2130656B211701AC0073ECF9 /* DocApplylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocApplylistViewController.swift; sourceTree = "<group>"; };
 		2130656D21171EE80073ECF9 /* ShowImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowImagesViewController.swift; sourceTree = "<group>"; };
 		2130656F211744DA0073ECF9 /* ReadPdfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadPdfViewController.swift; sourceTree = "<group>"; };
+		21306573211AF5C40073ECF9 /* CrtDealslistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrtDealslistViewController.swift; sourceTree = "<group>"; };
+		21306575211AFAA20073ECF9 /* CrtDealslistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrtDealslistModel.swift; sourceTree = "<group>"; };
 		21340BD6206CB46800E30B53 /* AddExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseViewController.swift; sourceTree = "<group>"; };
 		21340BD8206CBDDB00E30B53 /* AddExpenseBackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseBackView.swift; sourceTree = "<group>"; };
 		21340BDA206CBDE400E30B53 /* AddExpenseBackView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddExpenseBackView.xib; sourceTree = "<group>"; };
@@ -644,9 +648,11 @@
 			children = (
 				2130656521156C7A0073ECF9 /* docgetinfoModel.swift */,
 				2130656621156C7A0073ECF9 /* docgetlistModel.swift */,
+				21306575211AFAA20073ECF9 /* CrtDealslistModel.swift */,
 				21306563211542D80073ECF9 /* DocViewController.swift */,
 				2130656921156FFB0073ECF9 /* DocSearchViewController.swift */,
 				2130656B211701AC0073ECF9 /* DocApplylistViewController.swift */,
+				21306573211AF5C40073ECF9 /* CrtDealslistViewController.swift */,
 			);
 			path = "签章";
 			sourceTree = "<group>";
@@ -1192,6 +1198,7 @@
 				2124D725208DB90D0007B5EE /* DealCheckViewController.swift in Sources */,
 				211A65C820A00957009CD41A /* NoticeTableViewCell.swift in Sources */,
 				21089E98206E791B00573B6A /* FinanceDetialTableViewCell.swift in Sources */,
+				21306574211AF5C40073ECF9 /* CrtDealslistViewController.swift in Sources */,
 				21376687203FBAEB000CBCE6 /* View+Clipping.swift in Sources */,
 				21340BD7206CB46800E30B53 /* AddExpenseViewController.swift in Sources */,
 				2108BB7E206FD7D8002A4212 /* TitleTableViewCell.swift in Sources */,
@@ -1301,6 +1308,7 @@
 				2126DBE6208B454700977802 /* Title5TableViewCell.swift in Sources */,
 				2124D71B208D66530007B5EE /* RoomViewController.swift in Sources */,
 				21528BC020A52D6C00C9950A /* FileListTableViewCell.swift in Sources */,
+				21306576211AFAA20073ECF9 /* CrtDealslistModel.swift in Sources */,
 				219D7BCB205E4830009F543B /* PubMesConView.swift in Sources */,
 				216A6C52204CDE6F00528FD8 /* MineViewController.swift in Sources */,
 				2108BB79206FD219002A4212 /* CheckcaseViewController.swift in Sources */,

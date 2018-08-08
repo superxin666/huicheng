@@ -134,7 +134,6 @@ class WorkViewController: BaseViewController,UITableViewDelegate,UITableViewData
                 HCLog(message: "暂无")
             }
         } else if rowNum == 2{
-//            "函件管理","诉讼函","民事函","刑事函","自定义函","签章进度查询","签章审核"
             switch tag {
             case 0:
                 HCLog(message: "函件管理")
@@ -143,12 +142,29 @@ class WorkViewController: BaseViewController,UITableViewDelegate,UITableViewData
                 self.navigationController?.pushViewController(vc, animated: true)
             case 1:
                 HCLog(message: "诉讼函")
+                let vc = CrtDealslistViewController()
+                vc.viewType = .type1
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+
             case 2:
-                HCLog(message: "民事函")
+                HCLog(message: "非诉函")
+                let vc = CrtDealslistViewController()
+                vc.viewType = .type2
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
             case 3:
                 HCLog(message: "刑事函")
+                let vc = CrtDealslistViewController()
+                vc.viewType = .type3
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
             case 4:
-                HCLog(message: "自定义函")
+                HCLog(message: "法律函")
+                let vc = CrtDealslistViewController()
+                vc.viewType = .type4
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
             case 5:
                 HCLog(message: "函件查询")
                 let vc = DocSearchViewController()

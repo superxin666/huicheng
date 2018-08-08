@@ -12,7 +12,7 @@ import ObjectMapper
 enum Work2RequestVC_enum {
     //
     case income_getlist,income_getdeals,income_getdealsinfo,income_save,income_getinfo,//收款登记获取列表
-    doc_applylist,doc_search,doc_getlist,doc_getinfo,doc_del
+    doc_applylist,doc_search,doc_getlist,doc_getinfo,doc_del,crt_dealslist
 }
 protocol Work2RequestVCDelegate : NSObjectProtocol{
     //
@@ -158,7 +158,19 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
     }
 
 
-
+    /// 生成函件
+    ///
+    /// - Parameters:
+    ///   - p: <#p description#>
+    ///   - c: <#c description#>
+    ///   - n: 合同编号
+    ///   - t: 1-诉讼案件;2-非诉案件;3-刑事案件;4-法律顾问
+    func crt_dealslistRequest(p:Int,c:Int,n:String,t:Int) {
+        request.delegate = self
+        type = .crt_dealslist
+        let url = doc_crt_dealslist_api   + "p=\(p)&c=\(c)&n=\(n)&t=\(t)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+    }
 
     /// 函件审核
     ///
@@ -264,6 +276,11 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
             let model = Mapper<CodeData>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work2(data: model,type : type)
+            }
+        } else if type == .crt_dealslist {
+            let arr = Mapper<CrtDealslistModel>().mapArray(JSONArray: response as! [[String : Any]])
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed_work2(data: arr,type : type)
             }
         }
     }

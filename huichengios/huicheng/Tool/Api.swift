@@ -102,6 +102,7 @@ let deal_del_api = "deal/del?"
 let doc_getlist_api = "doc/doc_getlist?"
 let doc_getinfo_api = "doc/doc_getinfo?"
 let doc_del_api = "doc/doc_del?"
+let doc_crt_dealslist_api = "doc/crt_dealslist?"
 
 /// /----------------------- 发票审批
 let invoice_applylist_api = "finance/invoice_applylist?"
