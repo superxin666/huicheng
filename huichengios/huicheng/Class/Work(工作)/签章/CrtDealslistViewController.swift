@@ -94,15 +94,17 @@ class CrtDealslistViewController:   BaseViewController,UITableViewDataSource,UIT
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row  < self.dataArr.count {
-//            let model :CrtDealslistModel  = self.dataArr[indexPath.row]
-//
-//            let vc = DealDetailViewController()
-//            vc.dealID = model.id
-//            weak var weakself = self
-//            vc.sucessBlock = {
-//                weakself?.reflishData()
-//            }
-//            self.navigationController?.pushViewController(vc, animated: true)
+            let model :CrtDealslistModel  = self.dataArr[indexPath.row]
+            let vc = CaseDetailViewController()
+            vc.caseId = model.id
+            vc.type = .crtDetail
+            weak var weakself = self
+            vc.successBlock = {
+                weakself?.reflishData()
+            }
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+
 
         }
 

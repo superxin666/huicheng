@@ -8,7 +8,7 @@
 
 import UIKit
 enum CaseDetailViewControllerType {
-    case caseDetail,addCase,editeCase
+    case caseDetail,addCase,editeCase,crtDetail
 }
 typealias CaseDetailViewControllerBlock = ()->()
 class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,TitleTableViewCellDelegate,OptionViewDelgate,DatePickViewDelegate,ContentTableViewCellDelegate {
@@ -98,6 +98,13 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
             self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
             self.navigationBar_rightBtn_title(name: "确定")
             
+        } else if self.type == .crtDetail {
+
+            self.navigation_title_fontsize(name: "函件信息", fontsize: 18)
+            self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
+            self.navigationBar_rightBtn_title(name: "生成")
+            request.casegetinfoRerquest(id: caseId)
+
         } else {
 
         }
@@ -143,7 +150,7 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
                 if content1.count > 0 {
                     contentStr = content1[indexPath.row]
                 }
-                if type == .caseDetail{
+                if type == .caseDetail || type == .crtDetail{
                     cell.isUserInteractionEnabled = false
                 } else {
                     cell.isUserInteractionEnabled = true
@@ -161,7 +168,7 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
                 }
                 cell.setData_caseDetail(titleStr: name1[indexPath.row], contentStr: contentStr,indexPath : indexPath)
                 cell.tag = indexPath.row
-                if type == .caseDetail{
+                if type == .caseDetail  || type == .crtDetail{
                     cell.isUserInteractionEnabled = false
                 } else {
                     cell.isUserInteractionEnabled = true
@@ -175,7 +182,7 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
                     timeStr = content1[indexPath.row]
                 }
                 endTimeCell.setData_case(titleStr: "立案日期", timeStr: timeStr)
-                if type == .caseDetail{
+                if type == .caseDetail  || type == .crtDetail{
                     endTimeCell.isUserInteractionEnabled = false
                 } else {
                     endTimeCell.isUserInteractionEnabled = true
@@ -195,7 +202,7 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
                     contentStr = content3[indexPath.row]
                 }
                 cell.setData_case(title: name3[indexPath.row], contentCase: contentStr)
-                if type == .caseDetail{
+                if type == .caseDetail  || type == .crtDetail{
                     cell.isUserInteractionEnabled = false
                 } else {
                     cell.isUserInteractionEnabled = true
@@ -212,7 +219,7 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
                     contentStr = self.sjStr
                 }
                 cell.setData_caseDetail(titleStr: name3[indexPath.row], contentStr: contentStr, indexPath: indexPath)
-                if type == .caseDetail{
+                if type == .caseDetail  || type == .crtDetail{
                     cell.isUserInteractionEnabled = false
                 } else {
                     cell.isUserInteractionEnabled = true
@@ -496,8 +503,9 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
             HCLog(message: "修改案件")
             self.view.endEditing(true)
             self.editeRequest()
+        } else if self.type == .crtDetail {
+            HCLog(message: "生成")
         }
-
     }
 
 
