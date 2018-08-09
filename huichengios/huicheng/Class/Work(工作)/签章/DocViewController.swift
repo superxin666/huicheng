@@ -124,6 +124,8 @@ class DocViewController: BaseViewController ,UITableViewDataSource,UITableViewDe
             vc.type = .tabIteam
             vc.pdfstate = model.state!
             vc.id = model.id
+            vc.zhang = model.zhang!
+            
             vc.delDocSucessBlock = {
                 self.reflishData()
             }

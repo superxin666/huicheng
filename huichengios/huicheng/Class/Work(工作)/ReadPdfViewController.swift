@@ -18,7 +18,7 @@ enum ReadPdfViewControllerType {
 
 typealias ReadPdfViewControllerBlock = ()->()
 
-class ReadPdfViewController: BaseViewController,UIPrintInteractionControllerDelegate,Work2RequestVCDelegate {
+class ReadPdfViewController: BaseViewController,UIPrintInteractionControllerDelegate,Work2RequestVCDelegate,UIWebViewDelegate,UIScrollViewDelegate {
 
     var type : ReadPdfViewControllerType = .other
     
@@ -27,6 +27,8 @@ class ReadPdfViewController: BaseViewController,UIPrintInteractionControllerDele
     var webView : UIWebView!
 
     var url : URL!
+
+    var zhang : String!
 
     var alertController : UIAlertController!
 
@@ -51,7 +53,7 @@ class ReadPdfViewController: BaseViewController,UIPrintInteractionControllerDele
         HCLog(message: url!)
         webView = UIWebView(frame: CGRect(x: 0, y:LNAVIGATION_HEIGHT, width: KSCREEN_WIDTH, height: KSCREEN_HEIGHT))
         webView.backgroundColor = .white
-
+        webView.scrollView.delegate = self
         webView.loadRequest(URLRequest(url: self.url))
 
         self.view.addSubview(webView)
@@ -150,6 +152,21 @@ class ReadPdfViewController: BaseViewController,UIPrintInteractionControllerDele
     func requestFail_work2() {
 
     }
+
+    func webViewDidStartLoad(_ webView: UIWebView) {
+
+    }
+
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+
+
+    }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+    }
+
+
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

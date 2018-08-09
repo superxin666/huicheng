@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CrtGetinfoViewController:  BaseViewController,UITableViewDataSource,UITableViewDelegate,Work2RequestVCDelegate,TitleTableViewCellDelegate,ContentTableViewCellDelegate,OptionViewDelgate,DatePickViewDelegate {
+class CrtGetinfoViewController:  BaseTableViewController,Work2RequestVCDelegate,TitleTableViewCellDelegate,ContentTableViewCellDelegate,OptionViewDelgate,DatePickViewDelegate {
     let mainTabelView : UITableView = UITableView()
     let requestVC = Work2RequestVC()
 
@@ -62,10 +62,10 @@ class CrtGetinfoViewController:  BaseViewController,UITableViewDataSource,UITabl
         self.view.addSubview(mainTabelView)
     }
     // MARK: - delegate
-    func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if itemsArr.count > 0 {
             return itemsArr.count + 1
         } else {
@@ -74,7 +74,7 @@ class CrtGetinfoViewController:  BaseViewController,UITableViewDataSource,UITabl
 
 
     }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         if itemsArr.count > 0 && indexPath.row < itemsArr.count {
             let model : CrtGetinfoModel_items = self.itemsArr[indexPath.row]
@@ -124,23 +124,22 @@ class CrtGetinfoViewController:  BaseViewController,UITableViewDataSource,UITabl
 
     }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row < itemsArr.count && itemsArr.count > 0 {
             let model : CrtGetinfoModel_items = itemsArr[indexPath.row]
             if model.type == 2 || model.type == 3 {
                 //时间
                 self.showTime_start(indexPath: indexPath)
 
-            } else {
+            } else if model.type == 4 {
                 //选项
                 self.showOption(indexPath: indexPath)
-
             }
         }
 
     }
 
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
         if itemsArr.count > 0 && indexPath.row < itemsArr.count {
             let model = self.itemsArr[indexPath.row]
@@ -266,7 +265,7 @@ class CrtGetinfoViewController:  BaseViewController,UITableViewDataSource,UITabl
             itemsArr = dataModel.items
             self.mainTabelView.reloadData()
         } else {
-
+            self.navigationLeftBtnClick()
 
         }
 

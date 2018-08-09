@@ -209,13 +209,10 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
 
         for subModel in dataArr {
             let valueStr = subModel.value.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-             let remarkStr = subModel.remark.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-
-            let  str = "&name=\(subModel.name!)&type=\(subModel.type!)&format=\(subModel.format!)&remark=\(remarkStr)&value=\(valueStr)&sort=\(subModel.sort!)"
+            let  str = "&\(subModel.name!)=\(valueStr)"
             urlIteamsStr = urlIteamsStr + str
         }
         let url = doc_crt_save_api + "id=\(id)\(urlIteamsStr)&k=\(UserInfoLoaclManger.getKey())"
-
 
         request.request_api(url: url)
     }
@@ -320,7 +317,7 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work2(data: model,type : type)
             }
-        } else if type == .doc_del {
+        } else if type == .doc_del || type == .crt_save {
             let model = Mapper<CodeData>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work2(data: model,type : type)
