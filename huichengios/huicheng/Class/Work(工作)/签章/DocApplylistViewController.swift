@@ -70,6 +70,8 @@ class DocApplylistViewController: BaseViewController ,UITableViewDataSource,UITa
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row  < self.dataArr.count {
+            let model : docgetlistModel = self.dataArr[indexPath.row]
+            requestVC.docgetinfoRequset(id: "\(model.id!)")
 
         }
 
@@ -96,20 +98,30 @@ class DocApplylistViewController: BaseViewController ,UITableViewDataSource,UITa
         self.requestApi()
     }
     func requestSucceed_work2(data: Any,type : Work2RequestVC_enum) {
-        let arr : [docgetlistModel] = data as! [docgetlistModel]
-        if arr.count > 0 {
-            self.dataArr = self.dataArr + arr
-        }  else {
-            if pageNum > 1 {
-                SVPMessageShow.showErro(infoStr: "暂无数据")
-            } else {
+        if type == .doc_applylist {
+            let arr : [docgetlistModel] = data as! [docgetlistModel]
+            if arr.count > 0 {
+                self.dataArr = self.dataArr + arr
+            }  else {
+                if pageNum > 1 {
+                    SVPMessageShow.showErro(infoStr: "暂无数据")
+                } else {
 
+                }
             }
+            self.mainTabelView.reloadData()
+            if mainTabelView.mj_footer.isRefreshing {
+                mainTabelView.mj_footer.endRefreshing()
+            }
+        } else if type == .doc_getinfo{
+            let model : docgetinfoModel = data as! docgetinfoModel
+            let vc = DocDetialPdfViewController()
+            vc.url = URL(string: base_imageOrFile_api + model.pdf!)
+            vc.id = model.id
+            vc.zhang = model.zhang!
+            self.navigationController?.pushViewController(vc, animated: true)
         }
-        self.mainTabelView.reloadData()
-        if mainTabelView.mj_footer.isRefreshing {
-            mainTabelView.mj_footer.endRefreshing()
-        }
+
     }
 
 

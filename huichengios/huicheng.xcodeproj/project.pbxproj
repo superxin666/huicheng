@@ -126,6 +126,7 @@
 		2130657A211BC47C0073ECF9 /* crt_chooseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21306579211BC47C0073ECF9 /* crt_chooseModel.swift */; };
 		2130657C211BC87B0073ECF9 /* CrtGetinfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2130657B211BC87B0073ECF9 /* CrtGetinfoViewController.swift */; };
 		2130657E211BD0290073ECF9 /* CrtGetinfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2130657D211BD0290073ECF9 /* CrtGetinfoModel.swift */; };
+		21306580211C452D0073ECF9 /* DocDetialPdfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2130657F211C452D0073ECF9 /* DocDetialPdfViewController.swift */; };
 		21340BD7206CB46800E30B53 /* AddExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21340BD6206CB46800E30B53 /* AddExpenseViewController.swift */; };
 		21340BD9206CBDDB00E30B53 /* AddExpenseBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21340BD8206CBDDB00E30B53 /* AddExpenseBackView.swift */; };
 		21340BDB206CBDE400E30B53 /* AddExpenseBackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21340BDA206CBDE400E30B53 /* AddExpenseBackView.xib */; };
@@ -371,6 +372,7 @@
 		21306579211BC47C0073ECF9 /* crt_chooseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = crt_chooseModel.swift; sourceTree = "<group>"; };
 		2130657B211BC87B0073ECF9 /* CrtGetinfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrtGetinfoViewController.swift; sourceTree = "<group>"; };
 		2130657D211BD0290073ECF9 /* CrtGetinfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrtGetinfoModel.swift; sourceTree = "<group>"; };
+		2130657F211C452D0073ECF9 /* DocDetialPdfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocDetialPdfViewController.swift; sourceTree = "<group>"; };
 		21340BD6206CB46800E30B53 /* AddExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseViewController.swift; sourceTree = "<group>"; };
 		21340BD8206CBDDB00E30B53 /* AddExpenseBackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseBackView.swift; sourceTree = "<group>"; };
 		21340BDA206CBDE400E30B53 /* AddExpenseBackView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddExpenseBackView.xib; sourceTree = "<group>"; };
@@ -855,6 +857,7 @@
 				21528BB820A52B3300C9950A /* FileViewController.swift */,
 				21F8469120B7BFCB00F4A678 /* ReadFileViewController.swift */,
 				2130656F211744DA0073ECF9 /* ReadPdfViewController.swift */,
+				2130657F211C452D0073ECF9 /* DocDetialPdfViewController.swift */,
 				2130656D21171EE80073ECF9 /* ShowImagesViewController.swift */,
 			);
 			path = "Work(工作)";
@@ -1184,6 +1187,7 @@
 				21387D3B205FA7860050DF1F /* MineRequestVC.swift in Sources */,
 				2126DBDB208981C600977802 /* getinfoDealModel.swift in Sources */,
 				21387D2F205F5A910050DF1F /* LoginModel.swift in Sources */,
+				21306580211C452D0073ECF9 /* DocDetialPdfViewController.swift in Sources */,
 				21DDC9CA208051140067197D /* CaseDetailViewController.swift in Sources */,
 				21376689203FBAF4000CBCE6 /* SVPMessageShow.swift in Sources */,
 				21528BB920A52B3300C9950A /* FileViewController.swift in Sources */,

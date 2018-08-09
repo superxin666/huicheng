@@ -30,6 +30,9 @@ class ReadPdfViewController: BaseViewController,UIPrintInteractionControllerDele
 
     var zhang : String!
 
+    var zhangImageView : UIImageView!
+
+
     var alertController : UIAlertController!
 
     ///  0-未审核;1-已审核;2-审核驳回;3-已盖章
@@ -55,7 +58,6 @@ class ReadPdfViewController: BaseViewController,UIPrintInteractionControllerDele
         webView.backgroundColor = .white
         webView.scrollView.delegate = self
         webView.loadRequest(URLRequest(url: self.url))
-
         self.view.addSubview(webView)
 
     }
@@ -91,8 +93,6 @@ class ReadPdfViewController: BaseViewController,UIPrintInteractionControllerDele
 
 
             }
-
-
             let cancleAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
                 self.alertController.dismiss(animated: true, completion: {
 
@@ -123,23 +123,24 @@ class ReadPdfViewController: BaseViewController,UIPrintInteractionControllerDele
             alertController.addAction(delAction)
             self.present((alertController)!, animated: true, completion: nil)
 
-        } else {
-            alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-            let delAction = UIAlertAction(title: "盖章", style: .default) { (action) in
-                HCLog(message: "盖章")
-            }
-
-
-            let cancleAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
-                self.alertController.dismiss(animated: true, completion: {
-
-                })
-            }
-            alertController.addAction(cancleAction)
-            alertController.addAction(delAction)
-            self.present((alertController)!, animated: true, completion: nil)
-
         }
+//        else {
+//            alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+//            let delAction = UIAlertAction(title: "盖章", style: .default) { (action) in
+//                HCLog(message: "盖章")
+//            }
+//
+//
+//            let cancleAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
+//                self.alertController.dismiss(animated: true, completion: {
+//
+//                })
+//            }
+//            alertController.addAction(cancleAction)
+//            alertController.addAction(delAction)
+//            self.present((alertController)!, animated: true, completion: nil)
+//
+//        }
     }
 
     func requestSucceed_work2(data: Any, type: Work2RequestVC_enum) {
@@ -154,14 +155,21 @@ class ReadPdfViewController: BaseViewController,UIPrintInteractionControllerDele
     }
 
     func webViewDidStartLoad(_ webView: UIWebView) {
+        SVPMessageShow.showLoad()
 
     }
 
     func webViewDidFinishLoad(_ webView: UIWebView) {
-
+        SVPMessageShow.dismissSVP()
 
     }
+
+    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
+        SVPMessageShow.dismissSVP()
+    }
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+
+
         
     }
 
