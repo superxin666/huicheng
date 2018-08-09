@@ -12,7 +12,7 @@ import ObjectMapper
 enum Work2RequestVC_enum {
     //
     case income_getlist,income_getdeals,income_getdealsinfo,income_save,income_getinfo,//收款登记获取列表
-    doc_applylist,doc_search,doc_getlist,doc_getinfo,doc_del,crt_dealslist
+    doc_applylist,doc_search,doc_getlist,doc_getinfo,doc_del,crt_dealslist,crt_choose,crt_getinfo,crt_save
 }
 protocol Work2RequestVCDelegate : NSObjectProtocol{
     //
@@ -166,9 +166,57 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
     ///   - n: 合同编号
     ///   - t: 1-诉讼案件;2-非诉案件;3-刑事案件;4-法律顾问
     func crt_dealslistRequest(p:Int,c:Int,n:String,t:Int) {
+            request.delegate = self
+            type = .crt_dealslist
+            let url = doc_crt_dealslist_api   + "p=\(p)&c=\(c)&n=\(n)&t=\(t)&k=\(UserInfoLoaclManger.getKey())"
+            request.request_api(url: url)
+    }
+
+    /// 获取函件列表
+    ///
+    /// - Parameter id: <#id description#>
+    func crt_chooseReuqest(id : Int) {
         request.delegate = self
-        type = .crt_dealslist
-        let url = doc_crt_dealslist_api   + "p=\(p)&c=\(c)&n=\(n)&t=\(t)&k=\(UserInfoLoaclManger.getKey())"
+        type = .crt_choose
+        let url = doc_crt_choose_api + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+
+    }
+
+    /// 获取函件内容及格式
+    ///
+    /// - Parameters:
+    ///   - id: <#id description#>
+    ///   - f: <#f description#>
+    func crt_getinfoReqeust(id : Int,f:Int) {
+        request.delegate = self
+        type = .crt_getinfo
+        let url = doc_crt_getinfo_api + "id=\(id)&f=\(f)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url,type: .alltyper)
+
+    }
+
+
+    /// 获取函件内容及格式(此为难点)
+    ///
+    /// - Parameters:
+    ///   - id: <#id description#>
+    ///   - dataArr: <#dataArr description#>
+    func crt_saveRequest(id :Int,dataArr : [CrtGetinfoModel_items]) {
+        request.delegate = self
+        type = .crt_save
+        var urlIteamsStr = ""
+
+        for subModel in dataArr {
+            let valueStr = subModel.value.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+             let remarkStr = subModel.remark.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+
+            let  str = "&name=\(subModel.name!)&type=\(subModel.type!)&format=\(subModel.format!)&remark=\(remarkStr)&value=\(valueStr)&sort=\(subModel.sort!)"
+            urlIteamsStr = urlIteamsStr + str
+        }
+        let url = doc_crt_save_api + "id=\(id)\(urlIteamsStr)&k=\(UserInfoLoaclManger.getKey())"
+
+
         request.request_api(url: url)
     }
 
@@ -281,6 +329,16 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
             let arr = Mapper<CrtDealslistModel>().mapArray(JSONArray: response as! [[String : Any]])
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work2(data: arr,type : type)
+            }
+        } else if type == .crt_choose {
+            let arr = Mapper<crt_chooseModel>().mapArray(JSONArray: response as! [[String : Any]])
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed_work2(data: arr,type : type)
+            }
+        } else if type == .crt_getinfo{
+            let model = Mapper<CrtGetinfoModel>().map(JSON: response as! [String : Any])!
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed_work2(data: model,type : type)
             }
         }
     }

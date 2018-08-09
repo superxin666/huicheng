@@ -14,7 +14,7 @@ protocol OptionViewDelgate {
 enum OptionViewType {
 
     //搜索中状态  报销  接受对象      发票列表    我的收款  案件添加   案件律师   案件部门 发票状态
-    case searchState,Object,invoice_getlist,finance, caseType,caseUser,caseDep,invoiceState
+    case searchState,Object,invoice_getlist,finance, caseType,caseUser,caseDep,invoiceState,crtInfo
 }
 class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSource {
     var delegate : OptionViewDelgate!
@@ -56,6 +56,19 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
     var data_departArr : [departmentModel] = []
     //案件类型
     var data_casetypeArr : [casetypeModel] = []
+
+    var crt : [String] = []
+
+
+    func setData_crt(tagNum : Int,dataArr : [String]) {
+
+
+        crt = dataArr
+        self.pickView.tag = tagNum
+        type = .crtInfo
+        self.pickView.reloadAllComponents()
+
+    }
 
     func setData()  {
         self.type = .searchState
@@ -141,6 +154,8 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
             return self.data_userlistArr.count
         } else if type == .invoiceState{
             return self.nameArr_invoiceState.count
+        } else if type == .crtInfo {
+            return self.crt.count
         } else {
             return 0
         }
@@ -193,6 +208,12 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
             titleStr = nameArr_invoiceState[row]
             cuurectID = idArr_invoiceState[row]
             currectStr = titleStr
+        } else if type == .crtInfo {
+
+            titleStr = crt[row]
+            currectStr = titleStr
+            cuurectID = ""
+
         }
         let label = UILabel(frame: CGRect(x: 0, y: 15, width: pickerView.frame.width, height: 20))
         label.text = titleStr

@@ -122,6 +122,10 @@
 		21306570211744DA0073ECF9 /* ReadPdfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2130656F211744DA0073ECF9 /* ReadPdfViewController.swift */; };
 		21306574211AF5C40073ECF9 /* CrtDealslistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21306573211AF5C40073ECF9 /* CrtDealslistViewController.swift */; };
 		21306576211AFAA20073ECF9 /* CrtDealslistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21306575211AFAA20073ECF9 /* CrtDealslistModel.swift */; };
+		21306578211B055C0073ECF9 /* CrtChooseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21306577211B055C0073ECF9 /* CrtChooseViewController.swift */; };
+		2130657A211BC47C0073ECF9 /* crt_chooseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21306579211BC47C0073ECF9 /* crt_chooseModel.swift */; };
+		2130657C211BC87B0073ECF9 /* CrtGetinfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2130657B211BC87B0073ECF9 /* CrtGetinfoViewController.swift */; };
+		2130657E211BD0290073ECF9 /* CrtGetinfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2130657D211BD0290073ECF9 /* CrtGetinfoModel.swift */; };
 		21340BD7206CB46800E30B53 /* AddExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21340BD6206CB46800E30B53 /* AddExpenseViewController.swift */; };
 		21340BD9206CBDDB00E30B53 /* AddExpenseBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21340BD8206CBDDB00E30B53 /* AddExpenseBackView.swift */; };
 		21340BDB206CBDE400E30B53 /* AddExpenseBackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21340BDA206CBDE400E30B53 /* AddExpenseBackView.xib */; };
@@ -363,6 +367,10 @@
 		2130656F211744DA0073ECF9 /* ReadPdfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadPdfViewController.swift; sourceTree = "<group>"; };
 		21306573211AF5C40073ECF9 /* CrtDealslistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrtDealslistViewController.swift; sourceTree = "<group>"; };
 		21306575211AFAA20073ECF9 /* CrtDealslistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrtDealslistModel.swift; sourceTree = "<group>"; };
+		21306577211B055C0073ECF9 /* CrtChooseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrtChooseViewController.swift; sourceTree = "<group>"; };
+		21306579211BC47C0073ECF9 /* crt_chooseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = crt_chooseModel.swift; sourceTree = "<group>"; };
+		2130657B211BC87B0073ECF9 /* CrtGetinfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrtGetinfoViewController.swift; sourceTree = "<group>"; };
+		2130657D211BD0290073ECF9 /* CrtGetinfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrtGetinfoModel.swift; sourceTree = "<group>"; };
 		21340BD6206CB46800E30B53 /* AddExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseViewController.swift; sourceTree = "<group>"; };
 		21340BD8206CBDDB00E30B53 /* AddExpenseBackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseBackView.swift; sourceTree = "<group>"; };
 		21340BDA206CBDE400E30B53 /* AddExpenseBackView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddExpenseBackView.xib; sourceTree = "<group>"; };
@@ -649,10 +657,14 @@
 				2130656521156C7A0073ECF9 /* docgetinfoModel.swift */,
 				2130656621156C7A0073ECF9 /* docgetlistModel.swift */,
 				21306575211AFAA20073ECF9 /* CrtDealslistModel.swift */,
+				21306579211BC47C0073ECF9 /* crt_chooseModel.swift */,
+				2130657D211BD0290073ECF9 /* CrtGetinfoModel.swift */,
 				21306563211542D80073ECF9 /* DocViewController.swift */,
 				2130656921156FFB0073ECF9 /* DocSearchViewController.swift */,
 				2130656B211701AC0073ECF9 /* DocApplylistViewController.swift */,
 				21306573211AF5C40073ECF9 /* CrtDealslistViewController.swift */,
+				21306577211B055C0073ECF9 /* CrtChooseViewController.swift */,
+				2130657B211BC87B0073ECF9 /* CrtGetinfoViewController.swift */,
 			);
 			path = "签章";
 			sourceTree = "<group>";
@@ -1273,6 +1285,7 @@
 				21075551205D5AD000FF4396 /* MessageTableViewCell.swift in Sources */,
 				21387D43205FF1DE0050DF1F /* invoice_getlistModel.swift in Sources */,
 				21066CA72065E369009327AD /* ConVenTableViewCell.swift in Sources */,
+				2130657C211BC87B0073ECF9 /* CrtGetinfoViewController.swift in Sources */,
 				21387D3D205FA8F70050DF1F /* user_getinfoModel.swift in Sources */,
 				2126DBDD20898E5C00977802 /* OverCaseViewController.swift in Sources */,
 				2115D0D721031B13002BDB3F /* IncomeDetailViewController.swift in Sources */,
@@ -1288,6 +1301,7 @@
 				21075566205D8FE700FF4396 /* MineFooterView.swift in Sources */,
 				2107555F205D792C00FF4396 /* MineTableViewCell.swift in Sources */,
 				21387D32205F5DA60050DF1F /* NibLoadable.swift in Sources */,
+				21306578211B055C0073ECF9 /* CrtChooseViewController.swift in Sources */,
 				21387D29205F55120050DF1F /* CodeData.swift in Sources */,
 				2105D2E12061101C0031B14C /* expense_getinfoModel.swift in Sources */,
 				216B7C5A20637AE400BBACDA /* WorkBookViewController.swift in Sources */,
@@ -1327,7 +1341,9 @@
 				21387D37205F8E4E0050DF1F /* noticelistModel.swift in Sources */,
 				214C8FE520A4306E00B09C3B /* DealSearchViewController.swift in Sources */,
 				2109654D207116830012FDDB /* getobjectlistModel.swift in Sources */,
+				2130657E211BD0290073ECF9 /* CrtGetinfoModel.swift in Sources */,
 				21075562205D7A3700FF4396 /* MineHeadView.swift in Sources */,
+				2130657A211BC47C0073ECF9 /* crt_chooseModel.swift in Sources */,
 				212FEA7E20C3789000A466E2 /* ShareDetailViewController.swift in Sources */,
 				21E9D29E20FDA9C200CA7B49 /* AddIconComeStep1ViewController.swift in Sources */,
 				2108BB77206FD0B3002A4212 /* NoticeViewController.swift in Sources */,

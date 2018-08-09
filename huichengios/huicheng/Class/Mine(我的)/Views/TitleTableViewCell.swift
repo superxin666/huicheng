@@ -31,7 +31,22 @@ class TitleTableViewCell: UITableViewCell {
             }
         }
     }
-    
+
+
+
+    /// 生成函件
+    ///
+    /// - Parameters:
+    ///   - title: <#title description#>
+    ///   - content: <#content description#>
+    ///   - indexPath: <#indexPath description#>
+    func setData_crtinfo(title : String,content : String,indexPath : IndexPath)  {
+        self.textField.tag =  indexPath.row
+        self.titleNameLabel.textColor = darkblueColor
+        self.titleNameLabel.text = title
+        self.textField.text = content
+    }
+
     
     /// 利益冲突
     ///

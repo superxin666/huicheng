@@ -505,6 +505,10 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
             self.editeRequest()
         } else if self.type == .crtDetail {
             HCLog(message: "生成")
+            let vc : CrtChooseViewController = CrtChooseViewController()
+            vc.hidesBottomBarWhenPushed = true
+            vc.id = self.caseId
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 

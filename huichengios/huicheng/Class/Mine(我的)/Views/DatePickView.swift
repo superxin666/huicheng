@@ -23,6 +23,7 @@ class DatePickView: UIView,NibLoadable {
     var timeStr : String = String.getDateNow()
     var delegate : DatePickViewDelegate!
     
+    @IBOutlet weak var datePicker: UIDatePicker!
     /// 0 是开始时间 1是结束时间 默认为0
     var typeNum : Int = 0
     
@@ -37,13 +38,14 @@ class DatePickView: UIView,NibLoadable {
     }
     @IBAction func sureClick(_ sender: UIButton) {
         if let delegate = self.delegate {
-            delegate.datePickViewTime(timeStr: timeStr,type: typeNum)
+            delegate.datePickViewTime(timeStr: timeStr,type: self.datePicker.tag)
         }
     }
     
     func setData(type : Int)  {
         typeNum = type
-        
+        self.datePicker.tag = type
     }
-    
+
+
 }
