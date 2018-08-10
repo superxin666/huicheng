@@ -18,7 +18,7 @@ enum WorkRequestVC_enum {
          room,roomsave,roomdel,//会议室
          dealgetapplylist,applysave,searchlist,// 合同审核  获取列表
          dealgetoverlist,dealgetoverinfo,checkoversave,//结案审核
-         invoice_applylist,invoice_applysave,invoice_del,//发票审批
+         invoice_applylist,invoice_applysave,invoice_del,invoice_getinfo,//发票审批
          expense_applylist,expense_applysave,expense_del,//报销审批
          sharegetlist,sharegetmylist,sharegetinfo,sharegetreply,sharereplysave,sharegettype,sharesave,//模板共享 获取列表
          bank_getlist,bank_getinfo,bank_save//银行信息
@@ -505,6 +505,18 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
 
         let url = invoice_applysave_api   + "id=\(id)&s=\(sStr)&n=\(n)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
+    }
+
+
+    /// 获取详情
+    ///
+    /// - Parameter id: <#id description#>
+    func invoice_getinfoRequest(id : Int) {
+        request.delegate = self
+        type = .invoice_getinfo
+        let url = invoice_getinfo_api + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+
     }
 
     /// 删除

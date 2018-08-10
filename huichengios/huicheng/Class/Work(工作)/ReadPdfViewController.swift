@@ -57,6 +57,7 @@ class ReadPdfViewController: BaseViewController,UIPrintInteractionControllerDele
         webView = UIWebView(frame: CGRect(x: 0, y:LNAVIGATION_HEIGHT, width: KSCREEN_WIDTH, height: KSCREEN_HEIGHT))
         webView.backgroundColor = .white
         webView.scrollView.delegate = self
+        webView.delegate = self
         webView.loadRequest(URLRequest(url: self.url))
         self.view.addSubview(webView)
 

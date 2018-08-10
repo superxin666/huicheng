@@ -12,7 +12,7 @@ import ObjectMapper
 enum Work2RequestVC_enum {
     //
     case income_getlist,income_getdeals,income_getdealsinfo,income_save,income_getinfo,//收款登记获取列表
-    doc_applylist,doc_search,doc_getlist,doc_getinfo,doc_del,crt_dealslist,crt_choose,crt_getinfo,crt_save
+    doc_applylist,doc_search,doc_getlist,doc_applysave,doc_getinfo,doc_del,crt_dealslist,crt_choose,crt_getinfo,crt_save
 }
 protocol Work2RequestVCDelegate : NSObjectProtocol{
     //
@@ -289,6 +289,25 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
 
     }
 
+
+    /// 印章
+    ///
+    /// - Parameters:
+    ///   - id: <#id description#>
+    ///   - s: 3为通过，2为驳回
+    ///   - n: <#n description#>
+    ///   - x: <#x description#>
+    ///   - y: <#y description#>
+    func doc_applysave(id:Int,s:Int,n:String,x:Int,y:Int) {
+        type = .doc_applysave
+        request.delegate = self
+        let nStr = n.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let url =   doc_applysave_api + "id=\(id)&s=\(s)&x=\(x)&y=\(y)&n=\(nStr)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+
+    }
+
+
     func requestSucceed(response: Any) {
         if type == .income_getlist ||  type == .income_getdeals {
             let arr = Mapper<Income_getlistModel>().mapArray(JSONArray: response as! [[String : Any]])
@@ -317,7 +336,7 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work2(data: model,type : type)
             }
-        } else if type == .doc_del || type == .crt_save {
+        } else if type == .doc_del || type == .crt_save || type == .doc_applysave {
             let model = Mapper<CodeData>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work2(data: model,type : type)
@@ -338,6 +357,7 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
                 self.delegate.requestSucceed_work2(data: model,type : type)
             }
         }
+
     }
 
     func requestFail(response: Any) {

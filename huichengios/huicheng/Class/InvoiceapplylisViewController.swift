@@ -1,17 +1,17 @@
 //
-//  DocApplylistViewController.swift
+//  InvoiceapplylisViewController.swift
 //  huicheng
 //
-//  Created by lvxin on 2018/8/5.
+//  Created by lvxin on 2018/5/16.
 //  Copyright © 2018年 lvxin. All rights reserved.
-//  函件审核列表
+//  发票审批
 
 import UIKit
 
-class DocApplylistViewController: BaseViewController ,UITableViewDataSource,UITableViewDelegate,Work2RequestVCDelegate {
+class InvoiceapplylisViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate,WorkRequestVCDelegate {
     let mainTabelView : UITableView = UITableView()
-    let requestVC = Work2RequestVC()
-    var dataArr : [docgetlistModel] = []
+    let requestVC = WorkRequestVC()
+    var dataArr : [invoice_getlistModel] = []
     var pageNum : Int = 1
 
     /// 合同编号
@@ -32,7 +32,7 @@ class DocApplylistViewController: BaseViewController ,UITableViewDataSource,UITa
         // Do any additional setup after loading the view.
         self.view.backgroundColor = viewBackColor
 
-        self.navigation_title_fontsize(name: "函件审核", fontsize: 18)
+        self.navigation_title_fontsize(name: "发票审批", fontsize: 18)
         self.navigationBar_rightBtn_image(image: #imageLiteral(resourceName: "mine_search"))
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
         self.creatUI()
@@ -48,7 +48,7 @@ class DocApplylistViewController: BaseViewController ,UITableViewDataSource,UITa
         mainTabelView.showsVerticalScrollIndicator = false
         mainTabelView.showsHorizontalScrollIndicator = false
         mainTabelView.backgroundView?.backgroundColor = .clear
-        mainTabelView.register(UINib.init(nibName: "DocTableViewCell", bundle: nil), forCellReuseIdentifier: DocTableViewCellID)
+        mainTabelView.register(UINib.init(nibName: "CaseTableViewCell", bundle: nil), forCellReuseIdentifier: CaseTableViewCellId)
         mainTabelView.mj_footer = self.creactFoot()
         mainTabelView.mj_footer.setRefreshingTarget(self, refreshingAction: #selector(loadMoreData))
         self.view.addSubview(mainTabelView)
@@ -61,26 +61,26 @@ class DocApplylistViewController: BaseViewController ,UITableViewDataSource,UITa
         return self.dataArr.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell : DocTableViewCell  = tableView.dequeueReusableCell(withIdentifier: DocTableViewCellID, for: indexPath) as! DocTableViewCell
+        let cell : CaseTableViewCell  = tableView.dequeueReusableCell(withIdentifier: CaseTableViewCellId, for: indexPath) as! CaseTableViewCell
         if indexPath.row < self.dataArr.count {
-            let model : docgetlistModel = self.dataArr[indexPath.row]
-            cell.setData_doc(model: model)
+            let model : invoice_getlistModel = self.dataArr[indexPath.row]
+            cell.setData_invoice(model: model)
         }
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row  < self.dataArr.count {
-            let model : docgetlistModel = self.dataArr[indexPath.row]
-            requestVC.docgetinfoRequset(id: "\(model.id!)")
+
         }
+
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return DocTableViewCellH
+        return CaseTableViewCellH
     }
     // MARK: - net
     func requestApi() {
         requestVC.delegate = self
-        requestVC.doc_applylistRequest(p: pageNum, c: 8, bid: "", n: numStr)
+        requestVC.invoice_applylist(p: pageNum, c: 8, u: "")
     }
 
     func reflishData() {
@@ -95,36 +95,24 @@ class DocApplylistViewController: BaseViewController ,UITableViewDataSource,UITa
         pageNum = pageNum + 1
         self.requestApi()
     }
-    func requestSucceed_work2(data: Any,type : Work2RequestVC_enum) {
-        if type == .doc_applylist {
-            let arr : [docgetlistModel] = data as! [docgetlistModel]
-            if arr.count > 0 {
-                self.dataArr = self.dataArr + arr
-            }  else {
-                if pageNum > 1 {
-                    SVPMessageShow.showErro(infoStr: "暂无数据")
-                } else {
+    func requestSucceed_work(data: Any,type : WorkRequestVC_enum) {
+        let arr : [invoice_getlistModel] = data as! [invoice_getlistModel]
+        if arr.count > 0 {
+            self.dataArr = self.dataArr + arr
+        }  else {
+            if pageNum > 1 {
+                SVPMessageShow.showErro(infoStr: "暂无数据")
+            } else {
 
-                }
             }
-            self.mainTabelView.reloadData()
-            if mainTabelView.mj_footer.isRefreshing {
-                mainTabelView.mj_footer.endRefreshing()
-            }
-        } else if type == .doc_getinfo{
-            let model : docgetinfoModel = data as! docgetinfoModel
-            let vc = DocDetialPdfViewController()
-            vc.url = URL(string: base_imageOrFile_api + model.pdf!)
-            vc.id = model.id
-            vc.zhang = model.zhang!
-            self.navigationController?.pushViewController(vc, animated: true)
         }
-
+        self.mainTabelView.reloadData()
+        if mainTabelView.mj_footer.isRefreshing {
+            mainTabelView.mj_footer.endRefreshing()
+        }
     }
 
-
-
-    func requestFail_work2() {
+    func requestFail_work() {
 
     }
 
@@ -134,18 +122,17 @@ class DocApplylistViewController: BaseViewController ,UITableViewDataSource,UITa
     }
     override func navigationRightBtnClick() {
         HCLog(message: "搜索")
-        let vc = SearchViewController()
-        vc.type = .deal_type
-        weak var weakself = self
-        vc.sureDealBlock = {content in
-            weakself?.numStr = content
-            weakself?.reflishData()
-        }
-        self.navigationController?.pushViewController(vc, animated: true)
+//        let vc = SearchViewController()
+//        vc.type = .deal_type
+//        weak var weakself = self
+//        vc.sureDealBlock = {content in
+//            weakself?.numStr = content
+//            weakself?.reflishData()
+//        }
+//        self.navigationController?.pushViewController(vc, animated: true)
 
 
     }
-
 
     /*
     // MARK: - Navigation

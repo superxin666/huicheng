@@ -111,6 +111,10 @@ let doc_crt_save_api = "doc/crt_save?"
 let invoice_applylist_api = "finance/invoice_applylist?"
 let invoice_applysave_api = "finance/invoice_applysave?"
 let invoice_invoice_del_api = "finance/invoice_del?"
+
+
+
+
 /// /----------------------- 银行信息
 let bank_getlist_api = "finance/bank_getlist?"
 let bank_getinfo_api = "finance/bank_getinfo?"
@@ -156,7 +160,7 @@ let doc_searchapi = "doc/doc_search?"
 
 /// 函件管理 获取函件列表
 let doc_getlistapi = "doc/doc_getlist?"
-
+let doc_applysave_api = "doc/doc_applysave?"
 
 
 /// /-----------------------模板共享
