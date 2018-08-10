@@ -44,6 +44,10 @@ class SetViewController: BaseViewController,SetBackViewDelegate {
     func logoutDelegate() {
         //
         UserInfoLoaclManger.cleanKey()
+        let key = UserInfoLoaclManger.getKey()
+        UMessage.removeAlias(key, type: "惠诚") { (data, erro) in
+
+        }
         let dele :AppDelegate = UIApplication.shared.delegate as! AppDelegate
         dele.showLogin()
     }

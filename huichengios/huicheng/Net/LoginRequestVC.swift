@@ -70,8 +70,11 @@ class LoginRequestVC: UIViewController,BaseNetViewControllerDelegate {
                     self.delegate.requestSucceed_Login()
                 }
             }
+        }
+        UMessage.setAlias(key, type: "惠诚") { (data, erro) in
 
         }
+
         
     }
     

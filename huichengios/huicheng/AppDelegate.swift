@@ -132,7 +132,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     }
     //MARK:友盟
     func setUpUmeng(launchOptions : [UIApplicationLaunchOptionsKey: Any]?) {
-        UMConfigure.initWithAppkey(umemgKey, channel: "App Store")
+                UMConfigure.initWithAppkey(umemgKey, channel: "惠诚")
+
         UMConfigure.deviceIDForIntegration()
         let entity : UMessageRegisterEntity = UMessageRegisterEntity()
 
