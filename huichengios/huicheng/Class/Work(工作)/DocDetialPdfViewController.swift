@@ -28,7 +28,7 @@ class DocDetialPdfViewController: BaseViewController,UIPrintInteractionControlle
 
     var selectedView : SelectedTableViewCell!
 
-
+    var alertController : UIAlertController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,10 +37,9 @@ class DocDetialPdfViewController: BaseViewController,UIPrintInteractionControlle
         self.view.backgroundColor = .white
         self.navigation_title_fontsize(name: "函件详情", fontsize: 18)
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
-        let iteam1 = self.getUIBarButtonItem_title(title: "取章", action: #selector(getZhang), vc: self)
-        let iteam2 = self.getUIBarButtonItem_title(title: "保存", action: #selector(saveClick), vc: self)
 
-        self.navigationItem.rightBarButtonItems = [iteam2,iteam1]
+
+        self.navigationBar_rightBtn_title(name: "取章")
 
         HCLog(message: url!)
         webView = UIWebView(frame: CGRect(x: 0, y:LNAVIGATION_HEIGHT, width: KSCREEN_WIDTH, height: KSCREEN_HEIGHT - SelectedTableViewCellH))
@@ -57,17 +56,6 @@ class DocDetialPdfViewController: BaseViewController,UIPrintInteractionControlle
 
     }
 
-    @objc func getZhang() {
-        if let str  = zhang{
-            zhangImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: ip6(75), height: ip6(75)))
-            zhangImageView.isUserInteractionEnabled = true
-            let imageUrl = base_imageOrFile_api + str
-            self.zhangImageView.kf.setImage(with:URL(string: imageUrl))
-            webView.addSubview(zhangImageView)
-            let tap : UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(zhangClick(sender:)))
-            zhangImageView.addGestureRecognizer(tap)
-        }
-    }
 
 
     @objc func zhangClick(sender : UIPanGestureRecognizer) {
@@ -85,22 +73,75 @@ class DocDetialPdfViewController: BaseViewController,UIPrintInteractionControlle
     @objc func saveClick() {
         HCLog(message: zhangImageView.frame)
         if  zhangImageView != nil {
-            let teampX = imageSize.width/KSCREEN_WIDTH
+            let teampX = KSCREEN_WIDTH/imageSize.width
             let xNum  = zhangImageView.frame.origin.x * teampX
 
-            let teampY = KSCREEN_HEIGHT/imageSize.height
-            let yNum = zhangImageView.frame.origin.y * teampY
+//            let teampY = imageSize.height/KSCREEN_HEIGHT
+            let yNum = zhangImageView.frame.origin.y * teampX
             requestVC.delegate = self
-
-            requestVC.doc_applysave(id: id, s: 3, n: "123", x: Int(xNum) * 2, y:Int(zhangImageView.frame.origin.y))
+            requestVC.doc_applysave(id: id, s: 3, n: "", x: Int(xNum) * 2, y:Int(yNum) * 2)
         }
+    }
+
+
+    @objc func back() {
+
+        alertController = UIAlertController(title: nil, message: "驳回原因", preferredStyle: .alert)
+        let sureAction = UIAlertAction(title: "确定", style: .default) { (action) in
+
+            for textField in self.alertController.textFields! {
+
+                HCLog(message: textField.text!)
+                let str = textField.text!
+//                if str.count > 0 {
+                    self.requestVC.delegate = self
+                    self.requestVC.doc_applysave(id: self.id, s: 2, n: str, x: 0, y:0)
+//                } else {
+//                    SVPMessageShow.showErro(infoStr: "请输入驳回原因")
+//                }
+            }
+        }
+        let cancleAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
+            self.alertController.dismiss(animated: true, completion: {
+
+            })
+        }
+        alertController.addTextField { (textField) in
+            textField.placeholder = "请输入~"
+        }
+        alertController.addAction(cancleAction)
+        alertController.addAction(sureAction)
+        self.present((alertController)!, animated: true, completion: nil)
+//
+
+
 
     }
+
 
     override func navigationLeftBtnClick() {
         self.navigationController?.popViewController(animated: true)
     }
 
+    override func navigationRightBtnClick() {
+        if let str  = zhang{
+            zhangImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: ip6(75), height: ip6(75)))
+            zhangImageView.isUserInteractionEnabled = true
+            let imageUrl = base_imageOrFile_api + str
+            self.zhangImageView.kf.setImage(with:URL(string: imageUrl))
+            webView.addSubview(zhangImageView)
+            let tap : UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(zhangClick(sender:)))
+            zhangImageView.addGestureRecognizer(tap)
+
+            let iteam1 = self.getUIBarButtonItem_title(title: "驳回申请", action: #selector(back), vc: self)
+            let iteam2 = self.getUIBarButtonItem_title(title: "盖章通过", action: #selector(saveClick), vc: self)
+            self.navigationItem.rightBarButtonItems = [iteam2,iteam1]
+
+
+            
+        }
+
+    }
     func requestSucceed_work2(data: Any, type: Work2RequestVC_enum) {
         self.navigationController?.popToRootViewController(animated: true)
 

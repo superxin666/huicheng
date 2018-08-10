@@ -302,7 +302,7 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
         type = .doc_applysave
         request.delegate = self
         let nStr = n.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-        let url =   doc_applysave_api + "id=\(id)&s=\(s)&x=\(x)&y=\(y)&n=\(nStr)&k=\(UserInfoLoaclManger.getKey())"
+        let url =   doc_applysave_api + "id=\(id)&s=\(s)&x=\(x)&y=\(y)&top=\(0)&n=\(nStr)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
 
     }
