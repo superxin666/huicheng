@@ -53,6 +53,7 @@ class LogInViewController: UIViewController,LoginTopViewDelegate,LoginMidBottomV
     func loginTopViewBtnClick(tagNum: Int) {
         bottomView.phoneTextField.text = ""
         bottomView.codeTextField.text = ""
+        self.view.endEditing(true)
 
         if tagNum == 100 {
             HCLog(message: "手机代理")

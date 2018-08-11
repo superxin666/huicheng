@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegate {
@@ -23,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
             self.showLogin()
         }
         self.setUpUmeng(launchOptions: launchOptions)
+        IQKeyboardManager.shared.enable = true
         return true
     }
 

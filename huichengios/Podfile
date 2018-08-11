@@ -16,4 +16,5 @@ target 'huicheng' do
     pod 'UMCCommon'
     pod 'UMCPush'
     pod 'UMCSecurityPlugins'
+	pod 'IQKeyboardManagerSwift'
 end

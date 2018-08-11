@@ -43,9 +43,9 @@ class LoginMidBottomView: UIView,NibLoadable,LoginRequestVCDelegate {
  
 
     @IBAction func fieldEnd(_ sender: UITextField, forEvent event: UIEvent) {
+        
         if sender.tag == 100 {
             HCLog(message: "手机号" + sender.text!)
-//            phoneStr = sender.text!
             if let str = sender.text {
                 phoneStr = str
             }
