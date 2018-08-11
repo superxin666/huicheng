@@ -22,7 +22,10 @@ class MineViewController: BaseViewController,UITableViewDelegate,UITableViewData
     let request : MineRequestVC = MineRequestVC()
     
     var model : user_getinfoModel = user_getinfoModel()
-    
+
+     var userDataModel : LoginModel!
+
+    var nameArr : [String] = []
     
     // MARK: - life
     override func viewWillLayoutSubviews() {
@@ -39,6 +42,17 @@ class MineViewController: BaseViewController,UITableViewDelegate,UITableViewData
         self.view.backgroundColor = viewBackColor
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "mes_logo"))
         self.navigation_title_fontsize(name: "我的", fontsize: 18)
+
+
+
+
+        userDataModel = UserInfoLoaclManger.getsetUserWorkData()
+        nameArr = (userDataModel.power.last?.childrens)!
+
+        HCLog(message: userDataModel?.power.count)
+
+
+
         self.creatUI()
         headView.delegate = self
         footerView.delegate = self
@@ -65,53 +79,70 @@ class MineViewController: BaseViewController,UITableViewDelegate,UITableViewData
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return nameArr.count
+
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : MineTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: MINEID, for: indexPath) as! MineTableViewCell
-        cell.setData(index: indexPath.row)
+        if indexPath.row < nameArr.count {
+            cell.setData(name: nameArr[indexPath.row])
+        }
         return cell
     }
+
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return footerView
+        return UIView()
+
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return headView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch indexPath.row {
-        case 0:
-            //备忘录
-            let vc = MemoViewController()
-            vc.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(vc, animated: true)
-        case 1:
-            //报销申请
-            let vc = ExpenseViewController()
-            vc.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(vc, animated: true)
 
-        case 2:
-            //发票申请
-            let vc = InvoiceViewController()
-            vc.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(vc, animated: true)
+        if indexPath.row < nameArr.count {
+            let nameStr = nameArr[indexPath.row]
+            switch nameStr {
+            case "备忘录":
+                //备忘录
+                let vc = MemoViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            case "报销申请":
+                //报销申请
+                let vc = ExpenseViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
 
-        case 3:
-            //我的收款
-            let vc = FinanceViewController()
-            vc.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(vc, animated: true)
-        case 4:
-            //工作日志
-            let vc = WorkBookViewController()
-            vc.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(vc, animated: true)
+            case "发票申请":
+                //发票申请
+                let vc = InvoiceViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
 
-        default:
-            HCLog(message: "咩有")
+            case "我的收款":
+                //我的收款
+                let vc = FinanceViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            case "工作日志":
+                //工作日志
+                let vc = WorkBookViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            case "设置":
+                //工作日志
+                let vc = SetViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            default:
+                HCLog(message: "咩有")
+            }
+
+
         }
+
+
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -121,7 +152,7 @@ class MineViewController: BaseViewController,UITableViewDelegate,UITableViewData
         return 105
     }
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 80
+        return 0
     }
     
     func iconClick() {

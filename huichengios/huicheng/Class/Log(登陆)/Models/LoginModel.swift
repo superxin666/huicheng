@@ -21,6 +21,7 @@ class LoginModel_power: Mappable {
     func mapping(map: Map) {
         name <- map["name"]
         childrens <- map["childrens"]
+//        childrens = childrens.reversed()
 
     }
 

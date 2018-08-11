@@ -12,7 +12,7 @@ let iteamH :CGFloat = ip6(60)
 let Work2ViewController_id = "Work2ViewController_id"
 class Work2ViewController: BaseViewController,UICollectionViewDataSource,UICollectionViewDelegate {
     var colletionView : UICollectionView!
-    let userDataModel = UserDataSingle.sharedInstance.dataModel
+    var userDataModel : LoginModel!
 
 
     override func viewWillLayoutSubviews() {
@@ -33,7 +33,9 @@ class Work2ViewController: BaseViewController,UICollectionViewDataSource,UIColle
         self.navigation_title_fontsize(name: "工作", fontsize: 18)
 
         HCLog(message: "数据模型")
+        userDataModel = UserInfoLoaclManger.getsetUserWorkData()
         HCLog(message: userDataModel?.power.count)
+
         self.creatUI()
         
 
@@ -43,23 +45,28 @@ class Work2ViewController: BaseViewController,UICollectionViewDataSource,UIColle
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: iteamW, height: iteamH)
         layout.scrollDirection = .vertical
-        layout.minimumInteritemSpacing = 1.5
-        layout.minimumLineSpacing = 1.5
+        layout.minimumInteritemSpacing = (KSCREEN_WIDTH - (4 * iteamW))/5
+        layout.minimumLineSpacing = ip6(25)
+
+        layout.headerReferenceSize = CGSize(width: KSCREEN_WIDTH, height: ip6(45))
+
 
         colletionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        colletionView.register(WorkCollectionViewCell.self, forCellWithReuseIdentifier: Work2ViewController_id)
+        colletionView.register(UINib(nibName: "WorkCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: Work2ViewController_id)
+
+        colletionView.register(WorlkHeadView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headView")
+
         colletionView.backgroundColor = .clear
         colletionView.delegate = self
         colletionView.dataSource = self
         colletionView.showsVerticalScrollIndicator = false
         colletionView.showsHorizontalScrollIndicator = false
         self.view.addSubview(colletionView)
-
         
     }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return (userDataModel?.power.count)!
+        return (userDataModel?.power.count)! - 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let model : LoginModel_power = (userDataModel?.power[section])!
@@ -68,11 +75,158 @@ class Work2ViewController: BaseViewController,UICollectionViewDataSource,UIColle
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell :WorkCollectionViewCell  = collectionView.dequeueReusableCell(withReuseIdentifier: Work2ViewController_id, for: indexPath) as! WorkCollectionViewCell
-
+        if indexPath.section < userDataModel.power.count {
+            let model  = userDataModel.power[indexPath.section]
+            let name = model.childrens[indexPath.row]
+            cell.setData(name: name)
+        }
         return cell
     }
 
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+
+        let view : WorlkHeadView = colletionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headView", for: indexPath) as! WorlkHeadView
+        view.backgroundColor = .clear
+
+        if indexPath.section < userDataModel.power.count {
+            let model  : LoginModel_power = userDataModel.power[indexPath.row]
+            view.creatUI(name: model.name!)
+        }
+        return view
+    }
+
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.section < userDataModel.power.count {
+
+            let model  : LoginModel_power = userDataModel.power[indexPath.section]
+            let name = model.childrens[indexPath.row]
+            switch name {
+            case "利益冲突查询" :
+                HCLog(message: "利益冲突查询")
+                let vc = CheckcaseViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            case "案件登记" :
+                HCLog(message: "案件登记")
+                let vc = CaseDetailViewController()
+                vc.type = .addCase
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            case "案件管理" :
+                HCLog(message: "案件管理")
+                let vc = CaseViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+
+            case "合同管理" :
+                HCLog(message: "合同管理")
+                let vc = DealViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            case "合同审核" :
+                HCLog(message: "合同审核")
+                let vc = DealCheckViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            case "结案审核" :
+                HCLog(message: "结案审核")
+                let vc = CaseCheckViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            case "合同查询" :
+                HCLog(message: "合同查询")
+                let vc = DealSearchViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            case "诉讼函" :
+                HCLog(message: "诉讼函")
+                let vc = CrtDealslistViewController()
+                vc.viewType = .type1
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            case "民事函" :
+                HCLog(message: "民事函")
+                let vc = CrtDealslistViewController()
+                vc.viewType = .type2
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            case "刑事函" :
+                HCLog(message: "刑事函")
+
+                let vc = CrtDealslistViewController()
+                vc.viewType = .type3
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            case "法律顾问函" :
+                HCLog(message: "法律顾问函")
+                let vc = CrtDealslistViewController()
+                vc.viewType = .type4
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            case "函件管理" :
+                HCLog(message: "函件管理")
+                let vc = DocViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            case "函件审核" :
+                HCLog(message: "函件审核")
+                let vc = DocApplylistViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            case "函件查询" :
+                HCLog(message: "函件查询")
+                let vc = DocSearchViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            case "收款登记" :
+                HCLog(message: "收款登记")
+                let vc : IncomeListViewController = IncomeListViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+
+            case "收款审核" :
+                HCLog(message: "收款审核")
+            case "发票审核" :
+                HCLog(message: "发票审核")
+                let vc = InvoiceapplylisViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            case "报销审核" :
+                HCLog(message: "报销审核")
+                let vc = ExpenseapplylistViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            case "支付收款" :
+                HCLog(message: "支付收款")
+            case "支付审核" :
+                HCLog(message: "支付审核")
+            case "银行信息" :
+                HCLog(message: "银行信息")
+                let vc = BankInfoViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            case "发布公告" :
+                HCLog(message: "发布公告")
+                let vc = NoticeViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            case "会议室预约" :
+                HCLog(message: "会议室预约")
+                HCLog(message: "会议室预约")
+                let vc = RoomViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            case "共享模板" :
+                HCLog(message: "共享模板")
+                let vc = ShareViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+
+            default:
+                HCLog(message: "暂无")
+            }
+        }
 
     }
 

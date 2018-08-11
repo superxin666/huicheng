@@ -17,10 +17,12 @@ class MineTableViewCell: UITableViewCell {
     /// 标题
     var titleStr : String!
     
-    func setData(index : Int)  {
-        self.titleLabel.text = nameArr[index]
-        self.iconImageView.image = imageNameArr[index]
+    func setData(name : String)  {
+        self.titleLabel.text = name
+        self.iconImageView.image = UIImage(named: name)
     }
+
+
     
     override func awakeFromNib() {
         super.awakeFromNib()

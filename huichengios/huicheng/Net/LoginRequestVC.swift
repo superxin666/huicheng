@@ -57,6 +57,9 @@ class LoginRequestVC: UIViewController,BaseNetViewControllerDelegate {
     
     func requestSucceed(response: Any) {
         HCLog(message: response)
+
+
+
         let model = Mapper<LoginModel>().map(JSON: response as! [String : Any])!
         guard let key = model.key else {
             HCLog(message: "key 为nil")
@@ -72,13 +75,12 @@ class LoginRequestVC: UIViewController,BaseNetViewControllerDelegate {
             }
         }
 
-        
-
-
-        let single =  UserDataSingle.sharedInstance
-        single.dataModel = model
         UMessage.setAlias(key, type: "惠诚") { (data, erro) in
 
+        }
+
+        UserInfoLoaclManger.setUserWorkData(data: response as! Dictionary<String, Any>) { (data) in
+            
         }
 
         

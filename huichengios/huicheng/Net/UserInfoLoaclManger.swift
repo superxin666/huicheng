@@ -7,7 +7,10 @@
 //  用户信息本地存储
 
 import UIKit
+import ObjectMapper
+
 let KEY = "KEY"
+let UserWorkData = "UserWorkData"
 
 class UserInfoLoaclManger: NSObject {
     
@@ -27,7 +30,27 @@ class UserInfoLoaclManger: NSObject {
             complate("0")
         }
     }
-    
+
+    class func setUserWorkData(data : Any, complate:(_ data : Any) ->() ) {
+        UserDefaults.standard.set(data, forKey: UserWorkData)
+        let ok = UserDefaults.standard.synchronize()
+        if ok {
+            print("存储成功")
+            complate("1")
+        } else {
+            print("存储失败")
+            complate("0")
+        }
+    }
+
+
+    class func getsetUserWorkData() ->  LoginModel{
+        let dict :Dictionary<String, Any>? = UserDefaults.standard.value(forKey: UserWorkData) as! Dictionary<String, Any>?
+        let  model :  LoginModel = Mapper<LoginModel>().map(JSON: dict!)!
+        return model
+
+    }
+
     /// 获取key
     ///
     /// - Returns: key str
