@@ -48,13 +48,17 @@ class Work2ViewController: BaseViewController,UICollectionViewDataSource,UIColle
         layout.minimumInteritemSpacing = (KSCREEN_WIDTH - (4 * iteamW))/5
         layout.minimumLineSpacing = ip6(25)
 
-        layout.headerReferenceSize = CGSize(width: KSCREEN_WIDTH, height: ip6(45))
+        layout.headerReferenceSize = CGSize(width: KSCREEN_WIDTH, height: ip6(65))
 
+        layout.footerReferenceSize = CGSize(width: KSCREEN_WIDTH, height: ip6(15))
 
         colletionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         colletionView.register(UINib(nibName: "WorkCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: Work2ViewController_id)
 
         colletionView.register(WorlkHeadView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headView")
+
+
+        colletionView.register(WorkFootView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "footView")
 
         colletionView.backgroundColor = .clear
         colletionView.delegate = self
@@ -84,15 +88,28 @@ class Work2ViewController: BaseViewController,UICollectionViewDataSource,UIColle
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        HCLog(message: kind)
 
-        let view : WorlkHeadView = colletionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headView", for: indexPath) as! WorlkHeadView
-        view.backgroundColor = .clear
+        if kind ==  UICollectionElementKindSectionHeader{
+            let view : WorlkHeadView = colletionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headView", for: indexPath) as! WorlkHeadView
+            view.backgroundColor = .clear
 
-        if indexPath.section < userDataModel.power.count {
-            let model  : LoginModel_power = userDataModel.power[indexPath.section]
-            view.creatUI(name: model.name!)
+            if indexPath.section < userDataModel.power.count {
+                let model  : LoginModel_power = userDataModel.power[indexPath.section]
+                view.creatUI(name: model.name!, sectionNum: indexPath.section)
+            }
+            return view
+        } else if kind ==  UICollectionElementKindSectionFooter{
+
+            let view : WorkFootView = colletionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "footView", for: indexPath) as! WorkFootView
+            view.creatUI()
+            return view
+
+        } else {
+
+            return UIView() as! UICollectionReusableView
         }
-        return view
+
     }
 
 

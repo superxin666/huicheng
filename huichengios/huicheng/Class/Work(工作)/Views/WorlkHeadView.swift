@@ -18,7 +18,7 @@ class WorlkHeadView: UICollectionReusableView {
     }
     */
 
-    func creatUI(name : String) {
+    func creatUI(name : String,sectionNum : Int) {
  
         HCLog(message: name)
         let lineView = UIView(frame: CGRect(x: ip6(15), y: ip6(23), width: ip6(3), height: ip6(10)))
