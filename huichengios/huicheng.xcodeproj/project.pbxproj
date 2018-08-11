@@ -129,6 +129,10 @@
 		21306580211C452D0073ECF9 /* DocDetialPdfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2130657F211C452D0073ECF9 /* DocDetialPdfViewController.swift */; };
 		21306589211D1FFE0073ECF9 /* InvoiceapplyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21306587211D1FFE0073ECF9 /* InvoiceapplyDetailViewController.swift */; };
 		2130658A211D1FFE0073ECF9 /* InvoiceapplylisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21306588211D1FFE0073ECF9 /* InvoiceapplylisViewController.swift */; };
+		2130658C211EC9120073ECF9 /* UserDataSingle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2130658B211EC9120073ECF9 /* UserDataSingle.swift */; };
+		2130658E211ECE300073ECF9 /* Work2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2130658D211ECE300073ECF9 /* Work2ViewController.swift */; };
+		21306591211ED09D0073ECF9 /* WorkCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2130658F211ED09D0073ECF9 /* WorkCollectionViewCell.swift */; };
+		21306592211ED09D0073ECF9 /* WorkCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21306590211ED09D0073ECF9 /* WorkCollectionViewCell.xib */; };
 		21340BD7206CB46800E30B53 /* AddExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21340BD6206CB46800E30B53 /* AddExpenseViewController.swift */; };
 		21340BD9206CBDDB00E30B53 /* AddExpenseBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21340BD8206CBDDB00E30B53 /* AddExpenseBackView.swift */; };
 		21340BDB206CBDE400E30B53 /* AddExpenseBackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21340BDA206CBDE400E30B53 /* AddExpenseBackView.xib */; };
@@ -376,6 +380,10 @@
 		2130657F211C452D0073ECF9 /* DocDetialPdfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocDetialPdfViewController.swift; sourceTree = "<group>"; };
 		21306587211D1FFE0073ECF9 /* InvoiceapplyDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InvoiceapplyDetailViewController.swift; path = huicheng/Class/InvoiceapplyDetailViewController.swift; sourceTree = SOURCE_ROOT; };
 		21306588211D1FFE0073ECF9 /* InvoiceapplylisViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InvoiceapplylisViewController.swift; path = huicheng/Class/InvoiceapplylisViewController.swift; sourceTree = SOURCE_ROOT; };
+		2130658B211EC9120073ECF9 /* UserDataSingle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataSingle.swift; sourceTree = "<group>"; };
+		2130658D211ECE300073ECF9 /* Work2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Work2ViewController.swift; sourceTree = "<group>"; };
+		2130658F211ED09D0073ECF9 /* WorkCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkCollectionViewCell.swift; sourceTree = "<group>"; };
+		21306590211ED09D0073ECF9 /* WorkCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkCollectionViewCell.xib; sourceTree = "<group>"; };
 		21340BD6206CB46800E30B53 /* AddExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseViewController.swift; sourceTree = "<group>"; };
 		21340BD8206CBDDB00E30B53 /* AddExpenseBackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseBackView.swift; sourceTree = "<group>"; };
 		21340BDA206CBDE400E30B53 /* AddExpenseBackView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddExpenseBackView.xib; sourceTree = "<group>"; };
@@ -725,6 +733,7 @@
 				21387D3A205FA7860050DF1F /* MineRequestVC.swift */,
 				21387D28205F55120050DF1F /* CodeData.swift */,
 				21387D34205F5E240050DF1F /* UserInfoLoaclManger.swift */,
+				2130658B211EC9120073ECF9 /* UserDataSingle.swift */,
 			);
 			path = Net;
 			sourceTree = "<group>";
@@ -839,6 +848,7 @@
 				219D7BBC205E17B0009F543B /* Models */,
 				219D7BBD205E17B0009F543B /* Views */,
 				216A6C53204CDE7900528FD8 /* WorkViewController.swift */,
+				2130658D211ECE300073ECF9 /* Work2ViewController.swift */,
 				2108BB76206FD0B3002A4212 /* NoticeViewController.swift */,
 				2109654A20710B5E0012FDDB /* AddNoticeViewController.swift */,
 				2108BB78206FD219002A4212 /* CheckcaseViewController.swift */,
@@ -930,6 +940,8 @@
 			children = (
 				219D7BBE205E1D8E009F543B /* WorkFirstTableViewCell.swift */,
 				219D7BBF205E1D8E009F543B /* WorkFirstTableViewCell.xib */,
+				2130658F211ED09D0073ECF9 /* WorkCollectionViewCell.swift */,
+				21306590211ED09D0073ECF9 /* WorkCollectionViewCell.xib */,
 				2108BB88206FE326002A4212 /* ObjectTableViewCell.swift */,
 				2108BB89206FE326002A4212 /* ObjectTableViewCell.xib */,
 				2108BB8C206FE34A002A4212 /* MessageNeedTableViewCell.swift */,
@@ -1095,6 +1107,7 @@
 				211A65C920A00957009CD41A /* NoticeTableViewCell.xib in Resources */,
 				216B7C68206394DE00BBACDA /* MemoTableViewCell.xib in Resources */,
 				2108BB93206FF2BB002A4212 /* CheckcaseTableViewCell.xib in Resources */,
+				21306592211ED09D0073ECF9 /* WorkCollectionViewCell.xib in Resources */,
 				2123A386208F0C7400C50FA9 /* SelectedTableViewCell.xib in Resources */,
 				21DDC9DC2080C8FC0067197D /* OptionView.xib in Resources */,
 				21089E99206E791B00573B6A /* FinanceDetialTableViewCell.xib in Resources */,
@@ -1230,6 +1243,7 @@
 				21340BD7206CB46800E30B53 /* AddExpenseViewController.swift in Sources */,
 				2108BB7E206FD7D8002A4212 /* TitleTableViewCell.swift in Sources */,
 				212FEA8420C3F10500A466E2 /* sharegetinfoModel.swift in Sources */,
+				21306591211ED09D0073ECF9 /* WorkCollectionViewCell.swift in Sources */,
 				2123A389208F39F800C50FA9 /* Selected2TableViewCell.swift in Sources */,
 				2108BB8E206FE34A002A4212 /* MessageNeedTableViewCell.swift in Sources */,
 				21376684203FBAB2000CBCE6 /* UILabel+Init.swift in Sources */,
@@ -1274,6 +1288,7 @@
 				2130656A21156FFB0073ECF9 /* DocSearchViewController.swift in Sources */,
 				21387D39205F9C540050DF1F /* newslistModel.swift in Sources */,
 				21DDC9D2208095790067197D /* branchModel.swift in Sources */,
+				2130658C211EC9120073ECF9 /* UserDataSingle.swift in Sources */,
 				21096549207101820012FDDB /* newslist1Model.swift in Sources */,
 				2137668F203FBF27000CBCE6 /* HCNavigationController.swift in Sources */,
 				2108BB92206FF2BB002A4212 /* CheckcaseTableViewCell.swift in Sources */,
@@ -1364,6 +1379,7 @@
 				21E9D29E20FDA9C200CA7B49 /* AddIconComeStep1ViewController.swift in Sources */,
 				2108BB77206FD0B3002A4212 /* NoticeViewController.swift in Sources */,
 				21DDC9CC208054040067197D /* caseDetailModel.swift in Sources */,
+				2130658E211ECE300073ECF9 /* Work2ViewController.swift in Sources */,
 				21541DD5206265010003746E /* work_getinfoModel.swift in Sources */,
 				2102E8742071C07E00536F41 /* endTimeTableViewCell.swift in Sources */,
 				2108BB82206FD7F3002A4212 /* ContentTableViewCell.swift in Sources */,

@@ -102,7 +102,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         mesNv.tabBarItem = item1
         
         //工作
-        let workVc :WorkViewController = WorkViewController()
+        let workVc :Work2ViewController = Work2ViewController()
         let workNv :UINavigationController = HCNavigationController(rootViewController: workVc)
         let item2:UITabBarItem = UITabBarItem(title:"工作", image:#imageLiteral(resourceName: "work_tab_nor").withRenderingMode(UIImageRenderingMode.alwaysOriginal), selectedImage: #imageLiteral(resourceName: "work_tab_sel").withRenderingMode(UIImageRenderingMode.alwaysOriginal))
         workNv.tabBarItem = item2

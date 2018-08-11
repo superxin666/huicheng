@@ -8,11 +8,32 @@
 
 import UIKit
 import ObjectMapper
+
+class LoginModel_power: Mappable {
+    var name: String!
+    var childrens: [String] = []
+
+    init() {}
+    required init?(map: Map){
+        mapping(map: map)
+    }
+    // Mappable
+    func mapping(map: Map) {
+        name <- map["name"]
+        childrens <- map["childrens"]
+
+    }
+
+}
+
+
 class LoginModel: Mappable {
     var name: String!
     var msg: String!
     var branch:String!
     var key:String!
+    var power:[LoginModel_power] = []
+
     
     init() {}
     required init?(map: Map){
@@ -24,6 +45,7 @@ class LoginModel: Mappable {
         msg <- map["msg"]
         branch <- map["branch"]
         key <- map["key"]
+        power <- map["power"]
     }
 
 }

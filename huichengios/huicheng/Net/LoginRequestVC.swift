@@ -28,7 +28,7 @@ class LoginRequestVC: UIViewController,BaseNetViewControllerDelegate {
     func loginRequest(u:String,p:String) {
         request.delegate = self
         let uStr : String = u.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-        let url =   login_api + "u=\(uStr)&p=\(p)&type=IOS"
+        let url =   login_api + "u=\(uStr)&p=\(p)&type=1"
         request.request_api(url: url)
         
     }
@@ -71,6 +71,12 @@ class LoginRequestVC: UIViewController,BaseNetViewControllerDelegate {
                 }
             }
         }
+
+        
+
+
+        let single =  UserDataSingle.sharedInstance
+        single.dataModel = model
         UMessage.setAlias(key, type: "惠诚") { (data, erro) in
 
         }
