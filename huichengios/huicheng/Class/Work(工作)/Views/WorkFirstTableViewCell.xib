@@ -349,7 +349,7 @@
                 <outlet property="view7" destination="y8g-pS-IhE" id="bwb-OK-H3T"/>
                 <outlet property="view8" destination="IhD-ul-fSJ" id="YuU-WK-9CP"/>
             </connections>
-            <point key="canvasLocation" x="-1073" y="-103"/>
+            <point key="canvasLocation" x="-1439" y="-131"/>
         </tableViewCell>
     </objects>
 </document>

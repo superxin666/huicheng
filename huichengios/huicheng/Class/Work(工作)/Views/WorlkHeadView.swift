@@ -20,7 +20,7 @@ class WorlkHeadView: UICollectionReusableView {
 
     func creatUI(name : String) {
  
-
+        HCLog(message: name)
         let lineView = UIView(frame: CGRect(x: ip6(15), y: ip6(23), width: ip6(3), height: ip6(10)))
         lineView.backgroundColor = UIColor.hc_colorFromRGB(rgbValue: 0xFF6900)
         self.addSubview(lineView)

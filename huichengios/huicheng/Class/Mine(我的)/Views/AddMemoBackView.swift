@@ -17,7 +17,7 @@ class AddMemoBackView: UIView,NibLoadable,UITextViewDelegate {
     var noticeStr : String!
     
     /// 时间
-    var timeStr : String!
+    var timeStr : String = ""
     
     
     @IBOutlet weak var `switch`: UISwitch!

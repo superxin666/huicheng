@@ -28,7 +28,7 @@ class Work2ViewController: BaseViewController,UICollectionViewDataSource,UIColle
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.view.backgroundColor = viewBackColor
+        self.view.backgroundColor = .white
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "mes_logo"))
         self.navigation_title_fontsize(name: "工作", fontsize: 18)
 
@@ -89,7 +89,7 @@ class Work2ViewController: BaseViewController,UICollectionViewDataSource,UIColle
         view.backgroundColor = .clear
 
         if indexPath.section < userDataModel.power.count {
-            let model  : LoginModel_power = userDataModel.power[indexPath.row]
+            let model  : LoginModel_power = userDataModel.power[indexPath.section]
             view.creatUI(name: model.name!)
         }
         return view
