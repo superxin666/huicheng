@@ -24,9 +24,14 @@ class BaseNetViewController: UIViewController {
     var fileManager = FileManager.default
 
     func request_api(url : String,type :  reponsetype = .datatype){
-        let url = base_api + url
+
+        var time = String.getDateNow()
+        time = time.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let url = base_api + url + "&tttt=\(time)"
+
+
         HCLog(message: url)
-        Alamofire.request(url, method: .get).responseJSON { (returnResult) in
+        Alamofire.request(url, method: .post).responseJSON { (returnResult) in
             print("secondMethod --> get 请求 --> returnResult = \(returnResult)")
             if let json = returnResult.result.value {
                 let model = Mapper<CodeData>().map(JSON: json as! [String : Any])!
