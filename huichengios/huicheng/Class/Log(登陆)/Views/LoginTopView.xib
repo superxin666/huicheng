@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -75,6 +75,20 @@
                                 <action selector="acountclick:" destination="-1" eventType="touchUpInside" id="wjE-Hf-cbR"/>
                             </connections>
                         </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EaS-FP-rK6">
+                            <rect key="frame" x="0.0" y="38" width="137" height="2"/>
+                            <color key="backgroundColor" red="1" green="0.41176470590000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="2" id="nLm-IY-fBP"/>
+                            </constraints>
+                        </view>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Msi-Nm-KqD">
+                            <rect key="frame" x="138" y="38" width="137" height="2"/>
+                            <color key="backgroundColor" red="1" green="0.41176470590000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="2" id="tgL-Kp-jYs"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <accessibility key="accessibilityConfiguration">
@@ -83,12 +97,18 @@
                     </accessibility>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="n8p-8r-dEl" secondAttribute="bottom" id="4zH-qx-dGP"/>
+                        <constraint firstAttribute="trailing" secondItem="Msi-Nm-KqD" secondAttribute="trailing" id="97j-9C-96p"/>
+                        <constraint firstItem="EaS-FP-rK6" firstAttribute="leading" secondItem="n8p-8r-dEl" secondAttribute="leading" id="FvY-YP-4HM"/>
+                        <constraint firstItem="Msi-Nm-KqD" firstAttribute="width" secondItem="0AT-v8-hz9" secondAttribute="width" id="Lzd-Me-yB6"/>
                         <constraint firstItem="0AT-v8-hz9" firstAttribute="leading" secondItem="n8p-8r-dEl" secondAttribute="trailing" constant="1" id="M4B-ND-Jul"/>
                         <constraint firstItem="0AT-v8-hz9" firstAttribute="top" secondItem="RXn-Oo-Ihu" secondAttribute="top" id="TU1-CW-bdZ"/>
                         <constraint firstAttribute="trailing" secondItem="n8p-8r-dEl" secondAttribute="trailing" constant="138" id="WmE-fG-jYL"/>
+                        <constraint firstItem="EaS-FP-rK6" firstAttribute="width" secondItem="n8p-8r-dEl" secondAttribute="width" id="YCd-3T-raS"/>
                         <constraint firstItem="n8p-8r-dEl" firstAttribute="top" secondItem="RXn-Oo-Ihu" secondAttribute="top" id="Ywd-yg-7XC"/>
+                        <constraint firstAttribute="bottom" secondItem="Msi-Nm-KqD" secondAttribute="bottom" id="dVS-zB-QwL"/>
                         <constraint firstAttribute="width" secondItem="RXn-Oo-Ihu" secondAttribute="height" multiplier="55:8" id="kDh-PY-II6"/>
                         <constraint firstItem="n8p-8r-dEl" firstAttribute="leading" secondItem="RXn-Oo-Ihu" secondAttribute="leading" id="p4x-1H-4Ba"/>
+                        <constraint firstAttribute="bottom" secondItem="EaS-FP-rK6" secondAttribute="bottom" id="rUS-Cy-6Rj"/>
                         <constraint firstAttribute="trailing" secondItem="0AT-v8-hz9" secondAttribute="trailing" id="tX7-dd-Sk6"/>
                         <constraint firstAttribute="bottom" secondItem="0AT-v8-hz9" secondAttribute="bottom" id="x2w-wV-nwZ"/>
                     </constraints>
@@ -114,7 +134,9 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="accountBtn" destination="0AT-v8-hz9" id="iMw-w3-rsi"/>
+                <outlet property="leftView" destination="EaS-FP-rK6" id="4wh-QY-UoD"/>
                 <outlet property="phoneBtn" destination="n8p-8r-dEl" id="abH-OD-uNX"/>
+                <outlet property="rightView" destination="Msi-Nm-KqD" id="Td4-Et-RcL"/>
             </connections>
             <point key="canvasLocation" x="-823" y="-273"/>
         </view>

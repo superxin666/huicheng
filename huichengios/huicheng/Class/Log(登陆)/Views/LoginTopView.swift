@@ -13,7 +13,9 @@ protocol LoginTopViewDelegate {
 
 class LoginTopView: UIView,NibLoadable {
     var delegate : LoginTopViewDelegate!
+    @IBOutlet weak var leftView: UIView!
     
+    @IBOutlet weak var rightView: UIView!
     @IBOutlet weak var accountBtn: UIButton!
     
     @IBOutlet weak var phoneBtn: UIButton!
@@ -23,6 +25,9 @@ class LoginTopView: UIView,NibLoadable {
         let btn : UIButton = sender as! UIButton
         accountBtn.isSelected = btn.isSelected
         btn.isSelected = !btn.isSelected
+
+        leftView.isHidden = false
+        rightView.isHidden = true
  
         if !(delegate == nil) {
             self.delegate.loginTopViewBtnClick(tagNum: btn.tag)
@@ -34,6 +39,9 @@ class LoginTopView: UIView,NibLoadable {
         let btn : UIButton = sender as! UIButton
         phoneBtn.isSelected = btn.isSelected
         btn.isSelected = !btn.isSelected
+
+        leftView.isHidden = true
+        rightView.isHidden = false
         if !(delegate == nil)  {
             self.delegate.loginTopViewBtnClick(tagNum: btn.tag)
         }

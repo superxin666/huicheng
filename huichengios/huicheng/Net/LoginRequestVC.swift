@@ -41,7 +41,7 @@ class LoginRequestVC: UIViewController,BaseNetViewControllerDelegate {
     func mobileloginRequest(m:String,n:String) {
         request.delegate = self
 
-        let url =   mobilelogin_api + "m=\(m)&n=\(n)"
+        let url =   mobilelogin_api + "m=\(m)&n=\(n)&type=1"
         request.request_api(url: url)
     }
     

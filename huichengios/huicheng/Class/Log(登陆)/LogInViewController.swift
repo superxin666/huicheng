@@ -74,7 +74,7 @@ class LogInViewController: UIViewController,LoginTopViewDelegate,LoginMidBottomV
             bottomView.phoneTextField.tag = 102
             bottomView.codeTextField.tag = 103
             bottomView.phoneImageView.image = #imageLiteral(resourceName: "log_persion")
-            bottomView.phoneTextField.placeholder = "手机号/邮箱"
+            bottomView.phoneTextField.placeholder = "账号"
             bottomView.codeTextField.placeholder = "密码"
             bottomView.codeLabel.isHidden = true
         }

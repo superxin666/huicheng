@@ -35,6 +35,7 @@ class LoginMidBottomView: UIView,NibLoadable,LoginRequestVCDelegate {
     
     @IBAction func logInClick(_ sender: Any) {
         HCLog(message: "登陆")
+
         if !(self.delegate == nil) {
             self.delegate.login()
         }
@@ -74,7 +75,7 @@ class LoginMidBottomView: UIView,NibLoadable,LoginRequestVCDelegate {
         }
         time = Timer.scheduledTimer(timeInterval: TimeInterval(1), target: self, selector: #selector(timeDown), userInfo: nil, repeats: true)
         request.sendcodeRequest(m: phoneStr)
-        
+
     }
     
     @objc func timeDown() {
@@ -84,17 +85,19 @@ class LoginMidBottomView: UIView,NibLoadable,LoginRequestVCDelegate {
             codeLabel.isUserInteractionEnabled = true
             time.invalidate()
             time = nil
-            codeLabel.text = "重新获取"
+            codeLabel.text = "获取验证码"
         } else {
             
             codeLabel.isUserInteractionEnabled = false
-            codeLabel.text = "\(timeNum)"
+            codeLabel.text = "\(timeNum)s"
         }
         
     }
     
     func requestSucceed_Login() {
-        SVPMessageShow.showSucess(infoStr: "已发送")
+
+        
+        SVPMessageShow.showSucess(infoStr: "验证码已发送至手机")
     }
     
     func requestFail_Login() {
