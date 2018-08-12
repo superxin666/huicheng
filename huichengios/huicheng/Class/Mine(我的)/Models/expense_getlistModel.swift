@@ -11,7 +11,7 @@ import ObjectMapper
 
 class expense_getlistModel: Mappable {
     var id: Int!
-    var type: Int!
+    var type: String!
     var typeStr: String!
     var total: Int!
     var money: Int!

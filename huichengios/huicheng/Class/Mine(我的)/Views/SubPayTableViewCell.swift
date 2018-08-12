@@ -27,8 +27,8 @@ class SubPayTableViewCell: UITableViewCell {
     }
     func setData(model  :expense_getlistModel) {
      
-        if let type = model.type ,let money = model.money {
-            self.titleLabel.text = "\(type) \(money)元 "
+        if let typeStr = model.type ,let money = model.money {
+            self.titleLabel.text = "\(typeStr) \(money)元 "
             
         }
         if let total = model.total {
