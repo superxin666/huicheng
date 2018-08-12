@@ -15,6 +15,7 @@ protocol MineHeadViewDelegate {
 class MineHeadView: UIView,NibLoadable {
     var delegate : MineHeadViewDelegate!
     
+    @IBOutlet weak var backImageView: UIImageView!
     @IBOutlet weak var roleLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var iconImageView: UIImageView!
@@ -25,8 +26,20 @@ class MineHeadView: UIView,NibLoadable {
             self.delegate.iconClick()
         }
     }
-    
+
+    @objc func bgClick() {
+        HCLog(message: "背景点击")
+        if !(self.delegate == nil) {
+            self.delegate.iconClick()
+        }
+
+
+    }
+
     func setData(model : user_getinfoModel) {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(bgClick))
+        backImageView.addGestureRecognizer(tap)
+
         if let face = model.face {
             self.iconImageView .setImage_kf(imageName: face, placeholderImage: #imageLiteral(resourceName: "log_persion"))
         }
