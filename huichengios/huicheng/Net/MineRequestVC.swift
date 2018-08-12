@@ -243,7 +243,7 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
         if id > 0 {
             url = memo_save_api + "k=\(UserInfoLoaclManger.getKey())&n=\(nStr)&t=\(tStr)&i=\(i)&id=\(id)"
         } else {
-            url = memo_save_api + "k=\(UserInfoLoaclManger.getKey())&n=\(n)&t=\(tStr)&i=\(i)"
+            url = memo_save_api + "k=\(UserInfoLoaclManger.getKey())&n=\(nStr)&t=\(tStr)&i=\(i)"
         }
        
         request.request_api(url: url)

@@ -79,6 +79,9 @@ class MemoViewController:  BaseViewController,UITableViewDataSource,UITableViewD
             vc.hidesBottomBarWhenPushed = true
             vc.momeoID =  model.id
             vc.type = .detail_type
+            vc.delSucessBlock = {
+                self.reflishData()
+            }
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -121,6 +124,14 @@ class MemoViewController:  BaseViewController,UITableViewDataSource,UITableViewD
         pageNum = pageNum + 1
         self.requestApi()
     }
+
+    func reflishData() {
+        pageNum = 0
+        if self.dataArr.count > 0 {
+            self.dataArr.removeAll()
+        }
+        self.requestApi()
+    }
     
     func requestApi() {
         request.delegate = self
@@ -135,6 +146,9 @@ class MemoViewController:  BaseViewController,UITableViewDataSource,UITableViewD
         let vc = AddMemoViewController()
         vc.type = .add_type
         vc.hidesBottomBarWhenPushed = true
+        vc.addSucessBlock = {
+            self.reflishData()
+        }
         self.navigationController?.pushViewController(vc, animated: true)
         
     }

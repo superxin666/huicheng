@@ -193,6 +193,8 @@ class TitleTableViewCell: UITableViewCell {
         self.titleNameLabel.textColor = darkblueColor
         self.titleNameLabel.text = titleStr
         self.textField.text = congtentStr
+
+        self.textField.placeholder = "请输入"
     }
 
     override func awakeFromNib() {

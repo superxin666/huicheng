@@ -48,7 +48,7 @@ class AddWorkViewController: BaseViewController,UITableViewDataSource,UITableVie
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
         requestVC.delegate = self
         if type == .add {
-            self.navigationBar_rightBtn_title(name: "确定")
+            self.navigationBar_rightBtn_title(name: "确定",textColour: darkblueColor)
         } else {
             requestVC.work_getinfoRequest(id: self.workID!)
         }

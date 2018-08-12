@@ -11,11 +11,19 @@ enum AddMemoViewController_type {
     //   添加      详情         编辑
     case add_type,detail_type,edit_type
 }
+
+typealias AddMemoViewControllerBlcok = ()->()
+
 class AddMemoViewController: BaseViewController,MineRequestVCDelegate {
     let backView = AddMemoBackView.loadNib()
     let request : MineRequestVC = MineRequestVC()
     var type : AddMemoViewController_type!
     var alertController : UIAlertController!
+
+    var addSucessBlock  : AddMemoViewControllerBlcok!
+    var delSucessBlock  : AddMemoViewControllerBlcok!
+
+
     
     /// id
     var momeoID : Int!
@@ -53,14 +61,14 @@ class AddMemoViewController: BaseViewController,MineRequestVCDelegate {
     func addUI()  {
         self.navigation_title_fontsize(name: "添加备忘录", fontsize: 18)
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
-        self.navigationBar_rightBtn_title(name: "确定")
+        self.navigationBar_rightBtn_title(name: "确定",textColour: darkblueColor)
         self.view.isUserInteractionEnabled = true
     }
     
     func detailUI() {
         self.navigation_title_fontsize(name: "查看备忘录", fontsize: 18)
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
-        self.navigationBar_rightBtn_title(name: "操作")
+        self.navigationBar_rightBtn_title(name: "操作",textColour: darkblueColor)
         self.view.isUserInteractionEnabled = false
     }
     
@@ -116,6 +124,7 @@ class AddMemoViewController: BaseViewController,MineRequestVCDelegate {
         if backView.textView.isFirstResponder {
             backView.textView.resignFirstResponder()
         }
+        self.view.endEditing(true)
         if !(backView.noticeStr.count > 0) {
             SVPMessageShow.showErro(infoStr: "请输入内容")
             return
@@ -157,12 +166,14 @@ class AddMemoViewController: BaseViewController,MineRequestVCDelegate {
             //添加
             let model = data as! CodeData
             if model.code == 1 {
+                self.addSucessBlock()
                 self.navigationController?.popViewController(animated: true)
             }
         } else if type == .memo_del{
             //删除
             let model = data as! CodeData
             if model.code == 1 {
+                self.delSucessBlock()
                 self.navigationController?.popViewController(animated: true)
             }
 
@@ -180,6 +191,8 @@ class AddMemoViewController: BaseViewController,MineRequestVCDelegate {
     // MARK: - net
     func addnet() {
         // backView.timeStr,  "2018-12-03 09:00"
+
+
         request.memo_saveRequest(n: backView.noticeStr, t:backView.timeStr, i: backView.isNotice, id: 0)
 
     }
@@ -188,6 +201,7 @@ class AddMemoViewController: BaseViewController,MineRequestVCDelegate {
         request.memo_getinfoRequest(id: momeoID)
     }
     func delnet()  {
+
         request.memo_delRequest(id: self.momeoID)
 
     }

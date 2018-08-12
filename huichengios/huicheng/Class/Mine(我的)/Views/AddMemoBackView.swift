@@ -10,11 +10,12 @@ import UIKit
 
 class AddMemoBackView: UIView,NibLoadable,UITextViewDelegate {
     
+    @IBOutlet weak var noticeLabel: UILabel!
     /// 是否提醒 默认不开 0不开1开
-    var isNotice : Int = 0
+    var isNotice : Int = 1
     
     /// 备忘内容
-    var noticeStr : String!
+    var noticeStr : String = ""
     
     /// 时间
     var timeStr : String = ""
@@ -48,6 +49,11 @@ class AddMemoBackView: UIView,NibLoadable,UITextViewDelegate {
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         return true
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        self.noticeLabel.removeFromSuperview()
+
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
@@ -86,6 +92,9 @@ class AddMemoBackView: UIView,NibLoadable,UITextViewDelegate {
     ///
     /// - Parameter model: <#model description#>
     func setData(model : memo_getinfoModel) {
+
+        self.noticeLabel.removeFromSuperview()
+
         self.textView.text = model.content
         self.timeLabel.text = model.remindtime
         if model.isremind == 1 {
