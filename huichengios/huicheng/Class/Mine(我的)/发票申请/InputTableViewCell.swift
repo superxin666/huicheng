@@ -44,6 +44,10 @@ class InputTableViewCell: UITableViewCell {
             self.subNameLabel.text = "张"
         }
     }
+
+    func setTextField(str : String) {
+        self.textFiled.text = str
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

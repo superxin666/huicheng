@@ -12,7 +12,7 @@ class DealSearchViewController: BaseViewController,UITableViewDataSource,UITable
     let mainTabelView : UITableView = UITableView()
     let requestVC = WorkRequestVC()
     var dataArr : [dealGetlistModel] = []
-    var pageNum : Int = 1
+    var pageNum : Int = 0
 
     /// 合同编号
     var numStr = ""
@@ -96,7 +96,7 @@ class DealSearchViewController: BaseViewController,UITableViewDataSource,UITable
         if self.dataArr.count > 0 {
             self.dataArr.removeAll()
         }
-        pageNum = 1
+        pageNum = 0
         self.requestApi()
     }
     @objc func loadMoreData() {

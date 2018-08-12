@@ -65,15 +65,15 @@ class AddExpenseBackView: UIView,NibLoadable,UIPickerViewDelegate ,UIPickerViewD
         self.moneyField.isUserInteractionEnabled = false
         self.numField.isUserInteractionEnabled = false
         //
-        if let money =  model.money {
+        if let money =  model.data.money {
             self.moneyField.placeholder = "\(money)"
         }
         
-        if let total =  model.total {
+        if let total =  model.data.total {
             self.numField.placeholder = "\(total)"
         }
 
-        if let note =  model.typeNote {
+        if let note =  model.data.typeNote {
             self.infoLabel.text = note
         }
         
@@ -106,7 +106,7 @@ class AddExpenseBackView: UIView,NibLoadable,UIPickerViewDelegate ,UIPickerViewD
             type = model.id
         } else {
             if let model = dataModel {
-                str = model.typeStr
+                str = model.data.typeStr!
             }
         }
         return str

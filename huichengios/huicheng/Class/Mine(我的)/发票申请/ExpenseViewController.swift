@@ -89,6 +89,9 @@ class ExpenseViewController: BaseViewController,UITableViewDataSource,UITableVie
             vc.hidesBottomBarWhenPushed = true
             vc.type = .detaile_type
             vc.expenseId = model.id
+            vc.sureStateBlock = {
+                self.reflishData()
+            }
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

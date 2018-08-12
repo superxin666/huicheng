@@ -74,6 +74,15 @@ class TitleTableViewCell: UITableViewCell {
         self.titleNameLabel.textColor = darkblueColor
         self.titleNameLabel.text = titleStr
     }
+
+    func setData_expense(titleStr : String,contenStr : String) {
+        self.titleNameLabel.textColor = darkblueColor
+        self.titleNameLabel.text = titleStr
+        self.textField.text = contenStr
+        self.textField.placeholder = ""
+
+
+    }
     
     /// 公告详情
     ///

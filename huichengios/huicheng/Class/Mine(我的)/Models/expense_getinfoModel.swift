@@ -17,7 +17,7 @@
 import UIKit
 import ObjectMapper
 
-class expense_getinfoModel: Mappable {
+class expense_getinfoModel_data: Mappable {
     var id: Int!
     var type: Int!
     var typeStr: String!
@@ -25,6 +25,8 @@ class expense_getinfoModel: Mappable {
     
     var total: Int!
     var money: Int!
+
+    /// 0-未审核;1-已审核;2-审核驳回;3-已支付;4-支付信息驳回
     var state: Int!
     var stateStr: String!
     var addtime: String!
@@ -50,3 +52,21 @@ class expense_getinfoModel: Mappable {
         
     }
 }
+
+class expense_getinfoModel: Mappable {
+    var data: expense_getinfoModel_data!
+    var type: [expense_gettypeModel] = []
+
+
+    init() {}
+    required init?(map: Map){
+        mapping(map: map)
+    }
+    // Mappable
+    func mapping(map: Map) {
+        data <- map["data"]
+        type <- map["type"]
+
+    }
+}
+
