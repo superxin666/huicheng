@@ -152,7 +152,7 @@ class AddShareViewController: BaseViewController,UITableViewDataSource,UITableVi
     func requestFail_work() {
 
     }
-    func optionSure(idStr: String, titleStr: String, pickTag: Int) {
+    func optionSure(idStr: String, titleStr: String,noteStr : String, pickTag: Int) {
         self.dStr = idStr
         let cell : OptionTableViewCell = mainTabelView.cellForRow(at: IndexPath(row: pickTag, section: 0)) as! OptionTableViewCell
         cell.setOptionData(contentStr: titleStr)

@@ -529,7 +529,7 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         }
     }
 
-    func optionSure(idStr: String, titleStr: String, pickTag: Int) {
+    func optionSure(idStr: String, titleStr: String,noteStr : String, pickTag: Int) {
         HCLog(message: titleStr)
         HCLog(message: idStr)
         HCLog(message: pickTag)

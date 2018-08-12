@@ -178,7 +178,7 @@ BaseTableViewController,ContentTableViewCellDelegate,DatePickViewDelegate,Option
         }
     }
 
-    func optionSure(idStr: String, titleStr: String, pickTag: Int) {
+    func optionSure(idStr: String, titleStr: String,noteStr :String ,pickTag: Int) {
         let cell : OptionTableViewCell = self.tableView.cellForRow(at: IndexPath(row: 4, section: 0)) as! OptionTableViewCell
         aStr = idStr
         cell.setOptionData(contentStr: titleStr)

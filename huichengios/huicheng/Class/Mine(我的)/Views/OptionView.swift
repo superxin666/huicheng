@@ -8,13 +8,14 @@
 
 import UIKit
 protocol OptionViewDelgate {
-    func optionSure(idStr : String,titleStr : String,pickTag : Int)
+    func optionSure(idStr : String,titleStr : String,noteStr : String,pickTag : Int)
+
 }
 
 enum OptionViewType {
 
     //搜索中状态  报销  接受对象      发票列表    我的收款  案件添加   案件律师   案件部门 发票状态
-    case searchState,Object,invoice_getlist,finance, caseType,caseUser,caseDep,invoiceState,crtInfo
+    case searchState,Object,invoice_getlist,finance, caseType,caseUser,caseDep,invoiceState,crtInfo,expense_gettype
 }
 class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSource {
     var delegate : OptionViewDelgate!
@@ -24,6 +25,9 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
     
     /// 当前标题
     var currectStr : String = ""
+
+    var currectNoteStr : String = ""
+
     
     /// 类型 默认搜索
     var type :OptionViewType = .searchState
@@ -57,6 +61,11 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
     //案件类型
     var data_casetypeArr : [casetypeModel] = []
 
+    var data_expenseArr : [expense_gettypeModel] = []
+
+    var currectexpense : expense_gettypeModel!
+
+
     var crt : [String] = []
 
 
@@ -84,6 +93,12 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
 
     func setDatainvoiceState()  {
         self.type = .invoiceState
+        self.pickView.reloadAllComponents()
+    }
+
+    func setDataExpensive(dataArr : [expense_gettypeModel]) {
+        self.type = .expense_gettype
+        self.data_expenseArr = dataArr
         self.pickView.reloadAllComponents()
     }
 
@@ -156,7 +171,9 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
             return self.nameArr_invoiceState.count
         } else if type == .crtInfo {
             return self.crt.count
-        } else {
+        } else if type == .expense_gettype {
+            return self.data_expenseArr.count
+        }  else {
             return 0
         }
         
@@ -214,7 +231,16 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
             currectStr = titleStr
             cuurectID = ""
 
+        } else if type == .expense_gettype {
+            let model : expense_gettypeModel = self.data_expenseArr[row]
+
+            titleStr = model.name
+            cuurectID = "\(model.id!)"
+            currectStr = titleStr
+            currectNoteStr = model.note
         }
+
+
         let label = UILabel(frame: CGRect(x: 0, y: 15, width: pickerView.frame.width, height: 20))
         label.text = titleStr
         label.textColor = UIColor.hc_colorFromRGB(rgbValue: 0x666666)
@@ -226,10 +252,12 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
     @IBOutlet weak var pickView: UIPickerView!
 
     @IBAction func sureClick(_ sender: UIButton) {
+
         if let delegate = self.delegate {
-            delegate.optionSure(idStr: cuurectID, titleStr: currectStr, pickTag: self.pickView.tag)
+            delegate.optionSure(idStr: cuurectID, titleStr: currectStr,noteStr : currectNoteStr, pickTag: self.pickView.tag)
         }
-     
+
+
     }
 
     override func awakeFromNib() {

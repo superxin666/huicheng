@@ -69,7 +69,7 @@ class BaseTableViewController: UITableViewController {
     /// - Parameters:
     ///   - name: 标题
     ///   - textColour: 标题颜色
-    func navigationBar_rightBtn_title(name:String, textColour:UIColor = .black){
+    func navigationBar_rightBtn_title(name:String, textColour:UIColor = darkblueColor){
         let btn:UIButton = UIButton(type: UIButtonType.custom)
         btn.frame = CGRect(x: 0, y: 0, width: 60, height: 44)
         btn.setTitle(name, for: .normal)

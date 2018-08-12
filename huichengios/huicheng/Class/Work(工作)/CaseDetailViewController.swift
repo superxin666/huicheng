@@ -612,7 +612,7 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
     ///   - idStr: <#idStr description#>
     ///   - titleStr: <#titleStr description#>
     ///   - pickTag: <#pickTag description#>
-    func optionSure(idStr: String, titleStr: String, pickTag: Int) {
+    func optionSure(idStr: String, titleStr: String,noteStr : String, pickTag: Int) {
         HCLog(message: titleStr)
         HCLog(message: idStr)
         HCLog(message: pickTag)

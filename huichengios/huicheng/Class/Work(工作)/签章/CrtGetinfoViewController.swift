@@ -201,7 +201,7 @@ class CrtGetinfoViewController:  BaseTableViewController,Work2RequestVCDelegate,
         }
     }
 
-    func optionSure(idStr: String, titleStr: String, pickTag: Int) {
+    func optionSure(idStr: String, titleStr: String,noteStr : String, pickTag: Int) {
         for submModel in itemsArr {
             if submModel.tagNum == pickTag {
                 submModel.value = titleStr

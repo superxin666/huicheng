@@ -23,6 +23,7 @@ class OptionTableViewCell: UITableViewCell {
     }
     
     func setOptionData(contentStr : String)  {
+        self.titleNameLabel.text = "报销类型"
         self.contentLabel.text = contentStr
     }
 

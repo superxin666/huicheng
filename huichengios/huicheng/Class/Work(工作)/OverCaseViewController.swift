@@ -171,7 +171,7 @@ class OverCaseViewController: BaseTableViewController,ContentTableViewCellDelega
         }
     }
 
-    func optionSure(idStr: String, titleStr: String, pickTag: Int) {
+    func optionSure(idStr: String, titleStr: String,noteStr : String, pickTag: Int) {
         let cell : OptionTableViewCell = self.tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as! OptionTableViewCell
         nStr = idStr
         cell.setOptionData(contentStr: titleStr)

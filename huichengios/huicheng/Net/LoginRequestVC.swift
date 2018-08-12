@@ -61,6 +61,7 @@ class LoginRequestVC: UIViewController,BaseNetViewControllerDelegate {
 
 
         let model = Mapper<LoginModel>().map(JSON: response as! [String : Any])!
+
         guard let key = model.key else {
             HCLog(message: "key 为nil")
             return

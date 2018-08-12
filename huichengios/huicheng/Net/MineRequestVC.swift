@@ -70,7 +70,7 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
     ///   - t: 报销类型 int 型
     ///   - n: 单据数量 int 型
     ///   - m: 报销金额
-    func expense_saveRequest(t : Int, n: Int ,m:Int) {
+    func expense_saveRequest(t : String, n: String ,m:String) {
         let url =   expense_save_api + "t=\(t)&n=\(n)&m=\(m)&k=\(UserInfoLoaclManger.getKey())"
         request.delegate = self
         type = .expense_save

@@ -38,6 +38,15 @@ class Content2TableViewCell: UITableViewCell,UITextViewDelegate {
 
     }
 
+
+    func setDataExpense(contentStr : String) {
+        self.backgroundColor = viewBackColor
+        self.textView.backgroundColor = viewBackColor
+        self.textView.text = contentStr
+        self.textView.textColor = darkblueColor
+
+    }
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
