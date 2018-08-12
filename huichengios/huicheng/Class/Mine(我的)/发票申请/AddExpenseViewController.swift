@@ -246,6 +246,7 @@ class AddExpenseViewController: BaseTableViewController ,MineRequestVCDelegate,O
             
         } else if type == .expense_gettype{
             //type 列表
+            SVPMessageShow.dismissSVP()
             let arr = data as! [expense_gettypeModel]
             if dataArr.count > 0 {
                 self.dataArr.removeAll()
