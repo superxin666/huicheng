@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -24,30 +24,31 @@
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="超级管理员发起盖章申请,函件编号为：BJ20181303" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7IA-mP-3Xm">
-                        <rect key="frame" x="15" y="45" width="345" height="19.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7IA-mP-3Xm">
+                        <rect key="frame" x="15" y="45" width="345" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.090196078431372548" green="0.22745098039215686" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zhh-4s-NRp">
-                        <rect key="frame" x="0.0" y="79" width="375" height="0.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="0.5"/>
                         <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="0.5" id="GtZ-g3-czP"/>
+                            <constraint firstAttribute="height" constant="0.5" id="u9F-xT-13w"/>
                         </constraints>
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="7IA-mP-3Xm" secondAttribute="trailing" constant="15" id="7bV-rN-IF9"/>
-                    <constraint firstItem="zhh-4s-NRp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="LJk-bY-T4u"/>
+                    <constraint firstItem="zhh-4s-NRp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="JFU-7a-eHR"/>
                     <constraint firstAttribute="trailing" secondItem="Qy3-rX-Ern" secondAttribute="trailing" constant="15" id="R8X-ch-NXi"/>
                     <constraint firstItem="Qy3-rX-Ern" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="Upr-vB-lT1"/>
                     <constraint firstItem="Qy3-rX-Ern" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="YEN-cx-xdS"/>
-                    <constraint firstAttribute="bottom" secondItem="zhh-4s-NRp" secondAttribute="bottom" id="a9e-nt-jAd"/>
-                    <constraint firstItem="7IA-mP-3Xm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="dcJ-1f-deS"/>
-                    <constraint firstAttribute="trailing" secondItem="zhh-4s-NRp" secondAttribute="trailing" id="knP-zM-ImJ"/>
-                    <constraint firstItem="7IA-mP-3Xm" firstAttribute="top" secondItem="Qy3-rX-Ern" secondAttribute="bottom" constant="7" id="yvv-Sq-krL"/>
+                    <constraint firstItem="7IA-mP-3Xm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="Zv8-zj-fFb"/>
+                    <constraint firstItem="7IA-mP-3Xm" firstAttribute="top" secondItem="Qy3-rX-Ern" secondAttribute="bottom" constant="7" id="ew8-x7-AtN"/>
+                    <constraint firstAttribute="bottom" secondItem="7IA-mP-3Xm" secondAttribute="bottom" constant="14.5" id="gwy-3E-4am"/>
+                    <constraint firstItem="zhh-4s-NRp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="kJD-fK-S0L"/>
+                    <constraint firstAttribute="trailing" secondItem="zhh-4s-NRp" secondAttribute="trailing" id="kUt-Ng-hmk"/>
+                    <constraint firstAttribute="trailing" secondItem="7IA-mP-3Xm" secondAttribute="trailing" constant="15" id="rus-Rp-nX5"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -55,7 +56,7 @@
                 <outlet property="timeLabel" destination="Qy3-rX-Ern" id="uvi-iP-JeH"/>
                 <outlet property="titleLabel" destination="7IA-mP-3Xm" id="aCw-rT-aZM"/>
             </connections>
-            <point key="canvasLocation" x="-483" y="-359"/>
+            <point key="canvasLocation" x="-356" y="-242"/>
         </tableViewCell>
     </objects>
 </document>

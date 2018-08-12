@@ -55,7 +55,6 @@ class MessageViewController: BaseViewController,UITableViewDelegate,UITableViewD
         mainTabelView.mj_footer = self.creactFoot()
         mainTabelView.mj_footer.setRefreshingTarget(self, refreshingAction: #selector(loadMoreData))
         mainTabelView.mj_header = header
-//        mainTabelView.mj_footer.isAutomaticallyHidden
         header.setRefreshingTarget(self, refreshingAction: #selector(reflishData))
         self.view.addSubview(mainTabelView)
     }
@@ -78,7 +77,15 @@ class MessageViewController: BaseViewController,UITableViewDelegate,UITableViewD
         
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return message_cell_height
+        if indexPath.row < self.dataArr.count {
+            let model = self.dataArr[indexPath.row]
+            HCLog(message: model.strHeight!)
+            return model.strHeight! + message_cell_height - ip6(10)
+
+        } else {
+            return message_cell_height
+
+        }
     }
     func requestSucceed_message(data: Any) {
         let arr = data as! [noticelistModel]
@@ -95,7 +102,6 @@ class MessageViewController: BaseViewController,UITableViewDelegate,UITableViewD
         }
         if mainTabelView.mj_header.isRefreshing {
             mainTabelView.mj_header.endRefreshing()
-
         }
     }
     func requestFail_message() {

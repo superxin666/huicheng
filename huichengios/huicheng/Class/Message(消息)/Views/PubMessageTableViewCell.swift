@@ -15,6 +15,7 @@ class PubMessageTableViewCell: UITableViewCell {
     var delegate : PubMessageTableViewCellDelegate!
     var dataModel :newslistModel!
     
+    @IBOutlet weak var backView: UIView!
     
     @IBOutlet weak var timebtn: UIButton!
     
@@ -27,10 +28,21 @@ class PubMessageTableViewCell: UITableViewCell {
             self.delegate.redMessage(model: dataModel)
         }
     }
+    @objc func readGes() {
+        HCLog(message: "1212查看全文")
+        if !(delegate == nil) {
+            self.delegate.redMessage(model: dataModel)
+        }
+    }
     func setData(model:newslistModel) {
+
+        let ges : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(readGes))
+        self.backView.addGestureRecognizer(ges)
+
         dataModel = model
         if let timeStr = model.createtime {
-            self.timebtn .setTitle(timeStr, for: .normal)
+            let str  = String.hc_getDate_string(dateStr: timeStr)
+            self.timebtn .setTitle(str, for: .normal)
         }
         if let title = model.title {
             self.titleLabel.setTitle(title, for: .normal)
@@ -38,8 +50,6 @@ class PubMessageTableViewCell: UITableViewCell {
         if let subTitle = model.object {
             self.subTitleLabel.setTitle(subTitle, for: .normal)
         }
-
-        
         
     }
     override func awakeFromNib() {

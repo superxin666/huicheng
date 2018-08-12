@@ -14,6 +14,9 @@ class noticelistModel: Mappable {
     var title: String!
     var type:String!
     var createtime:String!
+
+    var strHeight : CGFloat!
+
     
     init() {}
     required init?(map: Map){
@@ -25,6 +28,9 @@ class noticelistModel: Mappable {
         title <- map["title"]
         type <- map["type"]
         createtime <- map["createtime"]
+        if title.count > 0 {
+           strHeight = title.hc_heightWithConstrainedWidth(width: KSCREEN_WIDTH - ip6(30), font: hc_fontThin(16))
+        }
     }
     
 }

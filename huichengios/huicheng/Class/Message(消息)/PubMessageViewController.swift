@@ -54,6 +54,7 @@ class PubMessageViewController: BaseViewController,UITableViewDelegate,UITableVi
         //        mainTabelView.mj_header = header
         //        mainTabelView.register(MessageTableViewCell.self, forCellReuseIdentifier: MESSAGEID)
         //        mainTabelView.register(TeachTableViewCell.self, forCellReuseIdentifier: TEACHCELLID)
+        
         self.view.addSubview(mainTabelView)
     }
     // MARK: - delegate
@@ -66,6 +67,7 @@ class PubMessageViewController: BaseViewController,UITableViewDelegate,UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : PubMessageTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: PUBMESSAGEID, for: indexPath) as! PubMessageTableViewCell
         cell.delegate = self
+        cell.selectionStyle = .none
         if indexPath.row < dataArr.count {
             cell.setData(model: dataArr[indexPath.row])
             
@@ -73,7 +75,13 @@ class PubMessageViewController: BaseViewController,UITableViewDelegate,UITableVi
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        if indexPath.row < self.dataArr.count {
+            let model = self.dataArr[indexPath.row]
+            let vc = PubMessageConViewController()
+            vc.newsID = model.id
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return pub_cell_height

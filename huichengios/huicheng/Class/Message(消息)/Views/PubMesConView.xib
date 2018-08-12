@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -40,7 +40,6 @@
                 <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eFx-Gd-l8z">
                     <rect key="frame" x="22" y="87" width="320" height="318"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <string key="text">如果你无法简洁的表达你的想法，那只说明你还不够了 是韩国SBS电视台周末娱乐节目，是韩国著名主持人刘 在石接手的SBS新艺能节目，作为刘在石的SBS艺能节 目回归之作，《running man》致力于打造一个不同 于过去《real variety》的新型态娱乐节目态娱乐节态 韩国SBS电视台周末娱乐节目，是韩国著名主持人刘 在石接手的SBS新艺能节目，作为刘在石的SBS艺能节 目回归之作，《running man》致力于打造一个不同 于过去《real variety》的新型态娱乐节目态娱乐节态 韩国SBS电视台周末娱乐节目，是韩国著名主持人刘 在石接手的SBS新艺能节目，作为刘在石的SBS艺能节 目回归之作，《running man》致力于打造一个不同 于过去《real variety》的新型态娱乐节目态娱乐节态 韩国SBS电视台周末娱乐节目，是韩国著名主持人刘刘 在石接手的SBS新艺能节目，作为刘在石的SBS艺能节 目回归之作，《running man》致力于打造一个不刘 解它。 -- 阿尔伯特·爱因斯坦</string>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
@@ -80,7 +79,7 @@
                 <outlet property="timeLabel" destination="I7F-tc-TLP" id="cev-t3-lz3"/>
                 <outlet property="titleLabel" destination="W78-5w-bQZ" id="ZHc-1a-lkO"/>
             </connections>
-            <point key="canvasLocation" x="-427" y="-84"/>
+            <point key="canvasLocation" x="-6" y="72"/>
         </view>
     </objects>
     <resources>
