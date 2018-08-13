@@ -34,7 +34,9 @@ class ConvenRequestVC: UIViewController, BaseNetViewControllerDelegate {
     func quick_getlistRequest(t : Int, kw : String = "")  {
         request.delegate = self
         type = .getlist
-        let url =   quick_getlist_api + "kw=\(kw)&t=\(t)&k=\(UserInfoLoaclManger.getKey())"
+        let kwStr = kw.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+
+        let url =   quick_getlist_api + "kw=\(kwStr)&t=\(t)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
     }
     

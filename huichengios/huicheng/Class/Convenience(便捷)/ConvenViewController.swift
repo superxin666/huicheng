@@ -22,7 +22,8 @@ class ConvenViewController: BaseViewController,ConbenTopViewDelegate,UITableView
     /// 默认 1 法院
     var type : Int = 1
     
-    
+    var kw = ""
+
     // MARK: - life circle
     override func viewWillLayoutSubviews() {
         topView.snp.makeConstraints { (make) in
@@ -115,7 +116,7 @@ class ConvenViewController: BaseViewController,ConbenTopViewDelegate,UITableView
     }
     // MARK: - net
     func requestApi() {
-        request.quick_getlistRequest(t: type, kw: "")
+        request.quick_getlistRequest(t: type, kw: kw)
     }
     //加载更多
     @objc func loadMoreData()  {
@@ -153,12 +154,30 @@ class ConvenViewController: BaseViewController,ConbenTopViewDelegate,UITableView
         default:
             HCLog(message: "没有")
         }
+        kw = ""
         if self.dataArr.count > 0 {
             self.dataArr.removeAll()
         }
         self.requestApi()
         
     }
+
+
+    override func navigationRightBtnClick() {
+        HCLog(message: "搜索")
+        HCLog(message: "搜索")
+        let vc = SearchViewController()
+        vc.hidesBottomBarWhenPushed = true
+        vc.type = .conven_type
+        weak var weakSelf = self
+        vc.sureDealBlock = { t in
+            HCLog(message: t)
+            self.kw = t
+            weakSelf?.reflishData()
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
