@@ -271,10 +271,22 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
     ///   - p: <#p description#>
     ///   - c: <#c description#>
     ///   - n: <#n description#>
-    func dealgetlist(p :Int,c:Int,n:String) {
+    func dealgetlist(p :Int,c:Int,n:String,b:String,e:String) {
+
+        var bStr = ""
+        if b.count > 0 {
+            bStr = b.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+        var eStr = ""
+        if e.count > 0 {
+            eStr = e.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+
+
+
         request.delegate = self
         type = .deal
-        let url =   deal_getlist_api + "p=\(p)&c=\(c)&n=\(n)&k=\(UserInfoLoaclManger.getKey())"
+        let url =   deal_getlist_api + "p=\(p)&c=\(c)&n=\(n)&b=\(bStr)&e=\(eStr)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
     }
 

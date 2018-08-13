@@ -55,6 +55,7 @@ class CaseTableViewCell: UITableViewCell {
         if let dealsnum = model.dealsnum {
             self.titleNameLabel.text = dealsnum
         }
+        self.titleNameLabel.textColor = darkblueColor
         if let time = model.regtime {
             self.timeLabel.text = String.hc_getDate_string(dateStr: time)
         }
@@ -68,7 +69,9 @@ class CaseTableViewCell: UITableViewCell {
             self.subLabel.text = reguser
 
         }
+//        -1-未提交;0-未审核;1-已审核;2-审核驳回;3- 已结案
         if let state = model.state {
+
            self.nameLabel.backgroundColor = darkblueColor
            self.nameLabel.textColor = .white
         }
