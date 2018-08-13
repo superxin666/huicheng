@@ -22,7 +22,7 @@ class RoomTableViewCell: UITableViewCell {
     func setData(model : roomModel)  {
         dataModel = model
         if let bt = model.bt,let et = model.et,let ut = model.ut {
-            let str = String.hc_getDate_string(dateStr: bt) + "~" + String.hc_getDate_string(dateStr: et)+"\(ut)小时"
+            let str = String.hc_getDate_string(dateStr: bt) + "~" + String.hc_getDate_string(dateStr: et)+" （\(ut)小时）"
             self.titleLabel.text = str
 
         }
