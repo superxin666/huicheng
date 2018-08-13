@@ -428,7 +428,7 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
                 self.showTime_end()
 
             }
-        } else if type == .work_type || type == .caselsit_type{
+        } else if type == .caselsit_type{
 
             if indexPath.row == 0 {
                 //开始时间
@@ -437,6 +437,16 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
                 //结束时间
                 self.showTime_end()
             }
+        } else if type == .work_type {
+            if indexPath.row == 2 {
+                //开始时间
+                self.showTime_start()
+            } else if indexPath.row == 3{
+                //结束时间
+                self.showTime_end()
+            }
+
+
         } else if type == .departAndPerson{
             currectIndexpath = indexPath
             //部门

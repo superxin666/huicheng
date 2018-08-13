@@ -44,7 +44,7 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
     
     var rowNum = 5
 
-     var fileArr : Array<String>!
+     var fileArr : Array<String> = []
     
     
     // MARK: - life
@@ -190,6 +190,7 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
     
     
     func requestSucceed_message(data: Any) {
+
     //获取详情
         let model : newsdetialModel = data as! newsdetialModel
         detailModel = model
@@ -276,7 +277,7 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
                     SVPMessageShow.showErro(infoStr: "文件上传失败，请重新尝试")
                 }
             } else {
-                request.saveRequest(id: "\(detailId)", t: titleCell.conTent, n: contentCell.conTent, o: objectCell.cuurectID, s: 0, d: messageCell.need, f: "")
+                request.saveRequest(id: "", t: titleCell.conTent, n: contentCell.conTent, o: objectCell.cuurectID, s: 0, d: messageCell.need, f: "")
             }
 
         }

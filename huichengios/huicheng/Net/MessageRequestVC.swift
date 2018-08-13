@@ -55,6 +55,7 @@ class MessageRequestVC: UIViewController,BaseNetViewControllerDelegate {
     ///
     /// - Parameter id: 公告id
     func newsdetialRequest(id:Int) {
+        SVPMessageShow.showLoad()
         request.delegate = self
         type = .newsdetial
         let url =   newsdetial_api + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
@@ -76,6 +77,7 @@ class MessageRequestVC: UIViewController,BaseNetViewControllerDelegate {
                 self.delegate.requestSucceed_message(data: arr)
             }
         } else if type == .newsdetial{
+            SVPMessageShow.dismissSVP()
             let model = Mapper<newsdetialModel>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_message(data: model)
