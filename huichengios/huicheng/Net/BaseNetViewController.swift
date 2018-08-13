@@ -27,7 +27,7 @@ class BaseNetViewController: UIViewController {
 
         var time = String.getDateNow()
         time = time.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-        let url = base_api + url + "&tttt=\(time)"
+        let url = base_api + url 
 
 
         HCLog(message: url)

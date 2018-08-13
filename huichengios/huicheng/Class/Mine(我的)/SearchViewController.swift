@@ -18,7 +18,7 @@ typealias SearchViewControllerBlock_docSearch = (_ nStr : String,_ dnStr : Strin
 enum SearchViewController_type {
 
     //发票申请           收款记录       工作日志      发票列表         案件查询        合同查询   姓名    部门 人员姓名     收款登记
-    case expense_type, finance_type , work_type ,invoice_getlist,caselsit_type,deal_type,person,departAndPerson,Income_list,doc_search
+    case expense_type, finance_type , work_type ,invoice_getlist,caselsit_type,deal_type,person,departAndPerson,Income_list,doc_search,shareType
 
 }
 let Searchcell_finance_typeID = "Searchcell_finance_type_id"
@@ -147,6 +147,9 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         } else if type == .doc_search{
             self.navigation_title_fontsize(name: "函件查询", fontsize: 18)
             rowNum = 8
+        } else if type == .shareType{
+            self.navigation_title_fontsize(name: "共享模板查询", fontsize: 18)
+            rowNum = 2
         }
         self.navigationBar_rightBtn_title(name: "确定")
         self.creatUI()
@@ -191,7 +194,9 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             mainTabelView.register(UINib.init(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: TitleTableViewCellID)
             mainTabelView.register(UINib.init(nibName: "endTimeTableViewCell", bundle: nil), forCellReuseIdentifier: endTimeTableViewCellid)
             mainTabelView.register(UINib.init(nibName: "OptionTableViewCell", bundle: nil), forCellReuseIdentifier: OptionTableViewCellID)
-
+        } else if type == .shareType {
+            mainTabelView.register(UINib.init(nibName: "OptionTableViewCell", bundle: nil), forCellReuseIdentifier: OptionTableViewCellID)
+            mainTabelView.register(UINib.init(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: TitleTableViewCellID)
 
         }
         self.view.addSubview(mainTabelView)
@@ -382,6 +387,19 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
                 titleCell.delegate = self
                 return titleCell
             }
+        } else if type == .shareType{
+            if indexPath.row == 0 {
+                optionCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
+                optionCell.setData_caseDetail(titleStr: "分类", contentStr: "")
+                return optionCell
+            } else {
+                titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                //标题
+                titleCell.setData_search(titleStr: "关键字")
+                return titleCell
+
+            }
+
         } else {
             return UITableViewCell()
         }
@@ -448,6 +466,10 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
                 //结束时间
                 self.showTime_end()
             }
+        }else if type == .shareType{
+            currectIndexpath = indexPath
+            //模板
+            self.showOptionView_share()
         }
     }
     
@@ -529,6 +551,19 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         }
     }
 
+    func showOptionView_share() {
+        self.maskView.addSubview(self.optionView)
+        self.view.window?.addSubview(self.maskView)
+        self.optionView.setData_share()
+        self.optionView.delegate = self
+        self.optionView.snp.makeConstraints { (make) in
+            make.left.right.equalTo(0)
+            make.bottom.equalTo(0)
+            make.height.equalTo(160)
+        }
+    }
+
+
     func optionSure(idStr: String, titleStr: String,noteStr : String, pickTag: Int) {
         HCLog(message: titleStr)
         HCLog(message: idStr)
@@ -541,6 +576,9 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             cell.setOptionData(contentStr: titleStr)
         } else if type == .doc_search {
             let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 5, section: 0)) as! OptionTableViewCell
+            cell.setOptionData(contentStr: titleStr)
+        } else if type == .shareType {
+            let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 0, section: 0)) as! OptionTableViewCell
             cell.setOptionData(contentStr: titleStr)
         } else {
             let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 0, section: 0)) as! OptionTableViewCell
@@ -606,7 +644,12 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
                 titleCell.textField.resignFirstResponder()
             }
             self.sureBankBlock(titleCell.conTent,self.dStr)
-        } else if type == .doc_search {
+        }  else if type == .shareType{
+            self.view.endEditing(true)
+
+            self.sureBankBlock(titleCell.conTent,self.dStr)
+
+        }  else if type == .doc_search {
             self.view.endEditing(true)
             self.sureDocSearchSure(nStr,dnStr,kwStr,uStr,cnStr,bidStr,startTimeStr,endTimeStr)
         }

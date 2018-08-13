@@ -20,6 +20,11 @@ class ShareViewController: BaseViewController,UITableViewDataSource,UITableViewD
     /// 合同编号
     var numStr = ""
 
+    var tStr  = ""
+    var kwStr = ""
+
+
+
     var alertController : UIAlertController!
 
     // 0-共享 1-我的
@@ -30,7 +35,7 @@ class ShareViewController: BaseViewController,UITableViewDataSource,UITableViewD
         headView.snp.makeConstraints { (make) in
             make.top.equalTo(self.view).offset(LNAVIGATION_HEIGHT)
             make.left.right.equalTo(self.view).offset(0)
-            make.height.equalTo(self.view).offset(45)
+            make.height.equalTo(45)
         }
 
         mainTabelView.snp.makeConstraints { (make) in
@@ -70,7 +75,6 @@ class ShareViewController: BaseViewController,UITableViewDataSource,UITableViewD
         mainTabelView.showsHorizontalScrollIndicator = false
         mainTabelView.backgroundView?.backgroundColor = .clear
         mainTabelView.register(UINib.init(nibName: "RoomTableViewCell", bundle: nil), forCellReuseIdentifier: RoomTableViewCellID)
-//        mainTabelView.mj_footer = self.creactFoot()
         footer.setRefreshingTarget(self, refreshingAction: #selector(loadMoreData))
 
         mainTabelView.mj_footer = footer
@@ -149,32 +153,33 @@ class ShareViewController: BaseViewController,UITableViewDataSource,UITableViewD
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return RoomTableViewCellH
     }
+
     // MARK: - net
     func requestApi() {
         SVPMessageShow.showLoad(title: "正在加载~~")
 
         if viewType == 0 {
-            requestVC.sharegetlistRequest(p: pageNum, c: 8, t: "", kw: "")
+            requestVC.sharegetlistRequest(p: pageNum, c: 8, t: tStr, kw: kwStr)
         } else {
-            requestVC.sharegetmylistRequest(p: pageNum_my, c: 8, t: "", kw: "")
+            requestVC.sharegetmylistRequest(p: pageNum_my, c: 8, t:tStr, kw: kwStr)
         }
 
     }
 
-//    func reflishData() {
-//        if viewType == 0 {
-//            if self.dataArr.count > 0 {
-//                self.dataArr.removeAll()
-//            }
-//            pageNum = 1
-//        } else {
-//            if self.dataArr_my.count > 0 {
-//                self.dataArr_my.removeAll()
-//            }
-//            pageNum_my = 1
-//        }
-//        self.requestApi()
-//    }
+    func reflishData() {
+        if viewType == 0 {
+            if self.dataArr.count > 0 {
+                self.dataArr.removeAll()
+            }
+            pageNum = 1
+        } else {
+            if self.dataArr_my.count > 0 {
+                self.dataArr_my.removeAll()
+            }
+            pageNum_my = 1
+        }
+        self.requestApi()
+    }
 
     @objc func loadMoreData() {
         if viewType == 0 {
@@ -213,13 +218,13 @@ class ShareViewController: BaseViewController,UITableViewDataSource,UITableViewD
 //                       self.mainTabelView.mj_footer.resetNoMoreData()
                 }
             }
+            mainTabelView.reloadData()
+
         }
         if mainTabelView.mj_footer.isRefreshing {
             mainTabelView.mj_footer.endRefreshing()
 
         }
-
-
     }
 
     func requestFail_work() {
@@ -255,8 +260,23 @@ class ShareViewController: BaseViewController,UITableViewDataSource,UITableViewD
 
     @objc func searchClick() {
         HCLog(message: "搜索")
+        HCLog(message: "搜索")
+        let vc = SearchViewController()
+        vc.hidesBottomBarWhenPushed = true
+        vc.type = .shareType
+        weak var weakSelf = self
+        vc.sureBankBlock = {(kw,t) in
+            weakSelf?.tStr = t
+            weakSelf?.kwStr = kw
+            HCLog(message: t)
+            HCLog(message: kw)
+
+           self.reflishData()
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
 
     }
+
     @objc func addClick() {
         HCLog(message: "添加")
         let vc = AddShareViewController()

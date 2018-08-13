@@ -15,7 +15,7 @@ protocol OptionViewDelgate {
 enum OptionViewType {
 
     //搜索中状态  报销  接受对象      发票列表    我的收款  案件添加   案件律师   案件部门 发票状态
-    case searchState,Object,invoice_getlist,finance, caseType,caseUser,caseDep,invoiceState,crtInfo,expense_gettype
+    case searchState,Object,invoice_getlist,finance, caseType,caseUser,caseDep,invoiceState,crtInfo,expense_gettype,share_type
 }
 class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSource {
     var delegate : OptionViewDelgate!
@@ -35,6 +35,12 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
     //0 1 2 3
     var nameArr = ["未审核","已审核","审核驳回","已支付",]
     var idArr = ["0","1","2","3",]
+
+
+    /// 0-不限;1-诉讼案件;2-非诉案件;3-刑事案件;4-法律顾问;5-采购合同;6-资质文件;
+    var shareNameArr = ["不限","诉讼案件","非诉案件","刑事案件","法律顾问","采购合同","资质文件"]
+    var shareIdArr = ["0","1","2","3","4","5","6"]
+
 
     //接受对象
     //数组
@@ -81,6 +87,11 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
 
     func setData()  {
         self.type = .searchState
+        self.pickView.reloadAllComponents()
+    }
+
+    func setData_share() {
+        self.type = .share_type
         self.pickView.reloadAllComponents()
     }
 
@@ -173,7 +184,9 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
             return self.crt.count
         } else if type == .expense_gettype {
             return self.data_expenseArr.count
-        }  else {
+        } else if type == .share_type {
+            return self.shareNameArr.count
+        }    else {
             return 0
         }
         
@@ -238,6 +251,11 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
             cuurectID = "\(model.id!)"
             currectStr = titleStr
             currectNoteStr = model.note
+        } else if type == .share_type {
+
+            titleStr = shareNameArr[row]
+            cuurectID = shareIdArr[row]
+            currectStr = titleStr
         }
 
 

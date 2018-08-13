@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -20,7 +20,7 @@
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n11-p2-l0V">
                         <rect key="frame" x="0.0" y="79" width="320" height="0.5"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="0.5" id="8Qr-Gb-Fna"/>
                         </constraints>
@@ -58,7 +58,7 @@
                 <outlet property="contentLabel" destination="bhF-5L-ifr" id="ZfB-Kl-4Dr"/>
                 <outlet property="timeLabel" destination="vMc-ix-eFW" id="hRL-dm-bdC"/>
             </connections>
-            <point key="canvasLocation" x="-224" y="21"/>
+            <point key="canvasLocation" x="-367" y="2"/>
         </tableViewCell>
     </objects>
 </document>

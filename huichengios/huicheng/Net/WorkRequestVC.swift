@@ -45,6 +45,8 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
         request.request_api(url: url)
     }
 
+
+
     /// 部门列表
     func departmentRequest()  {
         request.delegate = self
@@ -631,7 +633,8 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
     func sharegetlistRequest(p:Int,c:Int,t:String,kw:String) {
         request.delegate = self
         type = .sharegetlist
-        let url = share_getlist_api   + "p=\(p)&c=\(c)&t=\(t)&kw=\(kw)&k=\(UserInfoLoaclManger.getKey())"
+        let kwStr = kw.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let url = share_getlist_api   + "p=\(p)&c=\(c)&t=\(t)&kw=\(kwStr)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
     }
 
@@ -647,7 +650,8 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
     func sharegetmylistRequest(p:Int,c:Int,t:String,kw:String) {
         request.delegate = self
         type = .sharegetmylist
-        let url = share_getmylist_api   + "p=\(p)&c=\(c)&t=\(t)&kw=\(kw)&k=\(UserInfoLoaclManger.getKey())"
+        let kwStr = kw.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let url = share_getmylist_api   + "p=\(p)&c=\(c)&t=\(t)&kw=\(kwStr)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
     }
 
@@ -704,8 +708,16 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
         let nStr = n.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         let tStr = t.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         let fStr = f.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        var url  = ""
 
-        let url = share_save_api   + "id=\(id)&n=\(nStr)&t=\(tStr)&d=\(d)&f=\(fStr)&k=\(UserInfoLoaclManger.getKey())"
+        if id.count > 0 {
+             url = share_save_api   + "id=\(id)&n=\(nStr)&t=\(tStr)&d=\(d)&f=\(fStr)&k=\(UserInfoLoaclManger.getKey())"
+
+
+        } else {
+             url = share_save_api   + "n=\(nStr)&t=\(tStr)&d=\(d)&f=\(fStr)&k=\(UserInfoLoaclManger.getKey())"
+
+        }
         request.request_api(url: url)
     }
 

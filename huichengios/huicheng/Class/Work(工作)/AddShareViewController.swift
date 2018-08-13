@@ -100,7 +100,7 @@ class AddShareViewController: BaseViewController,UITableViewDataSource,UITableVi
                 requestVC.sharegettypeRequest()
             }
 
-        } else if indexPath.row == 2 {
+        } else if indexPath.row == 3 {
             let vc = FileViewController()
             vc.hidesBottomBarWhenPushed = true
             weak var weakself = self

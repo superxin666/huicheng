@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -48,33 +48,42 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XrO-I7-zcE">
-                    <rect key="frame" x="0.0" y="40" width="375" height="5"/>
-                    <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="5" id="eWQ-3G-9MR"/>
-                    </constraints>
+                    <rect key="frame" x="0.0" y="40" width="187" height="5"/>
+                    <color key="backgroundColor" red="1" green="0.41176470590000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MbD-t0-5Kx">
+                    <rect key="frame" x="188" y="40" width="187" height="5"/>
+                    <color key="backgroundColor" red="1" green="0.41176470590000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="C2T-f3-ZLH" secondAttribute="trailing" id="2vr-04-8JB"/>
+                <constraint firstItem="XrO-I7-zcE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="7BR-US-g4t"/>
+                <constraint firstItem="XrO-I7-zcE" firstAttribute="width" secondItem="hyU-lj-JK4" secondAttribute="width" id="7cR-jz-F7z"/>
                 <constraint firstItem="hyU-lj-JK4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Fzx-hF-mwV"/>
+                <constraint firstAttribute="bottom" secondItem="MbD-t0-5Kx" secondAttribute="bottom" id="GO9-fT-bBg"/>
                 <constraint firstItem="C2T-f3-ZLH" firstAttribute="leading" secondItem="hyU-lj-JK4" secondAttribute="trailing" constant="1" id="HKS-wy-npO"/>
                 <constraint firstItem="hyU-lj-JK4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="P3d-1b-UQv"/>
                 <constraint firstItem="C2T-f3-ZLH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="PRS-dM-4j4"/>
+                <constraint firstItem="MbD-t0-5Kx" firstAttribute="top" secondItem="C2T-f3-ZLH" secondAttribute="bottom" id="Ws2-fM-g9f"/>
+                <constraint firstItem="MbD-t0-5Kx" firstAttribute="width" secondItem="C2T-f3-ZLH" secondAttribute="width" id="cCY-64-ixT"/>
                 <constraint firstItem="hyU-lj-JK4" firstAttribute="width" secondItem="C2T-f3-ZLH" secondAttribute="width" id="dSA-c8-VxC"/>
-                <constraint firstAttribute="trailing" secondItem="XrO-I7-zcE" secondAttribute="trailing" id="g91-dI-Ns0"/>
-                <constraint firstItem="XrO-I7-zcE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="nDS-BY-cef"/>
-                <constraint firstAttribute="bottom" secondItem="XrO-I7-zcE" secondAttribute="bottom" id="u5K-ll-bME"/>
+                <constraint firstAttribute="bottom" secondItem="XrO-I7-zcE" secondAttribute="bottom" id="hLg-Hq-g0z"/>
+                <constraint firstItem="XrO-I7-zcE" firstAttribute="top" secondItem="hyU-lj-JK4" secondAttribute="bottom" id="hmF-Fz-1l2"/>
                 <constraint firstItem="C2T-f3-ZLH" firstAttribute="leading" secondItem="hyU-lj-JK4" secondAttribute="trailing" constant="1" id="xgZ-L6-729"/>
+                <constraint firstAttribute="trailing" secondItem="MbD-t0-5Kx" secondAttribute="trailing" id="zcE-QE-xSb"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="leftView" destination="XrO-I7-zcE" id="2Id-Qj-8mT"/>
                 <outlet property="listBtn" destination="hyU-lj-JK4" id="L8b-7K-F68"/>
                 <outlet property="mineBtn" destination="C2T-f3-ZLH" id="UnG-4J-15A"/>
+                <outlet property="rightView" destination="MbD-t0-5Kx" id="izJ-f1-bZa"/>
             </connections>
+            <point key="canvasLocation" x="-337" y="-131"/>
         </view>
     </objects>
 </document>
