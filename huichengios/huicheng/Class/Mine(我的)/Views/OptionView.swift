@@ -259,10 +259,10 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
         }
 
 
-        let label = UILabel(frame: CGRect(x: 0, y: 15, width: pickerView.frame.width, height: 20))
+        let label = UILabel(frame: CGRect(x: 0, y: 15, width: pickerView.frame.width, height: ip6(40)))
         label.text = titleStr
-        label.textColor = UIColor.hc_colorFromRGB(rgbValue: 0x666666)
-        label.font = hc_fontThin(13)
+        label.textColor = .black
+        label.font = hc_fontThin(20)
         label.textAlignment = .center
         return label
     }

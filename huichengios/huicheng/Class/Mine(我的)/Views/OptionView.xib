@@ -48,7 +48,7 @@
             <connections>
                 <outlet property="pickView" destination="rvd-ac-xHt" id="FFr-TJ-afN"/>
             </connections>
-            <point key="canvasLocation" x="-109" y="4"/>
+            <point key="canvasLocation" x="42" y="112"/>
         </view>
     </objects>
 </document>
