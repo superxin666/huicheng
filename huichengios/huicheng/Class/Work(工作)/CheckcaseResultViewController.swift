@@ -41,7 +41,7 @@ class CheckcaseResultViewController: BaseViewController,UITableViewDataSource,UI
         mainTabelView.showsVerticalScrollIndicator = false
         mainTabelView.showsHorizontalScrollIndicator = false
         mainTabelView.backgroundView?.backgroundColor = .clear
-        mainTabelView.register(UINib.init(nibName: "WorkBookTableViewCell", bundle: nil), forCellReuseIdentifier: workbookcellid)
+        mainTabelView.register(UINib.init(nibName: "CaseTableViewCell", bundle: nil), forCellReuseIdentifier: CaseTableViewCellId)
         self.view.addSubview(mainTabelView)
     }
     // MARK: - delegate
@@ -52,18 +52,36 @@ class CheckcaseResultViewController: BaseViewController,UITableViewDataSource,UI
         return dataArr.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell : WorkBookTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: workbookcellid, for: indexPath) as! WorkBookTableViewCell
+        let cell : CaseTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: CaseTableViewCellId, for: indexPath) as! CaseTableViewCell
         if indexPath.row < dataArr.count {
-            cell.setData_checkcase(model: dataArr[indexPath.row])
+            cell.setData_searchCase(model: self.dataArr[indexPath.row])
         }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        if indexPath.row < self.dataArr.count {
+
+            let model : checkcaseModel  = self.dataArr[indexPath.row]
+            let vc = CaseDetailViewController()
+            vc.caseId = model.id
+            vc.type = .searchCseDetail
+//            weak var weakself = self
+//            vc.successBlock = {
+//                weakself?.reflishData()
+//            }
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+
+
+
+        }
+
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return workbookcellHeight
+        return CaseTableViewCellH
     }
     override func navigationLeftBtnClick() {
         self.navigationController?.popViewController(animated: true)

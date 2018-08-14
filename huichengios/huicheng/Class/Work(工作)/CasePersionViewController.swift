@@ -113,7 +113,6 @@ class CasePersionViewController: BaseViewController,UITableViewDataSource,UITabl
 
             cell.isUserInteractionEnabled = false
         } else {
-//            cell.setData_caseAdd(titleStr:  nameArr[indexPath.row], indexPath: indexPath)
             cell.isUserInteractionEnabled = true
         }
         return cell

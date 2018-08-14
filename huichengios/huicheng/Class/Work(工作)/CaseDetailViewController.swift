@@ -8,7 +8,7 @@
 
 import UIKit
 enum CaseDetailViewControllerType {
-    case caseDetail,addCase,editeCase,crtDetail
+    case caseDetail,addCase,editeCase,crtDetail,searchCseDetail
 }
 typealias CaseDetailViewControllerBlock = ()->()
 class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,TitleTableViewCellDelegate,OptionViewDelgate,DatePickViewDelegate,ContentTableViewCellDelegate {
@@ -93,6 +93,11 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
             self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
             self.navigationBar_rightBtn_title(name: "操作")
             request.casegetinfoRerquest(id: caseId)
+        } else if self.type == .searchCseDetail {
+            self.navigation_title_fontsize(name: "案件详情", fontsize: 18)
+            self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
+            request.casegetinfoRerquest(id: caseId)
+
         } else if self.type == .addCase {
             self.navigation_title_fontsize(name: "案件登记", fontsize: 18)
             self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
@@ -150,7 +155,7 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
                 if content1.count > 0 {
                     contentStr = content1[indexPath.row]
                 }
-                if type == .caseDetail || type == .crtDetail{
+                if type == .caseDetail || type == .crtDetail || type == .searchCseDetail{
                     cell.isUserInteractionEnabled = false
                 } else {
                     cell.isUserInteractionEnabled = true
@@ -168,7 +173,7 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
                 }
                 cell.setData_caseDetail(titleStr: name1[indexPath.row], contentStr: contentStr,indexPath : indexPath)
                 cell.tag = indexPath.row
-                if type == .caseDetail  || type == .crtDetail{
+                if type == .caseDetail  || type == .crtDetail || type == .searchCseDetail{
                     cell.isUserInteractionEnabled = false
                 } else {
                     cell.isUserInteractionEnabled = true
@@ -182,7 +187,7 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
                     timeStr = content1[indexPath.row]
                 }
                 endTimeCell.setData_case(titleStr: "立案日期", timeStr: timeStr)
-                if type == .caseDetail  || type == .crtDetail{
+                if type == .caseDetail  || type == .crtDetail || type == .searchCseDetail{
                     endTimeCell.isUserInteractionEnabled = false
                 } else {
                     endTimeCell.isUserInteractionEnabled = true
@@ -202,7 +207,7 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
                     contentStr = content3[indexPath.row]
                 }
                 cell.setData_case(title: name3[indexPath.row], contentCase: contentStr)
-                if type == .caseDetail  || type == .crtDetail{
+                if type == .caseDetail  || type == .crtDetail || type == .searchCseDetail{
                     cell.isUserInteractionEnabled = false
                 } else {
                     cell.isUserInteractionEnabled = true
@@ -219,7 +224,7 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
                     contentStr = self.sjStr
                 }
                 cell.setData_caseDetail(titleStr: name3[indexPath.row], contentStr: contentStr, indexPath: indexPath)
-                if type == .caseDetail  || type == .crtDetail{
+                if type == .caseDetail  || type == .crtDetail || type == .searchCseDetail{
                     cell.isUserInteractionEnabled = false
                 } else {
                     cell.isUserInteractionEnabled = true
@@ -306,7 +311,7 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
 
         } else if indexPath.section == 1 {
             let vc = CasePersionViewController()
-            if self.type == .caseDetail{
+            if self.type == .caseDetail || self.type == .searchCseDetail{
                 var arr : [String] = []
                 if indexPath.row == 0 {
                     vc.type =  .principal_detail

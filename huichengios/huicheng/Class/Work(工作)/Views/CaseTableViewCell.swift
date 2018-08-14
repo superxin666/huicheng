@@ -47,6 +47,24 @@ class CaseTableViewCell: UITableViewCell {
     }
 
 
+    func setData_searchCase(model : checkcaseModel)  {
+        if let title = model.name {
+            self.titleNameLabel.text = title
+        }
+        if let time = model.regtime {
+            self.timeLabel.text = String.hc_getDate_string(dateStr: time)
+        }
+        if let type = model.type {
+            self.typeLabel.text = type
+        }
+        if let reguser = model.reguser {
+            self.nameLabel.text = reguser
+        }
+        
+    }
+
+
+
     /// 合同管理  合同审核
     ///
     /// - Parameter model: <#model description#>

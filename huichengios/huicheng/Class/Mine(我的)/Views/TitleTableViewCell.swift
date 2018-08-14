@@ -108,8 +108,10 @@ class TitleTableViewCell: UITableViewCell {
         self.titleNameLabel.textColor = darkblueColor
         self.titleNameLabel.text = titleStr
         self.titleNameLabel.textAlignment = .left
-
         self.textField.text = contentStr
+        if !(contentStr.count > 0) {
+            self.textField.placeholder = ""
+        }
 
     }
     

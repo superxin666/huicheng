@@ -80,7 +80,9 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
     func checkcaseRequest(n:String,i:String) {
         request.delegate = self
         type = .checkcase
-        let url =   checkcase_api + "n=\(n)&i=\(i)&k=\(UserInfoLoaclManger.getKey())"
+        let nstr = n.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let iStr = i.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let url =   checkcase_api + "n=\(nstr)&i=\(iStr)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
     }
     
