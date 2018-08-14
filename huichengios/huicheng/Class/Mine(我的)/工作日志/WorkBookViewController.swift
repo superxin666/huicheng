@@ -16,6 +16,11 @@ class WorkBookViewController: BaseViewController,UITableViewDataSource,UITableVi
     var dataArr :[work_getlistModel] = []
     
     var pageNum : Int = 1
+
+    var bStr = ""
+    var eStr = ""
+
+
     // MARK: - life
     override func viewWillLayoutSubviews() {
         mainTabelView.snp.makeConstraints { (make) in
@@ -128,7 +133,20 @@ class WorkBookViewController: BaseViewController,UITableViewDataSource,UITableVi
         self.navigationController?.popViewController(animated: true)
     }
     @objc func searchClick() {
+
         HCLog(message: "搜索")
+        let vc = SearchViewController()
+        vc.hidesBottomBarWhenPushed = true
+        vc.type = .workbook_type
+        weak var weakself = self
+        vc.sureCaselsitBlock = {(b,e) in
+            HCLog(message: b)
+            HCLog(message: e)
+//            weakself?.requestApi()
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+
     }
     @objc func addClick() {
         HCLog(message: "添加")

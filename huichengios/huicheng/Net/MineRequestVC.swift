@@ -278,6 +278,9 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
     func work_getlistRequest(p : Int, c: Int) {
         request.delegate = self
         type = .work_getlist
+
+        
+
         let url =   work_getlist_api + "c=\(c)&p=\(p)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
     }

@@ -51,7 +51,6 @@
 		2108BB73206F2E33002A4212 /* quick_getlistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108BB72206F2E33002A4212 /* quick_getlistModel.swift */; };
 		2108BB77206FD0B3002A4212 /* NoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108BB76206FD0B3002A4212 /* NoticeViewController.swift */; };
 		2108BB79206FD219002A4212 /* CheckcaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108BB78206FD219002A4212 /* CheckcaseViewController.swift */; };
-		2108BB7B206FD673002A4212 /* AddWorkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108BB7A206FD673002A4212 /* AddWorkViewController.swift */; };
 		2108BB7E206FD7D8002A4212 /* TitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108BB7C206FD7D8002A4212 /* TitleTableViewCell.swift */; };
 		2108BB7F206FD7D8002A4212 /* TitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2108BB7D206FD7D8002A4212 /* TitleTableViewCell.xib */; };
 		2108BB82206FD7F3002A4212 /* ContentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108BB80206FD7F3002A4212 /* ContentTableViewCell.swift */; };
@@ -181,6 +180,8 @@
 		214F84B42122C0D600255F00 /* AddInvoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214F84B22122C0D600255F00 /* AddInvoiceViewController.swift */; };
 		214F84B82122C1C500255F00 /* FinanceDetialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214F84B62122C1C500255F00 /* FinanceDetialViewController.swift */; };
 		214F84B92122C1C500255F00 /* FinanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214F84B72122C1C500255F00 /* FinanceViewController.swift */; };
+		214F84BD2122C40200255F00 /* AddWorkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214F84BB2122C40200255F00 /* AddWorkViewController.swift */; };
+		214F84BE2122C40200255F00 /* WorkBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214F84BC2122C40200255F00 /* WorkBookViewController.swift */; };
 		21528BB920A52B3300C9950A /* FileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21528BB820A52B3300C9950A /* FileViewController.swift */; };
 		21528BC020A52D6C00C9950A /* FileListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21528BBE20A52D6C00C9950A /* FileListTableViewCell.swift */; };
 		21528BC120A52D6C00C9950A /* FileListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21528BBF20A52D6C00C9950A /* FileListTableViewCell.xib */; };
@@ -205,7 +206,6 @@
 		216A6C54204CDE7900528FD8 /* WorkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A6C53204CDE7900528FD8 /* WorkViewController.swift */; };
 		216A6C57204CDE9D00528FD8 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A6C56204CDE9D00528FD8 /* BaseViewController.swift */; };
 		216A6C59204CE7D800528FD8 /* BaseNetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A6C58204CE7D800528FD8 /* BaseNetViewController.swift */; };
-		216B7C5A20637AE400BBACDA /* WorkBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216B7C5920637AE400BBACDA /* WorkBookViewController.swift */; };
 		216B7C5D20637D7000BBACDA /* WorkBookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216B7C5B20637D7000BBACDA /* WorkBookTableViewCell.swift */; };
 		216B7C5E20637D7000BBACDA /* WorkBookTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 216B7C5C20637D7000BBACDA /* WorkBookTableViewCell.xib */; };
 		216B7C6320638EE100BBACDA /* IncomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216B7C6120638EE100BBACDA /* IncomeTableViewCell.swift */; };
@@ -307,7 +307,6 @@
 		2108BB72206F2E33002A4212 /* quick_getlistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = quick_getlistModel.swift; sourceTree = "<group>"; };
 		2108BB76206FD0B3002A4212 /* NoticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewController.swift; sourceTree = "<group>"; };
 		2108BB78206FD219002A4212 /* CheckcaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckcaseViewController.swift; sourceTree = "<group>"; };
-		2108BB7A206FD673002A4212 /* AddWorkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkViewController.swift; sourceTree = "<group>"; };
 		2108BB7C206FD7D8002A4212 /* TitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewCell.swift; sourceTree = "<group>"; };
 		2108BB7D206FD7D8002A4212 /* TitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleTableViewCell.xib; sourceTree = "<group>"; };
 		2108BB80206FD7F3002A4212 /* ContentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTableViewCell.swift; sourceTree = "<group>"; };
@@ -439,6 +438,8 @@
 		214F84B22122C0D600255F00 /* AddInvoiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddInvoiceViewController.swift; sourceTree = "<group>"; };
 		214F84B62122C1C500255F00 /* FinanceDetialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinanceDetialViewController.swift; sourceTree = "<group>"; };
 		214F84B72122C1C500255F00 /* FinanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinanceViewController.swift; sourceTree = "<group>"; };
+		214F84BB2122C40200255F00 /* AddWorkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddWorkViewController.swift; sourceTree = "<group>"; };
+		214F84BC2122C40200255F00 /* WorkBookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkBookViewController.swift; sourceTree = "<group>"; };
 		21528BB820A52B3300C9950A /* FileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileViewController.swift; sourceTree = "<group>"; };
 		21528BBE20A52D6C00C9950A /* FileListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileListTableViewCell.swift; sourceTree = "<group>"; };
 		21528BBF20A52D6C00C9950A /* FileListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FileListTableViewCell.xib; sourceTree = "<group>"; };
@@ -465,7 +466,6 @@
 		216A6C53204CDE7900528FD8 /* WorkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkViewController.swift; sourceTree = "<group>"; };
 		216A6C56204CDE9D00528FD8 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		216A6C58204CE7D800528FD8 /* BaseNetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNetViewController.swift; sourceTree = "<group>"; };
-		216B7C5920637AE400BBACDA /* WorkBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkBookViewController.swift; sourceTree = "<group>"; };
 		216B7C5B20637D7000BBACDA /* WorkBookTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkBookTableViewCell.swift; sourceTree = "<group>"; };
 		216B7C5C20637D7000BBACDA /* WorkBookTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkBookTableViewCell.xib; sourceTree = "<group>"; };
 		216B7C6120638EE100BBACDA /* IncomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeTableViewCell.swift; sourceTree = "<group>"; };
@@ -781,6 +781,15 @@
 			path = "我的收款";
 			sourceTree = "<group>";
 		};
+		214F84BA2122C3DE00255F00 /* 工作日志 */ = {
+			isa = PBXGroup;
+			children = (
+				214F84BC2122C40200255F00 /* WorkBookViewController.swift */,
+				214F84BB2122C40200255F00 /* AddWorkViewController.swift */,
+			);
+			path = "工作日志";
+			sourceTree = "<group>";
+		};
 		215C15C42063D95C00A9129D /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -838,6 +847,7 @@
 		216A6C49204CDDB100528FD8 /* Mine(我的) */ = {
 			isa = PBXGroup;
 			children = (
+				214F84BA2122C3DE00255F00 /* 工作日志 */,
 				214F84B52122C17100255F00 /* 我的收款 */,
 				214F84A42122C02900255F00 /* 报销申请 */,
 				2127BCCC21201DC2007784A1 /* 发票申请 */,
@@ -846,8 +856,6 @@
 				216A6C51204CDE6F00528FD8 /* MineViewController.swift */,
 				219D7BB2205E049A009F543B /* InfoViewController.swift */,
 				21387D40205FEB700050DF1F /* MoreInfoViewController.swift */,
-				216B7C5920637AE400BBACDA /* WorkBookViewController.swift */,
-				2108BB7A206FD673002A4212 /* AddWorkViewController.swift */,
 				216B7C6B2063953300BBACDA /* MemoViewController.swift */,
 				21CFDDC32068E30500745A48 /* AddMemoViewController.swift */,
 				21089E9E206E810600573B6A /* SearchViewController.swift */,
@@ -1285,6 +1293,7 @@
 				2124D725208DB90D0007B5EE /* DealCheckViewController.swift in Sources */,
 				211A65C820A00957009CD41A /* NoticeTableViewCell.swift in Sources */,
 				21089E98206E791B00573B6A /* FinanceDetialTableViewCell.swift in Sources */,
+				214F84BE2122C40200255F00 /* WorkBookViewController.swift in Sources */,
 				21306574211AF5C40073ECF9 /* CrtDealslistViewController.swift in Sources */,
 				21376687203FBAEB000CBCE6 /* View+Clipping.swift in Sources */,
 				2108BB7E206FD7D8002A4212 /* TitleTableViewCell.swift in Sources */,
@@ -1383,7 +1392,6 @@
 				21306578211B055C0073ECF9 /* CrtChooseViewController.swift in Sources */,
 				21387D29205F55120050DF1F /* CodeData.swift in Sources */,
 				2105D2E12061101C0031B14C /* expense_getinfoModel.swift in Sources */,
-				216B7C5A20637AE400BBACDA /* WorkBookViewController.swift in Sources */,
 				2115D0D92103205B002BDB3F /* income_getinfoModel.swift in Sources */,
 				2105D2E3206111220031B14C /* invoice_getinfoModel.swift in Sources */,
 				216B7C67206394DE00BBACDA /* MemoTableViewCell.swift in Sources */,
@@ -1402,6 +1410,7 @@
 				2126DBE6208B454700977802 /* Title5TableViewCell.swift in Sources */,
 				2124D71B208D66530007B5EE /* RoomViewController.swift in Sources */,
 				21528BC020A52D6C00C9950A /* FileListTableViewCell.swift in Sources */,
+				214F84BD2122C40200255F00 /* AddWorkViewController.swift in Sources */,
 				21306576211AFAA20073ECF9 /* CrtDealslistModel.swift in Sources */,
 				215B4205211F285C0029FBEC /* WorkFootView.swift in Sources */,
 				219D7BCB205E4830009F543B /* PubMesConView.swift in Sources */,
@@ -1412,7 +1421,6 @@
 				21089E9B206E7A3500573B6A /* FinanceDetialHeadView.swift in Sources */,
 				21DDC9D0208095150067197D /* casetypeModel.swift in Sources */,
 				21A49D71210215420092CC04 /* income_getdealsinfoModel.swift in Sources */,
-				2108BB7B206FD673002A4212 /* AddWorkViewController.swift in Sources */,
 				21DDC9CE2080949B0067197D /* userlistModel.swift in Sources */,
 				21CFDDC72068E8E500745A48 /* InvoiceTableViewCell.swift in Sources */,
 				2130656821156C7A0073ECF9 /* docgetlistModel.swift in Sources */,

@@ -22,7 +22,7 @@ typealias SearchViewControllerBlock_docSearch = (_ nStr : String,_ dnStr : Strin
 enum SearchViewController_type {
 
     //发票申请           收款记录       工作日志      发票列表         案件查询        合同查询   姓名    部门 人员姓名     收款登记
-    case expense_type, finance_type , work_type ,invoice_getlist,caselsit_type,deal_type,person,departAndPerson,Income_list,doc_search,shareType,conven_type,deal2_type
+    case expense_type, finance_type , work_type ,invoice_getlist,caselsit_type,deal_type,person,departAndPerson,Income_list,doc_search,shareType,conven_type,deal2_type,workbook_type
 
 }
 let Searchcell_finance_typeID = "Searchcell_finance_type_id"
@@ -133,6 +133,9 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         }else if type == .caselsit_type{
             self.navigation_title_fontsize(name: "案件查询", fontsize: 18)
             rowNum = 2
+        } else if type == .workbook_type{
+            self.navigation_title_fontsize(name: "工作日志查询", fontsize: 18)
+            rowNum = 2
         } else if type == .deal_type {
             self.navigation_title_fontsize(name: "编号查询", fontsize: 18)
             rowNum = 1
@@ -193,6 +196,9 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             
         }else if type == .caselsit_type {
             mainTabelView.register(UINib.init(nibName: "endTimeTableViewCell", bundle: nil), forCellReuseIdentifier: endTimeTableViewCellid)
+        } else if type == .workbook_type {
+            mainTabelView.register(UINib.init(nibName: "endTimeTableViewCell", bundle: nil), forCellReuseIdentifier: endTimeTableViewCellid)
+
         } else if type == .deal_type || type == .person || type == .conven_type{
             mainTabelView.register(UINib.init(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: TitleTableViewCellID)
 
@@ -306,6 +312,21 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             
         }else if type == .caselsit_type{
             //公告搜索
+            if indexPath.row == 0 {
+                //开始时间
+                startTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                startTimeCell.setData(titleStr: "开始时间", tag: 0)
+                return startTimeCell
+
+            } else {
+                //结束时间
+                endTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                endTimeCell.setData(titleStr: "结束时间", tag: 1)
+                return endTimeCell
+
+            }
+
+        } else if type == .workbook_type {
             if indexPath.row == 0 {
                 //开始时间
                 startTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
@@ -474,7 +495,15 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
                 //结束时间
                 self.showTime_end()
             }
-        }  else if type == .deal2_type{
+        } else if type == .workbook_type{
+            if indexPath.row == 0 {
+                //开始时间
+                self.showTime_start()
+            } else if indexPath.row == 1 {
+                //结束时间
+                self.showTime_end()
+            }
+        } else if type == .deal2_type{
 
             if indexPath.row == 1 {
                 //开始时间
@@ -700,6 +729,8 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             self.sureFinanceBlock(titleCell.conTent,persionCell.contentStr,dStr,startTimeStr,endTimeStr)
             
         } else if self.type == .caselsit_type {
+            self.sureCaselsitBlock(startTimeStr,endTimeStr)
+        } else if type == .workbook_type{
             self.sureCaselsitBlock(startTimeStr,endTimeStr)
         } else if type == .deal_type || type == .person || type == .conven_type {
             if titleCell.textField.isFirstResponder {
