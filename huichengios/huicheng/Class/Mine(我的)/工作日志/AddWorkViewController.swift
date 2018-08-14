@@ -28,6 +28,9 @@ class AddWorkViewController: BaseViewController,UITableViewDataSource,UITableVie
 
     var nStr = ""
 
+    var fileNameStr = ""
+
+
     var fileArr : Array<String> = []
     var fileCell : FileTableViewCell!
     // MARK: - life
@@ -100,23 +103,41 @@ class AddWorkViewController: BaseViewController,UITableViewDataSource,UITableVie
             return cell
         } else {
             fileCell = tableView.dequeueReusableCell(withIdentifier: FileTableViewCellID, for: indexPath) as! FileTableViewCell
-
+            
+            fileCell.setData_fileName(fileName: fileNameStr)
             return fileCell
         }
 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 2 {
-            let vc = FileViewController()
-            vc.hidesBottomBarWhenPushed = true
-            weak var weakself = self
-            vc.fileArrBlock = {(fileArr) in
-                let nameStr = fileArr[0]
-                weakself?.fileCell.setData_fileName(fileName: nameStr)
-                weakself?.fileArr = fileArr
+
+        if type == .add {
+            if indexPath.row == 2 {
+                let vc = FileViewController()
+                vc.hidesBottomBarWhenPushed = true
+                weak var weakself = self
+                vc.fileArrBlock = {(fileArr) in
+                    let nameStr = fileArr[0]
+                    weakself?.fileCell.setData_fileName(fileName: nameStr)
+                    weakself?.fileArr = fileArr
+                }
+                self.navigationController?.pushViewController(vc, animated: true)
             }
-            self.navigationController?.pushViewController(vc, animated: true)
+
+        } else {
+            if indexPath.row == 2 {
+                HCLog(message: "查看文件")
+                if self.workDetailModel.attachment.count > 0 {
+                    let vc = ReadPdfViewController()
+                    HCLog(message:  self.workDetailModel.attachment!)
+                    let str = self.workDetailModel.attachment.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!
+
+                    HCLog(message: self.workDetailModel.attachment.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)
+                    vc.url = URL(string: base_imageOrFile_api + str)
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
         }
     }
     
@@ -136,6 +157,15 @@ class AddWorkViewController: BaseViewController,UITableViewDataSource,UITableVie
             workDetailModel = data as! work_getinfoModel
             tStr = workDetailModel.title
             nStr = workDetailModel.content
+            HCLog(message:  workDetailModel.attachment)
+
+
+            if workDetailModel.attachment.count > 0 {
+                let arr = workDetailModel.attachment.components(separatedBy: "/")
+                fileNameStr = arr.last!
+            }
+
+
             self.mainTabelView.reloadData()
         } else if type == .work_save{
             //保存
