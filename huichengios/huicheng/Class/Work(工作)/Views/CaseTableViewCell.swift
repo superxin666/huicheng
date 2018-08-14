@@ -71,9 +71,30 @@ class CaseTableViewCell: UITableViewCell {
         }
 //        -1-未提交;0-未审核;1-已审核;2-审核驳回;3- 已结案
         if let state = model.state {
+            if state == 0 {
+                self.nameLabel.backgroundColor = darkblueColor
+                self.nameLabel.textColor = .white
 
-           self.nameLabel.backgroundColor = darkblueColor
-           self.nameLabel.textColor = .white
+            }else if state == 1 {
+                self.nameLabel.backgroundColor = UIColor.hc_colorFromRGB(rgbValue: 0xcccccc)
+                self.nameLabel.textColor = .white
+
+
+            } else if state == 2 {
+                self.nameLabel.backgroundColor = orangeColor
+                self.nameLabel.textColor = .white
+
+            } else if state == 3 {
+                self.nameLabel.hc_makeBorderWithBorderWidth(width: 1, color: UIColor.hc_colorFromRGB(rgbValue: 0x999999))
+                self.nameLabel.backgroundColor = .white
+                self.nameLabel.textColor = UIColor.hc_colorFromRGB(rgbValue: 0x999999)
+
+            } else if state == -1 {
+                self.nameLabel.hc_makeBorderWithBorderWidth(width: 1, color: darkblueColor)
+                self.nameLabel.backgroundColor = .white
+                self.nameLabel.textColor = darkblueColor
+
+            }
         }
 
     }
