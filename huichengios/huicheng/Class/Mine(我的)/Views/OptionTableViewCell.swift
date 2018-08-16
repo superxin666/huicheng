@@ -23,8 +23,14 @@ class OptionTableViewCell: UITableViewCell {
     }
     
     func setOptionData(contentStr : String)  {
-        self.titleNameLabel.text = "报销类型"
+
         self.contentLabel.text = contentStr
+    }
+
+    func setDataOption(titleStr : String) {
+        self.titleNameLabel.text = "报销类型"
+        self.contentLabel.text = titleStr
+
     }
 
     override func awakeFromNib() {

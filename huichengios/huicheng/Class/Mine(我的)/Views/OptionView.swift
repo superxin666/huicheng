@@ -128,10 +128,10 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
             data_departArr = dataArr as! [departmentModel]
         } else if indexPath.row == 5 {
             self.type = .caseUser
-            data_userlistArr1 = dataArr as! [userlistModel]
+            data_userlistArr = dataArr as! [userlistModel]
         } else {
             self.type = .caseUser
-            data_userlistArr2 = dataArr as! [userlistModel]
+            data_userlistArr = dataArr as! [userlistModel]
         }
         self.pickView.reloadAllComponents()
     }

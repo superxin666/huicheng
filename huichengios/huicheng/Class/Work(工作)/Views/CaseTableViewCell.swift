@@ -33,6 +33,7 @@ class CaseTableViewCell: UITableViewCell {
 
     func setData(model : checkcaseModel)  {
         if let title = model.name {
+            self.titleNameLabel.textColor = darkblueColor
             self.titleNameLabel.text = title
         }
         if let time = model.regtime {

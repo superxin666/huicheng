@@ -450,7 +450,7 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
             self.showOptionPickView(indexPath: currectIndexpath)
         } else if type == .userlist {
             //律师
-            userList = data as! [userlistModel]
+           userList = data as! [userlistModel]
            self.showOptionPickView(indexPath: currectIndexpath)
 
         } else if type == .department {
@@ -543,11 +543,11 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
                 self.navigationBar_rightBtn_title(name: "确定")
                 self.type = .editeCase
 
-                self.tStr = self.caseDetailModel.data.typeStr
+                self.tStr = "\(self.caseDetailModel.data.type!)"
                 self.nStr = self.caseDetailModel.data.n
-                self.rtStr = self.caseDetailModel.data.rt
-                self.rStr = self.caseDetailModel.data.rStr
-                self.dStr = self.caseDetailModel.data.dStr
+                self.rtStr = self.caseDetailModel.data.rStr
+                self.rStr = "\(self.caseDetailModel.data.r!)"
+                self.dStr = "\(self.caseDetailModel.data.d!)"
                 self.ctStr = self.caseDetailModel.data.ct
                 self.sjStr = self.caseDetailModel.data.sj
 
@@ -589,6 +589,8 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
 
 
     func showOptionPickView(indexPath : IndexPath) {
+
+        HCLog(message: indexPath.row)
 
 
         self.maskView.addSubview(self.optionView)

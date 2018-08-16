@@ -117,7 +117,8 @@ class AddExpenseViewController: BaseTableViewController ,MineRequestVCDelegate,O
         } else if indexPath.row == 1 {
             let cell : OptionTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
             if let model = cuurectModel {
-                cell.setOptionData(contentStr: model.name)
+//                cell.setOptionData(contentStr: model.name)
+                cell.setDataOption(titleStr: model.name)
             }
 
             if type == .detaile_type{
