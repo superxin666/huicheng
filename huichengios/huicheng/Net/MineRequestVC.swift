@@ -353,8 +353,9 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
                 self.delegate.requestSucceed_mine(data: arr,type : type)
             }
             
-        } else if type == .expense_gettype{
+        } else if type == .expense_gettype || type == .invoice_gettype{
             //获取报销类型列表
+           
             let arr = Mapper<expense_gettypeModel>().mapArray(JSONArray: response as! [[String : Any]])
             HCLog(message: arr.count)
             if !(self.delegate == nil) {

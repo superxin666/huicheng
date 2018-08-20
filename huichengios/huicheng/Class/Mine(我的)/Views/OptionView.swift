@@ -250,7 +250,10 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
             titleStr = model.name
             cuurectID = "\(model.id!)"
             currectStr = titleStr
-            currectNoteStr = model.note
+            if let str = model.note {
+                currectNoteStr = model.note
+
+            }
         } else if type == .share_type {
 
             titleStr = shareNameArr[row]

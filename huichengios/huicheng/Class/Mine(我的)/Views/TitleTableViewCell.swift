@@ -127,6 +127,30 @@ class TitleTableViewCell: UITableViewCell {
     }
 
 
+
+    /// 生成合同
+    ///
+    /// - Parameters:
+    ///   - titleStr: <#titleStr description#>
+    ///   - contentStr: <#contentStr description#>
+    ///   - indexPath: <#indexPath description#>
+    func setData_overDeal(titleStr : String,contentStr : String,indexPath : IndexPath) {
+        HCLog(message: contentStr)
+        let tagNum = indexPath.section * 10 + indexPath.row
+        if indexPath.row == 1 {
+            self.textField.keyboardType = .numberPad
+        } else {
+            self.textField.keyboardType = .default
+        }
+        self.textField.tag = tagNum
+        self.titleNameLabel.textColor = darkblueColor
+        self.titleNameLabel.text = titleStr
+        self.titleNameLabel.textAlignment = .left
+        self.textField.text = contentStr
+        self.textField.placeholder = "请输入"
+    }
+
+
     /// 结案信息
     ///
     /// - Parameters:

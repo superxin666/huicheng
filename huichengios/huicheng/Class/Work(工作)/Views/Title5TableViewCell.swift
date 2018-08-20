@@ -36,6 +36,11 @@ class Title5TableViewCell: UITableViewCell {
         self.titleNameLabel.text = titleStr
     }
 
+    func setData_overDeal(titleStr : String,contentStr : String) {
+        self.textField.text = contentStr
+        self.titleNameLabel.text = titleStr
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

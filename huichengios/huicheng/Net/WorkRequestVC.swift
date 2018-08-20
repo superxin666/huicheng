@@ -12,7 +12,7 @@ enum WorkRequestVC_enum {
     //
     case checkcase,//利益冲突检查
          save,newslist1,getobjectlist,newspublic,del,//公告  发布/编辑公告  获取列表  获取接收对象  发布/撤销公告  删除
-         case_getlist,case_getinfo,case_add,casedel,//案件列表  获取案件详情  添加案件  删除
+         case_getlist,case_getinfo,case_add,casedel,createdeals,//案件列表  获取案件详情  添加案件  删除
          branch,department,userlist,casetype,//分所列表  部门列表  本所律师列表  案件类型
          deal,getinfo,oversave,dealdel,//合同列表 详情  申请结案  删除合同
          room,roomsave,roomdel,//会议室
@@ -175,7 +175,8 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
         let url =   del_api + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
     }
-     // MARK: 获取案件
+
+     // MARK:  案件管理  获取案件
     func casegetlistRerquest(p:Int,c:Int,b:String,s:String) {
         request.delegate = self
         type = .case_getlist
@@ -200,6 +201,49 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
         type = .case_getinfo
         let url =   case_getinfo_api + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url,type: .alltyper)
+    }
+
+
+    /// 生成合同
+    ///
+    /// - Parameters:
+    ///   - id: <#id description#>
+    ///   - a: <#a description#>
+    ///   - m: <#m description#>
+    ///   - b: <#b description#>
+    ///   - e: <#e description#>
+    ///   - d: <#d description#>
+    ///   - i: <#i description#>
+    ///   - pn: <#pn description#>
+    ///   - cc: <#cc description#>
+    func casecreatedeals(id:String,a:String,m:String,b:String,e:String,d:String,i:String,pn:String,cc:String,it:String,img:String)  {
+        request.delegate = self
+        type = .createdeals
+
+        var bStr = ""
+        if b.count > 0 {
+            bStr = b.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+        var eStr = ""
+        if e.count > 0 {
+            eStr = e.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+        var dStr = ""
+        if d.count > 0 {
+            dStr = d.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+        var pnStr = ""
+        if pn.count > 0 {
+            pnStr = pn.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+        var ccStr = ""
+        if cc.count > 0 {
+            ccStr = cc.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+
+        let url =   case_createdeals_api + "id=\(id)&a=\(a)&m=\(0)&b=\(bStr)&e=\(eStr)&a=\(a)&d=\(dStr)&i=\(i)&pn=\(pnStr)&cc=\(ccStr)&it=\(it)&img=\(img)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+
     }
 
 
@@ -779,7 +823,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work(data: arr,type : type)
             }
-        } else if type == .save || type == .newspublic || type == .oversave || type == .casedel || type == .dealdel || type == .roomsave || type == .roomdel || type == .applysave || type == .checkoversave  || type == .invoice_applysave || type == .invoice_del || type == .expense_applysave || type == .expense_del ||  type == .bank_save || type == .sharereplysave || type == .del{
+        } else if type == .save || type == .newspublic || type == .oversave || type == .casedel || type == .dealdel || type == .roomsave || type == .roomdel || type == .applysave || type == .checkoversave  || type == .invoice_applysave || type == .invoice_del || type == .expense_applysave || type == .expense_del ||  type == .bank_save || type == .sharereplysave || type == .del || type == .createdeals{
             //发布公告
             let model = Mapper<CodeData>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {

@@ -102,7 +102,6 @@
 		2126DBDD20898E5C00977802 /* OverCaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2126DBDC20898E5C00977802 /* OverCaseViewController.swift */; };
 		2126DBE02089CB9B00977802 /* Title4TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2126DBDE2089CB9B00977802 /* Title4TableViewCell.swift */; };
 		2126DBE12089CB9B00977802 /* Title4TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2126DBDF2089CB9B00977802 /* Title4TableViewCell.xib */; };
-		2126DBE3208B438000977802 /* OverDealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2126DBE2208B438000977802 /* OverDealViewController.swift */; };
 		2126DBE6208B454700977802 /* Title5TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2126DBE4208B454700977802 /* Title5TableViewCell.swift */; };
 		2126DBE7208B454700977802 /* Title5TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2126DBE5208B454700977802 /* Title5TableViewCell.xib */; };
 		2129C1C2211EDFD50070A82F /* WorlkHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2129C1C1211EDFD50070A82F /* WorlkHeadView.swift */; };
@@ -191,6 +190,7 @@
 		21553CBF20887159009284B1 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21553CBE20887159009284B1 /* BaseTableViewController.swift */; };
 		21553CC12088940E009284B1 /* DealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21553CC02088940E009284B1 /* DealViewController.swift */; };
 		21553CC32088BBBF009284B1 /* dealGetlistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21553CC22088BBBF009284B1 /* dealGetlistModel.swift */; };
+		215630C72129128300AE1F5E /* OverDealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215630C62129128300AE1F5E /* OverDealViewController.swift */; };
 		215B4205211F285C0029FBEC /* WorkFootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215B4204211F285C0029FBEC /* WorkFootView.swift */; };
 		215C15C72063D99600A9129D /* ConbenTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215C15C62063D99600A9129D /* ConbenTopView.swift */; };
 		215C15C92063D99F00A9129D /* ConbenTopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 215C15C82063D99F00A9129D /* ConbenTopView.xib */; };
@@ -359,7 +359,6 @@
 		2126DBDC20898E5C00977802 /* OverCaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverCaseViewController.swift; sourceTree = "<group>"; };
 		2126DBDE2089CB9B00977802 /* Title4TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title4TableViewCell.swift; sourceTree = "<group>"; };
 		2126DBDF2089CB9B00977802 /* Title4TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Title4TableViewCell.xib; sourceTree = "<group>"; };
-		2126DBE2208B438000977802 /* OverDealViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverDealViewController.swift; sourceTree = "<group>"; };
 		2126DBE4208B454700977802 /* Title5TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title5TableViewCell.swift; sourceTree = "<group>"; };
 		2126DBE5208B454700977802 /* Title5TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Title5TableViewCell.xib; sourceTree = "<group>"; };
 		2129C1C1211EDFD50070A82F /* WorlkHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorlkHeadView.swift; sourceTree = "<group>"; };
@@ -449,6 +448,7 @@
 		21553CBE20887159009284B1 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		21553CC02088940E009284B1 /* DealViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealViewController.swift; sourceTree = "<group>"; };
 		21553CC22088BBBF009284B1 /* dealGetlistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dealGetlistModel.swift; sourceTree = "<group>"; };
+		215630C62129128300AE1F5E /* OverDealViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverDealViewController.swift; sourceTree = "<group>"; };
 		215B4204211F285C0029FBEC /* WorkFootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkFootView.swift; sourceTree = "<group>"; };
 		215C15C62063D99600A9129D /* ConbenTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConbenTopView.swift; sourceTree = "<group>"; };
 		215C15C82063D99F00A9129D /* ConbenTopView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConbenTopView.xib; sourceTree = "<group>"; };
@@ -795,6 +795,7 @@
 			children = (
 				214F84C02122E43100255F00 /* CaseViewController.swift */,
 				214F84C22122E45700255F00 /* CaseDetailViewController.swift */,
+				215630C62129128300AE1F5E /* OverDealViewController.swift */,
 			);
 			path = "案件管理";
 			sourceTree = "<group>";
@@ -911,7 +912,6 @@
 				2109654A20710B5E0012FDDB /* AddNoticeViewController.swift */,
 				2108BB78206FD219002A4212 /* CheckcaseViewController.swift */,
 				2108BB94206FF723002A4212 /* CheckcaseResultViewController.swift */,
-				2126DBE2208B438000977802 /* OverDealViewController.swift */,
 				21DDC9E12080DCB90067197D /* CasePersionViewController.swift */,
 				21553CC02088940E009284B1 /* DealViewController.swift */,
 				2126DBD42089797500977802 /* DealDetailViewController.swift */,
@@ -1289,7 +1289,6 @@
 				214C8FE320A42D0F00B09C3B /* CheckInfoViewController.swift in Sources */,
 				2108BB8A206FE326002A4212 /* ObjectTableViewCell.swift in Sources */,
 				2108BB71206F28E7002A4212 /* ConvenRequestVC.swift in Sources */,
-				2126DBE3208B438000977802 /* OverDealViewController.swift in Sources */,
 				2102E8702071C06100536F41 /* StartTimeTableViewCell.swift in Sources */,
 				21066CAD20668311009327AD /* ResetKeyViewControllerViewController.swift in Sources */,
 				21376681203FBA9D000CBCE6 /* ImageView+loading.swift in Sources */,
@@ -1442,6 +1441,7 @@
 				21075562205D7A3700FF4396 /* MineHeadView.swift in Sources */,
 				2130657A211BC47C0073ECF9 /* crt_chooseModel.swift in Sources */,
 				212FEA7E20C3789000A466E2 /* ShareDetailViewController.swift in Sources */,
+				215630C72129128300AE1F5E /* OverDealViewController.swift in Sources */,
 				21E9D29E20FDA9C200CA7B49 /* AddIconComeStep1ViewController.swift in Sources */,
 				2108BB77206FD0B3002A4212 /* NoticeViewController.swift in Sources */,
 				21DDC9CC208054040067197D /* caseDetailModel.swift in Sources */,

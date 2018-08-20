@@ -34,24 +34,29 @@ class SelectedTableViewCell: UITableViewCell {
     }
 
     /// 生成合同
-    func setData_deal() {
+    func setData_deal(type : String) {
         normalBtn.isSelected = true
-        lastBtn = normalBtn
         self.titleNameLabel.text = "发票情况"
-
         normalBtn.setTitle("未开", for: .normal)
         specialBtn.setTitle("已开", for: .normal)
+        if type == "0" {
+            normalBtn.isSelected = true
+            specialBtn.isSelected = false
+        } else {
+            specialBtn.isSelected = true
+            normalBtn.isSelected = false
+
+        }
     }
+
 
     func setData_dealcheckdetail(state : String) {
         if state == "1" {
-            specialBtn.isSelected = false
-
-            normalBtn.isSelected = true
+                specialBtn.isSelected = false
+                normalBtn.isSelected = true
             lastBtn = normalBtn
         } else {
             normalBtn.isSelected = false
-
             specialBtn.isSelected = true
             lastBtn = specialBtn
         }
@@ -90,6 +95,7 @@ class SelectedTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        lastBtn = normalBtn
 
 
     }
