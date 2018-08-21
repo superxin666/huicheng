@@ -102,7 +102,7 @@ class BaseNetViewController: UIViewController {
             )
         } else {
             //上传图片
-
+            HCLog(message: "上传图片")
             var model:CodeData = CodeData()
             Alamofire.upload(
                 multipartFormData: { multipartFormData in

@@ -9,7 +9,7 @@
 import UIKit
 
 class OverDealViewController:
-BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDelegate,SelectedTableViewCellDelegate,TitleTableViewCellDelegate,Title5TableViewCellDelegate,MineRequestVCDelegate{
+BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDelegate,SelectedTableViewCellDelegate,TitleTableViewCellDelegate,Title5TableViewCellDelegate,MineRequestVCDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
 
 
 
@@ -246,18 +246,8 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
                 //合同扫描
                 HCLog(message: "合同扫描")
 
-                alertController = UIAlertController(title: nil, message: "文件选择", preferredStyle: .actionSheet)
-                let sureAction = UIAlertAction(title: "图片", style: .default) { (action) in
-                    self.getImageClik()
-                }
+                self.showAlert()
 
-                let cancleAction = UIAlertAction(title: "文件", style: .default) { (action) in
-                    self.getFileClick()
-
-                }
-                alertController.addAction(cancleAction)
-                alertController.addAction(sureAction)
-                self.present((alertController)!, animated: true, completion: nil)
 
             }
 
@@ -279,6 +269,7 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
             } else if indexPath.row == 9 {
                 //合同扫描
                 HCLog(message: "合同扫描")
+                self.showAlert()
 
             }
 
@@ -297,6 +288,22 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
 
             }
         }
+
+    }
+    func showAlert() {
+        alertController = UIAlertController(title: nil, message: "文件选择", preferredStyle: .actionSheet)
+        let sureAction = UIAlertAction(title: "图片", style: .default) { (action) in
+            self.openAlbum()
+        }
+
+        let cancleAction = UIAlertAction(title: "文件", style: .default) { (action) in
+            self.getFileClick()
+
+        }
+        alertController.addAction(cancleAction)
+        alertController.addAction(sureAction)
+        self.present((alertController)!, animated: true, completion: nil)
+
 
     }
 
@@ -320,11 +327,56 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
     }
 
 
-    func getImageClik() {
 
 
+    func openAlbum() {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+            //初始化图片控制器
+            let picker = UIImagePickerController()
+            //设置代理
+            picker.delegate = self
+            //指定图片控制器类型
+            picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+            //设置是否允许编辑
+            picker.allowsEditing = true
+
+            //弹出控制器，显示界面
+            self.present(picker, animated: true, completion: {
+                () -> Void in
+            })
+        }else{
+            HCLog(message:  "读取相册错误")
+        }
 
     }
+
+    //选择图片成功后代理
+    func imagePickerController(_ picker: UIImagePickerController,didFinishPickingMediaWithInfo info: [String : Any]) {
+        //查看info对象
+        HCLog(message: info)
+        if self.fileArr.count > 0 {
+            self.fileArr.removeAll()
+        }
+        //获取选择的编辑后的
+        let  image = info[UIImagePickerControllerEditedImage] as! UIImage
+
+        let nameStr = image.description
+        HCLog(message: nameStr)
+
+
+        self.fileCell.setData_fileName(fileName: "图片")
+
+
+        imageData = UIImageJPEGRepresentation(image, 1.0)!
+
+        //图片控制器退出
+        picker.dismiss(animated: true, completion: {
+            () -> Void in
+
+            //显示图片
+        })
+    }
+
 
 
 
@@ -465,8 +517,14 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
 
         self.upLoad(type: "2", completion: { (data) in
             let str : String = data as! String
-            
-            self.request.casecreatedeals(id: "\(self.dealId!)", a:self.aStr, m: "", b: self.bStr, e: self.eStr, d: self.dStr, i: self.itStr, pn: self.pStr, cc: self.ccStr, it: self.itIdStr, img: str)
+            if str.count > 0 {
+                self.request.casecreatedeals(id: "\(self.dealId!)", a:self.aStr, m: "", b: self.bStr, e: self.eStr, d: self.dStr, i: self.itStr, pn: self.pStr, cc: self.ccStr, it: self.itIdStr, img: str)
+
+            } else {
+                HCLog(message: "上传失败")
+
+            }
+
 
         }) { (erro) in
             self.request.casecreatedeals(id: "\(self.dealId!)", a:self.aStr, m: "", b: self.bStr, e: self.eStr, d: self.dStr, i: self.itStr, pn: self.pStr, cc: self.ccStr, it: self.itIdStr, img: "")
@@ -506,6 +564,7 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
                     let file = base_imageOrFile_api + model.msg
                     completion(file)
                 } else {
+                    completion("")
                     SVPMessageShow.dismissSVP()
                     SVPMessageShow.showErro(infoStr: "文件上传失败，请重新尝试")
                 }
