@@ -281,6 +281,10 @@ class ShareViewController: BaseViewController,UITableViewDataSource,UITableViewD
         HCLog(message: "添加")
         let vc = AddShareViewController()
         vc.hidesBottomBarWhenPushed = true
+        vc.sucessBlock = {
+            self.reflishData()
+
+        }
         self.navigationController?.pushViewController(vc, animated: true)
     }
     override func navigationLeftBtnClick() {

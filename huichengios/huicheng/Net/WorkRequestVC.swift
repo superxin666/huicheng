@@ -764,16 +764,16 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
         request.delegate = self
         type = .sharesave
         let nStr = n.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-        let tStr = t.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let dStr = d.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         let fStr = f.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         var url  = ""
 
         if id.count > 0 {
-             url = share_save_api   + "id=\(id)&n=\(nStr)&t=\(tStr)&d=\(d)&f=\(fStr)&k=\(UserInfoLoaclManger.getKey())"
+             url = share_save_api   + "id=\(id)&n=\(nStr)&t=\(t)&d=\(dStr)&f=\(fStr)&k=\(UserInfoLoaclManger.getKey())"
 
 
         } else {
-             url = share_save_api   + "n=\(nStr)&t=\(tStr)&d=\(d)&f=\(fStr)&k=\(UserInfoLoaclManger.getKey())"
+             url = share_save_api   + "n=\(nStr)&t=\(t)&d=\(dStr)&f=\(fStr)&k=\(UserInfoLoaclManger.getKey())"
 
         }
         request.request_api(url: url)
@@ -823,7 +823,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work(data: arr,type : type)
             }
-        } else if type == .save || type == .newspublic || type == .oversave || type == .casedel || type == .dealdel || type == .roomsave || type == .roomdel || type == .applysave || type == .checkoversave  || type == .invoice_applysave || type == .invoice_del || type == .expense_applysave || type == .expense_del ||  type == .bank_save || type == .sharereplysave || type == .del || type == .createdeals{
+        } else if type == .save || type == .newspublic || type == .oversave || type == .casedel || type == .dealdel || type == .roomsave || type == .roomdel || type == .applysave || type == .checkoversave  || type == .invoice_applysave || type == .invoice_del || type == .expense_applysave || type == .expense_del ||  type == .bank_save || type == .sharereplysave || type == .del || type == .createdeals || type == .sharesave{
             //发布公告
             let model = Mapper<CodeData>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {

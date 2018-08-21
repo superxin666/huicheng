@@ -9,6 +9,7 @@
 
 import UIKit
 
+
 class AddShareViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate,WorkRequestVCDelegate,ContentTableViewCellDelegate,OptionViewDelgate,TitleTableViewCellDelegate {
     var caseTypeArr : [casetypeModel] = []
     var sucessBlock : AddWorkViewControllerBlocl!
@@ -144,6 +145,7 @@ class AddShareViewController: BaseViewController,UITableViewDataSource,UITableVi
             caseTypeArr = data as! [casetypeModel]
             self.showOptionPickView()
         } else {
+            self.sucessBlock()
             self.navigationController?.popViewController(animated: true)
         }
 
@@ -153,7 +155,8 @@ class AddShareViewController: BaseViewController,UITableViewDataSource,UITableVi
 
     }
     func optionSure(idStr: String, titleStr: String,noteStr : String, pickTag: Int) {
-        self.dStr = idStr
+        self.tStr = idStr
+
         let cell : OptionTableViewCell = mainTabelView.cellForRow(at: IndexPath(row: pickTag, section: 0)) as! OptionTableViewCell
         cell.setOptionData(contentStr: titleStr)
 
@@ -162,10 +165,10 @@ class AddShareViewController: BaseViewController,UITableViewDataSource,UITableVi
 
     }
     func endText_content(content: String, tagNum: Int) {
-        self.nStr = content
+        self.dStr = content
     }
     func endEdite(inputStr: String, tagNum: Int) {
-        self.tStr = inputStr
+        self.nStr = inputStr
     }
 
     override func navigationLeftBtnClick() {
