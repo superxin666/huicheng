@@ -60,6 +60,11 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
 
     var rowNum = 8
 
+    var fileCell : FileTableViewCell!
+
+
+    var fileArr : Array<String> = []
+    var imageData : Data = Data()
 
 
     override func viewDidLoad() {
@@ -148,9 +153,9 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
                 cell.setData_caseDetail(titleStr: "发票信息", contentStr: itNameStr)
                 return cell
             } else {
-                let cell : FileTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: FileTableViewCellID, for: indexPath) as! FileTableViewCell
-                cell.setData_deal()
-                return cell
+                fileCell = tableView.dequeueReusableCell(withIdentifier: FileTableViewCellID, for: indexPath) as! FileTableViewCell
+                fileCell.setData_deal()
+                return fileCell
             }
 
 
@@ -212,9 +217,9 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
                 cell.setData_caseDetail(titleStr: "发票信息", contentStr: itNameStr)
                 return cell
             } else {
-                let cell : FileTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: FileTableViewCellID, for: indexPath) as! FileTableViewCell
-                cell.setData_deal()
-                return cell
+                fileCell  = tableView.dequeueReusableCell(withIdentifier: FileTableViewCellID, for: indexPath) as! FileTableViewCell
+                fileCell.setData_deal()
+                return fileCell
             }
 
         }
@@ -243,13 +248,11 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
 
                 alertController = UIAlertController(title: nil, message: "文件选择", preferredStyle: .actionSheet)
                 let sureAction = UIAlertAction(title: "图片", style: .default) { (action) in
-
-
-
+                    self.getImageClik()
                 }
+
                 let cancleAction = UIAlertAction(title: "文件", style: .default) { (action) in
-
-
+                    self.getFileClick()
 
                 }
                 alertController.addAction(cancleAction)
@@ -297,6 +300,33 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
 
     }
 
+    /// 获取文件
+    func getFileClick()  {
+
+        weak  var weakSelf = self
+        let vc = FileViewController()
+        vc.hidesBottomBarWhenPushed = true
+        vc.fileArrBlock = {(fileArr) in
+            if (weakSelf?.imageData.count)! > 0  {
+                //清除图片数据
+                weakSelf?.imageData = Data()
+            }
+            let nameStr = fileArr[0]
+            self.fileCell.setData_fileName(fileName: nameStr)
+            weakSelf?.fileArr = fileArr
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
+
+    }
+
+
+    func getImageClik() {
+
+
+
+    }
+
+
 
     func endEdite(inputStr: String, tagNum: Int) {
         HCLog(message: tagNum)
@@ -328,12 +358,6 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
     }
 
 
-    /// 获取文件
-    func getFileClick()  {
-
-        
-
-    }
 
 
     /// 时间选项代理
@@ -439,10 +463,64 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
             return
         }
 
-        request.casecreatedeals(id: "\(dealId!)", a: aStr, m: "", b: bStr, e: eStr, d: dStr, i: itStr, pn: pStr, cc: ccStr, it: itIdStr, img: imageStr)
+        self.upLoad(type: "2", completion: { (data) in
+            let str : String = data as! String
+            
+            self.request.casecreatedeals(id: "\(self.dealId!)", a:self.aStr, m: "", b: self.bStr, e: self.eStr, d: self.dStr, i: self.itStr, pn: self.pStr, cc: self.ccStr, it: self.itIdStr, img: str)
 
+        }) { (erro) in
+            self.request.casecreatedeals(id: "\(self.dealId!)", a:self.aStr, m: "", b: self.bStr, e: self.eStr, d: self.dStr, i: self.itStr, pn: self.pStr, cc: self.ccStr, it: self.itIdStr, img: "")
+        }
 
     }
+
+
+    func upLoad(type : String,completion : @escaping (_ data : Any) ->(), failure : @escaping (_ error : Any)->()) {
+
+        if self.fileArr.count > 0 {
+            //        上传文件
+            SVPMessageShow.showLoad(title: "正在上传文件")
+            BaseNetViewController.uploadfile(fileName: self.fileArr[0], t: type, completion: { (data) in
+                let model = data as! CodeData
+                if model.code == 1 {
+                    HCLog(message: model.msg)
+                    SVPMessageShow.dismissSVP()
+                    let file = base_imageOrFile_api + model.msg
+                    completion(file)
+                } else {
+                    SVPMessageShow.dismissSVP()
+                    SVPMessageShow.showErro(infoStr: "文件上传失败，请重新尝试")
+                }
+            }) { (erro) in
+                SVPMessageShow.dismissSVP()
+                SVPMessageShow.showErro(infoStr: "文件上传失败，请重新尝试")
+                completion("")
+            }
+        } else if imageData.count > 0 {
+
+            BaseNetViewController.uploadfile(fileName: "", t: type,isFile: false,imageData: imageData, completion: { (data) in
+                let model = data as! CodeData
+                if model.code == 1 {
+                    HCLog(message: model.msg)
+                    SVPMessageShow.dismissSVP()
+                    let file = base_imageOrFile_api + model.msg
+                    completion(file)
+                } else {
+                    SVPMessageShow.dismissSVP()
+                    SVPMessageShow.showErro(infoStr: "文件上传失败，请重新尝试")
+                }
+            }) { (erro) in
+                SVPMessageShow.dismissSVP()
+                SVPMessageShow.showErro(infoStr: "文件上传失败，请重新尝试")
+                completion("")
+            }
+
+        } else {
+            failure("")
+        }
+
+    }
+
 
     /*
     // MARK: - Navigation
