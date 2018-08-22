@@ -156,27 +156,27 @@ class Work2ViewController: BaseViewController,UICollectionViewDataSource,UIColle
                 let vc = DealSearchViewController()
                 vc.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
-            case "诉讼函" :
-                HCLog(message: "诉讼函")
+            case "诉讼案件" :
+                HCLog(message: "诉讼案件")
                 let vc = CrtDealslistViewController()
                 vc.viewType = .type1
                 vc.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
-            case "民事函" :
-                HCLog(message: "民事函")
+            case "非诉案件" :
+                HCLog(message: "非诉案件")
                 let vc = CrtDealslistViewController()
                 vc.viewType = .type2
                 vc.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
-            case "刑事函" :
-                HCLog(message: "刑事函")
+            case "刑事案件" :
+                HCLog(message: "刑事案件")
 
                 let vc = CrtDealslistViewController()
                 vc.viewType = .type3
                 vc.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
-            case "法律顾问函" :
-                HCLog(message: "法律顾问函")
+            case "法律顾问" :
+                HCLog(message: "法律顾问")
                 let vc = CrtDealslistViewController()
                 vc.viewType = .type4
                 vc.hidesBottomBarWhenPushed = true
@@ -214,8 +214,8 @@ class Work2ViewController: BaseViewController,UICollectionViewDataSource,UIColle
                 let vc = ExpenseapplylistViewController()
                 vc.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
-            case "支付收款" :
-                HCLog(message: "支付收款")
+            case "线下支付" :
+                HCLog(message: "线下支付")
             case "支付审核" :
                 HCLog(message: "支付审核")
             case "银行信息" :
