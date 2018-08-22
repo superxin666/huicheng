@@ -91,11 +91,8 @@
 		2124D720208D69D20007B5EE /* RoomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2124D71E208D69D20007B5EE /* RoomTableViewCell.swift */; };
 		2124D721208D69D20007B5EE /* RoomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2124D71F208D69D20007B5EE /* RoomTableViewCell.xib */; };
 		2124D723208D73280007B5EE /* AddRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2124D722208D73280007B5EE /* AddRoomViewController.swift */; };
-		2124D725208DB90D0007B5EE /* DealCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2124D724208DB90D0007B5EE /* DealCheckViewController.swift */; };
-		2124D727208DBA9D0007B5EE /* CaseCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2124D726208DBA9D0007B5EE /* CaseCheckViewController.swift */; };
 		2124D72D208E196E0007B5EE /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2124D72C208E196E0007B5EE /* ShareViewController.swift */; };
 		2124D72F208E1B260007B5EE /* shareGetlistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2124D72E208E1B260007B5EE /* shareGetlistModel.swift */; };
-		2126DBD52089797500977802 /* DealDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2126DBD42089797500977802 /* DealDetailViewController.swift */; };
 		2126DBD820897BC500977802 /* Title3TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2126DBD620897BC500977802 /* Title3TableViewCell.swift */; };
 		2126DBD920897BC500977802 /* Title3TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2126DBD720897BC500977802 /* Title3TableViewCell.xib */; };
 		2126DBDB208981C600977802 /* getinfoDealModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2126DBDA208981C600977802 /* getinfoDealModel.swift */; };
@@ -165,9 +162,7 @@
 		2148A2D2206A38B500D996C5 /* AddMemoBackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2148A2D1206A38B500D996C5 /* AddMemoBackView.xib */; };
 		214AA6BB207F9876004F2B63 /* CaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214AA6B9207F9876004F2B63 /* CaseTableViewCell.swift */; };
 		214AA6BC207F9876004F2B63 /* CaseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 214AA6BA207F9876004F2B63 /* CaseTableViewCell.xib */; };
-		214C8FE120A3CD9500B09C3B /* CaseCheckDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214C8FE020A3CD9500B09C3B /* CaseCheckDetailViewController.swift */; };
 		214C8FE320A42D0F00B09C3B /* CheckInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214C8FE220A42D0F00B09C3B /* CheckInfoViewController.swift */; };
-		214C8FE520A4306E00B09C3B /* DealSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214C8FE420A4306E00B09C3B /* DealSearchViewController.swift */; };
 		214F84AB2122C02900255F00 /* InputTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 214F84A52122C02900255F00 /* InputTableViewCell.xib */; };
 		214F84AC2122C02900255F00 /* ExpenseTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214F84A62122C02900255F00 /* ExpenseTitleTableViewCell.swift */; };
 		214F84AD2122C02900255F00 /* AddExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214F84A72122C02900255F00 /* AddExpenseViewController.swift */; };
@@ -188,8 +183,14 @@
 		21541DD32062635E0003746E /* work_getlistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21541DD22062635E0003746E /* work_getlistModel.swift */; };
 		21541DD5206265010003746E /* work_getinfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21541DD4206265010003746E /* work_getinfoModel.swift */; };
 		21553CBF20887159009284B1 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21553CBE20887159009284B1 /* BaseTableViewController.swift */; };
-		21553CC12088940E009284B1 /* DealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21553CC02088940E009284B1 /* DealViewController.swift */; };
 		21553CC32088BBBF009284B1 /* dealGetlistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21553CC22088BBBF009284B1 /* dealGetlistModel.swift */; };
+		21559344212CFD8000E8BDD0 /* DealCheckDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21559342212CFD8000E8BDD0 /* DealCheckDetailViewController.swift */; };
+		21559345212CFD8000E8BDD0 /* DealDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21559343212CFD8000E8BDD0 /* DealDetailViewController.swift */; };
+		21559347212CFDE100E8BDD0 /* DealCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21559346212CFDE100E8BDD0 /* DealCheckViewController.swift */; };
+		2155934A212CFDE800E8BDD0 /* DealSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21559348212CFDE800E8BDD0 /* DealSearchViewController.swift */; };
+		2155934B212CFDE800E8BDD0 /* DealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21559349212CFDE800E8BDD0 /* DealViewController.swift */; };
+		2155934E212CFEDD00E8BDD0 /* CaseCheckDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2155934C212CFEDD00E8BDD0 /* CaseCheckDetailViewController.swift */; };
+		2155934F212CFEDD00E8BDD0 /* CaseCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2155934D212CFEDD00E8BDD0 /* CaseCheckViewController.swift */; };
 		215630C72129128300AE1F5E /* OverDealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215630C62129128300AE1F5E /* OverDealViewController.swift */; };
 		215B4205211F285C0029FBEC /* WorkFootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215B4204211F285C0029FBEC /* WorkFootView.swift */; };
 		215C15C72063D99600A9129D /* ConbenTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215C15C62063D99600A9129D /* ConbenTopView.swift */; };
@@ -214,7 +215,6 @@
 		216B7C67206394DE00BBACDA /* MemoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216B7C65206394DE00BBACDA /* MemoTableViewCell.swift */; };
 		216B7C68206394DE00BBACDA /* MemoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 216B7C66206394DE00BBACDA /* MemoTableViewCell.xib */; };
 		216B7C6C2063953300BBACDA /* MemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216B7C6B2063953300BBACDA /* MemoViewController.swift */; };
-		218746E420A18A29006EB2DC /* DealCheckDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218746E320A18A29006EB2DC /* DealCheckDetailViewController.swift */; };
 		219767E820EF841800F5807F /* IncomeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219767E720EF841800F5807F /* IncomeListViewController.swift */; };
 		219767EA20EF86BA00F5807F /* Income_getlistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219767E920EF86BA00F5807F /* Income_getlistModel.swift */; };
 		219D7BB3205E049A009F543B /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7BB2205E049A009F543B /* InfoViewController.swift */; };
@@ -348,11 +348,8 @@
 		2124D71E208D69D20007B5EE /* RoomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomTableViewCell.swift; sourceTree = "<group>"; };
 		2124D71F208D69D20007B5EE /* RoomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoomTableViewCell.xib; sourceTree = "<group>"; };
 		2124D722208D73280007B5EE /* AddRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoomViewController.swift; sourceTree = "<group>"; };
-		2124D724208DB90D0007B5EE /* DealCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealCheckViewController.swift; sourceTree = "<group>"; };
-		2124D726208DBA9D0007B5EE /* CaseCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseCheckViewController.swift; sourceTree = "<group>"; };
 		2124D72C208E196E0007B5EE /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		2124D72E208E1B260007B5EE /* shareGetlistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shareGetlistModel.swift; sourceTree = "<group>"; };
-		2126DBD42089797500977802 /* DealDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealDetailViewController.swift; sourceTree = "<group>"; };
 		2126DBD620897BC500977802 /* Title3TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title3TableViewCell.swift; sourceTree = "<group>"; };
 		2126DBD720897BC500977802 /* Title3TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Title3TableViewCell.xib; sourceTree = "<group>"; };
 		2126DBDA208981C600977802 /* getinfoDealModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getinfoDealModel.swift; sourceTree = "<group>"; };
@@ -423,9 +420,7 @@
 		2148A2D1206A38B500D996C5 /* AddMemoBackView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddMemoBackView.xib; sourceTree = "<group>"; };
 		214AA6B9207F9876004F2B63 /* CaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseTableViewCell.swift; sourceTree = "<group>"; };
 		214AA6BA207F9876004F2B63 /* CaseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CaseTableViewCell.xib; sourceTree = "<group>"; };
-		214C8FE020A3CD9500B09C3B /* CaseCheckDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseCheckDetailViewController.swift; sourceTree = "<group>"; };
 		214C8FE220A42D0F00B09C3B /* CheckInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInfoViewController.swift; sourceTree = "<group>"; };
-		214C8FE420A4306E00B09C3B /* DealSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealSearchViewController.swift; sourceTree = "<group>"; };
 		214F84A52122C02900255F00 /* InputTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputTableViewCell.xib; sourceTree = "<group>"; };
 		214F84A62122C02900255F00 /* ExpenseTitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseTitleTableViewCell.swift; sourceTree = "<group>"; };
 		214F84A72122C02900255F00 /* AddExpenseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExpenseViewController.swift; sourceTree = "<group>"; };
@@ -446,8 +441,14 @@
 		21541DD22062635E0003746E /* work_getlistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = work_getlistModel.swift; sourceTree = "<group>"; };
 		21541DD4206265010003746E /* work_getinfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = work_getinfoModel.swift; sourceTree = "<group>"; };
 		21553CBE20887159009284B1 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
-		21553CC02088940E009284B1 /* DealViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealViewController.swift; sourceTree = "<group>"; };
 		21553CC22088BBBF009284B1 /* dealGetlistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dealGetlistModel.swift; sourceTree = "<group>"; };
+		21559342212CFD8000E8BDD0 /* DealCheckDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DealCheckDetailViewController.swift; path = "huicheng/Class/Work(工作)/合同/DealCheckDetailViewController.swift"; sourceTree = SOURCE_ROOT; };
+		21559343212CFD8000E8BDD0 /* DealDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DealDetailViewController.swift; path = "huicheng/Class/Work(工作)/合同/DealDetailViewController.swift"; sourceTree = SOURCE_ROOT; };
+		21559346212CFDE100E8BDD0 /* DealCheckViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DealCheckViewController.swift; path = "huicheng/Class/Work(工作)/合同/DealCheckViewController.swift"; sourceTree = SOURCE_ROOT; };
+		21559348212CFDE800E8BDD0 /* DealSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DealSearchViewController.swift; path = "huicheng/Class/Work(工作)/合同/DealSearchViewController.swift"; sourceTree = SOURCE_ROOT; };
+		21559349212CFDE800E8BDD0 /* DealViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DealViewController.swift; path = "huicheng/Class/Work(工作)/合同/DealViewController.swift"; sourceTree = SOURCE_ROOT; };
+		2155934C212CFEDD00E8BDD0 /* CaseCheckDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CaseCheckDetailViewController.swift; path = "huicheng/Class/Work(工作)/合同/CaseCheckDetailViewController.swift"; sourceTree = SOURCE_ROOT; };
+		2155934D212CFEDD00E8BDD0 /* CaseCheckViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CaseCheckViewController.swift; path = "huicheng/Class/Work(工作)/合同/CaseCheckViewController.swift"; sourceTree = SOURCE_ROOT; };
 		215630C62129128300AE1F5E /* OverDealViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverDealViewController.swift; sourceTree = "<group>"; };
 		215B4204211F285C0029FBEC /* WorkFootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkFootView.swift; sourceTree = "<group>"; };
 		215C15C62063D99600A9129D /* ConbenTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConbenTopView.swift; sourceTree = "<group>"; };
@@ -474,7 +475,6 @@
 		216B7C65206394DE00BBACDA /* MemoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoTableViewCell.swift; sourceTree = "<group>"; };
 		216B7C66206394DE00BBACDA /* MemoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemoTableViewCell.xib; sourceTree = "<group>"; };
 		216B7C6B2063953300BBACDA /* MemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoViewController.swift; sourceTree = "<group>"; };
-		218746E320A18A29006EB2DC /* DealCheckDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealCheckDetailViewController.swift; sourceTree = "<group>"; };
 		219767E720EF841800F5807F /* IncomeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeListViewController.swift; sourceTree = "<group>"; };
 		219767E920EF86BA00F5807F /* Income_getlistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Income_getlistModel.swift; sourceTree = "<group>"; };
 		219D7BB2205E049A009F543B /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
@@ -800,6 +800,21 @@
 			path = "案件管理";
 			sourceTree = "<group>";
 		};
+		21559341212CFD3900E8BDD0 /* 合同 */ = {
+			isa = PBXGroup;
+			children = (
+				21559348212CFDE800E8BDD0 /* DealSearchViewController.swift */,
+				21559349212CFDE800E8BDD0 /* DealViewController.swift */,
+				21559343212CFD8000E8BDD0 /* DealDetailViewController.swift */,
+				21559346212CFDE100E8BDD0 /* DealCheckViewController.swift */,
+				21559342212CFD8000E8BDD0 /* DealCheckDetailViewController.swift */,
+				2155934C212CFEDD00E8BDD0 /* CaseCheckDetailViewController.swift */,
+				2155934D212CFEDD00E8BDD0 /* CaseCheckViewController.swift */,
+			);
+			name = "合同";
+			path = "huicheng/Class/合同";
+			sourceTree = SOURCE_ROOT;
+		};
 		215C15C42063D95C00A9129D /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -900,6 +915,7 @@
 		216A6C4C204CDDB100528FD8 /* Work(工作) */ = {
 			isa = PBXGroup;
 			children = (
+				21559341212CFD3900E8BDD0 /* 合同 */,
 				214F84BF2122E3DB00255F00 /* 案件管理 */,
 				21306586211D1FF40073ECF9 /* 发票审核 */,
 				213065622115420D0073ECF9 /* 签章 */,
@@ -913,16 +929,9 @@
 				2108BB78206FD219002A4212 /* CheckcaseViewController.swift */,
 				2108BB94206FF723002A4212 /* CheckcaseResultViewController.swift */,
 				21DDC9E12080DCB90067197D /* CasePersionViewController.swift */,
-				21553CC02088940E009284B1 /* DealViewController.swift */,
-				2126DBD42089797500977802 /* DealDetailViewController.swift */,
 				2126DBDC20898E5C00977802 /* OverCaseViewController.swift */,
-				2124D724208DB90D0007B5EE /* DealCheckViewController.swift */,
-				218746E320A18A29006EB2DC /* DealCheckDetailViewController.swift */,
 				213A1E4720A334F1003DF600 /* BaseInfoViewController.swift */,
-				2124D726208DBA9D0007B5EE /* CaseCheckViewController.swift */,
-				214C8FE020A3CD9500B09C3B /* CaseCheckDetailViewController.swift */,
 				214C8FE220A42D0F00B09C3B /* CheckInfoViewController.swift */,
-				214C8FE420A4306E00B09C3B /* DealSearchViewController.swift */,
 				21B9177B20AC27ED004031DE /* ExpenseapplylistViewController.swift */,
 				21F8469320B7DFEA00F4A678 /* BankInfoViewController.swift */,
 				21DBE4B120E37EC200113ABA /* BankDetailViewController.swift */,
@@ -1261,12 +1270,12 @@
 				214F84B32122C0D600255F00 /* InvoiceViewController.swift in Sources */,
 				21066CB020669918009327AD /* ResetKeyView.swift in Sources */,
 				2109654520708B390012FDDB /* WorkRequestVC.swift in Sources */,
+				21559345212CFD8000E8BDD0 /* DealDetailViewController.swift in Sources */,
 				215C65CD203EC6B6001C7A92 /* ViewController.swift in Sources */,
 				210EB650206DE502000DE966 /* expense_gettypeModel.swift in Sources */,
 				213F77E5206B31F100075FC6 /* SetViewController.swift in Sources */,
 				2107554A205D4C3200FF4396 /* LoginTopView.swift in Sources */,
 				219D7BC6205E2E29009F543B /* SubPayTableViewCell.swift in Sources */,
-				21553CC12088940E009284B1 /* DealViewController.swift in Sources */,
 				216B7C5D20637D7000BBACDA /* WorkBookTableViewCell.swift in Sources */,
 				21387D45205FF7240050DF1F /* expense_getlistModel.swift in Sources */,
 				21387D3B205FA7860050DF1F /* MineRequestVC.swift in Sources */,
@@ -1280,7 +1289,7 @@
 				212FEA8620C3F4BA00A466E2 /* sharegetreplyModel.swift in Sources */,
 				213F77E7206B352900075FC6 /* SetBackView.swift in Sources */,
 				21387D3F205FAB240050DF1F /* newsdetialModel.swift in Sources */,
-				218746E420A18A29006EB2DC /* DealCheckDetailViewController.swift in Sources */,
+				2155934E212CFEDD00E8BDD0 /* CaseCheckDetailViewController.swift in Sources */,
 				21075558205D6D2000FF4396 /* PubMessageViewController.swift in Sources */,
 				21DDC9E22080DCB90067197D /* CasePersionViewController.swift in Sources */,
 				2124D71D208D67570007B5EE /* roomModel.swift in Sources */,
@@ -1291,13 +1300,13 @@
 				2108BB71206F28E7002A4212 /* ConvenRequestVC.swift in Sources */,
 				2102E8702071C06100536F41 /* StartTimeTableViewCell.swift in Sources */,
 				21066CAD20668311009327AD /* ResetKeyViewControllerViewController.swift in Sources */,
+				21559347212CFDE100E8BDD0 /* DealCheckViewController.swift in Sources */,
 				21376681203FBA9D000CBCE6 /* ImageView+loading.swift in Sources */,
 				21340BD9206CBDDB00E30B53 /* AddExpenseBackView.swift in Sources */,
 				214F84B02122C02A00255F00 /* ExpenseViewController.swift in Sources */,
 				2107554B205D4C3200FF4396 /* LoginMidBottomView.swift in Sources */,
 				214F84C32122E45700255F00 /* CaseDetailViewController.swift in Sources */,
 				214F84B92122C1C500255F00 /* FinanceViewController.swift in Sources */,
-				2124D725208DB90D0007B5EE /* DealCheckViewController.swift in Sources */,
 				211A65C820A00957009CD41A /* NoticeTableViewCell.swift in Sources */,
 				21089E98206E791B00573B6A /* FinanceDetialTableViewCell.swift in Sources */,
 				214F84BE2122C40200255F00 /* WorkBookViewController.swift in Sources */,
@@ -1335,6 +1344,7 @@
 				216A6C57204CDE9D00528FD8 /* BaseViewController.swift in Sources */,
 				216A6C50204CDE6700528FD8 /* MessageViewController.swift in Sources */,
 				21B9177C20AC27ED004031DE /* ExpenseapplylistViewController.swift in Sources */,
+				2155934B212CFDE800E8BDD0 /* DealViewController.swift in Sources */,
 				2123A385208F0C7400C50FA9 /* SelectedTableViewCell.swift in Sources */,
 				21F8469620B7F9DE00F4A678 /* bank_getlistModel.swift in Sources */,
 				21F8469420B7DFEA00F4A678 /* BankInfoViewController.swift in Sources */,
@@ -1343,7 +1353,6 @@
 				21553CBF20887159009284B1 /* BaseTableViewController.swift in Sources */,
 				21306564211542D80073ECF9 /* DocViewController.swift in Sources */,
 				2109654720708D130012FDDB /* checkcaseModel.swift in Sources */,
-				214C8FE120A3CD9500B09C3B /* CaseCheckDetailViewController.swift in Sources */,
 				21376685203FBAB2000CBCE6 /* UIButton+Init.swift in Sources */,
 				21E76FEC20C78D87009454FD /* Content2TableViewCell.swift in Sources */,
 				2124D72D208E196E0007B5EE /* ShareViewController.swift in Sources */,
@@ -1389,8 +1398,9 @@
 				2109654F20711ECD0012FDDB /* DatePickView.swift in Sources */,
 				2137667D203FBA20000CBCE6 /* pch.swift in Sources */,
 				21387D35205F5E240050DF1F /* UserInfoLoaclManger.swift in Sources */,
+				21559344212CFD8000E8BDD0 /* DealCheckDetailViewController.swift in Sources */,
+				2155934A212CFDE800E8BDD0 /* DealSearchViewController.swift in Sources */,
 				2124D72F208E1B260007B5EE /* shareGetlistModel.swift in Sources */,
-				2124D727208DBA9D0007B5EE /* CaseCheckViewController.swift in Sources */,
 				214F84B82122C1C500255F00 /* FinanceDetialViewController.swift in Sources */,
 				21075566205D8FE700FF4396 /* MineFooterView.swift in Sources */,
 				2129C1C2211EDFD50070A82F /* WorlkHeadView.swift in Sources */,
@@ -1406,8 +1416,8 @@
 				216A6C4E204CDE5500528FD8 /* ConvenViewController.swift in Sources */,
 				219D7BC0205E1D8E009F543B /* WorkFirstTableViewCell.swift in Sources */,
 				21DDC9DA2080C8F10067197D /* OptionView.swift in Sources */,
+				2155934F212CFEDD00E8BDD0 /* CaseCheckViewController.swift in Sources */,
 				214AA6BB207F9876004F2B63 /* CaseTableViewCell.swift in Sources */,
-				2126DBD52089797500977802 /* DealDetailViewController.swift in Sources */,
 				212FEA8120C3EF1300A466E2 /* Title6TableViewCell.swift in Sources */,
 				21DDC9DF2080CA460067197D /* OptionTableViewCell.swift in Sources */,
 				216B7C6320638EE100BBACDA /* IncomeTableViewCell.swift in Sources */,
@@ -1435,7 +1445,6 @@
 				2105D2E7206116C80031B14C /* finance_getinfoModel.swift in Sources */,
 				2130656C211701AC0073ECF9 /* DocApplylistViewController.swift in Sources */,
 				21387D37205F8E4E0050DF1F /* noticelistModel.swift in Sources */,
-				214C8FE520A4306E00B09C3B /* DealSearchViewController.swift in Sources */,
 				2109654D207116830012FDDB /* getobjectlistModel.swift in Sources */,
 				2130657E211BD0290073ECF9 /* CrtGetinfoModel.swift in Sources */,
 				21075562205D7A3700FF4396 /* MineHeadView.swift in Sources */,
