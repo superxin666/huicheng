@@ -74,9 +74,10 @@ class WorkBookTableViewCell: UITableViewCell {
             //未发布
             self.statsLabel.backgroundColor = darkblueColor
         } else if model.state == 1 {
+            //已发布
             self.statsLabel.backgroundColor = UIColor.hc_ColorFromInt(red: 204, green: 204, blue: 204, alpha: 1.0)
         } else {
-            self.statsLabel.backgroundColor = darkblueColor
+            self.statsLabel.backgroundColor = orangeColor
         }
         
         if let titleStr = model.title {

@@ -54,6 +54,13 @@ class LogInViewController: UIViewController,LoginTopViewDelegate,LoginMidBottomV
         bottomView.phoneTextField.text = ""
         bottomView.codeTextField.text = ""
         self.view.endEditing(true)
+        if bottomView.phoneTextField.isFirstResponder {
+            bottomView.phoneTextField.resignFirstResponder()
+        }
+        if bottomView.codeTextField.isFirstResponder {
+            bottomView.codeTextField.resignFirstResponder()
+        }
+
 
         if tagNum == 100 {
             HCLog(message: "手机代理")

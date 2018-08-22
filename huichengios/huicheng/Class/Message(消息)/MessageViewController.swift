@@ -35,7 +35,7 @@ class MessageViewController: BaseViewController,UITableViewDelegate,UITableViewD
         // Do any additional setup after loading the view.
         self.view.backgroundColor = viewBackColor
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "mes_logo"))
-        self.navigationBar_rightBtn_image(image: #imageLiteral(resourceName: "mes_ alarm"))
+        self.navigationBar_rightBtn_title(name: "公告")
         self.navigation_title_fontsize(name: "消息", fontsize: 18)
         self.creatUI()
         self.requestApi()

@@ -37,9 +37,12 @@
                             </constraints>
                         </view>
                         <textField opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机号" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="mzO-zu-b4c">
-                            <rect key="frame" x="51" y="25" width="50" height="28"/>
+                            <rect key="frame" x="51" y="25" width="170" height="28"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="tintColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="28" id="0eu-Yh-SlT"/>
+                            </constraints>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
@@ -50,8 +53,8 @@
                         <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="获取验证码" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BIB-PK-JxY">
                             <rect key="frame" x="230" y="25" width="80" height="25"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="25" id="6mq-fX-r8n"/>
-                                <constraint firstAttribute="width" constant="80" id="Mr1-mE-yGN"/>
+                                <constraint firstAttribute="height" constant="25" id="6Sw-UC-BOj"/>
+                                <constraint firstAttribute="width" constant="80" id="Ptl-2d-fy0"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" red="0.090196078430000007" green="0.2274509804" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
@@ -65,15 +68,15 @@
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="tBy-sd-dBf" secondAttribute="bottom" id="4ky-J7-KzD"/>
                         <constraint firstItem="tBy-sd-dBf" firstAttribute="top" secondItem="f2d-0y-Z9N" secondAttribute="bottom" constant="6" id="7E7-BE-9J3"/>
-                        <constraint firstItem="BIB-PK-JxY" firstAttribute="top" secondItem="0Vp-dv-A6u" secondAttribute="top" constant="25" id="JG3-6d-v0y"/>
-                        <constraint firstItem="mzO-zu-b4c" firstAttribute="leading" secondItem="f2d-0y-Z9N" secondAttribute="trailing" constant="23" id="MM1-yk-7lp"/>
-                        <constraint firstItem="mzO-zu-b4c" firstAttribute="top" secondItem="0Vp-dv-A6u" secondAttribute="top" constant="25" id="QbA-T0-DNq"/>
+                        <constraint firstItem="BIB-PK-JxY" firstAttribute="top" secondItem="0Vp-dv-A6u" secondAttribute="top" constant="25" id="Igj-Vi-4S1"/>
                         <constraint firstItem="tBy-sd-dBf" firstAttribute="leading" secondItem="0Vp-dv-A6u" secondAttribute="leading" id="RWb-rH-xOe"/>
                         <constraint firstItem="f2d-0y-Z9N" firstAttribute="top" secondItem="0Vp-dv-A6u" secondAttribute="top" constant="25" id="Rmr-Il-dbh"/>
-                        <constraint firstAttribute="trailing" secondItem="BIB-PK-JxY" secondAttribute="trailing" constant="5" id="fDu-Nl-v49"/>
-                        <constraint firstItem="tBy-sd-dBf" firstAttribute="top" secondItem="mzO-zu-b4c" secondAttribute="bottom" constant="6" id="j7N-qy-CA6"/>
+                        <constraint firstItem="mzO-zu-b4c" firstAttribute="top" secondItem="0Vp-dv-A6u" secondAttribute="top" constant="25" id="Td6-U3-8uP"/>
+                        <constraint firstItem="BIB-PK-JxY" firstAttribute="leading" secondItem="mzO-zu-b4c" secondAttribute="trailing" constant="9" id="jv8-6b-pm8"/>
                         <constraint firstAttribute="trailing" secondItem="tBy-sd-dBf" secondAttribute="trailing" id="oqo-AH-HQT"/>
                         <constraint firstAttribute="width" secondItem="0Vp-dv-A6u" secondAttribute="height" multiplier="21:4" id="rN8-wj-ZGt"/>
+                        <constraint firstItem="mzO-zu-b4c" firstAttribute="leading" secondItem="f2d-0y-Z9N" secondAttribute="trailing" constant="23" id="w0c-VO-G1Z"/>
+                        <constraint firstAttribute="trailing" secondItem="BIB-PK-JxY" secondAttribute="trailing" constant="5" id="wCE-e3-sMw"/>
                         <constraint firstItem="f2d-0y-Z9N" firstAttribute="leading" secondItem="0Vp-dv-A6u" secondAttribute="leading" constant="8" id="wLL-Cm-R71"/>
                     </constraints>
                 </view>
@@ -140,7 +143,7 @@
                         <constraint firstAttribute="width" secondItem="txc-Ov-9oF" secondAttribute="height" multiplier="6:1" id="xrz-vt-CkW"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <state key="normal" title="忘记 密码？">
+                    <state key="normal">
                         <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
@@ -173,7 +176,7 @@
                 <outlet property="phoneImageView" destination="f2d-0y-Z9N" id="8br-wj-dA3"/>
                 <outlet property="phoneTextField" destination="mzO-zu-b4c" id="lN6-YJ-fmb"/>
             </connections>
-            <point key="canvasLocation" x="-1526" y="-229"/>
+            <point key="canvasLocation" x="-1680" y="-238"/>
         </view>
     </objects>
     <resources>

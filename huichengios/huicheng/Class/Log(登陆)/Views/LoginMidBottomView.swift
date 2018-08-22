@@ -74,6 +74,7 @@ class LoginMidBottomView: UIView,NibLoadable,LoginRequestVCDelegate {
             return
         }
         time = Timer.scheduledTimer(timeInterval: TimeInterval(1), target: self, selector: #selector(timeDown), userInfo: nil, repeats: true)
+        request.delegate = self
         request.sendcodeRequest(m: phoneStr)
 
     }
@@ -95,8 +96,6 @@ class LoginMidBottomView: UIView,NibLoadable,LoginRequestVCDelegate {
     }
     
     func requestSucceed_Login() {
-
-        
         SVPMessageShow.showSucess(infoStr: "验证码已发送至手机")
     }
     
