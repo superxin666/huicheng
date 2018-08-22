@@ -240,7 +240,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
         if cc.count > 0 {
             ccStr = cc.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         }
-
+        SVPMessageShow.showLoad()
         let url =   case_createdeals_api + "id=\(id)&a=\(a)&m=\(0)&b=\(bStr)&e=\(eStr)&a=\(a)&d=\(dStr)&i=\(i)&pn=\(pnStr)&cc=\(ccStr)&it=\(it)&img=\(img)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
 
@@ -275,15 +275,81 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
     func caseAdd(t:String,n:String,rt:String,pn:String,pc:String,pp:String,pz:String,pj:String,pd:String,pa:String,on:String,oc:String,op:String,oz:String,oj:String,oa:String,r:String,d:String,w1:String,w2:String,ct:String,sj:String,id:String)  {
 
         let inputArr : Array<String> = [t,n,rt,pn,pc,pp,pz,pj,pd,pa,on,oc,op,oz,oj,oa,r,d,w1,w2,ct,sj,id]
-        let nameArr = ["案件类型","案件名称","立案日期","委托方-委托人","委托方-联系人","委托方-电话","委托方-邮编","委托方-职务","委托方-身份证号","委托方-联系地址","对方当事方-委托人","对方当事方-联系人","对方当事方-电话","对方当事方-邮编","对方当事方-职务","对方当事方-联系地址","立案律师","案件组别","承办律师","承办律师","案件自述","标的",""]
+//        let nameArr = ["案件类型","案件名称","立案日期","委托方-委托人","委托方-联系人","委托方-电话","委托方-邮编","委托方-职务","委托方-身份证号","委托方-联系地址","对方当事方-委托人","对方当事方-联系人","对方当事方-电话","对方当事方-邮编","对方当事方-职务","对方当事方-联系地址","立案律师","案件组别","承办律师","承办律师","案件自述","标的",""]
 
-        for i in 0..<inputArr.count - 1 {
-            let str = inputArr[i]
-            if !(str.count > 0) {
-                SVPMessageShow.showErro(infoStr: "请您输入"+"\(nameArr[i])")
-                return
-            }
+//        for i in 0..<inputArr.count - 1 {
+//            let str = inputArr[i]
+//            if !(str.count > 0) {
+//                SVPMessageShow.showErro(infoStr: "请您输入"+"\(nameArr[i])")
+//                return
+//            }
+//        }
+        if !(t.count > 0){
+            SVPMessageShow.showErro(infoStr: "请输入案件类型")
+            return
         }
+
+        if !(n.count > 0){
+            SVPMessageShow.showErro(infoStr: "请输入案件名称")
+            return
+        }
+
+        if !(rt.count > 0){
+            SVPMessageShow.showErro(infoStr: "请输入立案日期")
+            return
+        }
+        if !(pn.count > 0){
+            SVPMessageShow.showErro(infoStr: "请输入委托方-委托人")
+            return
+        }
+
+        if !(pc.count > 0){
+            SVPMessageShow.showErro(infoStr: "请输入委托方-联系人")
+            return
+        }
+
+        if !(pp.count > 0){
+            SVPMessageShow.showErro(infoStr: "请输入委托方-电话")
+            return
+        }
+
+        if !(pz.count > 0){
+            SVPMessageShow.showErro(infoStr: "请输入委托方-邮编")
+            return
+        }
+
+        if !(pj.count > 0){
+            SVPMessageShow.showErro(infoStr: "请输入委托方-职务")
+            return
+        }
+
+        if !(pa.count > 0){
+            SVPMessageShow.showErro(infoStr: "请输入委托方-联系地址")
+            return
+        }
+
+        if !(r.count > 0){
+            SVPMessageShow.showErro(infoStr: "请输入立案律师")
+            return
+        }
+
+        if !(d.count > 0){
+            SVPMessageShow.showErro(infoStr: "请输入案件组别")
+            return
+        }
+
+        if !(ct.count > 0){
+            SVPMessageShow.showErro(infoStr: "请输入案件自述")
+            return
+        }
+
+        if !(sj.count > 0){
+            SVPMessageShow.showErro(infoStr: "请输入标的")
+            return
+        }
+
+
+
 //        HCLog(message: "1212312321")
         var arr : Array<String> = inputArr.map { (str) -> String in
             str.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
@@ -793,6 +859,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
 
 
     func requestSucceed(response: Any) {
+        SVPMessageShow.dismissSVP()
         if type == .checkcase || type == .case_getlist {
             //利益冲突检查
             let arr = Mapper<checkcaseModel>().mapArray(JSONArray: response as! [[String : Any]])

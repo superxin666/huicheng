@@ -7,11 +7,16 @@
 //  生成合同
 
 import UIKit
+enum OverDealViewControllerType {
+    case overCase,
+    editeDeal
+}
 
 class OverDealViewController:
 BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDelegate,SelectedTableViewCellDelegate,TitleTableViewCellDelegate,Title5TableViewCellDelegate,MineRequestVCDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
 
 
+    var type : OverDealViewControllerType = .overCase
 
 
     /// 合同id
@@ -73,7 +78,17 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
         // Do any additional setup after loading the view.
         self.view.backgroundColor = viewBackColor
         request.delegate = self
-        self.navigation_title_fontsize(name: "生成合同", fontsize: 18)
+        if type == .overCase {
+            self.navigation_title_fontsize(name: "生成合同", fontsize: 18)
+        } else {
+            self.navigation_title_fontsize(name: "合同信息", fontsize: 18)
+            if itStr == "0" {
+                rowNum = 8
+            } else {
+                rowNum = 10
+            }
+        }
+
         self.navigationBar_rightBtn_title(name: "确定")
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
         self.creatUI()

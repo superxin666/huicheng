@@ -546,13 +546,25 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
                 self.tStr = "\(self.caseDetailModel.data.type!)"
                 self.nStr = self.caseDetailModel.data.n
                 self.rtStr = self.caseDetailModel.data.rStr
-                self.rStr = "\(self.caseDetailModel.data.r!)"
-                self.dStr = "\(self.caseDetailModel.data.d!)"
+
+                if let str = self.caseDetailModel.data.r {
+                    self.rStr = "\(str)"
+                }
+
+                if let str = self.caseDetailModel.data.d {
+                    self.dStr = "\(str)"
+                }
+
                 self.ctStr = self.caseDetailModel.data.ct
                 self.sjStr = self.caseDetailModel.data.sj
 
-                self.w1Str = "\(self.caseDetailModel.data.w1!)"
-                self.w2Str = "\(self.caseDetailModel.data.w2!)"
+                if let str = self.caseDetailModel.data.w1 {
+                    self.w1Str = "\(str)"
+                }
+
+                if let str = self.caseDetailModel.data.w2 {
+                    self.w2Str = "\(str)"
+                }
 
                 self.pnStr = self.caseDetailModel.data.pn
                 self.pcStr = self.caseDetailModel.data.pc

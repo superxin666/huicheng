@@ -45,6 +45,7 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
         self.creatUI()
         requestVC.delegate = self
+        SVPMessageShow.showLoad()
         requestVC.dealgetinfo(id: dealID)
     }
     // MARK: - UI
@@ -182,16 +183,13 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
     }
     func requestSucceed_work(data: Any, type: WorkRequestVC_enum) {
         if type == .getinfo {
+            SVPMessageShow.dismissSVP()
             dealModel = data as! getinfoDealModel
             sectionContent.append(dealModel.dealsnum)
             sectionContent.append(dealModel.typeStr)
             sectionContent.append(dealModel.n)
             sectionContent.append(dealModel.dealpaylasttime)
             sectionContent.append(dealModel.amount)
-
-
-
-            
             self.mainTabelView.reloadData()
         } else if type == .dealdel  {
             self.sucessBlock()
@@ -223,7 +221,15 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
             }
             alertController.addAction(actcion1)
 
+
+            let actcion3 = UIAlertAction(title: "修改", style: .default) { (aciton) in
+                self.showAlert(typeNum: 3)
+            }
+            alertController.addAction(actcion3)
+
         }
+
+
         let actcion2 = UIAlertAction(title: "取消", style: .cancel) { (aciton) in
             self.alertController.dismiss(animated: true, completion: {
 
@@ -238,8 +244,11 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
         var titleStr = ""
         if typeNum == 1 {
             titleStr = "是否确定申请结案"
-        } else {
+        } else if typeNum == 2 {
             titleStr = "是否确定删除本条记录"
+        } else {
+            titleStr = "是否确定修改本条记录"
+
         }
         alertController = UIAlertController(title: nil, message: titleStr, preferredStyle: .alert)
         let actcion1 = UIAlertAction(title: "确定", style: .default) { (aciton) in
@@ -250,9 +259,23 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
                 vc.dealNum = self.dealModel.dealsnum
                 vc.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
-            } else {
+            } else  if typeNum == 2{
                 HCLog(message: "删除")
                 self.requestVC.dealdelRequest(id: self.dealID)
+            } else {
+                HCLog(message: "修改")
+                let vc : OverDealViewController = OverDealViewController()
+                vc.hidesBottomBarWhenPushed = true
+                vc.type = .editeDeal
+                vc.dealId = self.dealModel.id
+                vc.dealNum = self.dealModel.dealsnum
+                vc.dStr = self.dealModel.dealpaylasttime
+                vc.aStr = self.dealModel.amount
+                vc.itStr = "\(self.dealModel.ispaper)"
+//                vc.itIdStr = self.dealMode
+                vc.pStr = self.dealModel.paper
+
+                self.navigationController?.pushViewController(vc, animated: true)
             }
         }
         let actcion2 = UIAlertAction(title: "取消", style: .cancel) { (aciton) in
