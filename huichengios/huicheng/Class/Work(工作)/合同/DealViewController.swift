@@ -63,7 +63,7 @@ class DealViewController:  BaseViewController,UITableViewDataSource,UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : CaseTableViewCell  = tableView.dequeueReusableCell(withIdentifier: CaseTableViewCellId, for: indexPath) as! CaseTableViewCell
         if indexPath.row < self.dataArr.count {
-            cell.setData_deal(model: self.dataArr[indexPath.row])
+            cell.setData_dealmanger(model: self.dataArr[indexPath.row])
 
         }
         return cell

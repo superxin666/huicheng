@@ -70,6 +70,10 @@ let case_del_api = "case/del?"
 
 /// 生成合同
 let case_createdeals_api = "case/createdeals?"
+
+
+
+
 //-----------------------个人信息
 let user_getinfo_api = "uc/user_getinfo?"
 
@@ -131,7 +135,7 @@ let deal_searchlist_api = "deal/searchlist?"
 let deal_getoverlist_api = "deal/getoverlist?"
 let deal_getoverinfo_api = "deal/getoverinfo?"
 let deal_checkoversave_api = "deal/checkoversave?"
-
+let deal_save_api = "deal/save?"
 /// /-----------------------收款登记
 /// 获取列表
 let finance_income_getlist_api = "finance/income_getlist?"

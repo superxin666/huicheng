@@ -521,6 +521,47 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
     override func navigationRightBtnClick() {
         HCLog(message: "确定")
         self.view.endEditing(true)
+        if type == .overCase{
+            //生成合同
+            self.overCaseRequest()
+        } else {
+            //修改合同
+            self.editeDeal()
+        }
+
+    }
+
+    func editeDeal() {
+
+
+        if !(self.aStr.count > 0) {
+            SVPMessageShow.showErro(infoStr: "请输入合同总款")
+            return
+        }
+        if !(self.dStr.count > 0) {
+            SVPMessageShow.showErro(infoStr: "请选择时间")
+            return
+        }
+
+        self.upLoad(type: "2", completion: { (data) in
+            let str : String = data as! String
+            if str.count > 0 {
+                self.request.dealSaveRequest(id: "\(self.dealId!)", a:self.aStr, m: "", b: self.bStr, e: self.eStr, d: self.dStr, i: self.itStr, pn: self.pStr, cc: self.ccStr, it: self.itIdStr, img: str)
+
+            } else {
+                HCLog(message: "上传失败")
+
+            }
+
+
+        }) { (erro) in
+            self.request.dealSaveRequest(id: "\(self.dealId!)", a:self.aStr, m: "", b: self.bStr, e: self.eStr, d: self.dStr, i: self.itStr, pn: self.pStr, cc: self.ccStr, it: self.itIdStr, img: "")
+        }
+
+
+    }
+
+    func overCaseRequest() {
         if !(self.aStr.count > 0) {
             SVPMessageShow.showErro(infoStr: "请输入合同总款")
             return
@@ -544,6 +585,7 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
         }) { (erro) in
             self.request.casecreatedeals(id: "\(self.dealId!)", a:self.aStr, m: "", b: self.bStr, e: self.eStr, d: self.dStr, i: self.itStr, pn: self.pStr, cc: self.ccStr, it: self.itIdStr, img: "")
         }
+
 
     }
 

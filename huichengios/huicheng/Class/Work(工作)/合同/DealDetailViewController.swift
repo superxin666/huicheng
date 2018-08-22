@@ -271,7 +271,7 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
                 vc.dealNum = self.dealModel.dealsnum
                 vc.dStr = self.dealModel.dealpaylasttime
                 vc.aStr = self.dealModel.amount
-                vc.itStr = "\(self.dealModel.ispaper)"
+                vc.itStr = "\(self.dealModel.ispaper!)"
 //                vc.itIdStr = self.dealMode
                 vc.pStr = self.dealModel.paper
 
