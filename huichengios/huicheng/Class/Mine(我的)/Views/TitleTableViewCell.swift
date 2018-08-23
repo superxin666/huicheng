@@ -190,6 +190,13 @@ class TitleTableViewCell: UITableViewCell {
         self.titleNameLabel.text = titleStr
     }
 
+
+    func setData_dealcheck(titleStr : String,tagNum : Int) {
+        textField.tag =  tagNum
+        self.titleNameLabel.textColor = darkblueColor
+        self.titleNameLabel.text = titleStr
+    }
+
     /// 发票申请
     ///
     /// - Parameters:

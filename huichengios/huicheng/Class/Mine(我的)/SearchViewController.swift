@@ -9,6 +9,7 @@
 import UIKit
 typealias SearchViewControllerBlock_expense = (_ stateId : String)->()
 typealias SearchViewControllerBlock_work = (_ titleStr : String,_ personStr : String,_ StartTimeStr : String,_ endTimeStr : String)->()
+typealias SearchViewControllerBlock_dealcheck = (_ nStr : String,_ StartTimeStr : String,_ endTimeStr : String,_ uStr : String,_ prStr : String)->()
 
 typealias SearchViewControllerBlock_deal2 = (_ titleStr : String,_ StartTimeStr : String,_ endTimeStr : String)->()
 
@@ -22,7 +23,7 @@ typealias SearchViewControllerBlock_docSearch = (_ nStr : String,_ dnStr : Strin
 enum SearchViewController_type {
 
     //发票申请           收款记录       工作日志      发票列表         案件查询        合同查询   姓名    部门 人员姓名     收款登记
-    case expense_type, finance_type , work_type ,invoice_getlist,caselsit_type,deal_type,person,departAndPerson,Income_list,doc_search,shareType,conven_type,deal2_type,workbook_type
+    case expense_type, finance_type , work_type ,invoice_getlist,caselsit_type,deal_type,person,departAndPerson,Income_list,doc_search,shareType,conven_type,deal2_type,workbook_type,dealcheck
 
 }
 let Searchcell_finance_typeID = "Searchcell_finance_type_id"
@@ -54,6 +55,9 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
     var sureDocSearchSure : SearchViewControllerBlock_docSearch!
 
     var deal2SureBlock : SearchViewControllerBlock_deal2!
+
+    var dealcheckBlock : SearchViewControllerBlock_dealcheck!
+
 
     /// 状态cell
     var stateCell : SearchStateTableViewCell!
@@ -90,7 +94,7 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
     var dStr : String = ""
 
     let doc_searchNameArr = ["合同编号","函件编号","申请人","律师名称","案件名称"]
-
+    let dealcheckNameArr = ["合同编号","开始时间","结束时间","立案律师","委托人"]
     /// 合同编号
     var nStr = ""
     /// 函件编号
@@ -103,6 +107,10 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
     var cnStr = ""
     /// 分所id
     var bidStr = ""
+
+    /// 委托人
+    var prStr = ""
+
 
     // MARK: - life
     override func viewWillLayoutSubviews() {
@@ -166,6 +174,9 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             self.navigation_title_fontsize(name: "便捷查询", fontsize: 18)
             rowNum = 1
 
+        } else if type == .dealcheck{
+            self.navigation_title_fontsize(name: "合同查询", fontsize: 18)
+            rowNum = 5
         }
         self.navigationBar_rightBtn_title(name: "确定")
         self.creatUI()
@@ -222,6 +233,10 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             mainTabelView.register(UINib.init(nibName: "OptionTableViewCell", bundle: nil), forCellReuseIdentifier: OptionTableViewCellID)
             mainTabelView.register(UINib.init(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: TitleTableViewCellID)
 
+        }else if type == .dealcheck {
+            mainTabelView.register(UINib.init(nibName: "OptionTableViewCell", bundle: nil), forCellReuseIdentifier: OptionTableViewCellID)
+            mainTabelView.register(UINib.init(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: TitleTableViewCellID)
+            mainTabelView.register(UINib.init(nibName: "endTimeTableViewCell", bundle: nil), forCellReuseIdentifier: endTimeTableViewCellid)
         }
         self.view.addSubview(mainTabelView)
     }
@@ -469,6 +484,25 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
 
             }
 
+        } else if type == .dealcheck{
+            if indexPath.row == 1 {
+                startTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                startTimeCell.setData(titleStr: "开始时间", tag: 0)
+                return startTimeCell
+            } else if indexPath.row == 2 {
+                endTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                endTimeCell.setData(titleStr: "结束时间", tag: 1)
+                return endTimeCell
+
+            } else {
+                titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                //标题
+                titleCell.setData_dealcheck(titleStr: dealcheckNameArr[indexPath.row], tagNum: indexPath.row)
+                
+                titleCell.delegate = self
+                return titleCell
+            }
+
         } else {
             return UITableViewCell()
         }
@@ -534,14 +568,14 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
 
         } else if type == .Income_list {
             //收款
-            if indexPath.row == 2 {
-                //开始时间
-                self.showTime_start()
-            } else if indexPath.row == 3{
-                //结束时间
-                self.showTime_end()
+                if indexPath.row == 2 {
+                    //开始时间
+                    self.showTime_start()
+                } else if indexPath.row == 3{
+                    //结束时间
+                    self.showTime_end()
 
-            } else if indexPath.row == 4 {
+                } else if indexPath.row == 4 {
                 //状态
                 self.showOptionView_state()
             }
@@ -566,6 +600,14 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             currectIndexpath = indexPath
             //模板
             self.showOptionView_share()
+        } else if type == .dealcheck{
+            if indexPath.row == 1 {
+                //开始时间
+                self.showTime_start()
+            } else if indexPath.row == 2{
+                //结束时间
+                self.showTime_end()
+            }
         }
     }
     
@@ -697,6 +739,16 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             } else {
                 cnStr = inputStr
             }
+        } else if type == .dealcheck{
+
+            if tagNum == 0 {
+                nStr = inputStr
+            } else if tagNum == 3 {
+                uStr = inputStr
+            } else if tagNum == 4 {
+                prStr = inputStr
+
+            }
         }
     }
 
@@ -753,6 +805,8 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         } else if type == .deal2_type {
             self.view.endEditing(true)
             self.deal2SureBlock(titleCell.conTent,startTimeStr,endTimeStr)
+        } else if type == .dealcheck {
+            dealcheckBlock(nStr,startTimeStr,endTimeStr,uStr,prStr)
         }
         self.navigationController?.popViewController(animated: true)
     }

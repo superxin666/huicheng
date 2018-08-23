@@ -510,10 +510,28 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
     ///   - e: <#e description#>
     ///   - u: <#u description#>
     ///   - p: <#p description#>
-    func dealgetapplylist(p:Int,c:Int,n:String,b:String,e:String,u:String) {
+    func dealgetapplylist(p:Int,c:Int,n:String,b:String,e:String,u:String,pr:String) {
         request.delegate = self
         type = .dealgetapplylist
-        let url = deal_getapplylist_api   + "c=\(c)&p=\(p)&k=\(UserInfoLoaclManger.getKey())"
+
+        var bStr = ""
+        if b.count > 0 {
+            bStr = b.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+        var eStr = ""
+        if e.count > 0 {
+            eStr = e.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+        var uStr = ""
+        if u.count > 0 {
+            uStr = u.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+        var prStr = ""
+        if pr.count > 0 {
+            prStr = pr.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+
+        let url = deal_getapplylist_api   + "c=\(c)&p=\(p)&n=\(n)&b=\(bStr)&e=\(eStr)&u=\(uStr)&pr=\(prStr)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
     }
 
