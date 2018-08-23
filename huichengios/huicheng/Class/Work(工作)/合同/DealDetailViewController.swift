@@ -9,8 +9,15 @@
 
 import UIKit
 typealias DealDetailViewControllerBlcok = ()->()
+enum DealDetailViewControllerType {
+    case searchDeal,deallist
+}
 
 class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource,WorkRequestVCDelegate {
+
+    var type : DealDetailViewControllerType = .deallist
+
+
     var sucessBlock : DealDetailViewControllerBlcok!
 
     let mainTabelView : UITableView = UITableView()
@@ -39,9 +46,14 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
 
         // Do any additional setup after loading the view.
         self.view.backgroundColor = viewBackColor
+        if type == .searchDeal {
+            self.navigationBar_rightBtn_title(name: "打印")
 
+        } else {
+            self.navigationBar_rightBtn_title(name: "操作")
+
+        }
         self.navigation_title_fontsize(name: "合同详情", fontsize: 18)
-        self.navigationBar_rightBtn_title(name: "操作")
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
         self.creatUI()
         requestVC.delegate = self
@@ -219,37 +231,47 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
         self.navigationController?.popViewController(animated: true)
     }
     override func navigationRightBtnClick() {
-        alertController = UIAlertController(title: nil, message: "", preferredStyle: .actionSheet)
-        if self.dealModel.state == 1 {
-            //审核合同过只能申请结案
-            let actcion1 = UIAlertAction(title: "申请结案", style: .default) { (aciton) in
-                self.showAlert(typeNum: 1)
-            }
-            alertController.addAction(actcion1)
 
+        if type == .searchDeal {
+            HCLog(message: "打印")
         } else {
-            let actcion1 = UIAlertAction(title: "删除", style: .default) { (aciton) in
-                self.showAlert(typeNum: 2)
-            }
-            alertController.addAction(actcion1)
+
+            alertController = UIAlertController(title: nil, message: "", preferredStyle: .actionSheet)
+            if self.dealModel.state == 1 {
+                //审核合同过只能申请结案
+                let actcion1 = UIAlertAction(title: "申请结案", style: .default) { (aciton) in
+                    self.showAlert(typeNum: 1)
+                }
+                alertController.addAction(actcion1)
+
+            } else {
+                let actcion1 = UIAlertAction(title: "删除", style: .default) { (aciton) in
+                    self.showAlert(typeNum: 2)
+                }
+                alertController.addAction(actcion1)
 
 
-            let actcion3 = UIAlertAction(title: "修改", style: .default) { (aciton) in
-                self.showAlert(typeNum: 3)
+                let actcion3 = UIAlertAction(title: "修改", style: .default) { (aciton) in
+                    self.showAlert(typeNum: 3)
+                }
+                alertController.addAction(actcion3)
+
             }
-            alertController.addAction(actcion3)
+            
+
+            let actcion2 = UIAlertAction(title: "取消", style: .cancel) { (aciton) in
+                self.alertController.dismiss(animated: true, completion: {
+
+                })
+            }
+
+            alertController.addAction(actcion2)
+            self.present(alertController, animated: true, completion: nil)
+
 
         }
 
 
-        let actcion2 = UIAlertAction(title: "取消", style: .cancel) { (aciton) in
-            self.alertController.dismiss(animated: true, completion: {
-
-            })
-        }
-
-        alertController.addAction(actcion2)
-        self.present(alertController, animated: true, completion: nil)
     }
 
     func showAlert(typeNum : Int) {

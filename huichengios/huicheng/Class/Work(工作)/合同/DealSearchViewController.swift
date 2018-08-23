@@ -74,6 +74,7 @@ class DealSearchViewController: BaseViewController,UITableViewDataSource,UITable
 
             let vc = DealDetailViewController()
             vc.dealID = model.id
+            vc.type = .searchDeal
             weak var weakself = self
             vc.sucessBlock = {
                 weakself?.reflishData()
