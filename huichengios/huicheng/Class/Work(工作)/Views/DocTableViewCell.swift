@@ -30,7 +30,7 @@ class DocTableViewCell: UITableViewCell {
         if let docnum = model.docnum {
             self.titleNameLabel.text = docnum
         }
-        if let branchStr = model.branch {
+        if let branchStr = model.doctypeStr {
             self.subTitleLabel.text = branchStr
         }
         if let dealnum = model.dealnum {
@@ -43,12 +43,12 @@ class DocTableViewCell: UITableViewCell {
             self.typeLabel.text = typeStr
         }
 
-        if let stateStr = model.stateStr {
-            self.stateLabel.text = stateStr
-        }
-        if let state = model.state {
-
-        }
+//        if let stateStr = model.stateStr {
+//            self.stateLabel.text = stateStr
+//        }
+//        if let state = model.state {
+//
+//        }
     }
 
     func setData_docSearch(model : docgetlistModel)  {
