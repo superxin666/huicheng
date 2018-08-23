@@ -252,20 +252,21 @@ class CaseTableViewCell: UITableViewCell {
         if let time = model.regtime {
             self.timeLabel.text = String.hc_getDate_string(dateStr: time)
         }
-        if let type = model.type {
-            self.typeLabel.text = type
-        }
-        if let stateStr = model.stateStr {
-            self.nameLabel.text = stateStr
-        }
+//        if let type = model.type {
+//            self.typeLabel.text = type
+//        }
+//
+//        if let stateStr = model.stateStr {
+//            self.nameLabel.text = stateStr
+//        }
         if let reguser = model.reguser {
-            self.subLabel.text = reguser
+            self.typeLabel.text = reguser
 
         }
-        if let state = model.state {
-            self.nameLabel.backgroundColor = darkblueColor
-            self.nameLabel.textColor = .white
-        }
+//        if let state = model.state {
+//            self.nameLabel.backgroundColor = darkblueColor
+//            self.nameLabel.textColor = .white
+//        }
 
 
 

@@ -49,10 +49,10 @@ class CrtDealslistViewController:   BaseViewController,UITableViewDataSource,UIT
             self.navigation_title_fontsize(name: "非诉案件", fontsize: 18)
             tNum = 2
         case .type3:
-            self.navigation_title_fontsize(name: "行事案件", fontsize: 18)
+            self.navigation_title_fontsize(name: "刑事案件", fontsize: 18)
             tNum = 3
         case .type4:
-            self.navigation_title_fontsize(name: "法律案件", fontsize: 18)
+            self.navigation_title_fontsize(name: "法律顾问", fontsize: 18)
             tNum = 4
         default:
             self.navigation_title_fontsize(name: "诉讼案件", fontsize: 18)
