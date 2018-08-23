@@ -51,6 +51,7 @@ class IncomeListViewController: BaseViewController ,UITableViewDataSource,UITabl
         self.view.backgroundColor = viewBackColor
 
         self.navigation_title_fontsize(name: "收款登记", fontsize: 18)
+        self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
         let iteam1 = self.getUIBarButtonItem(image: #imageLiteral(resourceName: "mine_search"), action: #selector(searchClick), vc: self)
         let iteam2 = self.getUIBarButtonItem(image:#imageLiteral(resourceName: "mine_add"), action: #selector(addClick), vc: self)
         self.navigationItem.rightBarButtonItems = [iteam2,iteam1]
