@@ -39,8 +39,21 @@ class RoomTableViewCell: UITableViewCell {
         if let stateStr = model.stateStr {
             self.stateLabel.text = stateStr
         }
+
         if let state = model.state {
-            self.stateLabel.backgroundColor = darkblueColor
+            if state == 0 {
+                //待审核
+                self.stateLabel.backgroundColor = darkblueColor
+
+            } else if state == 1 {
+                //已批准
+                self.stateLabel.backgroundColor = UIColor.hc_colorFromRGB(rgbValue: 0xcccccc)
+
+
+            } else {
+                //审核驳回
+                 self.stateLabel.backgroundColor = orangeColor
+            }
             self.stateLabel.textColor = .white
         }
 

@@ -126,6 +126,13 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
     }
 
 
+    func setDataObject(dataArr : [getobjectlistModel]) {
+        self.type = .Object
+        self.dataArr = dataArr
+        self.pickView.reloadAllComponents()
+    }
+
+
     func setData_case(dataArr : [Any],indexPath : IndexPath) {
         self.pickView.tag = indexPath.row
 

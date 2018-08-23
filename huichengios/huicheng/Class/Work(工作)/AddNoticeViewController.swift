@@ -13,12 +13,14 @@ enum AddNoticeViewController_type {
 }
 typealias AddNoticeViewControllerBlock = ()->()
 
-class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate,WorkRequestVCDelegate,MessageRequestVCDelegate {
+class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate,WorkRequestVCDelegate,MessageRequestVCDelegate,OptionViewDelgate {
     let mainTabelView : UITableView = UITableView()
     let request : WorkRequestVC = WorkRequestVC()
     let messageRequest : MessageRequestVC = MessageRequestVC()
     
-    
+    /// 选项
+    let optionView : OptionView = OptionView.loadNib()
+
     /// 类型
     var type : AddNoticeViewController_type!
     /// 详情id
@@ -26,12 +28,17 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
     
     /// 详情数据模型
     var detailModel : newsdetialModel!
-    
+
+    /// 接受对象id
+    var objectID  = ""
+    var objectStr = ""
+
+
     
     var titleCell : TitleTableViewCell!
     var contentCell : ContentTableViewCell!
     var fileCell : FileTableViewCell!
-    var objectCell :SearchStateTableViewCell!
+    var objectCell :OptionTableViewCell!
     var messageCell : MessageNeedTableViewCell!
     
     var alertController : UIAlertController!
@@ -45,6 +52,9 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
     var rowNum = 5
 
      var fileArr : Array<String> = []
+
+    var objectArr : [getobjectlistModel] = []
+
     
     
     // MARK: - life
@@ -62,11 +72,12 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
         self.view.backgroundColor = viewBackColor
         request.delegate = self
         messageRequest.delegate = self
+        request.getobjectlistRequest()
+
         if type == .addNotice{
             self.navigation_title_fontsize(name: "发布公告", fontsize: 18)
             self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
             self.navigationBar_rightBtn_title(name: "确定")
-            request.getobjectlistRequest()
             rowNum = 5
             
             
@@ -93,7 +104,7 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
         mainTabelView.register(UINib.init(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: TitleTableViewCellID)
         mainTabelView.register(UINib.init(nibName: "ContentTableViewCell", bundle: nil), forCellReuseIdentifier: ContentTableViewCellID)
         mainTabelView.register(UINib.init(nibName: "FileTableViewCell", bundle: nil), forCellReuseIdentifier: FileTableViewCellID)
-        mainTabelView.register(UINib.init(nibName: "SearchStateTableViewCell", bundle: nil), forCellReuseIdentifier: SearchStateTableViewCellID)
+        mainTabelView.register(UINib.init(nibName: "OptionTableViewCell", bundle: nil), forCellReuseIdentifier: OptionTableViewCellID)
         mainTabelView.register(UINib.init(nibName: "MessageNeedTableViewCell", bundle: nil), forCellReuseIdentifier: MessageNeedTableViewCellID)
         self.view.addSubview(mainTabelView)
     }
@@ -122,9 +133,10 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
 
             return fileCell
         } else if indexPath.row == 3 {
-            objectCell  = tableView.dequeueReusableCell(withIdentifier: SearchStateTableViewCellID, for: indexPath) as! SearchStateTableViewCell
-            objectCell.type = .Object
-            objectCell.setData_Object(titleStr: "接受对象")
+            objectCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
+
+            objectCell.setDataObject(titleStr: "接受对象", contentStr: objectStr)
+
             return objectCell
         } else {
             messageCell  = tableView.dequeueReusableCell(withIdentifier: MessageNeedTableViewCellID, for: indexPath) as! MessageNeedTableViewCell
@@ -133,7 +145,7 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
         }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if self.type == .addNotice {
+        if self.type == .addNotice || self.type == .edit {
             if indexPath.row == 2 {
                 let vc = FileViewController()
                 vc.hidesBottomBarWhenPushed = true
@@ -145,6 +157,9 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
                     weakSelf?.fileArr = fileArr
                 }
                 self.navigationController?.pushViewController(vc, animated: true)
+            } else if indexPath.row == 3 {
+                
+                self.showOptionView_state()
             }
         }
     }
@@ -162,6 +177,29 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
             return MessageNeedTableViewCellH
         }
     }
+
+    func showOptionView_state() {
+        self.maskView.addSubview(self.optionView)
+        self.view.window?.addSubview(self.maskView)
+        self.optionView.setDataObject(dataArr: objectArr)
+
+        self.optionView.delegate = self
+        self.optionView.snp.makeConstraints { (make) in
+            make.left.right.equalTo(0)
+            make.bottom.equalTo(0)
+            make.height.equalTo(160)
+        }
+    }
+
+    func optionSure(idStr: String, titleStr: String, noteStr: String, pickTag: Int) {
+        objectID = idStr
+        self.maskView.removeFromSuperview()
+        self.optionView.removeFromSuperview()
+        objectCell.setOptionData(contentStr: titleStr)
+
+    }
+
+
     // MARK: - net
 
     func requestSucceed_work(data: Any, type: WorkRequestVC_enum) {
@@ -169,11 +207,9 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
         if type == .getobjectlist {
             //获取对象
             let arr : [getobjectlistModel] = data as! [getobjectlistModel]
-            self.objectCell.dataArr = arr
-      
-            HCLog(message: self.objectCell.dataArr.count)
+            objectArr = arr
+
             
-            self.objectCell.pickView.reloadAllComponents()
         } else if type == .save || type == .newspublic || type == .del{
             //添加  发布 撤销 删除
             let model : CodeData = data as! CodeData
@@ -196,11 +232,10 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
         detailModel = model
         titleCell.setData_noticeDetail(titleStr: "", contentStr: model.title)
         contentCell.setData_notice(contentStr: model.content)
-        let objectmodel : getobjectlistModel = getobjectlistModel()
-        objectmodel.name = model.object
-        objectmodel.id = model.objectid
-        objectCell.dataArr = [objectmodel]
-        objectCell.pickView.reloadAllComponents()
+        objectCell.setOptionData(contentStr: model.object!)
+        objectID = "\(model.objectid!)"
+        objectStr = model.object!
+
         
     }
     
@@ -245,7 +280,7 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
             SVPMessageShow.showErro(infoStr: "请输入内容")
             return
         }
-        if !(objectCell.cuurectID.count > 0) {
+        if !(objectID.count > 0) {
             SVPMessageShow.showErro(infoStr: "请选择接受对象")
             return
         }
@@ -253,7 +288,7 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
 
         SVPMessageShow.showLoad(title:"发布中~~")
         if let id = detailId {
-            request.saveRequest(id: "\(id)", t: titleCell.conTent, n: contentCell.conTent, o: objectCell.cuurectID, s: 0, d: messageCell.need, f: "")
+            request.saveRequest(id: "\(id)", t: titleCell.conTent, n: contentCell.conTent, o: objectID, s: 0, d: messageCell.need, f: "")
         } else {
             if self.fileArr.count > 0 {
                 //上传文件
@@ -266,7 +301,7 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
                         HCLog(message: model.msg)
                         SVPMessageShow.dismissSVP()
                         let file = base_imageOrFile_api + model.msg
-                        weakSelf?.request.saveRequest(id: "", t: self.titleCell.conTent, n: self.contentCell.conTent, o: self.objectCell.cuurectID, s: 0, d: self.messageCell.need, f: file)
+                        weakSelf?.request.saveRequest(id: "", t: self.titleCell.conTent, n: self.contentCell.conTent, o: self.objectID, s: 0, d: self.messageCell.need, f: file)
 
                     } else {
                         SVPMessageShow.dismissSVP()
@@ -277,7 +312,7 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
                     SVPMessageShow.showErro(infoStr: "文件上传失败，请重新尝试")
                 }
             } else {
-                request.saveRequest(id: "", t: titleCell.conTent, n: contentCell.conTent, o: objectCell.cuurectID, s: 0, d: messageCell.need, f: "")
+                request.saveRequest(id: "", t: titleCell.conTent, n: contentCell.conTent, o: objectID, s: 0, d: messageCell.need, f: "")
             }
 
         }

@@ -37,12 +37,22 @@
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FxN-et-Jte">
+                        <rect key="frame" x="10" y="49" width="310" height="0.5"/>
+                        <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="Tqf-4A-vyn"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="mYf-aG-tUk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="0yW-fw-OYC"/>
                     <constraint firstItem="lvz-5n-PST" firstAttribute="leading" secondItem="mYf-aG-tUk" secondAttribute="trailing" id="1Qz-D4-uc9"/>
                     <constraint firstItem="mYf-aG-tUk" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="DQF-rX-Uss"/>
+                    <constraint firstAttribute="trailing" secondItem="FxN-et-Jte" secondAttribute="trailing" id="Srm-xa-oWB"/>
                     <constraint firstItem="lvz-5n-PST" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="aTG-sW-BDO"/>
+                    <constraint firstItem="FxN-et-Jte" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="oBg-5f-T7z"/>
+                    <constraint firstAttribute="bottom" secondItem="FxN-et-Jte" secondAttribute="bottom" id="snV-z5-M9Q"/>
                     <constraint firstAttribute="trailing" secondItem="lvz-5n-PST" secondAttribute="trailing" constant="30" id="uES-Nj-gvT"/>
                 </constraints>
             </tableViewCellContentView>
@@ -50,7 +60,7 @@
                 <outlet property="fileNameLabel" destination="lvz-5n-PST" id="s6Z-Cr-RBy"/>
                 <outlet property="titleNameLabel" destination="mYf-aG-tUk" id="H4V-kR-cXM"/>
             </connections>
-            <point key="canvasLocation" x="-986" y="10"/>
+            <point key="canvasLocation" x="-1084" y="-30"/>
         </tableViewCell>
     </objects>
 </document>

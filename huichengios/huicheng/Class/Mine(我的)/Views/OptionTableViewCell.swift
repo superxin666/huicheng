@@ -33,6 +33,12 @@ class OptionTableViewCell: UITableViewCell {
 
     }
 
+    func setDataObject(titleStr : String,contentStr : String) {
+        self.titleNameLabel.text = titleStr
+        self.contentLabel.text = contentStr
+
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
