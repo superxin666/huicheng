@@ -17,6 +17,12 @@ class CaseCheckViewController: BaseViewController,UITableViewDataSource,UITableV
 
     /// 合同编号
     var numStr = ""
+    var bStr = ""
+
+    var eStr = ""
+
+    var uStr = ""
+    var prStr = ""
 
 
     // MARK: - life
@@ -90,7 +96,7 @@ class CaseCheckViewController: BaseViewController,UITableViewDataSource,UITableV
     // MARK: - net
     func requestApi() {
         requestVC.delegate = self
-        requestVC.dealgetoverlistRequest(p: pageNum, c: 8, n: "", b: "", e: "", u: "",pr: "")
+        requestVC.dealgetoverlistRequest(p: pageNum, c: 8, n: numStr, b: bStr, e: eStr, u: uStr,pr: prStr)
     }
 
     func reflishData() {
@@ -133,15 +139,17 @@ class CaseCheckViewController: BaseViewController,UITableViewDataSource,UITableV
     override func navigationRightBtnClick() {
         HCLog(message: "搜索")
         let vc = SearchViewController()
-        vc.type = .deal_type
+        vc.type = .dealcheck
         weak var weakself = self
-        vc.sureDealBlock = {content in
-            weakself?.numStr = content
+        vc.dealcheckBlock = {(n,b,e,u,pr) in
+            weakself?.numStr = n
+            weakself?.bStr = b
+            weakself?.eStr = e
+            weakself?.uStr = u
+            weakself?.prStr = pr
             weakself?.reflishData()
         }
         self.navigationController?.pushViewController(vc, animated: true)
-
-
     }
 
 
