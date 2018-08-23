@@ -202,6 +202,7 @@
 		215C65D5203EC6B6001C7A92 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 215C65D3203EC6B6001C7A92 /* LaunchScreen.storyboard */; };
 		21671C9020AAD99200E8680C /* DocTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21671C8E20AAD99200E8680C /* DocTableViewCell.swift */; };
 		21671C9120AAD99200E8680C /* DocTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21671C8F20AAD99200E8680C /* DocTableViewCell.xib */; };
+		216798F6212E4305006A8AB0 /* invoiceInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216798F5212E4305006A8AB0 /* invoiceInfoViewController.swift */; };
 		216A6C4E204CDE5500528FD8 /* ConvenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A6C4D204CDE5500528FD8 /* ConvenViewController.swift */; };
 		216A6C50204CDE6700528FD8 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A6C4F204CDE6700528FD8 /* MessageViewController.swift */; };
 		216A6C52204CDE6F00528FD8 /* MineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A6C51204CDE6F00528FD8 /* MineViewController.swift */; };
@@ -462,6 +463,7 @@
 		215C65D6203EC6B6001C7A92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		21671C8E20AAD99200E8680C /* DocTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocTableViewCell.swift; sourceTree = "<group>"; };
 		21671C8F20AAD99200E8680C /* DocTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DocTableViewCell.xib; sourceTree = "<group>"; };
+		216798F5212E4305006A8AB0 /* invoiceInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = invoiceInfoViewController.swift; path = "huicheng/Class/Work(工作)/invoiceInfoViewController.swift"; sourceTree = SOURCE_ROOT; };
 		216A6C4D204CDE5500528FD8 /* ConvenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvenViewController.swift; sourceTree = "<group>"; };
 		216A6C4F204CDE6700528FD8 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		216A6C51204CDE6F00528FD8 /* MineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineViewController.swift; sourceTree = "<group>"; };
@@ -806,6 +808,7 @@
 				21559348212CFDE800E8BDD0 /* DealSearchViewController.swift */,
 				21559349212CFDE800E8BDD0 /* DealViewController.swift */,
 				21559343212CFD8000E8BDD0 /* DealDetailViewController.swift */,
+				216798F5212E4305006A8AB0 /* invoiceInfoViewController.swift */,
 				21559346212CFDE100E8BDD0 /* DealCheckViewController.swift */,
 				21559342212CFD8000E8BDD0 /* DealCheckDetailViewController.swift */,
 				2155934C212CFEDD00E8BDD0 /* CaseCheckDetailViewController.swift */,
@@ -1381,6 +1384,7 @@
 				21671C9020AAD99200E8680C /* DocTableViewCell.swift in Sources */,
 				2123A380208EFCC000C50FA9 /* ShareHeadView.swift in Sources */,
 				2148A2D0206A38AB00D996C5 /* AddMemoBackView.swift in Sources */,
+				216798F6212E4305006A8AB0 /* invoiceInfoViewController.swift in Sources */,
 				2108BB6A206F22B2002A4212 /* SearchPersionTableViewCell.swift in Sources */,
 				215C65CB203EC6B6001C7A92 /* AppDelegate.swift in Sources */,
 				21075551205D5AD000FF4396 /* MessageTableViewCell.swift in Sources */,

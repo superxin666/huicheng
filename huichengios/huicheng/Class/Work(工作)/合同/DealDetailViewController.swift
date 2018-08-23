@@ -100,6 +100,18 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
         if indexPath.section == 1 {
             if indexPath.row == 0 {
                 HCLog(message: "发票信息")
+
+                let vc = invoiceInfoViewController()
+                vc.hidesBottomBarWhenPushed = true
+                var arr : [String] = []
+                arr.append(dealModel.ispaperStr)
+                arr.append(dealModel.paper)
+                vc.dataArr = arr
+                self.navigationController?.pushViewController(vc, animated: true)
+
+                
+
+
             } else if indexPath.row == 1 {
                 HCLog(message: "基本情况")
                 var arr : [String] = []
