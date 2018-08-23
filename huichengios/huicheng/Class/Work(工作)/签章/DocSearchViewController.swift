@@ -116,6 +116,7 @@ class DocSearchViewController: BaseViewController ,UITableViewDataSource,UITable
         } else if type == .doc_getinfo {
             let model : docgetinfoModel = data as! docgetinfoModel
             let vc = ReadPdfViewController()
+            
             vc.url = URL(string: base_imageOrFile_api + model.pdf!)
             self.navigationController?.pushViewController(vc, animated: true)
 

@@ -31,13 +31,15 @@ class DocTableViewCell: UITableViewCell {
     func setData_Apply(model : docgetlistModel) {
 
         if let docnum = model.docnum {
-            self.titleNameLabel.text = docnum
+
+            self.subNunLabel.text = docnum
+        }
+
+        if let dealnum = model.dealnum {
+            self.titleNameLabel.text = dealnum
         }
         if let branchStr = model.doctypeStr {
             self.subTitleLabel.text = branchStr
-        }
-        if let dealnum = model.dealnum {
-            self.subNunLabel.text = dealnum
         }
         if let addtime = model.addtime {
             self.timeLabel.text = String.hc_getDate_string(dateStr: addtime)
@@ -55,13 +57,16 @@ class DocTableViewCell: UITableViewCell {
     
     func setData_doc(model : docgetlistModel) {
         if let docnum = model.docnum {
-            self.titleNameLabel.text = docnum
+
+            self.subNunLabel.text = docnum
         }
+
+        if let dealnum = model.dealnum {
+            self.titleNameLabel.text = dealnum
+        }
+
         if let branchStr = model.doctypeStr {
             self.subTitleLabel.text = branchStr
-        }
-        if let dealnum = model.dealnum {
-            self.subNunLabel.text = dealnum
         }
         if let addtime = model.addtime {
             self.timeLabel.text = String.hc_getDate_string(dateStr: addtime)
@@ -80,17 +85,15 @@ class DocTableViewCell: UITableViewCell {
 
     func setData_docSearch(model : docgetlistModel)  {
         if let docnum = model.docnum {
-            self.titleNameLabel.text = docnum
+            self.subNunLabel.text = docnum
         }
-        if let user = model.user {
-            self.titleNameLabel2.text = user
+        if let dealnum = model.dealnum  {
+            self.titleNameLabel.text = dealnum
+
         }
 
-        if let branchStr = model.branch {
-            self.subTitleLabel.text = branchStr
-        }
-        if let dealnum = model.dealnum {
-            self.subNunLabel.text = dealnum
+        if let doctypeStr = model.doctypeStr {
+            self.subTitleLabel.text = doctypeStr
         }
         if let addtime = model.addtime {
             self.timeLabel.text = String.hc_getDate_string(dateStr: addtime)
@@ -99,12 +102,12 @@ class DocTableViewCell: UITableViewCell {
             self.typeLabel.text = typeStr
         }
 
-        if let stateStr = model.stateStr {
-            self.stateLabel.text = stateStr
-        }
-        if let state = model.state {
-
-        }
+//        if let stateStr = model.stateStr {
+//            self.stateLabel.text = stateStr
+//        }
+//        if let state = model.state {
+//
+//        }
 
     }
 
