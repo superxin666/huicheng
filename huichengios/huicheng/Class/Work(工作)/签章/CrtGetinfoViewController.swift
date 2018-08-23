@@ -18,6 +18,13 @@ class CrtGetinfoViewController:  BaseTableViewController,Work2RequestVCDelegate,
     var dataModel : CrtGetinfoModel!
     var itemsArr : [CrtGetinfoModel_items] = []
 
+    var iconImageView : UIImageView = UIImageView(frame: CGRect(x: ip6(10), y: ip6(50), width: KSCREEN_WIDTH - ip6(20), height: KSCREEN_HEIGHT - ip6(100)))
+
+
+    var closeBtn : UIButton = UIButton(frame: CGRect(x: 0, y: 0, width: ip6(50), height: ip6(50)))
+
+
+
     /// 选项
     let optionView : OptionView = OptionView.loadNib()
     /// 时间
@@ -78,6 +85,9 @@ class CrtGetinfoViewController:  BaseTableViewController,Work2RequestVCDelegate,
             if indexPath.section == 0 {
                 let cell : CrtGetinfoImageTableViewCell  = tableView.dequeueReusableCell(withIdentifier: CrtGetinfoImageTableViewCellID, for: indexPath) as! CrtGetinfoImageTableViewCell
                 cell.setData(titleStr: dataModel.deals.casename!, imageStr: dataModel.deals.docimg!)
+                cell.imageBlock = {
+                    self.showBigImage()
+                }
                 return cell
             } else {
                 let model : CrtGetinfoModel_items = self.itemsArr[indexPath.row]
@@ -220,6 +230,26 @@ class CrtGetinfoViewController:  BaseTableViewController,Work2RequestVCDelegate,
 
         self.timeView.removeFromSuperview()
         self.maskView.removeFromSuperview()
+    }
+
+
+    func showBigImage() {
+
+        self.iconImageView.setImage_kf(imageName: dataModel.deals.docimg!, placeholderImage: #imageLiteral(resourceName: "log_bag"))
+        self.maskView.addSubview(self.iconImageView)
+        self.maskView.isUserInteractionEnabled = true
+        self.view.window?.addSubview(self.maskView)
+
+        let tap : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(disMissImage))
+        self.maskView.addGestureRecognizer(tap)
+
+    }
+
+    @objc func disMissImage() {
+
+        self.iconImageView.removeFromSuperview()
+        self.maskView.removeFromSuperview()
+
     }
 
     func datePickViewTime(timeStr: String, type: Int) {

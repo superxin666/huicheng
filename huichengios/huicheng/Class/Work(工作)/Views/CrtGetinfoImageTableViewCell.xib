@@ -27,7 +27,7 @@
                         <color key="textColor" red="0.090196078430000007" green="0.2274509804" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xoH-l3-mO2">
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xoH-l3-mO2">
                         <rect key="frame" x="0.0" y="40" width="320" height="200"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="200" id="rX7-Lz-fjb"/>
@@ -48,7 +48,7 @@
                 <outlet property="iconImageView" destination="xoH-l3-mO2" id="gwb-ty-Fep"/>
                 <outlet property="titleNameLabel" destination="zNB-6B-BgM" id="ulj-eQ-qtp"/>
             </connections>
-            <point key="canvasLocation" x="-339" y="57"/>
+            <point key="canvasLocation" x="-430" y="-76"/>
         </tableViewCell>
     </objects>
 </document>
