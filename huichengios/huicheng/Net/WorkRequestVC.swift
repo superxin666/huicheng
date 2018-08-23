@@ -559,14 +559,40 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
     ///   - p: <#p description#>
     ///   - c: <#c description#>
     ///   - n: <#n description#>
-    func searchlistReuest(p:Int,c:Int,n:String) {
+    func searchlistReuest(p:Int,c:Int,n:String,d:String,b:String,e:String,kw:String,u:String,t:String,wu:String,ic:String,io:String) {
         request.delegate = self
         type = .searchlist
         var nStr = ""
-        if nStr.count > 0 {
+        if n.count > 0 {
             nStr = n.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         }
-        let url = deal_searchlist_api   + "p=\(p)&c=\(c)&n=\(nStr)&k=\(UserInfoLoaclManger.getKey())"
+
+        var bStr = ""
+        if b.count > 0 {
+            bStr = b.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+        var eStr = ""
+        if e.count > 0 {
+            eStr = e.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+        var uStr = ""
+        if u.count > 0 {
+            uStr = u.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+        var kwStr = ""
+        if kw.count > 0 {
+            kwStr = kw.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+
+        var wuStr = ""
+        if wu.count > 0 {
+            wuStr = kw.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+
+
+
+
+        let url = deal_searchlist_api   + "p=\(p)&c=\(c)&n=\(nStr)&d=\(d)&b=\(bStr)&e=\(eStr)&kw=\(kwStr)&u=\(uStr)&t=\(t)&wu=\(wuStr)&ic=\(ic)&io=\(io)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
     }
 

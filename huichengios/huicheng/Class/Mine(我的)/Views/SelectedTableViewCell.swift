@@ -26,12 +26,34 @@ class SelectedTableViewCell: UITableViewCell {
     var invoiceType = "0"
 
 
+    /// 1-未收费;2-已收费;
+    var icStr = ""
+
+    /// 结案状态，INT 型:1-未结案;2-已结案;
+    var ioStr = ""
+
 
     /// 发票申请
     func setData_addinvoice() {
         normalBtn.isSelected = true
         lastBtn = normalBtn
     }
+
+
+    func setIncomeState() {
+//        normalBtn.isSelected = true
+        self.titleNameLabel.text = "收费状态"
+        normalBtn.setTitle("未收费", for: .normal)
+        specialBtn.setTitle("已收费", for: .normal)
+    }
+
+    func setOverCase() {
+//        normalBtn.isSelected = true
+        self.titleNameLabel.text = "结案状态"
+        normalBtn.setTitle("未结案", for: .normal)
+        specialBtn.setTitle("已结案", for: .normal)
+    }
+
 
     /// 生成合同
     func setData_deal(type : String) {

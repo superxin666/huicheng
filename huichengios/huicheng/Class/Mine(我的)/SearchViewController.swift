@@ -23,7 +23,7 @@ typealias SearchViewControllerBlock_docSearch = (_ nStr : String,_ dnStr : Strin
 enum SearchViewController_type {
 
     //发票申请           收款记录       工作日志      发票列表         案件查询        合同查询   姓名    部门 人员姓名     收款登记
-    case expense_type, finance_type , work_type ,invoice_getlist,caselsit_type,deal_type,person,departAndPerson,Income_list,doc_search,shareType,conven_type,deal2_type,workbook_type,dealcheck
+    case expense_type, finance_type , work_type ,invoice_getlist,caselsit_type,deal_type,person,departAndPerson,Income_list,doc_search,shareType,conven_type,deal2_type,workbook_type,dealcheck,dealsearch
 
 }
 let Searchcell_finance_typeID = "Searchcell_finance_type_id"
@@ -177,6 +177,9 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         } else if type == .dealcheck{
             self.navigation_title_fontsize(name: "合同查询", fontsize: 18)
             rowNum = 5
+        } else if type == .dealsearch{
+            self.navigation_title_fontsize(name: "合同查询", fontsize: 18)
+            rowNum = 10
         }
         self.navigationBar_rightBtn_title(name: "确定")
         self.creatUI()
@@ -681,6 +684,7 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         self.maskView.addSubview(self.optionView)
         self.view.window?.addSubview(self.maskView)
         self.optionView.setData()
+
         self.optionView.delegate = self
         self.optionView.snp.makeConstraints { (make) in
             make.left.right.equalTo(0)
@@ -700,7 +704,6 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             make.height.equalTo(160)
         }
     }
-
 
     func optionSure(idStr: String, titleStr: String,noteStr : String, pickTag: Int) {
         HCLog(message: titleStr)

@@ -14,8 +14,16 @@ class DealSearchViewController: BaseViewController,UITableViewDataSource,UITable
     var dataArr : [dealGetlistModel] = []
     var pageNum : Int = 0
 
-    /// 合同编号
     var numStr = ""
+    var dStr = ""
+    var bStr = ""
+    var eStr = ""
+    var kwStr = ""
+    var uStr = ""
+    var tStr = ""
+    var wuStr = ""
+    var icStr = ""
+    var ioStr = ""
 
 
     // MARK: - life
@@ -90,7 +98,7 @@ class DealSearchViewController: BaseViewController,UITableViewDataSource,UITable
     // MARK: - net
     func requestApi() {
         requestVC.delegate = self
-        requestVC.searchlistReuest(p: pageNum, c: 8, n: self.numStr)
+        requestVC.searchlistReuest(p: pageNum, c: 8, n: numStr, d: dStr, b: bStr, e: eStr, kw: kwStr, u: uStr, t: tStr, wu: wuStr, ic: icStr, io: ioStr)
     }
 
     func reflishData() {
@@ -132,12 +140,24 @@ class DealSearchViewController: BaseViewController,UITableViewDataSource,UITable
     }
     override func navigationRightBtnClick() {
         HCLog(message: "搜索")
-        let vc = SearchViewController()
-        vc.type = .deal_type
+        let vc = DealSearch2ViewController()
         weak var weakself = self
-        vc.sureDealBlock = {content in
-            weakself?.numStr = content
+        vc.sucessBlock = {(numStr,dStr,bStr,eStr,kwStr,uStr,tStr,wuStr,icStr,ioStr) in
+            HCLog(message: numStr)
+            
+            self.numStr = numStr
+            self.dStr = dStr
+            self.bStr = bStr
+            self.eStr = eStr
+            self.kwStr = kwStr
+            self.uStr = uStr
+            self.tStr = tStr
+            self.wuStr = wuStr
+            self.icStr = icStr
+            self.ioStr = ioStr
+
             weakself?.reflishData()
+            
         }
         self.navigationController?.pushViewController(vc, animated: true)
 

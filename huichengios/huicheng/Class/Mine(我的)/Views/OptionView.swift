@@ -95,11 +95,23 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
         self.pickView.reloadAllComponents()
     }
 
-    func setData_dep(dataArr : [Any])  {
+    func setData_dep(dataArr : [Any],tagNum : Int)  {
+        self.pickView.tag = tagNum
+
         self.type = .caseDep
         data_departArr = dataArr as! [departmentModel]
         self.pickView.reloadAllComponents()
     }
+
+
+    func setData_casetypeonly(dataArr : [Any],tagNum : Int)  {
+         self.pickView.tag = tagNum
+
+        self.type = .caseType
+        data_casetypeArr = dataArr as! [casetypeModel]
+        self.pickView.reloadAllComponents()
+    }
+
 
 
     func setDatainvoiceState()  {
@@ -275,6 +287,7 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
     @IBAction func sureClick(_ sender: UIButton) {
 
         if let delegate = self.delegate {
+            HCLog(message: self.pickView.tag)
             delegate.optionSure(idStr: cuurectID, titleStr: currectStr,noteStr : currectNoteStr, pickTag: self.pickView.tag)
         }
 

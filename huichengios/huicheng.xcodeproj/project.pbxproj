@@ -203,6 +203,7 @@
 		21671C9020AAD99200E8680C /* DocTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21671C8E20AAD99200E8680C /* DocTableViewCell.swift */; };
 		21671C9120AAD99200E8680C /* DocTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21671C8F20AAD99200E8680C /* DocTableViewCell.xib */; };
 		216798F6212E4305006A8AB0 /* invoiceInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216798F5212E4305006A8AB0 /* invoiceInfoViewController.swift */; };
+		216798F8212E5EDA006A8AB0 /* DealSearch2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216798F7212E5EDA006A8AB0 /* DealSearch2ViewController.swift */; };
 		216A6C4E204CDE5500528FD8 /* ConvenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A6C4D204CDE5500528FD8 /* ConvenViewController.swift */; };
 		216A6C50204CDE6700528FD8 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A6C4F204CDE6700528FD8 /* MessageViewController.swift */; };
 		216A6C52204CDE6F00528FD8 /* MineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A6C51204CDE6F00528FD8 /* MineViewController.swift */; };
@@ -464,6 +465,7 @@
 		21671C8E20AAD99200E8680C /* DocTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocTableViewCell.swift; sourceTree = "<group>"; };
 		21671C8F20AAD99200E8680C /* DocTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DocTableViewCell.xib; sourceTree = "<group>"; };
 		216798F5212E4305006A8AB0 /* invoiceInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = invoiceInfoViewController.swift; path = "huicheng/Class/Work(工作)/invoiceInfoViewController.swift"; sourceTree = SOURCE_ROOT; };
+		216798F7212E5EDA006A8AB0 /* DealSearch2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DealSearch2ViewController.swift; path = "huicheng/Class/Work(工作)/DealSearch2ViewController.swift"; sourceTree = SOURCE_ROOT; };
 		216A6C4D204CDE5500528FD8 /* ConvenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvenViewController.swift; sourceTree = "<group>"; };
 		216A6C4F204CDE6700528FD8 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		216A6C51204CDE6F00528FD8 /* MineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineViewController.swift; sourceTree = "<group>"; };
@@ -806,6 +808,7 @@
 			isa = PBXGroup;
 			children = (
 				21559348212CFDE800E8BDD0 /* DealSearchViewController.swift */,
+				216798F7212E5EDA006A8AB0 /* DealSearch2ViewController.swift */,
 				21559349212CFDE800E8BDD0 /* DealViewController.swift */,
 				21559343212CFD8000E8BDD0 /* DealDetailViewController.swift */,
 				216798F5212E4305006A8AB0 /* invoiceInfoViewController.swift */,
@@ -1350,6 +1353,7 @@
 				2155934B212CFDE800E8BDD0 /* DealViewController.swift in Sources */,
 				2123A385208F0C7400C50FA9 /* SelectedTableViewCell.swift in Sources */,
 				21F8469620B7F9DE00F4A678 /* bank_getlistModel.swift in Sources */,
+				216798F8212E5EDA006A8AB0 /* DealSearch2ViewController.swift in Sources */,
 				21F8469420B7DFEA00F4A678 /* BankInfoViewController.swift in Sources */,
 				2108BB73206F2E33002A4212 /* quick_getlistModel.swift in Sources */,
 				2108BB95206FF723002A4212 /* CheckcaseResultViewController.swift in Sources */,
