@@ -64,7 +64,7 @@ class DocApplylistViewController: BaseViewController ,UITableViewDataSource,UITa
         let cell : DocTableViewCell  = tableView.dequeueReusableCell(withIdentifier: DocTableViewCellID, for: indexPath) as! DocTableViewCell
         if indexPath.row < self.dataArr.count {
             let model : docgetlistModel = self.dataArr[indexPath.row]
-            cell.setData_doc(model: model)
+            cell.setData_Apply(model: model)
         }
         return cell
     }

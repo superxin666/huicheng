@@ -25,6 +25,33 @@ class DocTableViewCell: UITableViewCell {
     @IBOutlet weak var typeLabel: UILabel!
 
     @IBOutlet weak var stateLabel: UILabel!
+
+
+
+    func setData_Apply(model : docgetlistModel) {
+
+        if let docnum = model.docnum {
+            self.titleNameLabel.text = docnum
+        }
+        if let branchStr = model.doctypeStr {
+            self.subTitleLabel.text = branchStr
+        }
+        if let dealnum = model.dealnum {
+            self.subNunLabel.text = dealnum
+        }
+        if let addtime = model.addtime {
+            self.timeLabel.text = String.hc_getDate_string(dateStr: addtime)
+        }
+        if let typeStr = model.typeStr {
+            self.typeLabel.text = typeStr
+        }
+
+        if let user = model.user {
+            self.stateLabel.font = hc_fontThin(10)
+            self.stateLabel.text = user
+        }
+
+    }
     
     func setData_doc(model : docgetlistModel) {
         if let docnum = model.docnum {
