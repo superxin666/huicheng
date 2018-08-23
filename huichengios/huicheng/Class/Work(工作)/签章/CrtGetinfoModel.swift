@@ -33,7 +33,7 @@ class CrtGetinfoModel_items: Mappable {
         remark <- map["remark"]
         value <- map["value"]
         sort <- map["sort"]
-//        HCLog(message: type)
+//        HCLog(message: type!)
         if type! == 4 {
             optionArr =  value.components(separatedBy: ",")
             value = optionArr[0]
@@ -50,6 +50,8 @@ class CrtGetinfoModel_deals: Mappable {
     var regtime : String!
     var principal: String!
     var content: String!
+    var docimg: String!
+
 
     init() {}
     required init?(map: Map){
@@ -65,6 +67,7 @@ class CrtGetinfoModel_deals: Mappable {
         regtime <- map["regtime"]
         principal <- map["principal"]
         content <- map["content"]
+        docimg <- map["docimg"]
 
     }
 }

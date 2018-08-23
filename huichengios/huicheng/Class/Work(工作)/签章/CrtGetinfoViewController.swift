@@ -25,11 +25,6 @@ class CrtGetinfoViewController:  BaseTableViewController,Work2RequestVCDelegate,
 
     // MARK: - life
     override func viewWillLayoutSubviews() {
-        mainTabelView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.view).offset(0)
-            make.left.right.equalTo(self.view).offset(0)
-            make.bottom.equalTo(self.view).offset(0)
-        }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +40,7 @@ class CrtGetinfoViewController:  BaseTableViewController,Work2RequestVCDelegate,
     }
     // MARK: - UI
     func creatUI() {
-        mainTabelView.backgroundColor = UIColor.clear
+//        mainTabelView.backgroundColor = UIColor.clear
         mainTabelView.delegate = self;
         mainTabelView.dataSource = self;
         mainTabelView.tableFooterView = UIView()
@@ -58,49 +53,49 @@ class CrtGetinfoViewController:  BaseTableViewController,Work2RequestVCDelegate,
         mainTabelView.register(UINib.init(nibName: "OptionTableViewCell", bundle: nil), forCellReuseIdentifier: OptionTableViewCellID)
         mainTabelView.register(UINib.init(nibName: "Title4TableViewCell", bundle: nil), forCellReuseIdentifier: Title4TableViewCellID)
         mainTabelView.register(UINib.init(nibName: "ContentTableViewCell", bundle: nil), forCellReuseIdentifier: ContentTableViewCellID)
+        mainTabelView.register(UINib.init(nibName: "CrtGetinfoImageTableViewCell", bundle: nil), forCellReuseIdentifier: CrtGetinfoImageTableViewCellID)
 
-        self.view.addSubview(mainTabelView)
+
+        self.tableView = mainTabelView
+//        self.view.addSubview(mainTabelView)
     }
     // MARK: - delegate
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if itemsArr.count > 0 {
-            return itemsArr.count + 1
+        if section == 0 {
+            return 1
         } else {
             return itemsArr.count
         }
-
-
     }
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         if itemsArr.count > 0 && indexPath.row < itemsArr.count {
-            let model : CrtGetinfoModel_items = self.itemsArr[indexPath.row]
 
-            if indexPath.row == 0 {
-                let cell : Title4TableViewCell  = tableView.dequeueReusableCell(withIdentifier: Title4TableViewCellID, for: indexPath) as! Title4TableViewCell
-                cell.setData_overCase(titleStr: "文件名称", contentStr: self.dataModel.deals.filetype)
-                model.tagNum = indexPath.row
+            if indexPath.section == 0 {
+                let cell : CrtGetinfoImageTableViewCell  = tableView.dequeueReusableCell(withIdentifier: CrtGetinfoImageTableViewCellID, for: indexPath) as! CrtGetinfoImageTableViewCell
+                cell.setData(titleStr: dataModel.deals.casename!, imageStr: dataModel.deals.docimg!)
                 return cell
             } else {
-
-                if model.type == 0 {
+                let model : CrtGetinfoModel_items = self.itemsArr[indexPath.row]
+                if model.type! == 0 {
                     let cell : TitleTableViewCell  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
                     cell.setData_crtinfo(title: model.remark!, content: model.value!, indexPath: indexPath)
                     model.tagNum = indexPath.row
                     cell.delegate = self
                     return cell
 
-                } else if model.type == 1 {
+                } else if model.type! == 1 {
                     let cell : ContentTableViewCell  = tableView.dequeueReusableCell(withIdentifier: ContentTableViewCellID, for: indexPath) as! ContentTableViewCell
                     cell.setData_dealDetail(titleStr: model.remark!, contentStr: model.value!)
                     model.tagNum = indexPath.row
                     cell.delegate = self
                     return cell
 
-                } else if model.type == 2  ||  model.type == 3 {
+                } else if model.type! == 2  ||  model.type! == 3 {
                     let cell : endTimeTableViewCell  = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
                     cell.setData_case(titleStr: model.remark!, timeStr: model.value!)
                     model.tagNum = indexPath.row
@@ -117,7 +112,6 @@ class CrtGetinfoViewController:  BaseTableViewController,Work2RequestVCDelegate,
                     return cell
                 }
             }
-
         } else {
             return UITableViewCell()
         }
@@ -125,41 +119,54 @@ class CrtGetinfoViewController:  BaseTableViewController,Work2RequestVCDelegate,
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row < itemsArr.count && itemsArr.count > 0 {
-            let model : CrtGetinfoModel_items = itemsArr[indexPath.row]
-            if model.type == 2 || model.type == 3 {
-                //时间
-                self.showTime_start(indexPath: indexPath)
 
-            } else if model.type == 4 {
-                //选项
-                self.showOption(indexPath: indexPath)
+
+        if indexPath.section == 0{
+
+
+
+        } else {
+            if indexPath.row < itemsArr.count && itemsArr.count > 0 {
+                let model : CrtGetinfoModel_items = itemsArr[indexPath.row]
+                if model.type == 2 || model.type == 3 {
+                    //时间
+                    self.showTime_start(indexPath: indexPath)
+
+                } else if model.type == 4 {
+                    //选项
+                    self.showOption(indexPath: indexPath)
+                }
             }
         }
-
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
-        if itemsArr.count > 0 && indexPath.row < itemsArr.count {
-            let model = self.itemsArr[indexPath.row]
-            switch model.type {
-            case 0 :
-                return TitleTableViewCellH
-            case 1:
-                return ContentTableViewCellH
-            case 2 :
-                return OptionTableViewCellH
-            case 3 :
-                return OptionTableViewCellH
-            case 4:
-                return OptionTableViewCellH
-            default:
-                return OptionTableViewCellH
-            }
 
+        if indexPath.section == 0 {
+            return CrtGetinfoImageTableViewCellH
         } else {
-            return 0
+
+            if itemsArr.count > 0 && indexPath.row < itemsArr.count {
+                let model = self.itemsArr[indexPath.row]
+                switch model.type {
+                case 0 :
+                    return TitleTableViewCellH
+                case 1:
+                    return ContentTableViewCellH
+                case 2 :
+                    return OptionTableViewCellH
+                case 3 :
+                    return OptionTableViewCellH
+                case 4:
+                    return OptionTableViewCellH
+                default:
+                    return OptionTableViewCellH
+                }
+
+            } else {
+                return 0
+            }
         }
     }
 
@@ -265,10 +272,8 @@ class CrtGetinfoViewController:  BaseTableViewController,Work2RequestVCDelegate,
             itemsArr = dataModel.items
             self.mainTabelView.reloadData()
         } else {
-            self.navigationLeftBtnClick()
-
+            self.navigationController?.popToRootViewController(animated: true)
         }
-
     }
 
     func requestFail_work2() {

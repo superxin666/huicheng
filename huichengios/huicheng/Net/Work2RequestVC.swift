@@ -206,7 +206,7 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
         request.delegate = self
         type = .crt_save
         var urlIteamsStr = ""
-
+        SVPMessageShow.showLoad()
         for subModel in dataArr {
             let valueStr = subModel.value.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
             let  str = "&\(subModel.name!)=\(valueStr)"
@@ -309,6 +309,7 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
 
 
     func requestSucceed(response: Any) {
+        SVPMessageShow.dismissSVP()
         if type == .income_getlist ||  type == .income_getdeals {
             let arr = Mapper<Income_getlistModel>().mapArray(JSONArray: response as! [[String : Any]])
 

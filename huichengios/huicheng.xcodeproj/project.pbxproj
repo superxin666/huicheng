@@ -204,6 +204,8 @@
 		21679917212E85D4006A8AB0 /* DealSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21679916212E85D4006A8AB0 /* DealSearchViewController.swift */; };
 		21679919212E85EA006A8AB0 /* DealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21679918212E85E9006A8AB0 /* DealViewController.swift */; };
 		2167991B212E870E006A8AB0 /* OverCaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2167991A212E870E006A8AB0 /* OverCaseViewController.swift */; };
+		2167991E212E99ED006A8AB0 /* CrtGetinfoImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2167991C212E99ED006A8AB0 /* CrtGetinfoImageTableViewCell.swift */; };
+		2167991F212E99ED006A8AB0 /* CrtGetinfoImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2167991D212E99ED006A8AB0 /* CrtGetinfoImageTableViewCell.xib */; };
 		216A6C4E204CDE5500528FD8 /* ConvenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A6C4D204CDE5500528FD8 /* ConvenViewController.swift */; };
 		216A6C50204CDE6700528FD8 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A6C4F204CDE6700528FD8 /* MessageViewController.swift */; };
 		216A6C52204CDE6F00528FD8 /* MineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A6C51204CDE6F00528FD8 /* MineViewController.swift */; };
@@ -466,6 +468,8 @@
 		21679916212E85D4006A8AB0 /* DealSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DealSearchViewController.swift; sourceTree = "<group>"; };
 		21679918212E85E9006A8AB0 /* DealViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DealViewController.swift; sourceTree = "<group>"; };
 		2167991A212E870E006A8AB0 /* OverCaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverCaseViewController.swift; sourceTree = "<group>"; };
+		2167991C212E99ED006A8AB0 /* CrtGetinfoImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrtGetinfoImageTableViewCell.swift; sourceTree = "<group>"; };
+		2167991D212E99ED006A8AB0 /* CrtGetinfoImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CrtGetinfoImageTableViewCell.xib; sourceTree = "<group>"; };
 		216A6C4D204CDE5500528FD8 /* ConvenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvenViewController.swift; sourceTree = "<group>"; };
 		216A6C4F204CDE6700528FD8 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		216A6C51204CDE6F00528FD8 /* MineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineViewController.swift; sourceTree = "<group>"; };
@@ -1043,6 +1047,8 @@
 				21528BBF20A52D6C00C9950A /* FileListTableViewCell.xib */,
 				21671C8E20AAD99200E8680C /* DocTableViewCell.swift */,
 				21671C8F20AAD99200E8680C /* DocTableViewCell.xib */,
+				2167991C212E99ED006A8AB0 /* CrtGetinfoImageTableViewCell.swift */,
+				2167991D212E99ED006A8AB0 /* CrtGetinfoImageTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1180,6 +1186,7 @@
 				21E76FED20C78D87009454FD /* Content2TableViewCell.xib in Resources */,
 				211A65C920A00957009CD41A /* NoticeTableViewCell.xib in Resources */,
 				216B7C68206394DE00BBACDA /* MemoTableViewCell.xib in Resources */,
+				2167991F212E99ED006A8AB0 /* CrtGetinfoImageTableViewCell.xib in Resources */,
 				2108BB93206FF2BB002A4212 /* CheckcaseTableViewCell.xib in Resources */,
 				21306592211ED09D0073ECF9 /* WorkCollectionViewCell.xib in Resources */,
 				214F84AE2122C02900255F00 /* ExpenseTitleTableViewCell.xib in Resources */,
@@ -1459,6 +1466,7 @@
 				212FEA7E20C3789000A466E2 /* ShareDetailViewController.swift in Sources */,
 				215630C72129128300AE1F5E /* OverDealViewController.swift in Sources */,
 				21E9D29E20FDA9C200CA7B49 /* AddIconComeStep1ViewController.swift in Sources */,
+				2167991E212E99ED006A8AB0 /* CrtGetinfoImageTableViewCell.swift in Sources */,
 				2108BB77206FD0B3002A4212 /* NoticeViewController.swift in Sources */,
 				21DDC9CC208054040067197D /* caseDetailModel.swift in Sources */,
 				2167990E212E85A9006A8AB0 /* CaseCheckDetailViewController.swift in Sources */,
