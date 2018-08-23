@@ -336,6 +336,10 @@ class DealSearch2ViewController: BaseTableViewController,WorkRequestVCDelegate ,
         self.navigationController?.popViewController(animated: true)
     }
 
+    override func navigationLeftBtnClick() {
+        self.navigationController?.popViewController(animated: true)
+    }
+
 
     /*
     // MARK: - Navigation

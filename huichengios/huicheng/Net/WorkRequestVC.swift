@@ -423,6 +423,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
     func dealoversave(id : Int,n:String,t:String,d:String,i:String)  {
         request.delegate = self
         type = .oversave
+
         var tStr = ""
         if t.count > 0 {
             tStr = t.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
@@ -431,6 +432,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
         if d.count > 0 {
             dStr = d.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         }
+        SVPMessageShow.showLoad()
         let url =   deal_oversave_api + "id=\(id)&n=\(n)&t=\(tStr)&d=\(dStr)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
 
