@@ -542,6 +542,17 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
             SVPMessageShow.showErro(infoStr: "请选择时间")
             return
         }
+        if itStr == "1" {
+            if !(self.pStr.count > 0) {
+                SVPMessageShow.showErro(infoStr: "请输入发票号")
+                return
+            }
+            if !(self.ccStr.count > 0) {
+                SVPMessageShow.showErro(infoStr: "请输入社会统一信用代码")
+                return
+            }
+
+        }
 
         self.upLoad(type: "2", completion: { (data) in
             let str : String = data as! String
