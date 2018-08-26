@@ -216,6 +216,9 @@ class Work2ViewController: BaseViewController,UICollectionViewDataSource,UIColle
                 self.navigationController?.pushViewController(vc, animated: true)
             case "线下支付" :
                 HCLog(message: "线下支付")
+                let vc = PayApplylistViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
             case "支付审核" :
                 HCLog(message: "支付审核")
             case "银行信息" :

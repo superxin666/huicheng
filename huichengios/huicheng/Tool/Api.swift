@@ -201,6 +201,9 @@ let finance_getlist_api = "uc/finance_getlist?"
 //查看详情
 let finance_getinfo_api = "uc/finance_getinfo?"
 
+let finance_pay_getlist_api = "finance/pay_getlist?"
+
+
 //------------------------工作日志  获取列表
 let work_getlist_api = "uc/work_getlist?"
 let work_getinfo_api = "uc/work_getinfo?"
