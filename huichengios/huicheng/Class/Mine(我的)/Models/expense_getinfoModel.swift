@@ -30,6 +30,9 @@ class expense_getinfoModel_data: Mappable {
     var state: Int!
     var stateStr: String!
     var addtime: String!
+
+    var note: String!
+
     
     
     init() {}
@@ -49,6 +52,9 @@ class expense_getinfoModel_data: Mappable {
         addtime <- map["addtime"]
         stateStr <- map["stateStr"]
         state <- map["state"]
+
+        note <- map["note"]
+
         
     }
 }

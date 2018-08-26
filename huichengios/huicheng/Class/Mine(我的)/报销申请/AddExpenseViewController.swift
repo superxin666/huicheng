@@ -28,6 +28,7 @@ class AddExpenseViewController: BaseTableViewController ,MineRequestVCDelegate,O
 
     var nameArr = ["时间申请","状态","审核人","审核时间","驳回原因",]
 
+    var contentArr : [String] = []
 
 
 
@@ -191,7 +192,7 @@ class AddExpenseViewController: BaseTableViewController ,MineRequestVCDelegate,O
         } else {
             let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
             cell.isUserInteractionEnabled = false
-            cell.setData_expense(titleStr: nameArr[indexPath.row - 5], contenStr: "")
+            cell.setData_expense(titleStr: nameArr[indexPath.row - 5], contenStr: contentArr[indexPath.row  - 5])
             cell.isUserInteractionEnabled = false
             return cell
         }
@@ -269,14 +270,34 @@ class AddExpenseViewController: BaseTableViewController ,MineRequestVCDelegate,O
 
 
             if infoModel.data.state == 0 {
+                //未审核
                 rowNum = 7
+                contentArr.append(infoModel.data.addtime!)
+                contentArr.append(infoModel.data.stateStr!)
+
                 self.navigationBar_rightBtn_title(name: "修改")
 
+
             } else if infoModel.data.state == 1 {
+                //已审核
+                contentArr.append(infoModel.data.addtime!)
+                contentArr.append(infoModel.data.stateStr!)
+                contentArr.append("暂无")
+                contentArr.append("暂无")
+
                 rowNum = 9
             } else if infoModel.data.state == 2 {
+                //审核驳回
+                contentArr.append(infoModel.data.addtime!)
+                contentArr.append(infoModel.data.stateStr!)
+                contentArr.append("暂无")
+                contentArr.append("暂无")
+                contentArr.append(infoModel.data.note!)
                 rowNum = 10
             } else {
+                contentArr.append(infoModel.data.addtime!)
+                contentArr.append(infoModel.data.stateStr!)
+
                 rowNum = 7
             }
             self.mainTabelView.reloadData()

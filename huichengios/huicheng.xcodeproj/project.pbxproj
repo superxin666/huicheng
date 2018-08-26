@@ -770,12 +770,12 @@
 		214F84A42122C02900255F00 /* 报销申请 */ = {
 			isa = PBXGroup;
 			children = (
+				214F84A92122C02900255F00 /* InputTableViewCell.swift */,
 				214F84A52122C02900255F00 /* InputTableViewCell.xib */,
 				214F84A62122C02900255F00 /* ExpenseTitleTableViewCell.swift */,
-				214F84A72122C02900255F00 /* AddExpenseViewController.swift */,
 				214F84A82122C02900255F00 /* ExpenseTitleTableViewCell.xib */,
-				214F84A92122C02900255F00 /* InputTableViewCell.swift */,
 				214F84AA2122C02900255F00 /* ExpenseViewController.swift */,
+				214F84A72122C02900255F00 /* AddExpenseViewController.swift */,
 			);
 			path = "报销申请";
 			sourceTree = "<group>";
