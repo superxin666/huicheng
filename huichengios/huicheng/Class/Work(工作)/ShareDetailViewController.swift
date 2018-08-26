@@ -119,6 +119,7 @@ class ShareDetailViewController: BaseViewController,UITableViewDataSource,UITabl
                 return cell
             } else {
                 let cell : FileTableViewCell  = tableView.dequeueReusableCell(withIdentifier: FileTableViewCellID, for: indexPath) as! FileTableViewCell
+                cell.setData_fileName(fileName: "")
                 return cell
             }
         } else {
@@ -170,10 +171,17 @@ class ShareDetailViewController: BaseViewController,UITableViewDataSource,UITabl
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row  < self.dataArr.count {
+        if indexPath.section == 0 {
+            if indexPath.row == 2 {
+                HCLog(message: "点击文件")
+                
+                let vc = ReadPdfViewController()
+                vc.url = URL(string: base_imageOrFile_api + dataModel.path!)
+                self.navigationController?.pushViewController(vc, animated: true)
 
+
+            }
         }
-
     }
 
     //MARK:textView
