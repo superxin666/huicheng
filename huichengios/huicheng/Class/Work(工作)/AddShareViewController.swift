@@ -10,7 +10,7 @@
 import UIKit
 
 
-class AddShareViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate,WorkRequestVCDelegate,ContentTableViewCellDelegate,OptionViewDelgate,TitleTableViewCellDelegate {
+class AddShareViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate,WorkRequestVCDelegate,ContentTableViewCellDelegate,OptionViewDelgate,TitleTableViewCellDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     var caseTypeArr : [casetypeModel] = []
     var sucessBlock : AddWorkViewControllerBlocl!
     /// 选项
@@ -21,6 +21,10 @@ class AddShareViewController: BaseViewController,UITableViewDataSource,UITableVi
     var nStr : String = ""
     var tStr : String = ""
 
+    var alertController : UIAlertController!
+
+    var imageData : Data = Data()
+    var imageStr : String = ""
 
     let mainTabelView : UITableView = UITableView()
     var fileArr : Array<String> = []
@@ -102,15 +106,19 @@ class AddShareViewController: BaseViewController,UITableViewDataSource,UITableVi
             }
 
         } else if indexPath.row == 3 {
-            let vc = FileViewController()
-            vc.hidesBottomBarWhenPushed = true
-            weak var weakself = self
-            vc.fileArrBlock = {(fileArr) in
-                let nameStr = fileArr[0]
-                weakself?.fileCell.setData_fileName(fileName: nameStr)
-                weakself?.fileArr = fileArr
-            }
-            self.navigationController?.pushViewController(vc, animated: true)
+
+            self.showAlert()
+            
+
+//            let vc = FileViewController()
+//            vc.hidesBottomBarWhenPushed = true
+//            weak var weakself = self
+//            vc.fileArrBlock = {(fileArr) in
+//                let nameStr = fileArr[0]
+//                weakself?.fileCell.setData_fileName(fileName: nameStr)
+//                weakself?.fileArr = fileArr
+//            }
+//            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 
@@ -157,7 +165,7 @@ class AddShareViewController: BaseViewController,UITableViewDataSource,UITableVi
     func optionSure(idStr: String, titleStr: String,noteStr : String, pickTag: Int) {
         self.tStr = idStr
 
-        let cell : OptionTableViewCell = mainTabelView.cellForRow(at: IndexPath(row: pickTag, section: 0)) as! OptionTableViewCell
+        let cell : OptionTableViewCell = mainTabelView.cellForRow(at: IndexPath(row: 0, section: 0)) as! OptionTableViewCell
         cell.setOptionData(contentStr: titleStr)
 
         self.optionView.removeFromSuperview()
@@ -170,6 +178,97 @@ class AddShareViewController: BaseViewController,UITableViewDataSource,UITableVi
     func endEdite(inputStr: String, tagNum: Int) {
         self.nStr = inputStr
     }
+
+
+    func showAlert() {
+        alertController = UIAlertController(title: nil, message: "文件选择", preferredStyle: .actionSheet)
+        let sureAction = UIAlertAction(title: "图片", style: .default) { (action) in
+            self.openAlbum()
+        }
+
+        let cancleAction = UIAlertAction(title: "文件", style: .default) { (action) in
+            self.getFileClick()
+
+        }
+        alertController.addAction(cancleAction)
+        alertController.addAction(sureAction)
+        self.present((alertController)!, animated: true, completion: nil)
+
+
+    }
+
+    /// 获取文件
+    func getFileClick()  {
+
+        weak  var weakSelf = self
+        let vc = FileViewController()
+        vc.hidesBottomBarWhenPushed = true
+        vc.fileArrBlock = {(fileArr) in
+            if (weakSelf?.imageData.count)! > 0  {
+                //清除图片数据
+                weakSelf?.imageData = Data()
+            }
+            let nameStr = fileArr[0]
+            self.fileCell.setData_fileName(fileName: nameStr)
+            weakSelf?.fileArr = fileArr
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
+
+    }
+
+
+
+
+    func openAlbum() {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+            //初始化图片控制器
+            let picker = UIImagePickerController()
+            //设置代理
+            picker.delegate = self
+            //指定图片控制器类型
+            picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+            //设置是否允许编辑
+            picker.allowsEditing = true
+
+            //弹出控制器，显示界面
+            self.present(picker, animated: true, completion: {
+                () -> Void in
+            })
+        }else{
+            HCLog(message:  "读取相册错误")
+        }
+
+    }
+
+    //选择图片成功后代理
+    func imagePickerController(_ picker: UIImagePickerController,didFinishPickingMediaWithInfo info: [String : Any]) {
+        //查看info对象
+        HCLog(message: info)
+        if self.fileArr.count > 0 {
+            self.fileArr.removeAll()
+        }
+        //获取选择的编辑后的
+        let  image = info[UIImagePickerControllerEditedImage] as! UIImage
+
+        let nameStr = image.description
+        HCLog(message: nameStr)
+
+
+        self.fileCell.setData_fileName(fileName: "图片")
+
+
+        imageData = UIImageJPEGRepresentation(image, 1.0)!
+
+        //图片控制器退出
+        picker.dismiss(animated: true, completion: {
+            () -> Void in
+
+            //显示图片
+        })
+    }
+
+
+
 
     override func navigationLeftBtnClick() {
         self.navigationController?.popViewController(animated: true)
@@ -186,19 +285,65 @@ class AddShareViewController: BaseViewController,UITableViewDataSource,UITableVi
             SVPMessageShow.showErro(infoStr: "请输入标题")
             return
         }
-        if self.fileArr.count > 0 {
-            //上传文件
-            SVPMessageShow.showLoad(title: "正在上传文件")
-            weak var weakSelf = self
 
-            BaseNetViewController.uploadfile(fileName: self.fileArr[0], t: "8", completion: { (data) in
+        weak var weakSelf = self
+        self.upLoad(type: "8", completion: { (data) in
+            let str : String = data as! String
+            if str.count > 0 {
+                SVPMessageShow.dismissSVP()
+                weakSelf?.requestVC.sharesavequest(id: "", n: self.nStr, t: self.tStr, d: self.dStr, f: str)
+            } else {
+                HCLog(message: "上传失败")
+            }
+        }) { (erro) in
+            self.requestVC.sharesavequest(id: "", n: self.nStr, t: self.tStr, d: self.dStr, f: "")
+        }
+
+
+
+//        if self.fileArr.count > 0 {
+//            //上传文件
+//            SVPMessageShow.showLoad(title: "正在上传文件")
+//            weak var weakSelf = self
+//
+//            BaseNetViewController.uploadfile(fileName: self.fileArr[0], t: "8", completion: { (data) in
+//                let model = data as! CodeData
+//                if model.code == 1 {
+//                    HCLog(message: model.msg)
+//                    SVPMessageShow.dismissSVP()
+//                    let file = base_imageOrFile_api + model.msg
+//                    weakSelf?.requestVC.sharesavequest(id: "", n: self.nStr, t: self.tStr, d: self.dStr, f: file)
+//
+//                } else {
+//                    SVPMessageShow.dismissSVP()
+//                    SVPMessageShow.showErro(infoStr: "文件上传失败，请重新尝试")
+//                }
+//            }) { (erro) in
+//                SVPMessageShow.dismissSVP()
+//                SVPMessageShow.showErro(infoStr: "文件上传失败，请重新尝试")
+//            }
+//        } else {
+//            requestVC.sharesavequest(id: "", n: self.nStr, t: self.tStr, d: self.dStr, f: "")
+//        }
+
+    }
+
+
+
+
+
+    func upLoad(type : String,completion : @escaping (_ data : Any) ->(), failure : @escaping (_ error : Any)->()) {
+
+        if self.fileArr.count > 0 {
+            //        上传文件
+            SVPMessageShow.showLoad(title: "正在上传文件")
+            BaseNetViewController.uploadfile(fileName: self.fileArr[0], t: type, completion: { (data) in
                 let model = data as! CodeData
                 if model.code == 1 {
                     HCLog(message: model.msg)
                     SVPMessageShow.dismissSVP()
                     let file = base_imageOrFile_api + model.msg
-                    weakSelf?.requestVC.sharesavequest(id: "", n: self.nStr, t: self.tStr, d: self.dStr, f: file)
-
+                    completion(file)
                 } else {
                     SVPMessageShow.dismissSVP()
                     SVPMessageShow.showErro(infoStr: "文件上传失败，请重新尝试")
@@ -206,15 +351,38 @@ class AddShareViewController: BaseViewController,UITableViewDataSource,UITableVi
             }) { (erro) in
                 SVPMessageShow.dismissSVP()
                 SVPMessageShow.showErro(infoStr: "文件上传失败，请重新尝试")
+                completion("")
             }
+        } else if imageData.count > 0 {
+
+            BaseNetViewController.uploadfile(fileName: "", t: type,isFile: false,imageData: imageData, completion: { (data) in
+                let model = data as! CodeData
+                if model.code == 1 {
+                    HCLog(message: model.msg)
+                    SVPMessageShow.dismissSVP()
+                    let file = base_imageOrFile_api + model.msg
+                    completion(file)
+                } else {
+                    completion("")
+                    SVPMessageShow.dismissSVP()
+                    SVPMessageShow.showErro(infoStr: "文件上传失败，请重新尝试")
+                }
+            }) { (erro) in
+                SVPMessageShow.dismissSVP()
+                SVPMessageShow.showErro(infoStr: "文件上传失败，请重新尝试")
+                completion("")
+            }
+
         } else {
-               requestVC.sharesavequest(id: "", n: self.nStr, t: self.tStr, d: self.dStr, f: "")
+            failure("")
         }
 
-
-
-
     }
+
+
+
+
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -178,8 +178,6 @@ class ShareDetailViewController: BaseViewController,UITableViewDataSource,UITabl
                 let vc = ReadPdfViewController()
                 vc.url = URL(string: base_imageOrFile_api + dataModel.path!)
                 self.navigationController?.pushViewController(vc, animated: true)
-
-
             }
         }
     }
