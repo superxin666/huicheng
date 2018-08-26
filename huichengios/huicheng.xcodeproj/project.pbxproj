@@ -49,7 +49,6 @@
 		2108BB6B206F22B2002A4212 /* SearchPersionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2108BB69206F22B2002A4212 /* SearchPersionTableViewCell.xib */; };
 		2108BB71206F28E7002A4212 /* ConvenRequestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108BB70206F28E7002A4212 /* ConvenRequestVC.swift */; };
 		2108BB73206F2E33002A4212 /* quick_getlistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108BB72206F2E33002A4212 /* quick_getlistModel.swift */; };
-		2108BB77206FD0B3002A4212 /* NoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108BB76206FD0B3002A4212 /* NoticeViewController.swift */; };
 		2108BB79206FD219002A4212 /* CheckcaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108BB78206FD219002A4212 /* CheckcaseViewController.swift */; };
 		2108BB7E206FD7D8002A4212 /* TitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108BB7C206FD7D8002A4212 /* TitleTableViewCell.swift */; };
 		2108BB7F206FD7D8002A4212 /* TitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2108BB7D206FD7D8002A4212 /* TitleTableViewCell.xib */; };
@@ -68,7 +67,6 @@
 		2109654520708B390012FDDB /* WorkRequestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2109654420708B390012FDDB /* WorkRequestVC.swift */; };
 		2109654720708D130012FDDB /* checkcaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2109654620708D130012FDDB /* checkcaseModel.swift */; };
 		21096549207101820012FDDB /* newslist1Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21096548207101820012FDDB /* newslist1Model.swift */; };
-		2109654B20710B5E0012FDDB /* AddNoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2109654A20710B5E0012FDDB /* AddNoticeViewController.swift */; };
 		2109654D207116830012FDDB /* getobjectlistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2109654C207116830012FDDB /* getobjectlistModel.swift */; };
 		2109654F20711ECD0012FDDB /* DatePickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2109654E20711ECD0012FDDB /* DatePickView.swift */; };
 		2109655120711ED40012FDDB /* DatePickView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2109655020711ED40012FDDB /* DatePickView.xib */; };
@@ -86,12 +84,9 @@
 		2123A386208F0C7400C50FA9 /* SelectedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2123A384208F0C7400C50FA9 /* SelectedTableViewCell.xib */; };
 		2123A389208F39F800C50FA9 /* Selected2TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2123A387208F39F800C50FA9 /* Selected2TableViewCell.swift */; };
 		2123A38A208F39F800C50FA9 /* Selected2TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2123A388208F39F800C50FA9 /* Selected2TableViewCell.xib */; };
-		2124D71B208D66530007B5EE /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2124D71A208D66530007B5EE /* RoomViewController.swift */; };
 		2124D71D208D67570007B5EE /* roomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2124D71C208D67570007B5EE /* roomModel.swift */; };
 		2124D720208D69D20007B5EE /* RoomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2124D71E208D69D20007B5EE /* RoomTableViewCell.swift */; };
 		2124D721208D69D20007B5EE /* RoomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2124D71F208D69D20007B5EE /* RoomTableViewCell.xib */; };
-		2124D723208D73280007B5EE /* AddRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2124D722208D73280007B5EE /* AddRoomViewController.swift */; };
-		2124D72D208E196E0007B5EE /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2124D72C208E196E0007B5EE /* ShareViewController.swift */; };
 		2124D72F208E1B260007B5EE /* shareGetlistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2124D72E208E1B260007B5EE /* shareGetlistModel.swift */; };
 		2126DBD820897BC500977802 /* Title3TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2126DBD620897BC500977802 /* Title3TableViewCell.swift */; };
 		2126DBD920897BC500977802 /* Title3TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2126DBD720897BC500977802 /* Title3TableViewCell.xib */; };
@@ -101,7 +96,6 @@
 		2126DBE6208B454700977802 /* Title5TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2126DBE4208B454700977802 /* Title5TableViewCell.swift */; };
 		2126DBE7208B454700977802 /* Title5TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2126DBE5208B454700977802 /* Title5TableViewCell.xib */; };
 		2129C1C2211EDFD50070A82F /* WorlkHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2129C1C1211EDFD50070A82F /* WorlkHeadView.swift */; };
-		212FEA7E20C3789000A466E2 /* ShareDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212FEA7D20C3789000A466E2 /* ShareDetailViewController.swift */; };
 		212FEA8120C3EF1300A466E2 /* Title6TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212FEA7F20C3EF1300A466E2 /* Title6TableViewCell.swift */; };
 		212FEA8220C3EF1300A466E2 /* Title6TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 212FEA8020C3EF1300A466E2 /* Title6TableViewCell.xib */; };
 		212FEA8420C3F10500A466E2 /* sharegetinfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212FEA8320C3F10500A466E2 /* sharegetinfoModel.swift */; };
@@ -238,6 +232,13 @@
 		21A49D71210215420092CC04 /* income_getdealsinfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A49D70210215420092CC04 /* income_getdealsinfoModel.swift */; };
 		21A49D73210228E80092CC04 /* IncomeHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A49D72210228E80092CC04 /* IncomeHistoryViewController.swift */; };
 		21B9177C20AC27ED004031DE /* ExpenseapplylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B9177B20AC27ED004031DE /* ExpenseapplylistViewController.swift */; };
+		21B9E1B9213248C40053F995 /* ShareDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B9E1B3213248C30053F995 /* ShareDetailViewController.swift */; };
+		21B9E1BA213248C40053F995 /* AddRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B9E1B4213248C30053F995 /* AddRoomViewController.swift */; };
+		21B9E1BB213248C40053F995 /* AddShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B9E1B5213248C30053F995 /* AddShareViewController.swift */; };
+		21B9E1BC213248C40053F995 /* AddNoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B9E1B6213248C30053F995 /* AddNoticeViewController.swift */; };
+		21B9E1BD213248C40053F995 /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B9E1B7213248C40053F995 /* RoomViewController.swift */; };
+		21B9E1BE213248C40053F995 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B9E1B8213248C40053F995 /* ShareViewController.swift */; };
+		21B9E1C0213248F40053F995 /* NoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B9E1BF213248F40053F995 /* NoticeViewController.swift */; };
 		21CFDDC42068E30500745A48 /* AddMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CFDDC32068E30500745A48 /* AddMemoViewController.swift */; };
 		21CFDDC72068E8E500745A48 /* InvoiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CFDDC52068E8E500745A48 /* InvoiceTableViewCell.swift */; };
 		21CFDDC82068E8E500745A48 /* InvoiceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21CFDDC62068E8E500745A48 /* InvoiceTableViewCell.xib */; };
@@ -258,7 +259,6 @@
 		21E76FED20C78D87009454FD /* Content2TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21E76FEB20C78D87009454FD /* Content2TableViewCell.xib */; };
 		21E76FF020C7B644009454FD /* Title7TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E76FEE20C7B644009454FD /* Title7TableViewCell.swift */; };
 		21E76FF120C7B644009454FD /* Title7TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21E76FEF20C7B644009454FD /* Title7TableViewCell.xib */; };
-		21E76FF320C7BDFF009454FD /* AddShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E76FF220C7BDFF009454FD /* AddShareViewController.swift */; };
 		21E9D29E20FDA9C200CA7B49 /* AddIconComeStep1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E9D29D20FDA9C200CA7B49 /* AddIconComeStep1ViewController.swift */; };
 		21F8469220B7BFCB00F4A678 /* ReadFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F8469120B7BFCB00F4A678 /* ReadFileViewController.swift */; };
 		21F8469420B7DFEA00F4A678 /* BankInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F8469320B7DFEA00F4A678 /* BankInfoViewController.swift */; };
@@ -309,7 +309,6 @@
 		2108BB69206F22B2002A4212 /* SearchPersionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchPersionTableViewCell.xib; sourceTree = "<group>"; };
 		2108BB70206F28E7002A4212 /* ConvenRequestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvenRequestVC.swift; sourceTree = "<group>"; };
 		2108BB72206F2E33002A4212 /* quick_getlistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = quick_getlistModel.swift; sourceTree = "<group>"; };
-		2108BB76206FD0B3002A4212 /* NoticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewController.swift; sourceTree = "<group>"; };
 		2108BB78206FD219002A4212 /* CheckcaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckcaseViewController.swift; sourceTree = "<group>"; };
 		2108BB7C206FD7D8002A4212 /* TitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewCell.swift; sourceTree = "<group>"; };
 		2108BB7D206FD7D8002A4212 /* TitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleTableViewCell.xib; sourceTree = "<group>"; };
@@ -329,7 +328,6 @@
 		2109654420708B390012FDDB /* WorkRequestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkRequestVC.swift; sourceTree = "<group>"; };
 		2109654620708D130012FDDB /* checkcaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkcaseModel.swift; sourceTree = "<group>"; };
 		21096548207101820012FDDB /* newslist1Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newslist1Model.swift; sourceTree = "<group>"; };
-		2109654A20710B5E0012FDDB /* AddNoticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoticeViewController.swift; sourceTree = "<group>"; };
 		2109654C207116830012FDDB /* getobjectlistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getobjectlistModel.swift; sourceTree = "<group>"; };
 		2109654E20711ECD0012FDDB /* DatePickView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickView.swift; sourceTree = "<group>"; };
 		2109655020711ED40012FDDB /* DatePickView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DatePickView.xib; sourceTree = "<group>"; };
@@ -347,12 +345,9 @@
 		2123A384208F0C7400C50FA9 /* SelectedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectedTableViewCell.xib; sourceTree = "<group>"; };
 		2123A387208F39F800C50FA9 /* Selected2TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selected2TableViewCell.swift; sourceTree = "<group>"; };
 		2123A388208F39F800C50FA9 /* Selected2TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Selected2TableViewCell.xib; sourceTree = "<group>"; };
-		2124D71A208D66530007B5EE /* RoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewController.swift; sourceTree = "<group>"; };
 		2124D71C208D67570007B5EE /* roomModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = roomModel.swift; sourceTree = "<group>"; };
 		2124D71E208D69D20007B5EE /* RoomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomTableViewCell.swift; sourceTree = "<group>"; };
 		2124D71F208D69D20007B5EE /* RoomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoomTableViewCell.xib; sourceTree = "<group>"; };
-		2124D722208D73280007B5EE /* AddRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoomViewController.swift; sourceTree = "<group>"; };
-		2124D72C208E196E0007B5EE /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		2124D72E208E1B260007B5EE /* shareGetlistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shareGetlistModel.swift; sourceTree = "<group>"; };
 		2126DBD620897BC500977802 /* Title3TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title3TableViewCell.swift; sourceTree = "<group>"; };
 		2126DBD720897BC500977802 /* Title3TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Title3TableViewCell.xib; sourceTree = "<group>"; };
@@ -362,7 +357,6 @@
 		2126DBE4208B454700977802 /* Title5TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title5TableViewCell.swift; sourceTree = "<group>"; };
 		2126DBE5208B454700977802 /* Title5TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Title5TableViewCell.xib; sourceTree = "<group>"; };
 		2129C1C1211EDFD50070A82F /* WorlkHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorlkHeadView.swift; sourceTree = "<group>"; };
-		212FEA7D20C3789000A466E2 /* ShareDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareDetailViewController.swift; sourceTree = "<group>"; };
 		212FEA7F20C3EF1300A466E2 /* Title6TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title6TableViewCell.swift; sourceTree = "<group>"; };
 		212FEA8020C3EF1300A466E2 /* Title6TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Title6TableViewCell.xib; sourceTree = "<group>"; };
 		212FEA8320C3F10500A466E2 /* sharegetinfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sharegetinfoModel.swift; sourceTree = "<group>"; };
@@ -502,6 +496,13 @@
 		21A49D70210215420092CC04 /* income_getdealsinfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = income_getdealsinfoModel.swift; sourceTree = "<group>"; };
 		21A49D72210228E80092CC04 /* IncomeHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeHistoryViewController.swift; sourceTree = "<group>"; };
 		21B9177B20AC27ED004031DE /* ExpenseapplylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseapplylistViewController.swift; sourceTree = "<group>"; };
+		21B9E1B3213248C30053F995 /* ShareDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareDetailViewController.swift; sourceTree = "<group>"; };
+		21B9E1B4213248C30053F995 /* AddRoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRoomViewController.swift; sourceTree = "<group>"; };
+		21B9E1B5213248C30053F995 /* AddShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddShareViewController.swift; sourceTree = "<group>"; };
+		21B9E1B6213248C30053F995 /* AddNoticeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNoticeViewController.swift; sourceTree = "<group>"; };
+		21B9E1B7213248C40053F995 /* RoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomViewController.swift; sourceTree = "<group>"; };
+		21B9E1B8213248C40053F995 /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		21B9E1BF213248F40053F995 /* NoticeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticeViewController.swift; sourceTree = "<group>"; };
 		21CFDDC32068E30500745A48 /* AddMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemoViewController.swift; sourceTree = "<group>"; };
 		21CFDDC52068E8E500745A48 /* InvoiceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceTableViewCell.swift; sourceTree = "<group>"; };
 		21CFDDC62068E8E500745A48 /* InvoiceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvoiceTableViewCell.xib; sourceTree = "<group>"; };
@@ -522,7 +523,6 @@
 		21E76FEB20C78D87009454FD /* Content2TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Content2TableViewCell.xib; sourceTree = "<group>"; };
 		21E76FEE20C7B644009454FD /* Title7TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title7TableViewCell.swift; sourceTree = "<group>"; };
 		21E76FEF20C7B644009454FD /* Title7TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Title7TableViewCell.xib; sourceTree = "<group>"; };
-		21E76FF220C7BDFF009454FD /* AddShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddShareViewController.swift; sourceTree = "<group>"; };
 		21E9D29D20FDA9C200CA7B49 /* AddIconComeStep1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIconComeStep1ViewController.swift; sourceTree = "<group>"; };
 		21F8469120B7BFCB00F4A678 /* ReadFileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadFileViewController.swift; sourceTree = "<group>"; };
 		21F8469320B7DFEA00F4A678 /* BankInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankInfoViewController.swift; sourceTree = "<group>"; };
@@ -926,6 +926,7 @@
 		216A6C4C204CDDB100528FD8 /* Work(工作) */ = {
 			isa = PBXGroup;
 			children = (
+				21B9E1B2213248120053F995 /* 其他 */,
 				216798F9212E8504006A8AB0 /* 合同 */,
 				214F84BF2122E3DB00255F00 /* 案件管理 */,
 				21306586211D1FF40073ECF9 /* 发票审核 */,
@@ -935,8 +936,6 @@
 				219D7BBD205E17B0009F543B /* Views */,
 				216A6C53204CDE7900528FD8 /* WorkViewController.swift */,
 				2130658D211ECE300073ECF9 /* Work2ViewController.swift */,
-				2108BB76206FD0B3002A4212 /* NoticeViewController.swift */,
-				2109654A20710B5E0012FDDB /* AddNoticeViewController.swift */,
 				2108BB78206FD219002A4212 /* CheckcaseViewController.swift */,
 				2108BB94206FF723002A4212 /* CheckcaseResultViewController.swift */,
 				21DDC9E12080DCB90067197D /* CasePersionViewController.swift */,
@@ -945,11 +944,6 @@
 				21B9177B20AC27ED004031DE /* ExpenseapplylistViewController.swift */,
 				21F8469320B7DFEA00F4A678 /* BankInfoViewController.swift */,
 				21DBE4B120E37EC200113ABA /* BankDetailViewController.swift */,
-				2124D71A208D66530007B5EE /* RoomViewController.swift */,
-				2124D722208D73280007B5EE /* AddRoomViewController.swift */,
-				2124D72C208E196E0007B5EE /* ShareViewController.swift */,
-				212FEA7D20C3789000A466E2 /* ShareDetailViewController.swift */,
-				21E76FF220C7BDFF009454FD /* AddShareViewController.swift */,
 				21528BB820A52B3300C9950A /* FileViewController.swift */,
 				21F8469120B7BFCB00F4A678 /* ReadFileViewController.swift */,
 				2130656F211744DA0073ECF9 /* ReadPdfViewController.swift */,
@@ -1051,6 +1045,20 @@
 				2167991D212E99ED006A8AB0 /* CrtGetinfoImageTableViewCell.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		21B9E1B2213248120053F995 /* 其他 */ = {
+			isa = PBXGroup;
+			children = (
+				21B9E1BF213248F40053F995 /* NoticeViewController.swift */,
+				21B9E1B6213248C30053F995 /* AddNoticeViewController.swift */,
+				21B9E1B7213248C40053F995 /* RoomViewController.swift */,
+				21B9E1B4213248C30053F995 /* AddRoomViewController.swift */,
+				21B9E1B5213248C30053F995 /* AddShareViewController.swift */,
+				21B9E1B3213248C30053F995 /* ShareDetailViewController.swift */,
+				21B9E1B8213248C40053F995 /* ShareViewController.swift */,
+			);
+			path = "其他";
 			sourceTree = "<group>";
 		};
 		6F2EA6AFB613FEB8B4C18340 /* Frameworks */ = {
@@ -1316,6 +1324,7 @@
 				2108BB8A206FE326002A4212 /* ObjectTableViewCell.swift in Sources */,
 				2108BB71206F28E7002A4212 /* ConvenRequestVC.swift in Sources */,
 				2102E8702071C06100536F41 /* StartTimeTableViewCell.swift in Sources */,
+				21B9E1C0213248F40053F995 /* NoticeViewController.swift in Sources */,
 				21066CAD20668311009327AD /* ResetKeyViewControllerViewController.swift in Sources */,
 				21376681203FBA9D000CBCE6 /* ImageView+loading.swift in Sources */,
 				21340BD9206CBDDB00E30B53 /* AddExpenseBackView.swift in Sources */,
@@ -1335,7 +1344,6 @@
 				2108BB8E206FE34A002A4212 /* MessageNeedTableViewCell.swift in Sources */,
 				21376684203FBAB2000CBCE6 /* UILabel+Init.swift in Sources */,
 				216A6C54204CDE7900528FD8 /* WorkViewController.swift in Sources */,
-				21E76FF320C7BDFF009454FD /* AddShareViewController.swift in Sources */,
 				21F8469220B7BFCB00F4A678 /* ReadFileViewController.swift in Sources */,
 				21387D2B205F55500050DF1F /* MessageRequestVC.swift in Sources */,
 				21089E9F206E810600573B6A /* SearchViewController.swift in Sources */,
@@ -1352,6 +1360,7 @@
 				219767E820EF841800F5807F /* IncomeListViewController.swift in Sources */,
 				21089EA2206E829400573B6A /* SearchStateTableViewCell.swift in Sources */,
 				21075548205D4C3200FF4396 /* LogInViewController.swift in Sources */,
+				21B9E1B9213248C40053F995 /* ShareDetailViewController.swift in Sources */,
 				219767EA20EF86BA00F5807F /* Income_getlistModel.swift in Sources */,
 				219D7BBA205E0C89009F543B /* InfoFirstTableViewCell.swift in Sources */,
 				214F84AF2122C02A00255F00 /* InputTableViewCell.swift in Sources */,
@@ -1371,7 +1380,7 @@
 				2109654720708D130012FDDB /* checkcaseModel.swift in Sources */,
 				21376685203FBAB2000CBCE6 /* UIButton+Init.swift in Sources */,
 				21E76FEC20C78D87009454FD /* Content2TableViewCell.swift in Sources */,
-				2124D72D208E196E0007B5EE /* ShareViewController.swift in Sources */,
+				21B9E1BA213248C40053F995 /* AddRoomViewController.swift in Sources */,
 				21E76FF020C7B644009454FD /* Title7TableViewCell.swift in Sources */,
 				2130656A21156FFB0073ECF9 /* DocSearchViewController.swift in Sources */,
 				21387D39205F9C540050DF1F /* newslistModel.swift in Sources */,
@@ -1388,11 +1397,11 @@
 				2137667F203FBA61000CBCE6 /* Color+fun.swift in Sources */,
 				214F84AC2122C02900255F00 /* ExpenseTitleTableViewCell.swift in Sources */,
 				2119A4F120CA55D30012F4A6 /* Work2RequestVC.swift in Sources */,
-				2124D723208D73280007B5EE /* AddRoomViewController.swift in Sources */,
 				21CFDDC42068E30500745A48 /* AddMemoViewController.swift in Sources */,
 				21387D2D205F56590050DF1F /* LoginRequestVC.swift in Sources */,
 				2107555B205D6EFD00FF4396 /* PubMessageTableViewCell.swift in Sources */,
 				2130656721156C7A0073ECF9 /* docgetinfoModel.swift in Sources */,
+				21B9E1BB213248C40053F995 /* AddShareViewController.swift in Sources */,
 				2126DBE02089CB9B00977802 /* Title4TableViewCell.swift in Sources */,
 				21671C9020AAD99200E8680C /* DocTableViewCell.swift in Sources */,
 				2123A380208EFCC000C50FA9 /* ShareHeadView.swift in Sources */,
@@ -1415,18 +1424,20 @@
 				21387D35205F5E240050DF1F /* UserInfoLoaclManger.swift in Sources */,
 				2124D72F208E1B260007B5EE /* shareGetlistModel.swift in Sources */,
 				214F84B82122C1C500255F00 /* FinanceDetialViewController.swift in Sources */,
+				21B9E1BD213248C40053F995 /* RoomViewController.swift in Sources */,
 				21075566205D8FE700FF4396 /* MineFooterView.swift in Sources */,
 				2167990F212E85A9006A8AB0 /* CaseCheckViewController.swift in Sources */,
+				21B9E1BC213248C40053F995 /* AddNoticeViewController.swift in Sources */,
 				2129C1C2211EDFD50070A82F /* WorlkHeadView.swift in Sources */,
 				2107555F205D792C00FF4396 /* MineTableViewCell.swift in Sources */,
 				21387D32205F5DA60050DF1F /* NibLoadable.swift in Sources */,
 				21306578211B055C0073ECF9 /* CrtChooseViewController.swift in Sources */,
 				21387D29205F55120050DF1F /* CodeData.swift in Sources */,
 				2105D2E12061101C0031B14C /* expense_getinfoModel.swift in Sources */,
+				21B9E1BE213248C40053F995 /* ShareViewController.swift in Sources */,
 				2115D0D92103205B002BDB3F /* income_getinfoModel.swift in Sources */,
 				2105D2E3206111220031B14C /* invoice_getinfoModel.swift in Sources */,
 				216B7C67206394DE00BBACDA /* MemoTableViewCell.swift in Sources */,
-				2109654B20710B5E0012FDDB /* AddNoticeViewController.swift in Sources */,
 				2167990A212E8504006A8AB0 /* invoiceInfoViewController.swift in Sources */,
 				216A6C4E204CDE5500528FD8 /* ConvenViewController.swift in Sources */,
 				219D7BC0205E1D8E009F543B /* WorkFirstTableViewCell.swift in Sources */,
@@ -1439,7 +1450,6 @@
 				21306589211D1FFE0073ECF9 /* InvoiceapplyDetailViewController.swift in Sources */,
 				2115D0D52102CDF0002BDB3F /* AddIncomeDetailViewController.swift in Sources */,
 				2126DBE6208B454700977802 /* Title5TableViewCell.swift in Sources */,
-				2124D71B208D66530007B5EE /* RoomViewController.swift in Sources */,
 				21528BC020A52D6C00C9950A /* FileListTableViewCell.swift in Sources */,
 				214F84BD2122C40200255F00 /* AddWorkViewController.swift in Sources */,
 				21306576211AFAA20073ECF9 /* CrtDealslistModel.swift in Sources */,
@@ -1463,11 +1473,9 @@
 				2130657E211BD0290073ECF9 /* CrtGetinfoModel.swift in Sources */,
 				21075562205D7A3700FF4396 /* MineHeadView.swift in Sources */,
 				2130657A211BC47C0073ECF9 /* crt_chooseModel.swift in Sources */,
-				212FEA7E20C3789000A466E2 /* ShareDetailViewController.swift in Sources */,
 				215630C72129128300AE1F5E /* OverDealViewController.swift in Sources */,
 				21E9D29E20FDA9C200CA7B49 /* AddIconComeStep1ViewController.swift in Sources */,
 				2167991E212E99ED006A8AB0 /* CrtGetinfoImageTableViewCell.swift in Sources */,
-				2108BB77206FD0B3002A4212 /* NoticeViewController.swift in Sources */,
 				21DDC9CC208054040067197D /* caseDetailModel.swift in Sources */,
 				2167990E212E85A9006A8AB0 /* CaseCheckDetailViewController.swift in Sources */,
 				2130658E211ECE300073ECF9 /* Work2ViewController.swift in Sources */,
