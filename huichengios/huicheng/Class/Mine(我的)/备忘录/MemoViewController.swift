@@ -82,6 +82,9 @@ class MemoViewController:  BaseViewController,UITableViewDataSource,UITableViewD
             vc.delSucessBlock = {
                 self.reflishData()
             }
+            vc.addSucessBlock = {
+                self.reflishData()
+            }
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

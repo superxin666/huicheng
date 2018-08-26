@@ -212,7 +212,6 @@
 		216B7C6420638EE100BBACDA /* IncomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 216B7C6220638EE100BBACDA /* IncomeTableViewCell.xib */; };
 		216B7C67206394DE00BBACDA /* MemoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216B7C65206394DE00BBACDA /* MemoTableViewCell.swift */; };
 		216B7C68206394DE00BBACDA /* MemoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 216B7C66206394DE00BBACDA /* MemoTableViewCell.xib */; };
-		216B7C6C2063953300BBACDA /* MemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216B7C6B2063953300BBACDA /* MemoViewController.swift */; };
 		219767E820EF841800F5807F /* IncomeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219767E720EF841800F5807F /* IncomeListViewController.swift */; };
 		219767EA20EF86BA00F5807F /* Income_getlistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219767E920EF86BA00F5807F /* Income_getlistModel.swift */; };
 		219D7BB3205E049A009F543B /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7BB2205E049A009F543B /* InfoViewController.swift */; };
@@ -239,7 +238,8 @@
 		21B9E1BD213248C40053F995 /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B9E1B7213248C40053F995 /* RoomViewController.swift */; };
 		21B9E1BE213248C40053F995 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B9E1B8213248C40053F995 /* ShareViewController.swift */; };
 		21B9E1C0213248F40053F995 /* NoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B9E1BF213248F40053F995 /* NoticeViewController.swift */; };
-		21CFDDC42068E30500745A48 /* AddMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CFDDC32068E30500745A48 /* AddMemoViewController.swift */; };
+		21B9E1C821324A660053F995 /* AddMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B9E1C621324A660053F995 /* AddMemoViewController.swift */; };
+		21B9E1C921324A660053F995 /* MemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B9E1C721324A660053F995 /* MemoViewController.swift */; };
 		21CFDDC72068E8E500745A48 /* InvoiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CFDDC52068E8E500745A48 /* InvoiceTableViewCell.swift */; };
 		21CFDDC82068E8E500745A48 /* InvoiceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21CFDDC62068E8E500745A48 /* InvoiceTableViewCell.xib */; };
 		21DBE4B220E37EC200113ABA /* BankDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DBE4B120E37EC200113ABA /* BankDetailViewController.swift */; };
@@ -476,7 +476,6 @@
 		216B7C6220638EE100BBACDA /* IncomeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IncomeTableViewCell.xib; sourceTree = "<group>"; };
 		216B7C65206394DE00BBACDA /* MemoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoTableViewCell.swift; sourceTree = "<group>"; };
 		216B7C66206394DE00BBACDA /* MemoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemoTableViewCell.xib; sourceTree = "<group>"; };
-		216B7C6B2063953300BBACDA /* MemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoViewController.swift; sourceTree = "<group>"; };
 		219767E720EF841800F5807F /* IncomeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeListViewController.swift; sourceTree = "<group>"; };
 		219767E920EF86BA00F5807F /* Income_getlistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Income_getlistModel.swift; sourceTree = "<group>"; };
 		219D7BB2205E049A009F543B /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
@@ -503,7 +502,8 @@
 		21B9E1B7213248C40053F995 /* RoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomViewController.swift; sourceTree = "<group>"; };
 		21B9E1B8213248C40053F995 /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		21B9E1BF213248F40053F995 /* NoticeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticeViewController.swift; sourceTree = "<group>"; };
-		21CFDDC32068E30500745A48 /* AddMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemoViewController.swift; sourceTree = "<group>"; };
+		21B9E1C621324A660053F995 /* AddMemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMemoViewController.swift; sourceTree = "<group>"; };
+		21B9E1C721324A660053F995 /* MemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoViewController.swift; sourceTree = "<group>"; };
 		21CFDDC52068E8E500745A48 /* InvoiceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceTableViewCell.swift; sourceTree = "<group>"; };
 		21CFDDC62068E8E500745A48 /* InvoiceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvoiceTableViewCell.xib; sourceTree = "<group>"; };
 		21DBE4B120E37EC200113ABA /* BankDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankDetailViewController.swift; sourceTree = "<group>"; };
@@ -883,6 +883,7 @@
 		216A6C49204CDDB100528FD8 /* Mine(我的) */ = {
 			isa = PBXGroup;
 			children = (
+				21B9E1C121324A270053F995 /* 备忘录 */,
 				214F84BA2122C3DE00255F00 /* 工作日志 */,
 				214F84B52122C17100255F00 /* 我的收款 */,
 				214F84A42122C02900255F00 /* 报销申请 */,
@@ -892,8 +893,6 @@
 				216A6C51204CDE6F00528FD8 /* MineViewController.swift */,
 				219D7BB2205E049A009F543B /* InfoViewController.swift */,
 				21387D40205FEB700050DF1F /* MoreInfoViewController.swift */,
-				216B7C6B2063953300BBACDA /* MemoViewController.swift */,
-				21CFDDC32068E30500745A48 /* AddMemoViewController.swift */,
 				21089E9E206E810600573B6A /* SearchViewController.swift */,
 				21066CAB20668311009327AD /* ResetKeyViewControllerViewController.swift */,
 				213F77E4206B31F100075FC6 /* SetViewController.swift */,
@@ -1059,6 +1058,15 @@
 				21B9E1B8213248C40053F995 /* ShareViewController.swift */,
 			);
 			path = "其他";
+			sourceTree = "<group>";
+		};
+		21B9E1C121324A270053F995 /* 备忘录 */ = {
+			isa = PBXGroup;
+			children = (
+				21B9E1C721324A660053F995 /* MemoViewController.swift */,
+				21B9E1C621324A660053F995 /* AddMemoViewController.swift */,
+			);
+			path = "备忘录";
 			sourceTree = "<group>";
 		};
 		6F2EA6AFB613FEB8B4C18340 /* Frameworks */ = {
@@ -1286,7 +1294,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				216B7C6C2063953300BBACDA /* MemoViewController.swift in Sources */,
 				21679912212E85B9006A8AB0 /* DealCheckDetailViewController.swift in Sources */,
 				2115D0D32102CB05002BDB3F /* IncomeRecord ViewController.swift in Sources */,
 				214F84B32122C0D600255F00 /* InvoiceViewController.swift in Sources */,
@@ -1397,7 +1404,6 @@
 				2137667F203FBA61000CBCE6 /* Color+fun.swift in Sources */,
 				214F84AC2122C02900255F00 /* ExpenseTitleTableViewCell.swift in Sources */,
 				2119A4F120CA55D30012F4A6 /* Work2RequestVC.swift in Sources */,
-				21CFDDC42068E30500745A48 /* AddMemoViewController.swift in Sources */,
 				21387D2D205F56590050DF1F /* LoginRequestVC.swift in Sources */,
 				2107555B205D6EFD00FF4396 /* PubMessageTableViewCell.swift in Sources */,
 				2130656721156C7A0073ECF9 /* docgetinfoModel.swift in Sources */,
@@ -1432,6 +1438,7 @@
 				2107555F205D792C00FF4396 /* MineTableViewCell.swift in Sources */,
 				21387D32205F5DA60050DF1F /* NibLoadable.swift in Sources */,
 				21306578211B055C0073ECF9 /* CrtChooseViewController.swift in Sources */,
+				21B9E1C921324A660053F995 /* MemoViewController.swift in Sources */,
 				21387D29205F55120050DF1F /* CodeData.swift in Sources */,
 				2105D2E12061101C0031B14C /* expense_getinfoModel.swift in Sources */,
 				21B9E1BE213248C40053F995 /* ShareViewController.swift in Sources */,
@@ -1474,6 +1481,7 @@
 				21075562205D7A3700FF4396 /* MineHeadView.swift in Sources */,
 				2130657A211BC47C0073ECF9 /* crt_chooseModel.swift in Sources */,
 				215630C72129128300AE1F5E /* OverDealViewController.swift in Sources */,
+				21B9E1C821324A660053F995 /* AddMemoViewController.swift in Sources */,
 				21E9D29E20FDA9C200CA7B49 /* AddIconComeStep1ViewController.swift in Sources */,
 				2167991E212E99ED006A8AB0 /* CrtGetinfoImageTableViewCell.swift in Sources */,
 				21DDC9CC208054040067197D /* caseDetailModel.swift in Sources */,

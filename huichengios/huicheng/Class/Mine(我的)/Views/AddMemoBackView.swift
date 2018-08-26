@@ -52,8 +52,9 @@ class AddMemoBackView: UIView,NibLoadable,UITextViewDelegate {
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        self.noticeLabel.removeFromSuperview()
-
+        if noticeLabel != nil {
+            self.noticeLabel.removeFromSuperview()
+        }
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
