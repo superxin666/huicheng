@@ -71,6 +71,7 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
     ///   - n: 单据数量 int 型
     ///   - m: 报销金额
     func expense_saveRequest(id : String ,t : String, n: String ,m:String) {
+        SVPMessageShow.showLoad()
         let url =   expense_save_api + "id=\(id)&t=\(t)&n=\(n)&m=\(m)&k=\(UserInfoLoaclManger.getKey())"
         request.delegate = self
         type = .expense_save
@@ -312,6 +313,7 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
 
     // MARK: 网络数据代理
     func requestSucceed(response: Any) {
+        SVPMessageShow.dismissSVP()
         if type == .user_getinfo {
             let model = Mapper<user_getinfoModel>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {
