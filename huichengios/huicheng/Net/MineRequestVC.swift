@@ -340,6 +340,7 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
                 self.delegate.requestSucceed_mine(data: model,type : type)
             }
         } else if type == .expense_getinfo{
+
             //报销详情
             let model = Mapper<expense_getinfoModel>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {
@@ -395,6 +396,11 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
                 self.delegate.requestSucceed_mine(data: arr,type : type)
             }
 
+        } else if type == .finance_getinfo{
+            let model = Mapper<finance_getinfoModel>().map(JSON: response as! [String : Any])!
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed_mine(data: model,type : type)
+            }
         }
     }
     func requestFail(response: Any) {

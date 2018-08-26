@@ -783,8 +783,8 @@
 		214F84B52122C17100255F00 /* 我的收款 */ = {
 			isa = PBXGroup;
 			children = (
-				214F84B62122C1C500255F00 /* FinanceDetialViewController.swift */,
 				214F84B72122C1C500255F00 /* FinanceViewController.swift */,
+				214F84B62122C1C500255F00 /* FinanceDetialViewController.swift */,
 			);
 			path = "我的收款";
 			sourceTree = "<group>";

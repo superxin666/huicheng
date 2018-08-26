@@ -31,25 +31,25 @@ import ObjectMapper
 
 class finance_getinfoModel: Mappable {
     var id: Int!
-    var num: String!
-    var principal: String!
+    var num: String = ""
+    var principal: String = ""
     var dealamount: Int!
     var paymoney: Int!
-    var user: String!
+    var user: String = ""
     
     var type: Int!
-    var typeStr: String!
+    var typeStr: String = ""
     var money: Float!
-    var addtime: String!
+    var addtime: String = ""
     var state: Int!
-    var stateStr: String!
-    var bank: String!
-    var cardno: String!
-    var applyname: String!
-    var note: String!
-    var funadmin: String!
-    var paytime: String!
-    var applytime: String!
+    var stateStr: String = ""
+    var bank: String = ""
+    var cardno: String = ""
+    var applyname: String = ""
+    var note: String = ""
+    var funadmin: String = ""
+    var paytime: String = ""
+    var applytime: String = ""
 
     
     

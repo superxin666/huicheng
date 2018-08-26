@@ -19,9 +19,9 @@ class FinanceDetialViewController: BaseViewController,MineRequestVCDelegate,UITa
     let name1 = ["合同编号","委托人","合同金额","已付金额"]
     var content1 :[String] = []
     let name2 = ["类型","发票金额","审核人","审核时间"]
-    let content2 : [String] = []
+    var content2 : [String] = []
     let name3 = ["收款律师","金额","支行信息","卡号","状态","经办人","支付时间"]
-    let content3 : [String] = []
+    var content3 : [String] = []
 
     var financeId : Int!
     // MARK: - life
@@ -107,27 +107,58 @@ class FinanceDetialViewController: BaseViewController,MineRequestVCDelegate,UITa
         
     }
     func requestSucceed_mine(data: Any,type : MineRequestVC_enum) {
+        
         let model : finance_getinfoModel = data as! finance_getinfoModel
 //        ["合同编号","委托人","合同金额","已付金额"]
         content1.append(model.num)
         content1.append(model.principal)
-        content1.append("\(model.dealamount)")
-        content1.append("\(model.paymoney)")
+        if let str = model.dealamount {
+            content1.append("\(str)")
+        } else {
+            content1.append("")
+        }
+
+        if let str = model.paymoney {
+            content1.append("\(str)")
+        } else {
+            content1.append("")
+        }
+
+
+
         
 //        ["类型","发票金额","审核人","审核时间"]
-        content1.append(model.typeStr)
-        content1.append("\(model.money)")
-        content1.append("\(model.applyname)")
-        content1.append(model.applytime)
+        content2.append(model.typeStr)
+        if let str = model.money {
+            content2.append("\(str)")
+        } else {
+            content2.append("")
+        }
+        
+        content2.append("\(model.applyname)")
+        content2.append(model.applytime)
         
 //        ["收款律师","金额","支行信息","卡号","状态","经办人","支付时间"]
-        content1.append(model.user)
-        content1.append("\(model.money)")
-        content1.append(model.bank)
-        content1.append("\(model.cardno)")
-        content1.append(model.typeStr)
-        content1.append(model.funadmin)
-        content1.append(model.paytime)
+        content3.append(model.user)
+
+
+        if let str = model.money {
+            content3.append("\(str)")
+        } else {
+            content3.append("")
+        }
+
+
+        content3.append(model.bank)
+        content3.append("\(model.cardno)")
+
+
+
+        content3.append(model.typeStr)
+        content3.append(model.funadmin)
+        content3.append(model.paytime)
+
+        self.mainTabelView.reloadData()
         
     }
     func requestFail_mine() {
