@@ -8,12 +8,13 @@
 
 import UIKit
 
-class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,TitleTableViewCellDelegate,Selected2TableViewCellDelegate,Title5TableViewCellDelegate,DatePickViewDelegate,SelectedTableViewCellDelegate {
+class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,TitleTableViewCellDelegate,Selected2TableViewCellDelegate,Title5TableViewCellDelegate,DatePickViewDelegate,SelectedHeadViewDelegate {
 
     let requestVC = MineRequestVC()
 
 
-    let sectionNameArr = ["发票类型","名称","社会统一信用代码","发票内容","发票金额",]
+    let sectionNameArr = ["公司名称","社会统一信用代码","发票内容","发票金额",]
+    let sectionNameArr2 = ["公司名称","社会统一信用代码","纳税人识别号","地址","电话","银行","账号","发票内容","发票金额","相关附件",]
 
 
     /// 0 1 2 3
@@ -35,13 +36,23 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
 
 
     /// 发票类型,INT 型;0-增值税普通发票;1-增值税专用发票;
-    var typeStr : String = ""
+    var typeStr : String = "0"
 
     /// 名称
     var titleStr : String = ""
-
     /// 社会统一信用代码
     var creditcodeStr : String = ""
+    /// 纳税人识别号
+    var identifierStr : String = ""
+    /// 地址
+    var eaddrStr : String = ""
+    /// 电话
+    var ephoneStr : String = ""
+    /// 银行
+    var ebankStr : String = ""
+    /// 帐号
+    var ecardStr : String = ""
+
 
     /// 发票内容
     var contentStr : String = ""
@@ -87,6 +98,12 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
     /// 时间
     let dateView : DatePickView = DatePickView.loadNib()
 
+
+    let section1HeadView = SelectedHeadView.loadNib()
+    var section1rows = 4
+
+
+
     // MARK: - life
     override func viewWillLayoutSubviews() {
 
@@ -125,6 +142,8 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
         self.tableView.register(UINib.init(nibName: "endTimeTableViewCell", bundle: nil), forCellReuseIdentifier: endTimeTableViewCellid)
         self.tableView.register(UINib.init(nibName: "Selected2TableViewCell", bundle: nil), forCellReuseIdentifier: Selected2TableViewCellID)
         self.tableView.register(UINib.init(nibName: "NoticeTableViewCell", bundle: nil), forCellReuseIdentifier: NoticeTableViewCellID)
+        self.tableView.register(UINib.init(nibName: "FileTableViewCell", bundle: nil), forCellReuseIdentifier: FileTableViewCellID)
+
 
     }
     // MARK: - delegate
@@ -133,7 +152,7 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 5
+            return section1rows
         } else if section == 1 {
             return currectSectionArr.count
         } else {
@@ -143,29 +162,56 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            if indexPath.row == 0   {
-                let cell : SelectedTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: SelectedTableViewCellID, for: indexPath) as! SelectedTableViewCell
-                cell.setData_addinvoice()
-                return cell
-            } else if indexPath.row == 1 {
-                let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
-                cell.delegate = self
-                cell.setData_addinvoce(title: sectionNameArr[indexPath.row], content: titleStr,indexPath : indexPath)
-                return cell
-            } else if indexPath.row == 2 {
-                let cell : Title5TableViewCell!  = tableView.dequeueReusableCell(withIdentifier: Title5TableViewCellID, for: indexPath) as! Title5TableViewCell
-                cell.delegate = self
-                return cell
-            }else if indexPath.row == 3 {
-                let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
-                cell.delegate = self
-                cell.setData_addinvoce(title: sectionNameArr[indexPath.row], content: contentStr,indexPath : indexPath)
-                return cell
+            if typeStr == "0" {
+                if indexPath.row == 0 {
+                    let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                    cell.delegate = self
+                    cell.setData_addinvoce(title: sectionNameArr[indexPath.row], content: titleStr,indexPath : indexPath)
+                    return cell
+                } else if indexPath.row == 1 {
+                    let cell : Title5TableViewCell!  = tableView.dequeueReusableCell(withIdentifier: Title5TableViewCellID, for: indexPath) as! Title5TableViewCell
+                    cell.delegate = self
+
+                    return cell
+                }else if indexPath.row == 2 {
+                    let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                    cell.delegate = self
+                    cell.setData_addinvoce(title: sectionNameArr[indexPath.row], content: contentStr,indexPath : indexPath)
+                    return cell
+                } else {
+                    let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                    cell.delegate = self
+                    cell.setData_addinvoce_mon(title: sectionNameArr[indexPath.row], content: moneyStr,indexPath : indexPath)
+                    return cell
+                }
+
+
             } else {
-                let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
-                cell.delegate = self
-                cell.setData_addinvoce_mon(title: sectionNameArr[indexPath.row], content: moneyStr,indexPath : indexPath)
-                return cell
+
+                if indexPath.row == 1 {
+                    let cell : Title5TableViewCell!  = tableView.dequeueReusableCell(withIdentifier: Title5TableViewCellID, for: indexPath) as! Title5TableViewCell
+                    cell.delegate = self
+                    cell.setData_invoice(title:  sectionNameArr2[indexPath.row], contentStr: creditcodeStr, index: indexPath)
+                    return cell
+                }else if indexPath.row == 2 {
+                    let cell : Title5TableViewCell!  = tableView.dequeueReusableCell(withIdentifier: Title5TableViewCellID, for: indexPath) as! Title5TableViewCell
+                    cell.setData_invoice(title:  sectionNameArr2[indexPath.row], contentStr: identifierStr, index: indexPath)
+                    cell.delegate = self
+                    return cell
+                } else if indexPath.row == 8 {
+                    let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                    cell.delegate = self
+                    cell.setData_addinvoce_mon(title: sectionNameArr2[indexPath.row], content: moneyStr,indexPath : indexPath)
+                    return cell
+                } else if indexPath.row == 9 {
+                    let cell : FileTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: FileTableViewCellID, for: indexPath) as! FileTableViewCell
+                    return cell
+                } else {
+                    let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                    cell.delegate = self
+                    cell.setData_addinvoce(title: sectionNameArr2[indexPath.row], content: contentStr,indexPath : indexPath)
+                    return cell
+                }
             }
         } else if indexPath.section == 1 {
             //
@@ -362,11 +408,23 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            if indexPath.row == 2 {
-                return Title5TableViewCellH
+
+            if typeStr == "0" {
+                if indexPath.row == 1  {
+                    return Title5TableViewCellH
+                } else {
+                    return 50
+                }
             } else {
-                return 50
+
+                if indexPath.row == 1 || indexPath.row == 2 {
+                    return Title5TableViewCellH
+                } else {
+                    return 50
+                }
             }
+
+
         } else if indexPath.section == 1 {
             return 50
         } else {
@@ -375,16 +433,22 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: KSCREEN_WIDTH, height: 20))
-        view.backgroundColor = viewBackColor
-        return view
+        if section == 0 {
+            section1HeadView.delegate = self
+            return section1HeadView
+        } else {
+            let view = UIView(frame: CGRect(x: 0, y: 0, width: KSCREEN_WIDTH, height: 20))
+            view.backgroundColor = viewBackColor
+            return view
+        }
 
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 1 || section == 2 {
             return 20
+        } else if section == 0 {
+            return 50
         } else {
             return 0
         }
@@ -405,45 +469,100 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
     func endEdite(inputStr: String, tagNum: Int) {
         HCLog(message: "内容\(tagNum)" + inputStr)
 
-        if tagNum == 1 {
-            self.titleStr = inputStr
-        } else if tagNum == 3 {
-            self.contentStr = inputStr
-        }  else if tagNum == 4{
-            self.moneyStr = inputStr
-        } else {
-            if section1Type == 2 {
-                if tagNum == 12{
-                    nameStr = inputStr
-                }else if tagNum == 13{
-                    phoneStr = inputStr
-                }else if tagNum == 14{
-                    zipStr = inputStr
-                }else if tagNum == 15{
-                    addrStr = inputStr
-                } else {
-                    remarkStr = inputStr
-                }
+        if typeStr == "0" {
+            if tagNum == 0 {
+                self.titleStr = inputStr
+            } else if tagNum == 2 {
+                self.contentStr = inputStr
+            }  else if tagNum == 3{
+                self.moneyStr = inputStr
             } else {
-                if tagNum == 13{
-                    nameStr = inputStr
-                }else if tagNum == 14{
-                    phoneStr = inputStr
-                }else if tagNum == 15{
-                    zipStr = inputStr
-                }else if tagNum == 16{
-                    addrStr = inputStr
+                if section1Type == 2 {
+                    if tagNum == 12{
+                        nameStr = inputStr
+                    }else if tagNum == 13{
+                        phoneStr = inputStr
+                    }else if tagNum == 14{
+                        zipStr = inputStr
+                    }else if tagNum == 15{
+                        addrStr = inputStr
+                    } else {
+                        remarkStr = inputStr
+                    }
                 } else {
-                    remarkStr = inputStr
-                }
+                    if tagNum == 13{
+                        nameStr = inputStr
+                    }else if tagNum == 14{
+                        phoneStr = inputStr
+                    }else if tagNum == 15{
+                        zipStr = inputStr
+                    }else if tagNum == 16{
+                        addrStr = inputStr
+                    } else {
+                        remarkStr = inputStr
+                    }
 
+                }
+            }
+        } else {
+
+            if tagNum == 0 {
+                self.titleStr = inputStr
+            } else if tagNum == 3  {
+                eaddrStr = inputStr
+            } else if tagNum == 4 {
+                ephoneStr = inputStr
+            }  else if tagNum == 5 {
+                ebankStr = inputStr
+            }else if tagNum == 6 {
+                ecardStr = inputStr
+            } else if tagNum == 7{
+                self.contentStr = inputStr
+            }  else if tagNum == 8{
+                self.moneyStr = inputStr
+            } else {
+                if section1Type == 2 {
+                    if tagNum == 12{
+                        nameStr = inputStr
+                    }else if tagNum == 13{
+                        phoneStr = inputStr
+                    }else if tagNum == 14{
+                        zipStr = inputStr
+                    }else if tagNum == 15{
+                        addrStr = inputStr
+                    } else {
+                        remarkStr = inputStr
+                    }
+                } else {
+                    if tagNum == 13{
+                        nameStr = inputStr
+                    }else if tagNum == 14{
+                        phoneStr = inputStr
+                    }else if tagNum == 15{
+                        zipStr = inputStr
+                    }else if tagNum == 16{
+                        addrStr = inputStr
+                    } else {
+                        remarkStr = inputStr
+                    }
+
+                }
             }
         }
     }
 
     func endText_title5(inputStr: String, tagNum: Int) {
         HCLog(message: inputStr)
-        creditcodeStr = inputStr
+        if typeStr == "0" {
+            creditcodeStr = inputStr
+        } else {
+            if tagNum == 1 {
+                creditcodeStr = inputStr
+            } else {
+                identifierStr = inputStr
+
+            }
+        }
     }
 
     func selectedClickDelegate(tag: Int, type: String) {
@@ -486,8 +605,25 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
         self.tableView.reloadSections([1], with: .automatic)
     }
 
-    func selectedClickDelegate_type(tag: Int, type: String) {
+//    func selectedClickDelegate_type(tag: Int, type: String) {
+//        typeStr = type
+//    }
+
+    func selectedHeadViewDelegate_type(tag: Int, type: String) {
         typeStr = type
+
+        if type == "0" {
+            //普通
+            HCLog(message: "普通")
+            section1rows = 4
+        } else {
+            //增值
+            HCLog(message: "增值")
+            section1rows = 10
+        }
+
+        let set = IndexSet(integer: 0)
+        self.tableView.reloadSections(set, with: .automatic)
     }
     
     /// 显示时间
@@ -553,7 +689,9 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
             return
         }
 
-        requestVC.invoice_saveRequest(typeStr: typeStr, title: titleStr, money: moneyStr, creditcode: creditcodeStr, sendtype: sendtype, content: contentStr, isbooks: isbooksStr, applytime: applytimeStr, identifier: "", eaddr: "", ephone: phoneStr, ebank: "", ecard: "", name: nameStr, phone: phoneStr, zip: zipStr, addr: addrStr, paytype: paytype, mtime: mtimeStr, remark: remarkStr)
+        requestVC.invoice_saveRequest(typeStr: typeStr, title: titleStr, money: moneyStr, creditcode: creditcodeStr, sendtype: sendtype, content: contentStr, isbooks: isbooksStr, applytime: applytimeStr, identifier: self.identifierStr, eaddr: self.eaddrStr, ephone: ephoneStr, ebank: ebankStr, ecard: ecardStr, name: nameStr, phone: phoneStr, zip: zipStr, addr: addrStr, paytype: paytype, mtime: mtimeStr, remark: remarkStr)
+
+
     }
     override func navigationLeftBtnClick() {
         self.navigationController?.popViewController(animated: true)

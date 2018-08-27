@@ -186,6 +186,8 @@
 		215C65D0203EC6B6001C7A92 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 215C65CE203EC6B6001C7A92 /* Main.storyboard */; };
 		215C65D2203EC6B6001C7A92 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 215C65D1203EC6B6001C7A92 /* Assets.xcassets */; };
 		215C65D5203EC6B6001C7A92 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 215C65D3203EC6B6001C7A92 /* LaunchScreen.storyboard */; };
+		215E37982133969500B07BD0 /* SelectedHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E37972133969500B07BD0 /* SelectedHeadView.swift */; };
+		215E379E213396C800B07BD0 /* SelectedHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 215E379D213396C800B07BD0 /* SelectedHeadView.xib */; };
 		21671C9020AAD99200E8680C /* DocTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21671C8E20AAD99200E8680C /* DocTableViewCell.swift */; };
 		21671C9120AAD99200E8680C /* DocTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21671C8F20AAD99200E8680C /* DocTableViewCell.xib */; };
 		21679906212E8504006A8AB0 /* DealSearch2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216798FD212E8504006A8AB0 /* DealSearch2ViewController.swift */; };
@@ -453,6 +455,8 @@
 		215C65D1203EC6B6001C7A92 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		215C65D4203EC6B6001C7A92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		215C65D6203EC6B6001C7A92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		215E37972133969500B07BD0 /* SelectedHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedHeadView.swift; sourceTree = "<group>"; };
+		215E379D213396C800B07BD0 /* SelectedHeadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectedHeadView.xib; sourceTree = "<group>"; };
 		21671C8E20AAD99200E8680C /* DocTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocTableViewCell.swift; sourceTree = "<group>"; };
 		21671C8F20AAD99200E8680C /* DocTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DocTableViewCell.xib; sourceTree = "<group>"; };
 		216798FD212E8504006A8AB0 /* DealSearch2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DealSearch2ViewController.swift; sourceTree = "<group>"; };
@@ -662,6 +666,8 @@
 				2108BB85206FD809002A4212 /* FileTableViewCell.xib */,
 				2123A383208F0C7400C50FA9 /* SelectedTableViewCell.swift */,
 				2123A384208F0C7400C50FA9 /* SelectedTableViewCell.xib */,
+				215E37972133969500B07BD0 /* SelectedHeadView.swift */,
+				215E379D213396C800B07BD0 /* SelectedHeadView.xib */,
 				2123A387208F39F800C50FA9 /* Selected2TableViewCell.swift */,
 				2123A388208F39F800C50FA9 /* Selected2TableViewCell.xib */,
 				211A65C620A00957009CD41A /* NoticeTableViewCell.swift */,
@@ -692,8 +698,8 @@
 		2127BCCC21201DC2007784A1 /* 发票申请 */ = {
 			isa = PBXGroup;
 			children = (
-				214F84B22122C0D600255F00 /* AddInvoiceViewController.swift */,
 				214F84B12122C0D600255F00 /* InvoiceViewController.swift */,
+				214F84B22122C0D600255F00 /* AddInvoiceViewController.swift */,
 			);
 			path = "发票申请";
 			sourceTree = "<group>";
@@ -1225,6 +1231,7 @@
 				214F84AE2122C02900255F00 /* ExpenseTitleTableViewCell.xib in Resources */,
 				2123A386208F0C7400C50FA9 /* SelectedTableViewCell.xib in Resources */,
 				21DDC9DC2080C8FC0067197D /* OptionView.xib in Resources */,
+				215E379E213396C800B07BD0 /* SelectedHeadView.xib in Resources */,
 				21089E99206E791B00573B6A /* FinanceDetialTableViewCell.xib in Resources */,
 				215C15C92063D99F00A9129D /* ConbenTopView.xib in Resources */,
 				21340BDB206CBDE400E30B53 /* AddExpenseBackView.xib in Resources */,
@@ -1390,6 +1397,7 @@
 				219D7BBA205E0C89009F543B /* InfoFirstTableViewCell.swift in Sources */,
 				214F84AF2122C02A00255F00 /* InputTableViewCell.swift in Sources */,
 				215C15C72063D99600A9129D /* ConbenTopView.swift in Sources */,
+				215E37982133969500B07BD0 /* SelectedHeadView.swift in Sources */,
 				21A49D6D2101EB9B0092CC04 /* AddIncomeStep2ViewController.swift in Sources */,
 				2124D720208D69D20007B5EE /* RoomTableViewCell.swift in Sources */,
 				216A6C57204CDE9D00528FD8 /* BaseViewController.swift in Sources */,

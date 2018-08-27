@@ -195,7 +195,9 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         mainTabelView.showsHorizontalScrollIndicator = false
         mainTabelView.backgroundView?.backgroundColor = .clear
         if type == .expense_type || type == .invoice_getlist {
-            mainTabelView.register(UINib.init(nibName: "SearchStateTableViewCell", bundle: nil), forCellReuseIdentifier: SearchStateTableViewCellID)
+
+            mainTabelView.register(UINib.init(nibName: "OptionTableViewCell", bundle: nil), forCellReuseIdentifier: OptionTableViewCellID)
+
         } else if type == .finance_type {
             
             mainTabelView.register(UINib.init(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: TitleTableViewCellID)
@@ -221,7 +223,7 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             mainTabelView.register(UINib.init(nibName: "endTimeTableViewCell", bundle: nil), forCellReuseIdentifier: endTimeTableViewCellid)
 
         } else if type == .departAndPerson{
-            mainTabelView.register(UINib.init(nibName: "OptionTableViewCell", bundle: nil), forCellReuseIdentifier: OptionTableViewCellID)
+
             mainTabelView.register(UINib.init(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: TitleTableViewCellID)
         } else if type == .Income_list{
             mainTabelView.register(UINib.init(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: TitleTableViewCellID)
@@ -253,16 +255,13 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if type == .expense_type {
-            stateCell  = tableView.dequeueReusableCell(withIdentifier: SearchStateTableViewCellID, for: indexPath) as! SearchStateTableViewCell
-            stateCell.type = .searchState
-            stateCell.setData_searchState(titleStr: "状态")
-            return stateCell
+            optionCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
+            optionCell.setData_caseDetail(titleStr: "状态", contentStr: "")
+            return optionCell
         } else if type == .invoice_getlist{
-            stateCell  = tableView.dequeueReusableCell(withIdentifier: SearchStateTableViewCellID, for: indexPath) as! SearchStateTableViewCell
-            stateCell.type = .searchState
-            stateCell.setData_searchState(titleStr: "状态")
-            return stateCell
-
+            optionCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
+            optionCell.setData_caseDetail(titleStr: "状态", contentStr: "")
+            return optionCell
 
         } else if type == .finance_type{
             //我都收款
@@ -611,6 +610,9 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
                 //结束时间
                 self.showTime_end()
             }
+        } else if type == .invoice_getlist || type == .expense_type{
+
+            self.showOptionView_state()
         }
     }
     
@@ -770,7 +772,7 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
     }
     override func navigationRightBtnClick() {
         if self.type == .expense_type || self.type == .invoice_getlist {
-            self.sureStateBlock(stateCell.cuurectID)
+            self.sureStateBlock(self.bidStr)
         } else if self.type == .work_type  {
             if titleCell.textField.isFirstResponder {
                 titleCell.textField.resignFirstResponder()

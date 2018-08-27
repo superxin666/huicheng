@@ -41,6 +41,12 @@ class Title5TableViewCell: UITableViewCell {
         self.titleNameLabel.text = titleStr
     }
 
+    func setData_invoice(title: String ,contentStr : String,index :IndexPath ) {
+        self.textField.tag = index.row
+        self.textField.text = contentStr
+        self.titleNameLabel.text = title
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

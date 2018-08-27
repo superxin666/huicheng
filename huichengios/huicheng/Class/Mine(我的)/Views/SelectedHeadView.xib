@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="WxJ-er-ulp" customClass="SelectedHeadView" customModule="huicheng" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="发票类型" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6v5-dW-RNc">
+                    <rect key="frame" x="10" y="15" width="80" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="4yT-47-AJA"/>
+                        <constraint firstAttribute="height" constant="20" id="fa2-Cv-FnA"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.090196078430000007" green="0.2274509804" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="naj-8q-Teh">
+                    <rect key="frame" x="208" y="15" width="92" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="1hf-Ej-xkZ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <state key="normal" title="增值税专用发票" image="pub_normal">
+                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="selected" image="pub_selected"/>
+                    <connections>
+                        <action selector="btnClick:" destination="WxJ-er-ulp" eventType="touchUpInside" id="VlF-Nd-oQc"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X5Y-Uc-xxB">
+                    <rect key="frame" x="90" y="15" width="92" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="shI-sA-9Ze"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <state key="normal" title="增值税普通发票" image="pub_normal">
+                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="selected" image="pub_selected"/>
+                    <connections>
+                        <action selector="btnClick:" destination="WxJ-er-ulp" eventType="touchUpInside" id="S4f-lb-GcL"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xpj-O9-mcY">
+                    <rect key="frame" x="10" y="49" width="310" height="0.5"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="X5Y-Uc-xxB" firstAttribute="leading" secondItem="6v5-dW-RNc" secondAttribute="trailing" id="1PA-Yk-EjA"/>
+                <constraint firstAttribute="trailing" secondItem="naj-8q-Teh" secondAttribute="trailing" constant="20" id="3hs-Eg-0zS"/>
+                <constraint firstItem="X5Y-Uc-xxB" firstAttribute="width" secondItem="naj-8q-Teh" secondAttribute="width" id="FH9-Ia-Ofv"/>
+                <constraint firstItem="X5Y-Uc-xxB" firstAttribute="top" secondItem="WxJ-er-ulp" secondAttribute="top" constant="15" id="b3s-lA-5Mq"/>
+                <constraint firstItem="6v5-dW-RNc" firstAttribute="leading" secondItem="WxJ-er-ulp" secondAttribute="leading" constant="10" id="dpe-CP-tke"/>
+                <constraint firstItem="naj-8q-Teh" firstAttribute="top" secondItem="WxJ-er-ulp" secondAttribute="top" constant="15" id="gin-Hq-ZSs"/>
+                <constraint firstItem="6v5-dW-RNc" firstAttribute="top" secondItem="WxJ-er-ulp" secondAttribute="top" constant="15" id="rky-Nw-bqA"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="leftBtn" destination="X5Y-Uc-xxB" id="vKL-n2-w8S"/>
+                <outlet property="rightBtn" destination="naj-8q-Teh" id="eAo-A6-yQx"/>
+                <outlet property="titleNameLbael" destination="6v5-dW-RNc" id="0va-bd-GIH"/>
+            </connections>
+            <point key="canvasLocation" x="-288" y="-176"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="pub_normal" width="20" height="19"/>
+        <image name="pub_selected" width="19" height="19"/>
+    </resources>
+</document>
