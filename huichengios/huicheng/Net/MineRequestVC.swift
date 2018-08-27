@@ -127,7 +127,7 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
     }
 
 
-    func invoice_saveRequest(typeStr:String,title:String,money:String,creditcode:String,sendtype:String,content:String,isbooks:String,applytime:String,identifier:String,eaddr:String,ephone:String,ebank:String,ecard:String,name:String,phone:String,zip:String,addr:String,paytype:String,mtime:String,remark:String)  {
+    func invoice_saveRequest(typeStr:String,title:String,money:String,creditcode:String,sendtype:String,content:String,isbooks:String,applytime:String,identifier:String,eaddr:String,ephone:String,ebank:String,ecard:String,name:String,phone:String,zip:String,addr:String,paytype:String,mtime:String,remark:String,imageArr : [String])  {
 
         if !(title.count > 0) {
             SVPMessageShow.showErro(infoStr: "请输入标题")
@@ -178,7 +178,7 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
         }
 
 
-
+        SVPMessageShow.showLoad()
 
         let titleStr :String = title.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         let creditcodeStr :String = creditcode.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
@@ -190,12 +190,18 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
         let zipStr :String = zip.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         let addrStr :String = mtime.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         let remarkStr :String = remark.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let moneyStr :String = money.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let identifierStr :String = identifier.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let ephoneStr :String = ephone.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+
+
+
 
 
         let eaddrStr :String = eaddr.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         let ebankStr :String = ebank.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
 
-        let url =   invoice_save_api + "type=\(typeStr)&title=\(titleStr)&money=\(money)&creditcode=\(creditcodeStr)&sendtype=\(sendtype)&content=\(contentStr)&isbooks=\(isbooks)&applytime=\(applytimeStr)&identifier=\(identifier)&eaddr=\(eaddrStr)&ephone=\(ephone)&ebank=\(ebankStr)&name=\(nameStr)&phone=\(phoneStr)&zip=\(zipStr)&addr=\(addrStr)&paytype=\(paytype)&mtime=\(mtimeStr)&remark=\(remarkStr)&k=\(UserInfoLoaclManger.getKey())"
+        let url =   invoice_save_api + "type=\(typeStr)&title=\(titleStr)&money=\(moneyStr)&creditcode=\(creditcodeStr)&sendtype=\(sendtype)&content=\(contentStr)&isbooks=\(isbooks)&applytime=\(applytimeStr)&identifier=\(identifierStr)&eaddr=\(eaddrStr)&ephone=\(ephoneStr)&ebank=\(ebankStr)&name=\(nameStr)&phone=\(phoneStr)&zip=\(zipStr)&addr=\(addrStr)&paytype=\(paytype)&mtime=\(mtimeStr)&remark=\(remarkStr)&img1=\(imageArr[0])&img2=\(imageArr[1])&img3=\(imageArr[2])&img4=\(imageArr[3])&img5=\(imageArr[4])&k=\(UserInfoLoaclManger.getKey())"
         request.delegate = self
         type = .invoice_save
         request.request_api(url: url)

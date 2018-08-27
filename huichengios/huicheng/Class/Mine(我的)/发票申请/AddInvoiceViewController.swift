@@ -97,10 +97,14 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
 
     /// 时间
     let dateView : DatePickView = DatePickView.loadNib()
+    var imageArr : [String] = ["","","","",""]
 
 
     let section1HeadView = SelectedHeadView.loadNib()
     var section1rows = 4
+
+    var isOK : Bool = false
+
 
 
 
@@ -209,7 +213,26 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
                 } else {
                     let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
                     cell.delegate = self
-                    cell.setData_addinvoce(title: sectionNameArr2[indexPath.row], content: contentStr,indexPath : indexPath)
+                    var str = ""
+
+                    switch indexPath.row {
+                    case 0 :
+                        str = titleStr
+                    case 3 :
+                        str = eaddrStr
+                    case 4 :
+                        str = ephoneStr
+                    case 5 :
+                        str = ebankStr
+                    case 6 :
+                        str = ecardStr
+                    case 7 :
+                        str = contentStr
+
+                    default:
+                        HCLog(message: "暂无")
+                    }
+                    cell.setData_addinvoce(title: sectionNameArr2[indexPath.row], content: str,indexPath : indexPath)
                     return cell
                 }
             }
@@ -361,6 +384,10 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
         } else {
             let cell : NoticeTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: NoticeTableViewCellID, for: indexPath) as! NoticeTableViewCell
             cell.setData(contentStr: "本人承诺于开票日期起一个月内收回款项，逾期未收回的，从其账上直接按发票金额扣减等额款项")
+            cell.clickBlock = {isN in
+                self.isOK = isN
+            }
+            cell.setSelcted(isSelected: isOK)
             return cell
         }
     }
@@ -408,6 +435,12 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
                     HCLog(message: "选择文件")
                     let vc = SelectedImagesViewController()
                     vc.hidesBottomBarWhenPushed = true
+
+                    vc.sureBlock = {(arr : [String])in
+                        HCLog(message: arr.count)
+                        
+                        self.imageArr = arr
+                    }
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
             }
@@ -692,13 +725,12 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
     override func navigationRightBtnClick() {
         HCLog(message: "确定")
         self.view.endEditing(true)
-        let cell : NoticeTableViewCell  = self.tableView.cellForRow(at: IndexPath(row: 0, section: 2)) as! NoticeTableViewCell
-        if !cell.isNotice {
+        if !isOK {
             SVPMessageShow.showErro(infoStr: "请勾选承诺")
             return
         }
 
-        requestVC.invoice_saveRequest(typeStr: typeStr, title: titleStr, money: moneyStr, creditcode: creditcodeStr, sendtype: sendtype, content: contentStr, isbooks: isbooksStr, applytime: applytimeStr, identifier: self.identifierStr, eaddr: self.eaddrStr, ephone: ephoneStr, ebank: ebankStr, ecard: ecardStr, name: nameStr, phone: phoneStr, zip: zipStr, addr: addrStr, paytype: paytype, mtime: mtimeStr, remark: remarkStr)
+        requestVC.invoice_saveRequest(typeStr: typeStr, title: titleStr, money: moneyStr, creditcode: creditcodeStr, sendtype: sendtype, content: contentStr, isbooks: isbooksStr, applytime: applytimeStr, identifier: self.identifierStr, eaddr: self.eaddrStr, ephone: ephoneStr, ebank: ebankStr, ecard: ecardStr, name: nameStr, phone: phoneStr, zip: zipStr, addr: addrStr, paytype: paytype, mtime: mtimeStr, remark: remarkStr, imageArr: imageArr)
 
 
     }
