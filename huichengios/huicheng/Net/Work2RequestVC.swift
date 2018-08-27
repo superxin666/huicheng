@@ -12,7 +12,7 @@ import ObjectMapper
 enum Work2RequestVC_enum {
     //
     case income_getlist,income_getdeals,income_getdealsinfo,income_save,income_getinfo,//收款登记获取列表
-    doc_applylist,doc_search,doc_getlist,doc_applysave,doc_getinfo,doc_del,crt_dealslist,crt_choose,crt_getinfo,crt_save,pay_getlist
+    doc_applylist,doc_search,doc_getlist,doc_applysave,doc_getinfo,doc_del,crt_dealslist,crt_choose,crt_getinfo,crt_save,pay_getlist,pay_applyinfo
 }
 protocol Work2RequestVCDelegate : NSObjectProtocol{
     //
@@ -307,6 +307,20 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
 
     }
 
+    // MARK: -  支付
+
+
+    /// 获取详情
+    ///
+    /// - Parameter id: <#id description#>
+    func financePayapplyinfo(id : String) {
+        type = .pay_applyinfo
+        request.delegate = self
+        let url =   finance_pay_applyinfo_api + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url,type: .alltyper)
+    }
+
+
 
 
     /// 线下支付  获取列表
@@ -403,6 +417,11 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
             let arr = Mapper<payGetlistModel>().mapArray(JSONArray: response as! [[String : Any]])
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work2(data: arr,type : type)
+            }
+        } else if type == .pay_applyinfo{
+            let model = Mapper<pay_applyinfoModel>().map(JSON: response as! [String : Any])!
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed_work2(data: model,type : type)
             }
         }
 

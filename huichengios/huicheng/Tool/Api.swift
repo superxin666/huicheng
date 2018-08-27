@@ -202,7 +202,7 @@ let finance_getlist_api = "uc/finance_getlist?"
 let finance_getinfo_api = "uc/finance_getinfo?"
 
 let finance_pay_getlist_api = "finance/pay_getlist?"
-
+let finance_pay_applyinfo_api = "finance/pay_applyinfo?"
 
 //------------------------工作日志  获取列表
 let work_getlist_api = "uc/work_getlist?"

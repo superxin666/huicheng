@@ -191,6 +191,7 @@
 		215E37A02133B35E00B07BD0 /* SelectedImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E379F2133B35E00B07BD0 /* SelectedImagesViewController.swift */; };
 		215E37A32133B61600B07BD0 /* Title8TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E37A12133B61600B07BD0 /* Title8TableViewCell.swift */; };
 		215E37A42133B61600B07BD0 /* Title8TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 215E37A22133B61600B07BD0 /* Title8TableViewCell.xib */; };
+		215E37A62133F7E100B07BD0 /* pay_applyinfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E37A52133F7E100B07BD0 /* pay_applyinfoModel.swift */; };
 		21671C9020AAD99200E8680C /* DocTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21671C8E20AAD99200E8680C /* DocTableViewCell.swift */; };
 		21671C9120AAD99200E8680C /* DocTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21671C8F20AAD99200E8680C /* DocTableViewCell.xib */; };
 		21679906212E8504006A8AB0 /* DealSearch2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216798FD212E8504006A8AB0 /* DealSearch2ViewController.swift */; };
@@ -463,6 +464,7 @@
 		215E379F2133B35E00B07BD0 /* SelectedImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedImagesViewController.swift; sourceTree = "<group>"; };
 		215E37A12133B61600B07BD0 /* Title8TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title8TableViewCell.swift; sourceTree = "<group>"; };
 		215E37A22133B61600B07BD0 /* Title8TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Title8TableViewCell.xib; sourceTree = "<group>"; };
+		215E37A52133F7E100B07BD0 /* pay_applyinfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pay_applyinfoModel.swift; sourceTree = "<group>"; };
 		21671C8E20AAD99200E8680C /* DocTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocTableViewCell.swift; sourceTree = "<group>"; };
 		21671C8F20AAD99200E8680C /* DocTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DocTableViewCell.xib; sourceTree = "<group>"; };
 		216798FD212E8504006A8AB0 /* DealSearch2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DealSearch2ViewController.swift; sourceTree = "<group>"; };
@@ -1020,6 +1022,7 @@
 				212FEA8320C3F10500A466E2 /* sharegetinfoModel.swift */,
 				212FEA8520C3F4BA00A466E2 /* sharegetreplyModel.swift */,
 				21B9E1CD2132C7E10053F995 /* payGetlistModel.swift */,
+				215E37A52133F7E100B07BD0 /* pay_applyinfoModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1412,6 +1415,7 @@
 				2124D720208D69D20007B5EE /* RoomTableViewCell.swift in Sources */,
 				216A6C57204CDE9D00528FD8 /* BaseViewController.swift in Sources */,
 				216A6C50204CDE6700528FD8 /* MessageViewController.swift in Sources */,
+				215E37A62133F7E100B07BD0 /* pay_applyinfoModel.swift in Sources */,
 				21B9177C20AC27ED004031DE /* ExpenseapplylistViewController.swift in Sources */,
 				2123A385208F0C7400C50FA9 /* SelectedTableViewCell.swift in Sources */,
 				21F8469620B7F9DE00F4A678 /* bank_getlistModel.swift in Sources */,
