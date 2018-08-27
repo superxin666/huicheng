@@ -188,6 +188,7 @@
 		215C65D5203EC6B6001C7A92 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 215C65D3203EC6B6001C7A92 /* LaunchScreen.storyboard */; };
 		215E37982133969500B07BD0 /* SelectedHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E37972133969500B07BD0 /* SelectedHeadView.swift */; };
 		215E379E213396C800B07BD0 /* SelectedHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 215E379D213396C800B07BD0 /* SelectedHeadView.xib */; };
+		215E37A02133B35E00B07BD0 /* SelectedImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E379F2133B35E00B07BD0 /* SelectedImagesViewController.swift */; };
 		21671C9020AAD99200E8680C /* DocTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21671C8E20AAD99200E8680C /* DocTableViewCell.swift */; };
 		21671C9120AAD99200E8680C /* DocTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21671C8F20AAD99200E8680C /* DocTableViewCell.xib */; };
 		21679906212E8504006A8AB0 /* DealSearch2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216798FD212E8504006A8AB0 /* DealSearch2ViewController.swift */; };
@@ -457,6 +458,7 @@
 		215C65D6203EC6B6001C7A92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		215E37972133969500B07BD0 /* SelectedHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedHeadView.swift; sourceTree = "<group>"; };
 		215E379D213396C800B07BD0 /* SelectedHeadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectedHeadView.xib; sourceTree = "<group>"; };
+		215E379F2133B35E00B07BD0 /* SelectedImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedImagesViewController.swift; sourceTree = "<group>"; };
 		21671C8E20AAD99200E8680C /* DocTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocTableViewCell.swift; sourceTree = "<group>"; };
 		21671C8F20AAD99200E8680C /* DocTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DocTableViewCell.xib; sourceTree = "<group>"; };
 		216798FD212E8504006A8AB0 /* DealSearch2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DealSearch2ViewController.swift; sourceTree = "<group>"; };
@@ -700,6 +702,7 @@
 			children = (
 				214F84B12122C0D600255F00 /* InvoiceViewController.swift */,
 				214F84B22122C0D600255F00 /* AddInvoiceViewController.swift */,
+				215E379F2133B35E00B07BD0 /* SelectedImagesViewController.swift */,
 			);
 			path = "发票申请";
 			sourceTree = "<group>";
@@ -1481,6 +1484,7 @@
 				21DDC9DF2080CA460067197D /* OptionTableViewCell.swift in Sources */,
 				216B7C6320638EE100BBACDA /* IncomeTableViewCell.swift in Sources */,
 				2105D2DD2060ADFC0031B14C /* memo_getlistModel.swift in Sources */,
+				215E37A02133B35E00B07BD0 /* SelectedImagesViewController.swift in Sources */,
 				21306589211D1FFE0073ECF9 /* InvoiceapplyDetailViewController.swift in Sources */,
 				2115D0D52102CDF0002BDB3F /* AddIncomeDetailViewController.swift in Sources */,
 				2126DBE6208B454700977802 /* Title5TableViewCell.swift in Sources */,

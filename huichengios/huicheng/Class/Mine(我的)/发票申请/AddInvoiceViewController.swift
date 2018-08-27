@@ -402,6 +402,15 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
                     self.showDate()
                 }
             }
+        } else if indexPath.section == 0 {
+            if typeStr == "1" {
+                if indexPath.row == 9 {
+                    HCLog(message: "选择文件")
+                    let vc = SelectedImagesViewController()
+                    vc.hidesBottomBarWhenPushed = true
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
         }
 
     }

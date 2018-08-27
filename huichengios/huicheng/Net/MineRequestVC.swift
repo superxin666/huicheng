@@ -191,7 +191,11 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
         let addrStr :String = mtime.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         let remarkStr :String = remark.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
 
-        let url =   invoice_save_api + "type=\(typeStr)&title=\(titleStr)&money=\(money)&creditcode=\(creditcodeStr)&sendtype=\(sendtype)&content=\(contentStr)&isbooks=\(isbooks)&applytime=\(applytimeStr)&identifier=\(identifier)&eaddr=\(eaddr)&ephone=\(ephone)&ebank=\(ebank)&name=\(nameStr)&phone=\(phoneStr)&zip=\(zipStr)&addr=\(addrStr)&paytype=\(paytype)&mtime=\(mtimeStr)&remark=\(remarkStr)&k=\(UserInfoLoaclManger.getKey())"
+
+        let eaddrStr :String = eaddr.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let ebankStr :String = ebank.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+
+        let url =   invoice_save_api + "type=\(typeStr)&title=\(titleStr)&money=\(money)&creditcode=\(creditcodeStr)&sendtype=\(sendtype)&content=\(contentStr)&isbooks=\(isbooks)&applytime=\(applytimeStr)&identifier=\(identifier)&eaddr=\(eaddrStr)&ephone=\(ephone)&ebank=\(ebankStr)&name=\(nameStr)&phone=\(phoneStr)&zip=\(zipStr)&addr=\(addrStr)&paytype=\(paytype)&mtime=\(mtimeStr)&remark=\(remarkStr)&k=\(UserInfoLoaclManger.getKey())"
         request.delegate = self
         type = .invoice_save
         request.request_api(url: url)
