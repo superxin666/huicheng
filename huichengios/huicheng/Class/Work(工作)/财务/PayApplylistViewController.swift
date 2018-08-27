@@ -141,10 +141,17 @@ class PayApplylistViewController:  BaseViewController ,UITableViewDataSource,UIT
     override func navigationRightBtnClick() {
         HCLog(message: "搜索")
         let vc = SearchViewController()
-        vc.type = .deal_type
+        vc.type = .PayApplylist
         weak var weakself = self
-        vc.sureDealBlock = {content in
-//            weakself?.numStr = content
+//        dealcheckBlock(nStr,startTimeStr,endTimeStr,bidStr,prStr)
+//
+        vc.dealcheckBlock = {(nStr,startTimeStr,endTimeStr,bidStr,prStr) in
+            weakself?.noStr = nStr
+            weakself?.stStr = startTimeStr
+            weakself?.etStr = endTimeStr
+        
+            weakself?.sStr = bidStr
+            weakself?.nStr = prStr
             weakself?.reflishData()
         }
         self.navigationController?.pushViewController(vc, animated: true)

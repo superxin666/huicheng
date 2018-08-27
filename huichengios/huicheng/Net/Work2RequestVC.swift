@@ -333,12 +333,12 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
             nStr = n.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         }
         var bStr = ""
-        if bStr.count > 0 {
+        if st.count > 0 {
             bStr = st.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         }
 
         var eStr = ""
-        if eStr.count > 0 {
+        if et.count > 0 {
             eStr = et.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         }
 

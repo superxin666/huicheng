@@ -23,7 +23,7 @@ typealias SearchViewControllerBlock_docSearch = (_ nStr : String,_ dnStr : Strin
 enum SearchViewController_type {
 
     //发票申请           收款记录       工作日志      发票列表         案件查询        合同查询   姓名    部门 人员姓名     收款登记
-    case expense_type, finance_type , work_type ,invoice_getlist,caselsit_type,deal_type,person,departAndPerson,Income_list,doc_search,shareType,conven_type,deal2_type,workbook_type,dealcheck,dealsearch
+    case expense_type, finance_type , work_type ,invoice_getlist,caselsit_type,deal_type,person,departAndPerson,Income_list,doc_search,shareType,conven_type,deal2_type,workbook_type,dealcheck,dealsearch,PayApplylist
 
 }
 let Searchcell_finance_typeID = "Searchcell_finance_type_id"
@@ -180,6 +180,10 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         } else if type == .dealsearch{
             self.navigation_title_fontsize(name: "合同查询", fontsize: 18)
             rowNum = 10
+        } else if type == .PayApplylist{
+            self.navigation_title_fontsize(name: "支付审核查询", fontsize: 18)
+            rowNum = 5
+
         }
         self.navigationBar_rightBtn_title(name: "确定")
         self.creatUI()
@@ -239,6 +243,10 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             mainTabelView.register(UINib.init(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: TitleTableViewCellID)
 
         }else if type == .dealcheck {
+            mainTabelView.register(UINib.init(nibName: "OptionTableViewCell", bundle: nil), forCellReuseIdentifier: OptionTableViewCellID)
+            mainTabelView.register(UINib.init(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: TitleTableViewCellID)
+            mainTabelView.register(UINib.init(nibName: "endTimeTableViewCell", bundle: nil), forCellReuseIdentifier: endTimeTableViewCellid)
+        } else if type == .PayApplylist{
             mainTabelView.register(UINib.init(nibName: "OptionTableViewCell", bundle: nil), forCellReuseIdentifier: OptionTableViewCellID)
             mainTabelView.register(UINib.init(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: TitleTableViewCellID)
             mainTabelView.register(UINib.init(nibName: "endTimeTableViewCell", bundle: nil), forCellReuseIdentifier: endTimeTableViewCellid)
@@ -505,6 +513,37 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
                 return titleCell
             }
 
+        } else if type == .PayApplylist{
+            if indexPath.row == 0 {
+                titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                //合同编号
+                titleCell.setData_ovewdeal(titleStr: "合同编号", indexPath: indexPath)
+                titleCell.delegate = self
+                return titleCell
+
+            } else if indexPath.row == 1 {
+                titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                //交款人
+                titleCell.setData_ovewdeal(titleStr: "交款人", indexPath: indexPath)
+                titleCell.delegate = self
+                return titleCell
+
+            }     else  if indexPath.row == 2 {
+                startTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                startTimeCell.setData(titleStr: "开始时间", tag: 0)
+
+                return startTimeCell
+            } else if indexPath.row == 3 {
+                endTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                endTimeCell.setData(titleStr: "结束时间", tag: 1)
+                return endTimeCell
+
+            } else {
+                optionCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
+                optionCell.setData_caseDetail(titleStr: "状态", contentStr: "")
+                return optionCell
+            }
+
         } else {
             return UITableViewCell()
         }
@@ -603,16 +642,26 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             //模板
             self.showOptionView_share()
         } else if type == .dealcheck{
-            if indexPath.row == 1 {
-                //开始时间
-                self.showTime_start()
-            } else if indexPath.row == 2{
-                //结束时间
-                self.showTime_end()
-            }
+                if indexPath.row == 1 {
+                    //开始时间
+                    self.showTime_start()
+                } else if indexPath.row == 2{
+                    //结束时间
+                    self.showTime_end()
+                }
         } else if type == .invoice_getlist || type == .expense_type{
 
             self.showOptionView_state()
+        } else if type == .PayApplylist {
+            if indexPath.row == 2 {
+                //开始时间
+                self.showTime_start()
+            } else if indexPath.row == 3{
+                //结束时间
+                self.showTime_end()
+            } else {
+                self.showOptionView_state()
+            }
         }
     }
     
@@ -723,9 +772,14 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         } else if type == .shareType {
             let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 0, section: 0)) as! OptionTableViewCell
             cell.setOptionData(contentStr: titleStr)
-        } else {
-            let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 0, section: 0)) as! OptionTableViewCell
+        } else if type == .PayApplylist{
+
+            let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 4, section: 0)) as! OptionTableViewCell
             cell.setOptionData(contentStr: titleStr)
+
+        } else {
+                let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 0, section: 0)) as! OptionTableViewCell
+                cell.setOptionData(contentStr: titleStr)
         }
         self.optionView.removeFromSuperview()
         self.maskView.removeFromSuperview()
@@ -753,6 +807,12 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             } else if tagNum == 4 {
                 prStr = inputStr
 
+            }
+        } else if type == .PayApplylist{
+            if tagNum == 0 {
+                nStr = inputStr
+            } else if tagNum == 1 {
+                prStr = inputStr
             }
         }
     }
@@ -812,6 +872,8 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             self.deal2SureBlock(titleCell.conTent,startTimeStr,endTimeStr)
         } else if type == .dealcheck {
             dealcheckBlock(nStr,startTimeStr,endTimeStr,uStr,prStr)
+        } else if type == .PayApplylist {
+             dealcheckBlock(nStr,startTimeStr,endTimeStr,bidStr,prStr)
         }
         self.navigationController?.popViewController(animated: true)
     }
