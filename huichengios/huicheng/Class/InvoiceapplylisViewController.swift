@@ -14,8 +14,12 @@ class InvoiceapplylisViewController: BaseViewController,UITableViewDataSource,UI
     var dataArr : [invoice_getlistModel] = []
     var pageNum : Int = 1
 
-    /// 合同编号
-    var numStr = ""
+    /// 查询状态
+    var sStr = ""
+    /// 分所 ID
+    var bStr = ""
+    /// 申请人
+    var uStr = ""
 
 
     // MARK: - life
@@ -89,7 +93,7 @@ class InvoiceapplylisViewController: BaseViewController,UITableViewDataSource,UI
     // MARK: - net
     func requestApi() {
         requestVC.delegate = self
-        requestVC.invoice_applylist(p: pageNum, c: 8, u: "")
+        requestVC.invoice_applylist(p: pageNum, c: 8, u: uStr, b: bStr, s: sStr)
     }
 
     func reflishData() {
@@ -130,15 +134,17 @@ class InvoiceapplylisViewController: BaseViewController,UITableViewDataSource,UI
         self.navigationController?.popViewController(animated: true)
     }
     override func navigationRightBtnClick() {
-        HCLog(message: "搜索")
-//        let vc = SearchViewController()
-//        vc.type = .deal_type
-//        weak var weakself = self
-//        vc.sureDealBlock = {content in
-//            weakself?.numStr = content
-//            weakself?.reflishData()
-//        }
-//        self.navigationController?.pushViewController(vc, animated: true)
+        let vc = SearchViewController()
+        vc.type = .Expenseapply
+        weak var weakself = self
+        vc.expenBlock = {(st1,st2,st3) in
+            weakself?.sStr = st1
+            weakself?.bStr = st2
+            weakself?.uStr = st3
+
+            weakself?.reflishData()
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
 
 
     }

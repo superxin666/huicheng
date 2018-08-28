@@ -726,10 +726,14 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
     ///   - c: <#c description#>
     ///   - n: <#n description#>
     ///   - u: <#u description#>
-    func invoice_applylist(p:Int,c:Int,u:String) {
+    func invoice_applylist(p:Int,c:Int,u:String,b:String,s:String) {
         request.delegate = self
         type = .invoice_applylist
-        let url = invoice_applylist_api   + "p=\(p)&c=\(c)&u=\(u)&k=\(UserInfoLoaclManger.getKey())"
+        let uStr = u.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+
+
+
+        let url = invoice_applylist_api   + "p=\(p)&c=\(c)&b=\(b)&s=\(s)&u=\(uStr)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
     }
 
