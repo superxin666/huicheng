@@ -12,7 +12,7 @@ import ObjectMapper
 enum Work2RequestVC_enum {
     //
     case income_getlist,income_getdeals,income_getdealsinfo,income_save,income_getinfo,//收款登记获取列表
-    doc_applylist,doc_search,doc_getlist,doc_applysave,doc_getinfo,doc_del,crt_dealslist,crt_choose,crt_getinfo,crt_save,pay_getlist,pay_applyinfo,pay_del,pay_applysave,pay_save
+    doc_applylist,doc_search,doc_getlist,doc_applysave,doc_getinfo,doc_del,crt_dealslist,crt_choose,crt_getinfo,crt_save,pay_getlist,pay_applyinfo,pay_del,pay_applysave,pay_save,pay_applylist
 }
 protocol Work2RequestVCDelegate : NSObjectProtocol{
     //
@@ -322,6 +322,47 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
     }
 
 
+    /// 支付审批  获取列表
+    ///
+    /// - Parameters:
+    ///   - p: <#p description#>
+    ///   - c: <#c description#>
+    ///   - n: <#n description#>
+    ///   - u: <#u description#>
+    ///   - b: <#b description#>
+    ///   - e: <#e description#>
+    ///   - bid: <#bid description#>
+    func pay_applylistRequest(p:Int,c:Int,n:String,u:String,b:String,e:String,bid:String) {
+
+
+        type = .pay_applylist
+        request.delegate = self
+
+
+        var nStr = ""
+        if n.count > 0 {
+            nStr = n.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+
+        var uStr = ""
+        if u.count > 0 {
+            uStr = u.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+
+        var bStr = ""
+        if b.count > 0 {
+            bStr = b.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+
+        var eStr = ""
+        if e.count > 0 {
+            eStr = e.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+
+        let url =   finance_pay_applylist_api + "p=\(p)&c=\(c)&n=\(nStr)&u=\(uStr)&bid=\(bid)&b=\(bStr)&e=\(eStr)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+
+    }
 
 
     /// 线下支付  获取列表
@@ -457,7 +498,7 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work2(data: model,type : type)
             }
-        } else if type == .pay_getlist{
+        } else if type == .pay_getlist || type == .pay_applylist{
             let arr = Mapper<payGetlistModel>().mapArray(JSONArray: response as! [[String : Any]])
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work2(data: arr,type : type)

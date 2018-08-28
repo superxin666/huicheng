@@ -192,7 +192,7 @@ class PayApplyDetailViewController: BaseViewController,Work2RequestVCDelegate,UI
             self.sucessBlock()
             self.navigationLeftBtnClick()
 
-        } else if type == .pay_applysave {
+        } else if type == .pay_save {
             self.sucessBlock()
             self.navigationLeftBtnClick()
             
