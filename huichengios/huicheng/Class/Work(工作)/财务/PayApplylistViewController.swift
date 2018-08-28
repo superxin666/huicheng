@@ -41,7 +41,7 @@ class PayApplylistViewController:  BaseViewController ,UITableViewDataSource,UIT
         // Do any additional setup after loading the view.
         self.view.backgroundColor = viewBackColor
 
-        self.navigation_title_fontsize(name: "线下管理", fontsize: 18)
+        self.navigation_title_fontsize(name: "线下支付", fontsize: 18)
         self.navigationBar_rightBtn_image(image: #imageLiteral(resourceName: "mine_search"))
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
         self.creatUI()

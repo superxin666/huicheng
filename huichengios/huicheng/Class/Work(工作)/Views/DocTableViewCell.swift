@@ -78,6 +78,9 @@ class DocTableViewCell: UITableViewCell {
     }
 
 
+    /// 线下支付
+    ///
+    /// - Parameter model: <#model description#>
     func setData_PayApplylist(model : payGetlistModel) {
 
         if let num = model.num {
@@ -123,6 +126,61 @@ class DocTableViewCell: UITableViewCell {
             }
         }
     }
+
+
+
+
+    /// 支付审核
+    ///
+    /// - Parameter model: <#model description#>
+    func setData_PaycaseApplylist(model : payGetlistModel) {
+
+        if let num = model.num {
+            self.titleNameLabel.text = num
+        }
+
+        if let money = model.money {
+            self.titleNameLabel2.text = "\(money)元"
+        }
+
+
+        if let addtime = model.addtime {
+            self.timeLabel.text = String.hc_getDate_string(dateStr: addtime)
+        }
+
+        if let typeStr = model.typeStr {
+            self.typeLabel.text = typeStr
+        }
+
+//        if let stateStr = model.stateStr {
+//            self.stateLabel.text = stateStr
+//        }
+//
+//        if let state = model.state {
+//            if state == 0 {
+//                self.stateLabel.backgroundColor = darkblueColor
+//                self.stateLabel.textColor = .white
+//
+//            }else if state == 1 {
+//                self.stateLabel.backgroundColor = UIColor.hc_colorFromRGB(rgbValue: 0xcccccc)
+//                self.stateLabel.textColor = .white
+//
+//
+//            } else if state == 2 {
+//                self.stateLabel.backgroundColor = orangeColor
+//                self.stateLabel.textColor = .white
+//
+//            } else if state == 3 {
+//                self.stateLabel.hc_makeBorderWithBorderWidth(width: 1, color: UIColor.hc_colorFromRGB(rgbValue: 0x999999))
+//                self.stateLabel.backgroundColor = .white
+//                self.stateLabel.textColor = UIColor.hc_colorFromRGB(rgbValue: 0x999999)
+//
+//            }
+//        }
+    }
+
+
+
 
     func setData_docSearch(model : docgetlistModel)  {
         if let docnum = model.docnum {

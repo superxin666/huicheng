@@ -73,7 +73,7 @@ class PayCheckViewController: BaseViewController ,UITableViewDataSource,UITableV
         let cell : DocTableViewCell  = tableView.dequeueReusableCell(withIdentifier: DocTableViewCellID, for: indexPath) as! DocTableViewCell
         if indexPath.row < self.dataArr.count {
             let model : payGetlistModel = self.dataArr[indexPath.row]
-            cell.setData_PayApplylist(model: model)
+            cell.setData_PaycaseApplylist(model: model)
         }
         return cell
     }

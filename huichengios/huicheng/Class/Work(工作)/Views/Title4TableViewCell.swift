@@ -47,5 +47,8 @@ class Title4TableViewCell: UITableViewCell {
         self.titleNameLabel.text = titleStr
         self.subLabel.text = contentStr
     }
+
+
+    
     
 }
