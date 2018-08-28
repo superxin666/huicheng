@@ -221,6 +221,7 @@
 		2175CB812134F266007C832B /* PayCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2175CB802134F266007C832B /* PayCheckViewController.swift */; };
 		2175CB832134FAEA007C832B /* PayCheckDetialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2175CB822134FAEA007C832B /* PayCheckDetialViewController.swift */; };
 		2175CB85213516CC007C832B /* ExpenseapplylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2175CB84213516CC007C832B /* ExpenseapplylistViewController.swift */; };
+		2175CB872135257E007C832B /* ExpenseapplyDetialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2175CB862135257E007C832B /* ExpenseapplyDetialViewController.swift */; };
 		219767E820EF841800F5807F /* IncomeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219767E720EF841800F5807F /* IncomeListViewController.swift */; };
 		219767EA20EF86BA00F5807F /* Income_getlistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219767E920EF86BA00F5807F /* Income_getlistModel.swift */; };
 		219D7BB3205E049A009F543B /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7BB2205E049A009F543B /* InfoViewController.swift */; };
@@ -496,6 +497,7 @@
 		2175CB802134F266007C832B /* PayCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayCheckViewController.swift; sourceTree = "<group>"; };
 		2175CB822134FAEA007C832B /* PayCheckDetialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayCheckDetialViewController.swift; sourceTree = "<group>"; };
 		2175CB84213516CC007C832B /* ExpenseapplylistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseapplylistViewController.swift; sourceTree = "<group>"; };
+		2175CB862135257E007C832B /* ExpenseapplyDetialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseapplyDetialViewController.swift; sourceTree = "<group>"; };
 		219767E720EF841800F5807F /* IncomeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeListViewController.swift; sourceTree = "<group>"; };
 		219767E920EF86BA00F5807F /* Income_getlistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Income_getlistModel.swift; sourceTree = "<group>"; };
 		219D7BB2205E049A009F543B /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
@@ -1106,6 +1108,7 @@
 				2175CB802134F266007C832B /* PayCheckViewController.swift */,
 				2175CB822134FAEA007C832B /* PayCheckDetialViewController.swift */,
 				2175CB84213516CC007C832B /* ExpenseapplylistViewController.swift */,
+				2175CB862135257E007C832B /* ExpenseapplyDetialViewController.swift */,
 			);
 			path = "财务";
 			sourceTree = "<group>";
@@ -1378,6 +1381,7 @@
 				21066CAD20668311009327AD /* ResetKeyViewControllerViewController.swift in Sources */,
 				21376681203FBA9D000CBCE6 /* ImageView+loading.swift in Sources */,
 				21340BD9206CBDDB00E30B53 /* AddExpenseBackView.swift in Sources */,
+				2175CB872135257E007C832B /* ExpenseapplyDetialViewController.swift in Sources */,
 				214F84B02122C02A00255F00 /* ExpenseViewController.swift in Sources */,
 				2107554B205D4C3200FF4396 /* LoginMidBottomView.swift in Sources */,
 				214F84C32122E45700255F00 /* CaseDetailViewController.swift in Sources */,

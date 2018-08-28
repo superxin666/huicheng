@@ -74,6 +74,14 @@ class ExpenseapplylistViewController: BaseViewController,UITableViewDataSource,U
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row  < self.dataArr.count {
+            let model : expense_getlistModel = self.dataArr[indexPath.row]
+
+            let vc  : ExpenseapplyDetialViewController = ExpenseapplyDetialViewController()
+            vc.id = model.id!
+            vc.sucessBlock = {
+                self.reflishData()
+            }
+            self.navigationController?.pushViewController(vc, animated: true)
 
         }
 

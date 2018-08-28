@@ -786,12 +786,12 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
     ///   - id: <#id description#>
     ///   - s: <#s description#>
     ///   - n: <#n description#>
-    func expense_applysave(id:Int,s:Int,n:String) {
+    func expense_applysave(id:Int,s:String,n:String) {
         request.delegate = self
         type = .expense_applysave
-        let sStr = n.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let nStr = n.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
 
-        let url = expense_applysavee_api  + "id=\(id)&s=\(sStr)&n=\(n)&k=\(UserInfoLoaclManger.getKey())"
+        let url = expense_applysavee_api  + "id=\(id)&s=\(s)&n=\(nStr)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
     }
 
