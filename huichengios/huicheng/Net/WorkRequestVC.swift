@@ -739,12 +739,12 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
     ///   - id: <#id description#>
     ///   - s: <#s description#>
     ///   - n: <#n description#>
-    func invoice_applysave(id:Int,s:Int,n:String) {
+    func invoice_applysave(id:Int,s:String,n:String) {
         request.delegate = self
         type = .invoice_applysave
-        let sStr = n.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let nStr = n.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
 
-        let url = invoice_applysave_api   + "id=\(id)&s=\(sStr)&n=\(n)&k=\(UserInfoLoaclManger.getKey())"
+        let url = invoice_applysave_api   + "id=\(id)&s=\(s)&n=\(nStr)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
     }
 
@@ -1103,6 +1103,11 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
                 self.delegate.requestSucceed_work(data: arr,type : type)
             }
 
+        } else if type == .invoice_getinfo{
+            let model = Mapper<invoice_getinfoModel>().map(JSON: response as! [String : Any])!
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed_work(data: model,type : type)
+            }
         }
     }
     

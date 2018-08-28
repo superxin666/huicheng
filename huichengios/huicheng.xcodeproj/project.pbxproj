@@ -740,8 +740,8 @@
 		21306586211D1FF40073ECF9 /* 发票审核 */ = {
 			isa = PBXGroup;
 			children = (
-				21306587211D1FFE0073ECF9 /* InvoiceapplyDetailViewController.swift */,
 				21306588211D1FFE0073ECF9 /* InvoiceapplylisViewController.swift */,
+				21306587211D1FFE0073ECF9 /* InvoiceapplyDetailViewController.swift */,
 			);
 			path = "发票审核";
 			sourceTree = "<group>";

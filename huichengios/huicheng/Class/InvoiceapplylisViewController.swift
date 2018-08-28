@@ -70,6 +70,15 @@ class InvoiceapplylisViewController: BaseViewController,UITableViewDataSource,UI
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row  < self.dataArr.count {
+            let model : invoice_getlistModel = self.dataArr[indexPath.row]
+
+            let vc : InvoiceapplyDetailViewController = InvoiceapplyDetailViewController()
+            vc.dealID = model.id!
+            vc.sucessBlock = {
+                self.reflishData()
+            }
+            self.navigationController?.pushViewController(vc, animated: true)
+
 
         }
 

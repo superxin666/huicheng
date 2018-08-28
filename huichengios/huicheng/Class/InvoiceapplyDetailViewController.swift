@@ -8,14 +8,13 @@
 //  发票审核
 
 import UIKit
-
+typealias InvoiceapplyDetailViewControllerBlock = ()->()
 class InvoiceapplyDetailViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource,WorkRequestVCDelegate,SelectedTableViewCellDelegate,ContentTableViewCellDelegate {
 
-    var sucessBlock :DealCheckDetailViewControllerBlock!
+    var sucessBlock :InvoiceapplyDetailViewControllerBlock!
 
     let mainTabelView : UITableView = UITableView()
     let requestVC = WorkRequestVC()
-    var dataArr : [dealGetlistModel] = []
     var dealID : Int!
 
     //    1-审核通过;2-审核驳回
@@ -25,11 +24,10 @@ class InvoiceapplyDetailViewController: BaseViewController,UITableViewDelegate,U
 
 
     /// 数据模型
-    var dealModel : getinfoDealModel!
+    var dataModel : invoice_getinfoModel!
 
-    var section1titleArr = ["合同编号","合同有效期","合同总款","发票情况","发票内容","案件类型","案件名称","案件自述","合同扫描件"]
+    var section1titleArr = ["发票类型","发票抬头","发票内容","发票金额","款项入账","送达方式","自取时间","备注","申请时间"]
     var sectionContent:[String] = []
-    var section2titleArr = ["基本情况","委托人情况"]
 
     var alertController : UIAlertController!
     // MARK: - life
@@ -47,8 +45,14 @@ class InvoiceapplyDetailViewController: BaseViewController,UITableViewDelegate,U
         self.view.backgroundColor = viewBackColor
 
         self.navigation_title_fontsize(name: "发票审核", fontsize: 18)
-        self.navigationBar_rightBtn_title(name: "保存")
+
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
+
+
+        let iteam1 = self.getUIBarButtonItem_title(title: "删除", action: #selector(deleClick), vc: self)
+        let iteam2 = self.getUIBarButtonItem_title(title: "保存", action: #selector(saveClick), vc: self)
+        self.navigationItem.rightBarButtonItems = [iteam2,iteam1]
+
         self.creatUI()
         requestVC.delegate = self
         requestVC.invoice_getinfoRequest(id: dealID)
@@ -72,7 +76,7 @@ class InvoiceapplyDetailViewController: BaseViewController,UITableViewDelegate,U
     }
     // MARK: - delegate
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 2
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
@@ -81,11 +85,8 @@ class InvoiceapplyDetailViewController: BaseViewController,UITableViewDelegate,U
             } else {
                 return 2
             }
-
-        } else if section == 1 {
-            return 9
         } else {
-            return 2
+            return 9
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -103,7 +104,7 @@ class InvoiceapplyDetailViewController: BaseViewController,UITableViewDelegate,U
                 cell.setData_dealDetail(titleStr: "驳回原因",contentStr : nStr)
                 return cell
             }
-        } else if indexPath.section == 1 {
+        } else  {
             if indexPath.row == 7 {
 
                 let cell : ContentTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: ContentTableViewCellID, for: indexPath) as! ContentTableViewCell
@@ -114,11 +115,7 @@ class InvoiceapplyDetailViewController: BaseViewController,UITableViewDelegate,U
                 cell.setData_dealcheckdetail(title: section1titleArr[indexPath.row], contentCase: str)
                 return cell
 
-            } else if indexPath.row == 8 {
-                let cell : Title2TableViewCell  = tableView.dequeueReusableCell(withIdentifier: Title2TableViewCellID, for: indexPath) as! Title2TableViewCell
-                cell.setData(titleStr: section1titleArr[indexPath.row])
-                return cell
-            } else {
+            }  else {
                 let cell : Title4TableViewCell  = tableView.dequeueReusableCell(withIdentifier: Title4TableViewCellID, for: indexPath) as! Title4TableViewCell
                 var str = ""
                 if indexPath.row < sectionContent.count {
@@ -127,50 +124,12 @@ class InvoiceapplyDetailViewController: BaseViewController,UITableViewDelegate,U
                 cell.setData_overCase(titleStr: section1titleArr[indexPath.row], contentStr: str)
                 return cell
             }
-        } else {
-            let cell : Title2TableViewCell  = tableView.dequeueReusableCell(withIdentifier: Title2TableViewCellID, for: indexPath) as! Title2TableViewCell
-            cell.setData(titleStr: section2titleArr[indexPath.row])
-            return cell
         }
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 2 {
-            var arr : [String] = []
-            var arr2 : [String] = []
-            if indexPath.row == 0 {
-                HCLog(message: "基本情况")
-                let vc = BaseInfoViewController()
-
-                arr.append(dealModel.rStr)
-                arr.append(dealModel.rt)
-                arr.append(dealModel.w1Str)
-                arr.append(dealModel.w2Str)
 
 
-                arr2.append(dealModel.ct)
-                arr2.append(dealModel.sj)
-
-                vc.dataArr = arr
-                vc.dataArr2 = arr2
-
-                self.navigationController?.pushViewController(vc, animated: true)
-            } else {
-                //委托人情况
-                let vc = CasePersionViewController()
-                vc.type =  .principal_detail
-                arr.append(dealModel.pn)
-                arr.append(dealModel.pc)
-                arr.append(dealModel.pp)
-                arr.append(dealModel.pz)
-                arr.append(dealModel.pj)
-                arr.append(dealModel.pd)
-                arr.append(dealModel.pa)
-                vc.dataArr = arr
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
-
-        }
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -184,7 +143,7 @@ class InvoiceapplyDetailViewController: BaseViewController,UITableViewDelegate,U
             let label = UILabel(frame: CGRect(x: 10, y: 10, width: 100, height: 20))
             view.addSubview(label)
             label.font = hc_fontThin(15)
-            label.text = "合同信息"
+            label.text = "发票信息"
             label.textColor = UIColor.hc_colorFromRGB(rgbValue: 0x333333)
             return view
         }  else {
@@ -244,21 +203,24 @@ class InvoiceapplyDetailViewController: BaseViewController,UITableViewDelegate,U
 
 
     func requestSucceed_work(data: Any,type : WorkRequestVC_enum) {
-        if type == .getinfo {
-            dealModel = data as! getinfoDealModel
-            sectionContent.append(dealModel.dealsnum)
-            sectionContent.append("\(dealModel.begintime!)~\(dealModel.endtime!)")
-            sectionContent.append(dealModel.amount)
-            sectionContent.append(dealModel.ispaperStr)
-            sectionContent.append("")
-            sectionContent.append(dealModel.typeStr)
-            sectionContent.append(dealModel.n)
-            sectionContent.append(dealModel.ct)
-
+        if type == .invoice_getinfo {
+            dataModel = data as!invoice_getinfoModel
+            sectionContent.append(dataModel.typeStr)
+            sectionContent.append(dataModel.title)
+            sectionContent.append(dataModel.content)
+            sectionContent.append("\(dataModel.money!)元")
+            sectionContent.append(dataModel.isbooksStr)
+            sectionContent.append(dataModel.sendtypeStr)
+            sectionContent.append(dataModel.mtime)
+            sectionContent.append(dataModel.remark)
+            sectionContent.append(dataModel.addtime)
             self.mainTabelView.reloadData()
-        } else {
+        } else if type == .invoice_applysave{
             self.sucessBlock()
-            self.navigationController?.popViewController(animated: true)
+            self.navigationLeftBtnClick()
+        } else if type == .invoice_del {
+            self.sucessBlock()
+            self.navigationLeftBtnClick()
         }
     }
 
@@ -267,31 +229,24 @@ class InvoiceapplyDetailViewController: BaseViewController,UITableViewDelegate,U
     }
 
 
-    override func navigationLeftBtnClick() {
-        self.navigationController?.popViewController(animated: true)
-    }
-    override func navigationRightBtnClick() {
-        HCLog(message: "保存")
+    @objc func saveClick()  {
         self.view.endEditing(true)
-        if self.stateStr == "2" {
-            if !(self.nStr.count > 0){
+        if stateStr == "2" {
+            if !(nStr.count > 0) {
                 SVPMessageShow.showErro(infoStr: "请输入驳回原因")
                 return
             }
         }
-        alertController = UIAlertController(title: nil, message: "确定保存", preferredStyle: .alert)
-        let actcion1 = UIAlertAction(title: "确定", style: .default) { (aciton) in
-            self.requestVC.applysaveRequest(id: "\(self.dealID!)", s: self.stateStr, n: self.nStr)
-        }
-        let actcion2 = UIAlertAction(title: "取消", style: .cancel) { (aciton) in
-            self.alertController.dismiss(animated: true, completion: {
+        requestVC.invoice_applysave(id: dealID!, s: stateStr, n: nStr)
+    }
 
-            })
-        }
-        alertController.addAction(actcion1)
-        alertController.addAction(actcion2)
-        self.present(alertController, animated: true, completion: nil)
+    @objc func deleClick() {
+        requestVC.invoice_del(id: dealID!)
+    }
 
+
+    override func navigationLeftBtnClick() {
+        self.navigationController?.popViewController(animated: true)
     }
 
 

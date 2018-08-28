@@ -175,7 +175,7 @@ class CaseTableViewCell: UITableViewCell {
             self.titleNameLabel.text = titlesStr
         }
         if let money = model.money {
-            self.subLabel.text = "\(money)"
+            self.subLabel.text = "\(money)元"
         }
         if let time = model.addtime {
             self.timeLabel.text = String.hc_getDate_string(dateStr: time)
@@ -184,10 +184,33 @@ class CaseTableViewCell: UITableViewCell {
         if let user = model.user {
             self.typeLabel.text = user
         }
-        if let state = model.state {
-            self.nameLabel.backgroundColor = darkblueColor
-            self.nameLabel.textColor = .white
+        if let stateStr = model.stateStr {
+            self.nameLabel.text = stateStr
+
         }
+
+        if let state = model.state {
+            if state == 0 {
+                self.nameLabel.backgroundColor = darkblueColor
+                self.nameLabel.textColor = .white
+
+            }else if state == 1 {
+                self.nameLabel.backgroundColor = UIColor.hc_colorFromRGB(rgbValue: 0xcccccc)
+                self.nameLabel.textColor = .white
+
+
+            } else if state == 2 {
+                self.nameLabel.backgroundColor = orangeColor
+                self.nameLabel.textColor = .white
+
+            } else if state == 3 {
+                self.nameLabel.hc_makeBorderWithBorderWidth(width: 1, color: UIColor.hc_colorFromRGB(rgbValue: 0x999999))
+                self.nameLabel.backgroundColor = .white
+                self.nameLabel.textColor = UIColor.hc_colorFromRGB(rgbValue: 0x999999)
+
+            }
+        }
+
     }
 
     func setData_expense(model : expense_getlistModel) {
@@ -205,32 +228,6 @@ class CaseTableViewCell: UITableViewCell {
         if let user = model.user {
             self.typeLabel.text = user
         }
-//        if let stateStr = model.stateStr {
-//            self.nameLabel.text = stateStr
-//
-//        }
-//
-//        if let state = model.state {
-//            if state == 0 {
-//                self.nameLabel.backgroundColor = darkblueColor
-//                self.nameLabel.textColor = .white
-//
-//            }else if state == 1 {
-//                self.nameLabel.backgroundColor = UIColor.hc_colorFromRGB(rgbValue: 0xcccccc)
-//                self.nameLabel.textColor = .white
-//
-//
-//            } else if state == 2 {
-//                self.nameLabel.backgroundColor = orangeColor
-//                self.nameLabel.textColor = .white
-//
-//            } else if state == 3 {
-//                self.nameLabel.hc_makeBorderWithBorderWidth(width: 1, color: UIColor.hc_colorFromRGB(rgbValue: 0x999999))
-//                self.nameLabel.backgroundColor = .white
-//                self.nameLabel.textColor = UIColor.hc_colorFromRGB(rgbValue: 0x999999)
-//
-//            }
-//        }
 //
 
 
