@@ -141,6 +141,7 @@ let deal_save_api = "deal/save?"
 let finance_income_getlist_api = "finance/income_getlist?"
 /// 获取详情
 let finance_income_getinfo_api = "finance/income_getinfo?"
+
 ///新增收款-获取合同列表
 let finance_income_getdeals_api = "finance/income_getdeals?"
 /// 新增收款-获取合同详情

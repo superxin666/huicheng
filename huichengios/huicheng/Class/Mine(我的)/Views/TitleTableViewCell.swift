@@ -197,6 +197,15 @@ class TitleTableViewCell: UITableViewCell {
         self.titleNameLabel.text = titleStr
     }
 
+
+    func setData_AddIncomeStep3(titleStr : String,contentStr : String,tagNum : IndexPath)  {
+        textField.tag = tagNum.section * 10 + tagNum.row
+        self.titleNameLabel.textColor = darkblueColor
+        self.titleNameLabel.text = titleStr
+        self.textField.text = contentStr
+
+    }
+
     /// 发票申请
     ///
     /// - Parameters:
