@@ -15,7 +15,7 @@ protocol OptionViewDelgate {
 enum OptionViewType {
 
     //搜索中状态  报销  接受对象      发票列表    我的收款  案件添加   案件律师   案件部门 发票状态
-    case searchState,Object,invoice_getlist,finance, caseType,caseUser,caseDep,invoiceState,crtInfo,expense_gettype,share_type
+    case searchState,Object,invoice_getlist,finance, caseType,caseUser,caseDep,invoiceState,crtInfo,expense_gettype,share_type,branch
 }
 class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSource {
     var delegate : OptionViewDelgate!
@@ -58,6 +58,11 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
     var nameArr_invoiceState = ["未开","已开",]
     var idArr_invoiceState = ["0","1",]
 
+
+    var branchArr : [branchModel] = []
+
+
+
     //律师
     var data_userlistArr : [userlistModel] = []
     var data_userlistArr1 : [userlistModel] = []
@@ -85,7 +90,15 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
 
     }
 
+    func setData_branch(arr : [branchModel])  {
+        self.pickView.tag = 2
+        self.type = .branch
+        branchArr = arr
+        self.pickView.reloadAllComponents()
+    }
+
     func setData()  {
+        self.pickView.tag = 1
         self.type = .searchState
         self.pickView.reloadAllComponents()
     }
@@ -205,7 +218,9 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
             return self.data_expenseArr.count
         } else if type == .share_type {
             return self.shareNameArr.count
-        }    else {
+        } else if type == .branch{
+            return self.branchArr.count
+        } else {
             return 0
         }
         
@@ -277,6 +292,11 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
 
             titleStr = shareNameArr[row]
             cuurectID = shareIdArr[row]
+            currectStr = titleStr
+        } else if type == .branch{
+            let model : branchModel = self.branchArr[row]
+            titleStr = model.name
+            cuurectID = "\(model.id!)"
             currectStr = titleStr
         }
 

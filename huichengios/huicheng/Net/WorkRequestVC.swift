@@ -770,10 +770,13 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
         request.request_api(url: url)
     }
     // MARK: 报销审批
-    func expense_applylistReuest(p:Int,c:Int,u:String) {
+    func expense_applylistReuest(p:Int,c:Int,u:String,b:String,s:String) {
         request.delegate = self
         type = .expense_applylist
-        let url = expense_applylist_api   + "p=\(p)&c=\(c)&u=\(u)&k=\(UserInfoLoaclManger.getKey())"
+
+        let uStr = u.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+
+        let url = expense_applylist_api   + "p=\(p)&c=\(c)&b=\(b)&s=\(s)&u=\(uStr)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
     }
 
