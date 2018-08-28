@@ -81,12 +81,13 @@ class PayCheckViewController: BaseViewController ,UITableViewDataSource,UITableV
         if indexPath.row  < self.dataArr.count {
 
             let model : payGetlistModel = self.dataArr[indexPath.row]
-            let vc : PayApplyDetailViewController = PayApplyDetailViewController()
+            let vc : PayCheckDetialViewController = PayCheckDetialViewController()
             vc.id = "\(model.id!)"
+            vc.sucessBlock = {
+                self.reflishData()
+            }
             self.navigationController?.pushViewController(vc, animated: true)
-
         }
-
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return DocTableViewCellH

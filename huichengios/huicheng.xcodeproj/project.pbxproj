@@ -219,6 +219,7 @@
 		216B7C67206394DE00BBACDA /* MemoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216B7C65206394DE00BBACDA /* MemoTableViewCell.swift */; };
 		216B7C68206394DE00BBACDA /* MemoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 216B7C66206394DE00BBACDA /* MemoTableViewCell.xib */; };
 		2175CB812134F266007C832B /* PayCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2175CB802134F266007C832B /* PayCheckViewController.swift */; };
+		2175CB832134FAEA007C832B /* PayCheckDetialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2175CB822134FAEA007C832B /* PayCheckDetialViewController.swift */; };
 		219767E820EF841800F5807F /* IncomeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219767E720EF841800F5807F /* IncomeListViewController.swift */; };
 		219767EA20EF86BA00F5807F /* Income_getlistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219767E920EF86BA00F5807F /* Income_getlistModel.swift */; };
 		219D7BB3205E049A009F543B /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7BB2205E049A009F543B /* InfoViewController.swift */; };
@@ -493,6 +494,7 @@
 		216B7C65206394DE00BBACDA /* MemoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoTableViewCell.swift; sourceTree = "<group>"; };
 		216B7C66206394DE00BBACDA /* MemoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemoTableViewCell.xib; sourceTree = "<group>"; };
 		2175CB802134F266007C832B /* PayCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayCheckViewController.swift; sourceTree = "<group>"; };
+		2175CB822134FAEA007C832B /* PayCheckDetialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayCheckDetialViewController.swift; sourceTree = "<group>"; };
 		219767E720EF841800F5807F /* IncomeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeListViewController.swift; sourceTree = "<group>"; };
 		219767E920EF86BA00F5807F /* Income_getlistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Income_getlistModel.swift; sourceTree = "<group>"; };
 		219D7BB2205E049A009F543B /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
@@ -1103,6 +1105,7 @@
 				21B9E1CB2132C3FC0053F995 /* PayApplylistViewController.swift */,
 				21B9E1CF2132CFEC0053F995 /* PayApplyDetailViewController.swift */,
 				2175CB802134F266007C832B /* PayCheckViewController.swift */,
+				2175CB822134FAEA007C832B /* PayCheckDetialViewController.swift */,
 			);
 			path = "财务";
 			sourceTree = "<group>";
@@ -1392,6 +1395,7 @@
 				21376684203FBAB2000CBCE6 /* UILabel+Init.swift in Sources */,
 				216A6C54204CDE7900528FD8 /* WorkViewController.swift in Sources */,
 				21F8469220B7BFCB00F4A678 /* ReadFileViewController.swift in Sources */,
+				2175CB832134FAEA007C832B /* PayCheckDetialViewController.swift in Sources */,
 				21387D2B205F55500050DF1F /* MessageRequestVC.swift in Sources */,
 				21B9E1CE2132C7E10053F995 /* payGetlistModel.swift in Sources */,
 				21089E9F206E810600573B6A /* SearchViewController.swift in Sources */,

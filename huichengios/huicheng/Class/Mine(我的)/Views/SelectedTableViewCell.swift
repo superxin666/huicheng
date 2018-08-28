@@ -74,8 +74,8 @@ class SelectedTableViewCell: UITableViewCell {
 
     func setData_dealcheckdetail(state : String) {
         if state == "1" {
-                specialBtn.isSelected = false
-                normalBtn.isSelected = true
+            specialBtn.isSelected = false
+            normalBtn.isSelected = true
             lastBtn = normalBtn
         } else {
             normalBtn.isSelected = false

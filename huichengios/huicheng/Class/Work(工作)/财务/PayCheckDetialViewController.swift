@@ -1,16 +1,17 @@
 //
-//  PayApplyDetailViewController.swift
+//  PayCheckDetialViewController.swift
 //  huicheng
 //
-//  Created by lvxin on 2018/8/26.
+//  Created by lvxin on 2018/8/28.
 //  Copyright © 2018年 lvxin. All rights reserved.
-//  线下支付详情
+//  支付审核详情
 
 import UIKit
-typealias PayApplyDetailViewControllerBlock = ()->()
-class PayApplyDetailViewController: BaseViewController,Work2RequestVCDelegate,UITableViewDelegate,UITableViewDataSource {
+typealias PayCheckDetialViewControllerBlock = ()->()
 
-    var sucessBlock : PayApplyDetailViewControllerBlock!
+class PayCheckDetialViewController:  BaseViewController,Work2RequestVCDelegate,UITableViewDelegate,UITableViewDataSource,SelectedTableViewCellDelegate,ContentTableViewCellDelegate {
+
+    var sucessBlock : PayCheckDetialViewControllerBlock!
 
 
     let mainTabelView : UITableView = UITableView()
@@ -27,11 +28,14 @@ class PayApplyDetailViewController: BaseViewController,Work2RequestVCDelegate,UI
 
     let name2 = ["报销类型","发票金额","附件张数","申请时间","审核人","审核时间"]
     var content2 : [String] = []
-    
+
     let name3 = ["合同编号","案件编号","案件名称","立案时间","立案律师","合同金额","以付金额"]
     var content3 : [String] = []
 
-    var financeId : Int!
+    /// 1-审核通过;2-审核驳回
+    var stateStr = "1"
+
+    var nStr : String = ""
 
 
 
@@ -48,9 +52,9 @@ class PayApplyDetailViewController: BaseViewController,Work2RequestVCDelegate,UI
 
         // Do any additional setup after loading the view.
         self.view.backgroundColor = viewBackColor
-        self.navigation_title_fontsize(name: "线下支付", fontsize: 18)
+        self.navigation_title_fontsize(name: "支付审核", fontsize: 18)
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
-        self.navigationBar_rightBtn_title(name: "操作")
+        self.navigationBar_rightBtn_title(name: "保存")
         self.creatUI()
         request.delegate = self
         request.financePayapplyinfo(id: id)
@@ -67,27 +71,44 @@ class PayApplyDetailViewController: BaseViewController,Work2RequestVCDelegate,UI
         mainTabelView.showsHorizontalScrollIndicator = false
         mainTabelView.backgroundView?.backgroundColor = .clear
         mainTabelView.register(UINib.init(nibName: "Title4TableViewCell", bundle: nil), forCellReuseIdentifier: Title4TableViewCellID)
+        mainTabelView.register(UINib.init(nibName: "SelectedTableViewCell", bundle: nil), forCellReuseIdentifier: SelectedTableViewCellID)
+        mainTabelView.register(UINib.init(nibName: "ContentTableViewCell", bundle: nil), forCellReuseIdentifier: ContentTableViewCellID)
         self.view.addSubview(mainTabelView)
     }
 
     // MARK: - delegate
     func numberOfSections(in tableView: UITableView) -> Int {
         if let model = dataModel {
-            return titleArr.count
+            return 3
         } else {
             return 0
         }
     }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let model = dataModel {
             if model.data.type == 0 {
+
                 if section == 0 {
+                    if stateStr == "1" {
+                        return 1
+                    } else {
+                        return 2
+                    }
+
+                } else if section == 1 {
                     return name1.count
                 } else {
                     return name3.count
                 }
             } else {
                 if section == 0 {
+                    if stateStr == "1" {
+                        return 1
+                    } else {
+                        return 2
+                    }
+                } else if section == 1 {
                     return name1.count
                 } else {
                     return name2.count
@@ -101,7 +122,21 @@ class PayApplyDetailViewController: BaseViewController,Work2RequestVCDelegate,UI
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         if let model = dataModel {
+
             if indexPath.section == 0 {
+                if indexPath.row == 0 {
+                    let cell : SelectedTableViewCell  = tableView.dequeueReusableCell(withIdentifier: SelectedTableViewCellID, for: indexPath) as! SelectedTableViewCell
+                    cell.delegate = self
+                    cell.setData_dealcheckdetail(state: stateStr)
+                    return cell
+                } else {
+
+                    let cell : ContentTableViewCell  = tableView.dequeueReusableCell(withIdentifier: ContentTableViewCellID, for: indexPath) as! ContentTableViewCell
+                    cell.delegate = self
+                    cell.setData_casecheckDetail(title: "驳回原因", contentCase: nStr, tag: 10)
+                    return cell
+                }
+            } else if indexPath.section == 1 {
                 let cell : Title4TableViewCell!  = tableView.dequeueReusableCell(withIdentifier: Title4TableViewCellID, for: indexPath) as! Title4TableViewCell
                 cell.setData_PayApplyDetail(titleStr: name1[indexPath.row], contentStr: content1[indexPath.row])
                 return cell
@@ -130,16 +165,54 @@ class PayApplyDetailViewController: BaseViewController,Work2RequestVCDelegate,UI
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return FinanceDetialViewControllerCellH
+        if indexPath.section == 0 {
+            if indexPath.row == 0 {
+                return FinanceDetialViewControllerCellH
+            } else if indexPath.row == 1 {
+                return ContentTableViewCellH
+            } else {
+                return FinanceDetialViewControllerCellH
+            }
+        } else {
+            return FinanceDetialViewControllerCellH
+        }
     }
+
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
+        if section == 0 {
+            return 0
+        } else {
+            return 40
+        }
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = FinanceDetialHeadView.loadNib()
-        view.setData(name: titleArr[section])
-        view.backgroundColor = UIColor.hc_colorFromRGB(rgbValue: 0xcccccc)
-        return view
+        if section == 0 {
+            let view = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+            return view
+
+        } else {
+            let view = FinanceDetialHeadView.loadNib()
+            view.setData(name: titleArr[section - 1])
+            view.backgroundColor = UIColor.hc_colorFromRGB(rgbValue: 0xcccccc)
+            return view
+
+        }
+
+    }
+
+    func selectedClickDelegate_type(tag: Int, type: String) {
+        if type == "0" {
+            stateStr = "1"
+        } else {
+            stateStr = "2"
+        }
+        self.mainTabelView.reloadSections([0], with: .automatic)
+
+    }
+
+    func endText_content(content: String, tagNum: Int) {
+        nStr = content
     }
 
     func requestSucceed_work2(data: Any, type: Work2RequestVC_enum) {
@@ -188,14 +261,9 @@ class PayApplyDetailViewController: BaseViewController,Work2RequestVCDelegate,UI
             }
             self.mainTabelView.reloadData()
 
-        } else if type == .pay_del {
+        } else if type == .pay_applysave {
             self.sucessBlock()
             self.navigationLeftBtnClick()
-
-        } else if type == .pay_save {
-            self.sucessBlock()
-            self.navigationLeftBtnClick()
-            
         }
 
     }
@@ -209,64 +277,21 @@ class PayApplyDetailViewController: BaseViewController,Work2RequestVCDelegate,UI
     }
 
     override func navigationRightBtnClick() {
-        HCLog(message: "操作")
-        if dataModel.data.state == 3 {
-            //已支付 删除操作
-            HCLog(message: "以支付")
-            alertController = UIAlertController(title: nil, message: "删除", preferredStyle: .actionSheet)
-            let sureAction = UIAlertAction(title: "确定", style: .default) { (action) in
-                self.delReuqest()
+        HCLog(message: "保存")
+        self.view.endEditing(true)
+        if stateStr == "2" {
+            if !(nStr.count > 0) {
+                SVPMessageShow.showErro(infoStr: "请输入驳回原因")
+                return
             }
-
-            let cancleAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
-
-            }
-            alertController.addAction(cancleAction)
-            alertController.addAction(sureAction)
-            self.present((alertController)!, animated: true, completion: nil)
-
-
-        } else {
-            //删除 支付
-            HCLog(message: "其他")
-            alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-
-            let sureAction = UIAlertAction(title: "支付", style: .default) { (action) in
-                self.payRequest()
-            }
-
-            let sureAction2 = UIAlertAction(title: "删除", style: .default) { (action) in
-                self.delReuqest()
-            }
-
-            let cancleAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
-
-            }
-            alertController.addAction(cancleAction)
-            alertController.addAction(sureAction)
-            alertController.addAction(sureAction2)
-            self.present((alertController)!, animated: true, completion: nil)
-
         }
+        request.pay_applysaveRequest(id: id, s: stateStr, n: nStr)
 
     }
 
 
-    func delReuqest() {
-        request.pay_delRequest(id: id)
-    }
 
-    func payRequest() {
-        request.pay_saveRequest(id: id)
 
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    
 
     /*
     // MARK: - Navigation
