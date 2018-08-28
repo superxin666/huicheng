@@ -83,6 +83,9 @@ class PayApplylistViewController:  BaseViewController ,UITableViewDataSource,UIT
             let model : payGetlistModel = self.dataArr[indexPath.row]
             let vc : PayApplyDetailViewController = PayApplyDetailViewController()
             vc.id = "\(model.id!)"
+            vc.sucessBlock = {
+                self.reflishData()
+            }
             self.navigationController?.pushViewController(vc, animated: true)
 
         }
