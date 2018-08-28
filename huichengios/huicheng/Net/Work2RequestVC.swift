@@ -12,7 +12,7 @@ import ObjectMapper
 enum Work2RequestVC_enum {
     //
     case income_getlist,income_getdeals,income_getdealsinfo,income_save,income_getinfo,//收款登记获取列表
-    doc_applylist,doc_search,doc_getlist,doc_applysave,doc_getinfo,doc_del,crt_dealslist,crt_choose,crt_getinfo,crt_save,pay_getlist,pay_applyinfo
+    doc_applylist,doc_search,doc_getlist,doc_applysave,doc_getinfo,doc_del,crt_dealslist,crt_choose,crt_getinfo,crt_save,pay_getlist,pay_applyinfo,pay_del,pay_applysave,pay_save
 }
 protocol Work2RequestVCDelegate : NSObjectProtocol{
     //
@@ -314,6 +314,7 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
     ///
     /// - Parameter id: <#id description#>
     func financePayapplyinfo(id : String) {
+        SVPMessageShow.showLoad()
         type = .pay_applyinfo
         request.delegate = self
         let url =   finance_pay_applyinfo_api + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
@@ -358,10 +359,53 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
 
         let url =   finance_pay_getlist_api + "p=\(p)&c=\(c)&no=\(noStr)&n=\(nStr)&s=\(s)&st=\(bStr)&et=\(eStr)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
+    }
 
 
+    /// 线下支付保存
+    ///
+    /// - Parameter id: <#id description#>
+    func pay_saveRequest(id : String)  {
+        SVPMessageShow.showLoad()
+        type = .pay_save
+        request.delegate = self
+        let url =   finance_pay_save_api + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+    }
+
+    /// 审核保存
+    ///
+    /// - Parameters:
+    ///   - id: <#id description#>
+    ///   - s: <#s description#>
+    ///   - n: <#n description#>
+    func pay_applysaveRequest(id:String,s: String,n:String)  {
+        SVPMessageShow.showLoad()
+        type = .pay_applysave
+        request.delegate = self
+
+        var nStr = ""
+        if n.count > 0 {
+            nStr = n.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+        let url =   finance_pay_applysave_api + "id=\(id)&s=\(s)&n=\(nStr)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
 
     }
+
+    /// 删除
+    ///
+    /// - Parameter id: <#id description#>
+    func pay_delRequest(id : String) {
+        SVPMessageShow.showLoad()
+        type = .pay_del
+        request.delegate = self
+        let url =   finance_pay_del_api + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+
+    }
+
+
 
 
     func requestSucceed(response: Any) {
@@ -393,7 +437,7 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work2(data: model,type : type)
             }
-        } else if type == .doc_del || type == .crt_save || type == .doc_applysave {
+        } else if type == .doc_del || type == .crt_save || type == .doc_applysave || type == .pay_del || type == .pay_applysave || type == .pay_save {
             let model = Mapper<CodeData>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work2(data: model,type : type)

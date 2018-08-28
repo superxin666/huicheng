@@ -21,6 +21,7 @@ class FinanceDetialHeadView: UIView,NibLoadable {
     */
     
     func setData(name : String) {
+        
         self.titleNameLabel.text = name
     }
 

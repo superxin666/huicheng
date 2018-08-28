@@ -23,14 +23,17 @@ class pay_applyinfoModel_data: Mappable {
     var type: Int!
     var typeStr: String!
     var money: Int!
+    var prpportion: String!
 
 
     var addtime: String!
     var state: Int!
     var stateStr: String!
-    var bank: String!
+    var bank: String = ""
+    var casename: String!
+    var casenum: String!
 
-    var cardno: String!
+    var cardno: String = ""
     var applyname: String!
     var applytime: String!
     var funadmin: String!
@@ -51,6 +54,10 @@ class pay_applyinfoModel_data: Mappable {
         type <- map["type"]
         typeStr <- map["typeStr"]
         money <- map["money"]
+        prpportion <- map["prpportion"]
+        casename <- map["casename"]
+        casenum <- map["casenum"]
+
 
         addtime <- map["addtime"]
         state <- map["state"]

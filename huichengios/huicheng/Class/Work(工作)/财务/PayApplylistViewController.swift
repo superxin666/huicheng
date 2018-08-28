@@ -78,12 +78,14 @@ class PayApplylistViewController:  BaseViewController ,UITableViewDataSource,UIT
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if indexPath.row  < self.dataArr.count {
-//
-//            let model : docgetlistModel = self.dataArr[indexPath.row]
-//            requestVC.docgetinfoRequset(id: "\(model.id!)")
-//
-//        }
+        if indexPath.row  < self.dataArr.count {
+
+            let model : payGetlistModel = self.dataArr[indexPath.row]
+            let vc : PayApplyDetailViewController = PayApplyDetailViewController()
+            vc.id = "\(model.id!)"
+            self.navigationController?.pushViewController(vc, animated: true)
+
+        }
 
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

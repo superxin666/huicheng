@@ -200,9 +200,16 @@ let expense_gettype_api = "uc/expense_gettype?"
 let finance_getlist_api = "uc/finance_getlist?"
 //查看详情
 let finance_getinfo_api = "uc/finance_getinfo?"
+//审核支付
+let finance_pay_applylist_api = "finance/pay_applylist?"
+let finance_pay_applysave_api = "finance/pay_applysave?"
 
+//线下支付
 let finance_pay_getlist_api = "finance/pay_getlist?"
 let finance_pay_applyinfo_api = "finance/pay_applyinfo?"
+let finance_pay_del_api = "finance/pay_del?"
+let finance_pay_save_api = "finance/pay_save?"
+
 
 //------------------------工作日志  获取列表
 let work_getlist_api = "uc/work_getlist?"

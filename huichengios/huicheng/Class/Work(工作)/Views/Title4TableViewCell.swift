@@ -36,5 +36,16 @@ class Title4TableViewCell: UITableViewCell {
         self.titleNameLabel.text = titleStr
         self.subLabel.text = contentStr
     }
+
+
+    /// 线下支付详情
+    ///
+    /// - Parameters:
+    ///   - titleStr: <#titleStr description#>
+    ///   - contentStr: <#contentStr description#>
+    func setData_PayApplyDetail(titleStr : String,contentStr : String) {
+        self.titleNameLabel.text = titleStr
+        self.subLabel.text = contentStr
+    }
     
 }
