@@ -495,8 +495,6 @@ class AddIncomeStep3ViewController:BaseViewController ,UITableViewDataSource,UIT
             contenArr.append("")
         }
 
-
-
         moneyStr = "\(data2Model.data.money!)"
         amountStr = "\(data2Model.data.amount!)"
 

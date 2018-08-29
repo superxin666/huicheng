@@ -96,6 +96,7 @@ class IncomeDetailViewController: BaseViewController,UITableViewDataSource,UITab
         let vc : AddIncomeStep3ViewController = AddIncomeStep3ViewController()
         vc.type = .edite
         vc.data2Model = dataModel
+        vc.IDstr = self.id
         self.navigationController?.pushViewController(vc, animated: true)
     }
 
