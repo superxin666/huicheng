@@ -177,7 +177,17 @@ class IncomeDetailViewController: BaseViewController,UITableViewDataSource,UITab
             }
         } else {
             if indexPath.row == 6 {
+                let vc = CheckInfoViewController()
+                vc.type = .four
+                vc.hidesBottomBarWhenPushed = true
+                var arr : [String] = []
+                arr.append(dataModel.data.stateStr)
+                arr.append(dataModel.data.admin)
+                arr.append(dataModel.data.applytime)
+                arr.append(dataModel.data.note)
 
+                vc.dataArr = arr
+                self.navigationController?.pushViewController(vc, animated: true)
 
             }
         }

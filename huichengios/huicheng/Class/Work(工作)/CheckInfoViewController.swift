@@ -8,12 +8,20 @@
 
 import UIKit
 
+enum CheckInfoViewControllerType {
+    case third,four
+}
+
 class CheckInfoViewController: BaseViewController ,UITableViewDelegate,UITableViewDataSource {
     var sucessBlock : DealDetailViewControllerBlcok!
 
     let mainTabelView : UITableView = UITableView()
-    var sectionNameArr = ["状态","审核人","审核时间",]
+    var sectionNameArr = ["状态","审核人","审核时间","驳回原因"]
     var dataArr:[String] = []
+
+    var type : CheckInfoViewControllerType = .third
+
+    var rowNum = 3
 
 
     // MARK: - life
@@ -32,6 +40,11 @@ class CheckInfoViewController: BaseViewController ,UITableViewDelegate,UITableVi
         self.navigation_title_fontsize(name: "审核情况", fontsize: 18)
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
         self.creatUI()
+        if type == .third {
+            rowNum = 3
+        } else if type == .four {
+            rowNum = 4
+        }
 
     }
     // MARK: - UI
@@ -53,7 +66,7 @@ class CheckInfoViewController: BaseViewController ,UITableViewDelegate,UITableVi
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return rowNum
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
