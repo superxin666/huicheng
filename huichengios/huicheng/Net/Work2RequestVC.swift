@@ -12,7 +12,7 @@ import ObjectMapper
 enum Work2RequestVC_enum {
     //
     case income_getlist,income_getdeals,income_getdealsinfo,income_save,income_getinfo,//收款登记获取列表
-    doc_applylist,doc_search,doc_getlist,doc_applysave,doc_getinfo,doc_del,crt_dealslist,crt_choose,crt_getinfo,crt_save,pay_getlist,pay_applyinfo,pay_del,pay_applysave,pay_save,pay_applylist
+    doc_applylist,doc_search,doc_getlist,doc_applysave,doc_getinfo,doc_del,crt_dealslist,crt_choose,crt_getinfo,crt_save,pay_getlist,pay_applyinfo,pay_del,pay_applysave,pay_save,pay_applylist,income_additem
 }
 protocol Work2RequestVCDelegate : NSObjectProtocol{
     //
@@ -28,10 +28,10 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
 
     // MARK: -  财务
 //--------财务
-    ///  获取列表
+    ///   收款登记 获取列表
     ///
     /// - Parameters:
-    ///   - p: <#p description#>
+    ///     - p: <#p description#>
     ///   - c: <#c description#>
     ///   - bid: <#bid description#>
     ///   - n: <#n description#>
@@ -65,6 +65,12 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
     }
 
 
+    /// 新增收款-获取合同列表
+    ///
+    /// - Parameters:
+    ///   - u: <#u description#>
+    ///   - n: <#n description#>
+    ///   - kw: <#kw description#>
     func income_getdealsRequest(u:String,n:String,kw:String) {
         request.delegate = self
         type = .income_getdeals
@@ -85,6 +91,9 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
     }
 
 
+    /// 新增收款-获取合同详情
+    ///
+    /// - Parameter id: <#id description#>
     func income_getdealsinfoRequest(id : Int)  {
         type = .income_getdealsinfo
         request.delegate = self
@@ -94,19 +103,42 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
 
     
 
+    /// 新增收款-保存收款信息为草稿
+    ///
+    /// - Parameters:
+    ///   - id: <#id description#>
+    ///   - dealid: <#dealid description#>
+    ///   - amount: <#amount description#>
+    ///   - addtime: <#addtime description#>
+    ///   - user: <#user description#>
+    ///   - ispaper: <#ispaper description#>
+    ///   - papernum: <#papernum description#>
+    ///   - money: <#money description#>
+    ///   - invoicetype: <#invoicetype description#>
+    ///   - creditcode: <#creditcode description#>
+    ///   - issubmit: <#issubmit description#>
     func income_save(id : String,dealid : String,amount : String,addtime : String,user : String,ispaper : String,papernum : String,money : String,invoicetype : String,creditcode : String,issubmit : String) {
 
         type = .income_save
         request.delegate = self
         let userStr = user.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let addtimeStr = addtime.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
 
-        let url =   finance_income_save_api + "id=\(id)&dealid=\(dealid)&amount=\(amount)&addtime=\(addtime)&user=\(userStr)&ispaper=\(ispaper)&papernum=\(papernum)&money=\(money)&invoicetype=\(invoicetype)&creditcode=\(creditcode)&issubmit=\(issubmit)&k=\(UserInfoLoaclManger.getKey())"
+        let papernumStr = papernum.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let creditcodeStr = creditcode.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+
+
+
+        let url =   finance_income_save_api + "id=\(id)&dealid=\(dealid)&amount=\(amount)&addtime=\(addtimeStr)&user=\(userStr)&ispaper=\(ispaper)&papernum=\(papernumStr)&money=\(money)&invoicetype=\(invoicetype)&creditcode=\(creditcodeStr)&issubmit=\(issubmit)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
 
 
     }
 
 
+    /// 获取详情
+    ///
+    /// - Parameter id: <#id description#>
     func income_getinfoRequest(id :Int) {
         type = .income_getinfo
         request.delegate = self
@@ -114,6 +146,22 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
         request.request_api(url: url,type: .alltyper)
 
     }
+
+
+    /// 增加收款明细信息
+    ///
+    /// - Parameters:
+    ///   - d: <#d description#>
+    ///   - t: <#t description#>
+    ///   - m: <#m description#>
+    ///   - o: <#o description#>
+    func income_additemRequest(d : String, t : String,m : String,o:String)  {
+        type = .income_additem
+        request.delegate = self
+        let url =   finance_income_additem_api + "d=\(d)&t=\(t)&m=\(m)&o=\(o)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+    }
+
     // MARK: -  签章
 
 
@@ -478,7 +526,7 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work2(data: model,type : type)
             }
-        } else if type == .doc_del || type == .crt_save || type == .doc_applysave || type == .pay_del || type == .pay_applysave || type == .pay_save { 
+        } else if type == .doc_del || type == .crt_save || type == .doc_applysave || type == .pay_del || type == .pay_applysave || type == .pay_save || type == .income_additem || type == .income_save{ 
             let model = Mapper<CodeData>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work2(data: model,type : type)

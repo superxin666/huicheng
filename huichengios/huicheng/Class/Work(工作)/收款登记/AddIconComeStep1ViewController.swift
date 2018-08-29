@@ -114,6 +114,12 @@ class AddIconComeStep1ViewController: BaseViewController,UITableViewDataSource,U
     override func navigationRightBtnClick() {
         HCLog(message: "确定")
         SVPMessageShow.showLoad()
+        self.view.endEditing(true)
+        if !(uStr.count > 0) && !(nStr.count > 0) && !(kwStr.count > 0) {
+            SVPMessageShow.showErro(infoStr: "请至少输入一项")
+            return
+        }
+        request.delegate = self
         request.income_getdealsRequest(u: uStr, n: nStr, kw: kwStr)
 
 

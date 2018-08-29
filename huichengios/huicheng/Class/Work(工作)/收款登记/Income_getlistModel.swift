@@ -15,12 +15,14 @@ class Income_getlistModel: Mappable {
     var dealsnum: String!
 
     var addtime: String!
-    var amount: Int!
+    var amount: String!
+    var money: Int!
+
     var type: String!
     var typeStr: String!
     var principal: String!
     var papernum: String!
-    var state: String!
+    var state: Int!
     var stateStr: String!
 
     var regtime :String!
@@ -43,23 +45,23 @@ class Income_getlistModel: Mappable {
         id <- map["id"]
         dealnum <- map["dealnum"]
         dealsnum <- map["dealsnum"]
-
         addtime <- map["addtime"]
+
         amount <- map["amount"]
+        money <- map["money"]
+
         type <- map["type"]
         typeStr <- map["typeStr"]
         principal <- map["principal"]
         papernum <- map["papernum"]
         state <- map["state"]
         stateStr <- map["stateStr"]
-
         regtime <- map["regtime"]
         reguser <- map["reguser"]
         workersName <- map["workersName"]
         party <- map["party"]
         branch <- map["branch"]
         user <- map["user"]
-
         admin <- map["admin"]
         applytime <- map["applytime"]
         note <- map["note"]
