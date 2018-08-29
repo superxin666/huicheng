@@ -78,6 +78,8 @@
 		2119A4F120CA55D30012F4A6 /* Work2RequestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2119A4F020CA55D30012F4A6 /* Work2RequestVC.swift */; };
 		211A65C820A00957009CD41A /* NoticeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A65C620A00957009CD41A /* NoticeTableViewCell.swift */; };
 		211A65C920A00957009CD41A /* NoticeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 211A65C720A00957009CD41A /* NoticeTableViewCell.xib */; };
+		21230C672136579900774040 /* IncomeRecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21230C652136579900774040 /* IncomeRecordTableViewCell.swift */; };
+		21230C682136579900774040 /* IncomeRecordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21230C662136579900774040 /* IncomeRecordTableViewCell.xib */; };
 		2123A380208EFCC000C50FA9 /* ShareHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2123A37F208EFCC000C50FA9 /* ShareHeadView.swift */; };
 		2123A382208EFCD300C50FA9 /* ShareHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2123A381208EFCD300C50FA9 /* ShareHeadView.xib */; };
 		2123A385208F0C7400C50FA9 /* SelectedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2123A383208F0C7400C50FA9 /* SelectedTableViewCell.swift */; };
@@ -239,7 +241,6 @@
 		21A49D6D2101EB9B0092CC04 /* AddIncomeStep2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A49D6C2101EB9B0092CC04 /* AddIncomeStep2ViewController.swift */; };
 		21A49D6F21020DEE0092CC04 /* AddIncomeStep3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A49D6E21020DEE0092CC04 /* AddIncomeStep3ViewController.swift */; };
 		21A49D71210215420092CC04 /* income_getdealsinfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A49D70210215420092CC04 /* income_getdealsinfoModel.swift */; };
-		21A49D73210228E80092CC04 /* IncomeHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A49D72210228E80092CC04 /* IncomeHistoryViewController.swift */; };
 		21B9E1B9213248C40053F995 /* ShareDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B9E1B3213248C30053F995 /* ShareDetailViewController.swift */; };
 		21B9E1BA213248C40053F995 /* AddRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B9E1B4213248C30053F995 /* AddRoomViewController.swift */; };
 		21B9E1BB213248C40053F995 /* AddShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B9E1B5213248C30053F995 /* AddShareViewController.swift */; };
@@ -351,6 +352,8 @@
 		2119A4F020CA55D30012F4A6 /* Work2RequestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Work2RequestVC.swift; sourceTree = "<group>"; };
 		211A65C620A00957009CD41A /* NoticeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeTableViewCell.swift; sourceTree = "<group>"; };
 		211A65C720A00957009CD41A /* NoticeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoticeTableViewCell.xib; sourceTree = "<group>"; };
+		21230C652136579900774040 /* IncomeRecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeRecordTableViewCell.swift; sourceTree = "<group>"; };
+		21230C662136579900774040 /* IncomeRecordTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IncomeRecordTableViewCell.xib; sourceTree = "<group>"; };
 		2123A37F208EFCC000C50FA9 /* ShareHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareHeadView.swift; sourceTree = "<group>"; };
 		2123A381208EFCD300C50FA9 /* ShareHeadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShareHeadView.xib; sourceTree = "<group>"; };
 		2123A383208F0C7400C50FA9 /* SelectedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedTableViewCell.swift; sourceTree = "<group>"; };
@@ -515,7 +518,6 @@
 		21A49D6C2101EB9B0092CC04 /* AddIncomeStep2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIncomeStep2ViewController.swift; sourceTree = "<group>"; };
 		21A49D6E21020DEE0092CC04 /* AddIncomeStep3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIncomeStep3ViewController.swift; sourceTree = "<group>"; };
 		21A49D70210215420092CC04 /* income_getdealsinfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = income_getdealsinfoModel.swift; sourceTree = "<group>"; };
-		21A49D72210228E80092CC04 /* IncomeHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeHistoryViewController.swift; sourceTree = "<group>"; };
 		21B9E1B3213248C30053F995 /* ShareDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareDetailViewController.swift; sourceTree = "<group>"; };
 		21B9E1B4213248C30053F995 /* AddRoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRoomViewController.swift; sourceTree = "<group>"; };
 		21B9E1B5213248C30053F995 /* AddShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddShareViewController.swift; sourceTree = "<group>"; };
@@ -1001,7 +1003,6 @@
 				21E9D29D20FDA9C200CA7B49 /* AddIconComeStep1ViewController.swift */,
 				21A49D6C2101EB9B0092CC04 /* AddIncomeStep2ViewController.swift */,
 				21A49D6E21020DEE0092CC04 /* AddIncomeStep3ViewController.swift */,
-				21A49D72210228E80092CC04 /* IncomeHistoryViewController.swift */,
 				2115D0D22102CB05002BDB3F /* IncomeRecord ViewController.swift */,
 				2115D0D42102CDF0002BDB3F /* AddIncomeDetailViewController.swift */,
 			);
@@ -1073,6 +1074,8 @@
 				21671C8F20AAD99200E8680C /* DocTableViewCell.xib */,
 				2167991C212E99ED006A8AB0 /* CrtGetinfoImageTableViewCell.swift */,
 				2167991D212E99ED006A8AB0 /* CrtGetinfoImageTableViewCell.xib */,
+				21230C652136579900774040 /* IncomeRecordTableViewCell.swift */,
+				21230C662136579900774040 /* IncomeRecordTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1226,6 +1229,7 @@
 				21066CB22066992C009327AD /* ResetKeyView.xib in Resources */,
 				2123A38A208F39F800C50FA9 /* Selected2TableViewCell.xib in Resources */,
 				21E76FF120C7B644009454FD /* Title7TableViewCell.xib in Resources */,
+				21230C682136579900774040 /* IncomeRecordTableViewCell.xib in Resources */,
 				2108BB87206FD809002A4212 /* FileTableViewCell.xib in Resources */,
 				215C65D2203EC6B6001C7A92 /* Assets.xcassets in Resources */,
 				21DDC9D620809E880067197D /* Title2TableViewCell.xib in Resources */,
@@ -1425,6 +1429,7 @@
 				21A49D6D2101EB9B0092CC04 /* AddIncomeStep2ViewController.swift in Sources */,
 				2124D720208D69D20007B5EE /* RoomTableViewCell.swift in Sources */,
 				216A6C57204CDE9D00528FD8 /* BaseViewController.swift in Sources */,
+				21230C672136579900774040 /* IncomeRecordTableViewCell.swift in Sources */,
 				216A6C50204CDE6700528FD8 /* MessageViewController.swift in Sources */,
 				215E37A62133F7E100B07BD0 /* pay_applyinfoModel.swift in Sources */,
 				2123A385208F0C7400C50FA9 /* SelectedTableViewCell.swift in Sources */,
@@ -1448,7 +1453,6 @@
 				2137668F203FBF27000CBCE6 /* HCNavigationController.swift in Sources */,
 				2108BB92206FF2BB002A4212 /* CheckcaseTableViewCell.swift in Sources */,
 				2137668B203FBAFD000CBCE6 /* String+fun.swift in Sources */,
-				21A49D73210228E80092CC04 /* IncomeHistoryViewController.swift in Sources */,
 				214F84C12122E43200255F00 /* CaseViewController.swift in Sources */,
 				21DDC9D82080BDA30067197D /* departmentModel.swift in Sources */,
 				2126DBD820897BC500977802 /* Title3TableViewCell.swift in Sources */,

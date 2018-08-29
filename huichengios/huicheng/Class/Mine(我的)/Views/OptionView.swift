@@ -132,11 +132,27 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
         self.pickView.reloadAllComponents()
     }
 
+    func setDatainvoiceState_add()  {
+        self.pickView.tag = 1
+        self.type = .invoiceState
+        self.pickView.reloadAllComponents()
+    }
+
+
     func setDataExpensive(dataArr : [expense_gettypeModel]) {
         self.type = .expense_gettype
         self.data_expenseArr = dataArr
         self.pickView.reloadAllComponents()
     }
+
+
+    func setDataExpensive_addInvoice(dataArr : [expense_gettypeModel]) {
+        self.pickView.tag = 0
+        self.type = .expense_gettype
+        self.data_expenseArr = dataArr
+        self.pickView.reloadAllComponents()
+    }
+
 
 
     func setDataObject(dataArr : [getobjectlistModel]) {

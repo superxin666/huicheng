@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddIncomeStep3ViewController:BaseViewController ,UITableViewDataSource,UITableViewDelegate,Work2RequestVCDelegate,TitleTableViewCellDelegate,Title5TableViewCellDelegate,OptionViewDelgate,DatePickViewDelegate {
+class AddIncomeStep3ViewController:BaseViewController ,UITableViewDataSource,UITableViewDelegate,Work2RequestVCDelegate,TitleTableViewCellDelegate,Title5TableViewCellDelegate,OptionViewDelgate,DatePickViewDelegate,MineRequestVCDelegate {
     let mainTabelView : UITableView = UITableView()
 
     /// 选项
@@ -16,7 +16,14 @@ class AddIncomeStep3ViewController:BaseViewController ,UITableViewDataSource,UIT
     /// 时间
     var timeView : DatePickView = DatePickView.loadNib()
 
+
+    /// 发票信息
+    var userList : [expense_gettypeModel] = []
+
     let requestVC = Work2RequestVC()
+    let requestVc2 : MineRequestVC = MineRequestVC()
+
+
     var nameArr = ["合同编号","立案时间","立案律师","委托人","案件组别","合同金额","已付金额","收款历史"]
     var contenArr : [String] = []
 
@@ -24,7 +31,7 @@ class AddIncomeStep3ViewController:BaseViewController ,UITableViewDataSource,UIT
     var contenArr1 : [String] = ["","","","",]
 
 
-    var nameArr2 = ["收款金额","实收金额","收款日期","交款人","发票","发票号","社会统一信用",]
+    var nameArr2 = ["收款金额","实收金额","收款日期","交款人","发票","发票号","发票信息","社会统一信用",]
     var contenArr2 : [String] = ["","","","","","","",]
 
     var dataModel : income_getdealsinfoModel!
@@ -43,15 +50,16 @@ class AddIncomeStep3ViewController:BaseViewController ,UITableViewDataSource,UIT
 
     /// 发票状态，INT 型:0-未开;1-已开
     var ispaper = "0"
-
     var isPapeStr = ""
 
 
     /// 发票号，ispaper 为 0 时可不传
     var papernum = ""
 
-    /// 发票信息
+    /// 发票信息，INT 型，参见发票申请中的发票内容
     var invoicetype = ""
+    var invoicetypeStr = ""
+
 
     /// 社会统一信息用代码，ispaper 为 0 时可不传
     var creditcode = ""
@@ -216,6 +224,11 @@ class AddIncomeStep3ViewController:BaseViewController ,UITableViewDataSource,UIT
                 cell.delegate = self
                 return cell
 
+            } else if indexPath.row == 6 {
+                let cell : OptionTableViewCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
+                cell.setDataObject(titleStr: "发票信息", contentStr: invoicetypeStr)
+                return cell
+
             } else {
                 //社会统一信用
                 let cell : Title5TableViewCell  = tableView.dequeueReusableCell(withIdentifier: Title5TableViewCellID, for: indexPath) as! Title5TableViewCell
@@ -237,7 +250,7 @@ class AddIncomeStep3ViewController:BaseViewController ,UITableViewDataSource,UIT
         } else if indexPath.section == 1 {
             return TitleTableViewCellH
         } else {
-            if indexPath.row == 6 {
+            if indexPath.row == 7 {
                 return Title5TableViewCellH
             } else {
                 return TitleTableViewCellH
@@ -275,10 +288,9 @@ class AddIncomeStep3ViewController:BaseViewController ,UITableViewDataSource,UIT
         if indexPath.section == 0 {
             if indexPath.row == 7 {
                 if self.dataModel.income.count > 0 {
-//                    let vc = IncomeHistoryViewController()
-//                    vc.hidesBottomBarWhenPushed = true
-//                    vc.dataModelArr = dataModel.items
-//                    self.navigationController?.pushViewController(vc, animated: true)
+                    let vc = IncomeRecord_ViewController()
+                    vc.hidesBottomBarWhenPushed = true
+                    self.navigationController?.pushViewController(vc, animated: true)
                 }
             }
         } else if indexPath.section == 2 {
@@ -289,15 +301,39 @@ class AddIncomeStep3ViewController:BaseViewController ,UITableViewDataSource,UIT
             } else if indexPath.row == 4 {
                 HCLog(message: "选择发票")
                 self.showOptionView()
+            } else if indexPath.row == 6 {
+                HCLog(message: "发票信息")
+                //发票信息
+                if userList.count > 0 {
+                    self.showOptionPickView_expen()
+                } else {
+                    requestVc2.delegate = self
+                    requestVc2.invoice_gettypeRequest()
+                }
             }
         }
     }
 
 
+    func showOptionPickView_expen() {
+        self.maskView.addSubview(self.optionView)
+        self.view.window?.addSubview(self.maskView)
+
+        self.optionView.delegate = self
+        self.optionView.setDataExpensive_addInvoice(dataArr: userList)
+        self.optionView.snp.makeConstraints { (make) in
+            make.left.right.equalTo(0)
+            make.bottom.equalTo(0)
+            make.height.equalTo(160)
+        }
+    }
+
+
+
     func showOptionView() {
         self.maskView.addSubview(self.optionView)
         self.view.window?.addSubview(self.maskView)
-        self.optionView.setDatainvoiceState()
+        self.optionView.setDatainvoiceState_add()
 
         self.optionView.delegate = self
         self.optionView.snp.makeConstraints { (make) in
@@ -307,17 +343,37 @@ class AddIncomeStep3ViewController:BaseViewController ,UITableViewDataSource,UIT
         }
     }
 
-    func optionSure(idStr: String, titleStr: String, noteStr: String, pickTag: Int) {
-        ispaper = idStr
-        isPapeStr = titleStr
-        if ispaper == "0" {
-            //未开
-            papernum = ""
-            creditcode = ""
-        }
 
-        let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 4, section: 2)) as! OptionTableViewCell
-        cell.setOptionData(contentStr: titleStr)
+
+
+
+
+    func optionSure(idStr: String, titleStr: String, noteStr: String, pickTag: Int) {
+        if pickTag == 1 {
+            //发票 是否开
+            ispaper = idStr
+            isPapeStr = titleStr
+            if ispaper == "0" {
+                //未开
+                papernum = ""
+                creditcode = ""
+
+                invoicetype = ""
+                invoicetypeStr = ""
+            }
+
+            let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 4, section: 2)) as! OptionTableViewCell
+            cell.setOptionData(contentStr: titleStr)
+
+        } else {
+            //发票信息
+             invoicetype = idStr
+             invoicetypeStr = titleStr
+
+            let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 6, section: 2)) as! OptionTableViewCell
+            cell.setOptionData(contentStr: titleStr)
+
+        }
 
         self.timeView.removeFromSuperview()
         self.maskView.removeFromSuperview()
@@ -452,6 +508,17 @@ class AddIncomeStep3ViewController:BaseViewController ,UITableViewDataSource,UIT
 
     }
 
+
+    func requestSucceed_mine(data: Any, type: MineRequestVC_enum) {
+        userList = data as! [expense_gettypeModel]
+        self.showOptionPickView_expen()
+    }
+
+    func requestFail_mine() {
+
+    }
+
+
     override func navigationLeftBtnClick() {
         self.navigationController?.popViewController(animated: true)
     }
@@ -476,6 +543,11 @@ class AddIncomeStep3ViewController:BaseViewController ,UITableViewDataSource,UIT
             }
             if !(creditcode.count > 0) {
                 SVPMessageShow.showErro(infoStr: "请输入社会统一信息用代码~")
+                return
+            }
+
+            if !(invoicetype.count > 0) {
+                SVPMessageShow.showErro(infoStr: "请输入发票信息~")
                 return
             }
 
