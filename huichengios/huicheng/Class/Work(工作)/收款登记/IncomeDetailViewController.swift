@@ -12,9 +12,13 @@ import UIKit
 enum IncomeDetailViewControllerType {
     case detial;
 }
-
+typealias IncomeDetailViewControllerBlock = ()->()
 
 class IncomeDetailViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate,Work2RequestVCDelegate {
+
+    var sucessBlock : IncomeDetailViewControllerBlock!
+
+
     var type : IncomeDetailViewControllerType!
     let requestVC = Work2RequestVC()
 
@@ -88,9 +92,33 @@ class IncomeDetailViewController: BaseViewController,UITableViewDataSource,UITab
         self.view.addSubview(mainTabelView)
     }
 
+    func editeClick() {
+
+    }
+
+    /// 详情请求
     func detailRequest() {
         requestVC.income_getinfoRequest(id: "\(id)")
     }
+
+
+    /// 提交审核
+    func applyCheck() {
+        requestVC.income_save(id: "\(id)", issubmit: "1")
+    }
+
+    /// 删除
+    func delRequest() {
+        requestVC.income_del(id: "\(id)")
+
+    }
+
+    /// 撤回
+    func backRequest() {
+        requestVC.income_save(id: "\(id)", issubmit: "0")
+    }
+
+
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -234,6 +262,9 @@ class IncomeDetailViewController: BaseViewController,UITableViewDataSource,UITab
             contentArr1.append(dataModel.data.papernum)
             self.mainTabelView.reloadData()
 
+        } else if type == .financeincome_save || type == .income_del{
+            self.sucessBlock()
+            self.navigationLeftBtnClick()
         }
 
 
@@ -252,17 +283,19 @@ class IncomeDetailViewController: BaseViewController,UITableViewDataSource,UITab
 
         if dataModel.data.state == -1 {
             //未提交
-            alertController = UIAlertController(title: nil, message: "", preferredStyle: .alert)
+            alertController = UIAlertController(title: nil, message: "", preferredStyle: .actionSheet)
             let sureAction = UIAlertAction(title: "提交审核", style: .default) { (action) in
-
                  HCLog(message: "提交审核")
+                 self.applyCheck()
             }
             let sureAction2 = UIAlertAction(title: "修改", style: .default) { (action) in
                  HCLog(message: "修改")
+                self.editeClick()
 
             }
             let sureAction3 = UIAlertAction(title: "删除", style: .default) { (action) in
                  HCLog(message: "删除")
+                self.delRequest()
 
             }
 
@@ -279,9 +312,10 @@ class IncomeDetailViewController: BaseViewController,UITableViewDataSource,UITab
 
         } else if dataModel.data.state == 0 {
             //未审核
-            alertController = UIAlertController(title: nil, message: "", preferredStyle: .alert)
+            alertController = UIAlertController(title: nil, message: "", preferredStyle: .actionSheet)
             let sureAction = UIAlertAction(title: "撤回", style: .default) { (action) in
                 HCLog(message: "撤回")
+                self.backRequest()
 
             }
             let cancleAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
@@ -295,7 +329,7 @@ class IncomeDetailViewController: BaseViewController,UITableViewDataSource,UITab
 
         } else if dataModel.data.state == 1 {
             //已审核
-            alertController = UIAlertController(title: nil, message: "", preferredStyle: .alert)
+            alertController = UIAlertController(title: nil, message: "", preferredStyle: .actionSheet)
             let sureAction = UIAlertAction(title: "补开发票", style: .default) { (action) in
                 HCLog(message: "补开发票")
 
@@ -314,14 +348,15 @@ class IncomeDetailViewController: BaseViewController,UITableViewDataSource,UITab
 
         } else if dataModel.data.state == 2 {
             //已驳回
-            alertController = UIAlertController(title: nil, message: "", preferredStyle: .alert)
+            alertController = UIAlertController(title: nil, message: "", preferredStyle: .actionSheet)
             let sureAction = UIAlertAction(title: "修改", style: .default) { (action) in
                 HCLog(message: "修改")
+                self.editeClick()
 
             }
             let sureAction3 = UIAlertAction(title: "删除", style: .default) { (action) in
                 HCLog(message: "删除")
-
+                self.delRequest()
             }
 
             let cancleAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
@@ -341,4 +376,9 @@ class IncomeDetailViewController: BaseViewController,UITableViewDataSource,UITab
 
         }
     }
+
+
+
+
+
 }

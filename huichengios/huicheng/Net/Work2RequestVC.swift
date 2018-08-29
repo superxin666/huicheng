@@ -12,7 +12,7 @@ import ObjectMapper
 enum Work2RequestVC_enum {
     //
     case income_getlist,income_getdeals,income_getdealsinfo,income_save,income_getinfo,//收款登记获取列表
-    doc_applylist,doc_search,doc_getlist,doc_applysave,doc_getinfo,doc_del,crt_dealslist,crt_choose,crt_getinfo,crt_save,pay_getlist,pay_applyinfo,pay_del,pay_applysave,pay_save,pay_applylist,income_additem
+    doc_applylist,doc_search,doc_getlist,doc_applysave,doc_getinfo,doc_del,crt_dealslist,crt_choose,crt_getinfo,crt_save,pay_getlist,pay_applyinfo,pay_del,pay_applysave,pay_save,pay_applylist,income_additem,financeincome_save,income_del
 }
 protocol Work2RequestVCDelegate : NSObjectProtocol{
     //
@@ -161,6 +161,35 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
         let url =   finance_income_additem_api + "d=\(d)&t=\(t)&m=\(m)&o=\(o)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
     }
+
+
+    /// 提交审核
+    ///
+    /// - Parameters:
+    ///   - id: <#id description#>
+    ///   - issubmit: <#issubmit description#>
+    func income_save(id : String, issubmit : String) {
+        type = .financeincome_save
+        request.delegate = self
+        let url =   finance_income_save_api + "id=\(id)&issubmit=\(issubmit)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+    }
+
+
+
+    /// 删除
+    ///
+    /// - Parameter id: <#id description#>
+    func income_del(id : String)  {
+        type = .income_del
+        request.delegate = self
+        let url =   finance_income_del_api + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+    }
+
+
+
+    
 
     // MARK: -  签章
 
@@ -526,7 +555,7 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work2(data: model,type : type)
             }
-        } else if type == .doc_del || type == .crt_save || type == .doc_applysave || type == .pay_del || type == .pay_applysave || type == .pay_save || type == .income_additem || type == .income_save{ 
+        } else if type == .doc_del || type == .crt_save || type == .doc_applysave || type == .pay_del || type == .pay_applysave || type == .pay_save || type == .income_additem || type == .income_save || type == .financeincome_save || type == .income_del{
             let model = Mapper<CodeData>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work2(data: model,type : type)

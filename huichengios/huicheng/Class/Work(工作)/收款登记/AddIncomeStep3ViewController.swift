@@ -67,8 +67,13 @@ class AddIncomeStep3ViewController:BaseViewController ,UITableViewDataSource,UIT
     /// 保存状态，INT 型:0-存为草稿;1-正式提交
     var issubmit = ""
 
-    /// 合同 ID
+    /// 合同 ID  新增时必传，修改时可不传
     var idStr : Int!
+
+
+    /// 收款信息 ID 新增时可不传，修改时必传
+    var IDstr : String!
+
 
     /// 收款方式，INT 型:0-现金;1-刷卡;2-银行转帐
     var tStr : String = ""
