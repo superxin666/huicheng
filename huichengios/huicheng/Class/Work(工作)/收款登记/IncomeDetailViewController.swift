@@ -14,23 +14,28 @@ enum IncomeDetailViewControllerType {
 }
 
 
-class IncomeDetailViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate,TitleTableViewCellDelegate,Title5TableViewCellDelegate,DatePickViewDelegate,OptionViewDelgate,Work2RequestVCDelegate {
+class IncomeDetailViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate,Work2RequestVCDelegate {
     var type : IncomeDetailViewControllerType!
     let requestVC = Work2RequestVC()
 
     let mainTabelView : UITableView = UITableView()
     var dataModelArr : [Income_getlistModel] = []
-    let nameArr = ["合同编号","立案时间","立案律师","委托人","案件组别","合同金额","已付金额",]
-    var contentArr1 = ["","","","","","","",]
+    let nameArr = ["合同编号","立案时间","立案律师","委托人","案件组别","合同金额","已付金额","收款金额"]
+    var contentArr : [String] = []
 
-    let nameArr2 = ["共收金额","实收金额","收款日期","交款人","发票","发票号",]
-    var contentArr2 = ["","","","","","",]
+    let nameArr1 = ["共收金额","实收金额","收款日期","交款人","发票","发票号","审核情况"]
+    var contentArr1: [String] = []
+
+    var dataModel : income_getinfoModel!
+
 
     /// 时间
     var timeView : DatePickView = DatePickView.loadNib()
 
     /// 选项
     let optionView : OptionView = OptionView.loadNib()
+
+     var alertController : UIAlertController!
 
     var endTimeCell : endTimeTableViewCell!
 
@@ -40,25 +45,6 @@ class IncomeDetailViewController: BaseViewController,UITableViewDataSource,UITab
     var id = ""
     /// 合同 ID，INT 型。新增时必传，修改时可不传
     var dealid = ""
-    /// 收款金额，浮点型
-    var amount = ""
-    ///收款日期，格式:2018-03-15
-    var addtime = ""
-    ///交款人，字符串
-    var user = ""
-    ///发票状态，INT 型:0-未开;1-已开
-    var ispaper = "0"
-    ///发票号，ispaper 为 0 时可不传
-    var papernum = ""
-    ///实际收入
-    var money = ""
-    ///交款人，字符串
-    var invoicetype = ""
-    /// 社会统一信息用代码，ispaper 为 0 时可不传
-    var creditcode = ""
-    /// 保存状态，INT 型:0-存为草稿;1-正式提交
-    var issubmit = "0"
-
 
 
 
@@ -78,13 +64,12 @@ class IncomeDetailViewController: BaseViewController,UITableViewDataSource,UITab
         // Do any additional setup after loading the view.
         self.view.backgroundColor = viewBackColor
         self.navigation_title_fontsize(name: "收款详情 ", fontsize: 18)
-        self.navigationBar_rightBtn_title(name: "保存")
+        self.navigationBar_rightBtn_title(name: "操作")
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
         self.creatUI()
         requestVC.delegate = self
-        if type == .detial {
-            self.detailRequest()
-        }
+        self.detailRequest()
+
 
 
     }
@@ -98,15 +83,13 @@ class IncomeDetailViewController: BaseViewController,UITableViewDataSource,UITab
         mainTabelView.showsVerticalScrollIndicator = false
         mainTabelView.showsHorizontalScrollIndicator = false
         mainTabelView.backgroundView?.backgroundColor = .clear
-        mainTabelView.register(UINib.init(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: TitleTableViewCellID)
-        mainTabelView.register(UINib.init(nibName: "endTimeTableViewCell", bundle: nil), forCellReuseIdentifier: endTimeTableViewCellid)
-        mainTabelView.register(UINib.init(nibName: "OptionTableViewCell", bundle: nil), forCellReuseIdentifier: OptionTableViewCellID)
-        mainTabelView.register(UINib.init(nibName: "Title5TableViewCell", bundle: nil), forCellReuseIdentifier: Title5TableViewCellID)
+        mainTabelView.register(UINib.init(nibName: "Title4TableViewCell", bundle: nil), forCellReuseIdentifier: Title4TableViewCellID)
+        mainTabelView.register(UINib.init(nibName: "Title2TableViewCell", bundle: nil), forCellReuseIdentifier: Title2TableViewCellID)
         self.view.addSubview(mainTabelView)
     }
 
     func detailRequest() {
-        requestVC.income_getinfoRequest(id: 1)
+        requestVC.income_getinfoRequest(id: "\(id)")
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -116,182 +99,134 @@ class IncomeDetailViewController: BaseViewController,UITableViewDataSource,UITab
         if section == 0 {
              return nameArr.count
         } else {
-            return nameArr2.count
+            return nameArr1.count
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 2 {
-            //时间
-            endTimeCell  = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-            endTimeCell.setData(titleStr: nameArr[indexPath.row], tag: 0)
-            return endTimeCell
+        if indexPath.section == 0 {
+            if indexPath.row == 7 {
+                let cell : Title2TableViewCell  = tableView.dequeueReusableCell(withIdentifier: Title2TableViewCellID, for: indexPath) as! Title2TableViewCell
+                cell.setData(titleStr: "收款记录")
+                return cell
 
-        } else if indexPath.row == 4 {
-            //发票
-            let cell : OptionTableViewCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
-            cell.setData_caseDetail(titleStr: nameArr[indexPath.row], contentStr: "")
-            return cell
-
-
-        } else if indexPath.row == 6{
-            //信用
-            let cell : Title5TableViewCell  = tableView.dequeueReusableCell(withIdentifier: Title5TableViewCellID, for: indexPath) as! Title5TableViewCell
-            cell.delegate = self
-            cell.setData(titleStr: nameArr[indexPath.row])
-            return cell
+            } else {
+                let cell : Title4TableViewCell  = tableView.dequeueReusableCell(withIdentifier: Title4TableViewCellID, for: indexPath) as! Title4TableViewCell
+                if contentArr.count > 0 {
+                    cell.setData_overCase(titleStr: nameArr[indexPath.row], contentStr: contentArr[indexPath.row])
+                }
+                return cell
+            }
 
         } else {
-            let cell : TitleTableViewCell  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
-            cell.delegate = self
-            cell.setData_ovewdeal(titleStr: nameArr[indexPath.row], indexPath: indexPath)
-            return cell
-
+            if indexPath.row == 6 {
+                let cell : Title2TableViewCell  = tableView.dequeueReusableCell(withIdentifier: Title2TableViewCellID, for: indexPath) as! Title2TableViewCell
+                cell.setData(titleStr: "审核情况")
+                return cell
+            } else {
+                let cell : Title4TableViewCell  = tableView.dequeueReusableCell(withIdentifier: Title4TableViewCellID, for: indexPath) as! Title4TableViewCell
+                if contentArr1.count > 0 {
+                    cell.setData_overCase(titleStr: nameArr1[indexPath.row], contentStr: contentArr1[indexPath.row])
+                }
+                return cell
+            }
         }
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 2 {
-            return OptionTableViewCellH
-        } else if indexPath.row == 4 {
-            return OptionTableViewCellH
-        } else if indexPath.row == 6 {
-            return Title5TableViewCellH
-        } else {
-            return TitleTableViewCellH
+        return Title2TableViewCellH
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 0 {
+            return UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        }  else {
+            let view = UIView(frame: CGRect(x: 0, y: 0, width: KSCREEN_WIDTH, height: 40))
+            view.backgroundColor = UIColor.hc_colorFromRGB(rgbValue: 0xcccccc)
+
+            let label = UILabel(frame: CGRect(x: 0, y: 0, width: KSCREEN_WIDTH, height: 40))
+            label.text = "收款信息"
+            label.font = hc_fontThin(15)
+            label.textColor = .black
+
+            view.addSubview(label)
+            return view
         }
     }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 0
+        } else {
+            return 40
+        }
+    }
+
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.view.endEditing(true)
-        if  indexPath.row == 2  {
-            //时间
-            self.showTime_end()
-        } else if indexPath.row == 4 {
-            //发票号
-            self.showOptionView_state()
+
+        if indexPath.section == 0 {
+            if indexPath.row == 7 {
+                if dataModel.items.count > 0 {
+                    let vc = IncomeRecord_ViewController()
+                    vc.dataModelArr = dataModel.items
+                    vc.hidesBottomBarWhenPushed  = true
+                    vc.type = .list_history
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+        } else {
+            if indexPath.row == 6 {
+
+
+            }
         }
     }
 
-    func endEdite(inputStr: String, tagNum: Int) {
-        if tagNum == 0 {
-            //共收
-            self.amount = inputStr
-        } else if tagNum == 1 {
-            //实际
-            self.money = inputStr
-        } else if tagNum == 3 {
-            //交款人
-            self.user = inputStr
-        } else if tagNum == 4 {
-            //发票号
-            self.papernum = inputStr
-        }
-    }
-
-    func endText_title5(inputStr: String, tagNum: Int) {
-        self.creditcode = inputStr
-    }
-
-    /// 显示时间
-    func showTime_end() {
-        timeView.removeFromSuperview()
-        self.maskView.addSubview(self.timeView)
-        self.view.window?.addSubview(self.maskView)
-        timeView.delegate = self
-        timeView.setData(type: 1)
-        timeView.snp.makeConstraints { (make) in
-            make.left.right.equalTo(0)
-            make.bottom.equalTo(0)
-            make.height.equalTo(160)
-        }
-    }
-
-
-
-    func datePickViewTime(timeStr: String, type: Int) {
-        self.timeView.removeFromSuperview()
-        self.maskView.removeFromSuperview()
-        endTimeStr = timeStr
-        endTimeCell.setTime(str: endTimeStr)
-
-    }
-
-
-
-
-    //显示发票状态
-    func showOptionView_state() {
-        self.maskView.addSubview(self.optionView)
-        self.view.window?.addSubview(self.maskView)
-        self.optionView.setData()
-        self.optionView.delegate = self
-        self.optionView.snp.makeConstraints { (make) in
-            make.left.right.equalTo(0)
-            make.bottom.equalTo(0)
-            make.height.equalTo(160)
-        }
-    }
-
-    func optionSure(idStr: String, titleStr: String,noteStr : String, pickTag: Int) {
-
-        let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 5, section: 0)) as! OptionTableViewCell
-        cell.setOptionData(contentStr: titleStr)
-        self.optionView.removeFromSuperview()
-        self.maskView.removeFromSuperview()
-        self.ispaper = idStr
-
-    }
 
     func requestSucceed_work2(data: Any, type: Work2RequestVC_enum) {
+
         if type == .income_getinfo {
-            let model : income_getinfoModel  = data as! income_getinfoModel
-            if let str = model.data.dealnum {
-                contentArr1[0] = str
+            dataModel = data as! income_getinfoModel
+            contentArr.append(dataModel.data.dealnum)
+            contentArr.append(dataModel.data.regtime)
+            contentArr.append(dataModel.data.reguser)
+            contentArr.append(dataModel.data.principal)
+            contentArr.append("后台缺失")
+            if let str = dataModel.data.dealamount {
+                contentArr.append("\(str)元")
+            } else {
+                contentArr.append("")
             }
-            if let str = model.data.regtime {
-                contentArr1[1] = str
-            }
-            if let str = model.data.reguser {
-                contentArr1[2] = str
-            }
-            if let str = model.data.principal {
-                contentArr1[3] = str
-            }
-            if let str = model.data.regtime {
-                contentArr1[4] = "接口没有"
-            }
-            if let str = model.data.dealamount {
-                contentArr1[5] = "\(str)"
-            }
-            if let str = model.data.dealmoney {
-                contentArr1[6] = "\(str)"
+
+            if let str = dataModel.data.dealmoney {
+                contentArr.append("\(str)元")
+            } else {
+                contentArr.append("")
             }
 
 
-            if let str = model.data.amount {
-                contentArr1[0] = "\(str)"
+
+            if let str = dataModel.data.amount {
+                contentArr1.append("\(str)元")
+            } else {
+                contentArr1.append("")
             }
-            if let str = model.data.money {
-                contentArr1[1] = "\(str)"
+
+            if let str = dataModel.data.money {
+                contentArr1.append("\(str)元")
+            } else {
+                contentArr1.append("")
             }
-            if let str = model.data.addtime {
-                contentArr1[2] = str
-            }
-            if let str = model.data.payuser {
-                contentArr1[3] = str
-            }
-            if let str = model.data.ispaperStr {
-                contentArr1[4] = str
-            }
-            if let str = model.data.papernum {
-                contentArr1[5] = str
-            }
+            contentArr1.append(dataModel.data.addtime)
+            contentArr1.append(dataModel.data.payuser)
+            contentArr1.append(dataModel.data.ispaperStr)
+            contentArr1.append(dataModel.data.papernum)
             self.mainTabelView.reloadData()
 
-            
-        } else if type == .income_save {
-            SVPMessageShow.showSucess(infoStr: "保存成功")
         }
+
+
     }
 
     func requestFail_work2() {
@@ -303,9 +238,97 @@ class IncomeDetailViewController: BaseViewController,UITableViewDataSource,UITab
     }
     override func navigationRightBtnClick() {
         //
-        HCLog(message: "保存")
-        requestVC.income_save(id: self.id, dealid: self.dealid, amount: self.amount, addtime: self.endTimeStr, user: self.user, ispaper: self.ispaper, papernum: self.papernum, money: self.money, invoicetype: self.invoicetype, creditcode: self.creditcode, issubmit: self.issubmit)
+        HCLog(message: "操作")
 
+        if dataModel.data.state == -1 {
+            //未提交
+            alertController = UIAlertController(title: nil, message: "", preferredStyle: .alert)
+            let sureAction = UIAlertAction(title: "提交审核", style: .default) { (action) in
+
+                 HCLog(message: "提交审核")
+            }
+            let sureAction2 = UIAlertAction(title: "修改", style: .default) { (action) in
+                 HCLog(message: "修改")
+
+            }
+            let sureAction3 = UIAlertAction(title: "删除", style: .default) { (action) in
+                 HCLog(message: "删除")
+
+            }
+
+            let cancleAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
+                self.alertController.dismiss(animated: true, completion: {
+
+                })
+            }
+            alertController.addAction(cancleAction)
+            alertController.addAction(sureAction)
+            alertController.addAction(sureAction2)
+            alertController.addAction(sureAction3)
+            self.present((alertController)!, animated: true, completion: nil)
+
+        } else if dataModel.data.state == 0 {
+            //未审核
+            alertController = UIAlertController(title: nil, message: "", preferredStyle: .alert)
+            let sureAction = UIAlertAction(title: "撤回", style: .default) { (action) in
+                HCLog(message: "撤回")
+
+            }
+            let cancleAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
+                self.alertController.dismiss(animated: true, completion: {
+
+                })
+            }
+            alertController.addAction(cancleAction)
+            alertController.addAction(sureAction)
+            self.present((alertController)!, animated: true, completion: nil)
+
+        } else if dataModel.data.state == 1 {
+            //已审核
+            alertController = UIAlertController(title: nil, message: "", preferredStyle: .alert)
+            let sureAction = UIAlertAction(title: "补开发票", style: .default) { (action) in
+                HCLog(message: "补开发票")
+
+            }
+            let cancleAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
+                self.alertController.dismiss(animated: true, completion: {
+
+                })
+            }
+            alertController.addAction(cancleAction)
+            alertController.addAction(sureAction)
+            self.present((alertController)!, animated: true, completion: nil)
+
+
+
+
+        } else if dataModel.data.state == 2 {
+            //已驳回
+            alertController = UIAlertController(title: nil, message: "", preferredStyle: .alert)
+            let sureAction = UIAlertAction(title: "修改", style: .default) { (action) in
+                HCLog(message: "修改")
+
+            }
+            let sureAction3 = UIAlertAction(title: "删除", style: .default) { (action) in
+                HCLog(message: "删除")
+
+            }
+
+            let cancleAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
+                self.alertController.dismiss(animated: true, completion: {
+
+                })
+            }
+            alertController.addAction(cancleAction)
+            alertController.addAction(sureAction)
+            alertController.addAction(sureAction3)
+
+            self.present((alertController)!, animated: true, completion: nil)
+
+
+        } else if dataModel.data.state == 3 {
+            // 已支付
+
+        }
     }
-
 }

@@ -67,7 +67,21 @@ class IncomeRecordTableViewCell: UITableViewCell {
     }
 
 
-    func setData_history(model : Income_getlistModel) {
+    func setData_history(model : income_getinfoModel_items) {
+
+        var amount = ""
+
+        if let str = model.money {
+            amount = "\(str)"
+        }
+        self.titleNameLabel.text = "收款详情：" + model.typeStr! + "：\(amount)"
+
+        self.subLabel.text = "收款日期："
+
+        self.infoLabel.text = "发票信息："
+
+
+        self.stateLabel.text = ""
 
 
 

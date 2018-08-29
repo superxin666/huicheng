@@ -14,7 +14,7 @@ class IncomeRecord_ViewController: BaseViewController,UITableViewDataSource,UITa
 
     let mainTabelView : UITableView = UITableView()
     //详情列表 历史
-    var dataModelArr : [Income_getlistModel] = []
+    var dataModelArr : [income_getinfoModel_items] = []
     //添加记录 历史
     var dataModelArr2 : [Income_getlistModel] = []
 
@@ -73,6 +73,11 @@ class IncomeRecord_ViewController: BaseViewController,UITableViewDataSource,UITa
             if indexPath.row < self.dataModelArr2.count {
                 let model = self.dataModelArr2[indexPath.row]
                 cell.setData_add(model: model)
+            }
+        } else {
+            if indexPath.row < self.dataModelArr.count {
+                let model = self.dataModelArr[indexPath.row]
+                cell.setData_history(model: model)
             }
         }
         return cell

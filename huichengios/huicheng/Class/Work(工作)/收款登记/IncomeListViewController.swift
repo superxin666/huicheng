@@ -94,8 +94,7 @@ class IncomeListViewController: BaseViewController ,UITableViewDataSource,UITabl
             let model : Income_getlistModel = self.dataArr[indexPath.row]
             let vc = IncomeDetailViewController()
             vc.hidesBottomBarWhenPushed = true
-            vc.id = "\(model.id)"
-            vc.type = .detial
+            vc.id = "\(model.id!)"
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

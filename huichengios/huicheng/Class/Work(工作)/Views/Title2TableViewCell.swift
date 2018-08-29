@@ -28,5 +28,6 @@ class Title2TableViewCell: UITableViewCell {
         self.titleNameLabel.textColor = darkblueColor
         self.titleNameLabel.text = titleStr
     }
+
     
 }

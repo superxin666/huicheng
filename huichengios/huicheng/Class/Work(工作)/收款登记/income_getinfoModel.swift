@@ -78,7 +78,7 @@ class income_getinfoModel_items: Mappable {
 
     var cost: String!
     var amount: Int!
-    var money: String!
+    var money: Int!
 
     init() {}
     required init?(map: Map){

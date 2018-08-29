@@ -139,7 +139,7 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
     /// 获取详情
     ///
     /// - Parameter id: <#id description#>
-    func income_getinfoRequest(id :Int) {
+    func income_getinfoRequest(id :String) {
         type = .income_getinfo
         request.delegate = self
         let url =   finance_income_getinfo_api + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
