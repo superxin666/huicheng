@@ -27,7 +27,7 @@ class AddIncomeStep3ViewController:BaseViewController ,UITableViewDataSource,UIT
     var nameArr = ["合同编号","立案时间","立案律师","委托人","案件组别","合同金额","已付金额","收款历史"]
     var contenArr : [String] = []
 
-    var nameArr1 = ["现金收款","银行转账收款","刷卡收款","刷卡手续费",]
+    var nameArr1 = ["现金收款","银行转账","刷卡收款","刷卡手续费",]
     var contenArr1 : [String] = ["","","","",]
 
 
@@ -290,6 +290,8 @@ class AddIncomeStep3ViewController:BaseViewController ,UITableViewDataSource,UIT
                 if self.dataModel.income.count > 0 {
                     let vc = IncomeRecord_ViewController()
                     vc.hidesBottomBarWhenPushed = true
+                    vc.type = .add_history
+                    vc.dataModelArr2 = self.dataModel.income
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
             }
@@ -480,8 +482,17 @@ class AddIncomeStep3ViewController:BaseViewController ,UITableViewDataSource,UIT
             contenArr.append(dataModel.data.reguser)
             contenArr.append(dataModel.data.principal)
             contenArr.append(dataModel.data.branch)
-            contenArr.append("\(dataModel.data.amount!)")
-            contenArr.append("\(dataModel.data.money!)")
+            if let a = dataModel.data.amount {
+                contenArr.append("\(a)")
+            } else {
+                contenArr.append("")
+            }
+
+            if let b = dataModel.data.money {
+                contenArr.append("\(b)")
+            } else {
+                contenArr.append("")
+            }
 
             moneyStr = ""
             amountStr = ""

@@ -7,11 +7,18 @@
 //  收款记录
 
 import UIKit
-
+enum IncomeRecord_ViewControllerType {
+    case add_history,list_history
+}
 class IncomeRecord_ViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate {
 
     let mainTabelView : UITableView = UITableView()
+    //详情列表 历史
     var dataModelArr : [Income_getlistModel] = []
+    //添加记录 历史
+    var dataModelArr2 : [Income_getlistModel] = []
+
+    var type : IncomeRecord_ViewControllerType!
 
 
     // MARK: - life
@@ -45,7 +52,7 @@ class IncomeRecord_ViewController: BaseViewController,UITableViewDataSource,UITa
         mainTabelView.showsVerticalScrollIndicator = false
         mainTabelView.showsHorizontalScrollIndicator = false
         mainTabelView.backgroundView?.backgroundColor = .clear
-        mainTabelView.register(UINib.init(nibName: "DocTableViewCell", bundle: nil), forCellReuseIdentifier: DocTableViewCellID)
+        mainTabelView.register(UINib.init(nibName: "IncomeRecordTableViewCell", bundle: nil), forCellReuseIdentifier: IncomeRecordTableViewCellID)
         self.view.addSubview(mainTabelView)
     }
 
@@ -53,32 +60,33 @@ class IncomeRecord_ViewController: BaseViewController,UITableViewDataSource,UITa
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.dataModelArr.count
+        if type == .add_history {
+            return dataModelArr2.count
+        } else {
+            return self.dataModelArr.count
+        }
 
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell : DocTableViewCell  = tableView.dequeueReusableCell(withIdentifier: DocTableViewCellID, for: indexPath) as! DocTableViewCell
-        if indexPath.row < dataModelArr.count {
-            let model = dataModelArr[indexPath.row]
-            cell.setData_incomeHistory(model: model)
+        let cell : IncomeRecordTableViewCell  = tableView.dequeueReusableCell(withIdentifier: IncomeRecordTableViewCellID, for: indexPath) as! IncomeRecordTableViewCell
+        if type == .add_history {
+            if indexPath.row < self.dataModelArr2.count {
+                let model = self.dataModelArr2[indexPath.row]
+                cell.setData_add(model: model)
+            }
         }
         return cell
     }
 
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return DocTableViewCellH
+        return IncomeRecordTableViewCellH
+
+
     }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    }
     override func navigationLeftBtnClick() {
         self.navigationController?.popViewController(animated: true)
-    }
-    override func navigationRightBtnClick() {
-        //
-        HCLog(message: "添加")
-
-        
     }
 
 

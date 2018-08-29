@@ -16,6 +16,8 @@ class Income_getlistModel: Mappable {
 
     var addtime: String!
     var amount: String!
+    var amountInt : Int!
+
     var money: Int!
 
     var type: String!
@@ -48,6 +50,7 @@ class Income_getlistModel: Mappable {
         addtime <- map["addtime"]
 
         amount <- map["amount"]
+        amountInt <- map["amount"]
         money <- map["money"]
 
         type <- map["type"]

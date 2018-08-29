@@ -252,8 +252,6 @@ class DocTableViewCell: UITableViewCell {
             } else {
                 self.stateLabel.backgroundColor = darkblueColor
                 self.stateLabel.textColor = .white
-
-
             }
         }
 
