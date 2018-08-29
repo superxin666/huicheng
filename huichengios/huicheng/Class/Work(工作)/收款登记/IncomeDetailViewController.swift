@@ -93,7 +93,10 @@ class IncomeDetailViewController: BaseViewController,UITableViewDataSource,UITab
     }
 
     func editeClick() {
-
+        let vc : AddIncomeStep3ViewController = AddIncomeStep3ViewController()
+        vc.type = .edite
+        vc.data2Model = dataModel
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
     /// 详情请求

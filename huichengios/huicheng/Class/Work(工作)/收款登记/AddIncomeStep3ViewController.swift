@@ -8,7 +8,15 @@
 
 import UIKit
 
+enum AddIncomeStep3ViewControllerType {
+    case detial,edite
+}
+
 class AddIncomeStep3ViewController:BaseViewController ,UITableViewDataSource,UITableViewDelegate,Work2RequestVCDelegate,TitleTableViewCellDelegate,Title5TableViewCellDelegate,OptionViewDelgate,DatePickViewDelegate,MineRequestVCDelegate {
+
+    var type : AddIncomeStep3ViewControllerType = .detial
+
+
     let mainTabelView : UITableView = UITableView()
 
     /// 选项
@@ -35,6 +43,9 @@ class AddIncomeStep3ViewController:BaseViewController ,UITableViewDataSource,UIT
     var contenArr2 : [String] = ["","","","","","","",]
 
     var dataModel : income_getdealsinfoModel!
+
+    var data2Model : income_getinfoModel!
+
 
     /// 收款金额
     var amountStr = ""
@@ -113,8 +124,15 @@ class AddIncomeStep3ViewController:BaseViewController ,UITableViewDataSource,UIT
         self.navigation_title_fontsize(name: "收款详情", fontsize: 18)
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
         self.navigationBar_rightBtn_title(name: "保存")
+        if type == .detial {
+            self.requestApi()
+
+        } else {
+            self.upDataModel()
+
+        }
         self.creatUI()
-        self.requestApi()
+
     }
 
 
@@ -194,7 +212,7 @@ class AddIncomeStep3ViewController:BaseViewController ,UITableViewDataSource,UIT
         } else {
             if indexPath.row == 0 {
                 let cell : TitleTableViewCell  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
-                cell.setData_AddIncomeStep3(titleStr: nameArr2[indexPath.row], contentStr: moneyStr, tagNum: indexPath)
+                cell.setData_AddIncomeStep3(titleStr: nameArr2[indexPath.row], contentStr: amountStr, tagNum: indexPath)
                 cell.delegate = self
                 return cell
 
@@ -458,6 +476,33 @@ class AddIncomeStep3ViewController:BaseViewController ,UITableViewDataSource,UIT
 
 
     // MARK: - net
+
+    func upDataModel() {
+        contenArr.append(data2Model.data.dealnum)
+        contenArr.append(data2Model.data.regtime)
+        contenArr.append(data2Model.data.reguser)
+        contenArr.append(data2Model.data.principal)
+        contenArr.append("暂无")
+        if let a = data2Model.data.dealnum {
+            contenArr.append("\(a)")
+        } else {
+            contenArr.append("")
+        }
+
+        if let b = data2Model.data.dealmoney {
+            contenArr.append("\(b)")
+        } else {
+            contenArr.append("")
+        }
+
+
+
+        moneyStr = "\(data2Model.data.money!)"
+        amountStr = "\(data2Model.data.amount!)"
+
+
+    }
+
     func requestApi() {
         requestVC.delegate = self
         requestVC.income_getdealsinfoRequest(id: idStr)
@@ -475,7 +520,13 @@ class AddIncomeStep3ViewController:BaseViewController ,UITableViewDataSource,UIT
     func addRequest() {
 
         requestVC.delegate = self
-        requestVC.income_save(id: "", dealid: "\(idStr!)", amount: amountStr, addtime: addtimeStr, user: user, ispaper: ispaper, papernum: papernum, money: moneyStr, invoicetype: invoicetype, creditcode: creditcode, issubmit: "0")
+        if self.type == .detial {
+            requestVC.income_save(id: "", dealid: "\(idStr!)", amount: amountStr, addtime: addtimeStr, user: user, ispaper: ispaper, papernum: papernum, money: moneyStr, invoicetype: invoicetype, creditcode: creditcode, issubmit: "0")
+        } else {
+            requestVC.income_save(id: IDstr, dealid: "", amount: amountStr, addtime: addtimeStr, user: user, ispaper: ispaper, papernum: papernum, money: moneyStr, invoicetype: invoicetype, creditcode: creditcode, issubmit: "0")
+
+        }
+
     }
 
     func requestSucceed_work2(data: Any, type: Work2RequestVC_enum) {
@@ -501,7 +552,6 @@ class AddIncomeStep3ViewController:BaseViewController ,UITableViewDataSource,UIT
 
             moneyStr = ""
             amountStr = ""
-            //        user = dataModel.data.payuser
 
         } else if type == .income_additem{
             //添加 金额
