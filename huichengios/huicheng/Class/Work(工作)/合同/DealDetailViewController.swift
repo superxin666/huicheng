@@ -109,6 +109,22 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
 
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            if indexPath.row == 5 {
+                if type == .deallist{
+                    //查看函件
+                    let vc = ReadPdfViewController()
+
+                    vc.url = URL(string: base_imageOrFile_api + self.dealModel.img!)
+                    vc.titleStr = "扫描件"
+                    self.navigationController?.pushViewController(vc, animated: true)
+
+                    
+                }
+            }
+        }
+
+
         if indexPath.section == 1 {
             if indexPath.row == 0 {
                 HCLog(message: "发票信息")
@@ -308,7 +324,9 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
                 vc.itStr = "\(self.dealModel.ispaper!)"
 //                vc.itIdStr = self.dealMode
                 vc.pStr = self.dealModel.paper
-
+                vc.bStr = self.dealModel.begintime
+                vc.eStr = self.dealModel.endtime
+                vc.fileStr = self.dealModel.img!
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }

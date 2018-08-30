@@ -93,6 +93,7 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
             self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
             self.navigationBar_rightBtn_title(name: "操作")
             request.casegetinfoRerquest(id: caseId)
+
         } else if self.type == .searchCseDetail {
             self.navigation_title_fontsize(name: "案件详情", fontsize: 18)
             self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
@@ -419,6 +420,9 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
             caseDetailModel = data as! caseDetailModelMap
             //案件类型
             content1.append(caseDetailModel.data.typeStr)
+            HCLog(message: caseDetailModel.data.typeStr)
+
+            HCLog(message: caseDetailModel.data.type)
 
             //名字
             content1.append(caseDetailModel.data.n)
@@ -534,7 +538,9 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
                 HCLog(message: "生成")
                 let vc = OverDealViewController()
                 vc.dealId = self.caseId
-                vc.dealNum = self.caseDetailModel.data.casenum
+                vc.dealNum = self.caseDetailModel.data.dealnum
+                vc.caseType = self.caseDetailModel.data.type!
+
                 self.navigationController?.pushViewController(vc, animated: true)
 
 
@@ -632,6 +638,7 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
     ///   - titleStr: <#titleStr description#>
     ///   - pickTag: <#pickTag description#>
     func optionSure(idStr: String, titleStr: String,noteStr : String, pickTag: Int) {
+        //非诉案件-2  刑事案件-3  法律顾问-4
         HCLog(message: titleStr)
         HCLog(message: idStr)
         HCLog(message: pickTag)

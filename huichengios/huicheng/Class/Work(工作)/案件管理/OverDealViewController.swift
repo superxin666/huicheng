@@ -24,6 +24,9 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
     /// 合同编号
     var dealNum : String = ""
 
+    var caseType : Int!
+
+
     /// 合同付款期限
     var dStr : String = ""
     /// 合同有效期-起始时间
@@ -47,6 +50,7 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
     var ccStr : String = ""
 
 
+    var fileStr : String = ""
 
 
     /// 时间
@@ -80,6 +84,13 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
         request.delegate = self
         if type == .overCase {
             self.navigation_title_fontsize(name: "生成合同", fontsize: 18)
+//            if caseType == 4 {
+//                rowNum = 8
+//
+//            } else {
+//                rowNum = 6
+//
+//            }
         } else {
             self.navigation_title_fontsize(name: "合同信息", fontsize: 18)
             if itStr == "0" {
@@ -170,6 +181,9 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
             } else {
                 fileCell = tableView.dequeueReusableCell(withIdentifier: FileTableViewCellID, for: indexPath) as! FileTableViewCell
                 fileCell.setData_deal()
+                if type == .editeDeal {
+                    fileCell.setData_fileName(fileName: fileStr)
+                }
                 return fileCell
             }
 
@@ -234,6 +248,10 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
             } else {
                 fileCell  = tableView.dequeueReusableCell(withIdentifier: FileTableViewCellID, for: indexPath) as! FileTableViewCell
                 fileCell.setData_deal()
+                if type == .editeDeal {
+                    fileCell.setData_fileName(fileName: fileStr)
+                }
+
                 return fileCell
             }
 

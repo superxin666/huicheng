@@ -42,13 +42,16 @@ class ReadPdfViewController: BaseViewController,UIPrintInteractionControllerDele
 
     var delDocSucessBlock : ReadPdfViewControllerBlock!
 
+    var titleStr = "函件详情"
+
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.view.backgroundColor = .white
-        self.navigation_title_fontsize(name: "函件详情", fontsize: 18)
+        self.navigation_title_fontsize(name: titleStr, fontsize: 18)
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
         if type == .tabIteam {
             self.navigationBar_rightBtn_title(name: "操作")

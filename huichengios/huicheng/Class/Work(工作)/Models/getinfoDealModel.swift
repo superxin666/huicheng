@@ -20,7 +20,7 @@ class getinfoDealModel: Mappable {
     var dealpaylasttime: String!
     var ispaper: Int!
     var ispaperStr : String!
-    var paper : String!
+    var paper : String = ""
     var branch: String!
     var state: Int!
 

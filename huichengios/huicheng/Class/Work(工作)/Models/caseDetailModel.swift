@@ -39,6 +39,9 @@ class caseDetailModel: Mappable {
     var type: Int!
     var typeStr: String!
     var casenum: String!
+    var dealnum: String!
+
+
     var n: String = ""
     var rt: String = ""
     var pn: String = ""
@@ -79,6 +82,9 @@ class caseDetailModel: Mappable {
         type <- map["type"]
         typeStr <- map["typeStr"]
         casenum <- map["casenum"]
+        dealnum <- map["dealnum"]
+
+
         n <- map["n"]
         rt <- map["rt"]
         pn <- map["pn"]
