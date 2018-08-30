@@ -433,7 +433,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
             dStr = d.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         }
         SVPMessageShow.showLoad()
-        let url =   deal_oversave_api + "id=\(id)&n=\(n)&t=\(tStr)&d=\(dStr)&k=\(UserInfoLoaclManger.getKey())"
+        let url =   deal_oversave_api + "id=\(id)&n=\(n)&t=\(tStr)&d=\(dStr)&i=\(i)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
 
     }
