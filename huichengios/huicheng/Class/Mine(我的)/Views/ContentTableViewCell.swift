@@ -38,8 +38,16 @@ class ContentTableViewCell: UITableViewCell,UITextViewDelegate {
     ///
     /// - Parameter contentStr: <#contentStr description#>
     func setData_notice(contentStr : String) {
-        self.textView.text = contentStr
+  
         self.conTent = contentStr
+
+        let attrStr = try! NSAttributedString(
+            data: contentStr.data(using: String.Encoding.unicode, allowLossyConversion: true)!,
+            options:[NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
+        self.textView.attributedText = attrStr
+
+
+
     }
 
 

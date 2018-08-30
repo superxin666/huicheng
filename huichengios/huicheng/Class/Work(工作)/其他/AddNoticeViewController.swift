@@ -235,8 +235,6 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
         objectCell.setOptionData(contentStr: model.object!)
         objectID = "\(model.objectid!)"
         objectStr = model.object!
-
-        
     }
     
     func requestFail_message() {
