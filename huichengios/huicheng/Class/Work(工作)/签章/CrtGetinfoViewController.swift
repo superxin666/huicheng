@@ -4,7 +4,7 @@
 //
 //  Created by lvxin on 2018/8/9.
 //  Copyright © 2018年 lvxin. All rights reserved.
-//  获取类型格式
+//  生成函件
 
 import UIKit
 
@@ -84,7 +84,7 @@ class CrtGetinfoViewController:  BaseTableViewController,Work2RequestVCDelegate,
 
             if indexPath.section == 0 {
                 let cell : CrtGetinfoImageTableViewCell  = tableView.dequeueReusableCell(withIdentifier: CrtGetinfoImageTableViewCellID, for: indexPath) as! CrtGetinfoImageTableViewCell
-                cell.setData(titleStr: dataModel.deals.casename!, imageStr: dataModel.deals.docimg!)
+                cell.setData(titleStr: dataModel.deals.filetype!, imageStr: dataModel.deals.docimg!)
                 cell.imageBlock = {
                     self.showBigImage()
                 }
@@ -141,7 +141,6 @@ class CrtGetinfoViewController:  BaseTableViewController,Work2RequestVCDelegate,
                 if model.type == 2 || model.type == 3 {
                     //时间
                     self.showTime_start(indexPath: indexPath)
-
                 } else if model.type == 4 {
                     //选项
                     self.showOption(indexPath: indexPath)
@@ -224,9 +223,13 @@ class CrtGetinfoViewController:  BaseTableViewController,Work2RequestVCDelegate,
                 submModel.value = titleStr
             }
         }
+        HCLog(message: pickTag)
+        HCLog(message: titleStr)
 
-        let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: [0,pickTag]) as! OptionTableViewCell
+
+        let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: pickTag, section: 1)) as! OptionTableViewCell
         cell.setOptionData(contentStr: titleStr)
+
 
         self.timeView.removeFromSuperview()
         self.maskView.removeFromSuperview()
@@ -258,8 +261,10 @@ class CrtGetinfoViewController:  BaseTableViewController,Work2RequestVCDelegate,
                 submModel.value = timeStr
             }
         }
+        HCLog(message: type)
+        HCLog(message: timeStr)
 
-        let cell : endTimeTableViewCell = self.mainTabelView.cellForRow(at: [0,type]) as! endTimeTableViewCell
+        let cell : endTimeTableViewCell = self.mainTabelView.cellForRow(at: [type,1]) as! endTimeTableViewCell
         cell.setTime(str: timeStr)
 
         self.timeView.removeFromSuperview()

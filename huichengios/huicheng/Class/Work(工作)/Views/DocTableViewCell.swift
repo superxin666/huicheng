@@ -75,6 +75,33 @@ class DocTableViewCell: UITableViewCell {
             self.typeLabel.text = typeStr
         }
 
+        if let stateStr = model.stateStr {
+            self.stateLabel.text = stateStr
+        }
+
+        if let state = model.state {
+            if state == 0 {
+                self.stateLabel.backgroundColor = darkblueColor
+                self.stateLabel.textColor = .white
+
+            }else if state == 1 {
+                self.stateLabel.backgroundColor = UIColor.hc_colorFromRGB(rgbValue: 0xcccccc)
+                self.stateLabel.textColor = .white
+
+
+            } else if state == 2 {
+                self.stateLabel.backgroundColor = orangeColor
+                self.stateLabel.textColor = .white
+
+            } else if state == 3 {
+                self.stateLabel.hc_makeBorderWithBorderWidth(width: 1, color: UIColor.hc_colorFromRGB(rgbValue: 0x999999))
+                self.stateLabel.backgroundColor = .white
+                self.stateLabel.textColor = UIColor.hc_colorFromRGB(rgbValue: 0x999999)
+
+            }
+        }
+
+
     }
 
 

@@ -375,7 +375,7 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
     ///   - n: <#n description#>
     ///   - x: <#x description#>
     ///   - y: <#y description#>
-    func doc_applysave(id:Int,s:Int,n:String,x:Int,y:Int) {
+    func doc_applysave(id:Int,s:String,n:String,x:Int,y:Int) {
         type = .doc_applysave
         request.delegate = self
         let nStr = n.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!

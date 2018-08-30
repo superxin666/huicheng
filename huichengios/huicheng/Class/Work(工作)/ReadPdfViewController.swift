@@ -13,7 +13,8 @@ import UIKit
 
 enum ReadPdfViewControllerType {
     case tabIteam;
-    case other
+    case other;
+    case save
 }
 
 typealias ReadPdfViewControllerBlock = ()->()
@@ -44,6 +45,7 @@ class ReadPdfViewController: BaseViewController,UIPrintInteractionControllerDele
 
     var titleStr = "函件详情"
 
+    var imageSize : CGSize!
 
 
     override func viewDidLoad() {
@@ -73,89 +75,120 @@ class ReadPdfViewController: BaseViewController,UIPrintInteractionControllerDele
 
     override func navigationRightBtnClick() {
         HCLog(message: "操作")
-        if pdfstate == 3 {//3
-            //已经盖章 可打印
-            alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-            let delAction = UIAlertAction(title: "打印", style: .default) { (action) in
-                HCLog(message: "打印")
+        if type == .save {
+            HCLog(message: "保存印章")
+            if  zhangImageView != nil {
+                let teampX = KSCREEN_WIDTH/imageSize.width
+                let xNum  = zhangImageView.frame.origin.x * teampX
 
-                let printVC : UIPrintInteractionController = UIPrintInteractionController.shared
-                printVC.delegate = self
 
-//                let printInfo : UIPrintInfo = UIPrintInfo()
-//                printInfo.outputType = .general
+                let yNum = zhangImageView.frame.origin.y * teampX
+                requestVC.delegate = self
+                requestVC.doc_applysave(id: id, s: "", n: "", x: Int(xNum) * 2, y:Int(yNum) * 2)
+            }
+            
 
-                printVC.showsPageRange = false
-                printVC.printFormatter = self.webView.viewPrintFormatter()
+        } else {
+            if pdfstate == 3 {//3
+                //已经盖章 可打印
+                alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                let delAction = UIAlertAction(title: "打印", style: .default) { (action) in
+                    HCLog(message: "打印")
 
-                printVC.present(animated: true, completionHandler: { (printController, completed, erro) in
-                    if !completed {
-                        HCLog(message: "无法完成打印")
+                    let printVC : UIPrintInteractionController = UIPrintInteractionController.shared
+                    printVC.delegate = self
 
-                    }
-                })
 
+
+                    printVC.showsPageRange = false
+                    printVC.printFormatter = self.webView.viewPrintFormatter()
+
+                    printVC.present(animated: true, completionHandler: { (printController, completed, erro) in
+                        if !completed {
+                            HCLog(message: "无法完成打印")
+
+                        }
+                    })
+
+
+                }
+                let cancleAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
+                    self.alertController.dismiss(animated: true, completion: {
+
+                    })
+                }
+                alertController.addAction(cancleAction)
+                alertController.addAction(delAction)
+                self.present((alertController)!, animated: true, completion: nil)
+
+
+            } else if pdfstate == 0 {//0
+                //未审核 可删除
+                alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                let delAction = UIAlertAction(title: "删除", style: .default) { (action) in
+                    HCLog(message: "删除")
+                    self.requestVC.delegate = self
+                    self.requestVC.docdelRequset(id: "\(self.id!)")
+
+                }
+
+
+                let cancleAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
+                    self.alertController.dismiss(animated: true, completion: {
+
+                    })
+                }
+                alertController.addAction(cancleAction)
+                alertController.addAction(delAction)
+                self.present((alertController)!, animated: true, completion: nil)
+
+            } else {
+                alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                let delAction = UIAlertAction(title: "盖章", style: .default) { (action) in
+                    HCLog(message: "盖章")
+                    self.type = .save
+                    self.navigationBar_rightBtn_title(name: "保存")
+                    self.gaizhang()
+                }
+
+
+                let cancleAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
+                    self.alertController.dismiss(animated: true, completion: {
+
+                    })
+                }
+                alertController.addAction(cancleAction)
+                alertController.addAction(delAction)
+                self.present((alertController)!, animated: true, completion: nil)
 
             }
-            let cancleAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
-                self.alertController.dismiss(animated: true, completion: {
-
-                })
-            }
-            alertController.addAction(cancleAction)
-            alertController.addAction(delAction)
-            self.present((alertController)!, animated: true, completion: nil)
-
-
-        } else if pdfstate == 0 {//0
-            //未审核 可删除
-            alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-            let delAction = UIAlertAction(title: "删除", style: .default) { (action) in
-                HCLog(message: "删除")
-                self.requestVC.delegate = self
-                self.requestVC.docdelRequset(id: "\(self.id!)")
-
-            }
-
-
-            let cancleAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
-                self.alertController.dismiss(animated: true, completion: {
-
-                })
-            }
-            alertController.addAction(cancleAction)
-            alertController.addAction(delAction)
-            self.present((alertController)!, animated: true, completion: nil)
 
         }
-//        else {
-//            alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-//            let delAction = UIAlertAction(title: "盖章", style: .default) { (action) in
-//                HCLog(message: "盖章")
-//            }
-//
-//
-//            let cancleAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
-//                self.alertController.dismiss(animated: true, completion: {
-//
-//                })
-//            }
-//            alertController.addAction(cancleAction)
-//            alertController.addAction(delAction)
-//            self.present((alertController)!, animated: true, completion: nil)
-//
-//        }
     }
 
     func requestSucceed_work2(data: Any, type: Work2RequestVC_enum) {
-        if type == .doc_del {
+        if type == .doc_del || type == .doc_applysave {
             self.delDocSucessBlock()
             self.navigationLeftBtnClick()
         }
     }
 
+
     func requestFail_work2() {
 
+    }
+
+    func gaizhang()  {
+        if let str  = zhang{
+            zhangImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: ip6(75), height: ip6(75)))
+            zhangImageView.isUserInteractionEnabled = true
+            let imageUrl = base_imageOrFile_api + str
+            self.zhangImageView.kf.setImage(with:URL(string: imageUrl))
+            webView.addSubview(zhangImageView)
+
+            let tap : UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(zhangClick(sender:)))
+            zhangImageView.addGestureRecognizer(tap)
+        }
     }
 
     func webViewDidStartLoad(_ webView: UIWebView) {
@@ -165,12 +198,17 @@ class ReadPdfViewController: BaseViewController,UIPrintInteractionControllerDele
 
     func webViewDidFinishLoad(_ webView: UIWebView) {
         SVPMessageShow.dismissSVP()
+        imageSize = webView.sizeThatFits(CGSize.zero)
+        HCLog(message: imageSize)
 
     }
 
     func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
         SVPMessageShow.dismissSVP()
     }
+
+
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
 
 
@@ -178,7 +216,17 @@ class ReadPdfViewController: BaseViewController,UIPrintInteractionControllerDele
     }
 
 
+    @objc func zhangClick(sender : UIPanGestureRecognizer) {
+        let view = sender.view
 
+        if sender.state == .began || sender.state == .changed {
+            let point : CGPoint = sender.translation(in:webView)
+            HCLog(message: point.x)
+            HCLog(message: point.y)
+            view?.center = CGPoint(x: (view?.center.x)! + point.x, y: (view?.center.y)! + point.y)
+            sender.setTranslation(CGPoint(x:0,y:0), in: webView)
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

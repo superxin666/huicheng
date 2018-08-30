@@ -26,7 +26,7 @@ class DocDetialPdfViewController: BaseViewController,UIPrintInteractionControlle
 
     var requestVC : Work2RequestVC = Work2RequestVC()
 
-    var selectedView : SelectedTableViewCell!
+
 
     var alertController : UIAlertController!
 
@@ -49,10 +49,7 @@ class DocDetialPdfViewController: BaseViewController,UIPrintInteractionControlle
         webView.loadRequest(URLRequest(url: self.url))
         self.view.addSubview(webView)
 
-        selectedView = SelectedTableViewCell(style: .default, reuseIdentifier: "123")
-        selectedView.backgroundColor = .red
-        selectedView.frame = CGRect(x: 0, y: webView.frame.maxY, width: KSCREEN_WIDTH, height: SelectedTableViewCellH)
-        self.view.addSubview(selectedView)
+
 
     }
 
@@ -76,10 +73,10 @@ class DocDetialPdfViewController: BaseViewController,UIPrintInteractionControlle
             let teampX = KSCREEN_WIDTH/imageSize.width
             let xNum  = zhangImageView.frame.origin.x * teampX
 
-//            let teampY = imageSize.height/KSCREEN_HEIGHT
+
             let yNum = zhangImageView.frame.origin.y * teampX
             requestVC.delegate = self
-            requestVC.doc_applysave(id: id, s: 3, n: "", x: Int(xNum) * 2, y:Int(yNum) * 2)
+            requestVC.doc_applysave(id: id, s: "3", n: "", x: Int(xNum) * 2, y:Int(yNum) * 2)
         }
     }
 
@@ -95,7 +92,7 @@ class DocDetialPdfViewController: BaseViewController,UIPrintInteractionControlle
                 let str = textField.text!
 //                if str.count > 0 {
                     self.requestVC.delegate = self
-                    self.requestVC.doc_applysave(id: self.id, s: 2, n: str, x: 0, y:0)
+                    self.requestVC.doc_applysave(id: self.id, s: "2", n: str, x: 0, y:0)
 //                } else {
 //                    SVPMessageShow.showErro(infoStr: "请输入驳回原因")
 //                }
