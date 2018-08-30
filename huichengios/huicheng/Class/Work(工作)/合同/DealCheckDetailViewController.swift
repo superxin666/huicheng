@@ -119,6 +119,8 @@ class DealCheckDetailViewController: BaseViewController,UITableViewDelegate,UITa
             } else if indexPath.row == 8 {
                 let cell : Title2TableViewCell  = tableView.dequeueReusableCell(withIdentifier: Title2TableViewCellID, for: indexPath) as! Title2TableViewCell
                 cell.setData(titleStr: section1titleArr[indexPath.row])
+
+
                 return cell
             } else {
                 let cell : Title4TableViewCell  = tableView.dequeueReusableCell(withIdentifier: Title4TableViewCellID, for: indexPath) as! Title4TableViewCell
@@ -172,6 +174,16 @@ class DealCheckDetailViewController: BaseViewController,UITableViewDelegate,UITa
                 self.navigationController?.pushViewController(vc, animated: true)
             }
 
+        } else if indexPath.section == 1 {
+            if indexPath.row == 8 {
+                HCLog(message: "扫描件")
+                let vc = ReadPdfViewController()
+
+                vc.url = URL(string: base_imageOrFile_api + self.dealModel.img!)
+                vc.titleStr = "扫描件"
+                self.navigationController?.pushViewController(vc, animated: true)
+
+            }
         }
     }
 

@@ -970,6 +970,7 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         self.navigationController?.popViewController(animated: true)
     }
     override func navigationRightBtnClick() {
+        self.view.endEditing(true)
         if self.type == .expense_type || self.type == .invoice_getlist {
             self.sureStateBlock(self.bidStr)
         } else if self.type == .work_type  {
