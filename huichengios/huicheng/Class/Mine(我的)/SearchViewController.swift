@@ -249,6 +249,9 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         } else if type == .departAndPerson{
 
             mainTabelView.register(UINib.init(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: TitleTableViewCellID)
+
+            mainTabelView.register(UINib.init(nibName: "OptionTableViewCell", bundle: nil), forCellReuseIdentifier: OptionTableViewCellID)
+
         } else if type == .Income_list{
             mainTabelView.register(UINib.init(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: TitleTableViewCellID)
             mainTabelView.register(UINib.init(nibName: "SearchPersionTableViewCell", bundle: nil), forCellReuseIdentifier: SearchPersionTableViewCellID)
@@ -920,6 +923,10 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
                 cell.setOptionData(contentStr: titleStr)
             }
 
+        } else if type == .departAndPerson{
+            let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 1, section: 0)) as! OptionTableViewCell
+            cell.setOptionData(contentStr: titleStr)
+
         } else {
                 let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 0, section: 0)) as! OptionTableViewCell
                 cell.setOptionData(contentStr: titleStr)
@@ -964,6 +971,8 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
                 prStr = inputStr
             }
         } else if type == .Expenseapply{
+            prStr = inputStr
+        } else if type == .departAndPerson{
             prStr = inputStr
         }
     }
@@ -1036,6 +1045,8 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
 
         } else if type == .Expenseapply{
             expenBlock(dStr,branchID,prStr)
+        } else if type == .departAndPerson {
+            sureBankBlock(prStr,dStr)
         }
         self.navigationController?.popViewController(animated: true)
     }

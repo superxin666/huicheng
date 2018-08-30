@@ -29,6 +29,8 @@ class bank_getlistModel: Mappable {
     func mapping(map: Map) {
         id <- map["id"]
         username <- map["username"]
+        name <- map["name"]
+
         subbranch <- map["subbranch"]
         bankname <- map["bankname"]
         bankcard <- map["bankcard"]
