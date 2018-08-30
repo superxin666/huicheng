@@ -192,7 +192,7 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             self.navigation_title_fontsize(name: "合同查询", fontsize: 18)
             rowNum = 10
         } else if type == .PayApplylist{
-            self.navigation_title_fontsize(name: "支付审核查询", fontsize: 18)
+            self.navigation_title_fontsize(name: "线下支付查询", fontsize: 18)
             rowNum = 5
 
         } else if type == .PayCheck{
@@ -733,7 +733,8 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
                 //结束时间
                 self.showTime_end()
             } else {
-                self.showOptionView_state()
+//                self.showOptionView_state()
+                self.showOption_finance()
             }
         } else if type == .PayCheck{
             if indexPath.row == 2 {
@@ -825,6 +826,22 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         }
     }
 
+
+    func showOption_finance() {
+
+        self.maskView.addSubview(self.optionView)
+        self.view.window?.addSubview(self.maskView)
+        self.optionView.setData_finance()
+
+        self.optionView.delegate = self
+        self.optionView.snp.makeConstraints { (make) in
+            make.left.right.equalTo(0)
+            make.bottom.equalTo(0)
+            make.height.equalTo(160)
+        }
+
+
+    }
 
 
 

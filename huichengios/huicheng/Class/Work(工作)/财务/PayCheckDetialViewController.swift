@@ -29,7 +29,7 @@ class PayCheckDetialViewController:  BaseViewController,Work2RequestVCDelegate,U
     let name2 = ["报销类型","发票金额","附件张数","申请时间","审核人","审核时间"]
     var content2 : [String] = []
 
-    let name3 = ["合同编号","案件编号","案件名称","立案时间","立案律师","合同金额","以付金额"]
+    let name3 = ["合同编号","案件编号","案件名称","立案时间","立案律师","承办律师","合同金额","已付金额"]
     var content3 : [String] = []
 
     /// 1-审核通过;2-审核驳回
@@ -236,8 +236,8 @@ class PayCheckDetialViewController:  BaseViewController,Work2RequestVCDelegate,U
                 content3.append(dataModel.income.regtime)
                 content3.append(dataModel.income.reguser)
                 content3.append("暂无")//承办律师
-                content3.append("\(dataModel.income.amount)")
-                content3.append("\(dataModel.income.money!)")
+                content3.append("\(dataModel.data.dealamount!)")
+                content3.append("\(dataModel.data.paymoney!)")
 
             } else {
                 //报销

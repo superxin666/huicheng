@@ -80,6 +80,12 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
     var crt : [String] = []
 
 
+    func setData_finance() {
+        self.type = .finance
+        self.pickView.reloadAllComponents()
+    }
+
+
     func setData_crt(tagNum : Int,dataArr : [String]) {
 
 

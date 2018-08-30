@@ -16,9 +16,9 @@ class pay_applyinfoModel_data: Mappable {
     var id: Int!
     var num: String!
     var principal: String!
-    var dealamount: Int!
+    var dealamount: String!
 
-    var paymoney: String!
+    var paymoney: Int!
     var user: String!
     var type: Int!
     var typeStr: String!
