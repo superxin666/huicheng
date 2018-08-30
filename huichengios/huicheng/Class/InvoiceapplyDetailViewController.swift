@@ -25,8 +25,14 @@ class InvoiceapplyDetailViewController: BaseViewController,UITableViewDelegate,U
 
     /// 数据模型
     var dataModel : invoice_getinfoModel!
-
+    //"纳税人识别号","地址","电话","银行","账号"
     var section1titleArr = ["发票类型","发票抬头","发票内容","发票金额","款项入账","送达方式","自取时间","备注","申请时间"]
+
+    var section2titleArr = ["发票类型","发票抬头","发票内容","发票金额","纳税人识别号","地址","电话","银行","账号","款项入账","送达方式","自取时间","备注","申请时间"]
+
+    
+
+
     var sectionContent:[String] = []
 
     var alertController : UIAlertController!
@@ -86,7 +92,15 @@ class InvoiceapplyDetailViewController: BaseViewController,UITableViewDelegate,U
                 return 2
             }
         } else {
-            return 9
+            if let model = dataModel {
+                if model.type == 0 {
+                    return section1titleArr.count
+                } else {
+                    return section2titleArr.count
+                }
+            } else {
+                return 0
+            }
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -105,27 +119,64 @@ class InvoiceapplyDetailViewController: BaseViewController,UITableViewDelegate,U
                 return cell
             }
         } else  {
-            if indexPath.row == 7 {
+            if let model = dataModel {
+                if model.type == 0 {
+                    //普通
+                    if indexPath.row == 7 {
+                        let cell : ContentTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: ContentTableViewCellID, for: indexPath) as! ContentTableViewCell
+                        var str = ""
+                        if indexPath.row < sectionContent.count {
+                            str = sectionContent[indexPath.row]
+                        }
+                        cell.setData_dealcheckdetail(title: section1titleArr[indexPath.row], contentCase: str)
+                        return cell
+                    }  else {
+                        let cell : Title4TableViewCell  = tableView.dequeueReusableCell(withIdentifier: Title4TableViewCellID, for: indexPath) as! Title4TableViewCell
+                        var str = ""
+                        var titleStr = ""
+                        if indexPath.row < sectionContent.count {
+                            str = sectionContent[indexPath.row]
+                        }
+                        if indexPath.row < section1titleArr.count {
+                            titleStr = section1titleArr[indexPath.row]
+                        }
+                        cell.setData_overCase(titleStr: titleStr, contentStr: str)
+                        return cell
+                    }
+                } else {
+                    //专用
 
-                let cell : ContentTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: ContentTableViewCellID, for: indexPath) as! ContentTableViewCell
-                var str = ""
-                if indexPath.row < sectionContent.count {
-                    str = sectionContent[indexPath.row]
-                }
-                cell.setData_dealcheckdetail(title: section1titleArr[indexPath.row], contentCase: str)
-                return cell
+                    if indexPath.row == 12 {
+                        let cell : ContentTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: ContentTableViewCellID, for: indexPath) as! ContentTableViewCell
+                        var str = ""
+                        if indexPath.row < sectionContent.count {
+                            str = sectionContent[indexPath.row]
+                        }
+                        cell.setData_dealcheckdetail(title: section2titleArr[indexPath.row], contentCase: str)
+                        return cell
+                    }  else {
+                        let cell : Title4TableViewCell  = tableView.dequeueReusableCell(withIdentifier: Title4TableViewCellID, for: indexPath) as! Title4TableViewCell
+                        var str = ""
+                        var titleStr = ""
+                        if indexPath.row < sectionContent.count {
+                            str = sectionContent[indexPath.row]
+                        }
+                        if indexPath.row < section2titleArr.count {
+                            titleStr = section2titleArr[indexPath.row]
+                        }
+                        cell.setData_overCase(titleStr: titleStr, contentStr: str)
+                        return cell
+                    }
 
-            }  else {
-                let cell : Title4TableViewCell  = tableView.dequeueReusableCell(withIdentifier: Title4TableViewCellID, for: indexPath) as! Title4TableViewCell
-                var str = ""
-                if indexPath.row < sectionContent.count {
-                    str = sectionContent[indexPath.row]
                 }
-                cell.setData_overCase(titleStr: section1titleArr[indexPath.row], contentStr: str)
+            } else {
+                let cell : UITableViewCell = UITableViewCell(style: .default, reuseIdentifier: "")
                 return cell
             }
         }
     }
+
+
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
@@ -170,12 +221,29 @@ class InvoiceapplyDetailViewController: BaseViewController,UITableViewDelegate,U
             } else {
                 return 50
             }
+
         }  else if indexPath.section == 1 {
-            if indexPath.row == 7 {
-                return ContentTableViewCellH
+            if let model = dataModel {
+                if model.type == 0 {
+                    if indexPath.row == 7 {
+                        return ContentTableViewCellH
+                    } else {
+                        return Title4TableViewCellH
+                    }
+
+
+                } else {
+                    if indexPath.row == 12 {
+                        return ContentTableViewCellH
+                    } else {
+                        return Title4TableViewCellH
+                    }
+                }
+
             } else {
-                return Title4TableViewCellH
+                return 50
             }
+
         } else {
             return 50
         }
@@ -203,18 +271,52 @@ class InvoiceapplyDetailViewController: BaseViewController,UITableViewDelegate,U
 
 
     func requestSucceed_work(data: Any,type : WorkRequestVC_enum) {
+        dataModel = data as! invoice_getinfoModel
         if type == .invoice_getinfo {
-            dataModel = data as!invoice_getinfoModel
-            sectionContent.append(dataModel.typeStr)
-            sectionContent.append(dataModel.title)
-            sectionContent.append(dataModel.content)
-            sectionContent.append("\(dataModel.money!)元")
-            sectionContent.append(dataModel.isbooksStr)
-            sectionContent.append(dataModel.sendtypeStr)
-            sectionContent.append(dataModel.mtime)
-            sectionContent.append(dataModel.remark)
-            sectionContent.append(dataModel.addtime)
+
+            if dataModel.type == 0 {
+                //0-增值税普通发票
+                dataModel = data as!invoice_getinfoModel
+                sectionContent.append(dataModel.typeStr)
+                sectionContent.append(dataModel.title)
+                sectionContent.append(dataModel.content)
+                sectionContent.append("\(dataModel.money!)元")
+                sectionContent.append(dataModel.isbooksStr)
+                sectionContent.append(dataModel.sendtypeStr)
+                sectionContent.append(dataModel.mtime)
+                sectionContent.append(dataModel.remark)
+                sectionContent.append(dataModel.addtime)
+
+            } else {
+                //1-增值税专用发票
+                dataModel = data as!invoice_getinfoModel
+                sectionContent.append(dataModel.typeStr)
+                sectionContent.append(dataModel.title)
+                sectionContent.append(dataModel.content)
+                sectionContent.append("\(dataModel.money!)元")
+
+                //5个 "纳税人识别号","地址","电话","银行","账号"
+                sectionContent.append(dataModel.identifier)
+                sectionContent.append(dataModel.eaddr)
+                sectionContent.append(dataModel.ephone)
+                sectionContent.append(dataModel.ebank)
+                sectionContent.append(dataModel.ecard)
+
+
+
+                sectionContent.append(dataModel.isbooksStr)
+                sectionContent.append(dataModel.sendtypeStr)
+                sectionContent.append(dataModel.mtime)
+                sectionContent.append(dataModel.remark)
+                sectionContent.append(dataModel.addtime)
+            }
+
+
             self.mainTabelView.reloadData()
+
+
+
+
         } else if type == .invoice_applysave{
             self.sucessBlock()
             self.navigationLeftBtnClick()

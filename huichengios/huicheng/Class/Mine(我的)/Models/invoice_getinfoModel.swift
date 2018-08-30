@@ -49,6 +49,8 @@ class invoice_getinfoModel: Mappable {
     var money: Int!
     var sendtype: String!
     var sendtypeStr: String!
+    var identifier: String!
+
 
     var addtime: String!
     var state: Int!
@@ -61,6 +63,10 @@ class invoice_getinfoModel: Mappable {
     var mtime: String!
     var eaddr: String!
     var ebank: String!
+    var ephone: String!
+    var ecard: String!
+
+
     var eimg1: String!
     var eimg2: String!
     var eimg3: String!
@@ -88,7 +94,10 @@ class invoice_getinfoModel: Mappable {
         typeStr <- map["typeStr"]
         title <- map["title"]
         money <- map["money"]
-        
+        identifier <- map["identifier"]
+        ephone <- map["ephone"]
+        ecard <- map["ecard"]
+
         sendtype <- map["sendtype"]
         sendtypeStr <- map["sendtypeStr"]
         addtime <- map["addtime"]
