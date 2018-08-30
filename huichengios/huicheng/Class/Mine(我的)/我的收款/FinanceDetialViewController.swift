@@ -18,8 +18,10 @@ class FinanceDetialViewController: BaseViewController,MineRequestVCDelegate,UITa
     
     let name1 = ["合同编号","委托人","合同金额","已付金额"]
     var content1 :[String] = []
+
     let name2 = ["类型","发票金额","审核人","审核时间"]
     var content2 : [String] = []
+
     let name3 = ["收款律师","金额","支行信息","卡号","状态","经办人","支付时间"]
     var content3 : [String] = []
 

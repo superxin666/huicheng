@@ -91,7 +91,7 @@ class TitleTableViewCell: UITableViewCell {
     ///   - contentStr: <#contentStr description#>
     func setData_noticeDetail(titleStr : String, contentStr : String) {
 //        self.setData_AddNotice(titleStr: titleStr)
-        self.textField.placeholder = contentStr
+        self.textField.text = contentStr
         self.conTent = contentStr
     }
 

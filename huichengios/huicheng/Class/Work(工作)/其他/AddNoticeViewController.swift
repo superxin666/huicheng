@@ -13,7 +13,7 @@ enum AddNoticeViewController_type {
 }
 typealias AddNoticeViewControllerBlock = ()->()
 
-class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate,WorkRequestVCDelegate,MessageRequestVCDelegate,OptionViewDelgate {
+class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate,WorkRequestVCDelegate,MessageRequestVCDelegate,OptionViewDelgate,TitleTableViewCellDelegate,ContentTableViewCellDelegate {
     let mainTabelView : UITableView = UITableView()
     let request : WorkRequestVC = WorkRequestVC()
     let messageRequest : MessageRequestVC = MessageRequestVC()
@@ -32,6 +32,12 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
     /// 接受对象id
     var objectID  = ""
     var objectStr = ""
+
+
+    /// 标题
+    var titleStr = ""
+    var contentStr = ""
+
 
 
     
@@ -123,10 +129,16 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             titleCell  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
-            titleCell.setData_AddNotice(titleStr: "公告标题")
+
+            titleCell.setData_noticeDetail(titleStr: "公告标题", contentStr: titleStr)
+            titleCell.delegate = self
+
             return titleCell
         } else if indexPath.row == 1 {
             contentCell = tableView.dequeueReusableCell(withIdentifier: ContentTableViewCellID, for: indexPath) as! ContentTableViewCell
+            contentCell.delegate =  self
+
+            contentCell.setData_notice(contentStr: contentStr)
             return contentCell
         } else if indexPath.row == 2{
             fileCell = tableView.dequeueReusableCell(withIdentifier: FileTableViewCellID, for: indexPath) as! FileTableViewCell
@@ -136,7 +148,6 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
             objectCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
 
             objectCell.setDataObject(titleStr: "接受对象", contentStr: objectStr)
-
             return objectCell
         } else {
             messageCell  = tableView.dequeueReusableCell(withIdentifier: MessageNeedTableViewCellID, for: indexPath) as! MessageNeedTableViewCell
@@ -176,6 +187,13 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
         } else {
             return MessageNeedTableViewCellH
         }
+    }
+
+    func endEdite(inputStr: String, tagNum: Int) {
+        titleStr = inputStr
+    }
+    func endText_content(content: String, tagNum: Int) {
+        contentStr = content
     }
 
     func showOptionView_state() {
@@ -230,11 +248,18 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
     //获取详情
         let model : newsdetialModel = data as! newsdetialModel
         detailModel = model
-        titleCell.setData_noticeDetail(titleStr: "", contentStr: model.title)
-        contentCell.setData_notice(contentStr: model.content)
-        objectCell.setOptionData(contentStr: model.object!)
+
+        titleStr = model.title
+        contentStr = model.content
+
         objectID = "\(model.objectid!)"
         objectStr = model.object!
+
+        
+        self.mainTabelView.reloadData()
+
+
+
     }
     
     func requestFail_message() {
@@ -263,18 +288,13 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
     }
     
     func addRequest()  {
-        if titleCell.textField.isFirstResponder{
-            titleCell.textField.resignFirstResponder()
-        }
-        if contentCell.textView.isFirstResponder{
-            contentCell.textView.resignFirstResponder()
-        }
+        self.view.endEditing(true)
         
-        if !(titleCell.conTent.count > 0 ){
+        if !(titleStr.count > 0 ){
             SVPMessageShow.showErro(infoStr: "请输入标题")
             return
         }
-        if !(contentCell.conTent.count > 0 ){
+        if !(contentStr.count > 0 ){
             SVPMessageShow.showErro(infoStr: "请输入内容")
             return
         }
@@ -286,7 +306,7 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
 
         SVPMessageShow.showLoad(title:"发布中~~")
         if let id = detailId {
-            request.saveRequest(id: "\(id)", t: titleCell.conTent, n: contentCell.conTent, o: objectID, s: 0, d: messageCell.need, f: "")
+            request.saveRequest(id: "\(id)", t: titleStr, n: contentStr, o: objectID, s: 0, d: messageCell.need, f: "")
         } else {
             if self.fileArr.count > 0 {
                 //上传文件
