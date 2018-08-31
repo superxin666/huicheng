@@ -44,6 +44,10 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
     let dateView : DatePickView = DatePickView.loadNib()
     var caseId : Int!
     var type : CaseDetailViewControllerType!
+
+    /// 非诉案件-2  刑事案件-3  法律顾问-4  其他-0
+    var caseType : String = "0"
+
     
     /// 当前选中的行
     var currectIndexpath : IndexPath!
@@ -141,9 +145,18 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
         if section == 0{
             return 7
         } else if section == 1 {
-            return 2
+            if caseType == "2" || caseType == "4"{
+                return 1
+            } else {
+                return 2
+            }
+
         } else {
-            return 2
+            if caseType == "2" || caseType == "4"{
+                return 1
+            } else {
+                return 2
+            }
         }
 
     }
@@ -312,6 +325,7 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
 
         } else if indexPath.section == 1 {
             let vc = CasePersionViewController()
+            vc.caseType = caseType
             if self.type == .caseDetail || self.type == .searchCseDetail{
                 var arr : [String] = []
                 if indexPath.row == 0 {
@@ -423,6 +437,7 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
             HCLog(message: caseDetailModel.data.typeStr)
 
             HCLog(message: caseDetailModel.data.type)
+            caseType = "\(caseDetailModel.data.type!)"
 
             //名字
             content1.append(caseDetailModel.data.n)
@@ -642,6 +657,7 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
         HCLog(message: titleStr)
         HCLog(message: idStr)
         HCLog(message: pickTag)
+        caseType = idStr
         if pickTag == 0 {
             //类型
             self.tStr = idStr

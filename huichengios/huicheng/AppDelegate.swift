@@ -135,7 +135,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     }
     //MARK:友盟
     func setUpUmeng(launchOptions : [UIApplicationLaunchOptionsKey: Any]?) {
-                UMConfigure.initWithAppkey(umemgKey, channel: "惠诚")
+        UMConfigure.initWithAppkey(umemgKey, channel: "惠诚")
 
         UMConfigure.deviceIDForIntegration()
         let entity : UMessageRegisterEntity = UMessageRegisterEntity()
@@ -155,6 +155,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let device = NSData(data: deviceToken)
         let deviceId = device.description.replacingOccurrences(of:"<", with:"").replacingOccurrences(of:">", with:"").replacingOccurrences(of:" ", with:"")
+        HCLog(message: "token：")
         print(deviceId)
     }
 
