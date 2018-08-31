@@ -17,15 +17,13 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
 
 
     var type : OverDealViewControllerType = .overCase
+    var caseType : String!
 
 
     /// 合同id
     var dealId : Int!
     /// 合同编号
     var dealNum : String = ""
-
-    var caseType : Int!
-
 
     /// 合同付款期限
     var dStr : String = ""
