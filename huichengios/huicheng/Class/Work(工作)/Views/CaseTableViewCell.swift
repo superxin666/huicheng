@@ -63,7 +63,76 @@ class CaseTableViewCell: UITableViewCell {
         }
         
     }
+    func setData_incomeHistory(model : getdetailModel_income) {
+        self.subLabel.isHidden = false
+        if let dealsnum = model.note {
+            self.titleNameLabel.text = dealsnum
+        }
+        self.titleNameLabel.textColor = darkblueColor
 
+        if let time = model.addtime {
+            self.timeLabel.text = String.hc_getDate_string(dateStr: time)
+        }
+
+        if let user = model.user {
+            self.typeLabel.text = user
+        }
+
+        if let stateStr = model.state {
+            self.nameLabel.text = stateStr
+        }
+    }
+
+
+    func setData_doclist(model : getdetailModel_document)  {
+
+        self.subLabel.isHidden = false
+        if let dealsnum = model.num {
+            self.titleNameLabel.text = dealsnum
+        }
+        self.titleNameLabel.textColor = darkblueColor
+        if let time = model.addtime {
+            self.timeLabel.text = String.hc_getDate_string(dateStr: time)
+        }
+        if let type = model.type {
+            self.typeLabel.text = type
+        }
+        if let stateStr = model.state {
+            self.nameLabel.text = stateStr
+        }
+        if let reguser = model.user {
+            self.subLabel.text = reguser
+
+        }
+        //                -1-未提交;0-未审核;1-已审核;2-审核驳回;3- 已结案
+//        if let state = model.state {
+//            if state == 0 {
+//                self.nameLabel.backgroundColor = darkblueColor
+//                self.nameLabel.textColor = .white
+//
+//            }else if state == 1 {
+//                self.nameLabel.backgroundColor = UIColor.hc_colorFromRGB(rgbValue: 0xcccccc)
+//                self.nameLabel.textColor = .white
+//
+//
+//            } else if state == 2 {
+//                self.nameLabel.backgroundColor = orangeColor
+//                self.nameLabel.textColor = .white
+//
+//            } else if state == 3 {
+//                self.nameLabel.hc_makeBorderWithBorderWidth(width: 1, color: UIColor.hc_colorFromRGB(rgbValue: 0x999999))
+//                self.nameLabel.backgroundColor = .white
+//                self.nameLabel.textColor = UIColor.hc_colorFromRGB(rgbValue: 0x999999)
+//
+//            } else if state == -1 {
+//                self.nameLabel.hc_makeBorderWithBorderWidth(width: 1, color: darkblueColor)
+//                self.nameLabel.backgroundColor = .white
+//                self.nameLabel.textColor = darkblueColor
+//
+//            }
+//        }
+
+    }
 
 
 

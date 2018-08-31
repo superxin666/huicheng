@@ -30,7 +30,7 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
     var alertController : UIAlertController!
 
     /// 数据模型
-    var dealModel : getinfoDealModel!
+    var dealModel : getdetailModel!
 
 
     // MARK: - life
@@ -58,7 +58,9 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
         self.creatUI()
         requestVC.delegate = self
         SVPMessageShow.showLoad()
-        requestVC.dealgetinfo(id: dealID)
+//        requestVC.dealgetinfo(id: dealID)
+        requestVC.getdetail(id: dealID)
+
     }
     // MARK: - UI
     func creatUI() {
@@ -115,7 +117,7 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
                     //查看函件
                     let vc = ReadPdfViewController()
 
-                    vc.url = URL(string: base_imageOrFile_api + self.dealModel.img!)
+                    vc.url = URL(string: base_imageOrFile_api + self.dealModel.data.img!)
                     vc.titleStr = "扫描件"
                     self.navigationController?.pushViewController(vc, animated: true)
 
@@ -132,8 +134,8 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
                 let vc = invoiceInfoViewController()
                 vc.hidesBottomBarWhenPushed = true
                 var arr : [String] = []
-                arr.append(dealModel.ispaperStr)
-                arr.append(dealModel.paper)
+                arr.append(dealModel.data.ispaperStr)
+                arr.append(dealModel.data.paper)
                 vc.dataArr = arr
                 self.navigationController?.pushViewController(vc, animated: true)
 
@@ -145,12 +147,12 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
                 var arr : [String] = []
                 var arr2 : [String] = []
                 let vc = BaseInfoViewController()
-                arr.append(dealModel.rStr)
-                arr.append(dealModel.rt)
-                arr.append(dealModel.w1Str)
-                arr.append(dealModel.w2Str)
-                arr2.append(dealModel.ct)
-                arr2.append(dealModel.sj)
+                arr.append(dealModel.data.rStr)
+                arr.append(dealModel.data.rt)
+                arr.append(dealModel.data.w1Str)
+                arr.append(dealModel.data.w2Str)
+                arr2.append(dealModel.data.ct)
+                arr2.append(dealModel.data.sj)
                 vc.dataArr = arr
                 vc.dataArr2 = arr2
                 self.navigationController?.pushViewController(vc, animated: true)
@@ -161,13 +163,13 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
                 //委托人情况
                 let vc = CasePersionViewController()
                 vc.type =  .principal_detail
-                arr.append(dealModel.pn)
-                arr.append(dealModel.pc)
-                arr.append(dealModel.pp)
-                arr.append(dealModel.pz)
-                arr.append(dealModel.pj)
-                arr.append(dealModel.pd)
-                arr.append(dealModel.pa)
+                arr.append(dealModel.data.pn)
+                arr.append(dealModel.data.pc)
+                arr.append(dealModel.data.pp)
+                arr.append(dealModel.data.pz)
+                arr.append(dealModel.data.pj)
+                arr.append(dealModel.data.pd)
+                arr.append(dealModel.data.pa)
                 vc.dataArr = arr
                 self.navigationController?.pushViewController(vc, animated: true)
 
@@ -176,29 +178,33 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
                 var arr : [String] = []
                 let vc = CasePersionViewController()
                 vc.type =  .opposite_detail
-                arr.append(dealModel.on)
-                arr.append(dealModel.oc)
-                arr.append(dealModel.op)
-                arr.append(dealModel.oz)
-                arr.append(dealModel.oj)
-                arr.append(dealModel.oa)
+                arr.append(dealModel.data.on)
+                arr.append(dealModel.data.oc)
+                arr.append(dealModel.data.op)
+                arr.append(dealModel.data.oz)
+                arr.append(dealModel.data.oj)
+                arr.append(dealModel.data.oa)
                 vc.dataArr = arr
                 self.navigationController?.pushViewController(vc, animated: true)
 
             }else if indexPath.row == 4 {
                 HCLog(message: "函件列表")
+                let vc : DocListViewController = DocListViewController()
+                vc.dataArr = self.dealModel.document
+                self.navigationController?.pushViewController(vc, animated: true)
 
             }else if indexPath.row == 5 {
                 HCLog(message: "收款记录")
-                
-
+                let vc : IncomeHistoryViewController = IncomeHistoryViewController()
+                vc.dataArr = self.dealModel.income
+                self.navigationController?.pushViewController(vc, animated: true)
             }else  {
                 HCLog(message: "审核状态")
                 var arr : [String] = []
                 let vc = CheckInfoViewController()
-                arr.append(dealModel.stateStr)
-                arr.append(dealModel.admin)
-                arr.append(dealModel.applytime)
+                arr.append(dealModel.data.stateStr)
+                arr.append(dealModel.data.admin)
+                arr.append(dealModel.data.applytime)
                 vc.dataArr = arr
                 self.navigationController?.pushViewController(vc, animated: true)
 
@@ -222,14 +228,14 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
         return view
     }
     func requestSucceed_work(data: Any, type: WorkRequestVC_enum) {
-        if type == .getinfo {
+        if type == .getdetail {
             SVPMessageShow.dismissSVP()
-            dealModel = data as! getinfoDealModel
-            sectionContent.append(dealModel.dealsnum)
-            sectionContent.append(dealModel.typeStr)
-            sectionContent.append(dealModel.n)
-            sectionContent.append(dealModel.dealpaylasttime)
-            sectionContent.append(dealModel.amount)
+            dealModel = data as! getdetailModel
+            sectionContent.append(dealModel.data.dealsnum)
+            sectionContent.append(dealModel.data.typeStr)
+            sectionContent.append(dealModel.data.n)
+            sectionContent.append(dealModel.data.dealpaylasttime)
+            sectionContent.append(dealModel.data.amount)
             self.mainTabelView.reloadData()
         } else if type == .dealdel  {
             self.sucessBlock()
@@ -253,7 +259,7 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
         } else {
 
             alertController = UIAlertController(title: nil, message: "", preferredStyle: .actionSheet)
-            if self.dealModel.state == 1 {
+            if self.dealModel.data.state == 1 {
                 //审核合同过只能申请结案
                 let actcion1 = UIAlertAction(title: "申请结案", style: .default) { (aciton) in
                     self.showAlert(typeNum: 1)
@@ -305,8 +311,8 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
             if typeNum == 1 {
                 HCLog(message: "结案")
                 let vc = OverCaseViewController()
-                vc.dealId = self.dealModel.id
-                vc.dealNum = self.dealModel.dealsnum
+                vc.dealId = self.dealModel.data.id
+                vc.dealNum = self.dealModel.data.dealsnum
                 vc.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
             } else  if typeNum == 2{
@@ -317,16 +323,16 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
                 let vc : OverDealViewController = OverDealViewController()
                 vc.hidesBottomBarWhenPushed = true
                 vc.type = .editeDeal
-                vc.dealId = self.dealModel.id
-                vc.dealNum = self.dealModel.dealsnum
-                vc.dStr = self.dealModel.dealpaylasttime
-                vc.aStr = self.dealModel.amount
-                vc.itStr = "\(self.dealModel.ispaper!)"
+                vc.dealId = self.dealModel.data.id
+                vc.dealNum = self.dealModel.data.dealsnum
+                vc.dStr = self.dealModel.data.dealpaylasttime
+                vc.aStr = self.dealModel.data.amount
+                vc.itStr = "\(self.dealModel.data.ispaper!)"
 //                vc.itIdStr = self.dealMode
-                vc.pStr = self.dealModel.paper
-                vc.bStr = self.dealModel.begintime
-                vc.eStr = self.dealModel.endtime
-                vc.fileStr = self.dealModel.img!
+                vc.pStr = self.dealModel.data.paper
+                vc.bStr = self.dealModel.data.begintime
+                vc.eStr = self.dealModel.data.endtime
+                vc.fileStr = self.dealModel.data.img!
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }

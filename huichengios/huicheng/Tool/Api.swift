@@ -95,6 +95,7 @@ let deal_getlist_api = "deal/getlist?"
 
 /// 详情
 let deal_getinfo_api = "deal/getinfo?"
+let deal_getdetail_api = "deal/getdetail?"
 
 /// 申请结案
 let deal_oversave_api = "deal/oversave?"

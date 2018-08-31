@@ -14,7 +14,7 @@ enum WorkRequestVC_enum {
          save,newslist1,getobjectlist,newspublic,del,//公告  发布/编辑公告  获取列表  获取接收对象  发布/撤销公告  删除
          case_getlist,case_getinfo,case_add,casedel,createdeals,//案件列表  获取案件详情  添加案件  删除
          branch,department,userlist,casetype,//分所列表  部门列表  本所律师列表  案件类型
-         deal,getinfo,oversave,dealdel,dealSave,//合同列表 详情  申请结案  删除合同
+         deal,getinfo,oversave,dealdel,dealSave,getdetail,//合同列表 详情  申请结案  删除合同
          room,roomsave,roomdel,//会议室
          dealgetapplylist,applysave,searchlist,// 合同审核  获取列表
          dealgetoverlist,dealgetoverinfo,checkoversave,//结案审核
@@ -412,6 +412,19 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
         request.request_api(url: url)
     }
 
+
+    /// 合同详情
+    ///
+    /// - Parameter id: <#id description#>
+    func getdetail(id : Int)  {
+        request.delegate = self
+        type = .getdetail
+        let url =   deal_getdetail_api + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url,type: .alltyper)
+
+
+    }
+
     /// 申请结案
     ///
     /// - Parameters:
@@ -760,7 +773,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
         request.delegate = self
         type = .invoice_getinfo
         let url = invoice_getinfo_api + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
-        request.request_api(url: url)
+        request.request_api(url: url,type: .alltyper)
 
     }
 
@@ -1109,6 +1122,11 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
 
         } else if type == .invoice_getinfo{
             let model = Mapper<invoice_getinfoModel>().map(JSON: response as! [String : Any])!
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed_work(data: model,type : type)
+            }
+        } else if type == .getdetail{
+            let model = Mapper<getdetailModel>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work(data: model,type : type)
             }

@@ -82,7 +82,6 @@ class getinfoDealModel: Mappable {
         ispaperStr <- map["ispaperStr"]
         paper <- map["paper"]
         branch <- map["branch"]
-        dealsnum <- map["dealsnum"]
         state <- map["state"]
         stateStr <- map["stateStr"]
         admin <- map["admin"]

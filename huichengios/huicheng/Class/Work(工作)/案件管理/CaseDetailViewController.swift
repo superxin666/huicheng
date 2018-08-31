@@ -655,8 +655,6 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
                 let vc = OverDealViewController()
                 vc.dealId = self.caseId
                 vc.dealNum = self.caseDetailModel.data.dealnum
-                vc.caseType = self.caseDetailModel.data.type!
-
                 self.navigationController?.pushViewController(vc, animated: true)
 
 

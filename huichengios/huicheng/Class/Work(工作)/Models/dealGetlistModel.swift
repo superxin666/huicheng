@@ -42,8 +42,6 @@ class dealGetlistModel: Mappable {
 
         state <- map["state"]
         stateStr <- map["stateStr"]
-   
-
 
     }
 }
