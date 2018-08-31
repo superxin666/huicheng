@@ -21,7 +21,11 @@ class expense_getlistModel: Mappable {
     
     var user: String!
     var admin: String!
-    
+
+
+    var branch: String = ""
+    var department: String = ""
+
     init() {}
     required init?(map: Map){
         mapping(map: map)
@@ -39,5 +43,8 @@ class expense_getlistModel: Mappable {
         state <- map["state"]
         user <- map["user"]
         admin <- map["admin"]
+
+        branch <- map["branch"]
+        department <- map["department"]
     }
 }

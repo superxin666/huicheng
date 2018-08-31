@@ -78,6 +78,12 @@ class ExpenseapplylistViewController: BaseViewController,UITableViewDataSource,U
 
             let vc  : ExpenseapplyDetialViewController = ExpenseapplyDetialViewController()
             vc.id = model.id!
+
+            vc.branchStr  = model.branch
+            vc.departmentStr  = model.department
+            vc.userStr  = model.user
+
+
             vc.sucessBlock = {
                 self.reflishData()
             }

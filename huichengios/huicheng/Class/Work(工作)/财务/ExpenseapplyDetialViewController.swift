@@ -25,6 +25,10 @@ class ExpenseapplyDetialViewController: BaseViewController,WorkRequestVCDelegate
     var id : Int!
     var alertController : UIAlertController!
 
+    var branchStr  = ""
+    var departmentStr  = ""
+    var userStr  = ""
+
 
 
     let name1 = ["分所","部门","报销人","报销类型","报销金额","附件张数","申请时间"]
@@ -199,9 +203,10 @@ class ExpenseapplyDetialViewController: BaseViewController,WorkRequestVCDelegate
 
     func requestSucceed_mine(data: Any, type: MineRequestVC_enum) {
         dataModel = data as! expense_getinfoModel
-        content1.append("")
-        content1.append("")
-        content1.append("")
+        content1.append(branchStr)
+        content1.append(departmentStr)
+        content1.append(userStr)
+     
         content1.append(dataModel.data.typeStr)
         content1.append("\(dataModel.data.money!)")
         content1.append("\(dataModel.data.total!)张")
