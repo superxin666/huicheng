@@ -247,7 +247,10 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
     func memo_saveRequest(n:String,t:String,i:Int,id : Int = 0) {
         request.delegate = self
         type = .memo_save
-        let tStr :String = t.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+
+        let t2 = String.hc_getDate_string0(dateStr: t)
+        HCLog(message: t2)
+        let tStr :String = t2.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         let nStr :String = n.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         
          var url = ""
@@ -256,7 +259,7 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
         } else {
             url = memo_save_api + "k=\(UserInfoLoaclManger.getKey())&n=\(nStr)&t=\(tStr)&i=\(i)"
         }
-       
+
         request.request_api(url: url)
     }
     

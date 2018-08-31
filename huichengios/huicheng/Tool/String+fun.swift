@@ -136,6 +136,20 @@ extension String {
         dfmatter2.dateFormat="yyyy-MM-dd HH:mm"
         return dfmatter2.string(from: date!)
     }
+
+
+    static func hc_getDate_string0(dateStr : String) -> String {
+        HCLog(message: dateStr)
+        let dfmatter = DateFormatter()
+        dfmatter.dateFormat="yyyy-MM-dd HH:mm:ss"
+        let date = dfmatter.date(from: dateStr)
+        //        return  dfmatter.string(from: date!)
+
+        let dfmatter2 = DateFormatter()
+        dfmatter2.dateFormat="yyyy-MM-dd HH:mm:00"
+        return dfmatter2.string(from: date!)
+    }
+
     
     
     /// 获取当前时间
