@@ -29,7 +29,15 @@ class SelectedHeadView: UIView,NibLoadable {
     /// 0-增值税普通发票;1-增值税专用发票
     var invoiceType = "0"
 
-
+    func setSelected(type : String) {
+        if type == "0" {
+            leftBtn.isSelected = true
+            rightBtn.isSelected = false
+        } else {
+            leftBtn.isSelected = false
+            rightBtn.isSelected = true
+        }
+    }
 
     @IBAction func btnClick(_ sender: UIButton) {
 

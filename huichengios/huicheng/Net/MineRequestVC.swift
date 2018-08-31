@@ -411,8 +411,15 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_mine(data: model,type : type)
             }
+        } else if type == .invoice_getinfo{
+            let model = Mapper<invoice_getinfoModel>().map(JSON: response as! [String : Any])!
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed_mine(data: model,type : type)
+            }
         }
     }
+
+
     func requestFail(response: Any) {
         
         

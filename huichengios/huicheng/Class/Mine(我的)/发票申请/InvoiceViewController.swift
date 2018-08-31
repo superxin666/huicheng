@@ -81,6 +81,15 @@ class InvoiceViewController:  BaseViewController, UITableViewDataSource, UITable
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row < self.dataArr.count {
+            let model : invoice_getlistModel = self.dataArr[indexPath.row]
+
+            let vc : AddInvoiceViewController = AddInvoiceViewController()
+            vc.id = model.id
+            vc.viewType = .detial
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
