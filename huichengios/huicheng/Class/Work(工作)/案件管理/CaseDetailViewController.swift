@@ -55,6 +55,11 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
     //-------添加案件参数
     /// 案件类型
     var tStr : String = ""
+    var tnameStr : String = ""
+
+
+
+
     var nStr : String = ""
     var rtStr : String = ""
     var pnStr : String = ""
@@ -71,9 +76,17 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
     var ojStr : String = ""
     var oaStr : String = ""
     var rStr : String = ""
+    var rnameStr : String = ""
+
     var dStr : String = ""
+    var dNameStr : String = ""
+
     var w1Str : String = ""
+    var w1NameStr : String =  ""
+
     var w2Str : String = ""
+    var w2NameStr : String =  ""
+
     var ctStr : String = ""
     var sjStr : String = ""
     
@@ -162,30 +175,79 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            if indexPath.row == 0 || indexPath.row == 3 || indexPath.row == 4 || indexPath.row == 5 || indexPath.row == 6 {
+            if indexPath.row == 0 {
+                //类型
                 let cell : OptionTableViewCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
                 let titleStr = name1[indexPath.row]
-                var contentStr = ""
-                if content1.count > 0 {
-                    contentStr = content1[indexPath.row]
-                }
                 if type == .caseDetail || type == .crtDetail || type == .searchCseDetail{
                     cell.isUserInteractionEnabled = false
                 } else {
                     cell.isUserInteractionEnabled = true
                 }
-                cell.setData_caseDetail(titleStr: titleStr, contentStr: contentStr)
+                cell.setData_caseDetail(titleStr: titleStr, contentStr: tnameStr)
                 return cell
+            } else if indexPath.row == 3 {
+                //立案律师
+                let cell : OptionTableViewCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
+                let titleStr = name1[indexPath.row]
+
+                if type == .caseDetail || type == .crtDetail || type == .searchCseDetail{
+                    cell.isUserInteractionEnabled = false
+                } else {
+                    cell.isUserInteractionEnabled = true
+                }
+                cell.setData_caseDetail(titleStr: titleStr, contentStr: rnameStr)
+                return cell
+
+
+
+            } else if indexPath.row == 4 {
+                //案件组别
+                let cell : OptionTableViewCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
+                let titleStr = name1[indexPath.row]
+
+                if type == .caseDetail || type == .crtDetail || type == .searchCseDetail{
+                    cell.isUserInteractionEnabled = false
+                } else {
+                    cell.isUserInteractionEnabled = true
+                }
+                cell.setData_caseDetail(titleStr: titleStr, contentStr: dNameStr)
+                return cell
+
+
+
+            } else if indexPath.row == 5 {
+                let cell : OptionTableViewCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
+                let titleStr = name1[indexPath.row]
+
+                if type == .caseDetail || type == .crtDetail || type == .searchCseDetail{
+                    cell.isUserInteractionEnabled = false
+                } else {
+                    cell.isUserInteractionEnabled = true
+                }
+                cell.setData_caseDetail(titleStr: titleStr, contentStr: w1NameStr)
+                return cell
+
+            } else if indexPath.row == 6{
+                let cell : OptionTableViewCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
+                let titleStr = name1[indexPath.row]
+
+                if type == .caseDetail || type == .crtDetail || type == .searchCseDetail{
+                    cell.isUserInteractionEnabled = false
+                } else {
+                    cell.isUserInteractionEnabled = true
+                }
+                cell.setData_caseDetail(titleStr: titleStr, contentStr: w2NameStr)
+                return cell
+
+
+
             } else if indexPath.row == 1{
                 let cell : TitleTableViewCell  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
                 cell.delegate = self
-                var contentStr = ""
-                if content1.count > 0 {
-                    contentStr = content1[indexPath.row]
-                } else {
-                    contentStr = self.nStr
-                }
-                cell.setData_caseDetail(titleStr: name1[indexPath.row], contentStr: contentStr,indexPath : indexPath)
+
+
+                cell.setData_caseDetail(titleStr: name1[indexPath.row], contentStr: nStr,indexPath : indexPath)
                 cell.tag = indexPath.row
                 if type == .caseDetail  || type == .crtDetail || type == .searchCseDetail{
                     cell.isUserInteractionEnabled = false
@@ -196,11 +258,8 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
             }  else {
                 //结束时间
                 let endTimeCell : endTimeTableViewCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-                var timeStr = ""
-                if content1.count > 0 {
-                    timeStr = content1[indexPath.row]
-                }
-                endTimeCell.setData_case(titleStr: "立案日期", timeStr: timeStr)
+
+                endTimeCell.setData_case(titleStr: "立案日期", timeStr: rtStr)
                 if type == .caseDetail  || type == .crtDetail || type == .searchCseDetail{
                     endTimeCell.isUserInteractionEnabled = false
                 } else {
@@ -215,12 +274,9 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
         } else {
             if indexPath.row == 0 {
                 let cell : ContentTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: ContentTableViewCellID, for: indexPath) as! ContentTableViewCell
-                var contentStr = ""
+
                 cell.delegate = self
-                if content3.count > 0 {
-                    contentStr = content3[indexPath.row]
-                }
-                cell.setData_case(title: name3[indexPath.row], contentCase: contentStr)
+                cell.setData_case(title: name3[indexPath.row], contentCase: ctStr)
                 if type == .caseDetail  || type == .crtDetail || type == .searchCseDetail{
                     cell.isUserInteractionEnabled = false
                 } else {
@@ -231,13 +287,7 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
             } else {
                 let cell : TitleTableViewCell  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
                 cell.delegate = self
-                var contentStr = ""
-                if content3.count > 0 {
-                    contentStr = content3[indexPath.row]
-                } else {
-                    contentStr = self.sjStr
-                }
-                cell.setData_caseDetail(titleStr: name3[indexPath.row], contentStr: contentStr, indexPath: indexPath)
+                cell.setData_caseDetail(titleStr: name3[indexPath.row], contentStr: sjStr, indexPath: indexPath)
                 if type == .caseDetail  || type == .crtDetail || type == .searchCseDetail{
                     cell.isUserInteractionEnabled = false
                 } else {
@@ -417,6 +467,12 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
             SVPMessageShow.showErro(infoStr: "请输入案件名称")
             return
         }
+        if caseType == "3" {
+            if !(self.pdStr.count > 0) {
+                SVPMessageShow.showErro(infoStr: "请输入委托方身份证号")
+                return
+            }
+        }
     
         SVPMessageShow.showLoad(title: "正在发布")
         request.caseAdd(t: tStr, n: nStr, rt: rtStr, pn: pnStr, pc: pcStr, pp: ppStr, pz: pzStr, pj: pjStr, pd: pdStr, pa: paStr, on: onStr, oc: ocStr, op: opStr, oz: ozStr, oj: ojStr, oa: oaStr, r: rStr, d: dStr, w1: w1Str, w2: w2Str, ct: ctStr, sj: sjStr, id: "")
@@ -433,34 +489,79 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
         if type == .case_getinfo {
             caseDetailModel = data as! caseDetailModelMap
             //案件类型
-            content1.append(caseDetailModel.data.typeStr)
+//            content1.append(caseDetailModel.data.typeStr)
             HCLog(message: caseDetailModel.data.typeStr)
 
             HCLog(message: caseDetailModel.data.type)
+
+
+//            //名字
+//            content1.append(caseDetailModel.data.n)
+//
+//            //时间
+//            content1.append(caseDetailModel.data.rt)
+//
+//            //律师
+//            content1.append(caseDetailModel.data.rStr)
+//
+//            //组别
+//            content1.append(caseDetailModel.data.dStr)
+//
+//
+//            content1.append(caseDetailModel.data.w1Str)
+//
+//
+//            content1.append(caseDetailModel.data.w2Str)
+
             caseType = "\(caseDetailModel.data.type!)"
 
-            //名字
-            content1.append(caseDetailModel.data.n)
 
-            //时间
-            content1.append(caseDetailModel.data.rt)
-
-            //律师
-            content1.append(caseDetailModel.data.rStr)
-
-            //组别
-            content1.append(caseDetailModel.data.dStr)
+            //案件名称
+            self.nStr = self.caseDetailModel.data.n
+            //立案时间
+            self.rtStr = self.caseDetailModel.data.rt
+            //案件类型
+            self.tStr = "\(self.caseDetailModel.data.type!)"
+            self.tnameStr = self.caseDetailModel.data.typeStr
 
 
-            content1.append(caseDetailModel.data.w1Str)
+            //案件组别
+            if let str = self.caseDetailModel.data.d {
+                self.dStr = "\(str)"
+            }
+            self.dNameStr = self.caseDetailModel.data.dStr
+
+            //立案律师
+            if let str = self.caseDetailModel.data.r {
+                self.rStr = "\(str)"
+            }
+            rnameStr = self.caseDetailModel.data.rStr
 
 
-            content1.append(caseDetailModel.data.w2Str)
 
-             //自述
-            content3.append(caseDetailModel.data.ct)
-            //标的
-            content3.append(caseDetailModel.data.sj)
+            //承办律师1
+            if let str = self.caseDetailModel.data.w1 {
+                self.w1Str = "\(str)"
+            }
+            self.w1NameStr = self.caseDetailModel.data.w1Str
+
+            //承办律师2
+            if let str = self.caseDetailModel.data.w2 {
+                self.w2Str = "\(str)"
+            }
+            self.w2NameStr = self.caseDetailModel.data.w2Str
+
+
+
+            self.ctStr = self.caseDetailModel.data.ct
+            self.sjStr = self.caseDetailModel.data.sj
+
+
+
+//             自述
+//            content3.append(caseDetailModel.data.ct)
+//            //标的
+//            content3.append(caseDetailModel.data.sj)
 
             self.tableView.reloadData()
         } else if type == .casetype {
@@ -564,28 +665,6 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
                 self.navigationBar_rightBtn_title(name: "确定")
                 self.type = .editeCase
 
-                self.tStr = "\(self.caseDetailModel.data.type!)"
-                self.nStr = self.caseDetailModel.data.n
-                self.rtStr = self.caseDetailModel.data.rStr
-
-                if let str = self.caseDetailModel.data.r {
-                    self.rStr = "\(str)"
-                }
-
-                if let str = self.caseDetailModel.data.d {
-                    self.dStr = "\(str)"
-                }
-
-                self.ctStr = self.caseDetailModel.data.ct
-                self.sjStr = self.caseDetailModel.data.sj
-
-                if let str = self.caseDetailModel.data.w1 {
-                    self.w1Str = "\(str)"
-                }
-
-                if let str = self.caseDetailModel.data.w2 {
-                    self.w2Str = "\(str)"
-                }
 
                 self.pnStr = self.caseDetailModel.data.pn
                 self.pcStr = self.caseDetailModel.data.pc
@@ -661,24 +740,31 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
         if pickTag == 0 {
             //类型
             self.tStr = idStr
+            self.tnameStr = titleStr
         } else if pickTag == 3 {
             //立案律师
             self.rStr = idStr
+            self.rnameStr = titleStr
         } else if pickTag == 4 {
             //案件
             self.dStr = idStr
+            self.dNameStr = titleStr
         } else if pickTag == 5 {
             //承办律师
             self.w1Str = idStr
+            self.w1NameStr = titleStr
         } else {
             //承办律师
             self.w2Str = idStr
+            self.w2NameStr = titleStr
         }
-        let cell : OptionTableViewCell = self.tableView.cellForRow(at: IndexPath(row: pickTag, section: 0)) as! OptionTableViewCell
-        cell.setOptionData(contentStr: titleStr)
-        
+//        let cell : OptionTableViewCell = self.tableView.cellForRow(at: IndexPath(row: pickTag, section: 0)) as! OptionTableViewCell
+//        cell.setOptionData(contentStr: titleStr)
+
         self.optionView.removeFromSuperview()
         self.maskView.removeFromSuperview()
+
+        self.tableView.reloadData()
         
     }
     
