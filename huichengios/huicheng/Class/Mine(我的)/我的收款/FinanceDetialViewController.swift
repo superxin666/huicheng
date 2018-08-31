@@ -14,16 +14,19 @@ class FinanceDetialViewController: BaseViewController,MineRequestVCDelegate,UITa
     let mainTabelView : UITableView = UITableView()
     let request : MineRequestVC = MineRequestVC()
     var dataModel : finance_getinfoModel!
-    let titleArr = ["合同信息","报销信息","支付信息"]
-    
+    var titleArr = ["合同信息","报销信息","支付信息"]
+    //合同信息
     let name1 = ["合同编号","委托人","合同金额","已付金额"]
     var content1 :[String] = []
-
+    //报销信息
     let name2 = ["类型","发票金额","审核人","审核时间"]
     var content2 : [String] = []
-
+    //支付信息
     let name3 = ["收款律师","金额","支行信息","卡号","状态","经办人","支付时间"]
     var content3 : [String] = []
+
+    var rowNum = 4
+
 
     var financeId : Int!
     // MARK: - life
@@ -62,38 +65,50 @@ class FinanceDetialViewController: BaseViewController,MineRequestVCDelegate,UITa
     
     // MARK: - delegate
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 2
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0{
-            return 4
-        } else if section == 1 {
-            return 4
+        if section == 0 {
+            return rowNum
         } else {
-            return 7
+            return name3.count
         }
-        
     }
+
+
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : FinanceDetialTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: FinanceDetialTableViewCellID, for: indexPath) as! FinanceDetialTableViewCell
-        
+
+
         if indexPath.section == 0 {
-            if indexPath.row < content1.count  {
-                cell.setData(title: name1[indexPath.row], content: content1[indexPath.row])
+
+            if let model = dataModel {
+                if model.type == 0 {
+
+                    if indexPath.row < content1.count  {
+                        cell.setData(title: name1[indexPath.row], content: content1[indexPath.row])
+                    } else {
+//                        return UITableViewCell(style: .default, reuseIdentifier: "")
+                    }
+
+
+                } else {
+                    if indexPath.row < content2.count  {
+                        cell.setData(title: name2[indexPath.row], content: content2[indexPath.row])
+                    } else {
+//                        return UITableViewCell(style: .default, reuseIdentifier: "")
+                    }
+                }
+
             }
-            
-        } else if indexPath.section == 1 {
-            if indexPath.row < content2.count  {
-                cell.setData(title: name2[indexPath.row], content: content2[indexPath.row])
-            }
-            
-        } else {
+        }  else {
             if indexPath.row < content3.count  {
                 cell.setData(title: name3[indexPath.row], content: content3[indexPath.row])
             }
-            
         }
         return cell
+
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -110,55 +125,74 @@ class FinanceDetialViewController: BaseViewController,MineRequestVCDelegate,UITa
     }
     func requestSucceed_mine(data: Any,type : MineRequestVC_enum) {
         
-        let model : finance_getinfoModel = data as! finance_getinfoModel
+        dataModel = data as! finance_getinfoModel
 //        ["合同编号","委托人","合同金额","已付金额"]
-        content1.append(model.num)
-        content1.append(model.principal)
-        if let str = model.dealamount {
-            content1.append("\(str)")
+//        dataModel.type = 0
+        if dataModel.type == 0 {
+            //提成  合同信息 支付信息
+            titleArr = ["合同信息","支付信息"]
+            content1.append(dataModel.num)
+            content1.append(dataModel.principal)
+            if let str = dataModel.dealamount {
+                content1.append("\(str)")
+            } else {
+                content1.append("")
+            }
+
+            if let str = dataModel.paymoney {
+                content1.append("\(str)")
+            } else {
+                content1.append("")
+            }
+
+            rowNum = name1.count
+
+
+            //        ["收款律师","金额","支行信息","卡号","状态","经办人","支付时间"]
+            content3.append(dataModel.user)
+            if let str = dataModel.money {
+                content3.append("\(str)")
+            } else {
+                content3.append("")
+            }
+            content3.append(dataModel.bank)
+            content3.append("\(dataModel.cardno)")
+            content3.append(dataModel.typeStr)
+            content3.append(dataModel.funadmin)
+            content3.append(dataModel.paytime)
+
         } else {
-            content1.append("")
+            //报销  报销信息 支付信息
+            titleArr = ["报销信息","支付信息"]
+
+            //["类型","发票金额","审核人","审核时间"]
+            content2.append(dataModel.typeStr)
+            if let str = dataModel.money {
+                content2.append("\(str)")
+            } else {
+                content2.append("")
+            }
+
+            content2.append("\(dataModel.applyname)")
+            content2.append(dataModel.applytime)
+
+            rowNum = name2.count
+
+
+            // ["收款律师","金额","支行信息","卡号","状态","经办人","支付时间"]
+            content3.append(dataModel.user)
+            if let str = dataModel.money {
+                content3.append("\(str)")
+            } else {
+                content3.append("")
+            }
+            content3.append(dataModel.bank)
+            content3.append("\(dataModel.cardno)")
+            content3.append(dataModel.typeStr)
+            content3.append(dataModel.funadmin)
+            content3.append(dataModel.paytime)
+
         }
-
-        if let str = model.paymoney {
-            content1.append("\(str)")
-        } else {
-            content1.append("")
-        }
-
-
-
-        
-//        ["类型","发票金额","审核人","审核时间"]
-        content2.append(model.typeStr)
-        if let str = model.money {
-            content2.append("\(str)")
-        } else {
-            content2.append("")
-        }
-        
-        content2.append("\(model.applyname)")
-        content2.append(model.applytime)
-        
-//        ["收款律师","金额","支行信息","卡号","状态","经办人","支付时间"]
-        content3.append(model.user)
-
-
-        if let str = model.money {
-            content3.append("\(str)")
-        } else {
-            content3.append("")
-        }
-
-
-        content3.append(model.bank)
-        content3.append("\(model.cardno)")
-
-
-
-        content3.append(model.typeStr)
-        content3.append(model.funadmin)
-        content3.append(model.paytime)
 
         self.mainTabelView.reloadData()
         
