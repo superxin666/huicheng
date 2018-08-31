@@ -710,9 +710,9 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
             self.navigationController?.popViewController(animated: true)
         } else if type == .invoice_getinfo {
             dataModel = data as! invoice_getinfoModel
-
-
-            typeStr = "\(dataModel.type)"
+            HCLog(message: "asdfadsf")
+            HCLog(message: dataModel.type)
+            typeStr = "\(dataModel.type!)"
             if typeStr == "0" {
                 //普通
                 HCLog(message: "普通")
@@ -727,9 +727,10 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
 
             isbooksStr = "\(dataModel.isbooks!)"
             sendtype = "\(dataModel.sendtype!)"
-            if dataModel.paytype.count > 0 {
-                paytype = dataModel.paytype
-            }
+            
+//            if dataModel.paytype.count > 0 {
+                paytype = "\(dataModel.paytype)"
+//            }
 
             if isbooksStr == "0" && sendtype == "0" {
                 section1Type = 0
@@ -984,17 +985,18 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
                 SVPMessageShow.showErro(infoStr: "请勾选承诺")
                 return
             }
-            requestVC.invoice_saveRequest(typeStr: typeStr, title: titleStr, money: moneyStr, creditcode: creditcodeStr, sendtype: sendtype, content: contentStr, isbooks: isbooksStr, applytime: applytimeStr, identifier: self.identifierStr, eaddr: self.eaddrStr, ephone: ephoneStr, ebank: ebankStr, ecard: ecardStr, name: nameStr, phone: phoneStr, zip: zipStr, addr: addrStr, paytype: paytype, mtime: mtimeStr, remark: remarkStr, imageArr: imageArr)
+            requestVC.invoice_saveRequest(id: "", typeStr: typeStr, title: titleStr, money: moneyStr, creditcode: creditcodeStr, sendtype: sendtype, content: contentStr, isbooks: isbooksStr, applytime: applytimeStr, identifier: self.identifierStr, eaddr: self.eaddrStr, ephone: ephoneStr, ebank: ebankStr, ecard: ecardStr, name: nameStr, phone: phoneStr, zip: zipStr, addr: addrStr, paytype: paytype, mtime: mtimeStr, remark: remarkStr, imageArr: imageArr)
 
         } else if viewType == .detial{
             HCLog(message: "修改")
             self.navigationBar_rightBtn_title(name: "确定")
             self.viewType = .edite
-
-
+            self.tableView.reloadData()
 
         } else if viewType == .edite{
+            self.view.endEditing(true)
             HCLog(message: "修改之后确定")
+            requestVC.invoice_saveRequest(id: "\(id!)", typeStr: typeStr, title: titleStr, money: moneyStr, creditcode: creditcodeStr, sendtype: sendtype, content: contentStr, isbooks: isbooksStr, applytime: applytimeStr, identifier: self.identifierStr, eaddr: self.eaddrStr, ephone: ephoneStr, ebank: ebankStr, ecard: ecardStr, name: nameStr, phone: phoneStr, zip: zipStr, addr: addrStr, paytype: paytype, mtime: mtimeStr, remark: remarkStr, imageArr: imageArr)
 
 
 

@@ -78,7 +78,7 @@ class invoice_getinfoModel: Mappable {
     var phone: String!
     var zip: String!
     var addr: String!
-    var paytype: String!
+    var paytype: Int = 0
 
     var paytypeStr: String!
     var remark: String!

@@ -255,16 +255,29 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
     override func navigationRightBtnClick() {
 
         if type == .searchDeal {
-            HCLog(message: "打印")
+            HCLog(message: "分享")
+
+
+
+
+
         } else {
 
             alertController = UIAlertController(title: nil, message: "", preferredStyle: .actionSheet)
             if self.dealModel.data.state == 1 {
-                //审核合同过只能申请结案
+                //审核合同过  申请结案  分享
                 let actcion1 = UIAlertAction(title: "申请结案", style: .default) { (aciton) in
                     self.showAlert(typeNum: 1)
                 }
                 alertController.addAction(actcion1)
+
+                let actcion2 = UIAlertAction(title: "分享", style: .default) { (aciton) in
+
+
+                    
+                }
+                alertController.addAction(actcion2)
+
 
             } else {
                 let actcion1 = UIAlertAction(title: "删除", style: .default) { (aciton) in

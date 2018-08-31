@@ -87,6 +87,9 @@ class InvoiceViewController:  BaseViewController, UITableViewDataSource, UITable
             let vc : AddInvoiceViewController = AddInvoiceViewController()
             vc.id = model.id
             vc.viewType = .detial
+            vc.sucessBlock = {
+                self.reflishData()
+            }
             self.navigationController?.pushViewController(vc, animated: true)
             
         }
@@ -158,6 +161,7 @@ class InvoiceViewController:  BaseViewController, UITableViewDataSource, UITable
         HCLog(message: "添加")
         let vc = AddInvoiceViewController()
         vc.hidesBottomBarWhenPushed = true
+        vc.viewType = .add
         vc.sucessBlock = {
             self.reflishData()
         }
