@@ -136,7 +136,6 @@ class BaseNetViewController: UIViewController {
      func downLoadFile(path : String,name : String, completion : @escaping (_ data : Any) ->(), failure : @escaping (_ error : Any)->()) {
         //
 
-
         if fileManager.fileExists(atPath: filePath_downLoad) {
             HCLog(message: "文件夹已存在")
         } else {

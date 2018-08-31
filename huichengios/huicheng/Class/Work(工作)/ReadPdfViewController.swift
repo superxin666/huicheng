@@ -19,15 +19,19 @@ enum ReadPdfViewControllerType {
 
 typealias ReadPdfViewControllerBlock = ()->()
 
-class ReadPdfViewController: BaseViewController,UIPrintInteractionControllerDelegate,Work2RequestVCDelegate,UIWebViewDelegate,UIScrollViewDelegate {
+class ReadPdfViewController: BaseViewController,UIPrintInteractionControllerDelegate,Work2RequestVCDelegate,UIWebViewDelegate,UIScrollViewDelegate,UIDocumentInteractionControllerDelegate {
 
     var type : ReadPdfViewControllerType = .other
+
+    var docVC : UIDocumentInteractionController!
+
     
     var id : Int!
 
     var webView : UIWebView!
 
     var url : URL!
+    var pdfStr : String!
 
     var zhang : String!
 
@@ -46,6 +50,8 @@ class ReadPdfViewController: BaseViewController,UIPrintInteractionControllerDele
     var titleStr = "函件详情"
 
     var imageSize : CGSize!
+
+    var baseVC : BaseNetViewController = BaseNetViewController()
 
 
     override func viewDidLoad() {
@@ -92,23 +98,23 @@ class ReadPdfViewController: BaseViewController,UIPrintInteractionControllerDele
             if pdfstate == 3 {//3
                 //已经盖章 可打印
                 alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-                let delAction = UIAlertAction(title: "打印", style: .default) { (action) in
-                    HCLog(message: "打印")
-
-                    let printVC : UIPrintInteractionController = UIPrintInteractionController.shared
-                    printVC.delegate = self
+                let delAction = UIAlertAction(title: "分享", style: .default) { (action) in
+                    HCLog(message: "分享")
+                    self.shareFile()
 
 
 
-                    printVC.showsPageRange = false
-                    printVC.printFormatter = self.webView.viewPrintFormatter()
-
-                    printVC.present(animated: true, completionHandler: { (printController, completed, erro) in
-                        if !completed {
-                            HCLog(message: "无法完成打印")
-
-                        }
-                    })
+//                    let printVC : UIPrintInteractionController = UIPrintInteractionController.shared
+//                    printVC.delegate = self
+//                    printVC.showsPageRange = false
+//                    printVC.printFormatter = self.webView.viewPrintFormatter()
+//
+//                    printVC.present(animated: true, completionHandler: { (printController, completed, erro) in
+//                        if !completed {
+//                            HCLog(message: "无法完成打印")
+//
+//                        }
+//                    })
 
 
                 }
@@ -189,6 +195,36 @@ class ReadPdfViewController: BaseViewController,UIPrintInteractionControllerDele
             let tap : UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(zhangClick(sender:)))
             zhangImageView.addGestureRecognizer(tap)
         }
+    }
+
+
+    func shareFile()  {
+        let filePath = pdfStr.components(separatedBy: "/")
+        let fileName = filePath.last
+        HCLog(message: filePath)
+        HCLog(message: fileName)
+
+
+
+        baseVC.downLoadFile(path: pdfStr, name: fileName!, completion: { (data) in
+            let str : String = data as! String
+
+            let url  = URL(fileURLWithPath: str)
+
+            self.docVC = UIDocumentInteractionController(url: url)
+            self.docVC.delegate = self
+            self.docVC.presentPreview(animated: true)
+
+        }) { (erro) in
+            SVPMessageShow.showErro(infoStr: "文件加载失败，请重新尝试")
+        }
+    }
+
+    func documentInteractionControllerDidEndPreview(_ controller: UIDocumentInteractionController) {
+
+    }
+    func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
+        return self
     }
 
     func webViewDidStartLoad(_ webView: UIWebView) {

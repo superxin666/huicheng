@@ -99,6 +99,7 @@
 		2128C1F02139289500F12BAF /* getdetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2128C1EF2139289500F12BAF /* getdetailModel.swift */; };
 		2128C1F221392BEC00F12BAF /* DocListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2128C1F121392BEC00F12BAF /* DocListViewController.swift */; };
 		2128C1F4213931BE00F12BAF /* IncomeHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2128C1F3213931BE00F12BAF /* IncomeHistoryViewController.swift */; };
+		2128C1F62139385A00F12BAF /* 123.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2128C1F52139385900F12BAF /* 123.pdf */; };
 		2129C1C2211EDFD50070A82F /* WorlkHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2129C1C1211EDFD50070A82F /* WorlkHeadView.swift */; };
 		212FEA8120C3EF1300A466E2 /* Title6TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212FEA7F20C3EF1300A466E2 /* Title6TableViewCell.swift */; };
 		212FEA8220C3EF1300A466E2 /* Title6TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 212FEA8020C3EF1300A466E2 /* Title6TableViewCell.xib */; };
@@ -375,6 +376,7 @@
 		2128C1EF2139289500F12BAF /* getdetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getdetailModel.swift; sourceTree = "<group>"; };
 		2128C1F121392BEC00F12BAF /* DocListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocListViewController.swift; sourceTree = "<group>"; };
 		2128C1F3213931BE00F12BAF /* IncomeHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeHistoryViewController.swift; sourceTree = "<group>"; };
+		2128C1F52139385900F12BAF /* 123.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 123.pdf; sourceTree = "<group>"; };
 		2129C1C1211EDFD50070A82F /* WorlkHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorlkHeadView.swift; sourceTree = "<group>"; };
 		212FEA7F20C3EF1300A466E2 /* Title6TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title6TableViewCell.swift; sourceTree = "<group>"; };
 		212FEA8020C3EF1300A466E2 /* Title6TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Title6TableViewCell.xib; sourceTree = "<group>"; };
@@ -881,6 +883,7 @@
 		215C65C9203EC6B6001C7A92 /* huicheng */ = {
 			isa = PBXGroup;
 			children = (
+				2128C1F52139385900F12BAF /* 123.pdf */,
 				21095D5B20BBBBA200759EC3 /* huicheng.entitlements */,
 				2137667A203FB7CE000CBCE6 /* Net */,
 				21376678203FB77B000CBCE6 /* Class */,
@@ -1240,6 +1243,7 @@
 				215C65D2203EC6B6001C7A92 /* Assets.xcassets in Resources */,
 				21DDC9D620809E880067197D /* Title2TableViewCell.xib in Resources */,
 				2107554C205D4C3200FF4396 /* LoginMidBottomView.xib in Resources */,
+				2128C1F62139385A00F12BAF /* 123.pdf in Resources */,
 				2126DBD920897BC500977802 /* Title3TableViewCell.xib in Resources */,
 				216B7C5E20637D7000BBACDA /* WorkBookTableViewCell.xib in Resources */,
 				2123A382208EFCD300C50FA9 /* ShareHeadView.xib in Resources */,
