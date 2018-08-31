@@ -26,7 +26,7 @@ class AddExpenseViewController: BaseTableViewController ,MineRequestVCDelegate,O
 
     var rowNum = 5
 
-    var nameArr = ["时间申请","状态","审核人","审核时间","驳回原因",]
+    var nameArr = ["申请时间","状态","审核人","审核时间","驳回原因",]
 
     var contentArr : [String] = []
 

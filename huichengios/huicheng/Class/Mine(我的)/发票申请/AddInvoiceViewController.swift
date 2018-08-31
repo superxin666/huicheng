@@ -7,10 +7,11 @@
 //  添加发票
 
 import UIKit
-
+typealias AddInvoiceViewControllerBlock = ()->()
 class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,TitleTableViewCellDelegate,Selected2TableViewCellDelegate,Title5TableViewCellDelegate,DatePickViewDelegate,SelectedHeadViewDelegate {
 
     let requestVC = MineRequestVC()
+    var sucessBlock : AddInvoiceViewControllerBlock!
 
 
     let sectionNameArr = ["公司名称","社会统一信用代码","发票内容","发票金额",]
@@ -505,6 +506,7 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
 
     }
     func requestSucceed_mine(data: Any, type: MineRequestVC_enum) {
+        self.sucessBlock()
         self.navigationController?.popViewController(animated: true)
     }
 
