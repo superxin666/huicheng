@@ -24,6 +24,7 @@ class newsdetialModel: Mappable {
     var object:String!
     var state:Int!
     var objectid:Int!
+    var attachment : String!
 
     var stateStr:String!
     var user:String!
@@ -44,6 +45,7 @@ class newsdetialModel: Mappable {
         stateStr <- map["stateStr"]
         user <- map["user"]
         objectid <- map["objectid"]
+        attachment <- map["attachment"]
 
     }
     

@@ -61,6 +61,10 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
 
     var objectArr : [getobjectlistModel] = []
 
+    var fileName = ""
+
+
+
     
     
     // MARK: - life
@@ -92,7 +96,7 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
             self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
             self.navigationBar_rightBtn_title(name: "操作")
             messageRequest.newsdetialRequest(id: detailId)
-            self.mainTabelView.isUserInteractionEnabled = false
+//            self.mainTabelView.isUserInteractionEnabled = false
             rowNum = 4
         }
         self.creatUI()
@@ -132,6 +136,11 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
 
             titleCell.setData_noticeDetail(titleStr: "公告标题", contentStr: titleStr)
             titleCell.delegate = self
+            if type == .detail{
+                titleCell.isUserInteractionEnabled = false
+            } else {
+                titleCell.isUserInteractionEnabled = true
+            }
 
             return titleCell
         } else if indexPath.row == 1 {
@@ -139,19 +148,37 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
             contentCell.delegate =  self
 
             contentCell.setData_notice(contentStr: contentStr)
+            if type == .detail{
+                contentCell.isUserInteractionEnabled = false
+            } else {
+                contentCell.isUserInteractionEnabled = true
+            }
+
             return contentCell
         } else if indexPath.row == 2{
             fileCell = tableView.dequeueReusableCell(withIdentifier: FileTableViewCellID, for: indexPath) as! FileTableViewCell
-
+            if type == .detail{
+                fileCell.setData_fileName(fileName: fileName)
+            }
             return fileCell
         } else if indexPath.row == 3 {
             objectCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
 
             objectCell.setDataObject(titleStr: "接受对象", contentStr: objectStr)
+            if type == .detail{
+                objectCell.isUserInteractionEnabled = false
+            } else {
+                objectCell.isUserInteractionEnabled = true
+            }
+
             return objectCell
         } else {
             messageCell  = tableView.dequeueReusableCell(withIdentifier: MessageNeedTableViewCellID, for: indexPath) as! MessageNeedTableViewCell
-            
+            if type == .detail{
+                messageCell.isUserInteractionEnabled = false
+            } else {
+                messageCell.isUserInteractionEnabled = true
+            }
             return messageCell
         }
     }
@@ -172,6 +199,15 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
                 
                 self.showOptionView_state()
             }
+        } else if type == .detail{
+            if indexPath.row == 2 {
+
+                let vc : ReadPdfViewController = ReadPdfViewController()
+                vc.type = .other
+                vc.url = URL(string: detailModel.attachment)
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+
         }
     }
 
@@ -255,7 +291,8 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
         objectID = "\(model.objectid!)"
         objectStr = model.object!
 
-        
+        fileName = model.attachment.components(separatedBy: "//").last!
+
         self.mainTabelView.reloadData()
 
 
@@ -319,6 +356,7 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
                         HCLog(message: model.msg)
                         SVPMessageShow.dismissSVP()
                         let file = base_imageOrFile_api + model.msg
+                        HCLog(message: model.msg)
                         weakSelf?.request.saveRequest(id: "", t: self.titleCell.conTent, n: self.contentCell.conTent, o: self.objectID, s: 0, d: self.messageCell.need, f: file)
 
                     } else {
@@ -429,6 +467,8 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
                 self.type = .edit
                 self.navigationBar_rightBtn_title(name: "确定")
                 self.mainTabelView.isUserInteractionEnabled = true
+
+
                 self.mainTabelView.reloadData()
                
             } else {

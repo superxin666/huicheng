@@ -336,6 +336,7 @@ class IncomeDetailViewController: BaseViewController,UITableViewDataSource,UITab
             alertController = UIAlertController(title: nil, message: "", preferredStyle: .actionSheet)
             let sureAction = UIAlertAction(title: "补开发票", style: .default) { (action) in
                 HCLog(message: "补开发票")
+                
 
             }
             let cancleAction = UIAlertAction(title: "取消", style: .cancel) { (action) in

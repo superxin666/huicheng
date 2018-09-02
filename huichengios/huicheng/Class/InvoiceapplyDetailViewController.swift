@@ -289,7 +289,7 @@ class InvoiceapplyDetailViewController: BaseViewController,UITableViewDelegate,U
 
             } else {
                 //1-增值税专用发票
-                dataModel = data as!invoice_getinfoModel
+//                dataModel = data as!invoice_getinfoModel
                 sectionContent.append(dataModel.typeStr)
                 sectionContent.append(dataModel.title)
                 sectionContent.append(dataModel.content)
