@@ -30,6 +30,10 @@ class expense_getinfoModel_data: Mappable {
     var state: Int!
     var stateStr: String!
     var addtime: String!
+    var replaytime: String!
+    var admin: String!
+
+
 
     var note: String!
 
@@ -44,6 +48,10 @@ class expense_getinfoModel_data: Mappable {
         id <- map["id"]
         type <- map["type"]
         typeStr <- map["typeStr"]
+        replaytime <- map["replaytime"]
+        admin <- map["admin"]
+
+
 
         total <- map["total"]
         money <- map["money"]

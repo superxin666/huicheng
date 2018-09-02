@@ -24,6 +24,9 @@ class AddExpenseViewController: BaseTableViewController ,MineRequestVCDelegate,O
     var nStr  = ""
     var mStr = ""
 
+    var noteStr = ""
+
+
     var rowNum = 5
 
     var nameArr = ["申请时间","状态","审核人","审核时间","驳回原因",]
@@ -184,7 +187,7 @@ class AddExpenseViewController: BaseTableViewController ,MineRequestVCDelegate,O
         } else if indexPath.row == 9 {
             //驳回原因
             let cell : ContentTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: ContentTableViewCellID, for: indexPath) as! ContentTableViewCell
-            cell.setData_dealDetail(titleStr: "驳回原因", contentStr: "")
+            cell.setData_dealDetail(titleStr: "驳回原因", contentStr: noteStr)
             cell.isUserInteractionEnabled = false
             return cell
 
@@ -269,6 +272,7 @@ class AddExpenseViewController: BaseTableViewController ,MineRequestVCDelegate,O
             cuurectModel.name = infoModel.data.typeStr!
 
 
+
             if infoModel.data.state == 0 {
                 //未审核
                 rowNum = 7
@@ -282,17 +286,19 @@ class AddExpenseViewController: BaseTableViewController ,MineRequestVCDelegate,O
                 //已审核
                 contentArr.append(infoModel.data.addtime!)
                 contentArr.append(infoModel.data.stateStr!)
-                contentArr.append("暂无")
-                contentArr.append("暂无")
+                contentArr.append(infoModel.data.replaytime)
+                contentArr.append(infoModel.data.admin)
 
                 rowNum = 9
             } else if infoModel.data.state == 2 {
                 //审核驳回
                 contentArr.append(infoModel.data.addtime!)
                 contentArr.append(infoModel.data.stateStr!)
-                contentArr.append("暂无")
-                contentArr.append("暂无")
+                contentArr.append(infoModel.data.replaytime)
+                contentArr.append(infoModel.data.admin)
+
                 contentArr.append(infoModel.data.note!)
+                noteStr = infoModel.data.note!
                 rowNum = 10
             } else {
                 contentArr.append(infoModel.data.addtime!)

@@ -242,7 +242,7 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
 
 
             self.mainTabelView.reloadData()
-        } else if type == .dealdel  {
+        } else if type == .dealdel  || type == .overcancel {
             self.sucessBlock()
             self.navigationController?.popViewController(animated: true)
         }
