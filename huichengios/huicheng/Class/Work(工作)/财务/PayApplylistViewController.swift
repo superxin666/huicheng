@@ -19,7 +19,7 @@ class PayApplylistViewController:  BaseViewController ,UITableViewDataSource,UIT
     /// 收款人，纯文本模糊查询
     var nStr = ""
     /// 状态
-    var sStr = ""
+    var sStr = "1"
     /// 收款日期起始
     var stStr = ""
     /// 收款日期结束

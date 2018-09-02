@@ -289,7 +289,8 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
             let  str = "&\(subModel.name!)=\(valueStr)"
             urlIteamsStr = urlIteamsStr + str
         }
-        let url = doc_crt_save_api + "id=\(id)\(urlIteamsStr)&k=\(UserInfoLoaclManger.getKey())"
+
+        let url = doc_crt_save_api + "k=\(UserInfoLoaclManger.getKey())&id=\(id)\(urlIteamsStr)"
 
         request.request_api(url: url)
     }

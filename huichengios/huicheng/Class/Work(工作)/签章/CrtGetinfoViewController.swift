@@ -323,7 +323,7 @@ class CrtGetinfoViewController:  BaseTableViewController,Work2RequestVCDelegate,
     override func navigationRightBtnClick() {
         HCLog(message: "确定")
         self.view.endEditing(true)
-        requestVC.crt_saveRequest(id: self.id, dataArr: self.dataModel.items)
+        requestVC.crt_saveRequest(id: self.dataModel.deals.id!, dataArr: self.dataModel.items)
     }
     
 

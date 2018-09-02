@@ -783,7 +783,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
         request.delegate = self
         type = .invoice_getinfo
         let url = invoice_getinfo_api + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
-        request.request_api(url: url,type: .alltyper)
+        request.request_api(url: url)
 
     }
 

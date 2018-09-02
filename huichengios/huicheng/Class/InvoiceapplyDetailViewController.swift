@@ -271,8 +271,10 @@ class InvoiceapplyDetailViewController: BaseViewController,UITableViewDelegate,U
 
 
     func requestSucceed_work(data: Any,type : WorkRequestVC_enum) {
-        dataModel = data as! invoice_getinfoModel
+
         if type == .invoice_getinfo {
+            dataModel = data as! invoice_getinfoModel
+
 
             if dataModel.type == 0 {
                 //0-增值税普通发票

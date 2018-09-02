@@ -355,7 +355,7 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
                     if model.code == 1 {
                         HCLog(message: model.msg)
                         SVPMessageShow.dismissSVP()
-                        let file = base_imageOrFile_api + model.msg
+                        let file =   model.msg
                         HCLog(message: model.msg)
                         weakSelf?.request.saveRequest(id: "", t: self.titleCell.conTent, n: self.contentCell.conTent, o: self.objectID, s: 0, d: self.messageCell.need, f: file)
 

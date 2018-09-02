@@ -62,7 +62,7 @@ class PubMessageViewController: BaseViewController,UITableViewDelegate,UITableVi
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return dataArr.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : PubMessageTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: PUBMESSAGEID, for: indexPath) as! PubMessageTableViewCell

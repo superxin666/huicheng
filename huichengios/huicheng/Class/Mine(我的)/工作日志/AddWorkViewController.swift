@@ -209,7 +209,7 @@ class AddWorkViewController: BaseViewController,UITableViewDataSource,UITableVie
                     if model.code == 1 {
                         HCLog(message: model.msg)
                         SVPMessageShow.dismissSVP()
-                        let file = base_imageOrFile_api + model.msg
+                        let file =   model.msg
                         weakSelf?.requestVC.work_save_apiRequest(t: (weakSelf?.tStr)!, n:(weakSelf?.nStr)!, a: file)
 
                     } else {

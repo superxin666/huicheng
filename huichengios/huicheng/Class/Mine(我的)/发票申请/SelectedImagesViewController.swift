@@ -205,7 +205,7 @@ class SelectedImagesViewController: BaseViewController, UITableViewDataSource, U
                 HCLog(message: model.msg)
                 SVPMessageShow.dismissSVP()
                 SVPMessageShow.showSucess(infoStr: "上传成功~")
-                let file = base_imageOrFile_api + model.msg
+                let file =   model.msg
                 completion(file)
             } else {
                 completion("")

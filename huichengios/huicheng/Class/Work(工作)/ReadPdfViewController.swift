@@ -93,7 +93,7 @@ class ReadPdfViewController: BaseViewController,UIPrintInteractionControllerDele
 
                 let yNum = zhangImageView.frame.origin.y * teampX
                 requestVC.delegate = self
-                requestVC.doc_applysave(id: id, s: "", n: "", x: Int(xNum) * 2, y:Int(yNum) * 2)
+                requestVC.doc_applysave(id: id, s: "3", n: "", x: Int(xNum) * 2, y:Int(yNum) * 2)
             }
             
 

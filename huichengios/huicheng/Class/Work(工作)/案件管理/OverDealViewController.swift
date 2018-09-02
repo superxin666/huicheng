@@ -627,7 +627,7 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
                 if model.code == 1 {
                     HCLog(message: model.msg)
                     SVPMessageShow.dismissSVP()
-                    let file = base_imageOrFile_api + model.msg
+                    let file =   model.msg
                     completion(file)
                 } else {
                     SVPMessageShow.dismissSVP()
@@ -645,7 +645,7 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
                 if model.code == 1 {
                     HCLog(message: model.msg)
                     SVPMessageShow.dismissSVP()
-                    let file = base_imageOrFile_api + model.msg
+                    let file =   model.msg
                     completion(file)
                 } else {
                     completion("")
