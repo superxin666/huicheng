@@ -15,7 +15,7 @@ class ExpenseapplylistViewController: BaseViewController,UITableViewDataSource,U
     var pageNum : Int = 1
 
     /// 查询状态
-    var sStr = ""
+    var sStr = "0"
     /// 分所 ID
     var bStr = ""
     /// 申请人
