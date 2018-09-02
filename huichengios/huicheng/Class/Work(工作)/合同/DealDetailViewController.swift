@@ -46,13 +46,7 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
 
         // Do any additional setup after loading the view.
         self.view.backgroundColor = viewBackColor
-        if type == .searchDeal {
-            self.navigationBar_rightBtn_title(name: "打印")
 
-        } else {
-            self.navigationBar_rightBtn_title(name: "操作")
-
-        }
         self.navigation_title_fontsize(name: "合同详情", fontsize: 18)
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
         self.creatUI()
@@ -236,6 +230,17 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
             sectionContent.append(dealModel.data.n)
             sectionContent.append(dealModel.data.dealpaylasttime)
             sectionContent.append(dealModel.data.amount)
+
+
+            if self.type == .searchDeal {
+                self.navigationBar_rightBtn_title(name: "打印")
+
+            } else {
+                self.navigationBar_rightBtn_title(name: "操作")
+
+            }
+
+
             self.mainTabelView.reloadData()
         } else if type == .dealdel  {
             self.sucessBlock()
@@ -257,9 +262,11 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
         if type == .searchDeal {
             HCLog(message: "分享")
 
-
-
-
+            let vc = ReadPdfViewController()
+            vc.url = URL(string: base_imageOrFile_api + self.dealModel.data.img!)
+            vc.type = .shareFile
+            vc.pdfStr = self.dealModel.data.img!
+            self.navigationController?.pushViewController(vc, animated: true)
 
         } else {
 
@@ -273,13 +280,26 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
 
                 let actcion2 = UIAlertAction(title: "分享", style: .default) { (aciton) in
 
-
-                    
+                    let vc = ReadPdfViewController()
+                    vc.url = URL(string: base_imageOrFile_api + self.dealModel.data.img!)
+                    vc.type = .shareFile
+                    vc.pdfStr = self.dealModel.data.img!
+                    self.navigationController?.pushViewController(vc, animated: true)
                 }
                 alertController.addAction(actcion2)
 
 
-            } else {
+            } else if self.dealModel.data.state == 4 {
+                //申请结案中 可撤回
+                let actcion1 = UIAlertAction(title: "撤回", style: .default) { (aciton) in
+                    self.showAlert(typeNum: 4)
+                }
+                alertController.addAction(actcion1)
+
+
+
+            }  else if  self.dealModel.data.state == 0 {
+                // 未审核
                 let actcion1 = UIAlertAction(title: "删除", style: .default) { (aciton) in
                     self.showAlert(typeNum: 2)
                 }
@@ -315,9 +335,11 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
             titleStr = "是否确定申请结案"
         } else if typeNum == 2 {
             titleStr = "是否确定删除本条记录"
-        } else {
+        } else if typeNum == 3{
             titleStr = "是否确定修改本条记录"
 
+        } else if typeNum == 4 {
+            titleStr = "是否确要撤回本条记录"
         }
         alertController = UIAlertController(title: nil, message: titleStr, preferredStyle: .alert)
         let actcion1 = UIAlertAction(title: "确定", style: .default) { (aciton) in
@@ -331,7 +353,7 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
             } else  if typeNum == 2{
                 HCLog(message: "删除")
                 self.requestVC.dealdelRequest(id: self.dealID)
-            } else {
+            } else if typeNum == 3 {
                 HCLog(message: "修改")
                 let vc : OverDealViewController = OverDealViewController()
                 vc.hidesBottomBarWhenPushed = true
@@ -347,6 +369,10 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
                 vc.eStr = self.dealModel.data.endtime
                 vc.fileStr = self.dealModel.data.img!
                 self.navigationController?.pushViewController(vc, animated: true)
+            } else if typeNum == 4 {
+                //撤回
+                HCLog(message: "撤回")
+                self.requestVC.dealCancleRequest(id: self.dealID)
             }
         }
         let actcion2 = UIAlertAction(title: "取消", style: .cancel) { (aciton) in

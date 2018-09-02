@@ -103,6 +103,10 @@ let deal_oversave_api = "deal/oversave?"
 /// 删除
 let deal_del_api = "deal/del?"
 
+/// 申请结案
+let deal_overcancel = "deal/overcancel?"
+
+
 /// /----------------------- 函件管理
 let doc_getlist_api = "doc/doc_getlist?"
 let doc_getinfo_api = "doc/doc_getinfo?"

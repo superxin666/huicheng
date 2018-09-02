@@ -14,7 +14,7 @@ enum WorkRequestVC_enum {
          save,newslist1,getobjectlist,newspublic,del,//公告  发布/编辑公告  获取列表  获取接收对象  发布/撤销公告  删除
          case_getlist,case_getinfo,case_add,casedel,createdeals,//案件列表  获取案件详情  添加案件  删除
          branch,department,userlist,casetype,//分所列表  部门列表  本所律师列表  案件类型
-         deal,getinfo,oversave,dealdel,dealSave,getdetail,//合同列表 详情  申请结案  删除合同
+         deal,getinfo,oversave,dealdel,dealSave,getdetail,overcancel,//合同列表 详情  申请结案  删除合同
          room,roomsave,roomdel,//会议室
          dealgetapplylist,applysave,searchlist,// 合同审核  获取列表
          dealgetoverlist,dealgetoverinfo,checkoversave,//结案审核
@@ -508,6 +508,16 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
         let url =   deal_save_api + "id=\(id)&a=\(a)&m=\(0)&b=\(bStr)&e=\(eStr)&a=\(a)&d=\(dStr)&i=\(i)&pn=\(pnStr)&cc=\(ccStr)&it=\(it)&img=\(img)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
 
+
+    }
+
+
+    func dealCancleRequest(id : Int) {
+        
+        request.delegate = self
+        type = .overcancel
+        let url =   deal_overcancel + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
 
     }
 
@@ -1025,7 +1035,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work(data: arr,type : type)
             }
-        } else if type == .save || type == .newspublic || type == .oversave || type == .casedel || type == .dealdel || type == .roomsave || type == .roomdel || type == .applysave || type == .checkoversave  || type == .invoice_applysave || type == .invoice_del || type == .expense_applysave || type == .expense_del ||  type == .bank_save || type == .sharereplysave || type == .del || type == .createdeals || type == .sharesave || type == .dealSave{
+        } else if type == .save || type == .newspublic || type == .oversave || type == .casedel || type == .dealdel || type == .roomsave || type == .roomdel || type == .applysave || type == .checkoversave  || type == .invoice_applysave || type == .invoice_del || type == .expense_applysave || type == .expense_del ||  type == .bank_save || type == .sharereplysave || type == .del || type == .createdeals || type == .sharesave || type == .dealSave || type == .overcancel{
             //发布公告
             let model = Mapper<CodeData>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {

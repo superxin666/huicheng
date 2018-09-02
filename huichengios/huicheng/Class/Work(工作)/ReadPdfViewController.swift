@@ -14,7 +14,8 @@ import UIKit
 enum ReadPdfViewControllerType {
     case tabIteam;
     case other;
-    case save
+    case save;
+    case shareFile
 }
 
 typealias ReadPdfViewControllerBlock = ()->()
@@ -63,6 +64,8 @@ class ReadPdfViewController: BaseViewController,UIPrintInteractionControllerDele
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
         if type == .tabIteam {
             self.navigationBar_rightBtn_title(name: "操作")
+        } else if type == .shareFile{
+            self.navigationBar_rightBtn_title(name: "分享")
         }
         HCLog(message: url!)
         webView = UIWebView(frame: CGRect(x: 0, y:LNAVIGATION_HEIGHT, width: KSCREEN_WIDTH, height: KSCREEN_HEIGHT))
@@ -94,6 +97,11 @@ class ReadPdfViewController: BaseViewController,UIPrintInteractionControllerDele
             }
             
 
+        } else if type == .shareFile{
+
+            self.shareFile()
+
+
         } else {
             if pdfstate == 3 {//3
                 //已经盖章 可打印
@@ -101,21 +109,6 @@ class ReadPdfViewController: BaseViewController,UIPrintInteractionControllerDele
                 let delAction = UIAlertAction(title: "分享", style: .default) { (action) in
                     HCLog(message: "分享")
                     self.shareFile()
-
-
-
-//                    let printVC : UIPrintInteractionController = UIPrintInteractionController.shared
-//                    printVC.delegate = self
-//                    printVC.showsPageRange = false
-//                    printVC.printFormatter = self.webView.viewPrintFormatter()
-//
-//                    printVC.present(animated: true, completionHandler: { (printController, completed, erro) in
-//                        if !completed {
-//                            HCLog(message: "无法完成打印")
-//
-//                        }
-//                    })
-
 
                 }
                 let cancleAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
