@@ -24,6 +24,10 @@ class getinfoDealModel: Mappable {
     var branch: String!
     var state: Int!
 
+    var invoicetype :Int!
+    var invoicetypeStr :String!
+
+
 
     var stateStr: String!
     var admin: String!
@@ -72,6 +76,11 @@ class getinfoDealModel: Mappable {
     func mapping(map: Map) {
         id <- map["id"]
         dealsnum <- map["dealsnum"]
+
+        invoicetype <- map["invoicetype"]
+        invoicetypeStr <- map["invoicetypeStr"]
+
+
         begintime <- map["begintime"]
         type <- map["type"]
         endtime <- map["endtime"]

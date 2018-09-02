@@ -368,6 +368,9 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
                 vc.bStr = self.dealModel.data.begintime
                 vc.eStr = self.dealModel.data.endtime
                 vc.fileStr = self.dealModel.data.img!
+                vc.itIdStr  = "\(self.dealModel.data.invoicetype!)"
+                vc.itNameStr  = self.dealModel.data.invoicetypeStr
+
                 self.navigationController?.pushViewController(vc, animated: true)
             } else if typeNum == 4 {
                 //撤回
