@@ -119,7 +119,8 @@ class IncomeDetailViewController: BaseViewController,UITableViewDataSource,UITab
 
     /// 撤回
     func backRequest() {
-        requestVC.income_save(id: "\(id)", issubmit: "0")
+   
+        requestVC.income_cancel(id:"\(id)")
     }
 
 
@@ -266,7 +267,7 @@ class IncomeDetailViewController: BaseViewController,UITableViewDataSource,UITab
             contentArr1.append(dataModel.data.papernum)
             self.mainTabelView.reloadData()
 
-        } else if type == .financeincome_save || type == .income_del{
+        } else if type == .financeincome_save || type == .income_cancel{
             self.sucessBlock()
             self.navigationLeftBtnClick()
         }

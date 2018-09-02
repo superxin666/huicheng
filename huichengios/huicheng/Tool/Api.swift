@@ -160,7 +160,7 @@ let finance_income_additem_api = "finance/income_additem?"
 ///  删除收款明细信息
 let finance_income_delitem_api = "finance/income_delitem?"
 
-
+let finance_income_cancel_api = "finance/income_cancel?"
 
 
 /// /-----------------------签章

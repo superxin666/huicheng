@@ -363,7 +363,6 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
                 vc.dStr = self.dealModel.data.dealpaylasttime
                 vc.aStr = self.dealModel.data.amount
                 vc.itStr = "\(self.dealModel.data.ispaper!)"
-//                vc.itIdStr = self.dealMode
                 vc.pStr = self.dealModel.data.paper
                 vc.bStr = self.dealModel.data.begintime
                 vc.eStr = self.dealModel.data.endtime
@@ -376,6 +375,7 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
                 //撤回
                 HCLog(message: "撤回")
                 self.requestVC.dealCancleRequest(id: self.dealID)
+                
             }
         }
         let actcion2 = UIAlertAction(title: "取消", style: .cancel) { (aciton) in
