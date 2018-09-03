@@ -343,10 +343,10 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
             return
         }
 
-        if !(sj.count > 0){
-            SVPMessageShow.showErro(infoStr: "请输入标的")
-            return
-        }
+//        if !(sj.count > 0){
+//            SVPMessageShow.showErro(infoStr: "请输入标的")
+//            return
+//        }
 
 
 

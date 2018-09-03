@@ -655,6 +655,7 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
                 let vc = OverDealViewController()
                 vc.dealId = self.caseId
                 vc.dealNum = self.caseDetailModel.data.dealnum
+                vc.caseType = "\(self.caseDetailModel.data.type!)"
                 self.navigationController?.pushViewController(vc, animated: true)
 
 
@@ -730,13 +731,15 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
     ///   - titleStr: <#titleStr description#>
     ///   - pickTag: <#pickTag description#>
     func optionSure(idStr: String, titleStr: String,noteStr : String, pickTag: Int) {
-        //非诉案件-2  刑事案件-3  法律顾问-4
         HCLog(message: titleStr)
         HCLog(message: idStr)
         HCLog(message: pickTag)
-        caseType = idStr
+
         if pickTag == 0 {
+            //非诉案件-2  刑事案件-3  法律顾问-4
+
             //类型
+            caseType = idStr
             self.tStr = idStr
             self.tnameStr = titleStr
         } else if pickTag == 3 {

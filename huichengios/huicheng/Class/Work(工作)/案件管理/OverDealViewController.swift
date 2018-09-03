@@ -82,19 +82,18 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
         request.delegate = self
         if type == .overCase {
             self.navigation_title_fontsize(name: "生成合同", fontsize: 18)
-//            if caseType == 4 {
-//                rowNum = 8
-//
-//            } else {
-//                rowNum = 6
-//
-//            }
+            if !(caseType == "4") {
+                rowNum = rowNum - 2
+            }
         } else {
             self.navigation_title_fontsize(name: "合同信息", fontsize: 18)
             if itStr == "0" {
                 rowNum = 8
             } else {
                 rowNum = 10
+            }
+            if !(caseType == "4") {
+                rowNum = rowNum - 2
             }
         }
 
@@ -152,37 +151,37 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
 
                 return cell
 
-            }  else if indexPath.row == 3 {
-                let cell : endTimeTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-                cell.setData(titleStr: "起始时间", tag: indexPath.row)
-                cell.setTime(str: bStr)
-
-                return cell
-
-            } else if indexPath.row == 4 {
-                let cell : endTimeTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-                cell.setData(titleStr: "结束时间", tag: indexPath.row)
-                cell.setTime(str: eStr)
-
-                return cell
-
-            } else if indexPath.row == 5 {
+            } else if indexPath.row == 3 {
                 let cell : SelectedTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: SelectedTableViewCellID, for: indexPath) as! SelectedTableViewCell
                 cell.delegate = self
                 cell.setData_deal(type: itStr)
                 return cell
 
-            } else if indexPath.row == 6 {
+            } else if indexPath.row == 4 {
                 let cell : OptionTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
                 cell.setData_caseDetail(titleStr: "发票信息", contentStr: itNameStr)
                 return cell
-            } else {
+            } else if indexPath.row == 5 {
                 fileCell = tableView.dequeueReusableCell(withIdentifier: FileTableViewCellID, for: indexPath) as! FileTableViewCell
                 fileCell.setData_deal()
                 if type == .editeDeal {
                     fileCell.setData_fileName(fileName: fileStr)
                 }
                 return fileCell
+            }   else if indexPath.row == 6 {
+                let cell : endTimeTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                cell.setData(titleStr: "起始时间", tag: indexPath.row)
+                cell.setTime(str: bStr)
+
+                return cell
+
+            } else  {
+                let cell : endTimeTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                cell.setData(titleStr: "结束时间", tag: indexPath.row)
+                cell.setTime(str: eStr)
+
+                return cell
+
             }
 
 
@@ -206,44 +205,30 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
 
                 return cell
 
-            } else if indexPath.row == 3 {
-                let cell : endTimeTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-                cell.setData(titleStr: "起始时间", tag: indexPath.row)
-                cell.setTime(str: bStr)
-
-                return cell
-
-            } else if indexPath.row == 4 {
-                let cell : endTimeTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-                cell.setData(titleStr: "结束时间", tag: indexPath.row)
-                cell.setTime(str: eStr)
-
-                return cell
-
-            } else if indexPath.row == 5 {
+            }  else if indexPath.row == 3 {
                 let cell : SelectedTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: SelectedTableViewCellID, for: indexPath) as! SelectedTableViewCell
                 cell.delegate = self
                 cell.setData_deal(type: itStr)
                 return cell
-            } else if indexPath.row == 6 {
+            } else if indexPath.row == 4 {
                 //发票号
                 let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
                 HCLog(message: pStr)
                 cell.delegate = self
                 cell.setData_overDeal(titleStr: "发票号", contentStr: pStr, indexPath: indexPath)
                 return cell
-            } else if indexPath.row ==  7 {
+            } else if indexPath.row ==  5 {
                 //信用代码
                 let cell : Title5TableViewCell!  = tableView.dequeueReusableCell(withIdentifier: Title5TableViewCellID, for: indexPath) as! Title5TableViewCell
                 cell.setData_overDeal(titleStr: "社会统一信用代码", contentStr: ccStr)
                 cell.delegate = self
                 return cell
 
-            } else if indexPath.row == 8 {
+            } else if indexPath.row == 6 {
                 let cell : OptionTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
                 cell.setData_caseDetail(titleStr: "发票信息", contentStr: itNameStr)
                 return cell
-            } else {
+            } else if indexPath.row == 7 {
                 fileCell  = tableView.dequeueReusableCell(withIdentifier: FileTableViewCellID, for: indexPath) as! FileTableViewCell
                 fileCell.setData_deal()
                 if type == .editeDeal {
@@ -251,8 +236,20 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
                 }
 
                 return fileCell
-            }
+            } else if indexPath.row == 8 {
+                let cell : endTimeTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                cell.setData(titleStr: "起始时间", tag: indexPath.row)
+                cell.setTime(str: bStr)
 
+                return cell
+
+            } else {
+                let cell : endTimeTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                cell.setData(titleStr: "结束时间", tag: indexPath.row)
+                cell.setTime(str: eStr)
+
+                return cell
+            }
         }
     }
 
@@ -260,7 +257,7 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
         self.view.endEditing(true)
         if itStr == "0" {
             //未开
-            if indexPath.row == 6{
+            if indexPath.row == 4{
                 //发票信息
                 if userList.count > 0 {
                     self.showOptionPickView()
@@ -269,11 +266,11 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
                     requestVc2.invoice_gettypeRequest()
                 }
 
-            } else  if indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 4 {
+            } else  if indexPath.row == 2 || indexPath.row == 6 || indexPath.row == 7 {
                 //时间
                 self.showDate(rowNum: indexPath.row)
 
-            } else if indexPath.row == 7 {
+            } else if indexPath.row == 5 {
                 //合同扫描
                 HCLog(message: "合同扫描")
 
@@ -285,7 +282,7 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
 
         } else {
             //已开
-            if indexPath.row == 8{
+            if indexPath.row == 6{
                 //发票信息
                 if userList.count > 0 {
                     self.showOptionPickView()
@@ -294,10 +291,10 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
                     requestVc2.invoice_gettypeRequest()
                 }
 
-            } else  if indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 4{
+            } else  if indexPath.row == 2 || indexPath.row == 8 || indexPath.row == 9{
                 //时间
                 self.showDate(rowNum: indexPath.row)
-            } else if indexPath.row == 9 {
+            } else if indexPath.row == 7 {
                 //合同扫描
                 HCLog(message: "合同扫描")
                 self.showAlert()
@@ -312,7 +309,7 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
         if itStr == "0" {
             return 50
         } else {
-            if indexPath.row == 7 {
+            if indexPath.row == 5 {
                 return Title5TableViewCellH
             } else {
                 return 50
@@ -327,12 +324,19 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
             self.openAlbum()
         }
 
-        let cancleAction = UIAlertAction(title: "文件", style: .default) { (action) in
+        let sureAction2 = UIAlertAction(title: "文件", style: .default) { (action) in
             self.getFileClick()
 
         }
-        alertController.addAction(cancleAction)
+
+        let cancleAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
+
+        }
+
+        alertController.addAction(sureAction2)
         alertController.addAction(sureAction)
+        alertController.addAction(cancleAction)
+
         self.present((alertController)!, animated: true, completion: nil)
 
 
@@ -453,7 +457,7 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
         HCLog(message: type)
         if type == 2 {
             self.dStr = timeStr
-        } else if type == 3 {
+        } else if type == 6 || type == 8 {
             self.bStr = timeStr
         } else {
             self.eStr = timeStr
@@ -483,10 +487,11 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
         var rowNum = 6
 
         if itStr == "0" {
-            rowNum = 6
+            rowNum = 4
         } else {
-            rowNum = 8
+            rowNum = 6
         }
+
 
         let cell : OptionTableViewCell = self.tableView.cellForRow(at: IndexPath(row: rowNum, section: 0)) as! OptionTableViewCell
         itIdStr = idStr
@@ -504,6 +509,11 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
         } else {
             rowNum = 10
         }
+        if !(caseType == "4") {
+            rowNum = rowNum - 2
+        }
+
+
         self.tableView.reloadData()
 
     }
