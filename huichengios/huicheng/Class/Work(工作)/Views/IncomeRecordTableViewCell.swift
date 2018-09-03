@@ -74,11 +74,11 @@ class IncomeRecordTableViewCell: UITableViewCell {
         if let str = model.money {
             amount = "\(str)"
         }
-        self.titleNameLabel.text = "收款详情：" + model.typeStr! + "：\(amount)"
+        self.titleNameLabel.text = "收款详情：" + model.typeStr! + "：\(amount)" + "  手续费：\(model.cost!)"
 
-        self.subLabel.text = "收款日期："
+        self.subLabel.text = " "
 
-        self.infoLabel.text = "发票信息："
+        self.infoLabel.text = " "
 
 
         self.stateLabel.text = ""

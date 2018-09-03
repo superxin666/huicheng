@@ -76,7 +76,7 @@ class income_getinfoModel_items: Mappable {
     var type: String!
     var typeStr: String!
 
-    var cost: String!
+    var cost: Int!
     var amount: Int!
     var money: Int!
 
