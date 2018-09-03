@@ -186,12 +186,19 @@ class AddShareViewController: BaseViewController,UITableViewDataSource,UITableVi
             self.openAlbum()
         }
 
-        let cancleAction = UIAlertAction(title: "文件", style: .default) { (action) in
+        let sureAction2 = UIAlertAction(title: "文件", style: .default) { (action) in
             self.getFileClick()
 
         }
-        alertController.addAction(cancleAction)
+
+        let cancleAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
+
+        }
+
+        alertController.addAction(sureAction2)
         alertController.addAction(sureAction)
+        alertController.addAction(cancleAction)
+
         self.present((alertController)!, animated: true, completion: nil)
 
 

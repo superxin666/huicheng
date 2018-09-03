@@ -148,14 +148,20 @@ class OverCaseViewController: BaseTableViewController,ContentTableViewCellDelega
             self.openAlbum()
         }
 
-        let cancleAction = UIAlertAction(title: "文件", style: .default) { (action) in
+        let sureAction2 = UIAlertAction(title: "文件", style: .default) { (action) in
             self.getFileClick()
 
         }
-        alertController.addAction(cancleAction)
-        alertController.addAction(sureAction)
-        self.present((alertController)!, animated: true, completion: nil)
 
+        let cancleAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
+
+        }
+
+        alertController.addAction(sureAction2)
+        alertController.addAction(sureAction)
+        alertController.addAction(cancleAction)
+
+        self.present((alertController)!, animated: true, completion: nil)
 
     }
 
