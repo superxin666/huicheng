@@ -473,6 +473,15 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
                 return
             }
         }
+
+        if (caseType == "1") || (caseType == "3"){
+            if !(sjStr.count > 0) {
+                HCLog(message: "请输入标的")
+                SVPMessageShow.showErro(infoStr: "请输入标的")
+                return
+            }
+        }
+
     
         SVPMessageShow.showLoad(title: "正在发布")
         request.caseAdd(t: tStr, n: nStr, rt: rtStr, pn: pnStr, pc: pcStr, pp: ppStr, pz: pzStr, pj: pjStr, pd: pdStr, pa: paStr, on: onStr, oc: ocStr, op: opStr, oz: ozStr, oj: ojStr, oa: oaStr, r: rStr, d: dStr, w1: w1Str, w2: w2Str, ct: ctStr, sj: sjStr, id: "")
@@ -480,6 +489,15 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
 
 
     func editeRequest() {
+        if (caseType == "1") || (caseType == "3"){
+            if !(sjStr.count > 0) {
+                HCLog(message: "请输入标的")
+                SVPMessageShow.showErro(infoStr: "请输入标的")
+
+                return
+            }
+        }
+
         request.caseAdd(t: tStr, n: nStr, rt: rtStr, pn: pnStr, pc: pcStr, pp: ppStr, pz: pzStr, pj: pjStr, pd: pdStr, pa: paStr, on: onStr, oc: ocStr, op: opStr, oz: ozStr, oj: ojStr, oa: oaStr, r: rStr, d: dStr, w1: w1Str, w2: w2Str, ct: ctStr, sj: sjStr, id: "\(caseId!)")
     }
     

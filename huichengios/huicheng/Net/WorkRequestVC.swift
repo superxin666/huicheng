@@ -358,7 +358,12 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
 
         request.delegate = self
         type = .case_add
-        let url =   case_save_api + "t=\(arr[0])&n=\(arr[1])&rt=\(arr[2])&pn=\(arr[3])&pc=\(arr[4])&pp=\(arr[5])&pz=\(arr[6])&pj=\(arr[7])&pd=\(arr[8])&pa=\(arr[9])&on=\(arr[10])&oc=\(arr[11])&op=\(arr[12])&oz=\(arr[13])&oj=\(arr[14])&oa=\(arr[15])&r=\(arr[16])&d=\(arr[17])&w1=\(arr[18])&w2=\(arr[19])&ct=\(arr[20])&sj=\(arr[21])&k=\(UserInfoLoaclManger.getKey())&id=\(id)"
+        var url =   case_save_api + "t=\(arr[0])&n=\(arr[1])&rt=\(arr[2])&pn=\(arr[3])&pc=\(arr[4])&pp=\(arr[5])&pz=\(arr[6])&pj=\(arr[7])&pd=\(arr[8])&pa=\(arr[9])&on=\(arr[10])&oc=\(arr[11])&op=\(arr[12])&oz=\(arr[13])&oj=\(arr[14])&oa=\(arr[15])&r=\(arr[16])&d=\(arr[17])&w1=\(arr[18])&w2=\(arr[19])&ct=\(arr[20])&k=\(UserInfoLoaclManger.getKey())&id=\(id)"
+
+        if sj.count > 0 {
+            let sjStr = sj.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+            url = url + "&sj=\(sjStr)"
+        }
         request.request_api(url: url,type: .alltyper)
     }
 
