@@ -201,7 +201,7 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
         let eaddrStr :String = eaddr.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         let ebankStr :String = ebank.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
 
-        let url =   invoice_save_api + "id=\(id)&type=\(typeStr)&title=\(titleStr)&money=\(moneyStr)&creditcode=\(creditcodeStr)&sendtype=\(sendtype)&content=\(contentStr)&isbooks=\(isbooks)&applytime=\(applytimeStr)&identifier=\(identifierStr)&eaddr=\(eaddrStr)&ephone=\(ephoneStr)&ebank=\(ebankStr)&name=\(nameStr)&phone=\(phoneStr)&zip=\(zipStr)&addr=\(addrStr)&paytype=\(paytype)&mtime=\(mtimeStr)&remark=\(remarkStr)&img1=\(imageArr[0])&img2=\(imageArr[1])&img3=\(imageArr[2])&img4=\(imageArr[3])&img5=\(imageArr[4])&k=\(UserInfoLoaclManger.getKey())"
+        let url =   invoice_save_api + "id=\(id)&type=\(typeStr)&title=\(titleStr)&money=\(moneyStr)&creditcode=\(creditcodeStr)&sendtype=\(sendtype)&content=\(contentStr)&isbooks=\(isbooks)&applytime=\(applytimeStr)&identifier=\(identifierStr)&eaddr=\(eaddrStr)&ephone=\(ephoneStr)&ebank=\(ebankStr)&ecard=\(ecard)&name=\(nameStr)&phone=\(phoneStr)&zip=\(zipStr)&addr=\(addrStr)&paytype=\(paytype)&mtime=\(mtimeStr)&remark=\(remarkStr)&img1=\(imageArr[0])&img2=\(imageArr[1])&img3=\(imageArr[2])&img4=\(imageArr[3])&img5=\(imageArr[4])&k=\(UserInfoLoaclManger.getKey())"
         request.delegate = self
         type = .invoice_save
         request.request_api(url: url)

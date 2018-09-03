@@ -12,7 +12,7 @@ enum AddInvoiceViewControllerType {
     case detial,add,edite
 }
 
-class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,TitleTableViewCellDelegate,Selected2TableViewCellDelegate,Title5TableViewCellDelegate,DatePickViewDelegate,SelectedHeadViewDelegate {
+class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,TitleTableViewCellDelegate,Selected2TableViewCellDelegate,Title5TableViewCellDelegate,DatePickViewDelegate,SelectedHeadViewDelegate,OptionViewDelgate {
 
     let requestVC = MineRequestVC()
     var sucessBlock : AddInvoiceViewControllerBlock!
@@ -21,7 +21,13 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
     var dataModel : invoice_getinfoModel!
     var id  : Int!
 
+    /// 选项
+    let optionView : OptionView = OptionView.loadNib()
 
+    var optionCell : OptionTableViewCell!
+
+
+    var userList : [expense_gettypeModel] = []
 
     let sectionNameArr = ["公司名称","社会统一信用代码","发票内容","发票金额",]
     let sectionNameArr2 = ["公司名称","社会统一信用代码","纳税人识别号","地址","电话","银行","账号","发票内容","发票金额","相关附件",]
@@ -208,16 +214,17 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
 
                     return cell
                 }else if indexPath.row == 2 {
-                    let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
-                    cell.delegate = self
-                    cell.setData_addinvoce(title: sectionNameArr[indexPath.row], content: contentStr,indexPath : indexPath)
+                    //发票内容
+                    optionCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
+
+                    optionCell.setDataObject(titleStr: sectionNameArr[indexPath.row], contentStr: contentStr)
                     if viewType == .detial {
-                        cell.isUserInteractionEnabled = false
+                        optionCell.isUserInteractionEnabled = false
                     } else {
-                        cell.isUserInteractionEnabled = true
+                        optionCell.isUserInteractionEnabled = true
                     }
 
-                    return cell
+                    return optionCell
                 } else {
                     let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
                     cell.delegate = self
@@ -249,6 +256,10 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
                     let cell : Title5TableViewCell!  = tableView.dequeueReusableCell(withIdentifier: Title5TableViewCellID, for: indexPath) as! Title5TableViewCell
                     cell.setData_invoice(title:  sectionNameArr2[indexPath.row], contentStr: identifierStr, index: indexPath)
                     cell.delegate = self
+
+
+
+
                     if viewType == .detial {
                         cell.isUserInteractionEnabled = false
                     } else {
@@ -256,6 +267,18 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
                     }
 
                     return cell
+                } else if indexPath.row == 7 {
+                    //发票内容
+                    optionCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
+                    optionCell.setDataObject(titleStr: sectionNameArr2[indexPath.row], contentStr: contentStr)
+
+                    if viewType == .detial {
+                        optionCell.isUserInteractionEnabled = false
+                    } else {
+                        optionCell.isUserInteractionEnabled = true
+                    }
+                    return optionCell
+
                 } else if indexPath.row == 8 {
                     let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
                     cell.delegate = self
@@ -292,8 +315,7 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
                         str = ebankStr
                     case 6 :
                         str = ecardStr
-                    case 7 :
-                        str = contentStr
+
 
                     default:
                         HCLog(message: "暂无")
@@ -452,7 +474,7 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
                     let cell : Selected2TableViewCell!  = tableView.dequeueReusableCell(withIdentifier: Selected2TableViewCellID, for: indexPath) as! Selected2TableViewCell
                     cell.delegate = self
                     cell.setData(title: section1NameArr2[indexPath.row], leftStr: "收件人付费", rightStr: "律师账扣", show: 2)
-                    cell.setSelected(selectedType: applytimeStr)
+                    cell.setSelected(selectedType: paytype)
                     if viewType == .detial {
                         cell.isUserInteractionEnabled = false
                     } else {
@@ -635,6 +657,15 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
                         self.imageArr = arr
                     }
                     self.navigationController?.pushViewController(vc, animated: true)
+                } else if indexPath.row == 7 {
+                    HCLog(message: "发票内容")
+                    self.invoce_infoClick()
+
+                }
+            } else {
+                if indexPath.row == 2 {
+                    HCLog(message: "发票内容2")
+                    self.invoce_infoClick()
                 }
             }
         }
@@ -765,6 +796,9 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
             remarkStr = dataModel.remark
 
             self.tableView.reloadData()
+        } else if type == .invoice_gettype{
+            userList = data as! [expense_gettypeModel]
+            self.showOption()
         }
 
     }
@@ -776,7 +810,7 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
             if tagNum == 0 {
                 self.titleStr = inputStr
             } else if tagNum == 2 {
-                self.contentStr = inputStr
+//                self.contentStr = inputStr
             }  else if tagNum == 3{
                 self.moneyStr = inputStr
             } else {
@@ -792,6 +826,9 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
                     } else {
                         remarkStr = inputStr
                     }
+                } else if section1Type == 0 {
+                    remarkStr = inputStr
+
                 } else {
                     if tagNum == 13{
                         nameStr = inputStr
@@ -804,7 +841,6 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
                     } else {
                         remarkStr = inputStr
                     }
-
                 }
             }
         } else {
@@ -820,7 +856,7 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
             }else if tagNum == 6 {
                 ecardStr = inputStr
             } else if tagNum == 7{
-                self.contentStr = inputStr
+//                self.contentStr = inputStr
             }  else if tagNum == 8{
                 self.moneyStr = inputStr
             } else {
@@ -836,6 +872,9 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
                     } else {
                         remarkStr = inputStr
                     }
+                } else if section1Type == 0 {
+                    remarkStr = inputStr
+
                 } else {
                     if tagNum == 13{
                         nameStr = inputStr
@@ -922,6 +961,39 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
         let set = IndexSet(integer: 0)
         self.tableView.reloadSections(set, with: .automatic)
     }
+
+    func invoce_infoClick() {
+        //发票信息
+        if userList.count > 0 {
+            self.showOption()
+        } else {
+            requestVC.delegate = self
+            requestVC.invoice_gettypeRequest()
+        }
+    }
+
+
+    func showOption() {
+        self.maskView.addSubview(self.optionView)
+        self.view.window?.addSubview(self.maskView)
+        self.optionView.setDataExpensive(dataArr: userList)
+        self.optionView.delegate = self
+        self.optionView.snp.makeConstraints { (make) in
+            make.left.right.equalTo(0)
+            make.bottom.equalTo(0)
+            make.height.equalTo(160)
+        }
+    }
+
+
+    func optionSure(idStr: String, titleStr: String, noteStr: String, pickTag: Int) {
+        self.maskView.removeFromSuperview()
+        self.optionView.removeFromSuperview()
+        contentStr = titleStr
+        optionCell.setOptionData(contentStr: titleStr)
+
+
+    }
     
     /// 显示时间
     func showDate() {
@@ -978,10 +1050,15 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
         self.maskView.removeFromSuperview()
     }
     override func navigationRightBtnClick() {
+        self.view.endEditing(true)
+        if !(remarkStr.count > 0) {
+            HCLog(message: "请输入备注")
+            return
+        }
+
         if viewType == .add {
             HCLog(message: "确定")
-            self.view.endEditing(true)
-            if !isOK {
+                        if !isOK {
                 SVPMessageShow.showErro(infoStr: "请勾选承诺")
                 return
             }
