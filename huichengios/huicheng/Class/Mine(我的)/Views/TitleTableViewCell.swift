@@ -217,6 +217,7 @@ class TitleTableViewCell: UITableViewCell {
         self.titleNameLabel.text = title
 
         self.textField.text = content
+        self.textField.keyboardType = .default
     }
 
 

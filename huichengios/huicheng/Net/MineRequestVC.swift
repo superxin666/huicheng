@@ -188,7 +188,7 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
         let nameStr :String = name.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         let phoneStr :String = phone.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         let zipStr :String = zip.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-        let addrStr :String = mtime.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let addrStr :String = addr.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         let remarkStr :String = remark.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         let moneyStr :String = money.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         let identifierStr :String = identifier.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
