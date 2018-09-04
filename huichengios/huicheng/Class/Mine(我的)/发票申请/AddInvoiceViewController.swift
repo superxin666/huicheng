@@ -143,7 +143,6 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
             currectSectionArr = section1NameArr
             section1Type = 0
         } else if viewType == .detial {
-            self.navigationBar_rightBtn_title(name: "修改")
             requestVC.delegate = self
             requestVC.invoice_getinfoRequest(id: id!)
         }
@@ -754,8 +753,6 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
                 section1rows = 10
             }
 
-
-
             isbooksStr = "\(dataModel.isbooks!)"
             sendtype = "\(dataModel.sendtype!)"
             
@@ -794,6 +791,12 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
             zipStr = dataModel.zip
             addrStr = dataModel.addr
             remarkStr = dataModel.remark
+
+            if dataModel.state == 1 {
+                //已审核不能修改
+            } else {
+                self.navigationBar_rightBtn_title(name: "修改")
+            }
 
             self.tableView.reloadData()
         } else if type == .invoice_gettype{
