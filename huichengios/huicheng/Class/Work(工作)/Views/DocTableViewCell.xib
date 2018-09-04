@@ -79,10 +79,10 @@
                             <constraint firstAttribute="height" constant="0.5" id="5SG-w0-1cf"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQq-OA-RHk">
-                        <rect key="frame" x="215" y="15" width="95" height="20"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQq-OA-RHk">
+                        <rect key="frame" x="215" y="15" width="95" height="30"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="20" id="Pvk-1n-Nmg"/>
+                            <constraint firstAttribute="height" constant="30" id="Pvk-1n-Nmg"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <nil key="textColor"/>
@@ -102,7 +102,7 @@
                     <constraint firstItem="eG4-uY-AFH" firstAttribute="top" secondItem="ia3-Rl-I10" secondAttribute="bottom" constant="3.5" id="aTQ-vp-Zkp"/>
                     <constraint firstItem="TVR-wZ-O2e" firstAttribute="leading" secondItem="DiR-8M-dsN" secondAttribute="trailing" constant="10" id="b52-Dl-zqb"/>
                     <constraint firstItem="ia3-Rl-I10" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="bd9-Tv-3A2"/>
-                    <constraint firstItem="pxc-sm-Kz1" firstAttribute="top" secondItem="QQq-OA-RHk" secondAttribute="bottom" constant="5" id="bm9-Uf-k5o"/>
+                    <constraint firstItem="pxc-sm-Kz1" firstAttribute="top" secondItem="QQq-OA-RHk" secondAttribute="bottom" constant="-5" id="bm9-Uf-k5o"/>
                     <constraint firstAttribute="trailing" secondItem="pxc-sm-Kz1" secondAttribute="trailing" constant="10" id="c2Z-Xd-VHt"/>
                     <constraint firstItem="pxc-sm-Kz1" firstAttribute="leading" secondItem="eG4-uY-AFH" secondAttribute="trailing" id="emU-MT-cnI"/>
                     <constraint firstItem="QQq-OA-RHk" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="gQh-Xq-Vmp"/>
@@ -122,7 +122,7 @@
                 <outlet property="titleNameLabel2" destination="QQq-OA-RHk" id="MHP-fh-Uyx"/>
                 <outlet property="typeLabel" destination="TVR-wZ-O2e" id="Xbi-6b-9dT"/>
             </connections>
-            <point key="canvasLocation" x="-1494" y="69"/>
+            <point key="canvasLocation" x="-1565" y="53"/>
         </tableViewCell>
     </objects>
 </document>

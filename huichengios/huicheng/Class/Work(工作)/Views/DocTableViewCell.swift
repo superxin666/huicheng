@@ -235,17 +235,31 @@ class DocTableViewCell: UITableViewCell {
         if let dealnum = model.dealnum {
             self.titleNameLabel.text = dealnum
         }
+        var str = ""
+        if let typeStr = model.typeStr {
+            str = typeStr
+        }
+        if let amountInt = model.amountInt {
+            str = str + "\(amountInt)元"
+        }
+        self.titleNameLabel2.text = str
+
+
+
+
         if let principal = model.principal {
             self.subTitleLabel.text = principal
         }
+
+        if let papernum = model.papernum {
+            self.typeLabel.text = papernum
+        }
+
 
         self.subNunLabel.isHidden = true
 
         if let addtime = model.addtime {
             self.timeLabel.text = String.hc_getDate_string(dateStr: addtime)
-        }
-        if let typeStr = model.typeStr {
-            self.typeLabel.text = typeStr
         }
 
         if let stateStr = model.stateStr {
