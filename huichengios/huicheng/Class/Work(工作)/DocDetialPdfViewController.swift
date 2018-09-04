@@ -46,6 +46,7 @@ class DocDetialPdfViewController: BaseViewController,UIPrintInteractionControlle
         webView.backgroundColor = .white
         webView.scrollView.delegate = self
         webView.delegate = self
+        webView.scalesPageToFit = true
         webView.loadRequest(URLRequest(url: self.url))
         self.view.addSubview(webView)
 

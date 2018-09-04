@@ -72,6 +72,7 @@ class ReadPdfViewController: BaseViewController,UIPrintInteractionControllerDele
         webView.backgroundColor = .white
         webView.scrollView.delegate = self
         webView.delegate = self
+        webView.scalesPageToFit = true
         webView.loadRequest(URLRequest(url: self.url))
         self.view.addSubview(webView)
 
@@ -219,6 +220,7 @@ class ReadPdfViewController: BaseViewController,UIPrintInteractionControllerDele
     func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
         return self
     }
+
 
     func webViewDidStartLoad(_ webView: UIWebView) {
         SVPMessageShow.showLoad()

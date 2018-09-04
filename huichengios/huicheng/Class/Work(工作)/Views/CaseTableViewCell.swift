@@ -180,6 +180,10 @@ class CaseTableViewCell: UITableViewCell {
                 self.nameLabel.backgroundColor = .white
                 self.nameLabel.textColor = darkblueColor
 
+            } else if state == 4 {
+                self.nameLabel.backgroundColor = orangeColor
+                self.nameLabel.textColor = .white
+
             }
         }
 

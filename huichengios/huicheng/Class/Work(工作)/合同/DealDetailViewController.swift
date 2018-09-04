@@ -265,6 +265,7 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
             let vc = ReadPdfViewController()
             vc.url = URL(string: base_imageOrFile_api + self.dealModel.data.img!)
             vc.type = .shareFile
+            vc.titleStr = "合同扫描件"
             vc.pdfStr = self.dealModel.data.img!
             self.navigationController?.pushViewController(vc, animated: true)
 
@@ -284,6 +285,7 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
                     vc.url = URL(string: base_imageOrFile_api + self.dealModel.data.img!)
                     vc.type = .shareFile
                     vc.pdfStr = self.dealModel.data.img!
+                    vc.titleStr = "合同扫描件"
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
                 alertController.addAction(actcion2)

@@ -106,7 +106,7 @@ class BaseNetViewController: UIViewController {
             var model:CodeData = CodeData()
             Alamofire.upload(
                 multipartFormData: { multipartFormData in
-                    multipartFormData.append(imageData, withName: "attachs", fileName: "img1", mimeType: "image/*")
+                    multipartFormData.append(imageData, withName: "attachs", fileName: "jpg", mimeType: "image/*")
 
             },
                 to: urlStr,
