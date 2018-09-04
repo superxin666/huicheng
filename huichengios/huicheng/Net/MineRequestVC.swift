@@ -112,6 +112,7 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
     ///
     /// - Parameter id: <#id description#>
     func invoice_getinfoRequest(id : Int) {
+        SVPMessageShow.showLoad()
         let url =   invoice_getinfo_api + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
         request.delegate = self
         type = .invoice_getinfo
@@ -128,7 +129,7 @@ class MineRequestVC: UIViewController, BaseNetViewControllerDelegate {
 
 
     func invoice_saveRequest(id : String,typeStr:String,title:String,money:String,creditcode:String,sendtype:String,content:String,isbooks:String,applytime:String,identifier:String,eaddr:String,ephone:String,ebank:String,ecard:String,name:String,phone:String,zip:String,addr:String,paytype:String,mtime:String,remark:String,imageArr : [String])  {
-
+        
         if !(title.count > 0) {
             SVPMessageShow.showErro(infoStr: "请输入标题")
             return

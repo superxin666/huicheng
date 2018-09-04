@@ -64,6 +64,7 @@ class MessageRequestVC: UIViewController,BaseNetViewControllerDelegate {
     }
         
     func requestSucceed(response: Any) {
+        SVPMessageShow.dismissSVP()
         if type == .noticelist {
             let arr = Mapper<noticelistModel>().mapArray(JSONArray: response as! [[String : Any]])
             HCLog(message: arr.count)

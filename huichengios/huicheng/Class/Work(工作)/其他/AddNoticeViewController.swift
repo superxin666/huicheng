@@ -96,7 +96,6 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
             self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
             self.navigationBar_rightBtn_title(name: "操作")
             messageRequest.newsdetialRequest(id: detailId)
-//            self.mainTabelView.isUserInteractionEnabled = false
             rowNum = 4
         }
         self.creatUI()
