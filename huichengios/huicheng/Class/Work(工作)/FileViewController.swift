@@ -20,6 +20,9 @@ class FileViewController: BaseViewController,UITableViewDataSource,UITableViewDe
     var fileArr :[String]  = Array()
     var selectedFileArr : [String] = Array()
 
+    var fileTage : Int!
+
+
 
     // MARK: - life
     override func viewWillLayoutSubviews() {
@@ -73,7 +76,9 @@ class FileViewController: BaseViewController,UITableViewDataSource,UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
         if indexPath.row  < self.fileArr.count {
+            fileTage = indexPath.row
             let str = self.fileArr[indexPath.row]
             let urlStr : String = filePath + "/" + str
             let vc = ReadFileViewController()
@@ -89,6 +94,7 @@ class FileViewController: BaseViewController,UITableViewDataSource,UITableViewDe
 
     func getFileData() {
 
+
         if fileManager.fileExists(atPath: filePath) {
             let contentsOfPath = try? fileManager.contentsOfDirectory(atPath: filePath)
             self.fileArr = contentsOfPath!
@@ -102,9 +108,15 @@ class FileViewController: BaseViewController,UITableViewDataSource,UITableViewDe
         self.navigationController?.popViewController(animated: true)
     }
     override func navigationRightBtnClick() {
+        var  arr : [String] = []
+        if let tag = fileTage {
+            arr.append(fileArr[tag])
+            self.fileArrBlock(arr)
+            self.navigationController?.popViewController(animated: true)
+        } else {
+            SVPMessageShow.showErro(infoStr: "请选择文件")
+        }
 
-        self.fileArrBlock(fileArr)
-        self.navigationController?.popViewController(animated: true)
     }
     
 
