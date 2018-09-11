@@ -13,7 +13,7 @@ class invoiceInfoViewController:  BaseViewController,UITableViewDelegate,UITable
     let mainTabelView : UITableView = UITableView()
 
 
-    var section1titleArr = ["发票状态","发票号","社会统一代码","发票内容",]
+    var section1titleArr = ["发票情况","发票信息","社会统一代码","发票内容",]
     var dataArr : Array<String> = []
 
 
@@ -53,7 +53,7 @@ class invoiceInfoViewController:  BaseViewController,UITableViewDelegate,UITable
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return section1titleArr.count
         
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -61,6 +61,7 @@ class invoiceInfoViewController:  BaseViewController,UITableViewDelegate,UITable
             let cell : Title4TableViewCell  = tableView.dequeueReusableCell(withIdentifier: Title4TableViewCellID, for: indexPath) as! Title4TableViewCell
             var str = ""
             if indexPath.row < dataArr.count {
+
                 str = dataArr[indexPath.row]
             }
             cell.setData_overCase(titleStr: section1titleArr[indexPath.row], contentStr: str)

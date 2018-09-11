@@ -18,11 +18,11 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="49.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9e8-e7-ZOv">
-                        <rect key="frame" x="10" y="15" width="80" height="20"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9e8-e7-ZOv">
+                        <rect key="frame" x="10" y="0.0" width="80" height="49"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="80" id="Qr0-3G-ZS4"/>
-                            <constraint firstAttribute="height" constant="20" id="edD-cr-zoy"/>
+                            <constraint firstAttribute="height" constant="49" id="edD-cr-zoy"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.090196078430000007" green="0.2274509804" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
@@ -47,7 +47,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="9e8-e7-ZOv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="IiU-11-Khe"/>
-                    <constraint firstItem="9e8-e7-ZOv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="QYd-Zo-JdM"/>
+                    <constraint firstItem="9e8-e7-ZOv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="QYd-Zo-JdM"/>
                     <constraint firstItem="4vE-gz-yPP" firstAttribute="leading" secondItem="9e8-e7-ZOv" secondAttribute="trailing" constant="10" id="Sb4-60-Jkb"/>
                     <constraint firstAttribute="trailing" secondItem="4vE-gz-yPP" secondAttribute="trailing" constant="40" id="UQU-1a-1dC"/>
                     <constraint firstItem="HhU-AI-auI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="fgM-63-Ouo"/>
@@ -61,7 +61,7 @@
                 <outlet property="subLabel" destination="4vE-gz-yPP" id="XGg-gX-NkC"/>
                 <outlet property="titleNameLabel" destination="9e8-e7-ZOv" id="qny-Bb-nlD"/>
             </connections>
-            <point key="canvasLocation" x="-97" y="74"/>
+            <point key="canvasLocation" x="-401" y="116"/>
         </tableViewCell>
     </objects>
 </document>

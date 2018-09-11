@@ -21,6 +21,9 @@ class getinfoDealModel: Mappable {
     var ispaper: Int!
     var ispaperStr : String!
     var paper : String = ""
+    var creditcode : String = ""
+
+
     var branch: String!
     var state: Int!
 
@@ -79,6 +82,8 @@ class getinfoDealModel: Mappable {
 
         invoicetype <- map["invoicetype"]
         invoicetypeStr <- map["invoicetypeStr"]
+        creditcode <- map["creditcode"]
+
 
 
         begintime <- map["begintime"]

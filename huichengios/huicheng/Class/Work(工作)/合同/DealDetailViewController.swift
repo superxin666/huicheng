@@ -22,8 +22,12 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
 
     let mainTabelView : UITableView = UITableView()
     let requestVC = WorkRequestVC()
-    var sectionNameArr = ["合同编号","案件类型","案件名称","合同有效期","合同总款","合同扫描件"]
+    var sectionNameArr = ["合同编号","案件类型","案件名称","合同付款期限","合同总款","合同扫描件"]
+    var sectionNameArr2 = ["合同编号","案件类型","案件名称","合同付款期限","合同有效期","合同总款","合同扫描件"]
+    var currectsectionNameArr2 : [String] = []
+
     var sectionContent:[String] = []
+
 
     var section2NameArr = ["发票信息","基本情况","委托人情况","对方当事人情况","函件列表","收款记录","审核状态"]
     var dealID : Int!
@@ -49,6 +53,7 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
 
         self.navigation_title_fontsize(name: "合同详情", fontsize: 18)
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
+        currectsectionNameArr2 = sectionNameArr
         self.creatUI()
         requestVC.delegate = self
         SVPMessageShow.showLoad()
@@ -76,7 +81,7 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 6
+            return currectsectionNameArr2.count
         } else {
             return 7
         }
@@ -85,7 +90,7 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
         if indexPath.section == 0 {
             if indexPath.row == 5 {
                 let cell : Title2TableViewCell  = tableView.dequeueReusableCell(withIdentifier: Title2TableViewCellID, for: indexPath) as! Title2TableViewCell
-                cell.setData(titleStr: sectionNameArr[indexPath.row])
+                cell.setData(titleStr: currectsectionNameArr2[indexPath.row])
                 return cell
             } else {
                 let cell : Title3TableViewCell  = tableView.dequeueReusableCell(withIdentifier: Title3TableViewCellID, for: indexPath) as! Title3TableViewCell
@@ -93,7 +98,7 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
                 if indexPath.row < sectionContent.count {
                     str = sectionContent[indexPath.row]
                 }
-                cell.setData_deal(titleStr: sectionNameArr[indexPath.row], contentStr: str)
+                cell.setData_deal(titleStr: currectsectionNameArr2[indexPath.row], contentStr: str)
                 return cell
             }
         } else {
@@ -128,8 +133,14 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
                 let vc = invoiceInfoViewController()
                 vc.hidesBottomBarWhenPushed = true
                 var arr : [String] = []
+                // ["发票情况","发票信息","社会统一代码","发票内容",]
+
                 arr.append(dealModel.data.ispaperStr)
                 arr.append(dealModel.data.paper)
+                arr.append(dealModel.data.creditcode)
+
+                arr.append(dealModel.data.invoicetypeStr)
+
                 vc.dataArr = arr
                 self.navigationController?.pushViewController(vc, animated: true)
 
@@ -141,14 +152,19 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
                 var arr : [String] = []
                 var arr2 : [String] = []
                 let vc = BaseInfoViewController()
+
                 arr.append(dealModel.data.rStr)
                 arr.append(dealModel.data.rt)
                 arr.append(dealModel.data.w1Str)
                 arr.append(dealModel.data.w2Str)
+                arr.append(dealModel.data.dStr)
+
                 arr2.append(dealModel.data.ct)
                 arr2.append(dealModel.data.sj)
+
                 vc.dataArr = arr
                 vc.dataArr2 = arr2
+                vc.section1titleArr = ["立案律师","立案日期","承办律师","承办律师","案件组别"]
                 self.navigationController?.pushViewController(vc, animated: true)
 
             }else if indexPath.row == 2 {
@@ -225,12 +241,26 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
         if type == .getdetail {
             SVPMessageShow.dismissSVP()
             dealModel = data as! getdetailModel
-            sectionContent.append(dealModel.data.dealsnum)
-            sectionContent.append(dealModel.data.typeStr)
-            sectionContent.append(dealModel.data.n)
-            sectionContent.append(dealModel.data.dealpaylasttime)
-            sectionContent.append(dealModel.data.amount)
+            if dealModel.data.type == 4 {
+                //法律
+                sectionContent.append(dealModel.data.dealsnum)
+                sectionContent.append(dealModel.data.typeStr)
+                sectionContent.append(dealModel.data.n)
+                sectionContent.append(dealModel.data.dealpaylasttime)
+                sectionContent.append(dealModel.data.endtime)
+                sectionContent.append(dealModel.data.amount)
+                currectsectionNameArr2 = sectionNameArr2
 
+            } else {
+                sectionContent.append(dealModel.data.dealsnum)
+                sectionContent.append(dealModel.data.typeStr)
+                sectionContent.append(dealModel.data.n)
+                sectionContent.append(dealModel.data.dealpaylasttime)
+                sectionContent.append(dealModel.data.amount)
+                currectsectionNameArr2 = sectionNameArr
+
+
+            }
 
             if self.type == .searchDeal {
                 self.navigationBar_rightBtn_title(name: "打印")
@@ -300,7 +330,7 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
 
 
 
-            }  else if  self.dealModel.data.state == 0 {
+            }  else if  self.dealModel.data.state == 0 ||  self.dealModel.data.state == 2 {
                 // 未审核
                 let actcion1 = UIAlertAction(title: "删除", style: .default) { (aciton) in
                     self.showAlert(typeNum: 2)
