@@ -59,6 +59,11 @@ class getinfoDealModel: Mappable {
 
     var r: String!
     var rStr: String!
+    var mn: String!
+    var mf: String!
+
+
+
     var d: Int!
     var dStr: String!
     var w1 : String!
@@ -79,7 +84,8 @@ class getinfoDealModel: Mappable {
     func mapping(map: Map) {
         id <- map["id"]
         dealsnum <- map["dealsnum"]
-
+        mn <- map["mn"]
+        mf <- map["mf"]
         invoicetype <- map["invoicetype"]
         invoicetypeStr <- map["invoicetypeStr"]
         creditcode <- map["creditcode"]

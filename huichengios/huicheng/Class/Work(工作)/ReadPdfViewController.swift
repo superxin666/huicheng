@@ -74,6 +74,7 @@ class ReadPdfViewController: BaseViewController,UIPrintInteractionControllerDele
         webView.delegate = self
         webView.scalesPageToFit = true
         webView.loadRequest(URLRequest(url: self.url))
+        HCLog(message: self.url)
         self.view.addSubview(webView)
 
     }

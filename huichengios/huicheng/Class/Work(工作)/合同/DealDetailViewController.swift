@@ -419,8 +419,11 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
                 vc.dealNum = self.dealModel.data.dealsnum
                 vc.dStr = self.dealModel.data.dealpaylasttime
                 vc.aStr = self.dealModel.data.amount
+                
                 vc.itStr = "\(self.dealModel.data.ispaper!)"
                 vc.pStr = self.dealModel.data.paper
+                vc.ccStr = self.dealModel.data.creditcode
+
                 vc.bStr = self.dealModel.data.begintime
                 vc.eStr = self.dealModel.data.endtime
                 vc.fileStr = self.dealModel.data.img!

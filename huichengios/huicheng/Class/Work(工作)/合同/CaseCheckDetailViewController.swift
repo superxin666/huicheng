@@ -33,7 +33,7 @@ class CaseCheckDetailViewController: BaseTableViewController,WorkRequestVCDelega
     /// 数据模型
     var dealModel : getinfoDealModel!
 
-    var section2titleArr = ["合同编号","案件类型","案件名称","案件自述","结案日期","案件组别"]
+    var section2titleArr = ["合同编号","案件类型","案件名称","案件自述","结案日期","案件组别","案件律师","结案总结","结案附件"]
     var section2Content:[String] = []
 
     var section3titleArr = ["基本情况","委托人情况"]
@@ -88,7 +88,7 @@ class CaseCheckDetailViewController: BaseTableViewController,WorkRequestVCDelega
         } else if section == 1 {
             return 2
         } else if section == 2 {
-            return 6
+            return section2titleArr.count
         } else {
             return 2
         }
@@ -149,6 +149,18 @@ class CaseCheckDetailViewController: BaseTableViewController,WorkRequestVCDelega
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 2 {
+            if indexPath.row == 8 {
+                let vc : ReadPdfViewController = ReadPdfViewController()
+                vc.type = .other
+    
+                vc.url = URL(string: base_imageOrFile_api + self.dealModel.mf!)
+                vc.titleStr = "扫描件"
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
+
+
         if indexPath.section == 3 {
             var arr : [String] = []
             var arr2 : [String] = []
@@ -284,6 +296,10 @@ class CaseCheckDetailViewController: BaseTableViewController,WorkRequestVCDelega
             section2Content.append(dealModel.ct)
             section2Content.append(dealModel.mt)
             section2Content.append(dealModel.dStr)
+
+            section2Content.append(dealModel.rStr)
+            section2Content.append(dealModel.mn)
+            section2Content.append(dealModel.mf)
 
             self.tableView.reloadData()
         } else if type == .checkoversave{
