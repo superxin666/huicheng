@@ -83,7 +83,7 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
         if section == 0 {
             return currectsectionNameArr2.count
         } else {
-            return 7
+            return section2NameArr.count
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -127,9 +127,11 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
 
 
         if indexPath.section == 1 {
-            if indexPath.row == 0 {
+//             ["发票信息","基本情况","委托人情况","对方当事人情况","函件列表","收款记录","审核状态"]
+            let nameStr : String = section2NameArr[indexPath.row]
+            switch nameStr {
+            case "发票信息" :
                 HCLog(message: "发票信息")
-
                 let vc = invoiceInfoViewController()
                 vc.hidesBottomBarWhenPushed = true
                 var arr : [String] = []
@@ -143,11 +145,7 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
 
                 vc.dataArr = arr
                 self.navigationController?.pushViewController(vc, animated: true)
-
-                
-
-
-            } else if indexPath.row == 1 {
+            case "基本情况" :
                 HCLog(message: "基本情况")
                 var arr : [String] = []
                 var arr2 : [String] = []
@@ -165,25 +163,41 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
                 vc.dataArr = arr
                 vc.dataArr2 = arr2
                 vc.section1titleArr = ["立案律师","立案日期","承办律师","承办律师","案件组别"]
+                if dealModel.data.type == 4 || dealModel.data.type == 2 {
+                    vc.section2titleArr =   ["案件自述"]
+                }
                 self.navigationController?.pushViewController(vc, animated: true)
-
-            }else if indexPath.row == 2 {
+            case "委托人情况" :
                 HCLog(message: "委托人情况")
                 var arr : [String] = []
                 //委托人情况
                 let vc = CasePersionViewController()
                 vc.type =  .principal_detail
-                arr.append(dealModel.data.pn)
-                arr.append(dealModel.data.pc)
-                arr.append(dealModel.data.pp)
-                arr.append(dealModel.data.pz)
-                arr.append(dealModel.data.pj)
-                arr.append(dealModel.data.pd)
-                arr.append(dealModel.data.pa)
+                HCLog(message: dealModel.data.type)
+                vc.caseType = "\(dealModel.data.type!)"
+                if dealModel.data.type == 4  {
+                    arr.append(dealModel.data.pn)
+                    arr.append(dealModel.data.pc)
+                    arr.append(dealModel.data.pp)
+                    arr.append(dealModel.data.pz)
+                    arr.append(dealModel.data.pj)
+//                    arr.append(dealModel.data.pd)
+                    arr.append(dealModel.data.pa)
+                } else {
+                    arr.append(dealModel.data.pn)
+                    arr.append(dealModel.data.pc)
+                    arr.append(dealModel.data.pp)
+                    arr.append(dealModel.data.pz)
+                    arr.append(dealModel.data.pj)
+                    arr.append(dealModel.data.pd)
+                    arr.append(dealModel.data.pa)
+
+                }
+
                 vc.dataArr = arr
                 self.navigationController?.pushViewController(vc, animated: true)
 
-            }else if indexPath.row == 3 {
+            case "对方当事人情况" :
                 HCLog(message: "对方当事人情况")
                 var arr : [String] = []
                 let vc = CasePersionViewController()
@@ -196,19 +210,17 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
                 arr.append(dealModel.data.oa)
                 vc.dataArr = arr
                 self.navigationController?.pushViewController(vc, animated: true)
-
-            }else if indexPath.row == 4 {
+            case "函件列表" :
                 HCLog(message: "函件列表")
                 let vc : DocListViewController = DocListViewController()
                 vc.dataArr = self.dealModel.document
                 self.navigationController?.pushViewController(vc, animated: true)
-
-            }else if indexPath.row == 5 {
+            case "收款记录" :
                 HCLog(message: "收款记录")
                 let vc : IncomeHistoryViewController = IncomeHistoryViewController()
                 vc.dataArr = self.dealModel.income
                 self.navigationController?.pushViewController(vc, animated: true)
-            }else  {
+            case "审核状态" :
                 HCLog(message: "审核状态")
                 var arr : [String] = []
                 let vc = CheckInfoViewController()
@@ -217,6 +229,8 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
                 arr.append(dealModel.data.applytime)
                 vc.dataArr = arr
                 self.navigationController?.pushViewController(vc, animated: true)
+            default :
+                HCLog(message: "审核状态")
 
             }
         }
@@ -241,6 +255,17 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
         if type == .getdetail {
             SVPMessageShow.dismissSVP()
             dealModel = data as! getdetailModel
+             //非诉案件-2  刑事案件-3  法律顾问-4
+            if dealModel.data.type == 2 {
+                section2NameArr.remove(at: 3)
+
+            } else if dealModel.data.type ==  4{
+                section2NameArr.remove(at: 3)
+
+
+            }
+            
+
             if dealModel.data.type == 4 {
                 //法律
                 sectionContent.append(dealModel.data.dealsnum)

@@ -62,7 +62,7 @@ class BaseInfoViewController: BaseViewController,UITableViewDelegate,UITableView
         if section == 0 {
             return section1titleArr.count
         } else {
-            return 2
+            return section2titleArr.count
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
