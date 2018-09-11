@@ -56,7 +56,7 @@ class FinanceViewController:  BaseViewController,UITableViewDataSource,UITableVi
         mainTabelView.showsVerticalScrollIndicator = false
         mainTabelView.showsHorizontalScrollIndicator = false
         mainTabelView.backgroundView?.backgroundColor = .clear
-        mainTabelView.register(UINib.init(nibName: "SubPayTableViewCell", bundle: nil), forCellReuseIdentifier: IncomeTableViewCellid)
+        mainTabelView.register(UINib.init(nibName: "DocTableViewCell", bundle: nil), forCellReuseIdentifier: DocTableViewCellID)
     
         self.view.addSubview(mainTabelView)
     }
@@ -69,11 +69,14 @@ class FinanceViewController:  BaseViewController,UITableViewDataSource,UITableVi
         return dataArr.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell : SubPayTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: IncomeTableViewCellid, for: indexPath) as! SubPayTableViewCell
-        if indexPath.row < dataArr.count {
-            cell.setData_finance(model: dataArr[indexPath.row])
+
+        let cell : DocTableViewCell  = tableView.dequeueReusableCell(withIdentifier: DocTableViewCellID, for: indexPath) as! DocTableViewCell
+        if indexPath.row < self.dataArr.count {
+            let model : finance_getlistModel = self.dataArr[indexPath.row]
+            cell.setData_myincome(model: model)
         }
         return cell
+
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -88,7 +91,7 @@ class FinanceViewController:  BaseViewController,UITableViewDataSource,UITableVi
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return IncomeTableViewCellH
+        return DocTableViewCellH
     }
     
     

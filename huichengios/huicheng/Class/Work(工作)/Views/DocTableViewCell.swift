@@ -27,6 +27,29 @@ class DocTableViewCell: UITableViewCell {
     @IBOutlet weak var stateLabel: UILabel!
 
 
+    func setData_myincome(model : finance_getlistModel) {
+
+        if let typeStr = model.typeStr {
+
+            self.titleNameLabel.text = typeStr
+        }
+
+        if let money = model.money {
+            self.titleNameLabel2.text = "\(money)元"
+        }
+        if let user = model.user {
+            self.subTitleLabel.text = user
+        }
+        if let addtime = model.addtime {
+            self.timeLabel.text = String.hc_getDate_string(dateStr: addtime)
+        }
+        if let num = model.num {
+            self.typeLabel.text = num
+        }
+
+        
+    }
+
 
     func setData_Apply(model : docgetlistModel) {
 
