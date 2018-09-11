@@ -112,10 +112,9 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             if indexPath.row == 5 {
-                if type == .deallist{
+                if type == .deallist || type == .searchDeal{
                     //查看函件
                     let vc = ReadPdfViewController()
-
                     vc.url = URL(string: base_imageOrFile_api + self.dealModel.data.img!)
                     vc.titleStr = "扫描件"
                     self.navigationController?.pushViewController(vc, animated: true)
