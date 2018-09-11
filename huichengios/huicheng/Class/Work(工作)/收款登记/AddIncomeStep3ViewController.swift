@@ -39,7 +39,7 @@ class AddIncomeStep3ViewController:BaseViewController ,UITableViewDataSource,UIT
     var contenArr1 : [String] = ["","","","",]
 
 
-    var nameArr2 = ["收款金额","实收金额","收款日期","交款人","发票","发票号","发票信息","社会统一信用",]
+    var nameArr2 = ["总收款额","实收金额","收款日期","交款人","发票","发票号","发票信息","社会统一信用",]
     var contenArr2 : [String] = ["","","","","","","",]
 
     var dataModel : income_getdealsinfoModel!
@@ -49,6 +49,10 @@ class AddIncomeStep3ViewController:BaseViewController ,UITableViewDataSource,UIT
 
     /// 收款金额
     var amountStr = ""
+
+    /// 收款金额
+    var  amountCell : TitleTableViewCell!
+
 
     /// 实际收入
     var moneyStr = ""
@@ -190,12 +194,13 @@ class AddIncomeStep3ViewController:BaseViewController ,UITableViewDataSource,UIT
                 if contenArr.count > 0 {
                     str = contenArr[indexPath.row]
                 }
+
                 cell.setData_overCase(titleStr: nameArr[indexPath.row], contentStr: str)
                 return cell
             }
 
         } else if indexPath.section == 1 {
-            let cell : TitleTableViewCell  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+            amountCell  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
             var str = ""
             if indexPath.row == 0 {
                 str = xinjinStr
@@ -206,19 +211,27 @@ class AddIncomeStep3ViewController:BaseViewController ,UITableViewDataSource,UIT
             } else {
                 str = shouxuStr
             }
-            cell.setData_AddIncomeStep3(titleStr: nameArr1[indexPath.row], contentStr: str, tagNum: indexPath)
-            cell.delegate = self
-            return cell
+            if str.count > 0 {
+                str = str + "元"
+            }
+            amountCell.setData_AddIncomeStep3(titleStr: nameArr1[indexPath.row], contentStr: str, tagNum: indexPath)
+            amountCell.textField.keyboardType = .numberPad
+            amountCell.delegate = self
+            return amountCell
         } else {
             if indexPath.row == 0 {
                 let cell : TitleTableViewCell  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
                 cell.setData_AddIncomeStep3(titleStr: nameArr2[indexPath.row], contentStr: amountStr, tagNum: indexPath)
+                cell.textField.keyboardType = .numberPad
+
                 cell.delegate = self
                 return cell
 
             } else if indexPath.row == 1 {
                 let cell : TitleTableViewCell  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
                 cell.setData_AddIncomeStep3(titleStr: nameArr2[indexPath.row], contentStr: moneyStr, tagNum: indexPath)
+                cell.textField.keyboardType = .numberPad
+
                 cell.delegate = self
                 return cell
 
@@ -230,6 +243,7 @@ class AddIncomeStep3ViewController:BaseViewController ,UITableViewDataSource,UIT
             } else if indexPath.row == 3 {
                 let cell : TitleTableViewCell  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
                 cell.setData_AddIncomeStep3(titleStr: nameArr2[indexPath.row], contentStr: user, tagNum: indexPath)
+                cell.textField.keyboardType = .default
                 cell.delegate = self
                 return cell
 
@@ -245,6 +259,7 @@ class AddIncomeStep3ViewController:BaseViewController ,UITableViewDataSource,UIT
                 let cell : TitleTableViewCell  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
                 cell.setData_AddIncomeStep3(titleStr: nameArr2[indexPath.row], contentStr: papernum, tagNum: indexPath)
                 cell.delegate = self
+                cell.textField.keyboardType = .default
                 return cell
 
             } else if indexPath.row == 6 {
@@ -439,19 +454,160 @@ class AddIncomeStep3ViewController:BaseViewController ,UITableViewDataSource,UIT
         HCLog(message: inputStr)
 
         if tagNum == 10 {
+            if !(inputStr.count > 0) {
+                return
+            }
             self.xinjinStr = inputStr
+            var xinjinNum = 0
+            if xinjinStr.count > 0 {
+                xinjinNum = Int(xinjinStr)!
+            }
+            var yinhangNum = 0
+            if yinhangStr.count > 0 {
+                yinhangNum = Int(yinhangStr)!
+            }
+
+            var shuakaNum = 0
+            if shuakaStr.count > 0 {
+                shuakaNum = Int(shuakaStr)!
+            }
+
+            var shouxuNum = 0
+            if shouxuStr.count > 0 {
+                shouxuNum = Int(shouxuStr)!
+            }
+            let num = xinjinNum + yinhangNum + shuakaNum
+
+            let cell : TitleTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 0, section: 2)) as! TitleTableViewCell
+            cell.setDataContent(contentStr: "\(num)元")
+
+
+            let num2 = xinjinNum + yinhangNum + shuakaNum - shouxuNum
+            let cell2 : TitleTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 1, section: 2)) as! TitleTableViewCell
+            cell2.setDataContent(contentStr: "\(num2)元")
+
+            amountStr = "\(num)"
+            moneyStr = "\(num2)"
+
 
         } else if tagNum == 11 {
+            if !(inputStr.count > 0) {
+                return
+            }
+
             self.yinhangStr = inputStr
+
+            var xinjinNum = 0
+            if xinjinStr.count > 0 {
+                xinjinNum = Int(xinjinStr)!
+            }
+            var yinhangNum = 0
+            if yinhangStr.count > 0 {
+                yinhangNum = Int(yinhangStr)!
+            }
+
+            var shuakaNum = 0
+            if shuakaStr.count > 0 {
+                shuakaNum = Int(shuakaStr)!
+            }
+
+            var shouxuNum = 0
+            if shouxuStr.count > 0 {
+                shouxuNum = Int(shouxuStr)!
+            }
+
+            let num = xinjinNum + yinhangNum + shuakaNum
+            let cell : TitleTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 0, section: 2)) as! TitleTableViewCell
+            cell.setDataContent(contentStr: "\(num)元")
+
+            let num2 = xinjinNum + yinhangNum + shuakaNum - shouxuNum
+            let cell2 : TitleTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 1, section: 2)) as! TitleTableViewCell
+            cell2.setDataContent(contentStr: "\(num2)元")
+
+            amountStr = "\(num)"
+            moneyStr = "\(num2)"
+
 
 
         } else if tagNum == 12 {
+            if !(inputStr.count > 0) {
+                return
+            }
 
             self.shuakaStr = inputStr
 
-        } else if tagNum == 13 {
 
+            var xinjinNum = 0
+            if xinjinStr.count > 0 {
+                xinjinNum = Int(xinjinStr)!
+            }
+            var yinhangNum = 0
+            if yinhangStr.count > 0 {
+                yinhangNum = Int(yinhangStr)!
+            }
+
+            var shuakaNum = 0
+            if shuakaStr.count > 0 {
+                shuakaNum = Int(shuakaStr)!
+            }
+
+            var shouxuNum = 0
+            if shouxuStr.count > 0 {
+                shouxuNum = Int(shouxuStr)!
+            }
+
+            let num = xinjinNum + yinhangNum + shuakaNum
+            let cell : TitleTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 0, section: 2)) as! TitleTableViewCell
+            cell.setDataContent(contentStr: "\(num)元")
+
+
+            let num2 = xinjinNum + yinhangNum + shuakaNum - shouxuNum
+            let cell2 : TitleTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 1, section: 2)) as! TitleTableViewCell
+            cell2.setDataContent(contentStr: "\(num2)元")
+            amountStr = "\(num)"
+            moneyStr = "\(num2)"
+
+
+        } else if tagNum == 13 {
+            if !(inputStr.count > 0) {
+                return
+            }
             self.shouxuStr = inputStr
+
+
+            var xinjinNum = 0
+            if xinjinStr.count > 0 {
+                xinjinNum = Int(xinjinStr)!
+            }
+            var yinhangNum = 0
+            if yinhangStr.count > 0 {
+                yinhangNum = Int(yinhangStr)!
+            }
+
+            var shuakaNum = 0
+            if shuakaStr.count > 0 {
+                shuakaNum = Int(shuakaStr)!
+            }
+
+            var shouxuNum = 0
+            if shouxuStr.count > 0 {
+                shouxuNum = Int(shouxuStr)!
+            }
+
+            let num = xinjinNum + yinhangNum + shuakaNum
+
+
+            let cell : TitleTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 0, section: 2)) as! TitleTableViewCell
+            cell.setDataContent(contentStr: "\(num)元")
+            amountStr = "\(num)"
+
+            let num2 = xinjinNum + yinhangNum + shuakaNum - shouxuNum
+
+            let cell2 : TitleTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 1, section: 2)) as! TitleTableViewCell
+            cell2.setDataContent(contentStr: "\(num2)元")
+
+            moneyStr = "\(num2)"
+
 
         } else if tagNum == 20 {
             amountStr = inputStr
@@ -537,13 +693,13 @@ class AddIncomeStep3ViewController:BaseViewController ,UITableViewDataSource,UIT
             contenArr.append(dataModel.data.principal)
             contenArr.append(dataModel.data.branch)
             if let a = dataModel.data.amount {
-                contenArr.append("\(a)")
+                contenArr.append("\(a)元")
             } else {
                 contenArr.append("")
             }
 
             if let b = dataModel.data.money {
-                contenArr.append("\(b)")
+                contenArr.append("\(b)元")
             } else {
                 contenArr.append("")
             }

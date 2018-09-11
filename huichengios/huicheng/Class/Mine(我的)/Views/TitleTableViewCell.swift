@@ -202,6 +202,7 @@ class TitleTableViewCell: UITableViewCell {
         self.titleNameLabel.textColor = darkblueColor
         self.titleNameLabel.text = titleStr
         self.textField.text = contentStr
+        self.textField.placeholder = "请输入"
 
     }
 
@@ -246,6 +247,11 @@ class TitleTableViewCell: UITableViewCell {
         self.textField.text = congtentStr
 
         self.textField.placeholder = "请输入"
+    }
+
+
+    func setDataContent(contentStr : String) {
+        self.textField.text = contentStr
     }
 
     override func awakeFromNib() {

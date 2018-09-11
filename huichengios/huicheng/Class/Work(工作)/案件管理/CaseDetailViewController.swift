@@ -125,7 +125,7 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
 
             self.navigation_title_fontsize(name: "函件信息", fontsize: 18)
             self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
-            self.navigationBar_rightBtn_title(name: "生成")
+            self.navigationBar_rightBtn_title(name: "生成函件")
             request.casegetinfoRerquest(id: caseId)
 
         } else {

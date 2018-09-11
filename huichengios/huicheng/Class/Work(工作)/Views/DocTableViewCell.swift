@@ -111,12 +111,17 @@ class DocTableViewCell: UITableViewCell {
     func setData_PayApplylist(model : payGetlistModel) {
 
         if let num = model.num {
-            self.titleNameLabel.text = num
+            self.typeLabel.text = num
         }
 
         if let money = model.money {
             self.titleNameLabel2.text = "\(money)元"
         }
+
+        if let user = model.user {
+            self.subTitleLabel.text = user
+        }
+
 
 
         if let addtime = model.addtime {
@@ -124,7 +129,7 @@ class DocTableViewCell: UITableViewCell {
         }
 
         if let typeStr = model.typeStr {
-            self.typeLabel.text = typeStr
+            self.titleNameLabel.text = typeStr
         }
 
         if let stateStr = model.stateStr {
