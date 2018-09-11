@@ -294,14 +294,26 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
         request.delegate = self
         type = .crt_save
         var urlIteamsStr = ""
+        var urlIteamsStr2 = ""
         SVPMessageShow.showLoad()
         for subModel in dataArr {
-            let valueStr = subModel.value.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-            let  str = "&\(subModel.name!)=\(valueStr)"
-            urlIteamsStr = urlIteamsStr + str
+            if subModel.name != "attr"{
+                let valueStr = subModel.value.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+                let  str = "&\(subModel.name!)=\(valueStr)"
+                urlIteamsStr = urlIteamsStr + str
+            } else {
+                let valueStr = subModel.value.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+                let  str = "&\(subModel.name!)=\(valueStr)"
+                urlIteamsStr2 = urlIteamsStr2 + str
+            }
         }
 
-        let url = doc_crt_save_api + "k=\(UserInfoLoaclManger.getKey())&id=\(id)\(urlIteamsStr)"
+
+
+
+        let url = doc_crt_save_api + "k=\(UserInfoLoaclManger.getKey())&id=\(id)\(urlIteamsStr)\(urlIteamsStr2)"
+        HCLog(message: "121212")
+        HCLog(message: url)
 
         request.request_api(url: url)
     }
