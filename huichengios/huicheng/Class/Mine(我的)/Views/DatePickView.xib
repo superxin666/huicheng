@@ -56,7 +56,7 @@
             <connections>
                 <outlet property="datePicker" destination="LKz-qO-zwU" id="J7O-j7-ede"/>
             </connections>
-            <point key="canvasLocation" x="28" y="-55"/>
+            <point key="canvasLocation" x="-106" y="-59"/>
         </view>
     </objects>
 </document>

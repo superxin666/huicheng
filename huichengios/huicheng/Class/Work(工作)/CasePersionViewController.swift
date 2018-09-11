@@ -140,6 +140,11 @@ class CasePersionViewController: BaseViewController,UITableViewDataSource,UITabl
         if indexPath.row < nameArr.count {
             cell.setData_caseDetail(titleStr: nameArr[indexPath.row], contentStr: dataArr[indexPath.row],indexPath : indexPath)
         }
+        if indexPath.row == 2 || indexPath.row == 3  {
+            cell.textField.keyboardType = .numberPad
+        } else {
+            cell.textField.keyboardType = .default
+        }
         if type == .principal_detail || type == .opposite_detail{
             cell.isUserInteractionEnabled = false
         } else {

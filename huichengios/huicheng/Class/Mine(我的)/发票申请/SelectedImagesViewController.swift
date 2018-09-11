@@ -107,7 +107,7 @@ class SelectedImagesViewController: BaseViewController, UITableViewDataSource, U
             //指定图片控制器类型
             picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
             //设置是否允许编辑
-            picker.allowsEditing = true
+            picker.allowsEditing = false
 
             //弹出控制器，显示界面
             self.present(picker, animated: true, completion: {
@@ -127,7 +127,7 @@ class SelectedImagesViewController: BaseViewController, UITableViewDataSource, U
 //            self.fileArr.removeAll()
 //        }
         //获取选择的编辑后的
-        let  image = info[UIImagePickerControllerEditedImage] as! UIImage
+        let  image = info[UIImagePickerControllerOriginalImage] as! UIImage
 
         let nameStr = image.description
         HCLog(message: nameStr)

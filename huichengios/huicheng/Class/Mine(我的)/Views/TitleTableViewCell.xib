@@ -28,7 +28,7 @@
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qkv-tc-gFl">
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qkv-tc-gFl">
                         <rect key="frame" x="100" y="0.0" width="200" height="49"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="49" id="Rl0-rv-9nl"/>
@@ -47,13 +47,25 @@
                             <constraint firstAttribute="height" constant="0.5" id="WUg-9r-lxD"/>
                         </constraints>
                     </view>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bUG-SJ-QSP">
+                        <rect key="frame" x="300" y="15" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="WiM-C7-gxh"/>
+                            <constraint firstAttribute="width" constant="20" id="dRw-n3-pTf"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="bUG-SJ-QSP" secondAttribute="trailing" id="0zZ-3h-YKo"/>
                     <constraint firstItem="ZR9-Bb-n0L" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="1CQ-K2-cMz"/>
                     <constraint firstItem="NPL-39-d56" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="9dk-EN-vUo"/>
                     <constraint firstAttribute="trailing" secondItem="Qkv-tc-gFl" secondAttribute="trailing" constant="20" id="D14-uS-kgv"/>
                     <constraint firstItem="NPL-39-d56" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="alZ-KU-BwB"/>
                     <constraint firstAttribute="bottom" secondItem="ZR9-Bb-n0L" secondAttribute="bottom" id="axx-13-sbG"/>
+                    <constraint firstItem="bUG-SJ-QSP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="dWr-re-xOg"/>
                     <constraint firstItem="Qkv-tc-gFl" firstAttribute="leading" secondItem="NPL-39-d56" secondAttribute="trailing" constant="10" id="idd-a1-xsm"/>
                     <constraint firstItem="Qkv-tc-gFl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="jfR-u1-WAw"/>
                     <constraint firstAttribute="trailing" secondItem="ZR9-Bb-n0L" secondAttribute="trailing" id="p3g-Kv-rf8"/>
@@ -62,8 +74,9 @@
             <connections>
                 <outlet property="textField" destination="Qkv-tc-gFl" id="fq0-ef-aIB"/>
                 <outlet property="titleNameLabel" destination="NPL-39-d56" id="QB4-XQ-UbY"/>
+                <outlet property="yuanLabel" destination="bUG-SJ-QSP" id="VDF-0K-zAx"/>
             </connections>
-            <point key="canvasLocation" x="-557" y="-33"/>
+            <point key="canvasLocation" x="-1372" y="-112"/>
         </tableViewCell>
     </objects>
 </document>

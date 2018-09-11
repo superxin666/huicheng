@@ -141,6 +141,7 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
             } else if indexPath.row == 1  {
                 let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
                 cell.setData_overDeal(titleStr: "合同总款", contentStr: aStr, indexPath: indexPath)
+                cell.yuanLabel.isHidden = false
                 cell.delegate = self
 
                 return cell
@@ -159,7 +160,13 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
 
             } else if indexPath.row == 4 {
                 let cell : OptionTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
-                cell.setData_caseDetail(titleStr: "发票信息", contentStr: itNameStr)
+                var  str = ""
+                if itNameStr.count > 0 {
+                    str = itNameStr
+                } else {
+                    str = "请选择"
+                }
+                cell.setData_caseDetail(titleStr: "发票信息", contentStr: str)
                 return cell
             } else if indexPath.row == 5 {
                 fileCell = tableView.dequeueReusableCell(withIdentifier: FileTableViewCellID, for: indexPath) as! FileTableViewCell
@@ -170,16 +177,26 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
                 return fileCell
             }   else if indexPath.row == 6 {
                 let cell : endTimeTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-                cell.setData(titleStr: "起始时间", tag: indexPath.row)
-                cell.setTime(str: bStr)
+                var str = ""
+                if bStr.count > 0 {
+                    str = bStr
+                } else {
+                    str = "开始时间"
+                }
+                cell.setDataPla(titleStr: "合同有效期", timeStr: str, tag: indexPath.row)
 
                 return cell
 
             } else  {
                 let cell : endTimeTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-                cell.setData(titleStr: "结束时间", tag: indexPath.row)
-                cell.setTime(str: eStr)
-
+                var str = ""
+                if eStr.count > 0 {
+                    str = eStr
+                } else {
+                    str = "结束时间"
+                }
+                cell.setDataPla(titleStr: "至", timeStr: str, tag: indexPath.row)
+                cell.titleNameLabel.textAlignment = .right
                 return cell
 
             }
@@ -196,7 +213,7 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
                 let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
                 cell.delegate = self
                 cell.setData_overDeal(titleStr: "合同总款", contentStr: aStr, indexPath: indexPath)
-
+                cell.yuanLabel.isHidden = false
                 return cell
             } else if indexPath.row == 2 {
                 let cell : endTimeTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
@@ -238,16 +255,26 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
                 return fileCell
             } else if indexPath.row == 8 {
                 let cell : endTimeTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-                cell.setData(titleStr: "起始时间", tag: indexPath.row)
-                cell.setTime(str: bStr)
-
+                cell.setData(titleStr: "合同有效期", tag: indexPath.row)
+                var str = ""
+                if bStr.count > 0 {
+                    str = bStr
+                } else {
+                    str = "开始时间"
+                }
+                cell.setDataPla(titleStr: "合同有效期", timeStr: str, tag: indexPath.row)
                 return cell
 
             } else {
                 let cell : endTimeTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-                cell.setData(titleStr: "结束时间", tag: indexPath.row)
-                cell.setTime(str: eStr)
-
+                var str = ""
+                if eStr.count > 0 {
+                    str = eStr
+                } else {
+                    str = "结束时间"
+                }
+                cell.setDataPla(titleStr: "至", timeStr: str, tag: indexPath.row)
+                cell.titleNameLabel.textAlignment = .right
                 return cell
             }
         }
@@ -373,7 +400,7 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
             //指定图片控制器类型
             picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
             //设置是否允许编辑
-            picker.allowsEditing = true
+            picker.allowsEditing = false
 
             //弹出控制器，显示界面
             self.present(picker, animated: true, completion: {
@@ -393,7 +420,8 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
             self.fileArr.removeAll()
         }
         //获取选择的编辑后的
-        let  image = info[UIImagePickerControllerEditedImage] as! UIImage
+        
+        let  image = info[UIImagePickerControllerOriginalImage] as! UIImage
 
         let nameStr = image.description
         HCLog(message: nameStr)

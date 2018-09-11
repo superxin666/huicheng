@@ -17,6 +17,7 @@ protocol TitleTableViewCellDelegate {
 class TitleTableViewCell: UITableViewCell {
     var delegate : TitleTableViewCellDelegate!
 
+    @IBOutlet weak var yuanLabel: UILabel!
     var conTent :String = ""
     @IBOutlet weak var textField: UITextField!
     
@@ -105,14 +106,12 @@ class TitleTableViewCell: UITableViewCell {
     func setData_caseDetail(titleStr : String, contentStr : String,indexPath : IndexPath) {
         let tagNum = indexPath.section * 10 + indexPath.row
         self.textField.tag = tagNum
+        self.textField.textColor = .black
         self.titleNameLabel.textColor = darkblueColor
         self.titleNameLabel.text = titleStr
         self.titleNameLabel.textAlignment = .left
-        self.textField.text = contentStr
-        if !(contentStr.count > 0) {
-            self.textField.placeholder = ""
-        }
-
+        self.textField.placeholder = "请输入"
+        
     }
     
     /// 案件  添加

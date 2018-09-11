@@ -181,10 +181,18 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
                 let titleStr = name1[indexPath.row]
                 if type == .caseDetail || type == .crtDetail || type == .searchCseDetail{
                     cell.isUserInteractionEnabled = false
+                    cell.setData_caseDetail(titleStr: titleStr, contentStr: tnameStr)
                 } else {
                     cell.isUserInteractionEnabled = true
+                    var str = ""
+                    if tnameStr.count > 0 {
+                        str = tnameStr
+                    } else {
+                        str = "请选择"
+                    }
+                    cell.setData_caseDetail(titleStr: titleStr, contentStr: str)
                 }
-                cell.setData_caseDetail(titleStr: titleStr, contentStr: tnameStr)
+
                 return cell
             } else if indexPath.row == 3 {
                 //立案律师
@@ -192,11 +200,19 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
                 let titleStr = name1[indexPath.row]
 
                 if type == .caseDetail || type == .crtDetail || type == .searchCseDetail{
+                    cell.setData_caseDetail(titleStr: titleStr, contentStr: rnameStr)
+
                     cell.isUserInteractionEnabled = false
                 } else {
+                    var str = ""
+                    if rnameStr.count > 0 {
+                        str = rnameStr
+                    } else {
+                        str = "请选择"
+                    }
+                    cell.setData_caseDetail(titleStr: titleStr, contentStr: str)
                     cell.isUserInteractionEnabled = true
                 }
-                cell.setData_caseDetail(titleStr: titleStr, contentStr: rnameStr)
                 return cell
 
 
@@ -207,11 +223,18 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
                 let titleStr = name1[indexPath.row]
 
                 if type == .caseDetail || type == .crtDetail || type == .searchCseDetail{
+                    cell.setData_caseDetail(titleStr: titleStr, contentStr: dNameStr)
                     cell.isUserInteractionEnabled = false
                 } else {
+                    var str = ""
+                    if dNameStr.count > 0 {
+                        str = dNameStr
+                    } else {
+                        str = "请选择"
+                    }
+                    cell.setData_caseDetail(titleStr: titleStr, contentStr: str)
                     cell.isUserInteractionEnabled = true
                 }
-                cell.setData_caseDetail(titleStr: titleStr, contentStr: dNameStr)
                 return cell
 
 
@@ -222,10 +245,19 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
 
                 if type == .caseDetail || type == .crtDetail || type == .searchCseDetail{
                     cell.isUserInteractionEnabled = false
+                    cell.setData_caseDetail(titleStr: titleStr, contentStr: w1NameStr)
+
                 } else {
                     cell.isUserInteractionEnabled = true
+                    var str = ""
+                    if w1NameStr.count > 0 {
+                        str = w1NameStr
+                    } else {
+                        str = "请选择"
+                    }
+                    cell.setData_caseDetail(titleStr: titleStr, contentStr: str)
+
                 }
-                cell.setData_caseDetail(titleStr: titleStr, contentStr: w1NameStr)
                 return cell
 
             } else if indexPath.row == 6{
@@ -234,10 +266,17 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
 
                 if type == .caseDetail || type == .crtDetail || type == .searchCseDetail{
                     cell.isUserInteractionEnabled = false
+                    cell.setData_caseDetail(titleStr: titleStr, contentStr: w2NameStr)
                 } else {
                     cell.isUserInteractionEnabled = true
+                    var str = ""
+                    if w2NameStr.count > 0 {
+                        str = w2NameStr
+                    } else {
+                        str = "请选择"
+                    }
+                    cell.setData_caseDetail(titleStr: titleStr, contentStr: str)
                 }
-                cell.setData_caseDetail(titleStr: titleStr, contentStr: w2NameStr)
                 return cell
 
 
@@ -245,25 +284,35 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
             } else if indexPath.row == 1{
                 let cell : TitleTableViewCell  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
                 cell.delegate = self
-
-
-                cell.setData_caseDetail(titleStr: name1[indexPath.row], contentStr: nStr,indexPath : indexPath)
                 cell.tag = indexPath.row
+                cell.setData_caseDetail(titleStr: name1[indexPath.row], contentStr: nStr,indexPath : indexPath)
                 if type == .caseDetail  || type == .crtDetail || type == .searchCseDetail{
                     cell.isUserInteractionEnabled = false
+                    cell.textField.placeholder = " "
                 } else {
                     cell.isUserInteractionEnabled = true
                 }
+
                 return cell
             }  else {
                 //结束时间
                 let endTimeCell : endTimeTableViewCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
 
-                endTimeCell.setData_case(titleStr: "立案日期", timeStr: rtStr)
+
                 if type == .caseDetail  || type == .crtDetail || type == .searchCseDetail{
+                    endTimeCell.setData_case(titleStr: "立案日期", timeStr: rtStr)
                     endTimeCell.isUserInteractionEnabled = false
                 } else {
                     endTimeCell.isUserInteractionEnabled = true
+
+                    var str = ""
+                    if rtStr.count > 0 {
+                        str = rtStr
+                    } else {
+                        str = "请输入"
+                    }
+                    endTimeCell.setData_case(titleStr: "立案日期", timeStr: str)
+
                 }
                 return endTimeCell
             }
@@ -289,6 +338,7 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
                 cell.delegate = self
                 cell.setData_caseDetail(titleStr: name3[indexPath.row], contentStr: sjStr, indexPath: indexPath)
                 if type == .caseDetail  || type == .crtDetail || type == .searchCseDetail{
+                    cell.textField.placeholder = ""
                     cell.isUserInteractionEnabled = false
                 } else {
                     cell.isUserInteractionEnabled = true
@@ -790,6 +840,7 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
     
     /// 显示时间
     func showDate() {
+        self.dateView.datePicker.datePickerMode = .date
         self.maskView.addSubview(self.dateView)
         self.view.window?.addSubview(self.maskView)
         self.dateView.delegate = self
@@ -808,9 +859,10 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
     func datePickViewTime(timeStr: String, type: Int) {
         HCLog(message: timeStr)
         HCLog(message: type)
-        self.rtStr = timeStr
+//        self.rtStr = timeStr
+        self.rtStr = String.hc_getDate_style1(dateStr: timeStr, style: 4)
         let cell : endTimeTableViewCell  = self.tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as! endTimeTableViewCell
-        cell.setTime(str: timeStr)
+        cell.setTime(str: self.rtStr)
         self.dateView.removeFromSuperview()
         self.maskView.removeFromSuperview()
     }

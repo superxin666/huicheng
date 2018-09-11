@@ -25,6 +25,21 @@ class endTimeTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    /// 占位符
+    ///
+    /// - Parameters:
+    ///   - titleStr: <#titleStr description#>
+    ///   - timeStr: <#timeStr description#>
+    ///   - tag: <#tag description#>
+    func setDataPla(titleStr : String,timeStr : String,tag : Int) {
+
+        self.titleNameLabel.text = titleStr
+        self.titleNameLabel.textAlignment = .left
+        self.timeLabel.text = timeStr
+        self.timeLabel.textAlignment = .left
+
+
+    }
 
     /// 时间标题
     ///
@@ -46,6 +61,8 @@ class endTimeTableViewCell: UITableViewCell {
         self.titleNameLabel.text = titleStr
         self.titleNameLabel.textAlignment = .left
         self.timeLabel.text = timeStr
+        self.timeLabel.textAlignment = .left
+        
     }
 
     /// 选择时间之后 展示时间
