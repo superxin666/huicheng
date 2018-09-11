@@ -187,6 +187,8 @@ let share_sharegetreply_api = "share/getreply?"
 let share_replysave_api = "share/replysave?"
 let share_gettype_api = "share/gettype?"
 let share_save_api = "share/save?"
+let share_del_api = "share/del?"
+
 //-----------------------法庭信息管理
 let quick_getlist_api = "quick/getlist?"
 

@@ -21,8 +21,14 @@ class sharegetinfoModel: Mappable {
     var user: String!
     var addtime: String!
     var readcount: Int!
+    var ifedit: Int!
+
     var path: String!
     var filetype: String!
+
+    var stateStr: String!
+    var state: Int!
+
 
 
     init() {}
@@ -31,6 +37,8 @@ class sharegetinfoModel: Mappable {
     }
     // Mappable
     func mapping(map: Map) {
+        stateStr <- map["stateStr"]
+        state <- map["state"]
         id <- map["id"]
         type <- map["type"]
         typeStr <- map["typeStr"]
@@ -41,5 +49,8 @@ class sharegetinfoModel: Mappable {
         readcount <- map["readcount"]
         path <- map["path"]
         filetype <- map["filetype"]
+        ifedit <- map["ifedit"]
+
+
     }
 }

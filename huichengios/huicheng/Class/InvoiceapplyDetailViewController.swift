@@ -30,6 +30,7 @@ class InvoiceapplyDetailViewController: BaseViewController,UITableViewDelegate,U
 
     var section2titleArr = ["发票类型","发票抬头","发票内容","发票金额","纳税人识别号","地址","电话","银行","账号","款项入账","送达方式","自取时间","备注","申请时间"]
 
+
     
 
 

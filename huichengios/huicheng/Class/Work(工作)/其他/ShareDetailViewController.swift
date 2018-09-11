@@ -10,11 +10,13 @@
 //  共享模板详情
 
 import UIKit
-
+typealias ShareDetailViewControllerBlcok = ()->()
 class ShareDetailViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate,WorkRequestVCDelegate,UITextViewDelegate {
     let mainTabelView : UITableView = UITableView()
     let requestVC = WorkRequestVC()
     var shareID : Int!
+    var sucessblock : ShareDetailViewControllerBlcok!
+
 
     var dataArr : [sharegetreplyModel] = []
     var dataModel : sharegetinfoModel = sharegetinfoModel()
@@ -25,6 +27,8 @@ class ShareDetailViewController: BaseViewController,UITableViewDataSource,UITabl
     let txtTextView : UITextView = UITextView()
     var txtTextViewBack : UIView!
     var txt : String = ""
+
+    var alertController : UIAlertController!
 
 
     // MARK: - life
@@ -194,8 +198,14 @@ class ShareDetailViewController: BaseViewController,UITableViewDataSource,UITabl
         requestVC.sharegetinfoRequest(id: shareID!)
     }
 
+
+
     func requestApi_sharegetreplyRequest() {
-        self.requestVC.sharegetreplyRequest(id: self.shareID)
+        self.requestVC.sharegetreplyRequest(id: self.shareID!)
+    }
+
+    func shareDel() {
+        self.requestVC.shareDel(id:"\(self.shareID!)")
     }
 
 
@@ -203,6 +213,15 @@ class ShareDetailViewController: BaseViewController,UITableViewDataSource,UITabl
         if type == .sharegetinfo {
             dataModel = data as! sharegetinfoModel
             self.requestApi_sharegetreplyRequest()
+            if dataModel.ifedit == 1 {
+                comBtn.isHidden = true
+            } else {
+                comBtn.isHidden = false
+            }
+            if dataModel.state == 0 {
+                //可以删除 编辑
+                self.navigationBar_rightBtn_title(name: "操作")
+            }
 
             mainTabelView.reloadSections([0], with: .automatic)
 
@@ -219,6 +238,9 @@ class ShareDetailViewController: BaseViewController,UITableViewDataSource,UITabl
                 self.dataArr.removeAll()
             }
             self.requestApi_sharegetreplyRequest()
+        } else if type == .sharedel {
+            self.sucessblock()
+            self.navigationController?.popViewController(animated: true)
         }
     }
 
@@ -229,6 +251,27 @@ class ShareDetailViewController: BaseViewController,UITableViewDataSource,UITabl
 
     override func navigationLeftBtnClick() {
         self.navigationController?.popViewController(animated: true)
+    }
+
+    override func navigationRightBtnClick() {
+        alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let actcion1 = UIAlertAction(title: "删除", style: .default) { (aciton) in
+            self.shareDel()
+        }
+        let actcion2 = UIAlertAction(title: "编辑", style: .default) { (aciton) in
+
+        }
+        let actcion3 = UIAlertAction(title: "取消", style: .cancel) { (aciton) in
+            self.alertController.dismiss(animated: true, completion: {
+
+            })
+
+        }
+        alertController.addAction(actcion1)
+        alertController.addAction(actcion2)
+        alertController.addAction(actcion3)
+        self.present(alertController, animated: true, completion: nil)
+        
     }
 
     @objc func replayclick() {

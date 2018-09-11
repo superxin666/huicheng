@@ -20,7 +20,7 @@ enum WorkRequestVC_enum {
          dealgetoverlist,dealgetoverinfo,checkoversave,//结案审核
          invoice_applylist,invoice_applysave,invoice_del,invoice_getinfo,//发票审批
          expense_applylist,expense_applysave,expense_del,//报销审批
-         sharegetlist,sharegetmylist,sharegetinfo,sharegetreply,sharereplysave,sharegettype,sharesave,//模板共享 获取列表
+    sharegetlist,sharegetmylist,sharegetinfo,sharegetreply,sharereplysave,sharegettype,sharesave,sharedel,//模板共享 获取列表
          bank_getlist,bank_getinfo,bank_save//银行信息
 }
 
@@ -996,6 +996,19 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
     }
 
 
+    /// 删除
+    ///
+    /// - Parameter id: <#id description#>
+    func shareDel(id:String) {
+        request.delegate = self
+        type = .sharedel
+        let url = share_del_api   + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+
+
+
+    }
+
 
     /// 获取分类信息
     func sharegettypeRequest() {
@@ -1040,7 +1053,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work(data: arr,type : type)
             }
-        } else if type == .save || type == .newspublic || type == .oversave || type == .casedel || type == .dealdel || type == .roomsave || type == .roomdel || type == .applysave || type == .checkoversave  || type == .invoice_applysave || type == .invoice_del || type == .expense_applysave || type == .expense_del ||  type == .bank_save || type == .sharereplysave || type == .del || type == .createdeals || type == .sharesave || type == .dealSave || type == .overcancel{
+        } else if type == .save || type == .newspublic || type == .oversave || type == .casedel || type == .dealdel || type == .roomsave || type == .roomdel || type == .applysave || type == .checkoversave  || type == .invoice_applysave || type == .invoice_del || type == .expense_applysave || type == .expense_del ||  type == .bank_save || type == .sharereplysave || type == .del || type == .createdeals || type == .sharesave || type == .dealSave || type == .overcancel || type == .sharedel{
             //发布公告
             let model = Mapper<CodeData>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {

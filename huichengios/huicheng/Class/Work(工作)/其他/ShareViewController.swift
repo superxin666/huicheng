@@ -147,6 +147,9 @@ class ShareViewController: BaseViewController,UITableViewDataSource,UITableViewD
 
         let vc = ShareDetailViewController()
         vc.shareID = model.id
+        vc.sucessblock = {
+            self.reflishData()
+        }
         self.navigationController?.pushViewController(vc, animated: true)
 
     }
