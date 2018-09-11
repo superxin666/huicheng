@@ -17,6 +17,8 @@ class ShareDetailViewController: BaseViewController,UITableViewDataSource,UITabl
     var shareID : Int!
     var sucessblock : ShareDetailViewControllerBlcok!
 
+    var fileCell : FileTableViewCell!
+
 
     var dataArr : [sharegetreplyModel] = []
     var dataModel : sharegetinfoModel = sharegetinfoModel()
@@ -27,6 +29,9 @@ class ShareDetailViewController: BaseViewController,UITableViewDataSource,UITabl
     let txtTextView : UITextView = UITextView()
     var txtTextViewBack : UIView!
     var txt : String = ""
+
+    var fileNameStr : String = ""
+
 
     var alertController : UIAlertController!
 
@@ -122,9 +127,9 @@ class ShareDetailViewController: BaseViewController,UITableViewDataSource,UITabl
                 }
                 return cell
             } else {
-                let cell : FileTableViewCell  = tableView.dequeueReusableCell(withIdentifier: FileTableViewCellID, for: indexPath) as! FileTableViewCell
-                cell.setData_fileName(fileName: "")
-                return cell
+                fileCell  = tableView.dequeueReusableCell(withIdentifier: FileTableViewCellID, for: indexPath) as! FileTableViewCell
+                fileCell.setData_fileName(fileName: fileNameStr)
+                return fileCell
             }
         } else {
             let cell : Title7TableViewCell  = tableView.dequeueReusableCell(withIdentifier: Title7TableViewCellID, for: indexPath) as! Title7TableViewCell
@@ -223,6 +228,7 @@ class ShareDetailViewController: BaseViewController,UITableViewDataSource,UITabl
                 self.navigationBar_rightBtn_title(name: "操作")
             }
 
+            fileNameStr = dataModel.path!
             mainTabelView.reloadSections([0], with: .automatic)
 
         } else if type == .sharegetreply{
@@ -259,6 +265,21 @@ class ShareDetailViewController: BaseViewController,UITableViewDataSource,UITabl
             self.shareDel()
         }
         let actcion2 = UIAlertAction(title: "编辑", style: .default) { (aciton) in
+            let vc : AddShareViewController = AddShareViewController()
+            vc.dStr = self.dataModel.content
+            vc.nStr = self.dataModel.title
+            vc.tStr = "\(self.dataModel.type!)"
+            vc.tNameStr = self.dataModel.typeStr
+            vc.id = "\(self.shareID!)"
+            if self.dataModel.path.count > 0 {
+
+                let arr = self.dataModel.path.components(separatedBy: "/")
+                vc.fileName = arr.last!
+            }
+
+            vc.viewType = .edite
+            self.navigationController?.pushViewController(vc, animated: true)
+
 
         }
         let actcion3 = UIAlertAction(title: "取消", style: .cancel) { (aciton) in

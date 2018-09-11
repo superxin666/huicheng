@@ -8,9 +8,15 @@
 //  添加共享模板
 
 import UIKit
-
+enum AddShareViewControllerType {
+    case add,edite
+}
 
 class AddShareViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate,WorkRequestVCDelegate,ContentTableViewCellDelegate,OptionViewDelgate,TitleTableViewCellDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+    var viewType : AddShareViewControllerType = .edite
+    var id : String!
+
+
     var caseTypeArr : [casetypeModel] = []
     var sucessBlock : AddWorkViewControllerBlocl!
     /// 选项
@@ -21,6 +27,8 @@ class AddShareViewController: BaseViewController,UITableViewDataSource,UITableVi
     var nStr : String = ""
     var tStr : String = ""
 
+    var tNameStr : String = ""
+
     var alertController : UIAlertController!
 
     var imageData : Data = Data()
@@ -28,6 +36,8 @@ class AddShareViewController: BaseViewController,UITableViewDataSource,UITableVi
 
     let mainTabelView : UITableView = UITableView()
     var fileArr : Array<String> = []
+    var fileName : String = ""
+
     var fileCell : FileTableViewCell!
     // MARK: - life
     override func viewWillLayoutSubviews() {
@@ -75,22 +85,22 @@ class AddShareViewController: BaseViewController,UITableViewDataSource,UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell : OptionTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
-                cell.setData_caseDetail(titleStr: "分类", contentStr: "")
+                cell.setData_caseDetail(titleStr: "分类", contentStr: tNameStr)
             return cell
         } else if indexPath.row == 1 {
             let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
             cell.delegate = self
-            cell.setData_work(titleStr: "标题", congtentStr: tStr)
+            cell.setData_work(titleStr: "标题", congtentStr: nStr)
             return cell
 
         } else if indexPath.row == 2 {
             let cell : ContentTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: ContentTableViewCellID, for: indexPath) as! ContentTableViewCell
             cell.delegate = self
-            cell.setData_work(title: "内容", contentCase: nStr)
+            cell.setData_work(title: "内容", contentCase: dStr)
             return cell
         } else {
             fileCell = tableView.dequeueReusableCell(withIdentifier: FileTableViewCellID, for: indexPath) as! FileTableViewCell
-
+            fileCell.setData_fileName(fileName: fileName)
             return fileCell
         }
 
@@ -153,10 +163,13 @@ class AddShareViewController: BaseViewController,UITableViewDataSource,UITableVi
             caseTypeArr = data as! [casetypeModel]
             self.showOptionPickView()
         } else {
-            self.sucessBlock()
-            self.navigationController?.popViewController(animated: true)
+            if viewType == .edite{
+                self.navigationController?.popToRootViewController(animated: true)
+            } else {
+                self.sucessBlock()
+                self.navigationController?.popViewController(animated: true)
+            }
         }
-
     }
 
     func requestFail_work() {
@@ -164,6 +177,7 @@ class AddShareViewController: BaseViewController,UITableViewDataSource,UITableVi
     }
     func optionSure(idStr: String, titleStr: String,noteStr : String, pickTag: Int) {
         self.tStr = idStr
+        self.tNameStr = titleStr
 
         let cell : OptionTableViewCell = mainTabelView.cellForRow(at: IndexPath(row: 0, section: 0)) as! OptionTableViewCell
         cell.setOptionData(contentStr: titleStr)
@@ -281,7 +295,6 @@ class AddShareViewController: BaseViewController,UITableViewDataSource,UITableVi
         self.navigationController?.popViewController(animated: true)
     }
     override func navigationRightBtnClick() {
-
         HCLog(message: "确定")
         self.view.endEditing(true)
         if !(nStr.count > 0){
@@ -294,49 +307,21 @@ class AddShareViewController: BaseViewController,UITableViewDataSource,UITableVi
         }
 
         weak var weakSelf = self
+
         self.upLoad(type: "8", completion: { (data) in
             let str : String = data as! String
             if str.count > 0 {
+
                 SVPMessageShow.dismissSVP()
-                weakSelf?.requestVC.sharesavequest(id: "", n: self.nStr, t: self.tStr, d: self.dStr, f: str)
+                weakSelf?.requestVC.sharesavequest(id: self.id, n: self.nStr, t: self.tStr, d: self.dStr, f: str)
             } else {
                 HCLog(message: "上传失败")
             }
         }) { (erro) in
-            self.requestVC.sharesavequest(id: "", n: self.nStr, t: self.tStr, d: self.dStr, f: "")
+            self.requestVC.sharesavequest(id: self.id, n: self.nStr, t: self.tStr, d: self.dStr, f: self.fileName)
         }
 
-
-
-//        if self.fileArr.count > 0 {
-//            //上传文件
-//            SVPMessageShow.showLoad(title: "正在上传文件")
-//            weak var weakSelf = self
-//
-//            BaseNetViewController.uploadfile(fileName: self.fileArr[0], t: "8", completion: { (data) in
-//                let model = data as! CodeData
-//                if model.code == 1 {
-//                    HCLog(message: model.msg)
-//                    SVPMessageShow.dismissSVP()
-//                    let file = base_imageOrFile_api + model.msg
-//                    weakSelf?.requestVC.sharesavequest(id: "", n: self.nStr, t: self.tStr, d: self.dStr, f: file)
-//
-//                } else {
-//                    SVPMessageShow.dismissSVP()
-//                    SVPMessageShow.showErro(infoStr: "文件上传失败，请重新尝试")
-//                }
-//            }) { (erro) in
-//                SVPMessageShow.dismissSVP()
-//                SVPMessageShow.showErro(infoStr: "文件上传失败，请重新尝试")
-//            }
-//        } else {
-//            requestVC.sharesavequest(id: "", n: self.nStr, t: self.tStr, d: self.dStr, f: "")
-//        }
-
     }
-
-
-
 
 
     func upLoad(type : String,completion : @escaping (_ data : Any) ->(), failure : @escaping (_ error : Any)->()) {
