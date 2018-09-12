@@ -14,7 +14,7 @@ enum AddShareViewControllerType {
 
 class AddShareViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate,WorkRequestVCDelegate,ContentTableViewCellDelegate,OptionViewDelgate,TitleTableViewCellDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     var viewType : AddShareViewControllerType = .edite
-    var id : String!
+    var id : String = ""
 
 
     var caseTypeArr : [casetypeModel] = []
@@ -164,7 +164,8 @@ class AddShareViewController: BaseViewController,UITableViewDataSource,UITableVi
             self.showOptionPickView()
         } else {
             if viewType == .edite{
-                self.navigationController?.popToRootViewController(animated: true)
+                let vc  = self.navigationController?.childViewControllers[1]
+                self.navigationController?.popToViewController(vc!, animated: true)
             } else {
                 self.sucessBlock()
                 self.navigationController?.popViewController(animated: true)
@@ -318,6 +319,7 @@ class AddShareViewController: BaseViewController,UITableViewDataSource,UITableVi
                 HCLog(message: "上传失败")
             }
         }) { (erro) in
+
             self.requestVC.sharesavequest(id: self.id, n: self.nStr, t: self.tStr, d: self.dStr, f: self.fileName)
         }
 

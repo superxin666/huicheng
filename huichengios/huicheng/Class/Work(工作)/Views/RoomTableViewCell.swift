@@ -67,12 +67,27 @@ class RoomTableViewCell: UITableViewCell {
             self.contentLabel.text = String.hc_getDate_string(dateStr: addtime) + "  " + typeStr
 
         }
-        if let user = model.user {
-            self.stateLabel.backgroundColor = .white
-            self.stateLabel.textColor = UIColor.hc_colorFromRGB(rgbValue: 0x333333)
-            self.stateLabel.text = user
+        if let stateStr = model.stateStr {
+            self.stateLabel.text = stateStr
         }
+        if let state = model.state {
+            if state == 0 {
+                //自动发布
+                self.stateLabel.backgroundColor = UIColor.hc_colorFromRGB(rgbValue: 0xcccccc)
+            } else if state == 1 {
+                //
+                self.stateLabel.backgroundColor = darkblueColor
+            } else {
+                self.stateLabel.backgroundColor = darkblueColor
+            }
+        }
+
+
+
     }
+
+
+    
     func setData_shareMy(model :shareGetlistModel)  {
         if let title = model.title {
             self.titleLabel.text = title
@@ -81,17 +96,19 @@ class RoomTableViewCell: UITableViewCell {
             self.contentLabel.text = String.hc_getDate_string(dateStr: addtime) + "  " + typeStr
 
         }
-        if let ifedit = model.ifedit {
-            //0 不可编辑 1可编辑
-            self.stateLabel.textColor = .white
-            if ifedit == 0 {
-                self.stateLabel.text = "已发布"
-                self.stateLabel.backgroundColor = UIColor.hc_colorFromRGB(rgbValue: 0x333333)
+        if let stateStr = model.stateStr {
+            self.stateLabel.text = stateStr
+        }
+        if let state = model.state {
+            if state == 0 {
+                //自动发布
+                self.stateLabel.backgroundColor = UIColor.hc_colorFromRGB(rgbValue: 0xcccccc)
+            } else if state == 1 {
+                //
+                self.stateLabel.backgroundColor = darkblueColor
             } else {
-                self.stateLabel.text = "未发布"
                 self.stateLabel.backgroundColor = darkblueColor
             }
-
         }
     }
 

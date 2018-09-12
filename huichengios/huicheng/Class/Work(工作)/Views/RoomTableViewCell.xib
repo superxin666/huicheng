@@ -36,14 +36,14 @@
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0h5-cQ-etR">
-                        <rect key="frame" x="230" y="45" width="80" height="20"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0h5-cQ-etR">
+                        <rect key="frame" x="230" y="40" width="80" height="30"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="20" id="uoy-ih-CsC"/>
+                            <constraint firstAttribute="height" constant="30" id="uoy-ih-CsC"/>
                             <constraint firstAttribute="width" constant="80" id="wUh-Pm-ynr"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J9O-qo-68W">
@@ -62,7 +62,7 @@
                     <constraint firstAttribute="trailing" secondItem="J9O-qo-68W" secondAttribute="trailing" id="Pct-vd-CNC"/>
                     <constraint firstAttribute="trailing" secondItem="2sh-7V-jK1" secondAttribute="trailing" constant="10" id="WSn-o0-a1k"/>
                     <constraint firstItem="E9l-wx-sZQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="YdJ-Qr-Lyp"/>
-                    <constraint firstItem="0h5-cQ-etR" firstAttribute="top" secondItem="2sh-7V-jK1" secondAttribute="bottom" constant="10" id="Ypb-B3-TuT"/>
+                    <constraint firstItem="0h5-cQ-etR" firstAttribute="top" secondItem="2sh-7V-jK1" secondAttribute="bottom" constant="5" id="Ypb-B3-TuT"/>
                     <constraint firstAttribute="trailing" secondItem="0h5-cQ-etR" secondAttribute="trailing" constant="10" id="fX1-S6-t8E"/>
                     <constraint firstItem="0h5-cQ-etR" firstAttribute="leading" secondItem="E9l-wx-sZQ" secondAttribute="trailing" constant="20" id="lGN-Np-J8s"/>
                     <constraint firstItem="J9O-qo-68W" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="tmr-uQ-F8x"/>
@@ -73,7 +73,7 @@
                 <outlet property="stateLabel" destination="0h5-cQ-etR" id="sRl-Ad-HVJ"/>
                 <outlet property="titleLabel" destination="2sh-7V-jK1" id="C1h-nP-Q4f"/>
             </connections>
-            <point key="canvasLocation" x="-193" y="-40"/>
+            <point key="canvasLocation" x="-518" y="37"/>
         </tableViewCell>
     </objects>
 </document>

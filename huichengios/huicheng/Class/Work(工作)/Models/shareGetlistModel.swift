@@ -26,7 +26,8 @@ class shareGetlistModel: Mappable {
     var addtime : String!
 
     var ifedit: Int!
-
+    var state: Int!
+    var stateStr: String!
 
 
     init() {}
@@ -44,6 +45,9 @@ class shareGetlistModel: Mappable {
         addtime <- map["addtime"]
 
         ifedit <- map["ifedit"]
+        state <- map["state"]
+
+        stateStr <- map["stateStr"]
 
     }
 }

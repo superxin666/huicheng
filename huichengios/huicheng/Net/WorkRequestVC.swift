@@ -985,12 +985,15 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
         var url  = ""
 
         if id.count > 0 {
-             url = share_save_api   + "id=\(id)&n=\(nStr)&t=\(t)&d=\(dStr)&f=\(fStr)&k=\(UserInfoLoaclManger.getKey())"
+             url = share_save_api   + "id=\(id)&n=\(nStr)&t=\(t)&d=\(dStr)&k=\(UserInfoLoaclManger.getKey())"
 
 
         } else {
-             url = share_save_api   + "n=\(nStr)&t=\(t)&d=\(dStr)&f=\(fStr)&k=\(UserInfoLoaclManger.getKey())"
+             url = share_save_api   + "n=\(nStr)&t=\(t)&d=\(dStr)&k=\(UserInfoLoaclManger.getKey())"
 
+        }
+        if f.count > 0 {
+            url = url + "&f=\(fStr)"
         }
         request.request_api(url: url)
     }

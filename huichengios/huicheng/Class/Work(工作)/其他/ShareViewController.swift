@@ -44,6 +44,11 @@ class ShareViewController: BaseViewController,UITableViewDataSource,UITableViewD
             make.bottom.equalTo(self.view).offset(0)
         }
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.reflishData()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -57,7 +62,7 @@ class ShareViewController: BaseViewController,UITableViewDataSource,UITableViewD
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
         requestVC.delegate = self
         self.creatUI()
-        self.requestApi()
+//        self.requestApi()
     }
     // MARK: - UI
     func creatUI() {
@@ -148,7 +153,7 @@ class ShareViewController: BaseViewController,UITableViewDataSource,UITableViewD
         let vc = ShareDetailViewController()
         vc.shareID = model.id
         vc.sucessblock = {
-            self.reflishData()
+//            self.reflishData()
         }
         self.navigationController?.pushViewController(vc, animated: true)
 
@@ -285,7 +290,7 @@ class ShareViewController: BaseViewController,UITableViewDataSource,UITableViewD
         let vc = AddShareViewController()
         vc.hidesBottomBarWhenPushed = true
         vc.sucessBlock = {
-            self.reflishData()
+//            self.reflishData()
 
         }
         self.navigationController?.pushViewController(vc, animated: true)
