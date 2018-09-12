@@ -23,7 +23,7 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
     let mainTabelView : UITableView = UITableView()
     let requestVC = WorkRequestVC()
     var sectionNameArr = ["合同编号","案件类型","案件名称","合同付款期限","合同总款","合同扫描件"]
-    var sectionNameArr2 = ["合同编号","案件类型","案件名称","合同付款期限","合同有效期","合同总款","合同扫描件"]
+    var sectionNameArr2 = ["合同编号","案件类型","案件名称","合同付款期限","合同有效期","合同扫描件","合同总款",]
     var currectsectionNameArr2 : [String] = []
 
     var sectionContent:[String] = []
@@ -274,7 +274,9 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
                 let str = String.hc_getDate_style1(dateStr: dealModel.data.begintime, style: 4) + "至" + String.hc_getDate_style1(dateStr: dealModel.data.endtime, style: 4)
                 
                 sectionContent.append(str)
-                sectionContent.append(dealModel.data.amount)
+                sectionContent.append("")
+                sectionContent.append("\(dealModel.data.amount)元")
+
                 currectsectionNameArr2 = sectionNameArr2
 
             } else {

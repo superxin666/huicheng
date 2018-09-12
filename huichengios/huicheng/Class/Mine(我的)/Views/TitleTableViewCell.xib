@@ -29,7 +29,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qkv-tc-gFl">
-                        <rect key="frame" x="100" y="0.0" width="200" height="49"/>
+                        <rect key="frame" x="105" y="0.0" width="195" height="49"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="49" id="Rl0-rv-9nl"/>
                         </constraints>
@@ -66,7 +66,7 @@
                     <constraint firstItem="NPL-39-d56" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="alZ-KU-BwB"/>
                     <constraint firstAttribute="bottom" secondItem="ZR9-Bb-n0L" secondAttribute="bottom" id="axx-13-sbG"/>
                     <constraint firstItem="bUG-SJ-QSP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="dWr-re-xOg"/>
-                    <constraint firstItem="Qkv-tc-gFl" firstAttribute="leading" secondItem="NPL-39-d56" secondAttribute="trailing" constant="10" id="idd-a1-xsm"/>
+                    <constraint firstItem="Qkv-tc-gFl" firstAttribute="leading" secondItem="NPL-39-d56" secondAttribute="trailing" constant="15" id="idd-a1-xsm"/>
                     <constraint firstItem="Qkv-tc-gFl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="jfR-u1-WAw"/>
                     <constraint firstAttribute="trailing" secondItem="ZR9-Bb-n0L" secondAttribute="trailing" id="p3g-Kv-rf8"/>
                 </constraints>

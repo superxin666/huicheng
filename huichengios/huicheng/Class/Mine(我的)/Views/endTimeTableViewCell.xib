@@ -29,7 +29,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PZG-dv-BnV">
-                        <rect key="frame" x="120" y="15" width="180" height="25"/>
+                        <rect key="frame" x="110" y="15" width="180" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="vIm-2l-tJM"/>
                         </constraints>
@@ -46,14 +46,14 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="PZG-dv-BnV" firstAttribute="leading" secondItem="9Ws-Qx-Wm7" secondAttribute="trailing" constant="10" id="3Xm-a9-vma"/>
+                    <constraint firstItem="PZG-dv-BnV" firstAttribute="leading" secondItem="9Ws-Qx-Wm7" secondAttribute="trailing" id="3Xm-a9-vma"/>
                     <constraint firstItem="PZG-dv-BnV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="EO8-Qq-KB8"/>
                     <constraint firstItem="qFz-D7-uFs" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="HAb-Nq-oGn"/>
                     <constraint firstItem="9Ws-Qx-Wm7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="SIU-xz-Bdt"/>
                     <constraint firstAttribute="bottom" secondItem="qFz-D7-uFs" secondAttribute="bottom" id="UXp-1g-TS7"/>
                     <constraint firstAttribute="trailing" secondItem="qFz-D7-uFs" secondAttribute="trailing" id="ecd-Zj-4CO"/>
                     <constraint firstItem="9Ws-Qx-Wm7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="seQ-bV-VJH"/>
-                    <constraint firstAttribute="trailing" secondItem="PZG-dv-BnV" secondAttribute="trailing" constant="20" id="vnw-Es-ayt"/>
+                    <constraint firstAttribute="trailing" secondItem="PZG-dv-BnV" secondAttribute="trailing" constant="30" id="vnw-Es-ayt"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

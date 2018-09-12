@@ -29,7 +29,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ovb-VV-CUK">
-                        <rect key="frame" x="90" y="15" width="160" height="20"/>
+                        <rect key="frame" x="110" y="15" width="160" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="zkC-Fl-wer"/>
                         </constraints>
@@ -49,9 +49,9 @@
                     <constraint firstItem="yEZ-2h-jcF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="ORT-8d-ecc"/>
                     <constraint firstAttribute="trailing" secondItem="yEZ-2h-jcF" secondAttribute="trailing" id="P8M-Sn-WJp"/>
                     <constraint firstAttribute="bottom" secondItem="yEZ-2h-jcF" secondAttribute="bottom" id="R3P-qP-TXD"/>
-                    <constraint firstItem="ovb-VV-CUK" firstAttribute="leading" secondItem="rnB-PQ-e4a" secondAttribute="trailing" constant="10" id="Teg-27-0cL"/>
+                    <constraint firstItem="ovb-VV-CUK" firstAttribute="leading" secondItem="rnB-PQ-e4a" secondAttribute="trailing" constant="30" id="Teg-27-0cL"/>
                     <constraint firstItem="ovb-VV-CUK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="lwd-a4-SM3"/>
-                    <constraint firstAttribute="trailing" secondItem="ovb-VV-CUK" secondAttribute="trailing" constant="70" id="paA-Ka-9cj"/>
+                    <constraint firstAttribute="trailing" secondItem="ovb-VV-CUK" secondAttribute="trailing" constant="50" id="paA-Ka-9cj"/>
                     <constraint firstItem="rnB-PQ-e4a" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="tXJ-ts-ReU"/>
                     <constraint firstItem="rnB-PQ-e4a" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="zIv-eM-voB"/>
                 </constraints>
