@@ -33,7 +33,7 @@ class CaseCheckDetailViewController: BaseTableViewController,WorkRequestVCDelega
     /// 数据模型
     var dealModel : getinfoDealModel!
 
-    var section2titleArr = ["合同编号","案件类型","案件名称","案件自述","结案日期","案件组别","案件律师","结案总结","结案附件"]
+    var section2titleArr = ["合同编号","案件类型","案件名称","案件自述","结案日期","案件组别","律师姓名","结案总结","结案附件"]
     var section2Content:[String] = []
 
     var section3titleArr = ["基本情况","委托人情况"]
@@ -177,6 +177,9 @@ class CaseCheckDetailViewController: BaseTableViewController,WorkRequestVCDelega
 
                 vc.dataArr = arr
                 vc.dataArr2 = arr2
+
+                vc.section1titleArr = ["立案律师","立案日期","承办律师","承办律师"]
+
 
                 self.navigationController?.pushViewController(vc, animated: true)
             } else {

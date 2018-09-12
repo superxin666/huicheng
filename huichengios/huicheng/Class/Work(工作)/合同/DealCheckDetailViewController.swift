@@ -27,7 +27,8 @@ class DealCheckDetailViewController: BaseViewController,UITableViewDelegate,UITa
 
 
     /// 数据模型
-    var dealModel : getinfoDealModel!
+    var dealModel : getdetailModel!
+
 
     var section1titleArr = ["合同编号","合同有效期","合同总款","发票情况","发票内容","案件类型","案件名称","案件自述","合同扫描件"]
     var sectionContent:[String] = []
@@ -53,7 +54,8 @@ class DealCheckDetailViewController: BaseViewController,UITableViewDelegate,UITa
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
         self.creatUI()
         requestVC.delegate = self
-        requestVC.dealgetinfo(id: dealID)
+//        requestVC.dealgetinfo(id: dealID)
+        requestVC.getdetail(id: dealID)
     }
     // MARK: - UI
     func creatUI() {
@@ -146,30 +148,33 @@ class DealCheckDetailViewController: BaseViewController,UITableViewDelegate,UITa
                 HCLog(message: "基本情况")
                 let vc = BaseInfoViewController()
 
-                arr.append(dealModel.rStr)
-                arr.append(dealModel.rt)
-                arr.append(dealModel.w1Str)
-                arr.append(dealModel.w2Str)
+                arr.append(dealModel.data.rStr)
+                arr.append(dealModel.data.rt)
+                arr.append(dealModel.data.w1Str)
+                arr.append(dealModel.data.w2Str)
+           
+                arr.append(dealModel.data.dStr)
 
-
-                arr2.append(dealModel.ct)
-                arr2.append(dealModel.sj)
+                arr2.append(dealModel.data.ct)
+                arr2.append(dealModel.data.sj)
 
                 vc.dataArr = arr
                 vc.dataArr2 = arr2
+
+                vc.section1titleArr = ["立案律师","立案日期","承办律师","承办律师","案件组别"]
 
                 self.navigationController?.pushViewController(vc, animated: true)
             } else {
                 //委托人情况
                 let vc = CasePersionViewController()
                 vc.type =  .principal_detail
-                arr.append(dealModel.pn)
-                arr.append(dealModel.pc)
-                arr.append(dealModel.pp)
-                arr.append(dealModel.pz)
-                arr.append(dealModel.pj)
-                arr.append(dealModel.pd)
-                arr.append(dealModel.pa)
+                arr.append(dealModel.data.pn)
+                arr.append(dealModel.data.pc)
+                arr.append(dealModel.data.pp)
+                arr.append(dealModel.data.pz)
+                arr.append(dealModel.data.pj)
+                arr.append(dealModel.data.pd)
+                arr.append(dealModel.data.pa)
                 vc.dataArr = arr
                 self.navigationController?.pushViewController(vc, animated: true)
             }
@@ -179,7 +184,7 @@ class DealCheckDetailViewController: BaseViewController,UITableViewDelegate,UITa
                 HCLog(message: "扫描件")
                 let vc = ReadPdfViewController()
 
-                vc.url = URL(string: base_imageOrFile_api + self.dealModel.img!)
+                vc.url = URL(string: base_imageOrFile_api + self.dealModel.data.img!)
                 vc.titleStr = "扫描件"
                 self.navigationController?.pushViewController(vc, animated: true)
 
@@ -258,16 +263,18 @@ class DealCheckDetailViewController: BaseViewController,UITableViewDelegate,UITa
 
 
     func requestSucceed_work(data: Any,type : WorkRequestVC_enum) {
-        if type == .getinfo {
-            dealModel = data as! getinfoDealModel
-            sectionContent.append(dealModel.dealsnum)
-            sectionContent.append("\(dealModel.begintime!)~\(dealModel.endtime!)")
-            sectionContent.append(dealModel.amount)
-            sectionContent.append(dealModel.ispaperStr)
-            sectionContent.append("")
-            sectionContent.append(dealModel.typeStr)
-            sectionContent.append(dealModel.n)
-            sectionContent.append(dealModel.ct)
+        if type == .getdetail {
+//            var dealModel : getdetailModel!
+
+            dealModel = data as! getdetailModel
+            sectionContent.append(dealModel.data.dealsnum)
+            sectionContent.append("\(dealModel.data.begintime!)~\(dealModel.data.endtime!)")
+            sectionContent.append(dealModel.data.amount)
+            sectionContent.append(dealModel.data.ispaperStr)
+            sectionContent.append(dealModel.data.invoicetypeStr)
+            sectionContent.append(dealModel.data.typeStr)
+            sectionContent.append(dealModel.data.n)
+            sectionContent.append(dealModel.data.ct)
 
             self.mainTabelView.reloadData()
         } else {
