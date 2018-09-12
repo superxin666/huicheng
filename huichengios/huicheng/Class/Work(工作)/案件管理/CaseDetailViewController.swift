@@ -426,7 +426,7 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
         } else if indexPath.section == 1 {
             let vc = CasePersionViewController()
             vc.caseType = caseType
-            if self.type == .caseDetail || self.type == .searchCseDetail{
+            if self.type == .caseDetail || self.type == .searchCseDetail || self.type == .crtDetail{
                 var arr : [String] = []
                 if indexPath.row == 0 {
                     vc.type =  .principal_detail
