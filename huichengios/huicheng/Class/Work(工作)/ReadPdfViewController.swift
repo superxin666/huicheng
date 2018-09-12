@@ -62,11 +62,6 @@ class ReadPdfViewController: BaseViewController,UIPrintInteractionControllerDele
         self.view.backgroundColor = .white
         self.navigation_title_fontsize(name: titleStr, fontsize: 18)
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
-        if type == .tabIteam {
-            self.navigationBar_rightBtn_title(name: "操作")
-        } else if type == .shareFile{
-            self.navigationBar_rightBtn_title(name: "分享")
-        }
         HCLog(message: url!)
         webView = UIWebView(frame: CGRect(x: 0, y:LNAVIGATION_HEIGHT, width: KSCREEN_WIDTH, height: KSCREEN_HEIGHT))
         webView.backgroundColor = .white
@@ -76,6 +71,40 @@ class ReadPdfViewController: BaseViewController,UIPrintInteractionControllerDele
         webView.loadRequest(URLRequest(url: self.url))
         HCLog(message: self.url)
         self.view.addSubview(webView)
+
+        if type == .tabIteam {
+            self.navigationBar_rightBtn_title(name: "操作")
+            if pdfstate == 2 {
+                //显示驳回原因
+                self.creatUI()
+            }
+
+        } else if type == .shareFile{
+            self.navigationBar_rightBtn_title(name: "分享")
+        }
+
+
+
+    }
+
+
+    func creatUI() {
+        let backView : UIView = UIView(frame: CGRect(x: 0, y: KSCREEN_HEIGHT - 100, width: KSCREEN_WIDTH, height: 100))
+        backView.backgroundColor = .white
+        self.view.addSubview(backView)
+
+
+        let titlaNamelbael : UILabel = UILabel(frame: CGRect(x: 10, y:0, width: KSCREEN_WIDTH - 20, height: 50))
+        titlaNamelbael.text = "驳回原因：" + self.noteStr
+        titlaNamelbael.textColor = darkblueColor
+        backView.addSubview(titlaNamelbael)
+
+
+
+        let titlaNamelbae2 : UILabel = UILabel(frame: CGRect(x: 10, y:50, width: KSCREEN_WIDTH - 20, height: 50))
+        titlaNamelbae2.textColor = darkblueColor
+        titlaNamelbae2.text = "审核时间：" + self.time
+        backView.addSubview(titlaNamelbae2)
 
     }
 
@@ -123,7 +152,7 @@ class ReadPdfViewController: BaseViewController,UIPrintInteractionControllerDele
                 self.present((alertController)!, animated: true, completion: nil)
 
 
-            } else if pdfstate == 0 || pdfstate == 2 {//0
+            } else if pdfstate == 0  {//0
                 //未审核 可删除
                 alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
                 let delAction = UIAlertAction(title: "删除", style: .default) { (action) in
@@ -142,6 +171,30 @@ class ReadPdfViewController: BaseViewController,UIPrintInteractionControllerDele
                 alertController.addAction(cancleAction)
                 alertController.addAction(delAction)
                 self.present((alertController)!, animated: true, completion: nil)
+
+            } else if  pdfstate == 2{
+                //驳回可以删除
+
+                alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                let delAction = UIAlertAction(title: "删除", style: .default) { (action) in
+                    HCLog(message: "删除")
+                    self.requestVC.delegate = self
+                    self.requestVC.docdelRequset(id: "\(self.id!)")
+
+                }
+
+
+                let cancleAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
+                    self.alertController.dismiss(animated: true, completion: {
+
+                    })
+                }
+                alertController.addAction(cancleAction)
+                alertController.addAction(delAction)
+                self.present((alertController)!, animated: true, completion: nil)
+
+
+
 
             } else {
                 alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)

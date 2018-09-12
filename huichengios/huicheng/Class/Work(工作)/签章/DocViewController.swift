@@ -127,8 +127,11 @@ class DocViewController: BaseViewController ,UITableViewDataSource,UITableViewDe
             vc.zhang = model.zhang!
             vc.pdfStr = model.pdf!
             //
+            HCLog(message: "121212")
+            HCLog(message: model.state)
             vc.noteStr = model.note
             vc.time = model.applytime
+
             vc.delDocSucessBlock = {
                 self.reflishData()
             }
