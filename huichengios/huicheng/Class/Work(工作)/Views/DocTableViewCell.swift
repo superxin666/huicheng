@@ -108,8 +108,9 @@ class DocTableViewCell: UITableViewCell {
                 self.stateLabel.textColor = .white
 
             }else if state == 1 {
-                self.stateLabel.backgroundColor = UIColor.hc_colorFromRGB(rgbValue: 0xcccccc)
-                self.stateLabel.textColor = .white
+                self.stateLabel.hc_makeBorderWithBorderWidth(width: 1, color: darkblueColor)
+                self.stateLabel.backgroundColor = .white
+                self.stateLabel.textColor = darkblueColor
 
 
             } else if state == 2 {
@@ -191,7 +192,7 @@ class DocTableViewCell: UITableViewCell {
     func setData_PaycaseApplylist(model : payGetlistModel) {
 
         if let num = model.num {
-            self.titleNameLabel.text = num
+            self.typeLabel.text = num
         }
 
         if let money = model.money {
@@ -204,7 +205,7 @@ class DocTableViewCell: UITableViewCell {
         }
 
         if let typeStr = model.typeStr {
-            self.typeLabel.text = typeStr
+            self.titleNameLabel.text = typeStr
         }
 
 //        if let stateStr = model.stateStr {

@@ -33,12 +33,12 @@ class ReadPdfViewController: BaseViewController,UIPrintInteractionControllerDele
 
     var url : URL!
     var pdfStr : String!
+    //
+    var noteStr : String = ""
+    var time : String = ""
 
     var zhang : String!
-
     var zhangImageView : UIImageView!
-
-
     var alertController : UIAlertController!
 
     ///  0-未审核;1-已审核;2-审核驳回;3-已盖章
@@ -123,7 +123,7 @@ class ReadPdfViewController: BaseViewController,UIPrintInteractionControllerDele
                 self.present((alertController)!, animated: true, completion: nil)
 
 
-            } else if pdfstate == 0 {//0
+            } else if pdfstate == 0 || pdfstate == 2 {//0
                 //未审核 可删除
                 alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
                 let delAction = UIAlertAction(title: "删除", style: .default) { (action) in

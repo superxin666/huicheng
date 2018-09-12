@@ -126,6 +126,9 @@ class DocViewController: BaseViewController ,UITableViewDataSource,UITableViewDe
             vc.id = model.id
             vc.zhang = model.zhang!
             vc.pdfStr = model.pdf!
+            //
+            vc.noteStr = model.note
+            vc.time = model.applytime
             vc.delDocSucessBlock = {
                 self.reflishData()
             }
