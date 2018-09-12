@@ -625,6 +625,15 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
             dataModel = data as! invoice_getinfoModel
             HCLog(message: dataModel.type)
 
+            if dataModel.type == 0 {
+                section1HeadView.lastBtn = section1HeadView.leftBtn
+
+            } else {
+                section1HeadView.lastBtn = section1HeadView.rightBtn
+
+            }
+
+
             typeStr = "\(dataModel.type!)"
             if typeStr == "0" {
                 //普通
