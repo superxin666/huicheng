@@ -152,7 +152,7 @@ class PayApplyDetailViewController: BaseViewController,Work2RequestVCDelegate,UI
                 content1.append("\(dataModel.data.money!)")
                 content1.append(dataModel.data.bank)
                 content1.append(dataModel.data.cardno)
-                content1.append("\(dataModel.data.prpportion!)")//比例
+                content1.append("\(dataModel.data.prpportion!)%")//比例
                 content1.append(dataModel.data.addtime)
                 content1.append(dataModel.data.stateStr)
 
@@ -162,9 +162,9 @@ class PayApplyDetailViewController: BaseViewController,Work2RequestVCDelegate,UI
                 content3.append(dataModel.data.casename) //案件名称
                 content3.append(dataModel.income.regtime)
                 content3.append(dataModel.income.reguser)
-                content3.append("暂无")//承办律师
-                content3.append("\(dataModel.income.amount)")
-                content3.append("\(dataModel.income.money!)")
+//                content3.append("")//承办律师
+                content3.append("\(dataModel.data.dealamount!)元")
+                content3.append("\(dataModel.data.paymoney!)元")
 
             } else {
                 //报销

@@ -19,7 +19,9 @@ class income_getinfoModel_data: Mappable {
     var reguser: String!
     var regtime: String!
 
-    var dealamount: Int!
+    var dealamount: String!
+    var paymoney: Int!
+
     var dealmoney: Int!
     var addtime: String!
     var payuser: String!
@@ -53,6 +55,7 @@ class income_getinfoModel_data: Mappable {
         regtime <- map["regtime"]
         dealamount <- map["dealamount"]
         dealmoney <- map["dealmoney"]
+        paymoney <- map["paymoney"]
         addtime <- map["addtime"]
         payuser <- map["payuser"]
         ispaper <- map["ispaper"]
