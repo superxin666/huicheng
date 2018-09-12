@@ -78,6 +78,8 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
 
 
     var crt : [String] = []
+    var row : Int!
+
 
 
     func setData_finance() {
@@ -248,9 +250,18 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
         
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        HCLog(message: "当前行1")
+        HCLog(message: row)
+        self.row = row
 
     }
+
+
+
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        HCLog(message: "当前行2")
+        HCLog(message: row)
+        self.row = row
         //显示
         var titleStr = ""
         if type == .searchState {
@@ -322,6 +333,8 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
             currectStr = titleStr
         }
 
+        HCLog(message: currectStr)
+
 
         let label = UILabel(frame: CGRect(x: 0, y: 15, width: pickerView.frame.width, height: ip6(40)))
         label.text = titleStr
@@ -334,6 +347,79 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
     @IBOutlet weak var pickView: UIPickerView!
 
     @IBAction func sureClick(_ sender: UIButton) {
+        //显示
+        var titleStr = ""
+        if type == .searchState {
+            //发票
+            titleStr = nameArr[row]
+            cuurectID = idArr[row]
+            currectStr = titleStr
+        } else if type == .invoice_getlist {
+            titleStr = nameArr[row]
+            cuurectID = idArr[row]
+            currectStr = titleStr
+        } else if type == .Object {
+            //接受对象
+
+            let model = dataArr[row]
+            titleStr = model.name!
+            cuurectID = "\(model.id!)"
+            currectStr = titleStr
+        } else if type == .finance{
+            //收款
+            titleStr = nameArr_finance[row]
+            cuurectID = idArr_finance[row]
+            currectStr = titleStr
+        }else if type == .caseType{
+            //案件
+            let model : casetypeModel = self.data_casetypeArr[row]
+            titleStr = model.name
+            cuurectID = "\(model.id!)"
+            currectStr = titleStr
+        } else if type == .caseDep {
+            let model : departmentModel = self.data_departArr[row]
+            titleStr = model.name
+            cuurectID = "\(model.id!)"
+            currectStr = titleStr
+        } else if type == .caseUser {
+            let model : userlistModel = self.data_userlistArr[row]
+            titleStr = model.name
+            cuurectID = "\(model.id!)"
+            currectStr = titleStr
+        } else if type == .invoiceState {
+            titleStr = nameArr_invoiceState[row]
+            cuurectID = idArr_invoiceState[row]
+            currectStr = titleStr
+        } else if type == .crtInfo {
+
+            titleStr = crt[row]
+            currectStr = titleStr
+            cuurectID = ""
+
+        } else if type == .expense_gettype {
+            let model : expense_gettypeModel = self.data_expenseArr[row]
+
+            titleStr = model.name
+            cuurectID = "\(model.id!)"
+            currectStr = titleStr
+            if let str = model.note {
+                currectNoteStr = model.note
+
+            }
+        } else if type == .share_type {
+
+            titleStr = shareNameArr[row]
+            cuurectID = shareIdArr[row]
+            currectStr = titleStr
+        } else if type == .branch{
+            let model : branchModel = self.branchArr[row]
+            titleStr = model.name
+            cuurectID = "\(model.id!)"
+            currectStr = titleStr
+        }
+
+        HCLog(message: currectStr)
+
 
         if let delegate = self.delegate {
             HCLog(message: self.pickView.tag)

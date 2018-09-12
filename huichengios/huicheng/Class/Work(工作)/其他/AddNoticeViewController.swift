@@ -237,7 +237,7 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
         self.optionView.snp.makeConstraints { (make) in
             make.left.right.equalTo(0)
             make.bottom.equalTo(0)
-            make.height.equalTo(160)
+            make.height.equalTo(200)
         }
     }
 

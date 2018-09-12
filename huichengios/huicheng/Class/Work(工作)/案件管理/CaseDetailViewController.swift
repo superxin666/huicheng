@@ -787,7 +787,7 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
         self.optionView.snp.makeConstraints { (make) in
             make.left.right.equalTo(0)
             make.bottom.equalTo(0)
-            make.height.equalTo(160)
+            make.height.equalTo(200)
         }
     }
     
@@ -847,7 +847,7 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
         self.dateView.snp.makeConstraints { (make) in
             make.left.right.equalTo(0)
             make.bottom.equalTo(0)
-            make.height.equalTo(160)
+            make.height.equalTo(200)
         }
     }
     

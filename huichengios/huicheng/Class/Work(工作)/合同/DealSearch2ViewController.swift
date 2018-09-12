@@ -239,7 +239,7 @@ class DealSearch2ViewController: BaseTableViewController,WorkRequestVCDelegate ,
         timeView.snp.makeConstraints { (make) in
             make.left.right.equalTo(0)
             make.bottom.equalTo(0)
-            make.height.equalTo(160)
+            make.height.equalTo(200)
         }
     }
     func showTime_start() {
@@ -251,7 +251,7 @@ class DealSearch2ViewController: BaseTableViewController,WorkRequestVCDelegate ,
         timeView.snp.makeConstraints { (make) in
             make.left.right.equalTo(0)
             make.bottom.equalTo(0)
-            make.height.equalTo(160)
+            make.height.equalTo(200)
         }
     }
 
@@ -277,7 +277,7 @@ class DealSearch2ViewController: BaseTableViewController,WorkRequestVCDelegate ,
         self.optionView.snp.makeConstraints { (make) in
             make.left.right.equalTo(0)
             make.bottom.equalTo(0)
-            make.height.equalTo(160)
+            make.height.equalTo(200)
         }
     }
 
@@ -290,7 +290,7 @@ class DealSearch2ViewController: BaseTableViewController,WorkRequestVCDelegate ,
         self.optionView.snp.makeConstraints { (make) in
             make.left.right.equalTo(0)
             make.bottom.equalTo(0)
-            make.height.equalTo(160)
+            make.height.equalTo(200)
         }
     }
 
