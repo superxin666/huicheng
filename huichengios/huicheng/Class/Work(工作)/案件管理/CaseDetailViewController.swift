@@ -288,7 +288,7 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
                 cell.setData_caseDetail(titleStr: name1[indexPath.row], contentStr: nStr,indexPath : indexPath)
                 if type == .caseDetail  || type == .crtDetail || type == .searchCseDetail{
                     cell.isUserInteractionEnabled = false
-                    cell.textField.placeholder = " "
+                    cell.textField.placeholder = ""
                 } else {
                     cell.isUserInteractionEnabled = true
                 }

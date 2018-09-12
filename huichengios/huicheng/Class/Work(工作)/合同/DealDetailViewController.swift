@@ -271,7 +271,9 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
                 sectionContent.append(dealModel.data.typeStr)
                 sectionContent.append(dealModel.data.n)
                 sectionContent.append(dealModel.data.dealpaylasttime)
-                sectionContent.append(dealModel.data.endtime)
+                let str = String.hc_getDate_style1(dateStr: dealModel.data.begintime, style: 4) + "至" + String.hc_getDate_style1(dateStr: dealModel.data.endtime, style: 4)
+                
+                sectionContent.append(str)
                 sectionContent.append(dealModel.data.amount)
                 currectsectionNameArr2 = sectionNameArr2
 
