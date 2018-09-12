@@ -202,7 +202,7 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         } else if type == .Expenseapply{
 
             self.navigation_title_fontsize(name: "报销审批查询", fontsize: 18)
-            rowNum = 3
+            rowNum = 2
 
         }
         self.navigationBar_rightBtn_title(name: "确定")
@@ -611,10 +611,6 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
                 titleCell.delegate = self
                 return titleCell
 
-            } else if indexPath.row == 1 {
-                optionCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
-                optionCell.setData_caseDetail(titleStr: "分所", contentStr: "")
-                return optionCell
             } else {
                 optionCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
                 optionCell.setData_caseDetail(titleStr: "状态", contentStr: "")
@@ -749,18 +745,10 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             }
         } else if type == .Expenseapply{
             if indexPath.row == 1 {
-                //分所
-                if dep.count > 0 {
-                    self.showOption_branch()
-                } else {
-                    request.delegate = self
-                    request.branchRequest()
-                }
-            } else if indexPath.row == 2 {
                 //状态
                 self.showOptionView_state()
-
             }
+
         }
     }
     
@@ -911,17 +899,11 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             cell.setOptionData(contentStr: titleStr)
 
         } else if type == .Expenseapply{
-            if pickTag == 2 {
-                //分所
-                branchID = idStr
-                let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 1, section: 0)) as! OptionTableViewCell
-                cell.setOptionData(contentStr: titleStr)
-            } else {
                 //状态
                 dStr = idStr
-                let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 2, section: 0)) as! OptionTableViewCell
+                let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 1, section: 0)) as! OptionTableViewCell
                 cell.setOptionData(contentStr: titleStr)
-            }
+
 
         } else if type == .departAndPerson{
             let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 1, section: 0)) as! OptionTableViewCell

@@ -160,7 +160,7 @@ class InvoiceapplyDetailViewController: BaseViewController,UITableViewDelegate,U
     }
     // MARK: - delegate
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 7
+        return 6
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
