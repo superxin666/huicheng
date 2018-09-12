@@ -97,7 +97,7 @@ class DocSearchViewController: BaseViewController ,UITableViewDataSource,UITable
     // MARK: - net
     func requestApi() {
         requestVC.delegate = self
-        requestVC.doc_searchReuqest(dn: self.dnStr, bid: self.bidStr, n: self.nStr, kw: self.kwStr, u: self.uStr, cn: self.cnStr, b: self.bidStr, e: self.eStr)
+        requestVC.doc_searchReuqest(dn: self.dnStr, bid: self.bidStr, n: self.nStr, kw: self.kwStr, u: self.uStr, cn: self.cnStr, b: self.bStr, e: self.eStr)
     }
 
     func reflishData() {
@@ -156,14 +156,18 @@ class DocSearchViewController: BaseViewController ,UITableViewDataSource,UITable
         vc.type = .doc_search
         weak var weakself = self
         vc.sureDocSearchSure = {(nStr,dnStr,kwStr,uStr,cnStr,bidStr,startTimeStr,endTimeStr) in
+
+            HCLog(message: startTimeStr)
+            HCLog(message: endTimeStr)
+
             weakself?.nStr = nStr
-            weakself?.dnStr = nStr
-            weakself?.kwStr = nStr
-            weakself?.uStr = nStr
-            weakself?.cnStr = nStr
-            weakself?.bidStr = nStr
-            weakself?.bStr = nStr
-            weakself?.eStr = nStr
+            weakself?.dnStr = dnStr
+            weakself?.kwStr = kwStr
+            weakself?.uStr = uStr
+            weakself?.cnStr = cnStr
+            weakself?.bidStr = bidStr
+            weakself?.bStr = startTimeStr
+            weakself?.eStr = endTimeStr
             weakself?.reflishData()
         }
         self.navigationController?.pushViewController(vc, animated: true)

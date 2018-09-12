@@ -361,12 +361,12 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
             cnStr = cn.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         }
         var bStr = ""
-        if bStr.count > 0 {
+        if b.count > 0 {
             bStr = b.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         }
 
         var eStr = ""
-        if eStr.count > 0 {
+        if e.count > 0 {
             eStr = e.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         }
 

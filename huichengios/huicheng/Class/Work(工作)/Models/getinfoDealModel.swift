@@ -61,6 +61,7 @@ class getinfoDealModel: Mappable {
     var rStr: String!
     var mn: String!
     var mf: String!
+    var mu: String!
 
 
 
@@ -90,6 +91,7 @@ class getinfoDealModel: Mappable {
         invoicetypeStr <- map["invoicetypeStr"]
         creditcode <- map["creditcode"]
 
+        mu <- map["mu"]
 
 
         begintime <- map["begintime"]

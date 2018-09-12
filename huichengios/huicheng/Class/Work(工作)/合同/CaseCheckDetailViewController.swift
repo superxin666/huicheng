@@ -297,12 +297,12 @@ class CaseCheckDetailViewController: BaseTableViewController,WorkRequestVCDelega
             section2Content.append(dealModel.typeStr)
             section2Content.append(dealModel.n)
             section2Content.append(dealModel.ct)
-            section2Content.append(dealModel.mt)
-            section2Content.append(dealModel.dStr)
+            section2Content.append(dealModel.mt)//结案时间
+            section2Content.append(dealModel.dStr)//组别
 
-            section2Content.append(dealModel.rStr)
-            section2Content.append(dealModel.mn)
-            section2Content.append(dealModel.mf)
+            section2Content.append(dealModel.mu)//律师姓名
+            section2Content.append(dealModel.mn)//总结
+            section2Content.append(dealModel.mf)//附件
 
             self.tableView.reloadData()
         } else if type == .checkoversave{

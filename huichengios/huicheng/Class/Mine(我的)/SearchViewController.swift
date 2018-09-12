@@ -205,6 +205,7 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             rowNum = 2
 
         }
+        request.delegate = self
         self.navigationBar_rightBtn_title(name: "确定")
         self.creatUI()
     }
