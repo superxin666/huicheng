@@ -275,7 +275,7 @@ class DealDetailViewController: BaseViewController,UITableViewDelegate,UITableVi
                 
                 sectionContent.append(str)
                 sectionContent.append("")
-                sectionContent.append("\(dealModel.data.amount)元")
+                sectionContent.append("\(dealModel.data.amount!)元")
 
                 currectsectionNameArr2 = sectionNameArr2
 

@@ -264,7 +264,9 @@ class CrtGetinfoViewController:  BaseTableViewController,Work2RequestVCDelegate,
         HCLog(message: type)
         HCLog(message: timeStr)
 
-        let cell : endTimeTableViewCell = self.mainTabelView.cellForRow(at: [type,1]) as! endTimeTableViewCell
+        let cell : endTimeTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: type, section: 1)) as! endTimeTableViewCell
+
+
         cell.setTime(str: timeStr)
 
         self.timeView.removeFromSuperview()

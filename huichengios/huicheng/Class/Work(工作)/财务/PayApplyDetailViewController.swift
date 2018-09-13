@@ -28,7 +28,7 @@ class PayApplyDetailViewController: BaseViewController,Work2RequestVCDelegate,UI
     let name2 = ["报销类型","发票金额","附件张数","申请时间","审核人","审核时间"]
     var content2 : [String] = []
     
-    let name3 = ["合同编号","案件编号","案件名称","立案时间","立案律师","合同金额","以付金额"]
+    let name3 = ["合同编号","案件编号","案件名称","立案时间","立案律师","合同金额","已付金额"]
     var content3 : [String] = []
 
     var financeId : Int!
@@ -149,7 +149,7 @@ class PayApplyDetailViewController: BaseViewController,Work2RequestVCDelegate,UI
                 //分成
                 titleArr = ["支付信息","合同信息"]
                 content1.append(dataModel.data.user)
-                content1.append("\(dataModel.data.money!)")
+                content1.append("\(dataModel.data.money!)元")
                 content1.append(dataModel.data.bank)
                 content1.append(dataModel.data.cardno)
                 content1.append("\(dataModel.data.prpportion!)%")//比例
@@ -170,7 +170,7 @@ class PayApplyDetailViewController: BaseViewController,Work2RequestVCDelegate,UI
                 //报销
                 titleArr = ["支付信息","报销信息",]
                 content1.append(dataModel.data.user)
-                content1.append("\(dataModel.data.money!)")
+                content1.append("\(dataModel.data.money!)元")
                 content1.append(dataModel.data.bank)
                 content1.append(dataModel.data.cardno)
                 content1.append("\(dataModel.data.prpportion!)")//比例
@@ -179,8 +179,8 @@ class PayApplyDetailViewController: BaseViewController,Work2RequestVCDelegate,UI
 
 
                 content2.append(dataModel.expense.typeStr)
-                content2.append("\(dataModel.expense.money!)")
-                content2.append("\(dataModel.expense.total!)")
+                content2.append("\(dataModel.expense.money!)元")
+                content2.append("\(dataModel.expense.total!)元")
                 content2.append(dataModel.expense.addtime)
                 content2.append(dataModel.data.applyname)
                 content2.append(dataModel.data.applytime)
