@@ -7,7 +7,14 @@
 //
 
 import Foundation
-let base_api = "http://47.94.108.111:18000/api/"
+
+//let base_api = "http://47.94.108.111:18000/api/"
+
+/// 测试
+let base_api = "http://47.94.108.111:17000/api/"
+
+
+
 let base_imageOrFile_api = "http://47.94.108.111:18000"
 
 //------------------------友盟
