@@ -25,7 +25,7 @@ typealias SearchViewControllerBlock_docSearch = (_ nStr : String,_ dnStr : Strin
 enum SearchViewController_type {
 
     //发票申请           收款记录       工作日志      发票列表         案件查询        合同查询   姓名    部门 人员姓名     收款登记
-    case expense_type, finance_type , work_type ,invoice_getlist,caselsit_type,deal_type,person,departAndPerson,Income_list,doc_search,shareType,conven_type,deal2_type,workbook_type,dealcheck,dealsearch,PayApplylist,PayCheck,Expenseapply
+    case expense_type, finance_type , work_type ,invoice_getlist,caselsit_type,deal_type,person,departAndPerson,Income_list,doc_search,shareType,conven_type,deal2_type,workbook_type,dealcheck,dealsearch,PayApplylist,PayCheck,Expenseapply,Statistics
 
 }
 let Searchcell_finance_typeID = "Searchcell_finance_type_id"
@@ -63,6 +63,7 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
     var expenBlock : ExpenseapplyViewControllerBlock_expense!
 
 
+    var StatisticsBlock : SearchViewControllerBlock_dealcheck!
 
     /// 状态cell
     var stateCell : SearchStateTableViewCell!
@@ -118,9 +119,14 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
 
     var branchID = ""
 
+    var payId = ""
+
 
     /// 委托人
     var prStr = ""
+
+    var currectRow = 0
+
 
 
     // MARK: - life
@@ -204,6 +210,10 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             self.navigation_title_fontsize(name: "报销审批查询", fontsize: 18)
             rowNum = 2
 
+        } else if type == .Statistics{
+            self.navigation_title_fontsize(name: "统计报表查询", fontsize: 18)
+            rowNum = 5
+
         }
         request.delegate = self
         self.navigationBar_rightBtn_title(name: "确定")
@@ -282,6 +292,10 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
 
             mainTabelView.register(UINib.init(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: TitleTableViewCellID)
             mainTabelView.register(UINib.init(nibName: "OptionTableViewCell", bundle: nil), forCellReuseIdentifier: OptionTableViewCellID)
+        } else if type == .Statistics{
+            mainTabelView.register(UINib.init(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: TitleTableViewCellID)
+            mainTabelView.register(UINib.init(nibName: "OptionTableViewCell", bundle: nil), forCellReuseIdentifier: OptionTableViewCellID)
+            mainTabelView.register(UINib.init(nibName: "endTimeTableViewCell", bundle: nil), forCellReuseIdentifier: endTimeTableViewCellid)
         }
         self.view.addSubview(mainTabelView)
     }
@@ -617,6 +631,34 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
                 optionCell.setData_caseDetail(titleStr: "状态", contentStr: "")
                 return optionCell
             }
+        } else if type == .Statistics{
+            if indexPath.row == 0 {
+                titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                //交款人
+                titleCell.setData_ovewdeal(titleStr: "律师", indexPath: indexPath)
+                titleCell.delegate = self
+                return titleCell
+
+            } else if indexPath.row == 1 {
+                optionCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
+                optionCell.setData_caseDetail(titleStr: "部门", contentStr: "")
+                return optionCell
+            } else if indexPath.row == 2 {
+                startTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                startTimeCell.setData(titleStr: "开始时间", tag: 0)
+                return startTimeCell
+            } else if indexPath.row == 3 {
+                endTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                endTimeCell.setData(titleStr: "结束时间", tag: 1)
+                return endTimeCell
+
+            } else {
+                let cell :OptionTableViewCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
+                cell.setData_caseDetail(titleStr: "支付情况", contentStr: "")
+                return cell
+            }
+
+
         } else {
             return UITableViewCell()
         }
@@ -750,6 +792,27 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
                 self.showOptionView_state()
             }
 
+        } else if type == .Statistics{
+            currectIndexpath = indexPath
+            currectRow = indexPath.row
+            if indexPath.row == 1 {
+                //部门
+                if dep.count > 0 {
+                    self.showOption(indexPath: indexPath)
+                } else {
+                    request.departmentRequest()
+                }
+            } else if indexPath.row == 2 {
+                self.showTime_start()
+
+            } else if indexPath.row == 3 {
+                self.showTime_end()
+            } else if indexPath.row == 4 {
+                //支付情况
+                self.showOption_finance()
+
+
+            }
         }
     }
     
@@ -910,9 +973,19 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 1, section: 0)) as! OptionTableViewCell
             cell.setOptionData(contentStr: titleStr)
 
+        } else if type == .Statistics {
+            let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: currectRow, section: 0)) as! OptionTableViewCell
+            cell.setOptionData(contentStr: titleStr)
+            if currectRow == 1 {
+                //部门
+                bidStr = idStr
+            } else {
+                //支付
+                payId = idStr
+            }
         } else {
-                let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 0, section: 0)) as! OptionTableViewCell
-                cell.setOptionData(contentStr: titleStr)
+            let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 0, section: 0)) as! OptionTableViewCell
+            cell.setOptionData(contentStr: titleStr)
         }
         self.optionView.removeFromSuperview()
         self.maskView.removeFromSuperview()
@@ -957,6 +1030,8 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             prStr = inputStr
         } else if type == .departAndPerson{
             prStr = inputStr
+        } else if type == .Statistics{
+            nStr = inputStr
         }
     }
 
@@ -1030,6 +1105,8 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             expenBlock(dStr,branchID,prStr)
         } else if type == .departAndPerson {
             sureBankBlock(prStr,dStr)
+        } else if type == .Statistics {
+            StatisticsBlock(nStr,bidStr,startTimeStr,endTimeStr,payId)
         }
         self.navigationController?.popViewController(animated: true)
     }

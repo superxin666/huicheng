@@ -14,12 +14,12 @@ class StatisticsViewController:  BaseViewController,UITableViewDataSource,UITabl
     var dataArr : [income_getcountModel] = []
     var pageNum : Int = 1
 
-    /// 查询状态
-    var sStr = "0"
-    /// 分所 ID
+    var nStr = ""
     var bStr = ""
-    /// 申请人
-    var uStr = ""
+    var eStr = ""
+    var sStr = ""
+    var dStr = ""
+
 
 
     // MARK: - life
@@ -102,7 +102,7 @@ class StatisticsViewController:  BaseViewController,UITableViewDataSource,UITabl
     // MARK: - net
     func requestApi() {
         requestVC.delegate = self
-        requestVC.income_getcountRequest(p: pageNum, c: 8, n: "", b: "", e: "", u: "", bid: "", s: "", d: "")
+        requestVC.income_getcountRequest(p: pageNum, c: 8, n: nStr, b: bStr, e: eStr, u: "", bid: "", s: sStr, d: dStr)
 
     }
 
@@ -148,13 +148,14 @@ class StatisticsViewController:  BaseViewController,UITableViewDataSource,UITabl
     override func navigationRightBtnClick() {
         HCLog(message: "搜索")
         let vc = SearchViewController()
-        vc.type = .Expenseapply
+        vc.type = .Statistics
         weak var weakself = self
-        vc.expenBlock = {(st1,st2,st3) in
-            weakself?.sStr = st1
-            weakself?.bStr = st2
-            weakself?.uStr = st3
-
+        vc.StatisticsBlock = {(st1,st2,st3,st4,st5) in
+            weakself?.nStr = st1
+            weakself?.dStr = st2
+            weakself?.bStr = st3
+            weakself?.eStr = st4
+            weakself?.sStr = st5
             weakself?.reflishData()
         }
         self.navigationController?.pushViewController(vc, animated: true)
