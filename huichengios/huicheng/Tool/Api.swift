@@ -169,6 +169,8 @@ let finance_income_delitem_api = "finance/income_delitem?"
 
 let finance_income_cancel_api = "finance/income_cancel?"
 
+/// 统计报表
+let finance_income_getcount_api = "finance/report_getcount?"
 
 /// /-----------------------签章
 

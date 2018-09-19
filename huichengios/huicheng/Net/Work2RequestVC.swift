@@ -12,7 +12,7 @@ import ObjectMapper
 enum Work2RequestVC_enum {
     //
     case income_getlist,income_getdeals,income_getdealsinfo,income_save,income_getinfo,//收款登记获取列表
-    doc_applylist,doc_search,doc_getlist,doc_applysave,doc_getinfo,doc_del,crt_dealslist,crt_choose,crt_getinfo,crt_save,pay_getlist,pay_applyinfo,pay_del,pay_applysave,pay_save,pay_applylist,income_additem,financeincome_save,income_del,income_cancel
+    doc_applylist,doc_search,doc_getlist,doc_applysave,doc_getinfo,doc_del,crt_dealslist,crt_choose,crt_getinfo,crt_save,pay_getlist,pay_applyinfo,pay_del,pay_applysave,pay_save,pay_applylist,income_additem,financeincome_save,income_del,income_cancel,income_getcount
 }
 protocol Work2RequestVCDelegate : NSObjectProtocol{
     //
@@ -198,9 +198,47 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
     }
 
 
+    /// 统计报表
+    ///
+    /// - Parameters:
+    ///   - p: <#p description#>
+    ///   - c: <#c description#>
+    ///   - n: <#n description#>
+    ///   - b: <#b description#>
+    ///   - e: <#e description#>
+    ///   - u: <#u description#>
+    ///   - bid: <#bid description#>
+    ///   - s: <#s description#>
+    ///   - d: <#d description#>
+    func income_getcountRequest(p:Int,c:Int,n : String, b : String, e : String, u : String, bid : String, s : String, d : String) {
+        type = .income_getcount
+        request.delegate = self
 
 
-    
+        var nStr = ""
+        if n.count > 0 {
+            nStr = n.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+        var bStr = ""
+        if b.count > 0 {
+            bStr = b.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+
+        var eStr = ""
+        if e.count > 0 {
+            eStr = e.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+
+        var uStr = ""
+        if u.count > 0 {
+            uStr = u.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+
+
+
+        let url =   finance_income_getcount_api + "p=\(p)&c=\(c)&n=\(nStr)&b=\(bStr)&e=\(eStr)&u=\(uStr)&bid=\(bid)&s=\(s)&d=\(d)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+    }
 
     // MARK: -  签章
 
@@ -608,6 +646,11 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
             let model = Mapper<pay_applyinfoModel>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work2(data: model,type : type)
+            }
+        } else if type == . income_getcount{
+            let arr = Mapper<income_getcountModel>().mapArray(JSONArray: response as! [[String : Any]])
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed_work2(data: arr,type : type)
             }
         }
 

@@ -245,7 +245,11 @@ class Work2ViewController: BaseViewController,UICollectionViewDataSource,UIColle
                 let vc = ShareViewController()
                 vc.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
-
+            case "统计报表" :
+                HCLog(message: "统计报表")
+                let vc = StatisticsViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
             default:
                 HCLog(message: "暂无")
             }

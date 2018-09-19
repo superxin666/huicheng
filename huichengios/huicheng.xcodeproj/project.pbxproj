@@ -77,6 +77,10 @@
 		2119A4F120CA55D30012F4A6 /* Work2RequestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2119A4F020CA55D30012F4A6 /* Work2RequestVC.swift */; };
 		211A65C820A00957009CD41A /* NoticeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A65C620A00957009CD41A /* NoticeTableViewCell.swift */; };
 		211A65C920A00957009CD41A /* NoticeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 211A65C720A00957009CD41A /* NoticeTableViewCell.xib */; };
+		2121A645214F5A2F00BE3489 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2121A644214F5A2F00BE3489 /* StatisticsViewController.swift */; };
+		2121BC242150DF4400487A1F /* StatisticsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2121BC222150DF4400487A1F /* StatisticsTableViewCell.swift */; };
+		2121BC252150DF4400487A1F /* StatisticsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2121BC232150DF4400487A1F /* StatisticsTableViewCell.xib */; };
+		2121BC272150E67500487A1F /* income_getcountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2121BC262150E67500487A1F /* income_getcountModel.swift */; };
 		21230C672136579900774040 /* IncomeRecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21230C652136579900774040 /* IncomeRecordTableViewCell.swift */; };
 		21230C682136579900774040 /* IncomeRecordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21230C662136579900774040 /* IncomeRecordTableViewCell.xib */; };
 		2123A380208EFCC000C50FA9 /* ShareHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2123A37F208EFCC000C50FA9 /* ShareHeadView.swift */; };
@@ -197,6 +201,8 @@
 		215E37A32133B61600B07BD0 /* Title8TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E37A12133B61600B07BD0 /* Title8TableViewCell.swift */; };
 		215E37A42133B61600B07BD0 /* Title8TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 215E37A22133B61600B07BD0 /* Title8TableViewCell.xib */; };
 		215E37A62133F7E100B07BD0 /* pay_applyinfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E37A52133F7E100B07BD0 /* pay_applyinfoModel.swift */; };
+		216054382151F5810012944D /* Statistics2TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216054362151F5810012944D /* Statistics2TableViewCell.swift */; };
+		216054392151F5810012944D /* Statistics2TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 216054372151F5810012944D /* Statistics2TableViewCell.xib */; };
 		21671C9020AAD99200E8680C /* DocTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21671C8E20AAD99200E8680C /* DocTableViewCell.swift */; };
 		21671C9120AAD99200E8680C /* DocTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21671C8F20AAD99200E8680C /* DocTableViewCell.xib */; };
 		21679906212E8504006A8AB0 /* DealSearch2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216798FD212E8504006A8AB0 /* DealSearch2ViewController.swift */; };
@@ -354,6 +360,10 @@
 		2119A4F020CA55D30012F4A6 /* Work2RequestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Work2RequestVC.swift; sourceTree = "<group>"; };
 		211A65C620A00957009CD41A /* NoticeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeTableViewCell.swift; sourceTree = "<group>"; };
 		211A65C720A00957009CD41A /* NoticeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoticeTableViewCell.xib; sourceTree = "<group>"; };
+		2121A644214F5A2F00BE3489 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
+		2121BC222150DF4400487A1F /* StatisticsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsTableViewCell.swift; sourceTree = "<group>"; };
+		2121BC232150DF4400487A1F /* StatisticsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatisticsTableViewCell.xib; sourceTree = "<group>"; };
+		2121BC262150E67500487A1F /* income_getcountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = income_getcountModel.swift; sourceTree = "<group>"; };
 		21230C652136579900774040 /* IncomeRecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeRecordTableViewCell.swift; sourceTree = "<group>"; };
 		21230C662136579900774040 /* IncomeRecordTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IncomeRecordTableViewCell.xib; sourceTree = "<group>"; };
 		2123A37F208EFCC000C50FA9 /* ShareHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareHeadView.swift; sourceTree = "<group>"; };
@@ -477,6 +487,8 @@
 		215E37A12133B61600B07BD0 /* Title8TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title8TableViewCell.swift; sourceTree = "<group>"; };
 		215E37A22133B61600B07BD0 /* Title8TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Title8TableViewCell.xib; sourceTree = "<group>"; };
 		215E37A52133F7E100B07BD0 /* pay_applyinfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pay_applyinfoModel.swift; sourceTree = "<group>"; };
+		216054362151F5810012944D /* Statistics2TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistics2TableViewCell.swift; sourceTree = "<group>"; };
+		216054372151F5810012944D /* Statistics2TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Statistics2TableViewCell.xib; sourceTree = "<group>"; };
 		21671C8E20AAD99200E8680C /* DocTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocTableViewCell.swift; sourceTree = "<group>"; };
 		21671C8F20AAD99200E8680C /* DocTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DocTableViewCell.xib; sourceTree = "<group>"; };
 		216798FD212E8504006A8AB0 /* DealSearch2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DealSearch2ViewController.swift; sourceTree = "<group>"; };
@@ -1038,6 +1050,7 @@
 				212FEA8520C3F4BA00A466E2 /* sharegetreplyModel.swift */,
 				21B9E1CD2132C7E10053F995 /* payGetlistModel.swift */,
 				215E37A52133F7E100B07BD0 /* pay_applyinfoModel.swift */,
+				2121BC262150E67500487A1F /* income_getcountModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1085,6 +1098,10 @@
 				2167991D212E99ED006A8AB0 /* CrtGetinfoImageTableViewCell.xib */,
 				21230C652136579900774040 /* IncomeRecordTableViewCell.swift */,
 				21230C662136579900774040 /* IncomeRecordTableViewCell.xib */,
+				2121BC222150DF4400487A1F /* StatisticsTableViewCell.swift */,
+				2121BC232150DF4400487A1F /* StatisticsTableViewCell.xib */,
+				216054362151F5810012944D /* Statistics2TableViewCell.swift */,
+				216054372151F5810012944D /* Statistics2TableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1121,6 +1138,7 @@
 				2175CB822134FAEA007C832B /* PayCheckDetialViewController.swift */,
 				2175CB84213516CC007C832B /* ExpenseapplylistViewController.swift */,
 				2175CB862135257E007C832B /* ExpenseapplyDetialViewController.swift */,
+				2121A644214F5A2F00BE3489 /* StatisticsViewController.swift */,
 			);
 			path = "财务";
 			sourceTree = "<group>";
@@ -1178,7 +1196,7 @@
 				TargetAttributes = {
 					215C65C6203EC6B6001C7A92 = {
 						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1239,6 +1257,7 @@
 				2123A38A208F39F800C50FA9 /* Selected2TableViewCell.xib in Resources */,
 				21E76FF120C7B644009454FD /* Title7TableViewCell.xib in Resources */,
 				21230C682136579900774040 /* IncomeRecordTableViewCell.xib in Resources */,
+				216054392151F5810012944D /* Statistics2TableViewCell.xib in Resources */,
 				2108BB87206FD809002A4212 /* FileTableViewCell.xib in Resources */,
 				215C65D2203EC6B6001C7A92 /* Assets.xcassets in Resources */,
 				21DDC9D620809E880067197D /* Title2TableViewCell.xib in Resources */,
@@ -1271,6 +1290,7 @@
 				21089E99206E791B00573B6A /* FinanceDetialTableViewCell.xib in Resources */,
 				215C15C92063D99F00A9129D /* ConbenTopView.xib in Resources */,
 				21340BDB206CBDE400E30B53 /* AddExpenseBackView.xib in Resources */,
+				2121BC252150DF4400487A1F /* StatisticsTableViewCell.xib in Resources */,
 				2108BB6B206F22B2002A4212 /* SearchPersionTableViewCell.xib in Resources */,
 				215C65D0203EC6B6001C7A92 /* Main.storyboard in Resources */,
 				214AA6BC207F9876004F2B63 /* CaseTableViewCell.xib in Resources */,
@@ -1359,6 +1379,7 @@
 				214F84B32122C0D600255F00 /* InvoiceViewController.swift in Sources */,
 				21066CB020669918009327AD /* ResetKeyView.swift in Sources */,
 				21679915212E85CB006A8AB0 /* DealDetailViewController.swift in Sources */,
+				2121A645214F5A2F00BE3489 /* StatisticsViewController.swift in Sources */,
 				2109654520708B390012FDDB /* WorkRequestVC.swift in Sources */,
 				215C65CD203EC6B6001C7A92 /* ViewController.swift in Sources */,
 				210EB650206DE502000DE966 /* expense_gettypeModel.swift in Sources */,
@@ -1398,6 +1419,7 @@
 				21340BD9206CBDDB00E30B53 /* AddExpenseBackView.swift in Sources */,
 				2175CB872135257E007C832B /* ExpenseapplyDetialViewController.swift in Sources */,
 				214F84B02122C02A00255F00 /* ExpenseViewController.swift in Sources */,
+				216054382151F5810012944D /* Statistics2TableViewCell.swift in Sources */,
 				2107554B205D4C3200FF4396 /* LoginMidBottomView.swift in Sources */,
 				214F84C32122E45700255F00 /* CaseDetailViewController.swift in Sources */,
 				214F84B92122C1C500255F00 /* FinanceViewController.swift in Sources */,
@@ -1413,6 +1435,7 @@
 				2128C1F4213931BE00F12BAF /* IncomeHistoryViewController.swift in Sources */,
 				2108BB8E206FE34A002A4212 /* MessageNeedTableViewCell.swift in Sources */,
 				21376684203FBAB2000CBCE6 /* UILabel+Init.swift in Sources */,
+				2121BC242150DF4400487A1F /* StatisticsTableViewCell.swift in Sources */,
 				216A6C54204CDE7900528FD8 /* WorkViewController.swift in Sources */,
 				21F8469220B7BFCB00F4A678 /* ReadFileViewController.swift in Sources */,
 				2175CB832134FAEA007C832B /* PayCheckDetialViewController.swift in Sources */,
@@ -1492,6 +1515,7 @@
 				21DDC9D520809E880067197D /* Title2TableViewCell.swift in Sources */,
 				214F84AD2122C02900255F00 /* AddExpenseViewController.swift in Sources */,
 				21553CC32088BBBF009284B1 /* dealGetlistModel.swift in Sources */,
+				2121BC272150E67500487A1F /* income_getcountModel.swift in Sources */,
 				21306570211744DA0073ECF9 /* ReadPdfViewController.swift in Sources */,
 				2109654F20711ECD0012FDDB /* DatePickView.swift in Sources */,
 				2137667D203FBA20000CBCE6 /* pch.swift in Sources */,
@@ -1701,8 +1725,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = huicheng/huicheng.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NGR2ZQ7TWS;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = huicheng/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1722,16 +1746,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = huicheng/huicheng.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = NGR2ZQ7TWS;
 				INFOPLIST_FILE = huicheng/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.huicheng.cn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "b7c5e404-bca8-4008-ba27-bf48814cf3ca";
+				PROVISIONING_PROFILE_SPECIFIER = hc15;
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/lvxin/huicheng/huichengios/huicheng/Tool/Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
