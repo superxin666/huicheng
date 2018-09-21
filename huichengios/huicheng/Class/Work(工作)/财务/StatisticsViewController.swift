@@ -102,7 +102,7 @@ class StatisticsViewController:  BaseViewController,UITableViewDataSource,UITabl
     // MARK: - net
     func requestApi() {
         requestVC.delegate = self
-        requestVC.income_getcountRequest(p: pageNum, c: 8, n: nStr, b: bStr, e: eStr, u: "", bid: "", s: sStr, d: dStr)
+        requestVC.income_getcountRequest(p: pageNum, c: 8, n: "", b: bStr, e: eStr, u: nStr, bid: "", s: sStr, d: dStr)
 
     }
 

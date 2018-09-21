@@ -215,10 +215,6 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
         request.delegate = self
 
 
-        var nStr = ""
-        if n.count > 0 {
-            nStr = n.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-        }
         var bStr = ""
         if b.count > 0 {
             bStr = b.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
@@ -236,7 +232,7 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
 
 
 
-        let url =   finance_income_getcount_api + "p=\(p)&c=\(c)&n=\(nStr)&b=\(bStr)&e=\(eStr)&u=\(uStr)&bid=\(bid)&s=\(s)&d=\(d)&k=\(UserInfoLoaclManger.getKey())"
+        let url =   finance_income_getcount_api + "p=\(p)&c=\(c)&n=\(n)&b=\(bStr)&e=\(eStr)&u=\(uStr)&bid=\(bid)&s=\(s)&d=\(d)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
     }
 

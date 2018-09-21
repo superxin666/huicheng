@@ -22,12 +22,30 @@ class Statistics2TableViewCell: UITableViewCell {
     func setData(model : income_getcountModel){
 
         self.titleLabel.text = model.name
-        
-        self.left1.text = "转账手续费：" + "\(model.cost!)"
-        self.left2.text = "提取金额：" + "\(model.pick!)" + "元"
 
-        self.right1.text = "收款金额：" + "\(model.money!)元"
-        self.right2.text = "余额：" + "\(model.balance!)元"
+
+        let str = NSMutableAttributedString(string: "转账手续费：")
+        let str1 = "\(model.cost!)元".getAttributedStr_color(color: orangeColor, fontSzie: 12)
+        str.append(str1)
+        self.left1.attributedText = str
+
+
+        let str2 = NSMutableAttributedString(string: "提取金额：")
+        let str3 = "\(model.pick!)元".getAttributedStr_color(color: orangeColor, fontSzie: 12)
+        str2.append(str3)
+        self.left2.attributedText =  str2
+
+
+        let str4 = NSMutableAttributedString(string: "收款金额：")
+        let str5 = "\(model.money!)元".getAttributedStr_color(color: orangeColor, fontSzie: 12)
+        str4.append(str5)
+        self.right1.attributedText =  str3
+
+        let str6 = NSMutableAttributedString(string: "余额：")
+        let str7 = "\(model.balance!)元".getAttributedStr_color(color: orangeColor, fontSzie: 12)
+        str6.append(str7)
+
+        self.right2.attributedText = str6
 
     }
 

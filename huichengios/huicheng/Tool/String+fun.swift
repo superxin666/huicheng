@@ -175,7 +175,7 @@ extension String {
          let attributeStr = NSMutableAttributedString(string: self)
          let range : NSRange = NSRange.init(location: 0, length: self.count)
         attributeStr.addAttribute(NSAttributedStringKey.foregroundColor, value: color, range: range)
-        attributeStr.addAttribute(NSAttributedStringKey.font, value: hc_fzFontMedium(ip6(fontSzie)), range: range)
+        attributeStr.addAttribute(NSAttributedStringKey.font, value: hc_fontThin(ip6(fontSzie)), range: range)
          return attributeStr
     }
 
