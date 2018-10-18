@@ -250,6 +250,12 @@ class Work2ViewController: BaseViewController,UICollectionViewDataSource,UIColle
                 let vc = StatisticsViewController()
                 vc.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
+            case "人员查询" :
+                HCLog(message: "人员查询")
+                let vc = PersonSearchViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+
             default:
                 HCLog(message: "暂无")
             }

@@ -231,6 +231,11 @@ let finance_pay_del_api = "finance/pay_del?"
 let finance_pay_save_api = "finance/pay_save?"
 
 
+//人事
+let usermanage_api = "usermanage/getlist?"
+
+
+
 //------------------------工作日志  获取列表
 let work_getlist_api = "uc/work_getlist?"
 let work_getinfo_api = "uc/work_getinfo?"

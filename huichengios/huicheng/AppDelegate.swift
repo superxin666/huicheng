@@ -119,7 +119,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         //我的
         let minVc :MineViewController = MineViewController()
         let minNv :UINavigationController = HCNavigationController(rootViewController: minVc)
-        let item4:UITabBarItem = UITabBarItem(title:"我的", image:#imageLiteral(resourceName: "mine_tab_nor").withRenderingMode(UIImageRenderingMode.alwaysOriginal), selectedImage: #imageLiteral(resourceName: "mine_tab_sel").withRenderingMode(UIImageRenderingMode.alwaysOriginal))
+        let item4:UITabBarItem = UITabBarItem(title:"个人中心", image:#imageLiteral(resourceName: "mine_tab_nor").withRenderingMode(UIImageRenderingMode.alwaysOriginal), selectedImage: #imageLiteral(resourceName: "mine_tab_sel").withRenderingMode(UIImageRenderingMode.alwaysOriginal))
         minNv.tabBarItem = item4
         
         

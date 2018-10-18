@@ -105,6 +105,8 @@
 		2128C1F4213931BE00F12BAF /* IncomeHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2128C1F3213931BE00F12BAF /* IncomeHistoryViewController.swift */; };
 		2128C1F62139385A00F12BAF /* 123.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2128C1F52139385900F12BAF /* 123.pdf */; };
 		2129C1C2211EDFD50070A82F /* WorlkHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2129C1C1211EDFD50070A82F /* WorlkHeadView.swift */; };
+		212AB2F221788E27003FE1AA /* PersonSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212AB2F121788E27003FE1AA /* PersonSearchViewController.swift */; };
+		212AB2F42178913D003FE1AA /* usermanageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212AB2F32178913D003FE1AA /* usermanageModel.swift */; };
 		212FEA8120C3EF1300A466E2 /* Title6TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212FEA7F20C3EF1300A466E2 /* Title6TableViewCell.swift */; };
 		212FEA8220C3EF1300A466E2 /* Title6TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 212FEA8020C3EF1300A466E2 /* Title6TableViewCell.xib */; };
 		212FEA8420C3F10500A466E2 /* sharegetinfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212FEA8320C3F10500A466E2 /* sharegetinfoModel.swift */; };
@@ -388,6 +390,8 @@
 		2128C1F3213931BE00F12BAF /* IncomeHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeHistoryViewController.swift; sourceTree = "<group>"; };
 		2128C1F52139385900F12BAF /* 123.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 123.pdf; sourceTree = "<group>"; };
 		2129C1C1211EDFD50070A82F /* WorlkHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorlkHeadView.swift; sourceTree = "<group>"; };
+		212AB2F121788E27003FE1AA /* PersonSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonSearchViewController.swift; sourceTree = "<group>"; };
+		212AB2F32178913D003FE1AA /* usermanageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = usermanageModel.swift; sourceTree = "<group>"; };
 		212FEA7F20C3EF1300A466E2 /* Title6TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title6TableViewCell.swift; sourceTree = "<group>"; };
 		212FEA8020C3EF1300A466E2 /* Title6TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Title6TableViewCell.xib; sourceTree = "<group>"; };
 		212FEA8320C3F10500A466E2 /* sharegetinfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sharegetinfoModel.swift; sourceTree = "<group>"; };
@@ -739,6 +743,15 @@
 			path = "发票申请";
 			sourceTree = "<group>";
 		};
+		212AB2F021788E11003FE1AA /* 人员查询 */ = {
+			isa = PBXGroup;
+			children = (
+				212AB2F121788E27003FE1AA /* PersonSearchViewController.swift */,
+				212AB2F32178913D003FE1AA /* usermanageModel.swift */,
+			);
+			path = "人员查询";
+			sourceTree = "<group>";
+		};
 		213065622115420D0073ECF9 /* 签章 */ = {
 			isa = PBXGroup;
 			children = (
@@ -975,6 +988,7 @@
 		216A6C4C204CDDB100528FD8 /* Work(工作) */ = {
 			isa = PBXGroup;
 			children = (
+				212AB2F021788E11003FE1AA /* 人员查询 */,
 				21B9E1CA2132C3D40053F995 /* 财务 */,
 				21B9E1B2213248120053F995 /* 其他 */,
 				216798F9212E8504006A8AB0 /* 合同 */,
@@ -1457,6 +1471,7 @@
 				21075548205D4C3200FF4396 /* LogInViewController.swift in Sources */,
 				21B9E1B9213248C40053F995 /* ShareDetailViewController.swift in Sources */,
 				219767EA20EF86BA00F5807F /* Income_getlistModel.swift in Sources */,
+				212AB2F42178913D003FE1AA /* usermanageModel.swift in Sources */,
 				219D7BBA205E0C89009F543B /* InfoFirstTableViewCell.swift in Sources */,
 				214F84AF2122C02A00255F00 /* InputTableViewCell.swift in Sources */,
 				215C15C72063D99600A9129D /* ConbenTopView.swift in Sources */,
@@ -1533,6 +1548,7 @@
 				215E37A32133B61600B07BD0 /* Title8TableViewCell.swift in Sources */,
 				21B9E1C921324A660053F995 /* MemoViewController.swift in Sources */,
 				21387D29205F55120050DF1F /* CodeData.swift in Sources */,
+				212AB2F221788E27003FE1AA /* PersonSearchViewController.swift in Sources */,
 				2105D2E12061101C0031B14C /* expense_getinfoModel.swift in Sources */,
 				21B9E1BE213248C40053F995 /* ShareViewController.swift in Sources */,
 				2115D0D92103205B002BDB3F /* income_getinfoModel.swift in Sources */,

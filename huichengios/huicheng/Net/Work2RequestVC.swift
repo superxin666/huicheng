@@ -12,7 +12,7 @@ import ObjectMapper
 enum Work2RequestVC_enum {
     //
     case income_getlist,income_getdeals,income_getdealsinfo,income_save,income_getinfo,//收款登记获取列表
-    doc_applylist,doc_search,doc_getlist,doc_applysave,doc_getinfo,doc_del,crt_dealslist,crt_choose,crt_getinfo,crt_save,pay_getlist,pay_applyinfo,pay_del,pay_applysave,pay_save,pay_applylist,income_additem,financeincome_save,income_del,income_cancel,income_getcount
+    doc_applylist,doc_search,doc_getlist,doc_applysave,doc_getinfo,doc_del,crt_dealslist,crt_choose,crt_getinfo,crt_save,pay_getlist,pay_applyinfo,pay_del,pay_applysave,pay_save,pay_applylist,income_additem,financeincome_save,income_del,income_cancel,income_getcount,usermanage
 }
 protocol Work2RequestVCDelegate : NSObjectProtocol{
     //
@@ -581,6 +581,35 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
 
     }
 
+     // MARK: -  人员查询
+    func usermanageReuqet(p:Int,c:Int,bid:String,u:String,n:String,d:String,ca:String,dp:String,s:String,bd:String,ed:String)  {
+
+        type = .usermanage
+        request.delegate = self
+
+
+//        var noStr = ""
+//        if no.count > 0 {
+//            noStr = no.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+//        }
+//        var nStr = ""
+//        if n.count > 0 {
+//            nStr = n.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+//        }
+//        var bStr = ""
+//        if st.count > 0 {
+//            bStr = st.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+//        }
+//
+//        var eStr = ""
+//        if et.count > 0 {
+//            eStr = et.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+//        }
+//
+        let url =   usermanage_api + "p=\(p)&c=\(c)&bid=\(bid)&u=\(u)&n=\(n)&d=\(d)&ca=\(ca)&dp=\(dp)&s=\(s)&bd=\(bd)&ed=\(ed)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url)
+
+    }
 
 
 
@@ -645,6 +674,11 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
             }
         } else if type == . income_getcount{
             let arr = Mapper<income_getcountModel>().mapArray(JSONArray: response as! [[String : Any]])
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed_work2(data: arr,type : type)
+            }
+        }else if type == . usermanage{
+            let arr = Mapper<usermanageModel>().mapArray(JSONArray: response as! [[String : Any]])
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work2(data: arr,type : type)
             }
