@@ -12,7 +12,7 @@ import ObjectMapper
 enum Work2RequestVC_enum {
     //
     case income_getlist,income_getdeals,income_getdealsinfo,income_save,income_getinfo,//收款登记获取列表
-    doc_applylist,doc_search,doc_getlist,doc_applysave,doc_getinfo,doc_del,crt_dealslist,crt_choose,crt_getinfo,crt_save,pay_getlist,pay_applyinfo,pay_del,pay_applysave,pay_save,pay_applylist,income_additem,financeincome_save,income_del,income_cancel,income_getcount,usermanage
+    doc_applylist,doc_search,doc_getlist,doc_applysave,doc_getinfo,doc_del,crt_dealslist,crt_choose,crt_getinfo,crt_save,pay_getlist,pay_applyinfo,pay_del,pay_applysave,pay_save,pay_applylist,income_additem,financeincome_save,income_del,income_cancel,income_getcount,usermanage,usermanageInfo
 }
 protocol Work2RequestVCDelegate : NSObjectProtocol{
     //
@@ -606,8 +606,23 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
 //            eStr = et.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
 //        }
 //
+
+        type = .usermanage
+        request.delegate = self
         let url =   usermanage_api + "p=\(p)&c=\(c)&bid=\(bid)&u=\(u)&n=\(n)&d=\(d)&ca=\(ca)&dp=\(dp)&s=\(s)&bd=\(bd)&ed=\(ed)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
+
+    }
+
+
+    /// 详情
+    ///
+    /// - Parameter id: <#id description#>
+    func usermanageInfo(id : String) {
+        type = .usermanageInfo
+        request.delegate = self
+        let url =   usermanageInfo_api + "id=\(id)&k=\(UserInfoLoaclManger.getKey())"
+        request.request_api(url: url,type: .alltyper)
 
     }
 
@@ -682,7 +697,13 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
             if !(self.delegate == nil) {
                 self.delegate.requestSucceed_work2(data: arr,type : type)
             }
+        }else if type == . usermanageInfo{
+            let arr = Mapper<usermanageModel>().mapArray(JSONArray: response as! [[String : Any]])
+            if !(self.delegate == nil) {
+                self.delegate.requestSucceed_work2(data: arr,type : type)
+            }
         }
+
 
     }
 

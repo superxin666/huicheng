@@ -107,6 +107,8 @@
 		2129C1C2211EDFD50070A82F /* WorlkHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2129C1C1211EDFD50070A82F /* WorlkHeadView.swift */; };
 		212AB2F221788E27003FE1AA /* PersonSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212AB2F121788E27003FE1AA /* PersonSearchViewController.swift */; };
 		212AB2F42178913D003FE1AA /* usermanageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212AB2F32178913D003FE1AA /* usermanageModel.swift */; };
+		212AB2F62179C4D1003FE1AA /* PersonInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212AB2F52179C4D1003FE1AA /* PersonInfoViewController.swift */; };
+		212AB2F82179C7EA003FE1AA /* usermanageInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212AB2F72179C7EA003FE1AA /* usermanageInfoModel.swift */; };
 		212FEA8120C3EF1300A466E2 /* Title6TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212FEA7F20C3EF1300A466E2 /* Title6TableViewCell.swift */; };
 		212FEA8220C3EF1300A466E2 /* Title6TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 212FEA8020C3EF1300A466E2 /* Title6TableViewCell.xib */; };
 		212FEA8420C3F10500A466E2 /* sharegetinfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212FEA8320C3F10500A466E2 /* sharegetinfoModel.swift */; };
@@ -392,6 +394,8 @@
 		2129C1C1211EDFD50070A82F /* WorlkHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorlkHeadView.swift; sourceTree = "<group>"; };
 		212AB2F121788E27003FE1AA /* PersonSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonSearchViewController.swift; sourceTree = "<group>"; };
 		212AB2F32178913D003FE1AA /* usermanageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = usermanageModel.swift; sourceTree = "<group>"; };
+		212AB2F52179C4D1003FE1AA /* PersonInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonInfoViewController.swift; sourceTree = "<group>"; };
+		212AB2F72179C7EA003FE1AA /* usermanageInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = usermanageInfoModel.swift; sourceTree = "<group>"; };
 		212FEA7F20C3EF1300A466E2 /* Title6TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title6TableViewCell.swift; sourceTree = "<group>"; };
 		212FEA8020C3EF1300A466E2 /* Title6TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Title6TableViewCell.xib; sourceTree = "<group>"; };
 		212FEA8320C3F10500A466E2 /* sharegetinfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sharegetinfoModel.swift; sourceTree = "<group>"; };
@@ -747,7 +751,9 @@
 			isa = PBXGroup;
 			children = (
 				212AB2F121788E27003FE1AA /* PersonSearchViewController.swift */,
+				212AB2F52179C4D1003FE1AA /* PersonInfoViewController.swift */,
 				212AB2F32178913D003FE1AA /* usermanageModel.swift */,
+				212AB2F72179C7EA003FE1AA /* usermanageInfoModel.swift */,
 			);
 			path = "人员查询";
 			sourceTree = "<group>";
@@ -1405,6 +1411,7 @@
 				21387D45205FF7240050DF1F /* expense_getlistModel.swift in Sources */,
 				21387D3B205FA7860050DF1F /* MineRequestVC.swift in Sources */,
 				2126DBDB208981C600977802 /* getinfoDealModel.swift in Sources */,
+				212AB2F82179C7EA003FE1AA /* usermanageInfoModel.swift in Sources */,
 				21387D2F205F5A910050DF1F /* LoginModel.swift in Sources */,
 				21679919212E85EA006A8AB0 /* DealViewController.swift in Sources */,
 				21306580211C452D0073ECF9 /* DocDetialPdfViewController.swift in Sources */,
@@ -1448,6 +1455,7 @@
 				2123A389208F39F800C50FA9 /* Selected2TableViewCell.swift in Sources */,
 				2128C1F4213931BE00F12BAF /* IncomeHistoryViewController.swift in Sources */,
 				2108BB8E206FE34A002A4212 /* MessageNeedTableViewCell.swift in Sources */,
+				212AB2F62179C4D1003FE1AA /* PersonInfoViewController.swift in Sources */,
 				21376684203FBAB2000CBCE6 /* UILabel+Init.swift in Sources */,
 				2121BC242150DF4400487A1F /* StatisticsTableViewCell.swift in Sources */,
 				216A6C54204CDE7900528FD8 /* WorkViewController.swift in Sources */,

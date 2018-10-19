@@ -234,7 +234,7 @@ let finance_pay_save_api = "finance/pay_save?"
 //人事
 let usermanage_api = "usermanage/getlist?"
 
-
+let usermanageInfo_api = "usermanage/getinfo?"
 
 //------------------------工作日志  获取列表
 let work_getlist_api = "uc/work_getlist?"

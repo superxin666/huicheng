@@ -27,6 +27,35 @@ class DocTableViewCell: UITableViewCell {
     @IBOutlet weak var stateLabel: UILabel!
 
 
+    func setDta_usermanage(model : usermanageModel) {
+        //
+        let strName = NSMutableAttributedString(string: model.name)
+        let strName2 = "(账号：\(model.username!))".getAttributedStr_color(color: UIColor.hc_colorFromRGB(rgbValue: 0x333333), fontSzie: 10)
+        strName.append(strName2)
+        self.titleNameLabel.attributedText = strName
+
+        //
+        self.titleNameLabel2.text = model.category
+        //
+        self.subTitleLabel.text = model.branch + "  " +  model.department
+        //
+        self.timeLabel.text = model.addtime
+
+        self.typeLabel.text = model.diploma
+
+        self.stateLabel.text = model.stateStr
+        self.stateLabel.textColor = .white
+
+        if model.state == 0 {
+            //禁用
+            self.stateLabel.backgroundColor = UIColor.orange
+        } else {
+            //可用
+            self.stateLabel.backgroundColor = darkblueColor
+        }
+    }
+
+
     func setData_myincome(model : finance_getlistModel) {
 
         if let typeStr = model.typeStr {

@@ -72,8 +72,9 @@ class PersonSearchViewController:  BaseViewController ,UITableViewDataSource,UIT
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : DocTableViewCell  = tableView.dequeueReusableCell(withIdentifier: DocTableViewCellID, for: indexPath) as! DocTableViewCell
         if indexPath.row < self.dataArr.count {
-//            let model : payGetlistModel = self.dataArr[indexPath.row]
-//            cell.setData_PaycaseApplylist(model: model)
+            let model : usermanageModel = self.dataArr[indexPath.row]
+            cell.setDta_usermanage(model: model)
+
         }
         return cell
     }
@@ -104,7 +105,7 @@ class PersonSearchViewController:  BaseViewController ,UITableViewDataSource,UIT
         self.requestApi()
     }
     func requestSucceed_work2(data: Any,type : Work2RequestVC_enum) {
-        if type == .pay_applylist {
+        if type == .usermanage {
             let arr : [usermanageModel] = data as! [usermanageModel]
             if arr.count > 0 {
                 self.dataArr = self.dataArr + arr
@@ -135,7 +136,7 @@ class PersonSearchViewController:  BaseViewController ,UITableViewDataSource,UIT
     }
     override func navigationRightBtnClick() {
         HCLog(message: "搜索")
-        
+
     }
 
 
