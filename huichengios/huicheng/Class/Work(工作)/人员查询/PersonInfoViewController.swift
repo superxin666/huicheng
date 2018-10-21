@@ -463,6 +463,31 @@ class PersonInfoViewController: BaseViewController ,UICollectionViewDataSource,U
 
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if showNum == 5 {
+            let model : usermanageInfoModel_info6 = self.dataModel.info6[indexPath.row]
+
+            let vc = ReadPdfViewController()
+            HCLog(message:  model.img)
+            let str =   model.img.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!
+            HCLog(message:   model.img.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)
+            vc.url = URL(string: base_imageOrFile_api + str)
+            self.navigationController?.pushViewController(vc, animated: true)
+
+
+        } else if showNum == 6 {
+            let model : usermanageInfoModel_info7 = self.dataModel.info7[indexPath.row]
+
+            let vc = ReadPdfViewController()
+            HCLog(message:  model.files)
+            let str =   model.files.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!
+            HCLog(message:   model.files.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)
+            vc.url = URL(string: base_imageOrFile_api + str)
+            self.navigationController?.pushViewController(vc, animated: true)
+
+        }
+    }
+
     // MARK: - net
     func requestApi() {
         requestVC.delegate = self
