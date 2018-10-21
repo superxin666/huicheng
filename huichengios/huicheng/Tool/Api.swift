@@ -35,6 +35,8 @@ let department_api = "base/department?"
 let userlist_api = "base/userlist?"
 /// 案件类型
 let casetype_api = "base/casetype?"
+/// 获取查询参数
+let usermanagegetoptions_api = "usermanage/getoptions?"
 
 /// 上传文件
 let uploadfile_api = "base/uploadfile?"

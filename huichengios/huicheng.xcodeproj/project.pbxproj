@@ -295,6 +295,8 @@
 		21DDC9DF2080CA460067197D /* OptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DDC9DD2080CA460067197D /* OptionTableViewCell.swift */; };
 		21DDC9E02080CA460067197D /* OptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21DDC9DE2080CA460067197D /* OptionTableViewCell.xib */; };
 		21DDC9E22080DCB90067197D /* CasePersionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DDC9E12080DCB90067197D /* CasePersionViewController.swift */; };
+		21DF6256217C9C76007C1320 /* PersionSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF6255217C9C76007C1320 /* PersionSearchViewController.swift */; };
+		21DF6258217CA4EA007C1320 /* getoptionsModle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF6257217CA4EA007C1320 /* getoptionsModle.swift */; };
 		21E76FEC20C78D87009454FD /* Content2TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E76FEA20C78D87009454FD /* Content2TableViewCell.swift */; };
 		21E76FED20C78D87009454FD /* Content2TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21E76FEB20C78D87009454FD /* Content2TableViewCell.xib */; };
 		21E76FF020C7B644009454FD /* Title7TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E76FEE20C7B644009454FD /* Title7TableViewCell.swift */; };
@@ -599,6 +601,8 @@
 		21DDC9DD2080CA460067197D /* OptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionTableViewCell.swift; sourceTree = "<group>"; };
 		21DDC9DE2080CA460067197D /* OptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OptionTableViewCell.xib; sourceTree = "<group>"; };
 		21DDC9E12080DCB90067197D /* CasePersionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CasePersionViewController.swift; sourceTree = "<group>"; };
+		21DF6255217C9C76007C1320 /* PersionSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersionSearchViewController.swift; sourceTree = "<group>"; };
+		21DF6257217CA4EA007C1320 /* getoptionsModle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getoptionsModle.swift; sourceTree = "<group>"; };
 		21E76FEA20C78D87009454FD /* Content2TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content2TableViewCell.swift; sourceTree = "<group>"; };
 		21E76FEB20C78D87009454FD /* Content2TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Content2TableViewCell.xib; sourceTree = "<group>"; };
 		21E76FEE20C7B644009454FD /* Title7TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title7TableViewCell.swift; sourceTree = "<group>"; };
@@ -780,8 +784,10 @@
 			children = (
 				212AB2F121788E27003FE1AA /* PersonSearchViewController.swift */,
 				212AB2F52179C4D1003FE1AA /* PersonInfoViewController.swift */,
+				21DF6255217C9C76007C1320 /* PersionSearchViewController.swift */,
 				212AB2F32178913D003FE1AA /* usermanageModel.swift */,
 				212AB2F72179C7EA003FE1AA /* usermanageInfoModel.swift */,
+				21DF6257217CA4EA007C1320 /* getoptionsModle.swift */,
 				217D5170217B3E3000B950C4 /* PersonHeadCollectionViewCell.swift */,
 				217D5171217B3E3000B950C4 /* PersonHeadCollectionViewCell.xib */,
 				217D5174217B491C00B950C4 /* IconTableViewCell.swift */,
@@ -1558,6 +1564,7 @@
 				21DDC9D2208095790067197D /* branchModel.swift in Sources */,
 				2130658C211EC9120073ECF9 /* UserDataSingle.swift in Sources */,
 				21096549207101820012FDDB /* newslist1Model.swift in Sources */,
+				21DF6256217C9C76007C1320 /* PersionSearchViewController.swift in Sources */,
 				2137668F203FBF27000CBCE6 /* HCNavigationController.swift in Sources */,
 				2108BB92206FF2BB002A4212 /* CheckcaseTableViewCell.swift in Sources */,
 				21394B87217C1BE500929C48 /* ImageTableViewCell.swift in Sources */,
@@ -1607,6 +1614,7 @@
 				21387D32205F5DA60050DF1F /* NibLoadable.swift in Sources */,
 				21306578211B055C0073ECF9 /* CrtChooseViewController.swift in Sources */,
 				215E37A32133B61600B07BD0 /* Title8TableViewCell.swift in Sources */,
+				21DF6258217CA4EA007C1320 /* getoptionsModle.swift in Sources */,
 				21B9E1C921324A660053F995 /* MemoViewController.swift in Sources */,
 				21387D29205F55120050DF1F /* CodeData.swift in Sources */,
 				212AB2F221788E27003FE1AA /* PersonSearchViewController.swift in Sources */,

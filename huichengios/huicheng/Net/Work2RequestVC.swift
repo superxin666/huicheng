@@ -614,28 +614,29 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
         request.delegate = self
 
 
-//        var noStr = ""
-//        if no.count > 0 {
-//            noStr = no.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-//        }
-//        var nStr = ""
-//        if n.count > 0 {
-//            nStr = n.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-//        }
-//        var bStr = ""
-//        if st.count > 0 {
-//            bStr = st.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-//        }
-//
-//        var eStr = ""
-//        if et.count > 0 {
-//            eStr = et.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-//        }
+        var uStr = ""
+        if u.count > 0 {
+            uStr = u.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+        var nStr = ""
+        if n.count > 0 {
+            nStr = n.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+        var bStr = ""
+        if bd.count > 0 {
+            bStr = bd.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+
+        var eStr = ""
+        if ed.count > 0 {
+            eStr = ed.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
 //
 
         type = .usermanage
         request.delegate = self
-        let url =   usermanage_api + "p=\(p)&c=\(c)&bid=\(bid)&u=\(u)&n=\(n)&d=\(d)&ca=\(ca)&dp=\(dp)&s=\(s)&bd=\(bd)&ed=\(ed)&k=\(UserInfoLoaclManger.getKey())"
+        //&bid=\(bid)
+        let url =   usermanage_api + "p=\(p)&c=\(c)&u=\(uStr)&n=\(nStr)&d=\(d)&ca=\(ca)&dp=\(dp)&s=\(s)&bd=\(bStr)&ed=\(eStr)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
 
     }

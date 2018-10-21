@@ -14,16 +14,29 @@ class PersonSearchViewController:  BaseViewController ,UITableViewDataSource,UIT
     var dataArr : [usermanageModel] = []
     var pageNum : Int = 1
 
-    /// 合同编号
-    var nStr = ""
-    /// 收款人，纯文本模糊查询
+    /// 分所
+    var bid = ""
+    /// 帐号
     var uStr = ""
-    /// 分所id
-    var bidStr = ""
-    /// 收款日期起始
-    var bStr = ""
-    /// 收款日期结束
-    var eStr = ""
+    /// 姓名
+    var nStr = ""
+    /// 部门
+    var dStr = ""
+    /// 类别
+    var caStr = ""
+
+    /// 学历
+    var dpStr = ""
+
+    /// 状态
+    var sStr = ""
+
+    /// 入职时间
+    var bdStr = ""
+
+    /// 时间
+    var edStr = ""
+
 
 
 
@@ -42,7 +55,7 @@ class PersonSearchViewController:  BaseViewController ,UITableViewDataSource,UIT
         self.view.backgroundColor = viewBackColor
 
         self.navigation_title_fontsize(name: "人员查询", fontsize: 18)
-//        self.navigationBar_rightBtn_image(image: #imageLiteral(resourceName: "mine_search"))
+        self.navigationBar_rightBtn_image(image: #imageLiteral(resourceName: "mine_search"))
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
         self.creatUI()
         self.requestApi()
@@ -93,7 +106,7 @@ class PersonSearchViewController:  BaseViewController ,UITableViewDataSource,UIT
     // MARK: - net
     func requestApi() {
         requestVC.delegate = self
-        requestVC.usermanageReuqet(p: pageNum, c: 8, bid: "", u: "", n: "", d: "", ca: "", dp: "", s: "", bd: "", ed: "")
+        requestVC.usermanageReuqet(p: pageNum, c: 8, bid: self.bid, u: self.uStr, n: self.nStr, d: self.dStr, ca: self.caStr, dp: self.dpStr, s: self.sStr, bd: self.bdStr, ed: self.edStr)
     }
 
     func reflishData() {
@@ -140,6 +153,23 @@ class PersonSearchViewController:  BaseViewController ,UITableViewDataSource,UIT
     }
     override func navigationRightBtnClick() {
         HCLog(message: "搜索")
+        let vc : PersionSearchViewController = PersionSearchViewController()
+        vc.hidesBottomBarWhenPushed = true
+        vc.sucessBlock = {(bidStr,uStr,nStr,dStr, caStr, dpStr ,sStr , bdStr , edStr) in
+            self.bid = bidStr
+            self.uStr = uStr
+            self.nStr = nStr
+            self.dStr = dStr
+            self.caStr = caStr
+            self.dpStr = dpStr
+            self.sStr = sStr
+            self.bdStr = bdStr
+            self.edStr = edStr
+            self.reflishData()
+
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
+
 
     }
 

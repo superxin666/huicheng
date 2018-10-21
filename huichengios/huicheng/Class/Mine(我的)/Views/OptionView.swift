@@ -15,7 +15,7 @@ protocol OptionViewDelgate {
 enum OptionViewType {
 
     //搜索中状态  报销  接受对象      发票列表    我的收款  案件添加   案件律师   案件部门 发票状态
-    case searchState,Object,invoice_getlist,finance, caseType,caseUser,caseDep,invoiceState,crtInfo,expense_gettype,share_type,branch
+    case searchState,Object,invoice_getlist,finance, caseType,caseUser,caseDep,invoiceState,crtInfo,expense_gettype,share_type,branch,getoptions
 }
 class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSource {
     var delegate : OptionViewDelgate!
@@ -75,6 +75,11 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
     var data_expenseArr : [expense_gettypeModel] = []
 
     var currectexpense : expense_gettypeModel!
+
+
+    //
+    var getoptionsArr : [getoptionsModle_content] = []
+
 
 
     var crt : [String] = []
@@ -211,6 +216,15 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
         self.pickView.reloadAllComponents()
     }
 
+
+    func setData_getoptions(dataArr : [Any],index : Int)  {
+        self.pickView.tag = index
+        self.type = .getoptions
+        getoptionsArr = dataArr as! [getoptionsModle_content]
+        self.pickView.reloadAllComponents()
+
+    }
+
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -244,6 +258,8 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
             return self.shareNameArr.count
         } else if type == .branch{
             return self.branchArr.count
+        } else if type == .getoptions{
+            return self.getoptionsArr.count
         } else {
             return 0
         }
@@ -328,6 +344,11 @@ class OptionView: UIView,NibLoadable,UIPickerViewDelegate, UIPickerViewDataSourc
             currectStr = titleStr
         } else if type == .branch{
             let model : branchModel = self.branchArr[row]
+            titleStr = model.name
+            cuurectID = "\(model.id!)"
+            currectStr = titleStr
+        } else if type == .getoptions{
+            let model : getoptionsModle_content = self.getoptionsArr[row]
             titleStr = model.name
             cuurectID = "\(model.id!)"
             currectStr = titleStr
