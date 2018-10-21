@@ -631,10 +631,10 @@ BaseTableViewController,DatePickViewDelegate,OptionViewDelgate ,WorkRequestVCDel
             SVPMessageShow.showErro(infoStr: "请输入合同总款")
             return
         }
-        if !(self.dStr.count > 0) {
-            SVPMessageShow.showErro(infoStr: "请选择时间")
-            return
-        }
+//        if !(self.dStr.count > 0) {
+//            SVPMessageShow.showErro(infoStr: "请选择时间")
+//            return
+//        }
 
         self.upLoad(type: "2", completion: { (data) in
             let str : String = data as! String

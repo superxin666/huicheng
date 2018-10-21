@@ -16,11 +16,11 @@ class CaseDetailViewController: BaseTableViewController,WorkRequestVCDelegate,Ti
     var successBlock : CaseDetailViewControllerBlock!
 
     var alertController : UIAlertController!
-    let name1 = ["案件类型","案件名称","立案日期","立案律师","案件组别","承办律师","承办律师",]
+    let name1 = ["案件类型","*案件名称","*立案日期","*立案律师","*案件组别","承办律师","承办律师",]
     var content1 :[String] = []
-    let name2 = ["委托人情况","对方当事人情况"]
+    let name2 = ["*委托人情况","对方当事人情况"]
     var content2 : [String] = []
-    let name3 = ["案件自述","标的"]
+    let name3 = ["*案件自述","*标的"]
     var content3 : [String] = []
 
     /// 详情数据模型
