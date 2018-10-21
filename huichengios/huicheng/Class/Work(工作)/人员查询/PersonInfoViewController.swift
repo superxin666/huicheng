@@ -178,6 +178,8 @@ class PersonInfoViewController: BaseViewController ,UICollectionViewDataSource,U
             return 2
         } else if showNum == 5 {
             return 1
+        } else if showNum == 6 {
+            return 1
         }
         else {
             return 0
@@ -211,6 +213,8 @@ class PersonInfoViewController: BaseViewController ,UICollectionViewDataSource,U
             return 1
         } else if showNum == 5 {
            return self.dataModel.info6.count
+        } else if  showNum == 6 {
+            return self.dataModel.info7.count
         }
         else {
             return 0
@@ -326,6 +330,14 @@ class PersonInfoViewController: BaseViewController ,UICollectionViewDataSource,U
             }
             return cell
 
+        } else if showNum == 6 {
+            let cell : BankInfoTableViewCell  = tableView.dequeueReusableCell(withIdentifier: BankInfoTableViewCellID, for: indexPath) as! BankInfoTableViewCell
+            if indexPath.row < self.dataModel.info7.count {
+                let model = self.dataModel.info7[indexPath.row]
+                cell.setData8(model: model)
+            }
+            return cell
+
         }
         else {
             return UITableViewCell()
@@ -366,6 +378,8 @@ class PersonInfoViewController: BaseViewController ,UICollectionViewDataSource,U
             return BankInfoTableViewCellH
         } else if showNum == 5 {
             return DealinfoTableViewCellH
+        } else if showNum == 6 {
+            return BankInfoTableViewCellH
         }
         else {
 

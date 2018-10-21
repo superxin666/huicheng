@@ -136,6 +136,19 @@ class BankInfoTableViewCell: UITableViewCell {
         self.label3.attributedText = strName4
     }
 
+    func setData8(model : usermanageInfoModel_info7) {
+        let strName = NSMutableAttributedString(string: "名称：")
+        let strName1 = model.name.getAttributedStr_color(color: .black, fontSzie: 13)
+        strName.append(strName1)
+        self.label1.attributedText = strName
+
+        let strName2 = NSMutableAttributedString(string: "上传时间：")
+        let strName3 = model.addtime.getAttributedStr_color(color: .black, fontSzie: 13)
+        strName2.append(strName3)
+        self.label2.attributedText = strName2
+
+        self.label3.text = "附件：查看"
+    }
 
 
 
