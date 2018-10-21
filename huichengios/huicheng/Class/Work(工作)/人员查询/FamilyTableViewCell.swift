@@ -53,6 +53,61 @@ class FamilyTableViewCell: UITableViewCell {
 
 
     }
+
+    func setData1(model : usermanageInfoModel_info3) {
+
+        self.left1Label.text = "外语："
+
+        let strName1 = NSMutableAttributedString(string: "英语  级别：")
+        let strName3 = model.language_en.getAttributedStr_color(color: .black, fontSzie: 13)
+        strName1.append(strName3)
+        self.left2Label.attributedText = strName1
+
+        let strName4 = NSMutableAttributedString(string: "日语  级别：")
+        let strName5 = model.language_jp.getAttributedStr_color(color: .black, fontSzie: 13)
+        strName4.append(strName5)
+        self.left3Label.attributedText = strName4
+
+        let strName6 = NSMutableAttributedString(string: "\(model.language_other)  级别：")
+        let strName7 = model.languagelevel.getAttributedStr_color(color: .black, fontSzie: 13)
+        strName6.append(strName7)
+        self.left4Label.attributedText = strName6
+
+        self.rightLabel.text = ""
+
+
+    }
+
+    func setData2(model : usermanageInfoModel_info3_school) {
+
+        let strName = NSMutableAttributedString(string: "时间：")
+        let str = String.hc_getDate_style1(dateStr: model.begintime, style: 4) +  String.hc_getDate_style1(dateStr: model.endtime, style: 4)
+        let strName2 = str.getAttributedStr_color(color: .black, fontSzie: 13)
+        strName.append(strName2)
+        self.left1Label.attributedText = strName
+
+        let strName1 = NSMutableAttributedString(string: "学校：")
+        let strName3 = model.school.getAttributedStr_color(color: .black, fontSzie: 13)
+        strName1.append(strName3)
+        self.left2Label.attributedText = strName1
+
+        let strName4 = NSMutableAttributedString(string: "专业：")
+        let strName5 = model.project.getAttributedStr_color(color: .black, fontSzie: 13)
+        strName4.append(strName5)
+        self.left3Label.attributedText = strName4
+
+        let strName6 = NSMutableAttributedString(string: "学历：")
+        let strName7 = model.diploma.getAttributedStr_color(color: .black, fontSzie: 13)
+        strName6.append(strName7)
+        self.left4Label.attributedText = strName6
+
+
+        self.rightLabel.text = ""
+
+
+
+    }
+
     
     override func awakeFromNib() {
         super.awakeFromNib()

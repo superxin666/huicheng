@@ -25,6 +25,8 @@ class PersonInfoViewController: BaseViewController ,UICollectionViewDataSource,U
     let sectionHeadNameArr1 = ["家庭成员/紧急联系人","银行信息","证件扫描","律师执业信息",]
 
 
+    let sectionHeadNameArr3 = ["技能特长","教育经历","培训经历",]
+
 
     var scrView : UIScrollView!
 
@@ -169,6 +171,8 @@ class PersonInfoViewController: BaseViewController ,UICollectionViewDataSource,U
             return 1
         } else if showNum == 1 {
             return 4
+        } else if showNum == 2 {
+            return 3
         }
         else {
             return 0
@@ -187,6 +191,14 @@ class PersonInfoViewController: BaseViewController ,UICollectionViewDataSource,U
                 return 3
             } else {
                 return 1
+            }
+        } else if showNum == 2 {
+            if section == 0 {
+                return 2
+            } else if section == 1 {
+                return self.dataModel.info3.school.count
+            } else {
+                return self.dataModel.info3.train.count
             }
         }
 
@@ -249,6 +261,37 @@ class PersonInfoViewController: BaseViewController ,UICollectionViewDataSource,U
             } else {
                 return UITableViewCell()
             }
+        } else if showNum == 2 {
+            if indexPath.section == 0 {
+                if indexPath.row == 0 {
+                    let cell : FamilyTableViewCell  = tableView.dequeueReusableCell(withIdentifier: FamilyTableViewCellID, for: indexPath) as! FamilyTableViewCell
+                        cell.setData1(model: self.dataModel.info3)
+                    return cell
+                } else {
+                    let cell : BankInfoTableViewCell  = tableView.dequeueReusableCell(withIdentifier: BankInfoTableViewCellID, for: indexPath) as! BankInfoTableViewCell
+                    cell.setData3(model: self.dataModel.info3)
+                    return cell
+                }
+
+            } else if indexPath.section == 1 {
+                let cell : FamilyTableViewCell  = tableView.dequeueReusableCell(withIdentifier: FamilyTableViewCellID, for: indexPath) as! FamilyTableViewCell
+                if indexPath.row < self.dataModel.info3.school.count {
+                    let model = self.dataModel.info3.school[indexPath.row]
+                    cell.setData2(model: model)
+                }
+                return cell
+
+
+            } else {
+                let cell : BankInfoTableViewCell  = tableView.dequeueReusableCell(withIdentifier: BankInfoTableViewCellID, for: indexPath) as! BankInfoTableViewCell
+                if indexPath.row < self.dataModel.info3.school.count {
+                    let model = self.dataModel.info3.train[indexPath.row]
+                    cell.setData4(model: model)
+                }
+                return cell
+
+            }
+
         }
         else {
             return UITableViewCell()
@@ -271,6 +314,18 @@ class PersonInfoViewController: BaseViewController ,UICollectionViewDataSource,U
             } else {
                 return BankInfoTableViewCellH
             }
+        } else if showNum == 2 {
+            if indexPath.section == 0 {
+                if indexPath.row == 0 {
+                    return FamilyTableViewCellH
+                } else {
+                    return BankInfoTableViewCellH
+                }
+            } else if indexPath.section == 1 {
+                return FamilyTableViewCellH
+            } else {
+                return BankInfoTableViewCellH
+            }
         }
 
         else {
@@ -288,7 +343,13 @@ class PersonInfoViewController: BaseViewController ,UICollectionViewDataSource,U
             headView.setData(titleStr: sectionHeadNameArr1[section])
             return headView
 
-        } else {
+        } else if showNum == 2 {
+            let headView = PersonHeadView.loadNib()
+            headView.setData(titleStr: sectionHeadNameArr3[section])
+            return headView
+        }
+
+        else {
             return UIView()
         }
     }
@@ -298,7 +359,10 @@ class PersonInfoViewController: BaseViewController ,UICollectionViewDataSource,U
             return 0
         } else if showNum == 1 {
             return  60
-        } else {
+        } else if showNum == 2 {
+            return 60
+        }
+        else {
             return 0 
         }
     }
@@ -311,7 +375,11 @@ class PersonInfoViewController: BaseViewController ,UICollectionViewDataSource,U
             let view : UIView = UIView(frame: CGRect(x: 0, y: 0, width: KSCREEN_WIDTH, height: CGFloat(20)))
             view.backgroundColor = viewBackColor
             return view
-        } else {
+        } else if showNum == 2 {
+            let view : UIView = UIView(frame: CGRect(x: 0, y: 0, width: KSCREEN_WIDTH, height: CGFloat(20)))
+            view.backgroundColor = viewBackColor
+            return view
+        }  else {
             return UIView()
         }
     }
@@ -321,6 +389,8 @@ class PersonInfoViewController: BaseViewController ,UICollectionViewDataSource,U
         if  showNum == 0 {
             return 0
         } else if showNum == 1 {
+            return  20
+        }else if showNum == 2 {
             return  20
         } else {
             return 0
