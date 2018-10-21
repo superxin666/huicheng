@@ -14,6 +14,8 @@ class PersonInfoViewController: BaseViewController ,UICollectionViewDataSource,U
     let requestVC = Work2RequestVC()
 
     var colletionView : UICollectionView!
+    var collectionSatateArr = ["1","0","0","0","0","0","0"]
+
 
     let headArr = ["基本信息","扩展信息","教育培训","奖惩信息","社保情况","合同信息","附件信息"]
     let nameArr = ["头像","姓名","账号","分所","部门","角色","性别","出生日期","学历","籍贯","政治面貌","身份证号","手机号","家庭电话","微信号","身份证地址","实际地址","档案所在","状态","入职时间","离职时间","职能设定",]
@@ -145,15 +147,20 @@ class PersonInfoViewController: BaseViewController ,UICollectionViewDataSource,U
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell :PersonHeadCollectionViewCell  = collectionView.dequeueReusableCell(withReuseIdentifier: PersonHeadCollectionViewCellId, for: indexPath) as! PersonHeadCollectionViewCell
-        cell.setData(title: headArr[indexPath.row])
+        cell.setData(title: headArr[indexPath.row], selected: collectionSatateArr[indexPath.row])
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         HCLog(message: indexPath.row)
-
+        collectionSatateArr[showNum] = "0"
         showNum = indexPath.row
+        collectionSatateArr[showNum] = "1"
+        self.colletionView.reloadData()
         self.mainTabelView.reloadData()
+
+
+
     }
 
     // MARK: - delegate
@@ -219,7 +226,7 @@ class PersonInfoViewController: BaseViewController ,UICollectionViewDataSource,U
                 return cell
             } else if indexPath.section == 1 {
                 let cell : BankInfoTableViewCell  = tableView.dequeueReusableCell(withIdentifier: BankInfoTableViewCellID, for: indexPath) as! BankInfoTableViewCell
-                cell.setData(model: self.dataModel.info2)
+                cell.setData2(model: self.dataModel.info2)
                 return cell
             } else if indexPath.section == 2 {
                 let cell : ImageTableViewCell  = tableView.dequeueReusableCell(withIdentifier: ImageTableViewCellID, for: indexPath) as! ImageTableViewCell
@@ -236,7 +243,7 @@ class PersonInfoViewController: BaseViewController ,UICollectionViewDataSource,U
                 return cell
             } else if indexPath.section == 3 {
                 let cell : BankInfoTableViewCell  = tableView.dequeueReusableCell(withIdentifier: BankInfoTableViewCellID, for: indexPath) as! BankInfoTableViewCell
-                cell.setData2(model: self.dataModel.info2)
+                cell.setData(model: self.dataModel.info2)
                 return cell
 
             } else {
