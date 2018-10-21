@@ -48,6 +48,12 @@ class Title4TableViewCell: UITableViewCell {
         self.subLabel.text = contentStr
     }
 
+    func setData_personInfo(titleStr : String,contentStr : String) {
+        self.titleNameLabel.text = titleStr
+        self.subLabel.text = contentStr
+
+    }
+
 
     
     

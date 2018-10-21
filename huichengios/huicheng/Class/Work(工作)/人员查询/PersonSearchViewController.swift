@@ -80,6 +80,10 @@ class PersonSearchViewController:  BaseViewController ,UITableViewDataSource,UIT
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row  < self.dataArr.count {
+            let model : usermanageModel = self.dataArr[indexPath.row]
+            let vc : PersonInfoViewController = PersonInfoViewController()
+            vc.id = "\(model.id!)"
+            self.navigationController?.pushViewController(vc, animated: true)
 
         }
     }

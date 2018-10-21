@@ -698,9 +698,10 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
                 self.delegate.requestSucceed_work2(data: arr,type : type)
             }
         }else if type == . usermanageInfo{
-            let arr = Mapper<usermanageModel>().mapArray(JSONArray: response as! [[String : Any]])
+
+            let model = Mapper<usermanageInfoModel>().map(JSON: response as! [String : Any])!
             if !(self.delegate == nil) {
-                self.delegate.requestSucceed_work2(data: arr,type : type)
+                self.delegate.requestSucceed_work2(data: model,type : type)
             }
         }
 
