@@ -128,7 +128,7 @@ class ShareDetailViewController: BaseViewController,UITableViewDataSource,UITabl
                 return cell
             } else {
                 fileCell  = tableView.dequeueReusableCell(withIdentifier: FileTableViewCellID, for: indexPath) as! FileTableViewCell
-                fileCell.setData_fileName(fileName: fileNameStr)
+                fileCell.setData_fileName(fileName: "查看")
                 return fileCell
             }
         } else {
