@@ -248,10 +248,36 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
     ///   - c: <#c description#>
     ///   - n: <#n description#>
     ///   - bid: <#bid description#>
-    func docgetlistRequset(p:Int,c:Int,n:String,bid:String) {
+    func docgetlistRequset(p:Int,c:Int,n:String,bid:String,dn:String,s:String,lv:String,nm:String,bd:String,ed:String) {
         request.delegate = self
         type = .doc_getlist
-        let url = doc_getlist_api   + "p=\(p)&c=\(c)&n=\(n)&k=\(UserInfoLoaclManger.getKey())"
+
+        var sStr = ""
+        if s.count > 0 {
+            sStr = s.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+
+        var lvStr = ""
+        if lv.count > 0 {
+            lvStr = lv.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+        var nmStr = ""
+        if nm.count > 0 {
+            nmStr = nm.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+        var bdStr = ""
+        if bd.count > 0 {
+            bdStr = bd.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+        var edStr = ""
+        if ed.count > 0 {
+            edStr = ed.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        }
+
+
+
+
+        let url = doc_getlist_api   + "p=\(p)&c=\(c)&n=\(n)&s=\(sStr)&lv=\(lvStr)&nm=\(nmStr)&bd=\(bdStr)&ed=\(edStr)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
 
     }

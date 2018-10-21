@@ -14,8 +14,25 @@ class DocViewController: BaseViewController ,UITableViewDataSource,UITableViewDe
     var dataArr : [docgetlistModel] = []
     var pageNum : Int = 1
 
+
+
+    /// 分所id
+    var bidStr = ""
+    /// 函件编号
+    var dnStr = ""
     /// 合同编号
-    var numStr = ""
+    var nStr = ""
+    /// 申请人
+    var kwStr = ""
+    /// 律师名称
+    var uStr = ""
+    /// 案件名称
+    var cnStr = ""
+    /// 开始时间
+    var bStr = ""
+    /// 结束时间
+    var eStr = ""
+
 
 
     // MARK: - life
@@ -83,7 +100,7 @@ class DocViewController: BaseViewController ,UITableViewDataSource,UITableViewDe
     // MARK: - net
     func requestApi() {
         requestVC.delegate = self
-        requestVC.docgetlistRequset(p: pageNum, c: 8, n: numStr, bid: "")
+        requestVC.docgetlistRequset(p: pageNum, c: 8, n: nStr, bid: bidStr, dn: dnStr, s: kwStr, lv: uStr, nm: cnStr, bd: bStr, ed: eStr)
 
     }
 
@@ -152,11 +169,30 @@ class DocViewController: BaseViewController ,UITableViewDataSource,UITableViewDe
     }
     override func navigationRightBtnClick() {
         HCLog(message: "搜索")
+//        let vc = SearchViewController()
+//        vc.type = .deal_type
+//        weak var weakself = self
+//        vc.sureDealBlock = {content in
+//            weakself?.numStr = content
+//            weakself?.reflishData()
+//        }
+//        self.navigationController?.pushViewController(vc, animated: true)
         let vc = SearchViewController()
-        vc.type = .deal_type
+        vc.type = .doc_search
         weak var weakself = self
-        vc.sureDealBlock = {content in
-            weakself?.numStr = content
+        vc.sureDocSearchSure = {(nStr,dnStr,kwStr,uStr,cnStr,bidStr,startTimeStr,endTimeStr) in
+
+            HCLog(message: startTimeStr)
+            HCLog(message: endTimeStr)
+
+            weakself?.nStr = nStr
+            weakself?.dnStr = dnStr
+            weakself?.kwStr = kwStr
+            weakself?.uStr = uStr
+            weakself?.cnStr = cnStr
+            weakself?.bidStr = bidStr
+            weakself?.bStr = startTimeStr
+            weakself?.eStr = endTimeStr
             weakself?.reflishData()
         }
         self.navigationController?.pushViewController(vc, animated: true)
