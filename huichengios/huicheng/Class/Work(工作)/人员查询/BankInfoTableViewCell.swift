@@ -85,6 +85,59 @@ class BankInfoTableViewCell: UITableViewCell {
         self.label3.attributedText = strName4
     }
 
+    func setData5(model : usermanageInfoModel_info4) {
+        let strName = NSMutableAttributedString(string: "类型：")
+        let strName1 = model.type.getAttributedStr_color(color: .black, fontSzie: 13)
+        strName.append(strName1)
+        self.label1.attributedText = strName
+
+        let strName2 = NSMutableAttributedString(string: "内容：")
+        let strName3 = model.content.getAttributedStr_color(color: .black, fontSzie: 13)
+        strName2.append(strName3)
+        self.label2.attributedText = strName2
+
+        let strName4 = NSMutableAttributedString(string: "时间：")
+        let strName5 = model.addtime.getAttributedStr_color(color: .black, fontSzie: 13)
+        strName4.append(strName5)
+        self.label3.attributedText = strName4
+    }
+
+    func setData6(model : usermanageInfoModel_info5) {
+        let strName = NSMutableAttributedString(string: "缴费基数：")
+        let strName1 = "\(model.insurance_basemoney)".getAttributedStr_color(color: .black, fontSzie: 13)
+        strName.append(strName1)
+        self.label1.attributedText = strName
+
+        let strName2 = NSMutableAttributedString(string: "缴费日期：")
+        let strName3 = model.insurance_starttime.getAttributedStr_color(color: .black, fontSzie: 13)
+        strName2.append(strName3)
+        self.label2.attributedText = strName2
+
+        let strName4 = NSMutableAttributedString(string: "停缴日期：")
+        let strName5 = model.insurance_endtime.getAttributedStr_color(color: .black, fontSzie: 13)
+        strName4.append(strName5)
+        self.label3.attributedText = strName4
+    }
+
+    func setData7(model : usermanageInfoModel_info5) {
+        let strName = NSMutableAttributedString(string: "缴费基数：")
+        let strName1 = "\(model.fund_basemoney)".getAttributedStr_color(color: .black, fontSzie: 13)
+        strName.append(strName1)
+        self.label1.attributedText = strName
+
+        let strName2 = NSMutableAttributedString(string: "缴费日期：")
+        let strName3 = model.fund_starttime.getAttributedStr_color(color: .black, fontSzie: 13)
+        strName2.append(strName3)
+        self.label2.attributedText = strName2
+
+        let strName4 = NSMutableAttributedString(string: "停缴日期：")
+        let strName5 = model.fund_endtime.getAttributedStr_color(color: .black, fontSzie: 13)
+        strName4.append(strName5)
+        self.label3.attributedText = strName4
+    }
+
+
+
 
 
 
