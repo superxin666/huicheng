@@ -69,7 +69,7 @@ class BankInfoTableViewCell: UITableViewCell {
 
     func setData4(model : usermanageInfoModel_info3_train) {
         let strName = NSMutableAttributedString(string: "时间：")
-        let str = String.hc_getDate_style1(dateStr: model.begintime, style: 4) +  String.hc_getDate_style1(dateStr: model.endtime, style: 4)
+        let str = model.begintime + "~" + model.endtime
         let strName1 = str.getAttributedStr_color(color: .black, fontSzie: 13)
         strName.append(strName1)
         self.label1.attributedText = strName

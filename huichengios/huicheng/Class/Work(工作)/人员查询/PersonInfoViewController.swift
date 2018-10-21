@@ -132,8 +132,7 @@ class PersonInfoViewController: BaseViewController ,UICollectionViewDataSource,U
         mainTabelView.register(UINib.init(nibName: "FamilyTableViewCell", bundle: nil), forCellReuseIdentifier: FamilyTableViewCellID)
         mainTabelView.register(UINib.init(nibName: "BankInfoTableViewCell", bundle: nil), forCellReuseIdentifier: BankInfoTableViewCellID)
         mainTabelView.register(UINib.init(nibName: "ImageTableViewCell", bundle: nil), forCellReuseIdentifier: ImageTableViewCellID)
-
-
+        mainTabelView.register(UINib.init(nibName: "DealinfoTableViewCell", bundle: nil), forCellReuseIdentifier: DealinfoTableViewCellID)
 
 
         self.view.addSubview(mainTabelView)
@@ -177,6 +176,8 @@ class PersonInfoViewController: BaseViewController ,UICollectionViewDataSource,U
             return 1
         } else if showNum == 4 {
             return 2
+        } else if showNum == 5 {
+            return 1
         }
         else {
             return 0
@@ -208,9 +209,9 @@ class PersonInfoViewController: BaseViewController ,UICollectionViewDataSource,U
             return self.dataModel.info4.count
         } else if showNum == 4 {
             return 1
+        } else if showNum == 5 {
+           return self.dataModel.info6.count
         }
-
-
         else {
             return 0
         }
@@ -317,6 +318,14 @@ class PersonInfoViewController: BaseViewController ,UICollectionViewDataSource,U
             }
             return cell
 
+        } else if showNum == 5 {
+            let cell : DealinfoTableViewCell  = tableView.dequeueReusableCell(withIdentifier: DealinfoTableViewCellID, for: indexPath) as! DealinfoTableViewCell
+            if indexPath.row < self.dataModel.info6.count {
+                let model = self.dataModel.info6[indexPath.row]
+                cell.setData(model: model)
+            }
+            return cell
+
         }
         else {
             return UITableViewCell()
@@ -355,8 +364,9 @@ class PersonInfoViewController: BaseViewController ,UICollectionViewDataSource,U
             return BankInfoTableViewCellH
         } else if showNum == 4 {
             return BankInfoTableViewCellH
+        } else if showNum == 5 {
+            return DealinfoTableViewCellH
         }
-
         else {
 
             return 0

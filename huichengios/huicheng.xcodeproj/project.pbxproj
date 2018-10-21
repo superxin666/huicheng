@@ -77,6 +77,8 @@
 		2119A4F120CA55D30012F4A6 /* Work2RequestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2119A4F020CA55D30012F4A6 /* Work2RequestVC.swift */; };
 		211A65C820A00957009CD41A /* NoticeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A65C620A00957009CD41A /* NoticeTableViewCell.swift */; };
 		211A65C920A00957009CD41A /* NoticeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 211A65C720A00957009CD41A /* NoticeTableViewCell.xib */; };
+		211E355C217C5D7900F7D105 /* DealinfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211E355A217C5D7900F7D105 /* DealinfoTableViewCell.swift */; };
+		211E355D217C5D7900F7D105 /* DealinfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 211E355B217C5D7900F7D105 /* DealinfoTableViewCell.xib */; };
 		2121A645214F5A2F00BE3489 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2121A644214F5A2F00BE3489 /* StatisticsViewController.swift */; };
 		2121BC242150DF4400487A1F /* StatisticsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2121BC222150DF4400487A1F /* StatisticsTableViewCell.swift */; };
 		2121BC252150DF4400487A1F /* StatisticsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2121BC232150DF4400487A1F /* StatisticsTableViewCell.xib */; };
@@ -376,6 +378,8 @@
 		2119A4F020CA55D30012F4A6 /* Work2RequestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Work2RequestVC.swift; sourceTree = "<group>"; };
 		211A65C620A00957009CD41A /* NoticeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeTableViewCell.swift; sourceTree = "<group>"; };
 		211A65C720A00957009CD41A /* NoticeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoticeTableViewCell.xib; sourceTree = "<group>"; };
+		211E355A217C5D7900F7D105 /* DealinfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealinfoTableViewCell.swift; sourceTree = "<group>"; };
+		211E355B217C5D7900F7D105 /* DealinfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DealinfoTableViewCell.xib; sourceTree = "<group>"; };
 		2121A644214F5A2F00BE3489 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		2121BC222150DF4400487A1F /* StatisticsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsTableViewCell.swift; sourceTree = "<group>"; };
 		2121BC232150DF4400487A1F /* StatisticsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatisticsTableViewCell.xib; sourceTree = "<group>"; };
@@ -790,6 +794,8 @@
 				21394B82217C145100929C48 /* BankInfoTableViewCell.xib */,
 				21394B85217C1BE500929C48 /* ImageTableViewCell.swift */,
 				21394B86217C1BE500929C48 /* ImageTableViewCell.xib */,
+				211E355A217C5D7900F7D105 /* DealinfoTableViewCell.swift */,
+				211E355B217C5D7900F7D105 /* DealinfoTableViewCell.xib */,
 			);
 			path = "人员查询";
 			sourceTree = "<group>";
@@ -1302,6 +1308,7 @@
 				21075552205D5AD000FF4396 /* MessageTableViewCell.xib in Resources */,
 				21075560205D792C00FF4396 /* MineTableViewCell.xib in Resources */,
 				2148A2D2206A38B500D996C5 /* AddMemoBackView.xib in Resources */,
+				211E355D217C5D7900F7D105 /* DealinfoTableViewCell.xib in Resources */,
 				21075564205D7A4A00FF4396 /* MineHeadView.xib in Resources */,
 				21089EA3206E829400573B6A /* SearchStateTableViewCell.xib in Resources */,
 				215C65D5203EC6B6001C7A92 /* LaunchScreen.storyboard in Resources */,
@@ -1633,6 +1640,7 @@
 				216A6C52204CDE6F00528FD8 /* MineViewController.swift in Sources */,
 				2108BB79206FD219002A4212 /* CheckcaseViewController.swift in Sources */,
 				2108BB86206FD809002A4212 /* FileTableViewCell.swift in Sources */,
+				211E355C217C5D7900F7D105 /* DealinfoTableViewCell.swift in Sources */,
 				21089E9B206E7A3500573B6A /* FinanceDetialHeadView.swift in Sources */,
 				21DDC9D0208095150067197D /* casetypeModel.swift in Sources */,
 				21A49D71210215420092CC04 /* income_getdealsinfoModel.swift in Sources */,
