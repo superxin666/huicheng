@@ -42,7 +42,7 @@ class PersonSearchViewController:  BaseViewController ,UITableViewDataSource,UIT
         self.view.backgroundColor = viewBackColor
 
         self.navigation_title_fontsize(name: "人员查询", fontsize: 18)
-        self.navigationBar_rightBtn_image(image: #imageLiteral(resourceName: "mine_search"))
+//        self.navigationBar_rightBtn_image(image: #imageLiteral(resourceName: "mine_search"))
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
         self.creatUI()
         self.requestApi()
