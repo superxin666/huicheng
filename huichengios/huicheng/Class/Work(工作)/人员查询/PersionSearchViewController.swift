@@ -176,7 +176,7 @@ class PersionSearchViewController: BaseTableViewController,WorkRequestVCDelegate
         } else if indexPath.row == 6 {
             //入职时间
             self.showTime_start()
-        } else {
+        } else if indexPath.row == 7  {
             //至
             self.showTime_end()
 

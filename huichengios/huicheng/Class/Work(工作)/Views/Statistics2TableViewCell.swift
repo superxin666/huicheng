@@ -39,7 +39,7 @@ class Statistics2TableViewCell: UITableViewCell {
         let str4 = NSMutableAttributedString(string: "收款金额：")
         let str5 = "\(model.money!)元".getAttributedStr_color(color: orangeColor, fontSzie: 12)
         str4.append(str5)
-        self.right1.attributedText =  str3
+        self.right1.attributedText =  str4
 
         let str6 = NSMutableAttributedString(string: "余额：")
         let str7 = "\(model.balance!)元".getAttributedStr_color(color: orangeColor, fontSzie: 12)
