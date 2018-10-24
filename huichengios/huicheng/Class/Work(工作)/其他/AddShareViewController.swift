@@ -86,6 +86,7 @@ class AddShareViewController: BaseViewController,UITableViewDataSource,UITableVi
         if indexPath.row == 0 {
             let cell : OptionTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
                 cell.setData_caseDetail(titleStr: "分类", contentStr: tNameStr)
+            cell.contentLabel.text = "请选择"
             return cell
         } else if indexPath.row == 1 {
             let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
@@ -101,6 +102,7 @@ class AddShareViewController: BaseViewController,UITableViewDataSource,UITableVi
         } else {
             fileCell = tableView.dequeueReusableCell(withIdentifier: FileTableViewCellID, for: indexPath) as! FileTableViewCell
             fileCell.setData_fileName(fileName: fileName)
+            fileCell.fileNameLabel.text  = "请选择"
             return fileCell
         }
 

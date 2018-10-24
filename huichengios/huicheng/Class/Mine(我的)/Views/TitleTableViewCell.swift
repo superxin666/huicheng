@@ -74,6 +74,7 @@ class TitleTableViewCell: UITableViewCell {
         self.textField.keyboardType = .numberPad
         self.titleNameLabel.textColor = darkblueColor
         self.titleNameLabel.text = titleStr
+        self.textField.placeholder = "请输入"
     }
 
     func setData_expense(titleStr : String,contenStr : String) {

@@ -63,7 +63,7 @@ class AddRoomViewController: BaseTableViewController,TitleTableViewCellDelegate 
             } else {
                 endTimeCell.setData_case(titleStr: "结束时间", timeStr: etStr)
             }
-
+            endTimeCell.timeLabel.text = "请选择"
             return endTimeCell
         } else if indexPath.row == 2 {
             let cell : TitleTableViewCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell

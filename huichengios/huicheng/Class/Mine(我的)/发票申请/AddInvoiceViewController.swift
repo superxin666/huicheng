@@ -186,7 +186,7 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
         if indexPath.section == 0 {
             if typeStr == "0" {
                 if indexPath.row == 0 {
-                    let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                    let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as? TitleTableViewCell
                     cell.delegate = self
                     cell.setData_addinvoce(title: sectionNameArr[indexPath.row], content: titleStr,indexPath : indexPath)
                     if viewType == .detial {
@@ -194,10 +194,14 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
                     } else {
                         cell.isUserInteractionEnabled = true
                     }
+                    if viewType == .add {
+                        cell.textField.placeholder = "请输入"
+                    }
+
 
                     return cell
                 } else if indexPath.row == 1 {
-                    let cell : Title5TableViewCell!  = tableView.dequeueReusableCell(withIdentifier: Title5TableViewCellID, for: indexPath) as! Title5TableViewCell
+                    let cell : Title5TableViewCell!  = tableView.dequeueReusableCell(withIdentifier: Title5TableViewCellID, for: indexPath) as? Title5TableViewCell
                     cell.delegate = self
                     cell.setData_overDeal(titleStr: sectionNameArr[indexPath.row], contentStr: creditcodeStr)
                     if viewType == .detial {
@@ -205,12 +209,16 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
                     } else {
                         cell.isUserInteractionEnabled = true
                     }
+                    if viewType == .add {
+                        cell.textField.placeholder = "请输入"
+                    }
+
 
 
                     return cell
                 }else if indexPath.row == 2 {
                     //发票内容
-                    optionCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
+                    optionCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as? OptionTableViewCell
 
                     optionCell.setDataObject(titleStr: sectionNameArr[indexPath.row], contentStr: contentStr)
                     if viewType == .detial {
@@ -218,10 +226,17 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
                     } else {
                         optionCell.isUserInteractionEnabled = true
                     }
+                    if viewType == .add {
+                        if !(contentStr.count > 0) {
+                            optionCell.contentLabel.text = "请选择"
+                        }
+                    }
+
+
 
                     return optionCell
                 } else {
-                    let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                    let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as? TitleTableViewCell
                     cell.delegate = self
                     cell.setData_addinvoce_mon(title: sectionNameArr[indexPath.row], content: moneyStr,indexPath : indexPath)
                     if viewType == .detial {
@@ -229,6 +244,10 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
                     } else {
                         cell.isUserInteractionEnabled = true
                     }
+                    if viewType == .add {
+                        cell.textField.placeholder = "请输入"
+                    }
+
 
                     return cell
                 }
@@ -237,7 +256,7 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
             } else {
 
                 if indexPath.row == 1 {
-                    let cell : Title5TableViewCell!  = tableView.dequeueReusableCell(withIdentifier: Title5TableViewCellID, for: indexPath) as! Title5TableViewCell
+                    let cell : Title5TableViewCell!  = tableView.dequeueReusableCell(withIdentifier: Title5TableViewCellID, for: indexPath) as? Title5TableViewCell
                     cell.delegate = self
                     cell.setData_invoice(title:  sectionNameArr2[indexPath.row], contentStr: creditcodeStr, index: indexPath)
                     
@@ -246,10 +265,14 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
                     } else {
                         cell.isUserInteractionEnabled = true
                     }
+                    if viewType == .add {
+                        cell.textField.placeholder = "请输入"
+                    }
+
 
                     return cell
                 }else if indexPath.row == 2 {
-                    let cell : Title5TableViewCell!  = tableView.dequeueReusableCell(withIdentifier: Title5TableViewCellID, for: indexPath) as! Title5TableViewCell
+                    let cell : Title5TableViewCell!  = tableView.dequeueReusableCell(withIdentifier: Title5TableViewCellID, for: indexPath) as? Title5TableViewCell
                     cell.setData_invoice(title:  sectionNameArr2[indexPath.row], contentStr: identifierStr, index: indexPath)
                     cell.delegate = self
                     if viewType == .detial {
@@ -257,11 +280,15 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
                     } else {
                         cell.isUserInteractionEnabled = true
                     }
+                    if viewType == .add {
+                        cell.textField.placeholder = "请输入"
+                    }
+
 
                     return cell
                 } else if indexPath.row == 7 {
                     //发票内容
-                    optionCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
+                    optionCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as? OptionTableViewCell
                     optionCell.setDataObject(titleStr: sectionNameArr2[indexPath.row], contentStr: contentStr)
 
                     if viewType == .detial {
@@ -269,10 +296,17 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
                     } else {
                         optionCell.isUserInteractionEnabled = true
                     }
+                    if viewType == .add {
+                        if !(contentStr.count > 0) {
+                            optionCell.contentLabel.text = "请选择"
+
+                        }
+                    }
+
                     return optionCell
 
                 } else if indexPath.row == 8 {
-                    let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                    let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as? TitleTableViewCell
                     cell.delegate = self
                     cell.setData_addinvoce_mon(title: sectionNameArr2[indexPath.row], content: moneyStr,indexPath : indexPath)
                     if viewType == .detial {
@@ -280,10 +314,12 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
                     } else {
                         cell.isUserInteractionEnabled = true
                     }
-
+                    if viewType == .add {
+                        cell.textField.placeholder = "请输入"
+                    }
                     return cell
                 } else if indexPath.row == 9 {
-                    let cell : FileTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: FileTableViewCellID, for: indexPath) as! FileTableViewCell
+                    let cell : FileTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: FileTableViewCellID, for: indexPath) as? FileTableViewCell
                     if viewType == .detial {
                         cell.isUserInteractionEnabled = false
                     } else {
@@ -318,13 +354,16 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
                     } else {
                         cell.isUserInteractionEnabled = true
                     }
+                    if viewType == .add {
+                        cell.textField.placeholder = "请输入"
+                    }
 
                     return cell
                 }
             }
         } else if indexPath.section == 2 {
             //款项是否入账
-            let cell : endTimeTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+            let cell : endTimeTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as? endTimeTableViewCell
             cell.setData(titleStr: "入账时间", tag: 10)
             cell.setTime(str: applytimeStr)
             if viewType == .detial {
@@ -332,6 +371,10 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
             } else {
                 cell.isUserInteractionEnabled = true
             }
+            if viewType == .add {
+                cell.timeLabel.text = "请选择"
+            }
+
             return cell
         } else if indexPath.section == 3 {
             //送达方式
@@ -345,12 +388,15 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
                 } else {
                     cell.isUserInteractionEnabled = true
                 }
+                if viewType == .add {
+                    cell.textField.placeholder = "请输入"
+                }
                 return cell
 
 
             } else if indexPath.row == 1 {
                 //联系电话
-                let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as? TitleTableViewCell
                 cell.delegate = self
                 cell.setData_addinvoce(title: section3NameArr[indexPath.row], content: phoneStr,indexPath : indexPath)
                 if viewType == .detial {
@@ -358,12 +404,15 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
                 } else {
                     cell.isUserInteractionEnabled = true
                 }
+                if viewType == .add {
+                    cell.textField.placeholder = "请输入"
+                }
                 return cell
 
 
             } else if indexPath.row == 2 {
                 //邮编
-                let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as? TitleTableViewCell
                 cell.delegate = self
                 cell.setData_addinvoce(title: section3NameArr[indexPath.row], content: zipStr,indexPath : indexPath)
                 if viewType == .detial {
@@ -371,11 +420,15 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
                 } else {
                     cell.isUserInteractionEnabled = true
                 }
+                if viewType == .add {
+                    cell.textField.placeholder = "请输入"
+                }
                 return cell
+
 
             } else if indexPath.row == 3 {
                 //邮寄地址
-                let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                let cell : TitleTableViewCell!  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as? TitleTableViewCell
                 cell.delegate = self
                 cell.setData_addinvoce(title: section3NameArr[indexPath.row], content: addrStr,indexPath : indexPath)
                 if viewType == .detial {
@@ -383,11 +436,14 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
                 } else {
                     cell.isUserInteractionEnabled = true
                 }
+                if viewType == .add {
+                    cell.textField.placeholder = "请输入"
+                }
                 return cell
 
             } else {
                 //付费方式
-                let cell : Selected2TableViewCell!  = tableView.dequeueReusableCell(withIdentifier: Selected2TableViewCellID, for: indexPath) as! Selected2TableViewCell
+                let cell : Selected2TableViewCell!  = tableView.dequeueReusableCell(withIdentifier: Selected2TableViewCellID, for: indexPath) as? Selected2TableViewCell
                 cell.delegate = self
                 cell.setData(title: section3NameArr[indexPath.row], leftStr: "收件人付费", rightStr: "律师账扣", show: 2)
                 cell.setSelected(selectedType: paytype)
@@ -427,6 +483,9 @@ class AddInvoiceViewController: BaseTableViewController,MineRequestVCDelegate,Ti
                     cell.isUserInteractionEnabled = false
                 } else {
                     cell.isUserInteractionEnabled = true
+                }
+                if viewType == .add {
+                    cell.textField.placeholder = "请输入"
                 }
                 return cell
             }
