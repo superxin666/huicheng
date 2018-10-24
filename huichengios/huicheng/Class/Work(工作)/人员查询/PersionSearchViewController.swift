@@ -118,31 +118,37 @@ class PersionSearchViewController: BaseTableViewController,WorkRequestVCDelegate
             //部门
             let cell : OptionTableViewCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
             cell.setData_caseDetail(titleStr: nameArr[indexPath.row], contentStr: dStr)
+            cell.contentLabel.text = "请选择"
             return cell
         }else if indexPath.row == 3 {
             //类别
             let cell : OptionTableViewCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
             cell.setData_caseDetail(titleStr: nameArr[indexPath.row], contentStr: caStr)
+            cell.contentLabel.text = "请选择"
             return cell
         }else if indexPath.row == 4 {
             //学历
             let cell : OptionTableViewCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
             cell.setData_caseDetail(titleStr: nameArr[indexPath.row], contentStr: dpStr)
+            cell.contentLabel.text = "请选择"
             return cell
         }else if indexPath.row == 5 {
             //状态
             let cell : OptionTableViewCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
             cell.setData_caseDetail(titleStr: nameArr[indexPath.row], contentStr: sStr)
+            cell.contentLabel.text = "请选择"
             return cell
         } else if indexPath.row == 6 {
             //入职时间
             startTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
             startTimeCell.setData(titleStr: "开始时间", tag: 0)
+            startTimeCell.timeLabel.text = "请选择"
             return startTimeCell
         } else{
             //至
             endTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
             endTimeCell.setData(titleStr: "至", tag: 1)
+            endTimeCell.timeLabel.text = "请选择"
             return endTimeCell
         }
     }

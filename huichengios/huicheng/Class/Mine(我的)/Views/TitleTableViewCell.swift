@@ -195,6 +195,7 @@ class TitleTableViewCell: UITableViewCell {
         textField.tag =  tagNum
         self.titleNameLabel.textColor = darkblueColor
         self.titleNameLabel.text = titleStr
+        textField.placeholder = "请输入"
     }
 
 
