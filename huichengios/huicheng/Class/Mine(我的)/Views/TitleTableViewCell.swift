@@ -162,6 +162,7 @@ class TitleTableViewCell: UITableViewCell {
         self.titleNameLabel.textColor = darkblueColor
         self.titleNameLabel.text = titleStr
         self.titleNameLabel.textAlignment = .left
+        self.textField.placeholder = "请输入"
 
     }
 

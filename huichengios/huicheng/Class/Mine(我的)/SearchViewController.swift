@@ -507,17 +507,20 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
                 //开始时间
                 startTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
                 startTimeCell.setData(titleStr: "开始时间", tag: 0)
+                startTimeCell.timeLabel.text = "请选择"
                 return startTimeCell
 
             }   else if indexPath.row == 7 {
                 endTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
                 endTimeCell.setData(titleStr: "结束时间", tag: 1)
+                endTimeCell.timeLabel.text = "请选择"
                 return endTimeCell
 
             }  else if indexPath.row == 5 {
                 //部门
                 optionCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
                 optionCell.setData_caseDetail(titleStr: "部门", contentStr: "")
+                optionCell.contentLabel.text = "请选择"
                 return optionCell
             } else {
 
@@ -525,6 +528,7 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
                 //交款人
                 titleCell.setData_ovewdeal(titleStr: doc_searchNameArr[indexPath.row], indexPath: indexPath)
                 titleCell.delegate = self
+
                 return titleCell
             }
         } else if type == .shareType{
