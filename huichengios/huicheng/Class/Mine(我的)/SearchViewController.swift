@@ -748,7 +748,7 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             } else if indexPath.row == 6 {
                 //开始时间
                 self.showTime_start()
-            } else {
+            } else if indexPath.row == 7 {
                 //结束时间
                 self.showTime_end()
             }
