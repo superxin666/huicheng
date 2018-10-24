@@ -138,6 +138,9 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
             titleCell  = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
 
             titleCell.setData_noticeDetail(titleStr: "公告标题", contentStr: titleStr)
+            if type == .addNotice{
+                titleCell.textField.placeholder = "请输入"
+            }
             titleCell.delegate = self
             if type == .detail{
                 titleCell.isUserInteractionEnabled = false
@@ -166,8 +169,11 @@ class AddNoticeViewController: BaseViewController,UITableViewDataSource,UITableV
             return fileCell
         } else if indexPath.row == 3 {
             objectCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
-
             objectCell.setDataObject(titleStr: "接受对象", contentStr: objectStr)
+            if type == .addNotice{
+                objectCell.contentLabel.text = "请选择"
+            }
+
             if type == .detail{
                 objectCell.isUserInteractionEnabled = false
             } else {
