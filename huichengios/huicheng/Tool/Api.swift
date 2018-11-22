@@ -8,14 +8,29 @@
 
 import Foundation
 
+
+/// 生产
+//let base_api = "http://124.205.246.38:8010/api/"
+
+/// 测试2
 //let base_api = "http://47.94.108.111:18000/api/"
 
 /// 测试
 let base_api = "http://47.94.108.111:17000/api/"
 
 
+///
+//let base_imageOrFile_api = "http://124.205.246.38:8010"
 
-let base_imageOrFile_api = "http://47.94.108.111:18000"
+//let base_imageOrFile_api = "http://47.94.108.111:18000"
+
+
+let base_imageOrFile_api = "http://47.94.108.111:17000"
+
+
+
+
+
 
 //------------------------友盟
 let umemgKey = "5a8242c1a40fa3399900089a"

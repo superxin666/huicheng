@@ -77,7 +77,7 @@ class DocDetialPdfViewController: BaseViewController,UIPrintInteractionControlle
 
             let yNum = zhangImageView.frame.origin.y * teampX
             requestVC.delegate = self
-            requestVC.doc_applysave(id: id, s: "3", n: "", x: Int(xNum) * 2, y:Int(yNum) * 2)
+            requestVC.doc_applysave(id: id, s: "3", n: "", x: Int(xNum) * 2 - 5, y:Int(yNum) * 2 - 5)
         }
     }
 

@@ -34,7 +34,18 @@ class Work2ViewController: BaseViewController,UICollectionViewDataSource,UIColle
 
         HCLog(message: "数据模型")
         userDataModel = UserInfoLoaclManger.getsetUserWorkData()
+
         HCLog(message: userDataModel?.power.count)
+        for model in userDataModel.power {
+            if model.name == "财务" {
+                for i in 0...model.childrens.count - 1 {
+                    let  str  = model.childrens[i]
+                    if str == "补登发票" {
+                        model.childrens.remove(at: i)
+                    }
+                }
+            }
+        }
 
         self.creatUI()
         
@@ -74,7 +85,7 @@ class Work2ViewController: BaseViewController,UICollectionViewDataSource,UIColle
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let model : LoginModel_power = (userDataModel?.power[section])!
-        return model.childrens.count
+            return model.childrens.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
