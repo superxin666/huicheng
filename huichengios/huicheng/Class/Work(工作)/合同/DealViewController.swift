@@ -18,6 +18,8 @@ class DealViewController:  BaseViewController,UITableViewDataSource,UITableViewD
     var numStr = ""
     var sStr = ""
     var eStr = ""
+    var bidStr = ""
+
     // MARK: - life
     override func viewWillLayoutSubviews() {
         mainTabelView.snp.makeConstraints { (make) in
@@ -89,7 +91,7 @@ class DealViewController:  BaseViewController,UITableViewDataSource,UITableViewD
     // MARK: - net
     func requestApi() {
         requestVC.delegate = self
-        requestVC.dealgetlist(p: pageNum, c: 8, n: self.numStr, b: sStr, e: eStr)
+        requestVC.dealgetlist(bidStr : bidStr,p: pageNum, c: 8, n: self.numStr, b: sStr, e: eStr)
     }
 
     func reflishData() {
@@ -133,11 +135,13 @@ class DealViewController:  BaseViewController,UITableViewDataSource,UITableViewD
         HCLog(message: "搜索")
         let vc = SearchViewController()
         vc.type = .deal2_type
+        vc.typeSub = 1
         weak var weakself = self
-        vc.deal2SureBlock = {(content,sStr,eStr )in
+        vc.deal2SureBlock = {(bidStr,content,sStr,eStr )in
             weakself?.numStr = content
             weakself?.sStr = sStr
             weakself?.eStr = eStr
+            weakself?.bidStr = bidStr
             weakself?.reflishData()
         }
         self.navigationController?.pushViewController(vc, animated: true)

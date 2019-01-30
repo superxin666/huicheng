@@ -7,7 +7,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>惠诚</string>
+	<string>惠诚律所平台</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
@@ -44,7 +44,7 @@
 	<key>CFBundleTypeRole</key>
 	<string>Viewer</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>

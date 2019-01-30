@@ -55,6 +55,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
         request.request_api(url: url)
     }
 
+
     /// 本所律师列表
     func userlistRequest() {
         request.delegate = self
@@ -187,7 +188,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
     }
 
      // MARK:  案件管理  获取案件
-    func casegetlistRerquest(p:Int,c:Int,b:String,s:String) {
+    func casegetlistRerquest(bid : String,p:Int,c:Int,b:String,s:String) {
         request.delegate = self
         type = .case_getlist
         var bStr = ""
@@ -198,7 +199,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
         if s.count > 0 {
             eStr = b.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         }
-        let url =   case_getlist_api + "p=\(p)&c=\(c)&b=\(bStr)&s=\(eStr)&k=\(UserInfoLoaclManger.getKey())"
+        let url =   case_getlist_api + "p=\(p)&c=\(c)&b=\(bStr)&s=\(eStr)&bid=\(bid)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
     }
 
@@ -398,7 +399,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
     ///   - p: <#p description#>
     ///   - c: <#c description#>
     ///   - n: <#n description#>
-    func dealgetlist(p :Int,c:Int,n:String,b:String,e:String) {
+    func dealgetlist(bidStr:String,p :Int,c:Int,n:String,b:String,e:String) {
 
         var bStr = ""
         if b.count > 0 {
@@ -413,7 +414,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
 
         request.delegate = self
         type = .deal
-        let url =   deal_getlist_api + "p=\(p)&c=\(c)&n=\(n)&b=\(bStr)&e=\(eStr)&k=\(UserInfoLoaclManger.getKey())"
+        let url =   deal_getlist_api + "p=\(p)&c=\(c)&n=\(n)&b=\(bStr)&e=\(eStr)&bid=\(bidStr)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
     }
 
@@ -1095,6 +1096,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
             }
         } else if type == .branch{
             //分所列表
+            
             let arr = Mapper<branchModel>().mapArray(JSONArray: response as! [[String : Any]])
             HCLog(message: arr.count)
             if !(self.delegate == nil) {

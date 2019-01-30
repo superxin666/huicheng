@@ -13,6 +13,8 @@ class LoginModel_power: Mappable {
     var name: String!
     var childrens: [String] = []
 
+
+
     init() {}
     required init?(map: Map){
         mapping(map: map)
@@ -21,6 +23,7 @@ class LoginModel_power: Mappable {
     func mapping(map: Map) {
         name <- map["name"]
         childrens <- map["childrens"]
+
 //        childrens = childrens.reversed()
 
     }
@@ -34,7 +37,7 @@ class LoginModel: Mappable {
     var branch:String!
     var key:String!
     var power:[LoginModel_power] = []
-
+    var searchpower: [Int] = []
     
     init() {}
     required init?(map: Map){
@@ -47,6 +50,7 @@ class LoginModel: Mappable {
         branch <- map["branch"]
         key <- map["key"]
         power <- map["power"]
+        searchpower <- map["searchpower"]
     }
 
 }

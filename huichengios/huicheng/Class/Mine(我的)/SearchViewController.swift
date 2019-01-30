@@ -8,16 +8,19 @@
 
 import UIKit
 typealias SearchViewControllerBlock_expense = (_ stateId : String)->()
+
+typealias SubViewControllerBlock = (_ subId : String)->()
+
 typealias ExpenseapplyViewControllerBlock_expense = (_ stateId : String,_ branchId : String,_ prStr : String)->()
 
 typealias SearchViewControllerBlock_work = (_ titleStr : String,_ personStr : String,_ StartTimeStr : String,_ endTimeStr : String)->()
 typealias SearchViewControllerBlock_dealcheck = (_ nStr : String,_ StartTimeStr : String,_ endTimeStr : String,_ uStr : String,_ prStr : String)->()
 
-typealias SearchViewControllerBlock_deal2 = (_ titleStr : String,_ StartTimeStr : String,_ endTimeStr : String)->()
+typealias SearchViewControllerBlock_deal2 = (_ bidStr : String,_ titleStr : String,_ StartTimeStr : String,_ endTimeStr : String)->()
 
 
 typealias SearchViewControllerBlock_finance = (_ noStr : String,_ nStr : String,_ sStr : String,_ stStr : String,_ etStr : String)->()
-typealias SearchViewControllerBlock_caselsit = (_ stStr : String,_ etStr : String)->()
+typealias SearchViewControllerBlock_caselsit = (_ bidStr : String,_ stStr : String,_ etStr : String)->()
 typealias SearchViewControllerBlock_deal = (_ contentStr : String)->()
 typealias SearchViewControllerBlock_bank = (_ personStr : String,_ dStr : String)->()
 
@@ -34,9 +37,20 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
     let mainTabelView : UITableView = UITableView()
 //    类型
     var type : SearchViewController_type!
+//选项
+    var typeSub : Int = 0
+//默认没有 0 没有权限 1 有权限
+    var isHaveSub : Int = 0
+
 //   行数
     var rowNum : Int!
-    
+
+    var sectionNum : Int!
+
+
+    var subBlock : SubViewControllerBlock!
+
+
     /// 选择类型 block
     var sureStateBlock : SearchViewControllerBlock_expense!
     
@@ -125,9 +139,12 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
     /// 委托人
     var prStr = ""
 
+    /// 分所id
+    var subStr = ""
+
     var currectRow = 0
 
-
+    var userDataModel : LoginModel!
 
     // MARK: - life
     override func viewWillLayoutSubviews() {
@@ -142,6 +159,8 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
 
         // Do any additional setup after loading the view.
         self.view.backgroundColor = viewBackColor
+
+
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
         if type == .expense_type {
             self.navigation_title_fontsize(name: "报销查询", fontsize: 18)
@@ -215,6 +234,19 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             rowNum = 5
 
         }
+        userDataModel = UserInfoLoaclManger.getsetUserWorkData()
+        if typeSub < userDataModel.searchpower.count {
+            isHaveSub = userDataModel.searchpower[typeSub]
+            isHaveSub = 1
+            if isHaveSub == 1 {
+//                rowNum = rowNum + 1
+                sectionNum = 2
+            } else {
+                sectionNum = 1
+            }
+        }
+
+
         request.delegate = self
         self.navigationBar_rightBtn_title(name: "确定")
         self.creatUI()
@@ -229,6 +261,9 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         mainTabelView.showsVerticalScrollIndicator = false
         mainTabelView.showsHorizontalScrollIndicator = false
         mainTabelView.backgroundView?.backgroundColor = .clear
+
+        mainTabelView.register(UINib.init(nibName: "OptionTableViewCell", bundle: nil), forCellReuseIdentifier: OptionTableViewCellID)
+
         if type == .expense_type || type == .invoice_getlist {
 
             mainTabelView.register(UINib.init(nibName: "OptionTableViewCell", bundle: nil), forCellReuseIdentifier: OptionTableViewCellID)
@@ -302,432 +337,460 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
     
     // MARK: - delegate
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return sectionNum
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rowNum
+        if isHaveSub ==  1 {
+            if section == 0 {
+                return 1
+            } else {
+                return rowNum
+            }
+        } else {
+            return rowNum
+        }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if type == .expense_type {
+        if isHaveSub == 1 && indexPath.section == 0 {
             optionCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
-            optionCell.setData_caseDetail(titleStr: "状态", contentStr: "")
-            return optionCell
-        } else if type == .invoice_getlist{
-            optionCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
-            optionCell.setData_caseDetail(titleStr: "状态", contentStr: "")
+            optionCell.setData_caseDetail(titleStr: "分所", contentStr: "")
             return optionCell
 
-        } else if type == .finance_type{
-            //我都收款
-            
-            if indexPath.row == 0 {
+        } else {
 
-                titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
-                //交款人
-                titleCell.setData_search(titleStr: "交款人")
-                return titleCell
-            } else if indexPath.row == 1 {
+            if type == .expense_type {
+                optionCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
+                optionCell.setData_caseDetail(titleStr: "状态", contentStr: "")
+                return optionCell
+            } else if type == .invoice_getlist{
+                optionCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
+                optionCell.setData_caseDetail(titleStr: "状态", contentStr: "")
+                return optionCell
 
-                //合同编号
-                persionCell = tableView.dequeueReusableCell(withIdentifier: SearchPersionTableViewCellID, for: indexPath) as! SearchPersionTableViewCell
-                persionCell.setData(titleStr: "合同编号", fieldTag: 1)
-                return persionCell
+            } else if type == .finance_type{
+                //我都收款
 
-            } else if indexPath.row == 2 {
-                //开始时间
-                startTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-                startTimeCell.setData(titleStr: "开始时间", tag: 0)
-                
-                return startTimeCell
-            } else if indexPath.row == 3 {
-                //结束时间
-                endTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-                endTimeCell.setData(titleStr: "结束时间", tag: 1)
-                return endTimeCell
-            } else {
-                //状态
-                stateCell  = tableView.dequeueReusableCell(withIdentifier: SearchStateTableViewCellID, for: indexPath) as! SearchStateTableViewCell
-                stateCell.type = .finance
-                stateCell.setData_searchState(titleStr: "状态")
-                return stateCell
-            }
-            
-            
-        } else if type == .work_type{
-            //公告搜索
-            if indexPath.row == 0 {
-                titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
-                //标题
-                titleCell.setData_search(titleStr: "标题")
-                return titleCell
-                
-            } else if indexPath.row == 1 {
-                //发布人
-                persionCell = tableView.dequeueReusableCell(withIdentifier: SearchPersionTableViewCellID, for: indexPath) as! SearchPersionTableViewCell
-                persionCell.setData(titleStr: "发布人", fieldTag: 1)
-                return persionCell
-                
-            } else if indexPath.row == 2 {
-                //开始时间
-                startTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-                startTimeCell.setData(titleStr: "开始时间", tag: 0)
+                if indexPath.row == 0 {
 
-                return startTimeCell
-                
-            } else {
-                //结束时间
-                endTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-                endTimeCell.setData(titleStr: "结束时间", tag: 1)
-                return endTimeCell
-            }
-            
-        }else if type == .caselsit_type{
-            //公告搜索
-            if indexPath.row == 0 {
-                //开始时间
-                startTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-                startTimeCell.setData(titleStr: "开始时间", tag: 0)
-                return startTimeCell
+                    titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                    //交款人
+                    titleCell.setData_search(titleStr: "交款人")
+                    return titleCell
+                } else if indexPath.row == 1 {
 
-            } else {
-                //结束时间
-                endTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-                endTimeCell.setData(titleStr: "结束时间", tag: 1)
-                return endTimeCell
+                    //合同编号
+                    persionCell = tableView.dequeueReusableCell(withIdentifier: SearchPersionTableViewCellID, for: indexPath) as! SearchPersionTableViewCell
+                    persionCell.setData(titleStr: "合同编号", fieldTag: 1)
+                    return persionCell
 
-            }
+                } else if indexPath.row == 2 {
+                    //开始时间
+                    startTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                    startTimeCell.setData(titleStr: "开始时间", tag: 0)
 
-        } else if type == .workbook_type {
-            if indexPath.row == 0 {
-                //开始时间
-                startTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-                startTimeCell.setData(titleStr: "开始时间", tag: 0)
-                return startTimeCell
+                    return startTimeCell
+                } else if indexPath.row == 3 {
+                    //结束时间
+                    endTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                    endTimeCell.setData(titleStr: "结束时间", tag: 1)
+                    return endTimeCell
+                } else {
+                    //状态
+                    stateCell  = tableView.dequeueReusableCell(withIdentifier: SearchStateTableViewCellID, for: indexPath) as! SearchStateTableViewCell
+                    stateCell.type = .finance
+                    stateCell.setData_searchState(titleStr: "状态")
+                    return stateCell
+                }
 
-            } else {
-                //结束时间
-                endTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-                endTimeCell.setData(titleStr: "结束时间", tag: 1)
-                return endTimeCell
 
-            }
+            } else if type == .work_type{
+                //公告搜索
+                if indexPath.row == 0 {
+                    titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                    //标题
+                    titleCell.setData_search(titleStr: "标题")
+                    return titleCell
 
-        } else if type == .deal_type{
-            titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
-            //标题
-            titleCell.setData_search(titleStr: "合同编号")
-            return titleCell
+                } else if indexPath.row == 1 {
+                    //发布人
+                    persionCell = tableView.dequeueReusableCell(withIdentifier: SearchPersionTableViewCellID, for: indexPath) as! SearchPersionTableViewCell
+                    persionCell.setData(titleStr: "发布人", fieldTag: 1)
+                    return persionCell
 
-        } else if type == .deal2_type{
-            if indexPath.row == 0{
+                } else if indexPath.row == 2 {
+                    //开始时间
+                    startTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                    startTimeCell.setData(titleStr: "开始时间", tag: 0)
+
+                    return startTimeCell
+
+                } else {
+                    //结束时间
+                    endTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                    endTimeCell.setData(titleStr: "结束时间", tag: 1)
+                    return endTimeCell
+                }
+
+            }else if type == .caselsit_type{
+                //公告搜索
+                if indexPath.row == 0 {
+                    //开始时间
+                    startTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                    startTimeCell.setData(titleStr: "开始时间", tag: 0)
+                    return startTimeCell
+
+                } else {
+                    //结束时间
+                    endTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                    endTimeCell.setData(titleStr: "结束时间", tag: 1)
+                    return endTimeCell
+
+                }
+
+            } else if type == .workbook_type {
+                if indexPath.row == 0 {
+                    //开始时间
+                    startTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                    startTimeCell.setData(titleStr: "开始时间", tag: 0)
+                    return startTimeCell
+
+                } else {
+                    //结束时间
+                    endTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                    endTimeCell.setData(titleStr: "结束时间", tag: 1)
+                    return endTimeCell
+
+                }
+
+            } else if type == .deal_type{
                 titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
                 //标题
                 titleCell.setData_search(titleStr: "合同编号")
                 return titleCell
 
-
-            } else if indexPath.row == 1 {
-                //开始时间
-                startTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-                startTimeCell.setData(titleStr: "开始时间", tag: 0)
-                return startTimeCell
-
-
-
-            } else {
-                //结束时间
-                endTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-                endTimeCell.setData(titleStr: "结束时间", tag: 1)
-                return endTimeCell
+            } else if type == .deal2_type{
+                if indexPath.row == 0{
+                    titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                    //标题
+                    titleCell.setData_search(titleStr: "合同编号")
+                    return titleCell
 
 
-            }
-        } else if type == .person{
-            titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
-            //标题
-            titleCell.setData_search(titleStr: "姓名")
-            return titleCell
+                } else if indexPath.row == 1 {
+                    //开始时间
+                    startTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                    startTimeCell.setData(titleStr: "开始时间", tag: 0)
+                    return startTimeCell
 
-        }  else if type == .conven_type{
-            titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
-            //标题
-            titleCell.setData_search(titleStr: "关键字")
-            return titleCell
 
-        } else if type == .departAndPerson{
-            if indexPath.row == 0 {
+
+                } else {
+                    //结束时间
+                    endTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                    endTimeCell.setData(titleStr: "结束时间", tag: 1)
+                    return endTimeCell
+
+
+                }
+            } else if type == .person{
                 titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
                 //标题
                 titleCell.setData_search(titleStr: "姓名")
                 return titleCell
-            } else {
-                optionCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
-                optionCell.setData_caseDetail(titleStr: "部门", contentStr: "")
-                return optionCell
-            }
 
-
-        } else if type == .Income_list{
-
-            if indexPath.row == 0 {
-                //合同编号
-                persionCell = tableView.dequeueReusableCell(withIdentifier: SearchPersionTableViewCellID, for: indexPath) as! SearchPersionTableViewCell
-                persionCell.setData(titleStr: "合同编号", fieldTag: 1)
-                return persionCell
-
-            } else if indexPath.row == 1 {
-                titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
-                //交款人
-                titleCell.setData_search(titleStr: "交款人")
-                return titleCell
-
-            } else if indexPath.row == 2 {
-                //开始时间
-                startTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-                startTimeCell.setData(titleStr: "开始时间", tag: 0)
-
-                return startTimeCell
-            } else if indexPath.row == 3 {
-                //结束时间
-                endTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-                endTimeCell.setData(titleStr: "结束时间", tag: 1)
-                return endTimeCell
-            } else {
-                //状态
-                optionCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
-                optionCell.setData_caseDetail(titleStr: "状态", contentStr: "")
-                return optionCell
-            }
-
-
-        } else if type == .doc_search{
-
-            if indexPath.row == 6  {
-
-                //开始时间
-                startTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-                startTimeCell.setData(titleStr: "开始时间", tag: 0)
-                startTimeCell.timeLabel.text = "请选择"
-                return startTimeCell
-
-            }   else if indexPath.row == 7 {
-                endTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-                endTimeCell.setData(titleStr: "结束时间", tag: 1)
-                endTimeCell.timeLabel.text = "请选择"
-                return endTimeCell
-
-            }  else if indexPath.row == 5 {
-                //部门
-                optionCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
-                optionCell.setData_caseDetail(titleStr: "部门", contentStr: "")
-                optionCell.contentLabel.text = "请选择"
-                return optionCell
-            } else {
-
-                titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
-                //交款人
-                titleCell.setData_ovewdeal(titleStr: doc_searchNameArr[indexPath.row], indexPath: indexPath)
-                titleCell.delegate = self
-
-                return titleCell
-            }
-        } else if type == .shareType{
-            if indexPath.row == 0 {
-                optionCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
-                optionCell.setData_caseDetail(titleStr: "分类", contentStr: "")
-                return optionCell
-            } else {
+            }  else if type == .conven_type{
                 titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
                 //标题
                 titleCell.setData_search(titleStr: "关键字")
                 return titleCell
 
-            }
+            } else if type == .departAndPerson{
+                if indexPath.row == 0 {
+                    titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                    //标题
+                    titleCell.setData_search(titleStr: "姓名")
+                    return titleCell
+                } else {
+                    optionCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
+                    optionCell.setData_caseDetail(titleStr: "部门", contentStr: "")
+                    return optionCell
+                }
 
-        } else if type == .dealcheck{
-            if indexPath.row == 1 {
-                startTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-                startTimeCell.setData(titleStr: "开始时间", tag: 0)
-                return startTimeCell
-            } else if indexPath.row == 2 {
-                endTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-                endTimeCell.setData(titleStr: "结束时间", tag: 1)
-                return endTimeCell
+
+            } else if type == .Income_list{
+
+                if indexPath.row == 0 {
+                    //合同编号
+                    persionCell = tableView.dequeueReusableCell(withIdentifier: SearchPersionTableViewCellID, for: indexPath) as! SearchPersionTableViewCell
+                    persionCell.setData(titleStr: "合同编号", fieldTag: 1)
+                    return persionCell
+
+                } else if indexPath.row == 1 {
+                    titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                    //交款人
+                    titleCell.setData_search(titleStr: "交款人")
+                    return titleCell
+
+                } else if indexPath.row == 2 {
+                    //开始时间
+                    startTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                    startTimeCell.setData(titleStr: "开始时间", tag: 0)
+
+                    return startTimeCell
+                } else if indexPath.row == 3 {
+                    //结束时间
+                    endTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                    endTimeCell.setData(titleStr: "结束时间", tag: 1)
+                    return endTimeCell
+                } else {
+                    //状态
+                    optionCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
+                    optionCell.setData_caseDetail(titleStr: "状态", contentStr: "")
+                    return optionCell
+                }
+
+
+            } else if type == .doc_search{
+
+                if indexPath.row == 6  {
+
+                    //开始时间
+                    startTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                    startTimeCell.setData(titleStr: "开始时间", tag: 0)
+                    startTimeCell.timeLabel.text = "请选择"
+                    return startTimeCell
+
+                }   else if indexPath.row == 7 {
+                    endTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                    endTimeCell.setData(titleStr: "结束时间", tag: 1)
+                    endTimeCell.timeLabel.text = "请选择"
+                    return endTimeCell
+
+                }  else if indexPath.row == 5 {
+                    //部门
+                    optionCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
+                    optionCell.setData_caseDetail(titleStr: "部门", contentStr: "")
+                    optionCell.contentLabel.text = "请选择"
+                    return optionCell
+                } else {
+
+                    titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                    //交款人
+                    titleCell.setData_ovewdeal(titleStr: doc_searchNameArr[indexPath.row], indexPath: indexPath)
+                    titleCell.delegate = self
+
+                    return titleCell
+                }
+            } else if type == .shareType{
+                if indexPath.row == 0 {
+                    optionCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
+                    optionCell.setData_caseDetail(titleStr: "分类", contentStr: "")
+                    return optionCell
+                } else {
+                    titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                    //标题
+                    titleCell.setData_search(titleStr: "关键字")
+                    return titleCell
+
+                }
+
+            } else if type == .dealcheck{
+                if indexPath.row == 1 {
+                    startTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                    startTimeCell.setData(titleStr: "开始时间", tag: 0)
+                    return startTimeCell
+                } else if indexPath.row == 2 {
+                    endTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                    endTimeCell.setData(titleStr: "结束时间", tag: 1)
+                    return endTimeCell
+
+                } else {
+                    titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                    //标题
+                    titleCell.setData_dealcheck(titleStr: dealcheckNameArr[indexPath.row], tagNum: indexPath.row)
+
+                    titleCell.delegate = self
+                    return titleCell
+                }
+
+            } else if type == .PayApplylist{
+                if indexPath.row == 0 {
+                    titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                    //合同编号
+                    titleCell.setData_ovewdeal(titleStr: "合同编号", indexPath: indexPath)
+                    titleCell.delegate = self
+                    return titleCell
+
+                } else if indexPath.row == 1 {
+                    titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                    //交款人
+                    titleCell.setData_ovewdeal(titleStr: "交款人", indexPath: indexPath)
+                    titleCell.delegate = self
+                    return titleCell
+
+                }     else  if indexPath.row == 2 {
+                    startTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                    startTimeCell.setData(titleStr: "开始时间", tag: 0)
+
+                    return startTimeCell
+                } else if indexPath.row == 3 {
+                    endTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                    endTimeCell.setData(titleStr: "结束时间", tag: 1)
+                    return endTimeCell
+
+                } else {
+                    optionCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
+                    optionCell.setData_caseDetail(titleStr: "状态", contentStr: "")
+                    return optionCell
+                }
+
+            } else if type == .PayCheck{
+
+                if indexPath.row == 0 {
+                    titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                    //合同编号
+                    titleCell.setData_ovewdeal(titleStr: "合同编号", indexPath: indexPath)
+                    titleCell.delegate = self
+                    return titleCell
+
+                } else if indexPath.row == 1 {
+                    titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                    //交款人
+                    titleCell.setData_ovewdeal(titleStr: "交款人", indexPath: indexPath)
+                    titleCell.delegate = self
+                    return titleCell
+
+                }   else  if indexPath.row == 2 {
+                    startTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                    startTimeCell.setData(titleStr: "开始时间", tag: 0)
+                    return startTimeCell
+                } else  {
+                    endTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                    endTimeCell.setData(titleStr: "结束时间", tag: 1)
+                    return endTimeCell
+
+                }
+
+
+            } else if type == .Expenseapply{
+                if indexPath.row == 0 {
+                    titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                    //交款人
+                    titleCell.setData_ovewdeal(titleStr: "申请人", indexPath: indexPath)
+                    titleCell.delegate = self
+                    return titleCell
+
+                } else {
+                    optionCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
+                    optionCell.setData_caseDetail(titleStr: "状态", contentStr: "")
+                    return optionCell
+                }
+            } else if type == .Statistics{
+                if indexPath.row == 0 {
+                    titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                    //交款人
+                    titleCell.setData_ovewdeal(titleStr: "律师", indexPath: indexPath)
+                    titleCell.delegate = self
+                    return titleCell
+
+                } else if indexPath.row == 1 {
+                    optionCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
+                    optionCell.setData_caseDetail(titleStr: "部门", contentStr: "")
+                    return optionCell
+                } else if indexPath.row == 2 {
+                    startTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                    startTimeCell.setData(titleStr: "开始时间", tag: 0)
+                    return startTimeCell
+                } else if indexPath.row == 3 {
+                    endTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                    endTimeCell.setData(titleStr: "结束时间", tag: 1)
+                    return endTimeCell
+
+                } else {
+                    let cell :OptionTableViewCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
+                    cell.setData_caseDetail(titleStr: "支付情况", contentStr: "")
+                    return cell
+                }
+
 
             } else {
-                titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
-                //标题
-                titleCell.setData_dealcheck(titleStr: dealcheckNameArr[indexPath.row], tagNum: indexPath.row)
-                
-                titleCell.delegate = self
-                return titleCell
+                return UITableViewCell()
             }
-
-        } else if type == .PayApplylist{
-            if indexPath.row == 0 {
-                titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
-                //合同编号
-                titleCell.setData_ovewdeal(titleStr: "合同编号", indexPath: indexPath)
-                titleCell.delegate = self
-                return titleCell
-
-            } else if indexPath.row == 1 {
-                titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
-                //交款人
-                titleCell.setData_ovewdeal(titleStr: "交款人", indexPath: indexPath)
-                titleCell.delegate = self
-                return titleCell
-
-            }     else  if indexPath.row == 2 {
-                startTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-                startTimeCell.setData(titleStr: "开始时间", tag: 0)
-
-                return startTimeCell
-            } else if indexPath.row == 3 {
-                endTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-                endTimeCell.setData(titleStr: "结束时间", tag: 1)
-                return endTimeCell
-
-            } else {
-                optionCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
-                optionCell.setData_caseDetail(titleStr: "状态", contentStr: "")
-                return optionCell
-            }
-
-        } else if type == .PayCheck{
-
-            if indexPath.row == 0 {
-                titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
-                //合同编号
-                titleCell.setData_ovewdeal(titleStr: "合同编号", indexPath: indexPath)
-                titleCell.delegate = self
-                return titleCell
-
-            } else if indexPath.row == 1 {
-                titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
-                //交款人
-                titleCell.setData_ovewdeal(titleStr: "交款人", indexPath: indexPath)
-                titleCell.delegate = self
-                return titleCell
-
-            }   else  if indexPath.row == 2 {
-                startTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-                startTimeCell.setData(titleStr: "开始时间", tag: 0)
-                return startTimeCell
-            } else  {
-                endTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-                endTimeCell.setData(titleStr: "结束时间", tag: 1)
-                return endTimeCell
-
-            }
-
-
-        } else if type == .Expenseapply{
-            if indexPath.row == 0 {
-                titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
-                //交款人
-                titleCell.setData_ovewdeal(titleStr: "申请人", indexPath: indexPath)
-                titleCell.delegate = self
-                return titleCell
-
-            } else {
-                optionCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
-                optionCell.setData_caseDetail(titleStr: "状态", contentStr: "")
-                return optionCell
-            }
-        } else if type == .Statistics{
-            if indexPath.row == 0 {
-                titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
-                //交款人
-                titleCell.setData_ovewdeal(titleStr: "律师", indexPath: indexPath)
-                titleCell.delegate = self
-                return titleCell
-
-            } else if indexPath.row == 1 {
-                optionCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
-                optionCell.setData_caseDetail(titleStr: "部门", contentStr: "")
-                return optionCell
-            } else if indexPath.row == 2 {
-                startTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-                startTimeCell.setData(titleStr: "开始时间", tag: 0)
-                return startTimeCell
-            } else if indexPath.row == 3 {
-                endTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-                endTimeCell.setData(titleStr: "结束时间", tag: 1)
-                return endTimeCell
-
-            } else {
-                let cell :OptionTableViewCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
-                cell.setData_caseDetail(titleStr: "支付情况", contentStr: "")
-                return cell
-            }
-
-
-        } else {
-            return UITableViewCell()
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.view.endEditing(true)
-        if type == .finance_type {
-            //收款
-            if indexPath.row == 2 {
-                //开始时间
-                self.showTime_start()
-            } else if indexPath.row == 3{
-                //结束时间
-                self.showTime_end()
+        currectIndexpath = indexPath
 
-            }
-        } else if type == .caselsit_type{
-
-            if indexPath.row == 0 {
-                //开始时间
-                self.showTime_start()
-            } else if indexPath.row == 1 {
-                //结束时间
-                self.showTime_end()
-            }
-        } else if type == .workbook_type{
-            if indexPath.row == 0 {
-                //开始时间
-                self.showTime_start()
-            } else if indexPath.row == 1 {
-                //结束时间
-                self.showTime_end()
-            }
-        } else if type == .deal2_type{
-
-            if indexPath.row == 1 {
-                //开始时间
-                self.showTime_start()
-            } else if indexPath.row == 2 {
-                //结束时间
-                self.showTime_end()
-            }
-        } else if type == .work_type {
-            if indexPath.row == 2 {
-                //开始时间
-                self.showTime_start()
-            } else if indexPath.row == 3{
-                //结束时间
-                self.showTime_end()
-            }
-
-
-        } else if type == .departAndPerson{
-            currectIndexpath = indexPath
-            //部门
+        if isHaveSub == 1 && indexPath.section == 0 {
             //案件组别
+
             if dep.count > 0 {
-                self.showOption(indexPath: indexPath)
+                self.showOption_branch()
             } else {
-                request.departmentRequest()
+                request.branchRequest()
             }
 
-        } else if type == .Income_list {
-            //收款
+        } else {
+            if type == .finance_type {
+                //收款
+                if indexPath.row == 2 {
+                    //开始时间
+                    self.showTime_start()
+                } else if indexPath.row == 3{
+                    //结束时间
+                    self.showTime_end()
+
+                }
+            } else if type == .caselsit_type{
+
+                if indexPath.row == 0 {
+                    //开始时间
+                    self.showTime_start()
+                } else if indexPath.row == 1 {
+                    //结束时间
+                    self.showTime_end()
+                }
+            } else if type == .workbook_type{
+                if indexPath.row == 0 {
+                    //开始时间
+                    self.showTime_start()
+                } else if indexPath.row == 1 {
+                    //结束时间
+                    self.showTime_end()
+                }
+            } else if type == .deal2_type{
+
+                if indexPath.row == 1 {
+                    //开始时间
+                    self.showTime_start()
+                } else if indexPath.row == 2 {
+                    //结束时间
+                    self.showTime_end()
+                }
+            } else if type == .work_type {
+                if indexPath.row == 2 {
+                    //开始时间
+                    self.showTime_start()
+                } else if indexPath.row == 3{
+                    //结束时间
+                    self.showTime_end()
+                }
+
+
+            } else if type == .departAndPerson{
+                currectIndexpath = indexPath
+                //部门
+                //案件组别
+                if dep.count > 0 {
+                    self.showOption(indexPath: indexPath)
+                } else {
+                    request.departmentRequest()
+                }
+
+            } else if type == .Income_list {
+                //收款
                 if indexPath.row == 2 {
                     //开始时间
                     self.showTime_start()
@@ -736,31 +799,31 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
                     self.showTime_end()
 
                 } else if indexPath.row == 4 {
-                //状态
-                self.showOptionView_state()
-            }
-        } else if type == .doc_search {
-            currectIndexpath = indexPath
-            if indexPath.row == 5 {
-                //部门
-                if dep.count > 0 {
-                    self.showOption(indexPath: indexPath)
-                } else {
-                    request.departmentRequest()
+                    //状态
+                    self.showOptionView_state()
                 }
+            } else if type == .doc_search {
+                currectIndexpath = indexPath
+                if indexPath.row == 5 {
+                    //部门
+                    if dep.count > 0 {
+                        self.showOption(indexPath: indexPath)
+                    } else {
+                        request.departmentRequest()
+                    }
 
-            } else if indexPath.row == 6 {
-                //开始时间
-                self.showTime_start()
-            } else if indexPath.row == 7 {
-                //结束时间
-                self.showTime_end()
-            }
-        }else if type == .shareType{
-            currectIndexpath = indexPath
-            //模板
-            self.showOptionView_share()
-        } else if type == .dealcheck{
+                } else if indexPath.row == 6 {
+                    //开始时间
+                    self.showTime_start()
+                } else if indexPath.row == 7 {
+                    //结束时间
+                    self.showTime_end()
+                }
+            }else if type == .shareType{
+                currectIndexpath = indexPath
+                //模板
+                self.showOptionView_share()
+            } else if type == .dealcheck{
                 if indexPath.row == 1 {
                     //开始时间
                     self.showTime_start()
@@ -768,56 +831,60 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
                     //结束时间
                     self.showTime_end()
                 }
-        } else if type == .invoice_getlist || type == .expense_type{
+            } else if type == .invoice_getlist || type == .expense_type{
 
-            self.showOptionView_state()
-        } else if type == .PayApplylist {
-            if indexPath.row == 2 {
-                //开始时间
-                self.showTime_start()
-            } else if indexPath.row == 3{
-                //结束时间
-                self.showTime_end()
-            } else {
-//                self.showOptionView_state()
-                self.showOption_finance()
-            }
-        } else if type == .PayCheck{
-            if indexPath.row == 2 {
-                //开始时间
-                self.showTime_start()
-            } else if indexPath.row == 3{
-                //结束时间
-                self.showTime_end()
-            }
-        } else if type == .Expenseapply{
-            if indexPath.row == 1 {
-                //状态
                 self.showOptionView_state()
-            }
-
-        } else if type == .Statistics{
-            currectIndexpath = indexPath
-            currectRow = indexPath.row
-            if indexPath.row == 1 {
-                //部门
-                if dep.count > 0 {
-                    self.showOption(indexPath: indexPath)
+            } else if type == .PayApplylist {
+                if indexPath.row == 2 {
+                    //开始时间
+                    self.showTime_start()
+                } else if indexPath.row == 3{
+                    //结束时间
+                    self.showTime_end()
                 } else {
-                    request.departmentRequest()
+                    //                self.showOptionView_state()
+                    self.showOption_finance()
                 }
-            } else if indexPath.row == 2 {
-                self.showTime_start()
+            } else if type == .PayCheck{
+                if indexPath.row == 2 {
+                    //开始时间
+                    self.showTime_start()
+                } else if indexPath.row == 3{
+                    //结束时间
+                    self.showTime_end()
+                }
+            } else if type == .Expenseapply{
+                if indexPath.row == 1 {
+                    //状态
+                    self.showOptionView_state()
+                }
 
-            } else if indexPath.row == 3 {
-                self.showTime_end()
-            } else if indexPath.row == 4 {
-                //支付情况
-                self.showOption_finance()
+            } else if type == .Statistics{
+                currectIndexpath = indexPath
+                currectRow = indexPath.row
+                if indexPath.row == 1 {
+                    //部门
+                    if dep.count > 0 {
+                        self.showOption(indexPath: indexPath)
+                    } else {
+                        request.departmentRequest()
+                    }
+                } else if indexPath.row == 2 {
+                    self.showTime_start()
+
+                } else if indexPath.row == 3 {
+                    self.showTime_end()
+                } else if indexPath.row == 4 {
+                    //支付情况
+                    self.showOption_finance()
 
 
+                }
             }
+
+
         }
+
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -951,46 +1018,52 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         dStr = idStr
         bidStr = idStr
 
-
-        if type == .Income_list {
-            let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 4, section: 0)) as! OptionTableViewCell
-            cell.setOptionData(contentStr: titleStr)
-        } else if type == .doc_search {
-            let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 5, section: 0)) as! OptionTableViewCell
-            cell.setOptionData(contentStr: titleStr)
-        } else if type == .shareType {
+        if isHaveSub == 1 && sectionNum > 1 && currectIndexpath.section == 0 {
             let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 0, section: 0)) as! OptionTableViewCell
             cell.setOptionData(contentStr: titleStr)
-        } else if type == .PayApplylist{
+        } else {
+            if type == .Income_list {
+                let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 4, section: sectionNum - 1)) as! OptionTableViewCell
+                cell.setOptionData(contentStr: titleStr)
+            } else if type == .doc_search {
+                let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 5, section: sectionNum - 1)) as! OptionTableViewCell
+                cell.setOptionData(contentStr: titleStr)
+            } else if type == .shareType {
+                let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 0, section: sectionNum - 1)) as! OptionTableViewCell
+                cell.setOptionData(contentStr: titleStr)
+            } else if type == .PayApplylist{
 
-            let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 4, section: 0)) as! OptionTableViewCell
-            cell.setOptionData(contentStr: titleStr)
+                let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 4, section: sectionNum - 1)) as! OptionTableViewCell
+                cell.setOptionData(contentStr: titleStr)
 
-        } else if type == .Expenseapply{
+            } else if type == .Expenseapply{
                 //状态
                 dStr = idStr
-                let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 1, section: 0)) as! OptionTableViewCell
+                let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 1, section: sectionNum - 1)) as! OptionTableViewCell
                 cell.setOptionData(contentStr: titleStr)
 
 
-        } else if type == .departAndPerson{
-            let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 1, section: 0)) as! OptionTableViewCell
-            cell.setOptionData(contentStr: titleStr)
+            } else if type == .departAndPerson{
+                let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 1, section: sectionNum - 1)) as! OptionTableViewCell
+                cell.setOptionData(contentStr: titleStr)
 
-        } else if type == .Statistics {
-            let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: currectRow, section: 0)) as! OptionTableViewCell
-            cell.setOptionData(contentStr: titleStr)
-            if currectRow == 1 {
-                //部门
-                bidStr = idStr
+            } else if type == .Statistics {
+                let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: currectRow, section: sectionNum - 1)) as! OptionTableViewCell
+                cell.setOptionData(contentStr: titleStr)
+                if currectRow == 1 {
+                    //部门
+                    bidStr = idStr
+                } else {
+                    //支付
+                    payId = idStr
+                }
             } else {
-                //支付
-                payId = idStr
+                let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 0, section: sectionNum - 1)) as! OptionTableViewCell
+                cell.setOptionData(contentStr: titleStr)
             }
-        } else {
-            let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 0, section: 0)) as! OptionTableViewCell
-            cell.setOptionData(contentStr: titleStr)
+
         }
+
         self.optionView.removeFromSuperview()
         self.maskView.removeFromSuperview()
     }
@@ -1074,9 +1147,11 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             self.sureFinanceBlock(titleCell.conTent,persionCell.contentStr,dStr,startTimeStr,endTimeStr)
             
         } else if self.type == .caselsit_type {
-            self.sureCaselsitBlock(startTimeStr,endTimeStr)
+
+            self.sureCaselsitBlock(dStr,startTimeStr,endTimeStr)
+
         } else if type == .workbook_type{
-            self.sureCaselsitBlock(startTimeStr,endTimeStr)
+            self.sureCaselsitBlock(bidStr,startTimeStr,endTimeStr)
         } else if type == .deal_type || type == .person || type == .conven_type {
             if titleCell.textField.isFirstResponder {
                 titleCell.textField.resignFirstResponder()
@@ -1097,7 +1172,7 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             self.sureDocSearchSure(nStr,dnStr,kwStr,uStr,cnStr,bidStr,startTimeStr,endTimeStr)
         } else if type == .deal2_type {
             self.view.endEditing(true)
-            self.deal2SureBlock(titleCell.conTent,startTimeStr,endTimeStr)
+            self.deal2SureBlock(bidStr,titleCell.conTent,startTimeStr,endTimeStr)
         } else if type == .dealcheck {
             dealcheckBlock(nStr,startTimeStr,endTimeStr,uStr,prStr)
         } else if type == .PayApplylist {

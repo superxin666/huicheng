@@ -20,6 +20,9 @@ class CaseViewController: BaseViewController,UITableViewDataSource,UITableViewDe
     /// 结束时间
     var endTimeStr = ""
 
+    var bidStr = ""
+
+
 
     // MARK: - life
     override func viewWillLayoutSubviews() {
@@ -91,7 +94,7 @@ class CaseViewController: BaseViewController,UITableViewDataSource,UITableViewDe
     // MARK: - net
     func requestApi() {
         requestVC.delegate = self
-        requestVC.casegetlistRerquest(p: pageNum, c: 8, b: bTimeStr, s: endTimeStr)
+        requestVC.casegetlistRerquest(bid : bidStr,p: pageNum, c: 8, b: bTimeStr, s: endTimeStr)
 
     }
 
@@ -136,12 +139,16 @@ class CaseViewController: BaseViewController,UITableViewDataSource,UITableViewDe
         HCLog(message: "搜索")
         let vc = SearchViewController()
         vc.type = .caselsit_type
+        vc.typeSub = 0
         weak var weakself = self
-        vc.sureCaselsitBlock = {( startTime ,endTime) in
+        vc.sureCaselsitBlock = {( bid,startTime ,endTime) in
             HCLog(message: startTime)
             HCLog(message: endTime)
+            HCLog(message: bid)
+
             weakself?.bTimeStr = startTime
             weakself?.endTimeStr = endTime
+            weakself?.bidStr = bid
             weakself?.reflishData()
 
         }

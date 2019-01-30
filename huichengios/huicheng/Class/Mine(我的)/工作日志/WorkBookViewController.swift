@@ -139,7 +139,7 @@ class WorkBookViewController: BaseViewController,UITableViewDataSource,UITableVi
         vc.hidesBottomBarWhenPushed = true
         vc.type = .workbook_type
         weak var weakself = self
-        vc.sureCaselsitBlock = {(b,e) in
+        vc.sureCaselsitBlock = {(bid,b,e) in
             HCLog(message: b)
             HCLog(message: e)
 //            weakself?.requestApi()
