@@ -22,6 +22,8 @@ class CrtDealslistViewController:   BaseViewController,UITableViewDataSource,UIT
     var tNum : Int = 1
     /// 合同编号
     var numStr = ""
+    var bidStr = ""
+
     var viewType : CrtDealslistViewControllerType = .type1
 
 
@@ -115,7 +117,7 @@ class CrtDealslistViewController:   BaseViewController,UITableViewDataSource,UIT
     // MARK: - net
     func requestApi() {
         requestVC.delegate = self
-        requestVC.crt_dealslistRequest(p: pageNum, c: 8, n: numStr, t: tNum)
+        requestVC.crt_dealslistRequest(bid : bidStr,p: pageNum, c: 8, n: numStr, t: tNum)
     }
 
 
@@ -163,9 +165,24 @@ class CrtDealslistViewController:   BaseViewController,UITableViewDataSource,UIT
         HCLog(message: "搜索")
         let vc = SearchViewController()
         vc.type = .deal_type
+
+        switch viewType {
+        case .type1:
+            vc.typeSub = 5
+        case .type2:
+            vc.typeSub = 6
+        case .type3:
+            vc.typeSub = 7
+        case .type4:
+            vc.typeSub = 8
+        default:
+            vc.typeSub = 5
+        }
+
         weak var weakself = self
-        vc.sureDealBlock = {content in
+        vc.sureDealBlock = {(bid,content) in
             weakself?.numStr = content
+            weakself?.bidStr = bid
             weakself?.reflishData()
         }
         self.navigationController?.pushViewController(vc, animated: true)

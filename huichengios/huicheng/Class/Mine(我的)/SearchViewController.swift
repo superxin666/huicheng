@@ -21,7 +21,7 @@ typealias SearchViewControllerBlock_deal2 = (_ bidStr : String,_ titleStr : Stri
 
 typealias SearchViewControllerBlock_finance = (_ noStr : String,_ nStr : String,_ sStr : String,_ stStr : String,_ etStr : String)->()
 typealias SearchViewControllerBlock_caselsit = (_ bidStr : String,_ stStr : String,_ etStr : String)->()
-typealias SearchViewControllerBlock_deal = (_ contentStr : String)->()
+typealias SearchViewControllerBlock_deal = (_ bidStr : String,_ contentStr : String)->()
 typealias SearchViewControllerBlock_bank = (_ personStr : String,_ dStr : String)->()
 
 typealias SearchViewControllerBlock_docSearch = (_ nStr : String,_ dnStr : String,_ kwStr : String,_ uStr : String,_ cnStr : String,_ bidStr : String,_ startTimeStr : String,_ endTimeStr : String)->()
@@ -1156,7 +1156,7 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             if titleCell.textField.isFirstResponder {
                 titleCell.textField.resignFirstResponder()
             }
-            self.sureDealBlock(titleCell.conTent)
+            self.sureDealBlock(bidStr,titleCell.conTent)
         } else if type == .departAndPerson{
             if titleCell.textField.isFirstResponder {
                 titleCell.textField.resignFirstResponder()

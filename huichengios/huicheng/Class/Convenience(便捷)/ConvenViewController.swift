@@ -170,7 +170,7 @@ class ConvenViewController: BaseViewController,ConbenTopViewDelegate,UITableView
         vc.hidesBottomBarWhenPushed = true
         vc.type = .conven_type
         weak var weakSelf = self
-        vc.sureDealBlock = { t in
+        vc.sureDealBlock = { (bid,t) in
             HCLog(message: t)
             self.kw = t
             weakSelf?.reflishData()

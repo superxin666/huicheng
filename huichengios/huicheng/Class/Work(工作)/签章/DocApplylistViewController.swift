@@ -137,7 +137,7 @@ class DocApplylistViewController: BaseViewController ,UITableViewDataSource,UITa
         let vc = SearchViewController()
         vc.type = .deal_type
         weak var weakself = self
-        vc.sureDealBlock = {content in
+        vc.sureDealBlock = {(bid,content) in
             weakself?.numStr = content
             weakself?.reflishData()
         }

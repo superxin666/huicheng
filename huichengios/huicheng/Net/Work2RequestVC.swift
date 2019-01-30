@@ -313,10 +313,10 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
     ///   - c: <#c description#>
     ///   - n: 合同编号
     ///   - t: 1-诉讼案件;2-非诉案件;3-刑事案件;4-法律顾问
-    func crt_dealslistRequest(p:Int,c:Int,n:String,t:Int) {
+    func crt_dealslistRequest(bid : String,p:Int,c:Int,n:String,t:Int) {
             request.delegate = self
             type = .crt_dealslist
-            let url = doc_crt_dealslist_api   + "p=\(p)&c=\(c)&n=\(n)&t=\(t)&k=\(UserInfoLoaclManger.getKey())"
+            let url = doc_crt_dealslist_api   + "p=\(p)&c=\(c)&n=\(n)&t=\(t)&bid=\(bid)&k=\(UserInfoLoaclManger.getKey())"
             request.request_api(url: url)
     }
 
