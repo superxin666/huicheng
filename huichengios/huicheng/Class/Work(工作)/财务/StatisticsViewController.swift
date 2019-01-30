@@ -150,7 +150,7 @@ class StatisticsViewController:  BaseViewController,UITableViewDataSource,UITabl
         let vc = SearchViewController()
         vc.type = .Statistics
         weak var weakself = self
-        vc.StatisticsBlock = {(st1,st2,st3,st4,st5) in
+        vc.StatisticsBlock = {(bid,st1,st2,st3,st4,st5) in
             weakself?.nStr = st1
             weakself?.dStr = st2
             weakself?.bStr = st3

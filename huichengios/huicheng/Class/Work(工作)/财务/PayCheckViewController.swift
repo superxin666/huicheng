@@ -146,7 +146,7 @@ class PayCheckViewController: BaseViewController ,UITableViewDataSource,UITableV
         vc.type = .PayCheck
         
         weak var weakself = self
-        vc.dealcheckBlock = {(nStr,startTimeStr,endTimeStr,bidStr,prStr) in
+        vc.dealcheckBlock = {(aStr,nStr,startTimeStr,endTimeStr,bidStr,prStr) in
 
             weakself?.nStr = nStr//
             weakself?.bStr = startTimeStr

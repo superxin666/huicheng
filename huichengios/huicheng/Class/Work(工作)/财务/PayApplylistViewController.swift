@@ -150,7 +150,7 @@ class PayApplylistViewController:  BaseViewController ,UITableViewDataSource,UIT
         weak var weakself = self
 //        dealcheckBlock(nStr,startTimeStr,endTimeStr,bidStr,prStr)
 //
-        vc.dealcheckBlock = {(nStr,startTimeStr,endTimeStr,bidStr,prStr) in
+        vc.dealcheckBlock = {(bid,nStr,startTimeStr,endTimeStr,bidStr,prStr) in
             weakself?.noStr = nStr
             weakself?.stStr = startTimeStr
             weakself?.etStr = endTimeStr

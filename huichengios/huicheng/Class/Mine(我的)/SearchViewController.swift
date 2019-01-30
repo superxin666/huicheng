@@ -14,7 +14,7 @@ typealias SubViewControllerBlock = (_ subId : String)->()
 typealias ExpenseapplyViewControllerBlock_expense = (_ stateId : String,_ branchId : String,_ prStr : String)->()
 
 typealias SearchViewControllerBlock_work = (_ titleStr : String,_ personStr : String,_ StartTimeStr : String,_ endTimeStr : String)->()
-typealias SearchViewControllerBlock_dealcheck = (_ nStr : String,_ StartTimeStr : String,_ endTimeStr : String,_ uStr : String,_ prStr : String)->()
+typealias SearchViewControllerBlock_dealcheck = (_ bidStr : String,_ nStr : String,_ StartTimeStr : String,_ endTimeStr : String,_ uStr : String,_ prStr : String)->()
 
 typealias SearchViewControllerBlock_deal2 = (_ bidStr : String,_ titleStr : String,_ StartTimeStr : String,_ endTimeStr : String)->()
 
@@ -1174,18 +1174,19 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             self.view.endEditing(true)
             self.deal2SureBlock(bidStr,titleCell.conTent,startTimeStr,endTimeStr)
         } else if type == .dealcheck {
-            dealcheckBlock(nStr,startTimeStr,endTimeStr,uStr,prStr)
+
+            dealcheckBlock(bidStr,nStr,startTimeStr,endTimeStr,uStr,prStr)
         } else if type == .PayApplylist {
-             dealcheckBlock(nStr,startTimeStr,endTimeStr,bidStr,prStr)
+             dealcheckBlock("",nStr,startTimeStr,endTimeStr,bidStr,prStr)
         } else if type == .PayCheck{
-            dealcheckBlock(nStr,startTimeStr,endTimeStr,"",prStr)
+            dealcheckBlock("",nStr,startTimeStr,endTimeStr,"",prStr)
 
         } else if type == .Expenseapply{
             expenBlock(dStr,branchID,prStr)
         } else if type == .departAndPerson {
             sureBankBlock(prStr,dStr)
         } else if type == .Statistics {
-            StatisticsBlock(nStr,bidStr,startTimeStr,endTimeStr,payId)
+            StatisticsBlock("",nStr,bidStr,startTimeStr,endTimeStr,payId)
         }
         self.navigationController?.popViewController(animated: true)
     }

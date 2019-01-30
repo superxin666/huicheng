@@ -140,8 +140,9 @@ class CaseCheckViewController: BaseViewController,UITableViewDataSource,UITableV
         HCLog(message: "搜索")
         let vc = SearchViewController()
         vc.type = .dealcheck
+        vc.typeSub = 3
         weak var weakself = self
-        vc.dealcheckBlock = {(n,b,e,u,pr) in
+        vc.dealcheckBlock = {(bid,n,b,e,u,pr) in
             weakself?.numStr = n
             weakself?.bStr = b
             weakself?.eStr = e
