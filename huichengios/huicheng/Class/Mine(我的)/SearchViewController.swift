@@ -13,7 +13,7 @@ typealias SubViewControllerBlock = (_ subId : String)->()
 
 typealias ExpenseapplyViewControllerBlock_expense = (_ stateId : String,_ branchId : String,_ prStr : String)->()
 
-typealias SearchViewControllerBlock_work = (_ titleStr : String,_ personStr : String,_ StartTimeStr : String,_ endTimeStr : String)->()
+typealias SearchViewControllerBlock_work = (_ subStr : String,_ titleStr : String,_ personStr : String,_ StartTimeStr : String,_ endTimeStr : String)->()
 typealias SearchViewControllerBlock_dealcheck = (_ bidStr : String,_ nStr : String,_ StartTimeStr : String,_ endTimeStr : String,_ uStr : String,_ prStr : String)->()
 
 typealias SearchViewControllerBlock_deal2 = (_ bidStr : String,_ titleStr : String,_ StartTimeStr : String,_ endTimeStr : String)->()
@@ -1144,7 +1144,8 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             if persionCell.textField.isFirstResponder {
                 persionCell.textField.resignFirstResponder()
             }
-            self.sureWorkBlock(titleCell.conTent,persionCell.contentStr,startTimeStr,endTimeStr)
+            self.sureWorkBlock(subStr,titleCell.conTent,persionCell.contentStr,startTimeStr,endTimeStr)
+
         } else if self.type == .finance_type || self.type == .Income_list{
             self.view.endEditing(true)
             self.sureFinanceBlock(subStr,titleCell.conTent,persionCell.contentStr,dStr,startTimeStr,endTimeStr)

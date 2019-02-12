@@ -111,7 +111,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
     ///   - b: 发布时间段-开始
     ///   - e: 发布时间段-结束
     ///   - u: 发布者
-    func newslist1Request(p:Int,c:Int,bid:Int,t:String,b:String,e:String,u:String) {
+    func newslist1Request(subid : String,p:Int,c:Int,bid:Int,t:String,b:String,e:String,u:String) {
         request.delegate = self
         type = .newslist1
         var tStr = ""
@@ -130,7 +130,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
         if e.count > 0 {
             eStr = b.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         }
-        let url =   newslist1_api + "p=\(p)&c=\(c)&t=\(tStr)&b=\(bStr)&e=\(eStr)&u=\(uStr)&k=\(UserInfoLoaclManger.getKey())"
+        let url =   newslist1_api + "p=\(p)&c=\(c)&t=\(tStr)&b=\(bStr)&e=\(eStr)&u=\(uStr)&bid=\(subid)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
     }
     

@@ -19,6 +19,8 @@ class NoticeViewController: BaseViewController,UITableViewDataSource,UITableView
     var perStr : String = ""
     var startTime : String = ""
     var endTime : String = ""
+    var subStr = ""
+
     // MARK: - life
     override func viewWillLayoutSubviews() {
         mainTabelView.snp.makeConstraints { (make) in
@@ -111,7 +113,7 @@ class NoticeViewController: BaseViewController,UITableViewDataSource,UITableView
     }
     func requestApi() {
         request.delegate = self
-        request.newslist1Request(p: pageNum, c: 8, bid: 0, t: self.titleStr, b: self.startTime, e: self.endTime, u: self.perStr)
+        request.newslist1Request(subid: subStr,p: pageNum, c: 8, bid: 0, t: self.titleStr, b: self.startTime, e: self.endTime, u: self.perStr)
         
     }
     
@@ -131,12 +133,14 @@ class NoticeViewController: BaseViewController,UITableViewDataSource,UITableView
         HCLog(message: "搜索")
         let vc = SearchViewController()
         vc.type = .work_type
+        vc.typeSub = 18
         weak var weakself = self
-        vc.sureWorkBlock = {(titleStr, perStr, startTime ,endTime) in
+        vc.sureWorkBlock = {(sub,titleStr, perStr, startTime ,endTime) in
             HCLog(message: titleStr)
             HCLog(message: perStr)
             HCLog(message: startTime)
             HCLog(message: endTime)
+            weakself?.subStr = sub
             weakself?.titleStr = titleStr
             weakself?.perStr = perStr
             weakself?.startTime = startTime
