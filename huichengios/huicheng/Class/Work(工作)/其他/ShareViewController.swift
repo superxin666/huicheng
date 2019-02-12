@@ -273,7 +273,7 @@ class ShareViewController: BaseViewController,UITableViewDataSource,UITableViewD
         vc.hidesBottomBarWhenPushed = true
         vc.type = .shareType
         weak var weakSelf = self
-        vc.sureBankBlock = {(kw,t) in
+        vc.sureBankBlock = {(sub,kw,t) in
             weakSelf?.tStr = t
             weakSelf?.kwStr = kw
             HCLog(message: t)

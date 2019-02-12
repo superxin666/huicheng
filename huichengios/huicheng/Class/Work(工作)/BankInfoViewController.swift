@@ -18,6 +18,9 @@ class BankInfoViewController: BaseViewController,UITableViewDataSource,UITableVi
     /// 部门id
     var dStr = ""
 
+    /// 分所id
+    var bStr = ""
+
 
 
     // MARK: - life
@@ -83,7 +86,7 @@ class BankInfoViewController: BaseViewController,UITableViewDataSource,UITableVi
     // MARK: - net
     func requestApi() {
         requestVC.delegate = self
-        requestVC.bank_getlistRequest(p: pageNum, c: 8, u: "", b: "", d: dStr, n: nameStr)
+        requestVC.bank_getlistRequest(p: pageNum, c: 8, u: "", b: bStr, d: dStr, n: nameStr)
 
     }
 
@@ -128,9 +131,12 @@ class BankInfoViewController: BaseViewController,UITableViewDataSource,UITableVi
         HCLog(message: "搜索")
         let vc = SearchViewController()
         vc.type = .departAndPerson
+        vc.typeSub = 17
+
         weak var weakself = self
-        vc.sureBankBlock = {(nameStr,idStr ) in
+        vc.sureBankBlock = {(sub,nameStr,idStr ) in
             weakself?.nameStr = nameStr
+            weakself?.bStr = sub
             weakself?.dStr = idStr
             weakself?.reflishData()
         }

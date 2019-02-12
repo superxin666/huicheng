@@ -22,7 +22,7 @@ typealias SearchViewControllerBlock_deal2 = (_ bidStr : String,_ titleStr : Stri
 typealias SearchViewControllerBlock_finance = (_ bidStr : String,_ noStr : String,_ nStr : String,_ sStr : String,_ stStr : String,_ etStr : String)->()
 typealias SearchViewControllerBlock_caselsit = (_ bidStr : String,_ stStr : String,_ etStr : String)->()
 typealias SearchViewControllerBlock_deal = (_ bidStr : String,_ contentStr : String)->()
-typealias SearchViewControllerBlock_bank = (_ personStr : String,_ dStr : String)->()
+typealias SearchViewControllerBlock_bank = (_ subStr : String,_ personStr : String,_ dStr : String)->()
 
 typealias SearchViewControllerBlock_docSearch = (_ nStr : String,_ dnStr : String,_ kwStr : String,_ uStr : String,_ cnStr : String,_ bidStr : String,_ startTimeStr : String,_ endTimeStr : String)->()
 enum SearchViewController_type {
@@ -1164,11 +1164,11 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             if titleCell.textField.isFirstResponder {
                 titleCell.textField.resignFirstResponder()
             }
-            self.sureBankBlock(titleCell.conTent,self.dStr)
+            self.sureBankBlock("",titleCell.conTent,self.dStr)
         }  else if type == .shareType{
             self.view.endEditing(true)
 
-            self.sureBankBlock(titleCell.conTent,self.dStr)
+            self.sureBankBlock("",titleCell.conTent,self.dStr)
 
         }  else if type == .doc_search {
             self.view.endEditing(true)
@@ -1189,7 +1189,8 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
 
             expenBlock(dStr,subStr,prStr)
         } else if type == .departAndPerson {
-            sureBankBlock(prStr,dStr)
+            sureBankBlock(subStr,prStr,dStr)
+
         } else if type == .Statistics {
             StatisticsBlock("",nStr,bidStr,startTimeStr,endTimeStr,payId)
         }
