@@ -118,7 +118,7 @@ class FinanceViewController:  BaseViewController,UITableViewDataSource,UITableVi
         vc.hidesBottomBarWhenPushed = true
         vc.type = .finance_type
         weak var weakself = self
-        vc.sureFinanceBlock = {(no,n,s,st,et) in
+        vc.sureFinanceBlock = {(bid,no,n,s,st,et) in
             weakself?.noStr = no
             weakself?.nStr = n
             weakself?.sStr = s

@@ -179,6 +179,7 @@ class DocViewController: BaseViewController ,UITableViewDataSource,UITableViewDe
 //        self.navigationController?.pushViewController(vc, animated: true)
         let vc = SearchViewController()
         vc.type = .doc_search
+        vc.typeSub = 10
         weak var weakself = self
         vc.sureDocSearchSure = {(nStr,dnStr,kwStr,uStr,cnStr,bidStr,startTimeStr,endTimeStr) in
 

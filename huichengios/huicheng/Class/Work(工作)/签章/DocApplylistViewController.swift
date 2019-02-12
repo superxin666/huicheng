@@ -16,6 +16,8 @@ class DocApplylistViewController: BaseViewController ,UITableViewDataSource,UITa
 
     /// 合同编号
     var numStr = ""
+    var bidStr = ""
+
 
 
     // MARK: - life
@@ -80,7 +82,7 @@ class DocApplylistViewController: BaseViewController ,UITableViewDataSource,UITa
     // MARK: - net
     func requestApi() {
         requestVC.delegate = self
-        requestVC.doc_applylistRequest(p: pageNum, c: 8, bid: "", n: numStr)
+        requestVC.doc_applylistRequest(p: pageNum, c: 8, bid: self.bidStr, n: numStr)
     }
 
     func reflishData() {
@@ -136,9 +138,11 @@ class DocApplylistViewController: BaseViewController ,UITableViewDataSource,UITa
         HCLog(message: "搜索")
         let vc = SearchViewController()
         vc.type = .deal_type
+        vc.typeSub = 9
         weak var weakself = self
         vc.sureDealBlock = {(bid,content) in
             weakself?.numStr = content
+            weakself?.bidStr = bid
             weakself?.reflishData()
         }
         self.navigationController?.pushViewController(vc, animated: true)

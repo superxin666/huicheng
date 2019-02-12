@@ -39,7 +39,7 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
     ///   - b: <#b description#>
     ///   - e: <#e description#>
     ///   - u: <#u description#>
-    func income_getlistReuest(p:Int,c:Int,bid:Int,n:String,b:String,e:String,u:String,s:String) {
+    func income_getlistReuest(p:Int,c:Int,bid:String,n:String,b:String,e:String,u:String,s:String) {
         request.delegate = self
         type = .income_getlist
         var nStr = ""
@@ -59,7 +59,7 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
             eStr = b.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         }
 
-        let url =   finance_income_getlist_api + "p=\(p)&c=\(c)&s=\(s)&n=\(nStr)&b=\(bStr)&e=\(eStr)&u=\(uStr)&k=\(UserInfoLoaclManger.getKey())"
+        let url =   finance_income_getlist_api + "p=\(p)&c=\(c)&bid=\(bid)&s=\(s)&n=\(nStr)&b=\(bStr)&e=\(eStr)&u=\(uStr)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
 
     }

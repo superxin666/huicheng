@@ -108,7 +108,7 @@ class IncomeListViewController: BaseViewController ,UITableViewDataSource,UITabl
     // MARK: - net
     func requestApi() {
         requestVC.delegate = self
-        requestVC.income_getlistReuest(p: pageNum, c: 8, bid: 1, n: numStr,  b: bStr, e: eStr, u: uStr,s:sStr)
+        requestVC.income_getlistReuest(p: pageNum, c: 8, bid: self.bidStr, n: numStr,  b: bStr, e: eStr, u: uStr,s:sStr)
     }
 
     func reflishData() {
@@ -155,8 +155,10 @@ class IncomeListViewController: BaseViewController ,UITableViewDataSource,UITabl
         let vc = SearchViewController()
         vc.hidesBottomBarWhenPushed = true
         vc.type = .Income_list
+        vc.typeSub = 12
         weak var weakSelf = self
-        vc.sureFinanceBlock = {(no,n,s,st,et) in
+        vc.sureFinanceBlock = {(bid,no,n,s,st,et) in
+            weakSelf?.bidStr = bid
             weakSelf?.numStr = no
             weakSelf?.uStr = n
             weakSelf?.sStr = s

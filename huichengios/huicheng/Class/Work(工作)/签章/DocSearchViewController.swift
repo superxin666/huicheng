@@ -154,6 +154,7 @@ class DocSearchViewController: BaseViewController ,UITableViewDataSource,UITable
         HCLog(message: "搜索")
         let vc = SearchViewController()
         vc.type = .doc_search
+        vc.typeSub = 11
         weak var weakself = self
         vc.sureDocSearchSure = {(nStr,dnStr,kwStr,uStr,cnStr,bidStr,startTimeStr,endTimeStr) in
 

@@ -136,6 +136,7 @@ class InvoiceapplylisViewController: BaseViewController,UITableViewDataSource,UI
     override func navigationRightBtnClick() {
         let vc = SearchViewController()
         vc.type = .Expenseapply
+        vc.typeSub = 13
         weak var weakself = self
         vc.expenBlock = {(st1,st2,st3) in
             weakself?.sStr = st1

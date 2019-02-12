@@ -19,7 +19,7 @@ typealias SearchViewControllerBlock_dealcheck = (_ bidStr : String,_ nStr : Stri
 typealias SearchViewControllerBlock_deal2 = (_ bidStr : String,_ titleStr : String,_ StartTimeStr : String,_ endTimeStr : String)->()
 
 
-typealias SearchViewControllerBlock_finance = (_ noStr : String,_ nStr : String,_ sStr : String,_ stStr : String,_ etStr : String)->()
+typealias SearchViewControllerBlock_finance = (_ bidStr : String,_ noStr : String,_ nStr : String,_ sStr : String,_ stStr : String,_ etStr : String)->()
 typealias SearchViewControllerBlock_caselsit = (_ bidStr : String,_ stStr : String,_ etStr : String)->()
 typealias SearchViewControllerBlock_deal = (_ bidStr : String,_ contentStr : String)->()
 typealias SearchViewControllerBlock_bank = (_ personStr : String,_ dStr : String)->()
@@ -128,8 +128,10 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
     var uStr = ""
     /// 案件名称
     var cnStr = ""
-    /// 分所id
+    ///
     var bidStr = ""
+
+
 
     var branchID = ""
 
@@ -1021,6 +1023,7 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         if isHaveSub == 1 && sectionNum > 1 && currectIndexpath.section == 0 {
             let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 0, section: 0)) as! OptionTableViewCell
             cell.setOptionData(contentStr: titleStr)
+            subStr = idStr
         } else {
             if type == .Income_list {
                 let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 4, section: sectionNum - 1)) as! OptionTableViewCell
@@ -1144,7 +1147,7 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             self.sureWorkBlock(titleCell.conTent,persionCell.contentStr,startTimeStr,endTimeStr)
         } else if self.type == .finance_type || self.type == .Income_list{
             self.view.endEditing(true)
-            self.sureFinanceBlock(titleCell.conTent,persionCell.contentStr,dStr,startTimeStr,endTimeStr)
+            self.sureFinanceBlock(subStr,titleCell.conTent,persionCell.contentStr,dStr,startTimeStr,endTimeStr)
             
         } else if self.type == .caselsit_type {
 
@@ -1169,6 +1172,7 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
 
         }  else if type == .doc_search {
             self.view.endEditing(true)
+
             self.sureDocSearchSure(nStr,dnStr,kwStr,uStr,cnStr,bidStr,startTimeStr,endTimeStr)
         } else if type == .deal2_type {
             self.view.endEditing(true)
@@ -1182,7 +1186,8 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             dealcheckBlock("",nStr,startTimeStr,endTimeStr,"",prStr)
 
         } else if type == .Expenseapply{
-            expenBlock(dStr,branchID,prStr)
+
+            expenBlock(dStr,subStr,prStr)
         } else if type == .departAndPerson {
             sureBankBlock(prStr,dStr)
         } else if type == .Statistics {
