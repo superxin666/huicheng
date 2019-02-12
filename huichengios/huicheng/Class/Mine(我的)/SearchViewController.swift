@@ -1183,7 +1183,7 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         } else if type == .PayApplylist {
              dealcheckBlock("",nStr,startTimeStr,endTimeStr,bidStr,prStr)
         } else if type == .PayCheck{
-            dealcheckBlock("",nStr,startTimeStr,endTimeStr,"",prStr)
+            dealcheckBlock(subStr,nStr,startTimeStr,endTimeStr,"",prStr)
 
         } else if type == .Expenseapply{
 

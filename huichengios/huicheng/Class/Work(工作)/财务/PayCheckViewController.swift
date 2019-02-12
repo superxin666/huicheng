@@ -144,14 +144,14 @@ class PayCheckViewController: BaseViewController ,UITableViewDataSource,UITableV
         HCLog(message: "搜索")
         let vc = SearchViewController()
         vc.type = .PayCheck
-        
+        vc.typeSub = 15
         weak var weakself = self
         vc.dealcheckBlock = {(aStr,nStr,startTimeStr,endTimeStr,bidStr,prStr) in
 
             weakself?.nStr = nStr//
             weakself?.bStr = startTimeStr
             weakself?.eStr = endTimeStr
-            weakself?.bidStr = bidStr
+            weakself?.bidStr = aStr
             weakself?.uStr = prStr
 
 

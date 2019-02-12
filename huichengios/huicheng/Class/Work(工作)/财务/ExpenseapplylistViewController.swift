@@ -142,10 +142,14 @@ class ExpenseapplylistViewController: BaseViewController,UITableViewDataSource,U
         HCLog(message: "搜索")
         let vc = SearchViewController()
         vc.type = .Expenseapply
+        vc.typeSub = 14
         weak var weakself = self
         vc.expenBlock = {(st1,st2,st3) in
+
             weakself?.sStr = st1
+
             weakself?.bStr = st2
+
             weakself?.uStr = st3
 
             weakself?.reflishData()
