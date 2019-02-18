@@ -204,7 +204,7 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             rowNum = 5
         } else if type == .doc_search{
             self.navigation_title_fontsize(name: "函件查询", fontsize: 18)
-            rowNum = 8
+            rowNum = 7
         } else if type == .shareType{
             self.navigation_title_fontsize(name: "共享模板查询", fontsize: 18)
             rowNum = 2
@@ -238,11 +238,11 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         }
         userDataModel = UserInfoLoaclManger.getsetUserWorkData()
         if typeSub < userDataModel.searchpower.count {
-//            isHaveSub = userDataModel.searchpower[typeSub]
+            isHaveSub = userDataModel.searchpower[typeSub]
 //            isHaveSub = 1
-            let arr = [1,0,1,1,1,1,1,0,1,0,0,0,0,1,1,1,1,0,1]
+//            let arr = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 
-            isHaveSub = arr[typeSub]
+//            isHaveSub = arr[typeSub]
 
             if isHaveSub == 1 {
 //                rowNum = rowNum + 1
@@ -558,7 +558,7 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
 
             } else if type == .doc_search{
 
-                if indexPath.row == 6  {
+                if indexPath.row == 5  {
 
                     //开始时间
                     startTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
@@ -566,18 +566,12 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
                     startTimeCell.timeLabel.text = "请选择"
                     return startTimeCell
 
-                }   else if indexPath.row == 7 {
+                }   else if indexPath.row == 6 {
                     endTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
                     endTimeCell.setData(titleStr: "结束时间", tag: 1)
                     endTimeCell.timeLabel.text = "请选择"
                     return endTimeCell
 
-                }  else if indexPath.row == 5 {
-                    //部门
-                    optionCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
-                    optionCell.setData_caseDetail(titleStr: "部门", contentStr: "")
-                    optionCell.contentLabel.text = "请选择"
-                    return optionCell
                 } else {
 
                     titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
@@ -811,17 +805,9 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             } else if type == .doc_search {
                 currectIndexpath = indexPath
                 if indexPath.row == 5 {
-                    //部门
-                    if dep.count > 0 {
-                        self.showOption(indexPath: indexPath)
-                    } else {
-                        request.departmentRequest()
-                    }
-
-                } else if indexPath.row == 6 {
                     //开始时间
                     self.showTime_start()
-                } else if indexPath.row == 7 {
+                } else if indexPath.row == 6 {
                     //结束时间
                     self.showTime_end()
                 }
@@ -1178,7 +1164,8 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         }  else if type == .doc_search {
             self.view.endEditing(true)
 
-            self.sureDocSearchSure(nStr,dnStr,kwStr,uStr,cnStr,bidStr,startTimeStr,endTimeStr)
+            self.sureDocSearchSure(nStr,dnStr,kwStr,uStr,cnStr,subStr,startTimeStr,endTimeStr)
+
         } else if type == .deal2_type {
             self.view.endEditing(true)
             self.deal2SureBlock(bidStr,titleCell.conTent,startTimeStr,endTimeStr)

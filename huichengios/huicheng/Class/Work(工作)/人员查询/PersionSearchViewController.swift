@@ -91,7 +91,7 @@ class PersionSearchViewController: BaseTableViewController,WorkRequestVCDelegate
         userDataModel = UserInfoLoaclManger.getsetUserWorkData()
         if typeSub < userDataModel.searchpower.count {
             isHaveSub = userDataModel.searchpower[typeSub]
-            isHaveSub = 1
+//            isHaveSub = 1
             if isHaveSub == 1 {
                 //                rowNum = rowNum + 1
                 sectionNum = 2

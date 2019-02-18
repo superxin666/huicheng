@@ -277,7 +277,7 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
 
 
 
-        let url = doc_getlist_api   + "p=\(p)&c=\(c)&n=\(n)&s=\(sStr)&lv=\(lvStr)&nm=\(nmStr)&bd=\(bdStr)&ed=\(edStr)&k=\(UserInfoLoaclManger.getKey())"
+        let url = doc_getlist_api   + "bid=\(bid)&p=\(p)&c=\(c)&n=\(n)&s=\(sStr)&lv=\(lvStr)&nm=\(nmStr)&bd=\(bdStr)&ed=\(edStr)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
 
     }
