@@ -600,7 +600,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
     ///   - p: <#p description#>
     ///   - c: <#c description#>
     ///   - n: <#n description#>
-    func searchlistReuest(p:Int,c:Int,n:String,d:String,b:String,e:String,kw:String,u:String,t:String,wu:String,ic:String,io:String) {
+    func searchlistReuest(subStr : String,p:Int,c:Int,n:String,d:String,b:String,e:String,kw:String,u:String,t:String,wu:String,ic:String,io:String) {
         request.delegate = self
         type = .searchlist
         var nStr = ""
@@ -633,7 +633,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
 
 
 
-        let url = deal_searchlist_api   + "p=\(p)&c=\(c)&n=\(nStr)&d=\(d)&b=\(bStr)&e=\(eStr)&kw=\(kwStr)&u=\(uStr)&t=\(t)&wu=\(wuStr)&ic=\(ic)&io=\(io)&k=\(UserInfoLoaclManger.getKey())"
+        let url = deal_searchlist_api   + "bid=\(subStr)&p=\(p)&c=\(c)&n=\(nStr)&d=\(d)&b=\(bStr)&e=\(eStr)&kw=\(kwStr)&u=\(uStr)&t=\(t)&wu=\(wuStr)&ic=\(ic)&io=\(io)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
     }
 

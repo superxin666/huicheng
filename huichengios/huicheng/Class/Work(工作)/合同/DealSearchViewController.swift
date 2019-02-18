@@ -24,6 +24,7 @@ class DealSearchViewController: BaseViewController,UITableViewDataSource,UITable
     var wuStr = ""
     var icStr = ""
     var ioStr = ""
+    var subStr = ""
 
 
     // MARK: - life
@@ -98,7 +99,7 @@ class DealSearchViewController: BaseViewController,UITableViewDataSource,UITable
     // MARK: - net
     func requestApi() {
         requestVC.delegate = self
-        requestVC.searchlistReuest(p: pageNum, c: 8, n: numStr, d: dStr, b: bStr, e: eStr, kw: kwStr, u: uStr, t: tStr, wu: wuStr, ic: icStr, io: ioStr)
+        requestVC.searchlistReuest(subStr : subStr,p: pageNum, c: 8, n: numStr, d: dStr, b: bStr, e: eStr, kw: kwStr, u: uStr, t: tStr, wu: wuStr, ic: icStr, io: ioStr)
     }
 
     func reflishData() {
@@ -142,9 +143,11 @@ class DealSearchViewController: BaseViewController,UITableViewDataSource,UITable
         HCLog(message: "搜索")
         let vc = DealSearch2ViewController()
         weak var weakself = self
-        vc.sucessBlock = {(numStr,dStr,bStr,eStr,kwStr,uStr,tStr,wuStr,icStr,ioStr) in
+        vc.typeSub = 4
+        vc.sucessBlock = {(subStr,numStr,dStr,bStr,eStr,kwStr,uStr,tStr,wuStr,icStr,ioStr) in
             HCLog(message: numStr)
-            
+
+            self.subStr = subStr
             self.numStr = numStr
             self.dStr = dStr
             self.bStr = bStr

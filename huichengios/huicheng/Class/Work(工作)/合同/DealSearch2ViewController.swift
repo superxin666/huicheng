@@ -9,12 +9,15 @@
 import UIKit
 
 
-typealias DealSearch2ViewControllerBlock =  (_ numStr : String,_ dStr : String,_ bStr : String,_ eStr : String,_ kwStr : String,_ uStr : String,_ tStr : String,_ wuStr : String,_ icStr : String,_ ioStr : String)->()
+typealias DealSearch2ViewControllerBlock =  (_ subStr : String,_ numStr : String,_ dStr : String,_ bStr : String,_ eStr : String,_ kwStr : String,_ uStr : String,_ tStr : String,_ wuStr : String,_ icStr : String,_ ioStr : String)->()
 
 
 class DealSearch2ViewController: BaseTableViewController,WorkRequestVCDelegate ,DatePickViewDelegate,TitleTableViewCellDelegate,OptionViewDelgate{
     let mainTabelView : UITableView = UITableView()
+     var optionCell :  OptionTableViewCell!
 
+    /// 当前选中的行
+    var currectIndexpath : IndexPath!
 
     var sucessBlock : DealSearch2ViewControllerBlock!
 
@@ -49,6 +52,7 @@ class DealSearch2ViewController: BaseTableViewController,WorkRequestVCDelegate ,
     var caseCell : SelectedTableViewCell!
 
 
+    var branch : [branchModel] = []
 
     /// 合同编号
     var numStr = ""
@@ -67,9 +71,18 @@ class DealSearch2ViewController: BaseTableViewController,WorkRequestVCDelegate ,
     var icStr = ""
     var ioStr = ""
 
+    var subStr = ""
 
 
 
+    //选项
+    var typeSub : Int = 0
+    //默认没有 0 没有权限 1 有权限
+    var isHaveSub : Int = 0
+
+    var userDataModel : LoginModel!
+
+    var sectionNum : Int!
 
 
     // MARK: - life
@@ -85,7 +98,25 @@ class DealSearch2ViewController: BaseTableViewController,WorkRequestVCDelegate ,
         self.navigation_title_fontsize(name: "合同查询", fontsize: 18)
         self.navigationBar_rightBtn_title(name: "确定")
         self.navigationBar_leftBtn_image(image: #imageLiteral(resourceName: "pub_arrow"))
-        self.creatUI()
+
+
+        
+        userDataModel = UserInfoLoaclManger.getsetUserWorkData()
+        if typeSub < userDataModel.searchpower.count {
+            isHaveSub = userDataModel.searchpower[typeSub]
+            isHaveSub = 1
+            if isHaveSub == 1 {
+                //                rowNum = rowNum + 1
+                sectionNum = 2
+            } else {
+                sectionNum = 1
+            }
+        }
+
+         self.creatUI()
+
+
+        
     }
 
     // MARK: - UI
@@ -109,86 +140,116 @@ class DealSearch2ViewController: BaseTableViewController,WorkRequestVCDelegate ,
     }
     // MARK: - delegate
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return sectionNum
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.nameArr.count
+        if isHaveSub ==  1 {
+            if section == 0 {
+                return 1
+            } else {
+                return self.nameArr.count
+            }
+        } else {
+            return self.nameArr.count
+        }
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        if indexPath.row == 1  {
-            let cell : OptionTableViewCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
-            cell.setData_caseDetail(titleStr: nameArr[indexPath.row], contentStr: dNameStr)
-
-            return cell
-
-        } else if indexPath.row == 2 {
-
-            let cell : OptionTableViewCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
-            cell.setData_caseDetail(titleStr: nameArr[indexPath.row], contentStr: tNameStr)
-            return cell
-
-
-        } else if indexPath.row == 3 {
-            startTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-            startTimeCell.setData(titleStr: "开始时间", tag: 0)
-
-            return startTimeCell
-
-
-        } else if indexPath.row == 4 {
-            endTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
-            endTimeCell.setData(titleStr: "结束时间", tag: 1)
-            return endTimeCell
-
-
-            
-        } else if indexPath.row == 8 {
-            incomeCell  = tableView.dequeueReusableCell(withIdentifier: SelectedTableViewCellID, for: indexPath) as! SelectedTableViewCell
-            incomeCell.setIncomeState()
-            return incomeCell
-
-
-        } else if indexPath.row == 9 {
-            caseCell  = tableView.dequeueReusableCell(withIdentifier: SelectedTableViewCellID, for: indexPath) as! SelectedTableViewCell
-            caseCell.setOverCase()
-            return caseCell
+        if isHaveSub == 1 && indexPath.section == 0 {
+            optionCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
+            optionCell.setData_caseDetail(titleStr: "分所", contentStr: "")
+            return optionCell
 
         } else {
-            titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
-            //标题
-            titleCell.setData_dealcheck(titleStr: nameArr[indexPath.row], tagNum: indexPath.row)
-            titleCell.delegate = self
-            return titleCell
+
+            if indexPath.row == 1  {
+                let cell : OptionTableViewCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
+                cell.setData_caseDetail(titleStr: nameArr[indexPath.row], contentStr: dNameStr)
+
+                return cell
+
+            } else if indexPath.row == 2 {
+
+                let cell : OptionTableViewCell  = tableView.dequeueReusableCell(withIdentifier: OptionTableViewCellID, for: indexPath) as! OptionTableViewCell
+                cell.setData_caseDetail(titleStr: nameArr[indexPath.row], contentStr: tNameStr)
+                return cell
+
+
+            } else if indexPath.row == 3 {
+                startTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                startTimeCell.setData(titleStr: "开始时间", tag: 0)
+
+                return startTimeCell
+
+
+            } else if indexPath.row == 4 {
+                endTimeCell = tableView.dequeueReusableCell(withIdentifier: endTimeTableViewCellid, for: indexPath) as! endTimeTableViewCell
+                endTimeCell.setData(titleStr: "结束时间", tag: 1)
+                return endTimeCell
+
+
+
+            } else if indexPath.row == 8 {
+                incomeCell  = tableView.dequeueReusableCell(withIdentifier: SelectedTableViewCellID, for: indexPath) as! SelectedTableViewCell
+                incomeCell.setIncomeState()
+                return incomeCell
+
+
+            } else if indexPath.row == 9 {
+                caseCell  = tableView.dequeueReusableCell(withIdentifier: SelectedTableViewCellID, for: indexPath) as! SelectedTableViewCell
+                caseCell.setOverCase()
+                return caseCell
+
+            } else {
+                titleCell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellID, for: indexPath) as! TitleTableViewCell
+                //标题
+                titleCell.setData_dealcheck(titleStr: nameArr[indexPath.row], tagNum: indexPath.row)
+                titleCell.delegate = self
+                return titleCell
+            }
         }
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.view.endEditing(true)
-        if indexPath.row == 1 {
-            //部门
+        currectIndexpath = indexPath
+        if isHaveSub == 1 && indexPath.section == 0 {
+            //案件组别
 
             if dep.count > 0 {
-                self.showOptionView_part()
+                self.showOption_branch()
             } else {
-                request.departmentRequest()
+                request.branchRequest()
             }
 
-        } else if indexPath.row == 2 {
-            //案件
-            if casetype.count > 0 {
-                self.showOptionView_share()
-            } else {
-                request.casetypeRequest()
+        } else {
+
+
+            if indexPath.row == 1 {
+                //部门
+
+                if dep.count > 0 {
+                    self.showOptionView_part()
+                } else {
+                    request.departmentRequest()
+                }
+
+            } else if indexPath.row == 2 {
+                //案件
+                if casetype.count > 0 {
+                    self.showOptionView_share()
+                } else {
+                    request.casetypeRequest()
+                }
+
+            } else if indexPath.row == 3 {
+                //开始时间
+                self.showTime_start()
+
+            } else if indexPath.row == 4 {
+                //结束时间
+                self.showTime_end()
+
             }
-
-        } else if indexPath.row == 3 {
-            //开始时间
-            self.showTime_start()
-
-        } else if indexPath.row == 4 {
-            //结束时间
-            self.showTime_end()
-
         }
 
 
@@ -218,9 +279,11 @@ class DealSearch2ViewController: BaseTableViewController,WorkRequestVCDelegate ,
         } else if type == .casetype {
             casetype = data as! [casetypeModel]
             self.showOptionView_share()
-
-
+        } else if type == .branch {
+            branch = data as! [branchModel]
+            self.showOption_branch()
         }
+
     }
 
     func requestFail_work(){
@@ -281,6 +344,22 @@ class DealSearch2ViewController: BaseTableViewController,WorkRequestVCDelegate ,
         }
     }
 
+    func showOption_branch() {
+        self.maskView.addSubview(self.optionView)
+        self.view.window?.addSubview(self.maskView)
+        self.optionView.setData_branch(arr: branch)
+
+        self.optionView.delegate = self
+        self.optionView.snp.makeConstraints { (make) in
+            make.left.right.equalTo(0)
+            make.bottom.equalTo(0)
+            make.height.equalTo(200)
+        }
+
+
+    }
+
+
     func showOptionView_share() {
         self.maskView.addSubview(self.optionView)
         self.view.window?.addSubview(self.maskView)
@@ -300,17 +379,25 @@ class DealSearch2ViewController: BaseTableViewController,WorkRequestVCDelegate ,
         HCLog(message: titleStr)
         HCLog(message: noteStr)
         HCLog(message: pickTag)
-        
-        if pickTag == 1 {
-            dStr = idStr
-            dNameStr = titleStr
-        } else if pickTag == 2 {
-            self.tStr = idStr
-            tNameStr = titleStr
-        }
 
-        let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: pickTag, section: 0)) as! OptionTableViewCell
-        cell.setOptionData(contentStr: titleStr)
+
+        if isHaveSub == 1 && sectionNum > 1  && currectIndexpath.section == 0 {
+            let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 0, section: 0)) as! OptionTableViewCell
+            cell.setOptionData(contentStr: titleStr)
+            subStr = idStr
+        } else {
+
+            if pickTag == 1 {
+                dStr = idStr
+                dNameStr = titleStr
+            } else if pickTag == 2 {
+                self.tStr = idStr
+                tNameStr = titleStr
+            }
+
+            let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: pickTag, section: sectionNum - 1)) as! OptionTableViewCell
+            cell.setOptionData(contentStr: titleStr)
+        }
 
         self.optionView.removeFromSuperview()
         self.maskView.removeFromSuperview()
@@ -331,7 +418,7 @@ class DealSearch2ViewController: BaseTableViewController,WorkRequestVCDelegate ,
             ioStr = "2"
         }
 
-        self.sucessBlock(numStr,dStr,startTimeStr,endTimeStr,kwStr,uStr,tStr,wuStr,icStr,ioStr)
+        self.sucessBlock(subStr,numStr,dStr,startTimeStr,endTimeStr,kwStr,uStr,tStr,wuStr,icStr,ioStr)
         
         self.navigationController?.popViewController(animated: true)
     }
