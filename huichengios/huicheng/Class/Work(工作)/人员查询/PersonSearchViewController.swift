@@ -14,6 +14,8 @@ class PersonSearchViewController:  BaseViewController ,UITableViewDataSource,UIT
     var dataArr : [usermanageModel] = []
     var pageNum : Int = 1
 
+    var subStr = ""
+
     /// 分所
     var bid = ""
     /// 帐号
@@ -106,7 +108,7 @@ class PersonSearchViewController:  BaseViewController ,UITableViewDataSource,UIT
     // MARK: - net
     func requestApi() {
         requestVC.delegate = self
-        requestVC.usermanageReuqet(p: pageNum, c: 8, bid: self.bid, u: self.uStr, n: self.nStr, d: self.dStr, ca: self.caStr, dp: self.dpStr, s: self.sStr, bd: self.bdStr, ed: self.edStr)
+        requestVC.usermanageReuqet(subStr:subStr,p: pageNum, c: 8, bid: self.bid, u: self.uStr, n: self.nStr, d: self.dStr, ca: self.caStr, dp: self.dpStr, s: self.sStr, bd: self.bdStr, ed: self.edStr)
     }
 
     func reflishData() {
@@ -155,7 +157,10 @@ class PersonSearchViewController:  BaseViewController ,UITableViewDataSource,UIT
         HCLog(message: "搜索")
         let vc : PersionSearchViewController = PersionSearchViewController()
         vc.hidesBottomBarWhenPushed = true
-        vc.sucessBlock = {(bidStr,uStr,nStr,dStr, caStr, dpStr ,sStr , bdStr , edStr) in
+        vc.typeSub = 16
+        vc.sucessBlock = {(subStr,bidStr,uStr,nStr,dStr, caStr, dpStr ,sStr , bdStr , edStr) in
+
+            self.subStr = subStr
             self.bid = bidStr
             self.uStr = uStr
             self.nStr = nStr

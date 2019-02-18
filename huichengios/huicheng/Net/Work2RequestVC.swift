@@ -608,7 +608,7 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
     }
 
      // MARK: -  人员查询
-    func usermanageReuqet(p:Int,c:Int,bid:String,u:String,n:String,d:String,ca:String,dp:String,s:String,bd:String,ed:String)  {
+    func usermanageReuqet(subStr:String,p:Int,c:Int,bid:String,u:String,n:String,d:String,ca:String,dp:String,s:String,bd:String,ed:String)  {
 
         type = .usermanage
         request.delegate = self
@@ -636,7 +636,7 @@ class Work2RequestVC: UIViewController,BaseNetViewControllerDelegate {
         type = .usermanage
         request.delegate = self
         //&bid=\(bid)
-        let url =   usermanage_api + "p=\(p)&c=\(c)&u=\(uStr)&n=\(nStr)&d=\(d)&ca=\(ca)&dp=\(dp)&s=\(s)&bd=\(bStr)&ed=\(eStr)&k=\(UserInfoLoaclManger.getKey())"
+        let url =   usermanage_api + "bid=\(subStr)&p=\(p)&c=\(c)&u=\(uStr)&n=\(nStr)&d=\(d)&ca=\(ca)&dp=\(dp)&s=\(s)&bd=\(bStr)&ed=\(eStr)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
 
     }

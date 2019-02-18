@@ -215,7 +215,7 @@ class DealSearch2ViewController: BaseTableViewController,WorkRequestVCDelegate ,
         if isHaveSub == 1 && indexPath.section == 0 {
             //案件组别
 
-            if dep.count > 0 {
+            if branch.count > 0 {
                 self.showOption_branch()
             } else {
                 request.branchRequest()
