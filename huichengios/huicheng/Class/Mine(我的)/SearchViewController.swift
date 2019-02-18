@@ -238,8 +238,12 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         }
         userDataModel = UserInfoLoaclManger.getsetUserWorkData()
         if typeSub < userDataModel.searchpower.count {
-            isHaveSub = userDataModel.searchpower[typeSub]
-            isHaveSub = 1
+//            isHaveSub = userDataModel.searchpower[typeSub]
+//            isHaveSub = 1
+            let arr = [1,0,1,1,1,1,1,0,1,0,0,0,0,1,1,1,1,0,1]
+
+            isHaveSub = arr[typeSub]
+
             if isHaveSub == 1 {
 //                rowNum = rowNum + 1
                 sectionNum = 2
