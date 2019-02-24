@@ -23,6 +23,7 @@ class CaseCheckViewController: BaseViewController,UITableViewDataSource,UITableV
 
     var uStr = ""
     var prStr = ""
+    var bidStr = ""
 
 
     // MARK: - life
@@ -96,7 +97,7 @@ class CaseCheckViewController: BaseViewController,UITableViewDataSource,UITableV
     // MARK: - net
     func requestApi() {
         requestVC.delegate = self
-        requestVC.dealgetoverlistRequest(p: pageNum, c: 8, n: numStr, b: bStr, e: eStr, u: uStr,pr: prStr)
+        requestVC.dealgetoverlistRequest(bid : bidStr,p: pageNum, c: 8, n: numStr, b: bStr, e: eStr, u: uStr,pr: prStr)
     }
 
     func reflishData() {
@@ -143,6 +144,7 @@ class CaseCheckViewController: BaseViewController,UITableViewDataSource,UITableV
         vc.typeSub = 3
         weak var weakself = self
         vc.dealcheckBlock = {(bid,n,b,e,u,pr) in
+            weakself?.bidStr = bid
             weakself?.numStr = n
             weakself?.bStr = b
             weakself?.eStr = e

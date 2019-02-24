@@ -649,7 +649,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
     ///   - e: <#e description#>
     ///   - u: <#u description#>
     ///   - pr: <#pr description#>
-    func dealgetoverlistRequest(p:Int,c:Int,n:String,b:String,e:String,u:String,pr:String) {
+    func dealgetoverlistRequest(bid:String,p:Int,c:Int,n:String,b:String,e:String,u:String,pr:String) {
         request.delegate = self
         type = .dealgetoverlist
 
@@ -670,7 +670,7 @@ class WorkRequestVC: UIViewController,BaseNetViewControllerDelegate {
             prStr = pr.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         }
 
-        let url = deal_getoverlist_api   + "c=\(c)&p=\(p)&n=\(n)&b=\(bStr)&e=\(eStr)&u=\(uStr)&pr=\(prStr)&k=\(UserInfoLoaclManger.getKey())"
+        let url = deal_getoverlist_api   + "bid=\(bid)&c=\(c)&p=\(p)&n=\(n)&b=\(bStr)&e=\(eStr)&u=\(uStr)&pr=\(prStr)&k=\(UserInfoLoaclManger.getKey())"
         request.request_api(url: url)
 
     }
