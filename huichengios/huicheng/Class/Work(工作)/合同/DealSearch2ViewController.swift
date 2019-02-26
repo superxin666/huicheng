@@ -104,6 +104,7 @@ class DealSearch2ViewController: BaseTableViewController,WorkRequestVCDelegate ,
         userDataModel = UserInfoLoaclManger.getsetUserWorkData()
         if typeSub < userDataModel.searchpower.count {
             isHaveSub = userDataModel.searchpower[typeSub]
+            
 //            isHaveSub = 1
             if isHaveSub == 1 {
                 //                rowNum = rowNum + 1

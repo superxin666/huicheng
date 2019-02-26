@@ -136,8 +136,10 @@ class BankInfoViewController: BaseViewController,UITableViewDataSource,UITableVi
         weak var weakself = self
         vc.sureBankBlock = {(sub,nameStr,idStr ) in
             weakself?.nameStr = nameStr
+
             weakself?.bStr = sub
             weakself?.dStr = idStr
+
             weakself?.reflishData()
         }
         self.navigationController?.pushViewController(vc, animated: true)

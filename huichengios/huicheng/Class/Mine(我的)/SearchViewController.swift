@@ -1007,14 +1007,17 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         HCLog(message: titleStr)
         HCLog(message: idStr)
         HCLog(message: pickTag)
-        dStr = idStr
-        bidStr = idStr
+
 
         if isHaveSub == 1 && sectionNum > 1 && currectIndexpath.section == 0 {
             let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 0, section: 0)) as! OptionTableViewCell
             cell.setOptionData(contentStr: titleStr)
             subStr = idStr
+            HCLog(message: "分所id\(subStr)")
         } else {
+            dStr = idStr
+            bidStr = idStr
+            HCLog(message: "其余id\(subStr)")
             if type == .Income_list {
                 let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 4, section: sectionNum - 1)) as! OptionTableViewCell
                 cell.setOptionData(contentStr: titleStr)
@@ -1138,7 +1141,7 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
 
         } else if self.type == .finance_type || self.type == .Income_list{
             self.view.endEditing(true)
-            self.sureFinanceBlock(subStr,titleCell.conTent,persionCell.contentStr,dStr,startTimeStr,endTimeStr)
+            self.sureFinanceBlock(subStr,titleCell.conTent,persionCell.contentStr,bidStr,startTimeStr,endTimeStr)
             
         } else if self.type == .caselsit_type {
 
@@ -1155,7 +1158,7 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             if titleCell.textField.isFirstResponder {
                 titleCell.textField.resignFirstResponder()
             }
-            self.sureBankBlock("",titleCell.conTent,self.dStr)
+            self.sureBankBlock(self.subStr,titleCell.conTent,self.dStr)
         }  else if type == .shareType{
             self.view.endEditing(true)
 
