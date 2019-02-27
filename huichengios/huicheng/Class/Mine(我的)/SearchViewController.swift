@@ -1009,6 +1009,7 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
         HCLog(message: pickTag)
 
 
+
         if isHaveSub == 1 && sectionNum > 1 && currectIndexpath.section == 0 {
             let cell : OptionTableViewCell = self.mainTabelView.cellForRow(at: IndexPath(row: 0, section: 0)) as! OptionTableViewCell
             cell.setOptionData(contentStr: titleStr)
@@ -1145,15 +1146,15 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
             
         } else if self.type == .caselsit_type {
 
-            self.sureCaselsitBlock(dStr,startTimeStr,endTimeStr)
+            self.sureCaselsitBlock(subStr,startTimeStr,endTimeStr)
 
         } else if type == .workbook_type{
-            self.sureCaselsitBlock(bidStr,startTimeStr,endTimeStr)
+            self.sureCaselsitBlock(subStr,startTimeStr,endTimeStr)
         } else if type == .deal_type || type == .person || type == .conven_type {
             if titleCell.textField.isFirstResponder {
                 titleCell.textField.resignFirstResponder()
             }
-            self.sureDealBlock(bidStr,titleCell.conTent)
+            self.sureDealBlock(subStr,titleCell.conTent)
         } else if type == .departAndPerson{
             if titleCell.textField.isFirstResponder {
                 titleCell.textField.resignFirstResponder()
@@ -1171,10 +1172,10 @@ class SearchViewController: BaseViewController, UITableViewDataSource, UITableVi
 
         } else if type == .deal2_type {
             self.view.endEditing(true)
-            self.deal2SureBlock(bidStr,titleCell.conTent,startTimeStr,endTimeStr)
+            self.deal2SureBlock(subStr,titleCell.conTent,startTimeStr,endTimeStr)
         } else if type == .dealcheck {
 
-            dealcheckBlock(bidStr,nStr,startTimeStr,endTimeStr,uStr,prStr)
+            dealcheckBlock(subStr,nStr,startTimeStr,endTimeStr,uStr,prStr)
         } else if type == .PayApplylist {
              dealcheckBlock("",nStr,startTimeStr,endTimeStr,bidStr,prStr)
         } else if type == .PayCheck{

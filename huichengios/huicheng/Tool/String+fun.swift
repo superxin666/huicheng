@@ -137,7 +137,12 @@ extension String {
 
         let dfmatter2 = DateFormatter()
         dfmatter2.dateFormat="yyyy-MM-dd HH:mm"
+        if date == nil{
+            return ""
+        } else{
         return dfmatter2.string(from: date!)
+
+        }
     }
 
 
